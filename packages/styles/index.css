@@ -4,7 +4,5 @@
 
 @custom-variant dark (&:where(.dark, .dark *, [data-theme="dark"], [data-theme="dark"] *));
 
-@import "./src/themes.css";
-@import "./src/utilities.css";
+@import "./src/theme/index.css";
 @import "./src/components/index.css";
-@import "./src/theme-map.css";

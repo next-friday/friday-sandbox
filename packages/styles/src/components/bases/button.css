@@ -1,12 +1,13 @@
 /* Per-variant runtime knobs:
  *   --button-background  — set by color variant class.
+ *   --button-foreground  — set by color variant class (paired token).
  *   --action-n           — set by size variant class (rhythm multiplier).
  * Rhythm (height, padding-x, radius) comes from the shared action-rhythm
- * utility. Color derivations (foreground, hover, pressed, focus-ring) live
- * here because they are intent-driven, not rhythm-driven.
+ * utility. Color derivations (hover, pressed, focus-ring) live here because
+ * they are intent-driven, not rhythm-driven.
  *
- * Foreground: oklch(from background ...) picks pure black or white.
- *   The expression flips on OKLCH lightness > 0.62 (WCAG-tuned).
+ * Foreground pairs with background via `--<color>-foreground` tokens so
+ * consumers control contrast for any palette they pick.
  * Hover: color-mix() blends background with the page --background. */
 @layer components {
   .fri-button {
@@ -14,9 +15,7 @@
 
     --action-n: 10;
     --button-background: var(--primary);
-    --button-foreground: oklch(
-      from var(--button-background) clamp(0, calc((0.62 - l) * 100), 1) 0 0
-    );
+    --button-foreground: var(--primary-foreground);
     --button-background-hover: color-mix(
       in oklab,
       var(--button-background) 88%,
@@ -29,27 +28,35 @@
 
   .fri-button-primary {
     --button-background: var(--primary);
+    --button-foreground: var(--primary-foreground);
   }
   .fri-button-secondary {
     --button-background: var(--secondary);
+    --button-foreground: var(--secondary-foreground);
   }
   .fri-button-accent {
     --button-background: var(--accent);
+    --button-foreground: var(--accent-foreground);
   }
   .fri-button-neutral {
     --button-background: var(--neutral);
+    --button-foreground: var(--neutral-foreground);
   }
   .fri-button-info {
     --button-background: var(--info);
+    --button-foreground: var(--info-foreground);
   }
   .fri-button-success {
     --button-background: var(--success);
+    --button-foreground: var(--success-foreground);
   }
   .fri-button-warning {
     --button-background: var(--warning);
+    --button-foreground: var(--warning-foreground);
   }
   .fri-button-error {
     --button-background: var(--error);
+    --button-foreground: var(--error-foreground);
   }
 
   .fri-button-xs {

@@ -8,13 +8,21 @@
   --color-muted-foreground: var(--muted-foreground);
 
   --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
   --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
   --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
   --color-neutral: var(--neutral);
+  --color-neutral-foreground: var(--neutral-foreground);
   --color-info: var(--info);
+  --color-info-foreground: var(--info-foreground);
   --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
   --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
   --color-error: var(--error);
+  --color-error-foreground: var(--error-foreground);
 
   --border: var(--border);
 

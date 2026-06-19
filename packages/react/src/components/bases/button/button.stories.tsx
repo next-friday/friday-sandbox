@@ -161,8 +161,8 @@ export const PlainHtml: Story = {
     },
   },
   render: () => (
-    <button className="fri-button fri-button-primary fri-button-md">
+    <a className="fri-button fri-button-primary fri-button-md" href="/">
       Button
-    </button>
+    </a>
   ),
 };
