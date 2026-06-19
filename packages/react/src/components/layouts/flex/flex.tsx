@@ -1,9 +1,8 @@
-import { type ComponentPropsWithoutRef } from "react";
+import { type ComponentPropsWithRef } from "react";
 
 import { flexVariants, type FlexVariants } from "./flex.styles";
 
-export interface FlexProps
-  extends ComponentPropsWithoutRef<"div">, FlexVariants {
+export interface FlexProps extends ComponentPropsWithRef<"div">, FlexVariants {
   className?: string;
 }
 

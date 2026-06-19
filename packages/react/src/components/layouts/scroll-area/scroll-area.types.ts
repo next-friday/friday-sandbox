@@ -1,9 +1,9 @@
 import { ScrollArea as RadixScrollArea } from "radix-ui";
-import { type ComponentPropsWithoutRef } from "react";
+import { type ComponentPropsWithRef } from "react";
 
 import { type ScrollAreaVariants } from "./scroll-area.styles";
 
-export type RadixScrollAreaRootProps = ComponentPropsWithoutRef<
+export type RadixScrollAreaRootProps = ComponentPropsWithRef<
   typeof RadixScrollArea.Root
 >;
 
@@ -15,29 +15,29 @@ export interface ScrollAreaRootProps
   variant?: "hover" | "always";
 }
 
-export interface ScrollAreaViewportProps extends ComponentPropsWithoutRef<
+export interface ScrollAreaViewportProps extends ComponentPropsWithRef<
   typeof RadixScrollArea.Viewport
 > {
   className?: string;
 }
 
-export interface ScrollAreaContentProps extends ComponentPropsWithoutRef<"div"> {
+export interface ScrollAreaContentProps extends ComponentPropsWithRef<"div"> {
   className?: string;
 }
 
-export interface ScrollAreaScrollbarProps extends ComponentPropsWithoutRef<
+export interface ScrollAreaScrollbarProps extends ComponentPropsWithRef<
   typeof RadixScrollArea.Scrollbar
 > {
   className?: string;
 }
 
-export interface ScrollAreaThumbProps extends ComponentPropsWithoutRef<
+export interface ScrollAreaThumbProps extends ComponentPropsWithRef<
   typeof RadixScrollArea.Thumb
 > {
   className?: string;
 }
 
-export interface ScrollAreaCornerProps extends ComponentPropsWithoutRef<
+export interface ScrollAreaCornerProps extends ComponentPropsWithRef<
   typeof RadixScrollArea.Corner
 > {
   className?: string;
