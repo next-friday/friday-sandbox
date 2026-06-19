@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { DemoBox } from "./_demo-box";
+import { Box } from "../../samples/box";
+
 import { Flex } from ".";
 
 const meta = {
@@ -111,9 +112,9 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   render: (storyArgs) => (
     <Flex {...storyArgs}>
-      <DemoBox index={1} />
-      <DemoBox index={2} />
-      <DemoBox index={3} />
+      <Box index={1} />
+      <Box index={2} />
+      <Box index={3} />
     </Flex>
   ),
 };
@@ -122,9 +123,9 @@ export const Direction: Story = {
   args: { direction: "column" },
   render: (storyArgs) => (
     <Flex {...storyArgs}>
-      <DemoBox index={1} />
-      <DemoBox index={2} />
-      <DemoBox index={3} />
+      <Box index={1} />
+      <Box index={2} />
+      <Box index={3} />
     </Flex>
   ),
 };
@@ -133,9 +134,9 @@ export const Align: Story = {
   args: { align: "center" },
   render: (storyArgs) => (
     <Flex {...storyArgs} className="h-32">
-      <DemoBox index={1} />
-      <DemoBox index={2} />
-      <DemoBox index={3} />
+      <Box index={1} />
+      <Box index={2} />
+      <Box index={3} />
     </Flex>
   ),
 };
@@ -144,9 +145,9 @@ export const Justify: Story = {
   args: { justify: "between" },
   render: (storyArgs) => (
     <Flex {...storyArgs}>
-      <DemoBox index={1} />
-      <DemoBox index={2} />
-      <DemoBox index={3} />
+      <Box index={1} />
+      <Box index={2} />
+      <Box index={3} />
     </Flex>
   ),
 };
@@ -155,16 +156,16 @@ export const Wrap: Story = {
   args: { wrap: "wrap", gap: "sm" },
   render: (storyArgs) => (
     <Flex {...storyArgs} className="w-64">
-      <DemoBox index={1} />
-      <DemoBox index={2} />
-      <DemoBox index={3} />
-      <DemoBox index={4} />
-      <DemoBox index={5} />
-      <DemoBox index={6} />
-      <DemoBox index={7} />
-      <DemoBox index={8} />
-      <DemoBox index={9} />
-      <DemoBox index={10} />
+      <Box index={1} />
+      <Box index={2} />
+      <Box index={3} />
+      <Box index={4} />
+      <Box index={5} />
+      <Box index={6} />
+      <Box index={7} />
+      <Box index={8} />
+      <Box index={9} />
+      <Box index={10} />
     </Flex>
   ),
 };
@@ -173,9 +174,9 @@ export const Gap: Story = {
   args: { gap: "xl" },
   render: (storyArgs) => (
     <Flex {...storyArgs}>
-      <DemoBox index={1} />
-      <DemoBox index={2} />
-      <DemoBox index={3} />
+      <Box index={1} />
+      <Box index={2} />
+      <Box index={3} />
     </Flex>
   ),
 };

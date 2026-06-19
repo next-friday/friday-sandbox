@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { DemoBox } from "./_demo-box";
+import { Box } from "../../samples/box";
+
 import { Grid, GridItem } from ".";
 
 const meta = {
@@ -96,12 +97,12 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   render: (storyArgs) => (
     <Grid {...storyArgs}>
-      <DemoBox index={1} />
-      <DemoBox index={2} />
-      <DemoBox index={3} />
-      <DemoBox index={4} />
-      <DemoBox index={5} />
-      <DemoBox index={6} />
+      <Box index={1} />
+      <Box index={2} />
+      <Box index={3} />
+      <Box index={4} />
+      <Box index={5} />
+      <Box index={6} />
     </Grid>
   ),
 };
@@ -110,14 +111,14 @@ export const Columns: Story = {
   args: { columns: 4 },
   render: (storyArgs) => (
     <Grid {...storyArgs}>
-      <DemoBox index={1} />
-      <DemoBox index={2} />
-      <DemoBox index={3} />
-      <DemoBox index={4} />
-      <DemoBox index={5} />
-      <DemoBox index={6} />
-      <DemoBox index={7} />
-      <DemoBox index={8} />
+      <Box index={1} />
+      <Box index={2} />
+      <Box index={3} />
+      <Box index={4} />
+      <Box index={5} />
+      <Box index={6} />
+      <Box index={7} />
+      <Box index={8} />
     </Grid>
   ),
 };
@@ -126,12 +127,12 @@ export const Rows: Story = {
   args: { columns: 3, rows: 2 },
   render: (storyArgs) => (
     <Grid {...storyArgs}>
-      <DemoBox index={1} />
-      <DemoBox index={2} />
-      <DemoBox index={3} />
-      <DemoBox index={4} />
-      <DemoBox index={5} />
-      <DemoBox index={6} />
+      <Box index={1} />
+      <Box index={2} />
+      <Box index={3} />
+      <Box index={4} />
+      <Box index={5} />
+      <Box index={6} />
     </Grid>
   ),
 };
@@ -140,12 +141,12 @@ export const Flow: Story = {
   args: { rows: 2, flow: "col" },
   render: (storyArgs) => (
     <Grid {...storyArgs}>
-      <DemoBox index={1} />
-      <DemoBox index={2} />
-      <DemoBox index={3} />
-      <DemoBox index={4} />
-      <DemoBox index={5} />
-      <DemoBox index={6} />
+      <Box index={1} />
+      <Box index={2} />
+      <Box index={3} />
+      <Box index={4} />
+      <Box index={5} />
+      <Box index={6} />
     </Grid>
   ),
 };
@@ -154,12 +155,12 @@ export const Gap: Story = {
   args: { columns: 3, gap: "xl" },
   render: (storyArgs) => (
     <Grid {...storyArgs}>
-      <DemoBox index={1} />
-      <DemoBox index={2} />
-      <DemoBox index={3} />
-      <DemoBox index={4} />
-      <DemoBox index={5} />
-      <DemoBox index={6} />
+      <Box index={1} />
+      <Box index={2} />
+      <Box index={3} />
+      <Box index={4} />
+      <Box index={5} />
+      <Box index={6} />
     </Grid>
   ),
 };
@@ -169,23 +170,23 @@ export const WithItems: Story = {
   render: (storyArgs) => (
     <Grid {...storyArgs}>
       <GridItem colSpan={2}>
-        <DemoBox index={1} />
+        <Box index={1} />
       </GridItem>
 
       <GridItem>
-        <DemoBox index={2} />
+        <Box index={2} />
       </GridItem>
 
       <GridItem>
-        <DemoBox index={3} />
+        <Box index={3} />
       </GridItem>
 
       <GridItem rowSpan={2}>
-        <DemoBox index={4} />
+        <Box index={4} />
       </GridItem>
 
       <GridItem colSpan={3}>
-        <DemoBox index={5} />
+        <Box index={5} />
       </GridItem>
     </Grid>
   ),

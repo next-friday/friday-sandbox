@@ -2,7 +2,9 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import { Flex } from "../flex";
 
-import { DemoLongList, DemoWideRow } from "./_demo-content";
+import { LongList } from "../../samples/long-list";
+import { WideRow } from "../../samples/wide-row";
+
 import { ScrollArea } from ".";
 
 const meta = {
@@ -96,7 +98,7 @@ export const Vertical: Story = {
     >
       <ScrollArea.Viewport>
         <ScrollArea.Content>
-          <DemoLongList />
+          <LongList />
         </ScrollArea.Content>
       </ScrollArea.Viewport>
 
@@ -117,7 +119,7 @@ export const Horizontal: Story = {
     >
       <ScrollArea.Viewport>
         <ScrollArea.Content>
-          <DemoWideRow />
+          <WideRow />
         </ScrollArea.Content>
       </ScrollArea.Viewport>
 
@@ -182,7 +184,7 @@ export const Size: Story = {
     >
       <ScrollArea.Viewport>
         <ScrollArea.Content>
-          <DemoLongList />
+          <LongList />
         </ScrollArea.Content>
       </ScrollArea.Viewport>
 
@@ -204,7 +206,7 @@ export const Always: Story = {
     >
       <ScrollArea.Viewport>
         <ScrollArea.Content>
-          <DemoLongList />
+          <LongList />
         </ScrollArea.Content>
       </ScrollArea.Viewport>
 
