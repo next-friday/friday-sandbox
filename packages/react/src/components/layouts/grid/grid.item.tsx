@@ -7,7 +7,7 @@ export interface GridItemProps
   className?: string;
 }
 
-const GridItem = (props: Readonly<GridItemProps>) => {
+export const GridItem = (props: Readonly<GridItemProps>) => {
   const { className, colSpan, rowSpan, ...rest } = props;
 
   const resolvedClassName = gridItemVariants({
@@ -18,7 +18,3 @@ const GridItem = (props: Readonly<GridItemProps>) => {
 
   return <div data-slot="grid-item" className={resolvedClassName} {...rest} />;
 };
-
-export { GridItem };
-
-export default GridItem;

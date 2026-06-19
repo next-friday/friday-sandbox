@@ -1,4 +1,4 @@
-export { default, Grid } from "./grid";
+export { Grid } from "./grid";
 export type { GridProps } from "./grid";
 
 export { GridItem } from "./grid.item";

@@ -64,7 +64,7 @@ Dependency graph is enforced by `.dependency-cruiser.cjs` — `no-circular` is t
 
 ## Component conventions (`@friday-sandbox/react`)
 
-Components live under `packages/react/src/components/<tier>/<name>/`, where `<tier>` is the category: `bases` (interactive primitives, e.g. button), `layouts` (compositional primitives — flex, grid, scroll-area), and `blocks` (composed patterns). The conventions below are the `bases` reference; `layouts` follow the same four-file skeleton but split multi-part primitives into sibling files (`grid.item.tsx`, `scroll-area.corner.styles.ts`) and skip the interactive-state stories — they render no interactive state. Each `bases` component folder ships four files with the same skeleton:
+Components live under `packages/react/src/components/<tier>/<name>/`, where `<tier>` is the category: `bases` (interactive primitives, e.g. button), `layouts` (compositional primitives — flex, grid, scroll-area), and `samples` (Storybook-only demo components — box, long-list, wide-row — used by stories; **not re-exported from `@friday-sandbox/react` public surface**). The conventions below are the `bases` reference; `layouts` follow the same four-file skeleton but split multi-part primitives into sibling files (`grid.item.tsx`, `scroll-area.types.ts`, `scroll-area.namespace.ts`) and skip the interactive-state stories — they render no interactive state. `samples` ship a two-file skeleton (`index.ts` + `<name>.tsx`) — no `.styles.ts` (no variants) and no `.stories.tsx` (they ARE story content). Each `bases` component folder ships four files with the same skeleton:
 
 ```text
 packages/react/src/components/bases/<name>/

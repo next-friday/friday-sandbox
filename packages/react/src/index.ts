@@ -9,9 +9,11 @@ export type { GridItemProps, GridProps } from "./components";
 
 export { ScrollArea } from "./components";
 export type {
+  ScrollAreaContentProps,
   ScrollAreaCornerProps,
   ScrollAreaRootProps,
   ScrollAreaScrollbarProps,
   ScrollAreaThumbProps,
+  ScrollAreaVariant,
   ScrollAreaViewportProps,
 } from "./components";

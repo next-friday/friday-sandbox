@@ -1,7 +1,9 @@
 "use client";
 
-import { Button as AriaButton } from "react-aria-components";
-import { type ButtonProps as AriaButtonProps } from "react-aria-components";
+import {
+  Button as AriaButton,
+  type ButtonProps as AriaButtonProps,
+} from "react-aria-components";
 
 import { composeTailwindRenderProps } from "../../../utils/compose-tailwind-render-props";
 
@@ -12,7 +14,7 @@ export interface ButtonProps
   className?: string;
 }
 
-const Button = (props: Readonly<ButtonProps>) => {
+export const Button = (props: Readonly<ButtonProps>) => {
   const { className, size, variant, ...rest } = props;
 
   const resolvedClassName = composeTailwindRenderProps(
@@ -24,7 +26,3 @@ const Button = (props: Readonly<ButtonProps>) => {
     <AriaButton data-slot="button" className={resolvedClassName} {...rest} />
   );
 };
-
-export { Button };
-
-export default Button;

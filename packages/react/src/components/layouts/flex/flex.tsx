@@ -7,7 +7,7 @@ export interface FlexProps
   className?: string;
 }
 
-const Flex = (props: Readonly<FlexProps>) => {
+export const Flex = (props: Readonly<FlexProps>) => {
   const {
     align,
     className,
@@ -33,7 +33,3 @@ const Flex = (props: Readonly<FlexProps>) => {
 
   return <div data-slot="flex" className={resolvedClassName} {...rest} />;
 };
-
-export { Flex };
-
-export default Flex;
