@@ -1,0 +1,86 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+
+<Meta title="Theming" />
+
+# Theming
+
+## Toggle dark mode
+
+Add the class or attribute to any element (typically `<html>`):
+
+```html
+<html class="dark">
+  …
+</html>
+<!-- or -->
+<html data-theme="dark">
+  …
+</html>
+```
+
+Default is light. The toggle is scopable — apply `.dark` to a subtree to flip just that subtree.
+
+The Storybook toolbar (top of any story) exposes the same switch under the **Theme** control.
+
+## Customize brand colors
+
+Override any intent in your app's CSS. Components recompute readable text contrast and hover state automatically.
+
+```css
+:root {
+  --primary: oklch(60% 0.2 264);
+  --secondary: oklch(60% 0.2 0);
+  --accent: oklch(70% 0.14 182);
+  --neutral: oklch(40% 0.02 285);
+  --info: oklch(60% 0.14 233);
+  --success: oklch(58% 0.15 163);
+  --warning: oklch(78% 0.18 84);
+  --error: oklch(58% 0.22 25);
+}
+```
+
+Tip: stick to clearly light or clearly dark colors. Mid-tone values (around OKLCH `L 60%`) can pick a foreground that feels low-contrast.
+
+## Customize surfaces
+
+```css
+:root {
+  --background: oklch(100% 0 0);
+  --foreground: oklch(21% 0.006 285);
+  --muted: oklch(95% 0 0);
+  --muted-foreground: oklch(45% 0.006 285);
+}
+
+.dark {
+  --background: oklch(18% 0.006 285);
+  --foreground: oklch(95% 0.006 285);
+  --muted: oklch(28% 0.006 285);
+  --muted-foreground: oklch(70% 0.006 285);
+}
+```
+
+## Customize sizing
+
+Each scope's base unit and radius can be retuned independently:
+
+```css
+:root {
+  --size-action: 0.3rem; /* scale every action component up */
+  --radius-action: 9999px; /* pill-shaped buttons */
+  --radius-field: 0.25rem; /* squarer inputs */
+  --radius-box: 1rem; /* rounder cards */
+}
+```
+
+Heights are derived per-component as `calc(var(--size-action) * N)` (xs=6, sm=8, md=10, lg=12, xl=14) — adjust the base and every size scales proportionally.
+
+`--radius-action` is the reference radius at `md`. Other sizes scale radius linearly with their height, so a small button does not inherit a too-round corner from a large `--radius-action`.
+
+## Browser support
+
+Safari 16.4+, Chrome 119+, Firefox 128+.
+
+Required CSS features:
+
+- Relative color syntax (`oklch(from …)`)
+- `color-mix()`

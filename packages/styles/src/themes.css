@@ -1,0 +1,41 @@
+/* Design tokens — designer-facing.
+ * Plain values only. No calc(), no color-mix(), no relative color syntax.
+ * Component CSS owns its own derivation. */
+
+:root {
+  color-scheme: light;
+
+  --primary: oklch(54% 0.24 264);
+  --secondary: oklch(21% 0.006 285);
+  --accent: oklch(70% 0.14 182);
+  --neutral: oklch(38% 0.02 285);
+  --info: oklch(58% 0.14 233);
+  --success: oklch(56% 0.15 163);
+  --warning: oklch(78% 0.18 84);
+  --error: oklch(56% 0.22 25);
+
+  --background: oklch(100% 0 0);
+  --foreground: oklch(21% 0.006 285);
+  --muted: oklch(95% 0 0);
+  --muted-foreground: oklch(45% 0.006 285);
+
+  --border: 1px;
+
+  --size-action: 0.25rem;
+  --radius-action: 0.5rem;
+
+  --size-field: 0.25rem;
+  --radius-field: 0.375rem;
+
+  --size-box: 0.25rem;
+  --radius-box: 0.75rem;
+}
+
+.dark,
+[data-theme="dark"] {
+  color-scheme: dark;
+  --background: oklch(18% 0.006 285);
+  --foreground: oklch(95% 0.006 285);
+  --muted: oklch(28% 0.006 285);
+  --muted-foreground: oklch(70% 0.006 285);
+}

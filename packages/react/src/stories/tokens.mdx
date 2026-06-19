@@ -1,0 +1,75 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+
+<Meta title="Tokens" />
+
+# Tokens
+
+Override any of these in your app's CSS to retheme.
+
+## Intent colors
+
+Eight brand colors. Same value across light and dark — components handle text contrast for you.
+
+<div
+  style={{
+    display: "grid",
+    gridTemplateColumns: "repeat(4, minmax(0, 1fr))",
+    gap: "0.75rem",
+    marginTop: "1rem",
+  }}
+>
+  {[
+    "primary",
+    "secondary",
+    "accent",
+    "neutral",
+    "info",
+    "success",
+    "warning",
+    "error",
+  ].map((name) => (
+    <div key={name}>
+      <div
+        style={{
+          height: "3rem",
+          borderRadius: "var(--radius-action)",
+          background: `var(--${name})`,
+        }}
+      />
+      <code style={{ fontSize: "0.75rem", marginTop: "0.25rem", display: "block" }}>
+        --{name}
+      </code>
+    </div>
+  ))}
+</div>
+
+## Surfaces
+
+Light by default; flipped by `.dark` or `[data-theme="dark"]`.
+
+| Token                | Role                                  |
+| -------------------- | ------------------------------------- |
+| `--background`       | Body surface                          |
+| `--foreground`       | Body text on `--background`           |
+| `--muted`            | Secondary surface (placeholder, etc.) |
+| `--muted-foreground` | Text on `--muted`                     |
+
+## Sizing scopes
+
+| Scope    | Tokens                            | Component family                          |
+| -------- | --------------------------------- | ----------------------------------------- |
+| `action` | `--size-action`, `--radius-action` | button, icon-button, link-button         |
+| `field`  | `--size-field`, `--radius-field`   | input, textarea, select, checkbox, radio |
+| `box`    | `--size-box`, `--radius-box`       | card, modal, alert, popover              |
+
+### Default sizing
+
+`--size-{scope}` defaults to `0.25rem`. Components compute heights inline as `calc(var(--size-{scope}) * N)` with N ∈ {6, 8, 10, 12, 14} for xs/sm/md/lg/xl — yielding 1.5rem / 2rem / 2.5rem / 3rem / 3.5rem (24 / 32 / 40 / 48 / 56 px) at the default base. Overriding `--size-action` rescales every action component at once.
+
+`--radius-{scope}` is the reference radius at `md`. Components with size variants scale radius linearly with height — xs and sm have smaller corners, lg and xl have larger corners, so roundness stays proportional from 24 px to 56 px.
+
+## Miscellaneous
+
+| Token      | Role                  |
+| ---------- | --------------------- |
+| `--border` | Default border width  |

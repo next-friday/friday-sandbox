@@ -1,0 +1,111 @@
+language: en-US
+tone_instructions: >-
+  Be terse. One sentence per finding: the problem, the location, the fix.
+  Skip praise, skip restating the diff. Group by severity, highest first.
+  If unsure, ask one specific question rather than guessing.
+reviews:
+  profile: assertive
+  high_level_summary: true
+  poem: false
+  review_status: true
+  collapse_walkthrough: true
+  auto_review:
+    enabled: true
+    drafts: false
+    ignore_title_keywords:
+      - "chore(release):"
+    ignore_usernames:
+      - "dependabot[bot]"
+      - "github-actions[bot]"
+      - "next-friday-release[bot]"
+  path_filters:
+    - "!**/dist/**"
+    - "!**/coverage/**"
+    - "!**/storybook-static/**"
+    - "!**/.turbo/**"
+    - "!pnpm-lock.yaml"
+    - "!**/CHANGELOG.md"
+    - "!.changeset/**"
+    - "!**/*.snap"
+  path_instructions:
+    - path: packages/react/src/**/*.{ts,tsx}
+      instructions: >-
+        Review priorities, highest first: accessibility, correctness, API
+        ergonomics, then style.
+
+        Accessibility: keyboard reachable, visible focus, ARIA only where DOM
+        does not convey intent, no pointer-only interactions, motion respects
+        prefers-reduced-motion. Prefer composing react-aria-components over
+        rolling raw handlers.
+
+        Conventions: lowercase filename (button.tsx, not Button.tsx) to satisfy
+        unicorn/filename-case. Client components start with "use client" only
+        when a client API is touched. Named export, no default export. Props
+        type colocated, suffix Props, exported alongside the component.
+
+        Exports: consumers import via the package exports map
+        (./* -> ./src/*.tsx). A new file outside that map is unreachable; flag
+        it.
+
+        DRY: focus management, ARIA wiring, controlled-vs-uncontrolled
+        patterns, and event coalescing belong in a reusable hook under src/.
+        Flag re-implementations across components.
+
+        Tailwind v4: styles ride utility classes plus the layer system in
+        @friday-sandbox/styles. Flag inline style objects, hardcoded hex
+        colors, or class strings that bypass tokens.
+
+        Behavior changes (feat | fix | perf | refactor) require a
+        .changeset/*.md entry; flag a missing one.
+    - path: packages/react/src/**/*.stories.{ts,tsx}
+      instructions: >-
+        A new or changed visible behavior needs story coverage of the main
+        visual and interactive states (default, hover, focus, disabled,
+        loading, error). Flag stories that mock data instead of exercising
+        real props. addon-a11y violations on the story page block the PR.
+    - path: packages/react/src/**/*.test.{ts,tsx}
+      instructions: >-
+        Tests run in Vitest browser mode via @storybook/addon-vitest with
+        Playwright chromium. Prefer Storybook play functions over imperative
+        DOM assertions. Cover keyboard paths alongside pointer paths.
+    - path: packages/eslint-config/*.mjs
+      instructions: >-
+        Keep all three subpath exports (./base, ./next-js, ./react-internal)
+        working in consumer workspaces. Flag a rule added to one preset that
+        belongs in another, a plugin import without a matching peer dep, or
+        a severity flipped without a noted reason.
+    - path: packages/typescript-config/*.json
+      instructions: >-
+        Preset trio (base.json, nextjs.json, react-library.json) must agree
+        on lib, moduleResolution, jsx, target, strict, and verbatimModuleSyntax
+        unless the framework difference justifies otherwise.
+    - path: packages/styles/src/**/*.css
+      instructions: >-
+        Respect the layer system. Flag hardcoded colors outside the token
+        layer, global selectors that bypass layers, or a token rename without
+        a migration note in the changeset.
+    - path: .github/workflows/**/*.yml
+      instructions: >-
+        Third-party actions must be pinned to a commit SHA, not a tag. Each
+        job sets a tight timeout-minutes and a minimal permissions block.
+        Top-level permissions stay read-only; job-level grants only the
+        scopes that step needs. Run step-security/harden-runner first.
+    - path: .github/scripts/**/*.sh
+      instructions: >-
+        Shell scripts start with set -euo pipefail. Quote every variable
+        expansion. Read inputs from explicit env vars, not positional args.
+    - path: ".changeset/!(*README*).md"
+      instructions: >-
+        Bump level (patch | minor | major) must match the PR type. A feat
+        is at least minor, a breaking change is major. The summary reads
+        as a release note to a downstream consumer, not as an internal log.
+chat:
+  auto_reply: true
+knowledge_base:
+  opt_out: false
+  learnings:
+    scope: local
+  issues:
+    scope: local
+  pull_requests:
+    scope: local

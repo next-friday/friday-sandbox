@@ -1,0 +1,75 @@
+name: Feature Request
+description: A new component, hook, or enhancement to an existing one
+title: "feat(<scope>): <verb-first outcome>"
+labels: ["type:feat"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Title style — Hybrid Convention
+
+        Use the conventional-commit shape: `feat(<scope>): <verb-first outcome>`. Issue titles share the shape with commits and pull requests; length is relaxed for issues.
+
+        Examples:
+
+        - `feat(react): add Tooltip component`
+        - `feat(button): allow loading state with spinner`
+
+        Prohibited in any title: `+` as shorthand. Use `and` or commas.
+
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: One sentence in plain language. What should the component or API do?
+      placeholder: "A Tooltip component that wraps any trigger and shows on hover or keyboard focus."
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: The use case this addresses. Why a new component or option is the right answer.
+      placeholder: |
+        - Multiple apps reimplement a hover/focus tooltip with subtly different a11y bugs
+        - A shared component would standardize behavior and pass focus management once
+    validations:
+      required: true
+
+  - type: textarea
+    id: api
+    attributes:
+      label: Proposed API
+      description: TSX showing how the component or hook is consumed.
+      render: tsx
+    validations:
+      required: true
+
+  - type: dropdown
+    id: package
+    attributes:
+      label: Target package
+      options:
+        - "@friday-sandbox/react"
+        - "@friday-sandbox/styles"
+        - "@friday-sandbox/eslint-config"
+        - "@friday-sandbox/typescript-config"
+    validations:
+      required: true
+
+  - type: textarea
+    id: a11y
+    attributes:
+      label: Accessibility notes
+      description: Keyboard interaction, ARIA, contrast, motion considerations. State "none required" only when the change is non-visual.
+    validations:
+      required: false
+
+  - type: textarea
+    id: when_not
+    attributes:
+      label: When not to use
+      description: Cases where a consumer would reasonably pick something else.
+    validations:
+      required: false

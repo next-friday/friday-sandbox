@@ -1,0 +1,38 @@
+{
+  "$schema": "./node_modules/knip/schema.json",
+  "includeEntryExports": true,
+  "ignoreExportsUsedInFile": false,
+  "tags": ["-@internal", "-lintignore"],
+  "workspaces": {
+    "packages/react": {
+      "entry": ["src/**/*.{ts,tsx}"],
+      "project": ["**/*.{ts,tsx,js,mjs}"]
+    },
+    "packages/styles": {
+      "entry": ["src/**/*.styles.ts"],
+      "project": ["**/*.{ts,mjs}"]
+    },
+    "packages/eslint-config": {
+      "project": ["**/*.{js,mjs}"]
+    },
+    "packages/typescript-config": {
+      "project": ["**/*.json"]
+    }
+  },
+  "rules": {
+    "binaries": "error",
+    "catalog": "error",
+    "dependencies": "error",
+    "devDependencies": "error",
+    "duplicates": "error",
+    "enumMembers": "error",
+    "exports": "error",
+    "files": "error",
+    "nsExports": "error",
+    "nsTypes": "error",
+    "optionalPeerDependencies": "error",
+    "types": "error",
+    "unlisted": "error",
+    "unresolved": "error"
+  }
+}

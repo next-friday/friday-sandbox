@@ -1,0 +1,72 @@
+{
+  "name": "friday-sandbox",
+  "private": true,
+  "description": "A pnpm + Turborepo monorepo that ships the @friday-sandbox/* packages.",
+  "keywords": [
+    "monorepo",
+    "turborepo",
+    "react",
+    "design-system",
+    "tailwindcss",
+    "react-aria"
+  ],
+  "homepage": "https://github.com/next-friday/friday-sandbox#readme",
+  "bugs": {
+    "url": "https://github.com/next-friday/friday-sandbox/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/next-friday/friday-sandbox.git"
+  },
+  "license": "Apache-2.0",
+  "author": {
+    "name": "Next Friday",
+    "url": "https://github.com/next-friday"
+  },
+  "scripts": {
+    "audit": "pnpm audit --audit-level high",
+    "build": "turbo run build",
+    "build:storybook": "turbo run build:storybook",
+    "build:watch": "turbo run build:watch",
+    "changeset": "changeset",
+    "changeset:publish": "changeset publish",
+    "changeset:version": "changeset version",
+    "check-types": "turbo run check-types",
+    "clean": "turbo run clean",
+    "depcruise": "depcruise packages",
+    "dev": "turbo run dev",
+    "dev:storybook": "turbo run dev:storybook",
+    "doc:check": "turbo run doc:check",
+    "format": "prettier --write \"**/*.{ts,tsx,md,css}\"",
+    "format:check": "prettier --check \"**/*.{ts,tsx,md,css}\"",
+    "generate:component": "pnpm --filter @friday-sandbox/react generate:component",
+    "knip": "knip",
+    "lint": "turbo run lint",
+    "prepare": "husky",
+    "sort": "sort-package-json \"package.json\" \"packages/*/package.json\" \"apps/*/package.json\"",
+    "sort:check": "sort-package-json --check \"package.json\" \"packages/*/package.json\" \"apps/*/package.json\"",
+    "test": "turbo run test",
+    "test:coverage": "turbo run test:coverage",
+    "typecheck": "turbo run check-types"
+  },
+  "devDependencies": {
+    "@changesets/changelog-github": "^0.7.0",
+    "@changesets/cli": "^2.31.0",
+    "@commitlint/cli": "^21.0.2",
+    "@commitlint/config-conventional": "^21.0.2",
+    "dependency-cruiser": "^17.4.3",
+    "husky": "^9.1.7",
+    "knip": "^6.17.1",
+    "lint-staged": "^17.0.7",
+    "prettier": "^3.7.4",
+    "prettier-plugin-tailwindcss": "^0.8.0",
+    "sort-package-json": "^4.0.0",
+    "turbo": "^2.9.18",
+    "typescript": "5.9.2"
+  },
+  "packageManager": "pnpm@10.18.2",
+  "engines": {
+    "node": ">=22.10.0",
+    "pnpm": ">=9.0.0"
+  }
+}
