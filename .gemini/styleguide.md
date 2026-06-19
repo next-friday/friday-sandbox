@@ -40,10 +40,14 @@ The `chore(release): version packages` PR is produced by `changesets/action`. It
 - A new or changed visible behavior ships story coverage of the main visual and interactive states: default, hover, focus, disabled, loading, error.
 - Tests run in Vitest browser mode via `@storybook/addon-vitest` with Playwright chromium. Prefer Storybook play functions over imperative DOM assertions. Cover keyboard paths alongside pointer paths.
 - Stories must use real props, not mocked data, so addon-a11y catches the real component.
+- **Storybook copy is for consumers, not contributors.** The deployed Storybook is the consumer-facing reference. Component descriptions, prop `description`s, and per-story `parameters.docs.description.story` text must read as instructions to someone using the component in their own app. Flag any of: internal class names (`fri-button-<variant>`, `fri-flex-*`), library names (`tailwind-variants`, `react-aria`, `react-aria-components`), engine math (`calc(var(--size-action) * N)`), file paths, "Maps to … class", "Forwarded to …", "Proof that …", or QA notes ("Rendered in mobile viewport to verify …"). Engine details, file layout, and verification rationale belong in `docs/ARCHITECTURE.md` and `CONTRIBUTING.md`.
+- Symmetry across `.stories.tsx` files: same component-description shape (one-line summary → `## Import` → import snippet → "Add the stylesheet once at the top of your app:" → CSS snippet), same `gap` / `gapX` / `gapY` / `className` prop wording across layout primitives, same tone (second-person, "Pick …", "Use …"). Flag asymmetry — one story drifting from the others.
 
 ## Styles (`packages/styles/src/**`, Tailwind v4)
 
 - Tailwind v4 utility classes plus the `@friday-sandbox/styles` layer system are the styling path. Flag inline `style` objects, hardcoded hex colors, or class strings that bypass tokens.
+- Canonical Tailwind only. Every CSS var registered in `@theme inline` (`packages/styles/src/system/theme.css`) has a real utility alias. Flag the v3-era arbitrary-var form on a mapped token — `bg-(--muted)`, `text-(--foreground)`, `border-(--primary)`, `rounded-(--radius-action)` — and ask for the canonical alias (`bg-muted`, `text-foreground`, `border-primary`, `rounded-action`). The `*-(--var)` form is correct only for component-local vars that have no Tailwind alias (e.g. `bg-(--button-background)`).
+- For shared layout, prefer the `layouts` primitives (`Flex`, `Grid`, `GridItem`, `ScrollArea`) over raw `<div className="flex …">` / `<div className="grid …">`. Flag layout divs that re-implement what a primitive already provides.
 - A token rename requires a migration note in the changeset, not a silent rename.
 - Global selectors that bypass layers are not allowed.
 

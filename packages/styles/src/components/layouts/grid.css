@@ -1,0 +1,187 @@
+/* Grid layout primitive. Mirrors flex.css: every variant value owns a
+ * real, addressable class so consumers can compose at the raw-CSS layer.
+ * Base class is neutral (display: grid only); every other axis is opt-in. */
+@layer components {
+  .fri-grid {
+    @apply grid;
+  }
+
+  .fri-grid-cols-1 {
+    @apply grid-cols-1;
+  }
+  .fri-grid-cols-2 {
+    @apply grid-cols-2;
+  }
+  .fri-grid-cols-3 {
+    @apply grid-cols-3;
+  }
+  .fri-grid-cols-4 {
+    @apply grid-cols-4;
+  }
+  .fri-grid-cols-5 {
+    @apply grid-cols-5;
+  }
+  .fri-grid-cols-6 {
+    @apply grid-cols-6;
+  }
+  .fri-grid-cols-7 {
+    @apply grid-cols-7;
+  }
+  .fri-grid-cols-8 {
+    @apply grid-cols-8;
+  }
+  .fri-grid-cols-9 {
+    @apply grid-cols-9;
+  }
+  .fri-grid-cols-10 {
+    @apply grid-cols-10;
+  }
+  .fri-grid-cols-11 {
+    @apply grid-cols-11;
+  }
+  .fri-grid-cols-12 {
+    @apply grid-cols-12;
+  }
+
+  .fri-grid-rows-1 {
+    @apply grid-rows-1;
+  }
+  .fri-grid-rows-2 {
+    @apply grid-rows-2;
+  }
+  .fri-grid-rows-3 {
+    @apply grid-rows-3;
+  }
+  .fri-grid-rows-4 {
+    @apply grid-rows-4;
+  }
+  .fri-grid-rows-5 {
+    @apply grid-rows-5;
+  }
+  .fri-grid-rows-6 {
+    @apply grid-rows-6;
+  }
+
+  .fri-grid-flow-row {
+    @apply grid-flow-row;
+  }
+  .fri-grid-flow-col {
+    @apply grid-flow-col;
+  }
+  .fri-grid-flow-row-dense {
+    @apply grid-flow-row-dense;
+  }
+  .fri-grid-flow-col-dense {
+    @apply grid-flow-col-dense;
+  }
+
+  .fri-grid-gap-xs {
+    @apply gap-1;
+  }
+  .fri-grid-gap-sm {
+    @apply gap-2;
+  }
+  .fri-grid-gap-md {
+    @apply gap-4;
+  }
+  .fri-grid-gap-lg {
+    @apply gap-6;
+  }
+  .fri-grid-gap-xl {
+    @apply gap-8;
+  }
+
+  .fri-grid-gap-x-xs {
+    @apply gap-x-1;
+  }
+  .fri-grid-gap-x-sm {
+    @apply gap-x-2;
+  }
+  .fri-grid-gap-x-md {
+    @apply gap-x-4;
+  }
+  .fri-grid-gap-x-lg {
+    @apply gap-x-6;
+  }
+  .fri-grid-gap-x-xl {
+    @apply gap-x-8;
+  }
+
+  .fri-grid-gap-y-xs {
+    @apply gap-y-1;
+  }
+  .fri-grid-gap-y-sm {
+    @apply gap-y-2;
+  }
+  .fri-grid-gap-y-md {
+    @apply gap-y-4;
+  }
+  .fri-grid-gap-y-lg {
+    @apply gap-y-6;
+  }
+  .fri-grid-gap-y-xl {
+    @apply gap-y-8;
+  }
+
+  /* GridItem — child-axis controls. The base class is a neutral anchor so
+   * raw-CSS users can target items without selecting every child. */
+  .fri-grid-item {
+    /* structural anchor */
+  }
+
+  .fri-grid-item-col-span-1 {
+    @apply col-span-1;
+  }
+  .fri-grid-item-col-span-2 {
+    @apply col-span-2;
+  }
+  .fri-grid-item-col-span-3 {
+    @apply col-span-3;
+  }
+  .fri-grid-item-col-span-4 {
+    @apply col-span-4;
+  }
+  .fri-grid-item-col-span-5 {
+    @apply col-span-5;
+  }
+  .fri-grid-item-col-span-6 {
+    @apply col-span-6;
+  }
+  .fri-grid-item-col-span-7 {
+    @apply col-span-7;
+  }
+  .fri-grid-item-col-span-8 {
+    @apply col-span-8;
+  }
+  .fri-grid-item-col-span-9 {
+    @apply col-span-9;
+  }
+  .fri-grid-item-col-span-10 {
+    @apply col-span-10;
+  }
+  .fri-grid-item-col-span-11 {
+    @apply col-span-11;
+  }
+  .fri-grid-item-col-span-12 {
+    @apply col-span-12;
+  }
+
+  .fri-grid-item-row-span-1 {
+    @apply row-span-1;
+  }
+  .fri-grid-item-row-span-2 {
+    @apply row-span-2;
+  }
+  .fri-grid-item-row-span-3 {
+    @apply row-span-3;
+  }
+  .fri-grid-item-row-span-4 {
+    @apply row-span-4;
+  }
+  .fri-grid-item-row-span-5 {
+    @apply row-span-5;
+  }
+  .fri-grid-item-row-span-6 {
+    @apply row-span-6;
+  }
+}

@@ -11,7 +11,7 @@ export const buttonVariants = tv({
       info: "fri-button-info",
       success: "fri-button-success",
       warning: "fri-button-warning",
-      error: "fri-button-error",
+      danger: "fri-button-danger",
     },
     size: {
       xs: "fri-button-xs",

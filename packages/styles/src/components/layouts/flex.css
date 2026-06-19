@@ -1,0 +1,115 @@
+/* Layout primitive. Pure structural — no color tokens, no rhythm engine.
+ * Each variant has its own addressable class so consumers can compose at
+ * the raw-CSS layer just as they would with .fri-button. The base class
+ * is neutral (display: flex only); every other axis is opt-in. */
+@layer components {
+  .fri-flex {
+    @apply flex;
+  }
+
+  .fri-flex-row {
+    @apply flex-row;
+  }
+  .fri-flex-column {
+    @apply flex-col;
+  }
+  .fri-flex-row-reverse {
+    @apply flex-row-reverse;
+  }
+  .fri-flex-column-reverse {
+    @apply flex-col-reverse;
+  }
+
+  .fri-flex-align-start {
+    @apply items-start;
+  }
+  .fri-flex-align-center {
+    @apply items-center;
+  }
+  .fri-flex-align-end {
+    @apply items-end;
+  }
+  .fri-flex-align-stretch {
+    @apply items-stretch;
+  }
+  .fri-flex-align-baseline {
+    @apply items-baseline;
+  }
+
+  .fri-flex-justify-start {
+    @apply justify-start;
+  }
+  .fri-flex-justify-center {
+    @apply justify-center;
+  }
+  .fri-flex-justify-end {
+    @apply justify-end;
+  }
+  .fri-flex-justify-between {
+    @apply justify-between;
+  }
+  .fri-flex-justify-around {
+    @apply justify-around;
+  }
+  .fri-flex-justify-evenly {
+    @apply justify-evenly;
+  }
+
+  .fri-flex-nowrap {
+    @apply flex-nowrap;
+  }
+  .fri-flex-wrap {
+    @apply flex-wrap;
+  }
+  .fri-flex-wrap-reverse {
+    @apply flex-wrap-reverse;
+  }
+
+  .fri-flex-gap-xs {
+    @apply gap-1;
+  }
+  .fri-flex-gap-sm {
+    @apply gap-2;
+  }
+  .fri-flex-gap-md {
+    @apply gap-4;
+  }
+  .fri-flex-gap-lg {
+    @apply gap-6;
+  }
+  .fri-flex-gap-xl {
+    @apply gap-8;
+  }
+
+  .fri-flex-gap-x-xs {
+    @apply gap-x-1;
+  }
+  .fri-flex-gap-x-sm {
+    @apply gap-x-2;
+  }
+  .fri-flex-gap-x-md {
+    @apply gap-x-4;
+  }
+  .fri-flex-gap-x-lg {
+    @apply gap-x-6;
+  }
+  .fri-flex-gap-x-xl {
+    @apply gap-x-8;
+  }
+
+  .fri-flex-gap-y-xs {
+    @apply gap-y-1;
+  }
+  .fri-flex-gap-y-sm {
+    @apply gap-y-2;
+  }
+  .fri-flex-gap-y-md {
+    @apply gap-y-4;
+  }
+  .fri-flex-gap-y-lg {
+    @apply gap-y-6;
+  }
+  .fri-flex-gap-y-xl {
+    @apply gap-y-8;
+  }
+}

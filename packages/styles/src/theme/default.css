@@ -26,15 +26,13 @@
   --warning: oklch(77% 0.15 62);
   --warning-foreground: oklch(21% 0.006 285);
 
-  --error: oklch(60% 0.19 21);
-  --error-foreground: oklch(100% 0 0);
+  --danger: oklch(60% 0.19 21);
+  --danger-foreground: oklch(100% 0 0);
 
   --background: oklch(100% 0 0);
   --foreground: oklch(21% 0.006 285);
   --muted: oklch(95% 0 0);
   --muted-foreground: oklch(45% 0.006 285);
-
-  --border: 1px;
 
   --size-action: 0.25rem;
   --radius-action: 0.5rem;
@@ -44,13 +42,15 @@
 
   --size-box: 0.25rem;
   --radius-box: 0.75rem;
+
+  --border: 1px;
 }
 
 .dark,
 [data-theme="dark"] {
   color-scheme: dark;
   --background: oklch(18% 0.006 285);
-  --foreground: oklch(95% 0.006 285);
+  --foreground: oklch(100% 0 0);
   --muted: oklch(28% 0.006 285);
   --muted-foreground: oklch(70% 0.006 285);
 }

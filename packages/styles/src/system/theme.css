@@ -1,6 +1,6 @@
 /* @theme inline maps Tailwind utility namespaces (bg-primary, text-foreground,
  * bg-(--primary), …) to our CSS vars without baking a snapshot — so theme
- * switching at runtime works. Source of truth lives in src/themes.css. */
+ * switching at runtime works. Source of truth lives in src/theme/default.css (plus any preset siblings). */
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -21,8 +21,8 @@
   --color-success-foreground: var(--success-foreground);
   --color-warning: var(--warning);
   --color-warning-foreground: var(--warning-foreground);
-  --color-error: var(--error);
-  --color-error-foreground: var(--error-foreground);
+  --color-danger: var(--danger);
+  --color-danger-foreground: var(--danger-foreground);
 
   --border: var(--border);
 

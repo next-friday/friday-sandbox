@@ -35,7 +35,7 @@ Override any intent in your app's CSS. Components recompute readable text contra
   --info: oklch(60% 0.14 233);
   --success: oklch(58% 0.15 163);
   --warning: oklch(78% 0.18 84);
-  --error: oklch(58% 0.22 25);
+  --danger: oklch(58% 0.22 25);
 }
 ```
 
@@ -72,15 +72,6 @@ Each scope's base unit and radius can be retuned independently:
 }
 ```
 
-Heights are derived per-component as `calc(var(--size-action) * N)` (xs=6, sm=8, md=10, lg=12, xl=14) — adjust the base and every size scales proportionally.
+Override `--size-{scope}` and every size from `xs` through `xl` rescales together — you don't have to touch each variant.
 
-`--radius-action` is the reference radius at `md`. Other sizes scale radius linearly with their height, so a small button does not inherit a too-round corner from a large `--radius-action`.
-
-## Browser support
-
-Safari 16.4+, Chrome 119+, Firefox 128+.
-
-Required CSS features:
-
-- Relative color syntax (`oklch(from …)`)
-- `color-mix()`
+`--radius-{scope}` is the reference at `md`. Smaller sizes get proportionally smaller corners, larger sizes get larger ones, so a pill never collapses to a square at `xs` or stretches at `xl`.

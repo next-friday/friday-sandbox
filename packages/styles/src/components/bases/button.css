@@ -54,9 +54,9 @@
     --button-background: var(--warning);
     --button-foreground: var(--warning-foreground);
   }
-  .fri-button-error {
-    --button-background: var(--error);
-    --button-foreground: var(--error-foreground);
+  .fri-button-danger {
+    --button-background: var(--danger);
+    --button-foreground: var(--danger-foreground);
   }
 
   .fri-button-xs {
@@ -101,9 +101,5 @@
   .fri-button:disabled,
   .fri-button[aria-disabled="true"] {
     @apply status-disabled;
-  }
-
-  .fri-button[data-pending] {
-    @apply status-pending;
   }
 }

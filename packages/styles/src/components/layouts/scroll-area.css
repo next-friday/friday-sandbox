@@ -1,0 +1,61 @@
+/* Scrollable container with overlay scrollbars. The DOM tree is provided
+ * by an underlying scroll-area primitive that owns visibility state; this
+ * stylesheet only paints. Thickness comes from --scroll-area-thickness,
+ * swapped per size variant. */
+@layer components {
+  .fri-scroll-area {
+    @apply relative overflow-hidden;
+
+    --scroll-area-thickness: 0.625rem;
+    --scroll-area-thumb-color: var(--muted-foreground);
+    --scroll-area-thumb-color-hover: var(--foreground);
+    --scroll-area-track-color: transparent;
+  }
+
+  .fri-scroll-area-xs {
+    --scroll-area-thickness: 0.375rem;
+  }
+  .fri-scroll-area-sm {
+    --scroll-area-thickness: 0.5rem;
+  }
+  .fri-scroll-area-md {
+    --scroll-area-thickness: 0.625rem;
+  }
+  .fri-scroll-area-lg {
+    --scroll-area-thickness: 0.875rem;
+  }
+
+  .fri-scroll-area-viewport {
+    @apply h-full w-full rounded-[inherit];
+  }
+
+  .fri-scroll-area-content {
+    min-width: fit-content;
+  }
+
+  .fri-scroll-area-scrollbar {
+    @apply flex touch-none p-px transition-colors select-none;
+    background: var(--scroll-area-track-color);
+  }
+  .fri-scroll-area-scrollbar[data-orientation="vertical"] {
+    @apply h-full;
+    width: var(--scroll-area-thickness);
+  }
+  .fri-scroll-area-scrollbar[data-orientation="horizontal"] {
+    @apply flex-col;
+    height: var(--scroll-area-thickness);
+  }
+
+  .fri-scroll-area-thumb {
+    @apply relative flex-1 rounded-full;
+    background: var(--scroll-area-thumb-color);
+    transition: background-color 100ms ease-out;
+  }
+  .fri-scroll-area-thumb:hover {
+    background: var(--scroll-area-thumb-color-hover);
+  }
+
+  .fri-scroll-area-corner {
+    background: transparent;
+  }
+}

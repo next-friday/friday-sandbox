@@ -3,17 +3,17 @@
 import { Button as AriaButton } from "react-aria-components";
 import { type ButtonProps as AriaButtonProps } from "react-aria-components";
 
-import { composePendingChildren } from "../../../utils/compose-pending-children";
 import { composeTailwindRenderProps } from "../../../utils/compose-tailwind-render-props";
 
 import { buttonVariants, type ButtonVariants } from "./button.styles";
 
-export interface ButtonProps extends AriaButtonProps, ButtonVariants {
+export interface ButtonProps
+  extends Omit<AriaButtonProps, "isPending" | "autoFocus">, ButtonVariants {
   className?: string;
 }
 
 const Button = (props: Readonly<ButtonProps>) => {
-  const { children, className, size, variant, ...rest } = props;
+  const { className, size, variant, ...rest } = props;
 
   const resolvedClassName = composeTailwindRenderProps(
     className,
@@ -21,9 +21,7 @@ const Button = (props: Readonly<ButtonProps>) => {
   );
 
   return (
-    <AriaButton data-slot="button" className={resolvedClassName} {...rest}>
-      {composePendingChildren(children)}
-    </AriaButton>
+    <AriaButton data-slot="button" className={resolvedClassName} {...rest} />
   );
 };
 

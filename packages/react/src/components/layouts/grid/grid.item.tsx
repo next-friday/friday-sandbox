@@ -1,0 +1,24 @@
+import { type ComponentPropsWithoutRef } from "react";
+
+import { gridItemVariants, type GridItemVariants } from "./grid.item.styles";
+
+export interface GridItemProps
+  extends ComponentPropsWithoutRef<"div">, GridItemVariants {
+  className?: string;
+}
+
+const GridItem = (props: Readonly<GridItemProps>) => {
+  const { className, colSpan, rowSpan, ...rest } = props;
+
+  const resolvedClassName = gridItemVariants({
+    colSpan,
+    rowSpan,
+    className,
+  });
+
+  return <div data-slot="grid-item" className={resolvedClassName} {...rest} />;
+};
+
+export { GridItem };
+
+export default GridItem;

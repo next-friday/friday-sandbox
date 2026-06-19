@@ -6,7 +6,7 @@ For a quick reference of every derivation a Smart Component applies, see [`formu
 
 ## 1. Dumb Tokens
 
-`packages/styles/src/themes.css` exposes only plain values: OKLCH literals, `rem` sizes, keywords. **No `calc()`, no `color-mix()`, no relative color syntax at this layer.** The file maps 1-to-1 to a Figma Variables collection so designers read numbers, not formulas.
+`packages/styles/src/theme/default.css` exposes only plain values: OKLCH literals, `rem` sizes, keywords. **No `calc()`, no `color-mix()`, no relative color syntax at this layer.** The file maps 1-to-1 to a Figma Variables collection so designers read numbers, not formulas.
 
 ```css
 :root {
@@ -34,8 +34,8 @@ Each component CSS file owns its own derivation. A base rule defines the engine 
     var(--background) 12%
   );
 }
-.fri-button-error {
-  --button-background: var(--error);
+.fri-button-danger {
+  --button-background: var(--danger);
 }
 ```
 
@@ -84,11 +84,31 @@ A new scope is added only when no existing family fits; never use a literal comp
 }
 ```
 
+## 5. Canonical Tailwind in consumer code
+
+Every theme token in `packages/styles/src/system/theme.css` is registered with `@theme inline`, so Tailwind v4 emits a real utility alias for it. Use the alias.
+
+```tsx
+// good — canonical
+<div className="rounded-md bg-muted px-4 py-2 text-sm text-foreground" />
+<div className="border border-primary" />
+
+// bad — v3-era arbitrary-var fallback on a mapped token
+<div className="rounded-md bg-(--muted) px-4 py-2 text-sm text-(--foreground)" />
+<div className="border border-(--primary)" />
+```
+
+The `*-(--var)` form is only correct for **component-local CSS variables that are not registered in `@theme inline`** — e.g. `bg-(--button-background)`, `h-(--action-height)`, `px-(--action-padding-x)`. Those have no Tailwind alias and the arbitrary-var syntax is the only way to reach them.
+
+Rule of thumb: if the variable appears in `packages/styles/src/system/theme.css`, use its canonical alias. Otherwise, the arbitrary-var form is fine.
+
+Enforced by [`.claude/rules/canonical-tailwind.md`](../.claude/rules/canonical-tailwind.md).
+
 ## Layer locations
 
 | Layer                  | File                                                     | Audience             |
 | ---------------------- | -------------------------------------------------------- | -------------------- |
-| Token source           | `packages/styles/src/themes.css`                         | designer             |
+| Token source           | `packages/styles/src/theme/default.css`                  | designer             |
 | Tailwind utility map   | `packages/styles/index.css` (`@theme inline`)            | build system         |
 | Component engine + CSS | `packages/styles/src/components/<tier>/<name>.css`       | contributor          |
 | Component React        | `packages/react/src/components/<tier>/<name>/<name>.tsx` | contributor          |

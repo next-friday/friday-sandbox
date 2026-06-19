@@ -49,7 +49,7 @@ Turborepo + pnpm workspaces (`pnpm-workspace.yaml` → `packages/*`). All worksp
 - `@friday-sandbox/react` — React 19 UI library on `react-aria-components` + `tailwind-variants` + Tailwind v4.
   - **Workspace consumers** import sources directly: the `exports` map points `.` → `./src/index.ts` and `./*` → `./src/*/index.ts`, so a feature subpath like `@friday-sandbox/react/components/bases/button` resolves to `packages/react/src/components/bases/button/index.ts`.
   - **Publish** runs `tsdown` (`pnpm build`) to emit `dist/`, then `clean-package` (`prepack` / `postpack`) strips dev fields and points `main`/`module`/`types` at `dist/`. Do not assume consumers always read `src/` — keep public surface aligned across both.
-- `@friday-sandbox/styles` — CSS tokens and Tailwind v4 layers (`@layer theme, base, components, utilities`). Single source for color, spacing, and radius. Components compose it, never bypass it. Published as CSS only (`exports` map exposes `./index.css`). Design system follows **Dumb Tokens, Smart Components** — see [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) for the engine and scope rules. Token source: `packages/styles/src/themes.css` (plain values only — no `calc()`, no `color-mix()`, no relative color syntax). Derivation (foreground, hover) lives in the consuming component CSS.
+- `@friday-sandbox/styles` — CSS tokens and Tailwind v4 layers (`@layer theme, base, components, utilities`). Single source for color, spacing, and radius. Components compose it, never bypass it. Published as CSS only (`exports` map exposes `./index.css`). Design system follows **Dumb Tokens, Smart Components** — see [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) for the engine and scope rules. Token source: `packages/styles/src/theme/default.css` (plain values only — no `calc()`, no `color-mix()`, no relative color syntax). Derivation (foreground, hover) lives in the consuming component CSS.
 - `@friday-sandbox/eslint-config` — three flat-config presets exported as subpaths: `./base`, `./next-js`, `./react-internal`.
 - `@friday-sandbox/typescript-config` — `base.json`, `nextjs.json`, `react-library.json`. Drift between presets in `lib`, `moduleResolution`, `jsx`, `target`, `strict`, or `verbatimModuleSyntax` requires a framework-specific justification.
 
@@ -64,7 +64,7 @@ Dependency graph is enforced by `.dependency-cruiser.cjs` — `no-circular` is t
 
 ## Component conventions (`@friday-sandbox/react`)
 
-Components live under `packages/react/src/components/<tier>/<name>/`, where `<tier>` is the category (currently only `bases`). Each component folder ships four files with the same skeleton:
+Components live under `packages/react/src/components/<tier>/<name>/`, where `<tier>` is the category: `bases` (interactive primitives, e.g. button), `layouts` (compositional primitives — flex, grid, scroll-area), and `blocks` (composed patterns). The conventions below are the `bases` reference; `layouts` follow the same four-file skeleton but split multi-part primitives into sibling files (`grid.item.tsx`, `scroll-area.corner.styles.ts`) and skip the interactive-state stories — they render no interactive state. Each `bases` component folder ships four files with the same skeleton:
 
 ```text
 packages/react/src/components/bases/<name>/
@@ -76,7 +76,7 @@ packages/react/src/components/bases/<name>/
 
 - Compose `react-aria-components` for focus, selection, and keyboard behavior — do not re-implement.
 - Style with Tailwind v4 utilities + `@friday-sandbox/styles` tokens/layers via `tailwind-variants`. No inline `style`, no hardcoded hex, no class strings that bypass tokens. Variant classes follow `fri-<component>-<variant>` (see `button.styles.ts`).
-- The Storybook story **must** cover: `Default`, `Hovered` (use `play` with `userEvent.hover` from `storybook/test`), `Focused` (`autoFocus`), `Disabled`, `Loading` (`isPending`), `ErrorState` (color = `error`). The Button story is the reference layout.
+- The Storybook story **must** cover: `Default`, `Hovered` (use `play` with `userEvent.hover` from `storybook/test`), `Focused` (use `play` with `element.focus()`), `Disabled`, every color variant including `danger`. The Button story is the reference layout.
 - Scaffold with `pnpm --filter @friday-sandbox/react generate:component` so the file shape stays symmetric across components.
 - Forward all react-aria props; never re-declare them locally. `Props` extends the upstream `*Props` from `react-aria-components`.
 
@@ -115,16 +115,12 @@ Each component CSS file defines its engine once in the base rule and lets varian
     var(--background) 12%
   );
 }
-.fri-button-error {
-  --button-background: var(--error);
+.fri-button-danger {
+  --button-background: var(--danger);
 }
 ```
 
 Variants are one line each. Foreground and hover never live as global tokens.
-
-### Browser support
-
-Required CSS: relative color syntax (`oklch(from …)`) and `color-mix()`. Verified on Safari 16.4+, Chrome 119+, Firefox 128+. Do not introduce code paths that lower this floor.
 
 ## Docs audience
 
@@ -140,6 +136,7 @@ These rules load automatically when matching files enter context. Treat them as 
 - **`meaningful-identifiers.md`** — every identifier names what it represents. No `T`/`U`/`K` generics, no `v`/`e`/`i`/`tw`/`cb` parameters, no shortenings (`tmp`, `obj`, `arr`, `fn`, `el`). Exceptions: `id`, `i` only as a tight loop counter, `_` for discarded args.
 - **`no-default-noise.md`** (paths: every `*.json`, `*.{yml,yaml}`, `.*rc*`, `*.config.*`) — do not write config keys whose value equals the tool's documented default. Empty arrays, empty objects, and explicit defaults are noise. Check the tool's docs before adding a key.
 - **`no-ghosts.md`** — every named variant, size, color, mode, or state must exist as a real, addressable artifact (class, prop value, enum entry). An empty-string `tailwind-variants` value or a default baked into a base rule without a matching class is a ghost. Forbidden in every dimension.
+- **`canonical-tailwind.md`** — when a CSS var is registered in `@theme inline` (see `packages/styles/src/system/theme.css`), use the canonical Tailwind alias (`bg-muted`, `text-foreground`, `rounded-action`) — never the arbitrary-var fallback `bg-(--muted)`. The `*-(--var)` form is reserved for component-local vars that have no Tailwind alias.
 
 ## Workflow
 

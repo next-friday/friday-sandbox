@@ -131,8 +131,8 @@ The fix is for the failure mode where a small button (24 px) inherits a flat rad
   --button-background-pressed: var(--button-background-hover);
 }
 
-.fri-button-error {
-  --button-background: var(--error);
+.fri-button-danger {
+  --button-background: var(--danger);
 }
 
 .fri-button-xs {
@@ -141,7 +141,3 @@ The fix is for the failure mode where a small button (24 px) inherits a flat rad
 ```
 
 Color variants swap `--{component}-background`. Size variants swap `--action-n`. Foreground, hover (color-driven) and height, padding-x, radius (rhythm-driven via `action-rhythm`) re-derive automatically.
-
-## Browser support
-
-Relative color syntax (`oklch(from …)`) and `color-mix()` are required. Supported on Safari 16.4+, Chrome 119+, Firefox 128+. Do not introduce code paths that lower this floor.

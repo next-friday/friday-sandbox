@@ -24,11 +24,6 @@
   cursor: not-allowed;
 }
 
-@utility status-pending {
-  @apply pointer-events-none;
-  cursor: progress;
-}
-
 @utility focus-ring {
   @apply outline-2 outline-offset-2;
 }

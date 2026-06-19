@@ -53,11 +53,11 @@ Default is light. Add the class or attribute to toggle dark.
 <button class="fri-button fri-button-primary fri-button-md">Save</button>
 ```
 
-| Class                                                                                                       | Required | Pick   |
-| ----------------------------------------------------------------------------------------------------------- | -------- | ------ |
-| `fri-button`                                                                                                | yes      | —      |
-| `fri-button-primary` / `-secondary` / `-accent` / `-neutral` / `-info` / `-success` / `-warning` / `-error` | one      | 1 of 8 |
-| `fri-button-xs` / `-sm` / `-md` / `-lg` / `-xl`                                                             | one      | 1 of 5 |
+| Class                                                                                                        | Required | Pick   |
+| ------------------------------------------------------------------------------------------------------------ | -------- | ------ |
+| `fri-button`                                                                                                 | yes      | —      |
+| `fri-button-primary` / `-secondary` / `-accent` / `-neutral` / `-info` / `-success` / `-warning` / `-danger` | one      | 1 of 8 |
+| `fri-button-xs` / `-sm` / `-md` / `-lg` / `-xl`                                                              | one      | 1 of 5 |
 
 ## Customizing colors
 
@@ -72,7 +72,7 @@ Override any of these in your app's CSS. Components compute their own readable t
   --info: oklch(60% 0.14 233);
   --success: oklch(58% 0.15 163);
   --warning: oklch(78% 0.18 84);
-  --error: oklch(58% 0.22 25);
+  --danger: oklch(58% 0.22 25);
 
   --background: light-dark(white, oklch(18% 0.006 285));
   --foreground: light-dark(oklch(21% 0.006 285), oklch(95% 0.006 285));
@@ -80,7 +80,3 @@ Override any of these in your app's CSS. Components compute their own readable t
   --muted-foreground: light-dark(oklch(45% 0.006 285), oklch(70% 0.006 285));
 }
 ```
-
-## Browser support
-
-Safari 16.4+, Chrome 119+, Firefox 128+.

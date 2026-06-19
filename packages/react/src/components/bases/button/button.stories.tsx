@@ -1,19 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
+import { Flex } from "../../layouts/flex";
+
 import { Button } from ".";
-
-const variants = [
-  "primary",
-  "secondary",
-  "accent",
-  "neutral",
-  "info",
-  "success",
-  "warning",
-  "error",
-] as const;
-
-const sizes = ["xs", "sm", "md", "lg", "xl"] as const;
 
 const meta = {
   title: "Base/Actions/Button",
@@ -23,9 +12,7 @@ const meta = {
     docs: {
       description: {
         component: [
-          "Accessible button built on `react-aria-components` Button + `@friday-sandbox/styles` tokens.",
-          "Variant props (`variant`, `size`) compose `fri-button*` classes through tailwind-variants.",
-          "Behavior props (`isDisabled`, `isPending`, `autoFocus`, `onPress`) come from react-aria.",
+          "Accessible button with keyboard support, focus ring, and hover/press states built in.",
           "",
           "## Import",
           "",
@@ -34,7 +21,7 @@ const meta = {
           'import { type ButtonProps } from "@friday-sandbox/react";',
           "```",
           "",
-          "Stylesheet (once per app):",
+          "Add the stylesheet once at the top of your app:",
           "",
           "```css",
           '@import "@friday-sandbox/styles";',
@@ -48,55 +35,57 @@ const meta = {
     variant: "primary",
     size: "md",
     isDisabled: false,
-    isPending: false,
-    autoFocus: false,
   },
   argTypes: {
     children: {
-      description: "Visible label or icon content rendered inside the button.",
+      description: "Label or content inside the button — usually text.",
       control: "text",
       table: { type: { summary: "ReactNode" } },
     },
     variant: {
       description:
-        "Semantic color variant from `@friday-sandbox/styles`. Maps to `fri-button-<variant>` class.",
+        "Semantic color. Match the button to the meaning of the action — `primary` for the main action, `danger` for destructive ones, and so on.",
       control: "select",
-      options: variants,
+      options: [
+        "primary",
+        "secondary",
+        "accent",
+        "neutral",
+        "info",
+        "success",
+        "warning",
+        "danger",
+      ],
       table: {
-        type: { summary: variants.join(" | ") },
+        type: {
+          summary:
+            "primary | secondary | accent | neutral | info | success | warning | danger",
+        },
         defaultValue: { summary: "primary" },
       },
     },
     size: {
       description:
-        "Action-rhythm height. Computed as `calc(var(--size-action) * N)` where N is 6/8/10/12/14 for xs/sm/md/lg/xl (24 / 32 / 40 / 48 / 56 px at default base).",
+        "Visual size. `md` is the default at 40 px tall — large enough for touch. `xs`/`sm` for compact UIs, `lg`/`xl` for hero actions.",
       control: "radio",
-      options: sizes,
+      options: ["xs", "sm", "md", "lg", "xl"],
       table: {
-        type: { summary: sizes.join(" | ") },
+        type: { summary: "xs | sm | md | lg | xl" },
         defaultValue: { summary: "md" },
       },
     },
     isDisabled: {
-      description: "Disables interaction. Forwarded to react-aria.",
-      control: "boolean",
-    },
-    isPending: {
       description:
-        "Shows pending indicator and disables interaction. `children` are replaced via `composePendingChildren`.",
-      control: "boolean",
-    },
-    autoFocus: {
-      description: "Focuses the button on mount.",
+        "Disables the button. Click and keyboard events stop firing.",
       control: "boolean",
     },
     onPress: {
-      description: "react-aria press handler. Use instead of `onClick`.",
+      description:
+        "Fires when the button is activated — mouse, touch, or keyboard (Space/Enter). Use this instead of `onClick`.",
       action: "pressed",
     },
     className: {
-      description:
-        "Extra Tailwind classes. Merged after variant classes; use to override layout or spacing.",
+      description: "Extra Tailwind classes appended after the variant classes.",
       control: "text",
     },
   },
@@ -112,18 +101,45 @@ export const Variants: Story = {
   parameters: {
     docs: {
       description: {
-        story: "One button per semantic variant at default size.",
+        story:
+          "Eight semantic colors. Pick the one that matches the meaning of the action.",
       },
     },
   },
   render: (storyArgs) => (
-    <div className="flex flex-wrap items-center gap-2">
-      {variants.map((variant) => (
-        <Button key={variant} {...storyArgs} variant={variant}>
-          {variant}
-        </Button>
-      ))}
-    </div>
+    <Flex wrap="wrap" align="center" gap="md">
+      <Button {...storyArgs} variant="primary">
+        Primary
+      </Button>
+
+      <Button {...storyArgs} variant="secondary">
+        Secondary
+      </Button>
+
+      <Button {...storyArgs} variant="accent">
+        Accent
+      </Button>
+
+      <Button {...storyArgs} variant="neutral">
+        Neutral
+      </Button>
+
+      <Button {...storyArgs} variant="info">
+        Info
+      </Button>
+
+      <Button {...storyArgs} variant="success">
+        Success
+      </Button>
+
+      <Button {...storyArgs} variant="warning">
+        Warning
+      </Button>
+
+      <Button {...storyArgs} variant="danger">
+        Danger
+      </Button>
+    </Flex>
   ),
 };
 
@@ -135,18 +151,32 @@ export const Sizes: Story = {
     docs: {
       description: {
         story:
-          "Size rhythm xs → xl. Rendered in mobile viewport to verify touch-target heights.",
+          "Five fixed sizes from `xs` (24 px) to `xl` (56 px). `md` is the default and meets touch-target guidelines.",
       },
     },
   },
   render: (storyArgs) => (
-    <div className="flex flex-wrap items-center gap-2">
-      {sizes.map((size) => (
-        <Button key={size} {...storyArgs} size={size}>
-          Button
-        </Button>
-      ))}
-    </div>
+    <Flex wrap="wrap" align="center" gap="md">
+      <Button {...storyArgs} size="xs">
+        Button
+      </Button>
+
+      <Button {...storyArgs} size="sm">
+        Button
+      </Button>
+
+      <Button {...storyArgs} size="md">
+        Button
+      </Button>
+
+      <Button {...storyArgs} size="lg">
+        Button
+      </Button>
+
+      <Button {...storyArgs} size="xl">
+        Button
+      </Button>
+    </Flex>
   ),
 };
 
@@ -155,8 +185,7 @@ export const PlainHtml: Story = {
     docs: {
       description: {
         story:
-          "Proof that `@friday-sandbox/styles` works on a raw `<button>` element without the React wrapper. " +
-          "Compose `fri-button` with explicit color (`fri-button-primary`) and size (`fri-button-md`) classes.",
+          "Use the button styles on any element by composing `fri-button` with a color class (`fri-button-primary`) and a size class (`fri-button-md`). Handy when wrapping a Next.js `<Link>` or any custom anchor.",
       },
     },
   },

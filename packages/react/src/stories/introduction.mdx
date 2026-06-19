@@ -5,14 +5,10 @@ import { Meta, Title, Subtitle } from "@storybook/addon-docs/blocks";
 <Title>@friday-sandbox/react</Title>
 
 <Subtitle>
-  Accessible React UI components built on react-aria-components and Tailwind CSS
-  v4.
+  Accessible React UI components themed with CSS variables.
 </Subtitle>
 
-Components compose [`react-aria-components`](https://react-spectrum.adobe.com/react-aria/components.html)
-for focus, selection, and keyboard behavior, and style with tokens from
-`@friday-sandbox/styles`. Sources ship un-bundled — consumers import directly
-from `src/`, so tree-shaking is the bundler's job, not ours.
+Components ship with keyboard navigation, focus rings, hover, and press states built in. Colors, sizes, and corner radius are CSS variables — override one and every component updates.
 
 ## Install
 
@@ -30,7 +26,7 @@ Import the stylesheet once at the application root:
 import "@friday-sandbox/styles";
 ```
 
-Then import components by subpath:
+Then import components:
 
 ```tsx
 import { Button } from "@friday-sandbox/react";
@@ -42,7 +38,7 @@ export function Example() {
 
 ## Theming
 
-Themes are switched via the `data-theme` attribute on `<html>`:
+Switch themes via the `data-theme` attribute on `<html>`:
 
 ```html
 <html data-theme="light">
@@ -50,13 +46,4 @@ Themes are switched via the `data-theme` attribute on `<html>`:
 </html>
 ```
 
-The Storybook toolbar exposes the same switch under the **Theme** control.
-
-## Conventions
-
-- One component per file under `src/<name>.tsx`, named export.
-- `"use client"` only when a client API is touched.
-- Style with Tailwind utilities + tokens from `@friday-sandbox/styles` — never
-  bypass tokens with hardcoded hex values.
-- Every component story covers default, hover, focus, disabled, loading, and
-  error states.
+The Storybook toolbar exposes the same switch under the **Theme** control. See the [Theming](?path=/docs/theming--docs) page for color, surface, and sizing overrides.

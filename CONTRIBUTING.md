@@ -53,6 +53,8 @@ Conventions:
 - Start with `"use client"` only when a client API is touched.
 - Compose `react-aria-components` for focus, selection, and keyboard behavior; do not re-implement.
 - Styles ride Tailwind v4 utilities plus the `@friday-sandbox/styles` token and layer system. No inline `style` objects, no hardcoded hex colors, no class strings that bypass tokens.
+- **Canonical Tailwind only.** Theme tokens registered in `@theme inline` (`packages/styles/src/system/theme.css`) have real Tailwind aliases — use them. Write `bg-muted`, `text-foreground`, `border-primary`, `rounded-action` — never the arbitrary-var form `bg-(--muted)`, `text-(--foreground)`, `border-(--primary)`, `rounded-(--radius-action)`. The `*-(--var)` form is the v3-era escape hatch and is reserved for component-local vars (e.g. `bg-(--button-background)`) that have no Tailwind alias. See [`.claude/rules/canonical-tailwind.md`](.claude/rules/canonical-tailwind.md).
+- For shared layout (rows, columns, grids, scrollable regions), compose the `layouts` primitives — `Flex`, `Grid`, `GridItem`, `ScrollArea` — instead of writing raw `<div className="flex …">`. Stories included.
 - Scaffold the file shape with `pnpm --filter @friday-sandbox/react generate:component`.
 
 Consumers import via the package exports map (`./*` → `./src/*.tsx`):

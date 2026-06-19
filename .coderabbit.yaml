@@ -55,6 +55,20 @@ reviews:
         @friday-sandbox/styles. Flag inline style objects, hardcoded hex
         colors, or class strings that bypass tokens.
 
+        Canonical Tailwind: every CSS var registered in @theme inline
+        (packages/styles/src/system/theme.css) has a real utility alias. Flag
+        the v3-era arbitrary-var form on a mapped token —
+        `bg-(--muted)`, `text-(--foreground)`, `border-(--primary)`,
+        `rounded-(--radius-action)` — and ask for the canonical alias
+        (`bg-muted`, `text-foreground`, `border-primary`, `rounded-action`).
+        The `*-(--var)` form is correct only for component-local vars that
+        have no Tailwind alias (e.g. `bg-(--button-background)`).
+
+        Layout primitives: prefer Flex, Grid, GridItem, ScrollArea from
+        packages/react/src/components/layouts over raw
+        `<div className="flex …">` / `<div className="grid …">`. Flag layout
+        divs that re-implement what a primitive already provides.
+
         Behavior changes (feat | fix | perf | refactor) require a
         .changeset/*.md entry; flag a missing one.
     - path: packages/react/src/**/*.stories.{ts,tsx}
@@ -63,6 +77,28 @@ reviews:
         visual and interactive states (default, hover, focus, disabled,
         loading, error). Flag stories that mock data instead of exercising
         real props. addon-a11y violations on the story page block the PR.
+
+
+        Storybook copy is for consumers, not contributors. The deployed
+        Storybook is the consumer-facing reference. Component descriptions,
+        prop `description`s, and per-story
+        `parameters.docs.description.story` text must read as instructions
+        to someone using the component in their own app. Flag any of:
+        internal class names (`fri-button-<variant>`, `fri-flex-*`), library
+        names (`tailwind-variants`, `react-aria`, `react-aria-components`),
+        engine math (`calc(var(--size-action) * N)`), file paths, "Maps to
+        … class", "Forwarded to …", "Proof that …", or QA notes ("Rendered
+        in mobile viewport to verify …"). Engine details, file layout, and
+        verification rationale belong in docs/ARCHITECTURE.md and
+        CONTRIBUTING.md.
+
+
+        Symmetry across .stories.tsx files: same component-description
+        shape (one-line summary → `## Import` → import snippet → "Add the
+        stylesheet once at the top of your app:" → CSS snippet), same gap /
+        gapX / gapY / className prop wording across layout primitives, same
+        tone (second-person, "Pick …", "Use …"). Flag asymmetry — one story
+        drifting from the others.
     - path: packages/react/src/**/*.test.{ts,tsx}
       instructions: >-
         Tests run in Vitest browser mode via @storybook/addon-vitest with
