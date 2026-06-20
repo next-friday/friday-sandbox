@@ -1,31 +1,81 @@
+import { Slot } from "radix-ui";
+
 import type { ComponentPropsWithRef } from "react";
 
 import { gridVariants } from "./grid.variants";
 import type { GridVariants, GridItemVariants } from "./grid.variants";
 
 export interface GridProps extends ComponentPropsWithRef<"div">, GridVariants {
+  asChild?: boolean;
   className?: string;
 }
 
 export const Grid = (props: Readonly<GridProps>) => {
-  const { className, cols, flow, gap, gapX, gapY, rows, ...rest } = props;
+  const {
+    asChild,
+    autoCols,
+    autoRows,
+    className,
+    cols,
+    flow,
+    gap,
+    gapX,
+    gapY,
+    inline,
+    rows,
+    ...rest
+  } = props;
 
-  const slots = gridVariants({ cols, rows, flow, gap, gapX, gapY });
+  const slots = gridVariants({
+    cols,
+    rows,
+    flow,
+    inline,
+    autoRows,
+    autoCols,
+    gap,
+    gapX,
+    gapY,
+  });
   const gridClassName = slots.grid({ class: className });
 
-  return <div data-slot="grid" className={gridClassName} {...rest} />;
+  const Component = asChild ? Slot.Root : "div";
+
+  return <Component data-slot="grid" className={gridClassName} {...rest} />;
 };
 
 export interface GridItemProps
   extends ComponentPropsWithRef<"div">, GridItemVariants {
+  asChild?: boolean;
   className?: string;
 }
 
 export const GridItem = (props: Readonly<GridItemProps>) => {
-  const { className, colSpan, rowSpan, ...rest } = props;
+  const {
+    asChild,
+    className,
+    colEnd,
+    colSpan,
+    colStart,
+    rowEnd,
+    rowSpan,
+    rowStart,
+    ...rest
+  } = props;
 
-  const slots = gridVariants({ colSpan, rowSpan });
+  const slots = gridVariants({
+    colSpan,
+    rowSpan,
+    colStart,
+    colEnd,
+    rowStart,
+    rowEnd,
+  });
   const itemClassName = slots.item({ class: className });
 
-  return <div data-slot="grid-item" className={itemClassName} {...rest} />;
+  const Component = asChild ? Slot.Root : "div";
+
+  return (
+    <Component data-slot="grid-item" className={itemClassName} {...rest} />
+  );
 };

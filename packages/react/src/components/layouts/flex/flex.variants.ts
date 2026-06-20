@@ -30,6 +30,9 @@ export const flexVariants = tv({
       wrap: "fri-flex-wrap",
       "wrap-reverse": "fri-flex-wrap-reverse",
     },
+    inline: {
+      true: "fri-flex-inline",
+    },
     gap: {
       xs: "fri-flex-gap-xs",
       sm: "fri-flex-gap-sm",
@@ -50,6 +53,19 @@ export const flexVariants = tv({
       md: "fri-flex-gap-y-md",
       lg: "fri-flex-gap-y-lg",
       xl: "fri-flex-gap-y-xl",
+    },
+    grow: {
+      true: "fri-flex-grow",
+      false: "fri-flex-grow-0",
+    },
+    shrink: {
+      true: "fri-flex-shrink",
+      false: "fri-flex-shrink-0",
+    },
+    basis: {
+      auto: "fri-flex-basis-auto",
+      full: "fri-flex-basis-full",
+      0: "fri-flex-basis-0",
     },
   },
   defaultVariants: {

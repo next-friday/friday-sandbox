@@ -97,6 +97,43 @@ const meta = {
       options: ["xs", "sm", "md", "lg", "xl"],
       table: { type: { summary: "xs | sm | md | lg | xl" } },
     },
+    inline: {
+      description:
+        "Render as an inline-level flex container (`inline-flex`) instead of block-level.",
+      control: "boolean",
+      table: {
+        type: { summary: "boolean" },
+        defaultValue: { summary: "false" },
+      },
+    },
+    grow: {
+      description:
+        "Flex-grow of the Flex root itself — set when a Flex is also a flex item inside a parent Flex. `true` fills the remaining space, `false` holds its base size.",
+      control: "boolean",
+      table: { type: { summary: "boolean" } },
+    },
+    shrink: {
+      description:
+        "Flex-shrink of the Flex root itself. `false` stops it from shrinking below its content.",
+      control: "boolean",
+      table: { type: { summary: "boolean" } },
+    },
+    basis: {
+      description:
+        "Flex-basis of the Flex root itself — its starting main size before grow and shrink apply.",
+      control: "radio",
+      options: ["auto", "full", 0],
+      table: { type: { summary: "auto | full | 0" } },
+    },
+    asChild: {
+      description:
+        "Merge props onto the single child element instead of rendering a `<div>`, to keep semantic markup (`<nav>`, `<ul>`, `<section>`). Requires exactly one child element.",
+      control: false,
+      table: {
+        type: { summary: "boolean" },
+        defaultValue: { summary: "false" },
+      },
+    },
     className: {
       description: "Extra Tailwind classes appended after the variant classes.",
       control: "text",
@@ -157,6 +194,75 @@ export const Gap: Story = {
   render: (storyArgs) => (
     <Flex {...storyArgs}>
       <Boxes count={3} />
+    </Flex>
+  ),
+};
+
+export const Inline: Story = {
+  args: { inline: true },
+  render: (storyArgs) => (
+    <Flex {...storyArgs}>
+      <Boxes count={3} />
+    </Flex>
+  ),
+};
+
+export const Grow: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "`grow`, `shrink`, and `basis` apply to the Flex root itself, useful when a Flex is also a flex item inside a parent Flex. Here the first item grows to fill the remaining space.",
+      },
+    },
+  },
+  render: (storyArgs) => (
+    <Flex {...storyArgs}>
+      <Flex grow>
+        <Boxes count={1} />
+      </Flex>
+
+      <Boxes count={1} />
+    </Flex>
+  ),
+};
+
+export const Basis: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "`basis={0}` with `grow` on each item gives equal-width columns regardless of content.",
+      },
+    },
+  },
+  render: () => (
+    <Flex className="w-80" gap="md">
+      <Flex basis={0} grow>
+        <Boxes count={1} />
+      </Flex>
+
+      <Flex basis={0} grow>
+        <Boxes count={1} />
+      </Flex>
+    </Flex>
+  ),
+};
+
+export const AsChild: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "With `asChild`, the variant classes merge onto the consumer's own element, so a Flex can be a semantic `<nav>` instead of a generic `<div>`. Requires exactly one child element.",
+      },
+    },
+  },
+  render: (storyArgs) => (
+    <Flex {...storyArgs} asChild>
+      <nav aria-label="Primary">
+        <Boxes count={3} />
+      </nav>
     </Flex>
   ),
 };

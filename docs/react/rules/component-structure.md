@@ -51,6 +51,7 @@ export const Button = (props: Readonly<ButtonProps>) => {
 - Lowercase kebab-case filenames (`button.tsx`, `scroll-area.tsx`), never PascalCase.
 - Named export only — no `default` export. The `Props` type is colocated, suffixed `Props`, and exported beside the component.
 - A component wrapping a headless primitive types its `Props` as `ComponentPropsWithRef<typeof Primitive>` (react-aria `AriaButton`, Radix `ScrollArea.Root`) intersected with its `*Variants` — it inherits the primitive's full surface (ref, ARIA, events, `data-*`) and never re-lists props by hand. A plain-element component uses `ComponentPropsWithRef<"div">`.
+- A layout primitive that composes onto a consumer's element takes `asChild?: boolean` and renders Radix `Slot.Root` in place of its host tag (`const Component = asChild ? Slot.Root : "div"`), so its variant classes and props merge onto the single child. `Slot` is structural composition, not interaction, so it sits beside the react-aria rule rather than breaking it; it requires exactly one child element.
 - `"use client"` is the first line **only** when a client API is touched (state, effect, ref, event handler). No needless directive on a pure component.
 - Variants live in `<name>.variants.ts` (tailwind-variants), never a `.styles.ts`. Variant classes are `fri-<component>-<variant>`.
 - Reachability: the package `exports` map is `.` → `./src/index.ts` and `./*` → `./src/*/index.ts`. A file no `index.ts` re-exports is unreachable and does not ship — wire it or drop it.
