@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "skills": {
+    "blueprint": {
+      "source": "next-friday/next-friday-skills",
+      "sourceType": "github",
+      "skillPath": "plugins/next-friday/skills/blueprint/SKILL.md",
+      "computedHash": "8bfc654a5f852ff8b1a3bc6c3f92000ffedf5f0bb2b75648b3c37b5ce5027fc0"
+    },
+    "implement": {
+      "source": "next-friday/next-friday-skills",
+      "sourceType": "github",
+      "skillPath": "plugins/next-friday/skills/implement/SKILL.md",
+      "computedHash": "a7595869993f5640835cd371523aa026c2b8e71ba34a856fc50fec25843c0967"
+    },
+    "rebut": {
+      "source": "next-friday/next-friday-skills",
+      "sourceType": "github",
+      "skillPath": "plugins/next-friday/skills/rebut/SKILL.md",
+      "computedHash": "7f50480e0ab2058ad09a5b42f8ef557e14d951e53e9ea4673ffd44a8b968ab14"
+    }
+  }
+}
