@@ -1,6 +1,6 @@
 # Semantic Token Scope
 
-**Rule:** Size and radius tokens are scoped to a **semantic family**, never to a literal component name. Place a new component in the family it belongs to; add a new family only when none fits.
+**Rule:** Size and radius tokens are scoped to a **semantic family**, never to a literal component name. Place a new component in the family it belongs to; add a new family only when none fits. Every size dimension derives from its family unit (`calc(var(--size-{scope}) * N)`) — a raw length literal in component CSS is a forked scale and forbidden.
 
 Three scopes:
 
@@ -33,4 +33,5 @@ Heights derive inline as `calc(var(--size-{scope}) * N)` with N ∈ {6, 8, 10, 1
 
 - Before adding a component's CSS, pick its family: is it a trigger (`action`), a data entry (`field`), or a container (`box`)? Use that scope's `--size-*` / `--radius-*`.
 - Never introduce a token named after the component. If no family fits, add a new **semantic** scope, not a literal one.
+- A scrollbar thickness, divider weight, or any other dimension still derives from a family unit via `calc()` (`calc(var(--size-box) * N)`), never a raw literal — the general form is [`no-magic-values.md`](no-magic-values.md).
 - The full engine and the per-size formulas live in [the Styles chapter](../README.md).

@@ -52,6 +52,7 @@
   "scripts": {
     "build": "tsdown",
     "build:storybook": "storybook build",
+    "build-storybook": "storybook build",
     "check-types": "tsc --noEmit",
     "chromatic": "chromatic --build-script-name=build:storybook --exit-zero-on-changes",
     "dev:storybook": "storybook dev -p 6006",
@@ -59,6 +60,7 @@
     "lint": "eslint . --max-warnings 0",
     "prepack": "clean-package",
     "postpack": "clean-package restore",
+    "storybook": "storybook dev -p 6006",
     "test": "vitest run",
     "test:coverage": "vitest run --coverage"
   },
@@ -87,6 +89,7 @@
     "chromatic": "^17.5.0",
     "clean-package": "^2.2.0",
     "eslint": "^9.39.1",
+    "eslint-plugin-storybook": "^10.4.6",
     "playwright": "^1.61.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",

@@ -4,12 +4,12 @@ import { fileURLToPath } from "node:url";
 import tailwindcss from "@tailwindcss/vite";
 import { mergeConfig } from "vite";
 
-import { type StorybookConfig } from "@storybook/react-vite";
+import type { StorybookConfig } from "@storybook/react-vite";
 
 /**
- * Resolve the absolute path of a package — needed for Yarn PnP or monorepo setups.
- * @param {string} value Package name to resolve.
- * @returns {string} Absolute path to the package directory.
+ * Resolve the directory of a package by name — robust under pnpm/monorepo hoisting.
+ * @param {string} value - The package name to resolve.
+ * @returns {string} The absolute path to the package's directory.
  */
 function getAbsolutePath(value: string): string {
   return path.dirname(

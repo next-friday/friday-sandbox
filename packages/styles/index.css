@@ -1,6 +1,8 @@
 @layer theme, base, components, utilities;
 
 @import "tailwindcss";
+@import "tw-animate-css";
+
 @import "./src/theme/index.css";
 @import "./src/system/index.css";
 @import "./src/components/index.css";

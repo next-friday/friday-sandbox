@@ -6,14 +6,14 @@
     --button-background: var(--primary);
     --button-foreground: var(--primary-foreground);
     --button-background-hover: color-mix(
-      in oklab,
+      in srgb,
       var(--button-background),
-      var(--button-foreground) 10%
+      var(--button-foreground) 14%
     );
     --button-background-pressed: color-mix(
-      in oklab,
+      in srgb,
       var(--button-background),
-      var(--button-foreground) 18%
+      var(--button-foreground) 24%
     );
     --button-border-color: transparent;
   }
@@ -53,7 +53,7 @@
 
   .fri-button-xs {
     --action-n: 6;
-    @apply text-[0.6875rem];
+    @apply text-xs;
   }
   .fri-button-sm {
     --action-n: 8;

@@ -2,23 +2,24 @@
   .fri-scroll-area {
     @apply relative overflow-hidden;
 
-    --scroll-area-thickness: 0.625rem;
+    --scroll-area-n: 2.5;
+    --scroll-area-thickness: calc(var(--size-box) * var(--scroll-area-n));
     --scroll-area-thumb-color: var(--muted-foreground);
     --scroll-area-thumb-color-hover: var(--foreground);
     --scroll-area-track-color: transparent;
   }
 
   .fri-scroll-area-xs {
-    --scroll-area-thickness: 0.375rem;
+    --scroll-area-n: 1.5;
   }
   .fri-scroll-area-sm {
-    --scroll-area-thickness: 0.5rem;
+    --scroll-area-n: 2;
   }
   .fri-scroll-area-md {
-    --scroll-area-thickness: 0.625rem;
+    --scroll-area-n: 2.5;
   }
   .fri-scroll-area-lg {
-    --scroll-area-thickness: 0.875rem;
+    --scroll-area-n: 3.5;
   }
 
   .fri-scroll-area-viewport {
@@ -43,9 +44,8 @@
   }
 
   .fri-scroll-area-thumb {
-    @apply relative flex-1 rounded-full;
+    @apply relative flex-1 rounded-full transition-colors duration-100 ease-out;
     background: var(--scroll-area-thumb-color);
-    transition: background-color 100ms ease-out;
   }
   .fri-scroll-area-thumb:hover {
     background: var(--scroll-area-thumb-color-hover);
