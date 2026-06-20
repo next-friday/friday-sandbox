@@ -25,7 +25,7 @@
 
 ## Hello there
 
-Welcome! Friday UI is a kit of polished, ready-to-use pieces — buttons, avatars, and more — that you can drop into your project today. Think of it as a box of Lego pieces for the web: each piece is already painted, already fits, and you just choose where it goes.
+Welcome! Friday UI is a kit of polished, ready-to-use pieces — buttons, layout primitives, and more — that you can drop into your project today. Think of it as a box of Lego pieces for the web: each piece is already painted, already fits, and you just choose where it goes.
 
 If you are new to building for the web, you are in the right place. We did the fiddly parts so you can focus on what your site says, looks like, and does.
 
@@ -42,7 +42,7 @@ If you are new to building for the web, you are in the right place. We did the f
 A lot of people now build websites with help from tools like ChatGPT, Claude, Cursor, or Copilot. Friday UI is written in a way those tools understand really well:
 
 - The pieces are easy to read, so an AI helper can explain what each one does in plain language.
-- The names follow a clear pattern, so when you ask for "a button" or "an avatar", the helper rarely guesses wrong.
+- The names follow a clear pattern, so when you ask for "a button" or "a grid", the helper rarely guesses wrong.
 - Every piece comes with little examples (called _stories_) showing how it looks in different situations — perfect for "show me how to use this".
 
 If you are pairing with an AI helper, Friday UI is one less thing for both of you to argue about.
@@ -77,7 +77,7 @@ Bring in the look-and-feel from your main CSS file:
 Then use a piece anywhere on your page:
 
 ```tsx
-import { Button } from "@friday-sandbox/react/components/base/button";
+import { Button } from "@friday-sandbox/react";
 
 export function Save() {
   return <Button onPress={() => save()}>Save changes</Button>;
@@ -88,10 +88,10 @@ That is it — you just added a fully accessible, fully styled button to your si
 
 ## What is inside the box
 
-| Package                                     | What it is                                                             |
-| ------------------------------------------- | ---------------------------------------------------------------------- |
-| [`@friday-sandbox/react`](packages/react)   | The pieces themselves — buttons, avatars, and friends.                 |
-| [`@friday-sandbox/styles`](packages/styles) | The look-and-feel — colors, spacing, and shapes that the pieces share. |
+| Package                                                                                             | What it is                                                                   |
+| --------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| [`@friday-sandbox/react`](https://github.com/next-friday/friday-sandbox/tree/main/packages/react)   | The pieces themselves — buttons and layout primitives, with more on the way. |
+| [`@friday-sandbox/styles`](https://github.com/next-friday/friday-sandbox/tree/main/packages/styles) | The look-and-feel — colors, spacing, and shapes that the pieces share.       |
 
 ## See it in action
 
