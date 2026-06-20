@@ -1,5 +1,2 @@
-export { Grid } from "./grid";
-export type { GridProps } from "./grid";
-
-export { GridItem } from "./grid.item";
-export type { GridItemProps } from "./grid.item";
+export { Grid, GridItem } from "./grid";
+export type { GridProps, GridItemProps } from "./grid";

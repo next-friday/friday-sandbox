@@ -34,12 +34,12 @@ const meta = {
     },
   },
   args: {
-    columns: 3,
+    cols: 3,
     flow: "row",
     gap: "md",
   },
   argTypes: {
-    columns: {
+    cols: {
       description: "How many columns the grid has — 1 through 12.",
       control: { type: "number", min: 1, max: 12 },
       options: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
@@ -105,7 +105,7 @@ export const Default: Story = {
 };
 
 export const Columns: Story = {
-  args: { columns: 4 },
+  args: { cols: 4 },
   render: (storyArgs) => (
     <Grid {...storyArgs}>
       <Boxes count={8} />
@@ -114,7 +114,7 @@ export const Columns: Story = {
 };
 
 export const Rows: Story = {
-  args: { columns: 3, rows: 2 },
+  args: { cols: 3, rows: 2 },
   render: (storyArgs) => (
     <Grid {...storyArgs}>
       <Boxes count={6} />
@@ -132,7 +132,7 @@ export const Flow: Story = {
 };
 
 export const Gap: Story = {
-  args: { columns: 3, gap: "xl" },
+  args: { cols: 3, gap: "xl" },
   render: (storyArgs) => (
     <Grid {...storyArgs}>
       <Boxes count={6} />
@@ -141,7 +141,7 @@ export const Gap: Story = {
 };
 
 export const WithItems: Story = {
-  args: { columns: 4, gap: "sm" },
+  args: { cols: 4, gap: "sm" },
   render: (storyArgs) => (
     <Grid {...storyArgs}>
       <GridItem colSpan={2}>
