@@ -102,7 +102,7 @@ The `*-(--var)` form is only correct for **component-local CSS variables that ar
 
 Rule of thumb: if the variable appears in `packages/styles/src/system/theme.css`, use its canonical alias. Otherwise, the arbitrary-var form is fine.
 
-Enforced by [`.claude/rules/canonical-tailwind.md`](../.claude/rules/canonical-tailwind.md).
+Enforced by [`docs/conventions/canonical-tailwind.md`](conventions/canonical-tailwind.md).
 
 ## Layer locations
 

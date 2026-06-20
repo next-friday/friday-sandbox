@@ -6,19 +6,19 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Turborepo + pnpm monorepo shipping the public `@friday-sandbox/*` packages: a React 19 UI library (`react`) built on `react-aria-components` + `tailwind-variants` + Tailwind v4, its design-token CSS (`styles`), and shared `eslint-config` / `typescript-config` presets. Every workspace keeps its sources under `src/` and exposes a public surface through `package.json#exports` — the folder shape is symmetric across all four packages.
 
-New to the repo? [`docs/onboarding.md`](docs/onboarding.md) is the start-here map; it routes you to the right document per task.
+New to the repo? The [`docs/`](docs/) hub is the start-here map; it routes you to the right document per task.
 
 ## Single source of truth
 
 Each fact has exactly one home. Read these — never restate their content in code comments, other docs, or reviewer configs. When a fact changes, change it here:
 
-| Topic                                                                 | Home                                                   |
-| --------------------------------------------------------------------- | ------------------------------------------------------ |
-| Design-system engine (Dumb Tokens/Smart Components, dark mode)        | [`docs/architecture.md`](docs/architecture.md)         |
-| Derivation formulas (height, padding, radius, foreground, hover)      | [`docs/formulas.md`](docs/formulas.md)                 |
-| Code-convention gates                                                 | [`.claude/rules/`](.claude/rules/) (one rule per file) |
-| Contributor workflow (issue → branch → PR, commits, changeset, gates) | [`CONTRIBUTING.md`](CONTRIBUTING.md)                   |
-| Consumer install / usage / theming                                    | package `README.md` files + deployed Storybook         |
+| Topic                                                                 | Home                                                                                    |
+| --------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
+| Design-system engine (Dumb Tokens/Smart Components, dark mode)        | [`docs/architecture.md`](docs/architecture.md)                                          |
+| Derivation formulas (height, padding, radius, foreground, hover)      | [`docs/formulas.md`](docs/formulas.md)                                                  |
+| Code-convention gates                                                 | [`docs/conventions/`](docs/conventions/) (mirrored into `.claude/rules/` for auto-load) |
+| Contributor workflow (issue → branch → PR, commits, changeset, gates) | [`CONTRIBUTING.md`](CONTRIBUTING.md)                                                    |
+| Consumer install / usage / theming                                    | package `README.md` files + deployed Storybook                                          |
 
 ## Commands
 
@@ -49,9 +49,9 @@ pnpm exec turbo lint --filter=@friday-sandbox/react
 pnpm --filter @friday-sandbox/react exec vitest run src/components/bases/button/button.test.tsx
 ```
 
-## Path-scoped rules are gates
+## Conventions are gates
 
-The files in [`.claude/rules/`](.claude/rules/) auto-load when a matching file enters context. Treat them as gates, not suggestions:
+The canonical conventions live in [`docs/conventions/`](docs/conventions/) — tool-agnostic, one file per rule, enforced by CI and the PR reviewers. The files in [`.claude/rules/`](.claude/rules/) are thin pointers that mirror them and auto-load by path when a matching file enters context. Read the linked `docs/conventions/` file for the full rule. Treat them as gates, not suggestions:
 
 - **`component-structure.md`** — the symmetric component folder skeleton, lowercase filenames, named export, colocated `Props`, `*.variants.ts`, exports-map reachability.
 - **`compose-and-dry.md`** — compose `react-aria-components` and the `layouts` primitives; extract shared logic into a hook instead of repeating it.

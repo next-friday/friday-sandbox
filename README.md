@@ -59,7 +59,7 @@ Every component renders in **Storybook** — each piece in every state, ready to
 
 ## Contributing
 
-Issues, ideas, and pull requests are welcome — start with [`CONTRIBUTING.md`](CONTRIBUTING.md). New to the codebase? [`docs/onboarding.md`](docs/onboarding.md) maps it and points you to the right document. Everyone here follows the [Code of Conduct](CODE_OF_CONDUCT.md).
+Issues, ideas, and pull requests are welcome — start with [`CONTRIBUTING.md`](CONTRIBUTING.md). New to the codebase? The [`docs/`](docs/) hub maps it and points you to the right document. Everyone here follows the [Code of Conduct](CODE_OF_CONDUCT.md).
 
 ## Security
 
