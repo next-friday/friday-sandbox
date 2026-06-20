@@ -1,0 +1,59 @@
+# Build and tooling
+
+How `friday-sandbox` is structured, built, gated, and shipped. A tool-agnostic reference for every contributor or agent.
+
+## Workspaces
+
+Turborepo + pnpm workspaces (`pnpm-workspace.yaml` → `packages/*`). Four `@friday-sandbox/*` packages — see the package table in [the hub](README.md#whats-in-here). Every workspace keeps its sources under `src/` and exposes its public surface through `package.json#exports`; the folder shape is symmetric across all four.
+
+Package manager is **pnpm 10** (corepack honors `packageManager` in the root `package.json`). Node `>=22.10.0`.
+
+## Commands
+
+Root scripts fan out across workspaces via Turborepo:
+
+```sh
+pnpm install
+pnpm dev              # turbo run dev (Storybook for @friday-sandbox/react, persistent, not cached)
+pnpm dev:storybook    # storybook dev -p 6006 via filter
+pnpm build            # turbo run build (tsdown for @friday-sandbox/react)
+pnpm build:storybook  # storybook build → packages/react/storybook-static
+pnpm lint             # turbo run lint (eslint --max-warnings 0)
+pnpm typecheck        # turbo run check-types (tsc --noEmit)
+pnpm test             # turbo run test (vitest browser mode + Storybook addon-vitest + Playwright)
+pnpm test:coverage
+pnpm knip
+pnpm depcruise        # depcruise packages (no-circular rule)
+pnpm format           # prettier --write
+pnpm sort             # sort-package-json across every workspace
+pnpm doc:check        # storybook build --quiet
+pnpm changeset        # author a changeset for behavior changes
+```
+
+Scope to one workspace with a Turbo filter, or run a single Vitest file:
+
+```sh
+pnpm exec turbo lint --filter=@friday-sandbox/react
+pnpm --filter @friday-sandbox/react exec vitest run src/components/bases/button/button.test.tsx
+```
+
+Every script is defined in the root [`package.json`](../package.json).
+
+## Turbo task graph
+
+From `turbo.json`: `build`, `lint`, `check-types`, `doc:check`, `test`, `build:storybook` fan out via `^` (dependency order); `doc:check` and `test*` also depend on `^build`. `dev`, `dev:storybook`, and `build:watch` are `cache: false` and `persistent: true`.
+
+## Quality gates
+
+Every gate must pass before a pull request can merge. The full list and how to run them locally is in [`../CONTRIBUTING.md`](../CONTRIBUTING.md#quality-gates); let the hooks run them on what you touched rather than invoking the whole-repo tasks by hand. Two enforcers worth calling out:
+
+- **Dependency graph** — `.dependency-cruiser.cjs` enforces `no-circular` at `severity: error`. Break cycles; never suppress.
+- **Knip** — runs from `knip.config.ts` on near-defaults: a `css` compiler walks the CSS-only `styles` workspace, and `eslint-import-resolver-typescript` is ignored on `eslint-config` (it is referenced by string in the flat config). Entries auto-detect from each `package.json`.
+
+## `src` ↔ `dist` (publishing)
+
+Workspace consumers import sources directly (`exports` → `./src/*/index.ts`). Published consumers read `dist/`: `pnpm build` runs `tsdown` to emit it, then `clean-package` (`prepack` / `postpack`) strips dev fields and repoints `main` / `module` / `types`. Change one surface, keep the other aligned.
+
+## Storybook deploy
+
+Storybook deploys to Vercel from the root `vercel.json` (built from `packages/react`). `turbo-ignore @friday-sandbox/react` skips the deploy when the library and its workspace deps are unchanged.

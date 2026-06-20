@@ -46,15 +46,16 @@ Internalize that one idea and the rest of the codebase reads cleanly. The full e
 
 ## Where do I go for X
 
-| I want to…                          | Start at                                                                                              |
-| ----------------------------------- | ----------------------------------------------------------------------------------------------------- |
-| Add or change a component           | [`component-structure.md`](conventions/component-structure.md); mirror the `button` folder            |
-| Understand the CSS engine           | [`architecture.md`](architecture.md)                                                                  |
-| Look up a derivation formula        | [`formulas.md`](formulas.md)                                                                          |
-| Change or add a design token        | `packages/styles/src/theme/default.css` (plain values only) + [`architecture.md`](architecture.md) §1 |
-| Add an ESLint or tsconfig preset    | [`../CONTRIBUTING.md`](../CONTRIBUTING.md) → _Adding a preset_                                        |
-| Ship a change (issue → branch → PR) | [`../CONTRIBUTING.md`](../CONTRIBUTING.md) → _Workflow_                                               |
-| Run or scope the quality gates      | [`../CONTRIBUTING.md`](../CONTRIBUTING.md) → _Quality gates_                                          |
+| I want to…                            | Start at                                                                                              |
+| ------------------------------------- | ----------------------------------------------------------------------------------------------------- |
+| Add or change a component             | [`component-structure.md`](conventions/component-structure.md); mirror the `button` folder            |
+| Understand the CSS engine             | [`architecture.md`](architecture.md)                                                                  |
+| Look up a derivation formula          | [`formulas.md`](formulas.md)                                                                          |
+| Change or add a design token          | `packages/styles/src/theme/default.css` (plain values only) + [`architecture.md`](architecture.md) §1 |
+| Add an ESLint or tsconfig preset      | [`../CONTRIBUTING.md`](../CONTRIBUTING.md) → _Adding a preset_                                        |
+| Ship a change (issue → branch → PR)   | [`../CONTRIBUTING.md`](../CONTRIBUTING.md) → _Workflow_                                               |
+| Run or scope the quality gates        | [`../CONTRIBUTING.md`](../CONTRIBUTING.md) → _Quality gates_                                          |
+| Understand the build, commands, or CI | [`build.md`](build.md)                                                                                |
 
 ## Conventions that are gates, not suggestions
 
