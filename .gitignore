@@ -46,3 +46,9 @@ storybook-static
 
 # Vitest
 __screenshots__
+
+# Claude — local-only config; only .claude/skills is committed (shared with the team)
+.claude/rules/
+.claude/hooks/
+.claude/settings.json
+.claude/settings.local.json
