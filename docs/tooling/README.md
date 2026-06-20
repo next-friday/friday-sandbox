@@ -1,10 +1,10 @@
-# Build and tooling
+# Tooling
 
-How `friday-sandbox` is structured, built, gated, and shipped. A tool-agnostic reference for every contributor or agent.
+How `friday-sandbox` is structured, built, gated, and shipped, plus the code style that applies across every package. A tool-agnostic reference for any contributor or agent.
 
 ## Workspaces
 
-Turborepo + pnpm workspaces (`pnpm-workspace.yaml` → `packages/*`). Four `@friday-sandbox/*` packages — see the package table in [the hub](README.md#whats-in-here). Every workspace keeps its sources under `src/` and exposes its public surface through `package.json#exports`; the folder shape is symmetric across all four.
+Turborepo + pnpm workspaces (`pnpm-workspace.yaml` → `packages/*`). Four `@friday-sandbox/*` packages — `react`, `styles`, `eslint-config`, `typescript-config` — listed in [the table of contents](../README.md#table-of-contents). Every workspace keeps its sources under `src/` and exposes its public surface through `package.json#exports`; the folder shape is symmetric across all four.
 
 Package manager is **pnpm 10** (corepack honors `packageManager` in the root `package.json`). Node `>=22.10.0`.
 
@@ -50,7 +50,7 @@ pnpm exec turbo lint --filter=@friday-sandbox/react
 pnpm --filter @friday-sandbox/react exec vitest run src/components/bases/button/button.test.tsx
 ```
 
-Every script is defined in the root [`package.json`](../package.json).
+Every script is defined in the root [`package.json`](../../package.json).
 
 ## Turbo task graph
 
@@ -58,7 +58,7 @@ From `turbo.json`: `build`, `lint`, `check-types`, `doc:check`, `test`, `build:s
 
 ## Quality gates
 
-Every gate must pass before a pull request can merge. The full list and how to run them locally is in [`../CONTRIBUTING.md`](../CONTRIBUTING.md#quality-gates); let the hooks run them on what you touched rather than invoking the whole-repo tasks by hand. Two enforcers worth calling out:
+Every gate must pass before a pull request can merge. The full list and how to run it locally lives in the workflow guide ([`../../CONTRIBUTING.md`](../../CONTRIBUTING.md#quality-gates)); let the hooks run them on what you touched rather than invoking the whole-repo tasks by hand. Two enforcers worth calling out:
 
 - **Dependency graph** — `.dependency-cruiser.cjs` enforces `no-circular` at `severity: error`. Break cycles; never suppress.
 - **Knip** — runs from `knip.config.ts` on near-defaults: a `css` compiler walks the CSS-only `styles` workspace, and `eslint-import-resolver-typescript` is ignored on `eslint-config` (it is referenced by string in the flat config). Entries auto-detect from each `package.json`.
@@ -70,3 +70,10 @@ Workspace consumers import sources directly (`exports` → `./src/*/index.ts`). 
 ## Storybook deploy
 
 Storybook deploys to Vercel from the root `vercel.json` (built from `packages/react`). `turbo-ignore @friday-sandbox/react` skips the deploy when the library and its workspace deps are unchanged.
+
+## Rules in this chapter
+
+House-style gates that apply to any file, whatever package — CI and the PR reviewers hold you to them:
+
+- [`meaningful-identifiers.md`](meaningful-identifiers.md) — every identifier names what it represents; no prose comments.
+- [`no-default-noise.md`](no-default-noise.md) — never write a config key whose value equals the tool's documented default.

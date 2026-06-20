@@ -1,8 +1,6 @@
-# No Ghosts
+# Addressable Variants
 
-**Rule:** Every named value — variant, size, color, mode, state — must exist as a real, addressable artifact (class, prop value, enum entry, file). Defaults baked into base that have no companion class are **ghosts**. Forbidden in every dimension.
-
-A "ghost" is a value that the system claims to support but cannot be inspected, listed, or composed. It exists only by absence.
+**Rule:** Every named value — variant, size, color, mode, state — must exist as a real, **addressable** artifact (a class, prop value, or enum entry). A default baked into a base rule with no companion class is a **ghost**: the system claims to support it, but it cannot be inspected, selected, or overridden. Forbidden in every dimension.
 
 ## Bad
 

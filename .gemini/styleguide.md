@@ -2,7 +2,7 @@
 
 This repository is `friday-sandbox`, a pnpm + Turborepo monorepo shipping the `@friday-sandbox/*` packages: a React 19 UI library (`react`), CSS tokens and layers (`styles`), ESLint flat-config presets (`eslint-config`), and TypeScript config presets (`typescript-config`). The packages are consumed as workspace dependencies internally and publish to npm.
 
-The project conventions are defined once in [`docs/conventions/`](../docs/conventions/) and as the design-system engine in [`docs/architecture.md`](../docs/architecture.md). **Enforce those rules** — they are the source of truth. This guide adds the review priority order and the highest-value checks per area; it does not restate the rationale. Be terse: one sentence per finding (the problem, the location, the fix), grouped by severity, highest first. Skip praise, skip restating the diff.
+The project conventions are defined once in the [docs handbook](../docs/) — the rules sit in each chapter, and the design-system engine in the [Styles chapter](../docs/styles/). **Enforce those rules** — they are the source of truth. This guide adds the review priority order and the highest-value checks per area; it does not restate the rationale. Be terse: one sentence per finding (the problem, the location, the fix), grouped by severity, highest first. Skip praise, skip restating the diff.
 
 ## Review priorities
 
@@ -21,7 +21,7 @@ The `chore(release): version packages` PR is produced by `changesets/action`. It
 
 ## Components and hooks (`packages/react/src/**`)
 
-Enforce [`component-structure.md`](../docs/conventions/component-structure.md) and [`compose-and-dry.md`](../docs/conventions/compose-and-dry.md). Key checks:
+Enforce [`component-structure.md`](../docs/react/component-structure.md) and [`compose-and-dry.md`](../docs/react/compose-and-dry.md). Key checks:
 
 - Lowercase filename (`button.tsx`, not `Button.tsx`); a named export with the `Props` type colocated; no default export.
 - `"use client"` only when a client API is touched (`useState`, `useEffect`, refs, event handlers) — flag a missing directive on a client component and a needless one on a pure component.
@@ -31,7 +31,7 @@ Enforce [`component-structure.md`](../docs/conventions/component-structure.md) a
 
 ## Accessibility, stories, and tests (`packages/react/src/**/*.{stories,test}.{ts,tsx}`)
 
-Enforce [`accessibility-and-stories.md`](../docs/conventions/accessibility-and-stories.md). Key checks:
+Enforce [`accessibility-and-stories.md`](../docs/react/accessibility-and-stories.md). Key checks:
 
 - Keyboard reachable, focus visible, ARIA only where the DOM does not convey intent, motion respects `prefers-reduced-motion`; the story passes `addon-a11y`.
 - A new or changed behavior ships story coverage of `Default`, `Hovered`, `Focused`, `Disabled`, and every color variant including `danger`, using real props rather than mocked data.
@@ -40,7 +40,7 @@ Enforce [`accessibility-and-stories.md`](../docs/conventions/accessibility-and-s
 
 ## Styles (`packages/styles/src/**`, Tailwind v4)
 
-Enforce [`canonical-tailwind.md`](../docs/conventions/canonical-tailwind.md) and [`semantic-token-scope.md`](../docs/conventions/semantic-token-scope.md). Key checks:
+Enforce [`canonical-tailwind.md`](../docs/styles/canonical-tailwind.md) and [`semantic-token-scope.md`](../docs/styles/semantic-token-scope.md). Key checks:
 
 - Respect the `@layer` system; flag inline `style` objects, hardcoded hex colors, and class strings that bypass tokens.
 - Canonical Tailwind alias for any var mapped in `@theme inline` (`bg-muted`, not `bg-(--muted)`); the `*-(--var)` form is only for component-local vars with no alias.

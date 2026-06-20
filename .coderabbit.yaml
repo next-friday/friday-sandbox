@@ -28,12 +28,12 @@ reviews:
     - "!.changeset/**"
     - "!**/*.snap"
   path_instructions:
-    # Conventions are defined once in docs/conventions/*.md. Each entry
+    # Conventions are defined once in the docs/ chapters (styles, react, tooling). Each entry
     # points the reviewer at the canonical rule and lists only the few
     # highest-value checks per path — it never restates the full rationale.
     - path: packages/react/src/**/*.{ts,tsx}
       instructions: >-
-        Enforce the gates in docs/conventions/: component-structure.md,
+        Enforce the gates from the docs/ chapters: component-structure.md,
         compose-and-dry.md, canonical-tailwind.md, semantic-token-scope.md,
         meaningful-identifiers.md. Priorities, highest first: accessibility,
         correctness, API ergonomics, then style. Key checks: lowercase filename,
@@ -47,7 +47,7 @@ reviews:
         (feat | fix | perf | refactor) carries a .changeset/*.md entry.
     - path: packages/react/src/**/*.stories.{ts,tsx}
       instructions: >-
-        Enforce docs/conventions/accessibility-and-stories.md. Key checks: coverage
+        Enforce docs/react/accessibility-and-stories.md. Key checks: coverage
         of Default, Hovered, Focused, Disabled, and every color variant including
         danger; real props, not mocked data; addon-a11y passes on the story page;
         story copy reads as consumer documentation — flag internal class names
@@ -58,7 +58,7 @@ reviews:
         tone).
     - path: packages/react/src/**/*.test.{ts,tsx}
       instructions: >-
-        Enforce docs/conventions/accessibility-and-stories.md. Tests run in Vitest
+        Enforce docs/react/accessibility-and-stories.md. Tests run in Vitest
         browser mode via @storybook/addon-vitest with Playwright chromium. Prefer
         Storybook play functions over imperative DOM assertions; cover keyboard
         paths alongside pointer paths.
@@ -75,8 +75,8 @@ reviews:
         unless a framework difference justifies otherwise.
     - path: packages/styles/src/**/*.css
       instructions: >-
-        Enforce docs/conventions/canonical-tailwind.md and semantic-token-scope.md,
-        and the engine in docs/architecture.md. Key checks: respect the @layer
+        Enforce docs/styles/canonical-tailwind.md and semantic-token-scope.md,
+        and the engine in docs/styles/. Key checks: respect the @layer
         system; no hardcoded colors outside the token layer; no global selectors
         that bypass layers; size and radius tokens scoped to action, field, or
         box, never a literal component name; a token rename carries a migration

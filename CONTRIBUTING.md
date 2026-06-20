@@ -2,7 +2,7 @@
 
 Thanks for your interest in improving `friday-sandbox`. The repository ships the `@friday-sandbox/*` packages: a React 19 UI library (`react`), CSS tokens and layers (`styles`), ESLint flat-config presets (`eslint-config`), and TypeScript config presets (`typescript-config`).
 
-New here? The [`docs/`](docs/) hub maps the repo and routes you to the right document. Before changing tokens or component CSS, read [`docs/architecture.md`](docs/architecture.md) — the design system follows a strict **Dumb Tokens, Smart Components** model — and keep [`docs/formulas.md`](docs/formulas.md) open as the derivation lookup. The conventions you must follow while writing code live in [`docs/conventions/`](docs/conventions/); this guide covers the workflow around the change, not the code style inside it.
+New here? The [`docs/`](docs/) handbook maps the repo and routes you to the right chapter. Before changing tokens or component CSS, read the [Styles chapter](docs/styles/) — the **Dumb Tokens, Smart Components** model and its derivation formulas live there. The rules you must follow while writing code sit in each chapter; this guide covers the workflow around the change, not the code style inside it.
 
 ## Development setup
 
@@ -19,7 +19,7 @@ Node `>=22.10.0` and pnpm 10 are required (pnpm is pinned via `packageManager` i
 Every change ships through one issue and one pull request.
 
 1. Open an issue, or pick an existing one, then create a branch from it: `gh issue develop <n> --checkout`. CI rejects a branch whose head ref does not start with `<n>-`.
-2. Make the change. The conventions are enforced as gates in [`docs/conventions/`](docs/conventions/) and checked by CI and the PR review bots.
+2. Make the change. The conventions are enforced as gates in the docs chapters and checked by CI and the PR review bots.
 3. Add a changeset for any behavior change (`feat`, `fix`, `perf`, `refactor`): `pnpm changeset`. CI blocks behavior changes without one.
 4. Let the gates run. The `pre-commit` and `pre-push` hooks run them automatically; `--no-verify` is forbidden and is re-caught by CI. Never disable a rule, skip a check, or loosen a gate to get green — fix the root cause.
 5. Open a pull request whose body closes the issue with `Closes #<n>` (one per line). The PR title carries no `#N` — the squash merge auto-appends `(#<PR>)`.
@@ -45,7 +45,7 @@ pnpm audit --audit-level high
 
 ## Adding a component (`@friday-sandbox/react`)
 
-A component is a symmetric folder under `packages/react/src/components/<tier>/<name>/` — mirror the `button` folder, which is the reference. The full skeleton, naming, export, and accessibility rules are the gates in [`docs/conventions/`](docs/conventions/): [`component-structure.md`](docs/conventions/component-structure.md), [`compose-and-dry.md`](docs/conventions/compose-and-dry.md), and [`accessibility-and-stories.md`](docs/conventions/accessibility-and-stories.md). In short:
+A component is a symmetric folder under `packages/react/src/components/<tier>/<name>/` — mirror the `button` folder, which is the reference. The full skeleton, naming, export, and accessibility rules are the gates in the [React chapter](docs/react/): [`component-structure.md`](docs/react/component-structure.md), [`compose-and-dry.md`](docs/react/compose-and-dry.md), and [`accessibility-and-stories.md`](docs/react/accessibility-and-stories.md). In short:
 
 - Pick the tier: `bases` (interactive primitives), `layouts` (compositional primitives), or `samples` (Storybook-only demos, not exported).
 - Ship the four files — `index.ts`, `<name>.tsx`, `<name>.variants.ts`, `<name>.stories.tsx` — with a lowercase filename, a named export, and the `Props` type colocated.

@@ -52,5 +52,5 @@ Intent lives in names, commits, and `docs/` — not in explanatory comments. A c
 const height = size * 10; // multiply size by ten
 
 // good — encodes a non-obvious invariant
-const height = size * 10; // N=10 is the md step; see docs/formulas.md
+const height = size * 10; // N=10 is the md step; see docs/styles
 ```
