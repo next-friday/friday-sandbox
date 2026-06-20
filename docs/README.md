@@ -4,12 +4,12 @@ This is the documentation hub for `friday-sandbox` — the central place every r
 
 ## Who reads what
 
-Everything canonical lives here, under `docs/`. AI assistants and PR-review bots keep their own configuration files, but those read from these same docs and never hold anything you cannot find here — as a human you never need to open them.
+Everything canonical lives here, under `docs/`. This is the place to research the repository — whether you are a person, an LLM, or a tool, you read it directly here, and `docs/` never sends you to an editor- or assistant-specific file. AI assistants and PR-review bots do keep their own config files, but those only point back here; they hold nothing you cannot find in `docs/`.
 
-| Audience                     | Start here                                                                                                                                                |
-| ---------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Contributors (and any human) | this hub → [`architecture.md`](architecture.md), [`formulas.md`](formulas.md), [`conventions/`](conventions/), [`../CONTRIBUTING.md`](../CONTRIBUTING.md) |
-| npm consumers                | the package READMEs ([`react`](../packages/react/README.md), [`styles`](../packages/styles/README.md)) and the deployed Storybook                         |
+| Audience                                         | Start here                                                                                                                                                |
+| ------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Anyone developing the repo (human, LLM, or tool) | this hub → [`architecture.md`](architecture.md), [`formulas.md`](formulas.md), [`conventions/`](conventions/), [`../CONTRIBUTING.md`](../CONTRIBUTING.md) |
+| npm consumers                                    | the package READMEs ([`react`](../packages/react/README.md), [`styles`](../packages/styles/README.md)) and the deployed Storybook                         |
 
 ## First run
 
