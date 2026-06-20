@@ -1,6 +1,7 @@
 import { type Meta, type StoryObj } from "@storybook/react-vite";
 
 import { Box } from "../../samples/box";
+import { Boxes } from "../../samples/boxes";
 
 import { Grid, GridItem } from ".";
 
@@ -98,12 +99,7 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   render: (storyArgs) => (
     <Grid {...storyArgs}>
-      <Box index={1} />
-      <Box index={2} />
-      <Box index={3} />
-      <Box index={4} />
-      <Box index={5} />
-      <Box index={6} />
+      <Boxes count={6} />
     </Grid>
   ),
 };
@@ -112,14 +108,7 @@ export const Columns: Story = {
   args: { columns: 4 },
   render: (storyArgs) => (
     <Grid {...storyArgs}>
-      <Box index={1} />
-      <Box index={2} />
-      <Box index={3} />
-      <Box index={4} />
-      <Box index={5} />
-      <Box index={6} />
-      <Box index={7} />
-      <Box index={8} />
+      <Boxes count={8} />
     </Grid>
   ),
 };
@@ -128,12 +117,7 @@ export const Rows: Story = {
   args: { columns: 3, rows: 2 },
   render: (storyArgs) => (
     <Grid {...storyArgs}>
-      <Box index={1} />
-      <Box index={2} />
-      <Box index={3} />
-      <Box index={4} />
-      <Box index={5} />
-      <Box index={6} />
+      <Boxes count={6} />
     </Grid>
   ),
 };
@@ -142,12 +126,7 @@ export const Flow: Story = {
   args: { rows: 2, flow: "col" },
   render: (storyArgs) => (
     <Grid {...storyArgs}>
-      <Box index={1} />
-      <Box index={2} />
-      <Box index={3} />
-      <Box index={4} />
-      <Box index={5} />
-      <Box index={6} />
+      <Boxes count={6} />
     </Grid>
   ),
 };
@@ -156,12 +135,7 @@ export const Gap: Story = {
   args: { columns: 3, gap: "xl" },
   render: (storyArgs) => (
     <Grid {...storyArgs}>
-      <Box index={1} />
-      <Box index={2} />
-      <Box index={3} />
-      <Box index={4} />
-      <Box index={5} />
-      <Box index={6} />
+      <Boxes count={6} />
     </Grid>
   ),
 };

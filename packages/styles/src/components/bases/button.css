@@ -3,52 +3,153 @@
     @apply relative inline-flex h-(--action-height) w-fit shrink-0 transform-gpu cursor-pointer items-center justify-center gap-2 rounded-(--action-radius) border-(length:--border) border-solid border-(--button-border-color) bg-(--button-background) px-(--action-padding-x) text-sm font-medium whitespace-nowrap text-(--button-foreground) transition-[background-color,box-shadow,outline-color] duration-100 ease-out action-rhythm outline-none select-none motion-reduce:transition-none;
 
     --action-n: 10;
-    --button-background: var(--primary);
-    --button-foreground: var(--primary-foreground);
+    --button-color: var(--primary);
+    --button-color-foreground: var(--primary-foreground);
+    --button-background: var(--button-color);
+    --button-foreground: var(--button-color-foreground);
+    --button-border-color: transparent;
     --button-background-hover: color-mix(
       in srgb,
       var(--button-background),
-      var(--button-foreground) 14%
+      var(--button-color-foreground) 14%
     );
     --button-background-pressed: color-mix(
       in srgb,
       var(--button-background),
-      var(--button-foreground) 24%
+      var(--button-color-foreground) 24%
     );
-    --button-border-color: transparent;
   }
 
   .fri-button-primary {
-    --button-background: var(--primary);
-    --button-foreground: var(--primary-foreground);
+    --button-color: var(--primary);
+    --button-color-foreground: var(--primary-foreground);
   }
   .fri-button-secondary {
-    --button-background: var(--secondary);
-    --button-foreground: var(--secondary-foreground);
+    --button-color: var(--secondary);
+    --button-color-foreground: var(--secondary-foreground);
   }
   .fri-button-accent {
-    --button-background: var(--accent);
-    --button-foreground: var(--accent-foreground);
+    --button-color: var(--accent);
+    --button-color-foreground: var(--accent-foreground);
   }
   .fri-button-neutral {
-    --button-background: var(--neutral);
-    --button-foreground: var(--neutral-foreground);
+    --button-color: var(--neutral);
+    --button-color-foreground: var(--neutral-foreground);
   }
   .fri-button-info {
-    --button-background: var(--info);
-    --button-foreground: var(--info-foreground);
+    --button-color: var(--info);
+    --button-color-foreground: var(--info-foreground);
   }
   .fri-button-success {
-    --button-background: var(--success);
-    --button-foreground: var(--success-foreground);
+    --button-color: var(--success);
+    --button-color-foreground: var(--success-foreground);
   }
   .fri-button-warning {
-    --button-background: var(--warning);
-    --button-foreground: var(--warning-foreground);
+    --button-color: var(--warning);
+    --button-color-foreground: var(--warning-foreground);
   }
   .fri-button-danger {
-    --button-background: var(--danger);
-    --button-foreground: var(--danger-foreground);
+    --button-color: var(--danger);
+    --button-color-foreground: var(--danger-foreground);
+  }
+
+  .fri-button-solid {
+    --button-background: var(--button-color);
+    --button-foreground: var(--button-color-foreground);
+    --button-border-color: transparent;
+    --button-background-hover: color-mix(
+      in srgb,
+      var(--button-background),
+      var(--button-color-foreground) 14%
+    );
+    --button-background-pressed: color-mix(
+      in srgb,
+      var(--button-background),
+      var(--button-color-foreground) 24%
+    );
+  }
+  .fri-button-subtle {
+    --button-background: color-mix(
+      in srgb,
+      var(--button-color) 12%,
+      transparent
+    );
+    --button-foreground: var(--button-color);
+    --button-border-color: transparent;
+    --button-background-hover: color-mix(
+      in srgb,
+      var(--button-color) 20%,
+      transparent
+    );
+    --button-background-pressed: color-mix(
+      in srgb,
+      var(--button-color) 28%,
+      transparent
+    );
+  }
+  .fri-button-surface {
+    --button-background: color-mix(
+      in srgb,
+      var(--button-color) 8%,
+      var(--background)
+    );
+    --button-foreground: var(--button-color);
+    --button-border-color: color-mix(
+      in srgb,
+      var(--button-color) 40%,
+      transparent
+    );
+    --button-background-hover: color-mix(
+      in srgb,
+      var(--button-color) 14%,
+      var(--background)
+    );
+    --button-background-pressed: color-mix(
+      in srgb,
+      var(--button-color) 20%,
+      var(--background)
+    );
+  }
+  .fri-button-outline {
+    --button-background: transparent;
+    --button-foreground: var(--button-color);
+    --button-border-color: color-mix(
+      in srgb,
+      var(--button-color) 50%,
+      transparent
+    );
+    --button-background-hover: color-mix(
+      in srgb,
+      var(--button-color) 8%,
+      transparent
+    );
+    --button-background-pressed: color-mix(
+      in srgb,
+      var(--button-color) 16%,
+      transparent
+    );
+  }
+  .fri-button-ghost {
+    --button-background: transparent;
+    --button-foreground: var(--button-color);
+    --button-border-color: transparent;
+    --button-background-hover: color-mix(
+      in srgb,
+      var(--button-color) 8%,
+      transparent
+    );
+    --button-background-pressed: color-mix(
+      in srgb,
+      var(--button-color) 16%,
+      transparent
+    );
+  }
+  .fri-button-plain {
+    --button-background: transparent;
+    --button-foreground: var(--button-color);
+    --button-border-color: transparent;
+    --button-background-hover: transparent;
+    --button-background-pressed: transparent;
   }
 
   .fri-button-xs {

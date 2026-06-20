@@ -76,6 +76,7 @@ const meta = {
         "Text direction. Use `rtl` for right-to-left languages so the scrollbars and corner sit correctly.",
       control: "radio",
       options: ["ltr", "rtl"],
+      table: { type: { summary: "ltr | rtl" } },
     },
   },
 } satisfies Meta<typeof ScrollArea.Root>;

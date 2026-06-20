@@ -1,6 +1,6 @@
 import { type Meta, type StoryObj } from "@storybook/react-vite";
 
-import { Box } from "../../samples/box";
+import { Boxes } from "../../samples/boxes";
 
 import { Flex } from ".";
 
@@ -111,9 +111,7 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   render: (storyArgs) => (
     <Flex {...storyArgs}>
-      <Box index={1} />
-      <Box index={2} />
-      <Box index={3} />
+      <Boxes count={3} />
     </Flex>
   ),
 };
@@ -122,9 +120,7 @@ export const Direction: Story = {
   args: { direction: "column" },
   render: (storyArgs) => (
     <Flex {...storyArgs}>
-      <Box index={1} />
-      <Box index={2} />
-      <Box index={3} />
+      <Boxes count={3} />
     </Flex>
   ),
 };
@@ -133,9 +129,7 @@ export const Align: Story = {
   args: { align: "center" },
   render: (storyArgs) => (
     <Flex {...storyArgs} className="h-32">
-      <Box index={1} />
-      <Box index={2} />
-      <Box index={3} />
+      <Boxes count={3} />
     </Flex>
   ),
 };
@@ -144,9 +138,7 @@ export const Justify: Story = {
   args: { justify: "between" },
   render: (storyArgs) => (
     <Flex {...storyArgs}>
-      <Box index={1} />
-      <Box index={2} />
-      <Box index={3} />
+      <Boxes count={3} />
     </Flex>
   ),
 };
@@ -155,16 +147,7 @@ export const Wrap: Story = {
   args: { wrap: "wrap", gap: "sm" },
   render: (storyArgs) => (
     <Flex {...storyArgs} className="w-64">
-      <Box index={1} />
-      <Box index={2} />
-      <Box index={3} />
-      <Box index={4} />
-      <Box index={5} />
-      <Box index={6} />
-      <Box index={7} />
-      <Box index={8} />
-      <Box index={9} />
-      <Box index={10} />
+      <Boxes count={10} />
     </Flex>
   ),
 };
@@ -173,9 +156,7 @@ export const Gap: Story = {
   args: { gap: "xl" },
   render: (storyArgs) => (
     <Flex {...storyArgs}>
-      <Box index={1} />
-      <Box index={2} />
-      <Box index={3} />
+      <Boxes count={3} />
     </Flex>
   ),
 };

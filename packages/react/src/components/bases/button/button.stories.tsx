@@ -4,6 +4,34 @@ import { Flex } from "../../layouts/flex";
 
 import { Button } from ".";
 
+const COLORS = [
+  { value: "primary", label: "Primary" },
+  { value: "secondary", label: "Secondary" },
+  { value: "accent", label: "Accent" },
+  { value: "neutral", label: "Neutral" },
+  { value: "info", label: "Info" },
+  { value: "success", label: "Success" },
+  { value: "warning", label: "Warning" },
+  { value: "danger", label: "Danger" },
+] as const;
+
+const VARIANTS = [
+  { value: "solid", label: "Solid" },
+  { value: "subtle", label: "Subtle" },
+  { value: "surface", label: "Surface" },
+  { value: "outline", label: "Outline" },
+  { value: "ghost", label: "Ghost" },
+  { value: "plain", label: "Plain" },
+] as const;
+
+const SIZES = [
+  { value: "xs", label: "Extra Small" },
+  { value: "sm", label: "Small" },
+  { value: "md", label: "Medium" },
+  { value: "lg", label: "Large" },
+  { value: "xl", label: "Extra Large" },
+] as const;
+
 const meta = {
   title: "Base/Actions/Button",
   component: Button,
@@ -32,6 +60,7 @@ const meta = {
   args: {
     children: "Button",
     color: "primary",
+    variant: "solid",
     size: "md",
     isDisabled: false,
   },
@@ -45,16 +74,7 @@ const meta = {
       description:
         "Semantic color. Match the button to the meaning of the action — `primary` for the main action, `danger` for destructive ones, and so on.",
       control: "select",
-      options: [
-        "primary",
-        "secondary",
-        "accent",
-        "neutral",
-        "info",
-        "success",
-        "warning",
-        "danger",
-      ],
+      options: COLORS.map((color) => color.value),
       table: {
         type: {
           summary:
@@ -63,11 +83,23 @@ const meta = {
         defaultValue: { summary: "primary" },
       },
     },
+    variant: {
+      description:
+        "Fill style. `solid` is the default; `outline`/`ghost`/`plain` step the emphasis down; `subtle`/`surface` are soft tints of the color.",
+      control: "select",
+      options: VARIANTS.map((variant) => variant.value),
+      table: {
+        type: {
+          summary: "solid | subtle | surface | outline | ghost | plain",
+        },
+        defaultValue: { summary: "solid" },
+      },
+    },
     size: {
       description:
         "Visual size. `md` is the default at 40 px tall — large enough for touch. `xs`/`sm` for compact UIs, `lg`/`xl` for hero actions.",
       control: "radio",
-      options: ["xs", "sm", "md", "lg", "xl"],
+      options: SIZES.map((size) => size.value),
       table: {
         type: { summary: "xs | sm | md | lg | xl" },
         defaultValue: { summary: "md" },
@@ -96,48 +128,51 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {};
 
-export const Colors: Story = {
+export const Variants: Story = {
   parameters: {
     docs: {
       description: {
         story:
-          "Eight semantic colors. Pick the one that matches the meaning of the action.",
+          "Six fill styles, from the solid default down to the borderless plain — combine any with a color.",
       },
     },
   },
   render: (storyArgs) => (
     <Flex wrap="wrap" align="center" gap="md">
-      <Button {...storyArgs} color="primary">
-        Primary
-      </Button>
+      {VARIANTS.map((variant) => (
+        <Button key={variant.value} {...storyArgs} variant={variant.value}>
+          {variant.label}
+        </Button>
+      ))}
+    </Flex>
+  ),
+};
 
-      <Button {...storyArgs} color="secondary">
-        Secondary
-      </Button>
-
-      <Button {...storyArgs} color="accent">
-        Accent
-      </Button>
-
-      <Button {...storyArgs} color="neutral">
-        Neutral
-      </Button>
-
-      <Button {...storyArgs} color="info">
-        Info
-      </Button>
-
-      <Button {...storyArgs} color="success">
-        Success
-      </Button>
-
-      <Button {...storyArgs} color="warning">
-        Warning
-      </Button>
-
-      <Button {...storyArgs} color="danger">
-        Danger
-      </Button>
+export const Colors: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Every semantic color across all six fill variants — one row per variant (solid, subtle, surface, outline, ghost, plain).",
+      },
+    },
+  },
+  render: (storyArgs) => (
+    <Flex direction="column" gap="md">
+      {VARIANTS.map((variant) => (
+        <Flex wrap="wrap" align="center" gap="md" key={variant.value}>
+          {COLORS.map((color) => (
+            <Button
+              key={color.value}
+              {...storyArgs}
+              variant={variant.value}
+              color={color.value}
+            >
+              {color.label}
+            </Button>
+          ))}
+        </Flex>
+      ))}
     </Flex>
   ),
 };
@@ -156,25 +191,11 @@ export const Sizes: Story = {
   },
   render: (storyArgs) => (
     <Flex wrap="wrap" align="center" gap="md">
-      <Button {...storyArgs} size="xs">
-        Button
-      </Button>
-
-      <Button {...storyArgs} size="sm">
-        Button
-      </Button>
-
-      <Button {...storyArgs} size="md">
-        Button
-      </Button>
-
-      <Button {...storyArgs} size="lg">
-        Button
-      </Button>
-
-      <Button {...storyArgs} size="xl">
-        Button
-      </Button>
+      {SIZES.map((size) => (
+        <Button key={size.value} {...storyArgs} size={size.value}>
+          {size.label}
+        </Button>
+      ))}
     </Flex>
   ),
 };

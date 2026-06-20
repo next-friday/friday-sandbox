@@ -1,7 +1,7 @@
 export { ScrollArea } from "./scroll-area.namespace";
 
-export type {
-  ScrollAreaContentProps,
+export {
+  type ScrollAreaContentProps,
   ScrollAreaCornerProps,
   ScrollAreaRootProps,
   ScrollAreaScrollbarProps,

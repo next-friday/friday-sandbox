@@ -13,6 +13,14 @@ export const buttonVariants = tv({
       warning: "fri-button-warning",
       danger: "fri-button-danger",
     },
+    variant: {
+      solid: "fri-button-solid",
+      subtle: "fri-button-subtle",
+      surface: "fri-button-surface",
+      outline: "fri-button-outline",
+      ghost: "fri-button-ghost",
+      plain: "fri-button-plain",
+    },
     size: {
       xs: "fri-button-xs",
       sm: "fri-button-sm",
@@ -23,6 +31,7 @@ export const buttonVariants = tv({
   },
   defaultVariants: {
     color: "primary",
+    variant: "solid",
     size: "md",
   },
 });
