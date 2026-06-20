@@ -89,7 +89,6 @@
     "chromatic": "^17.5.0",
     "clean-package": "^2.2.0",
     "eslint": "^9.39.1",
-    "eslint-plugin-storybook": "^10.4.6",
     "playwright": "^1.61.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",

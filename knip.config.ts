@@ -16,6 +16,9 @@ const config: KnipConfig = {
     "packages/eslint-config": {
       ignoreDependencies: ["eslint-import-resolver-typescript"],
     },
+    "packages/react": {
+      ignore: ["vitest.shims.d.ts"],
+    },
   },
 };
 
