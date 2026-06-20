@@ -47,7 +47,7 @@ storybook-static
 # Vitest
 __screenshots__
 
-# Claude
+# LLM
 .claude/rules/
 .claude/hooks/
 .claude/settings.json
