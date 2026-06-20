@@ -12,3 +12,10 @@ The code conventions for this repository, one file per rule. They are **canonica
 | [`no-ghosts.md`](no-ghosts.md)                                 | every variant/size/state is a real, addressable class    |
 | [`meaningful-identifiers.md`](meaningful-identifiers.md)       | names over shorthands; no prose comments                 |
 | [`no-default-noise.md`](no-default-noise.md)                   | no config key equal to the tool's documented default     |
+
+## Principles behind the rules
+
+Two repo-wide expectations sit above the individual rules; CI and the reviewers hold you to them too:
+
+- **DRY and symmetric** — one skeleton per file kind, and shared logic extracted once rather than repeated. Every similar file (component, story, rule) follows the same shape.
+- **Self-contained artifacts** — issues, PRs, and docs never cite another design system or repository as precedent. Apply a convention silently and state the requirement directly.
