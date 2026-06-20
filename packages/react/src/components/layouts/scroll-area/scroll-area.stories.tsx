@@ -87,10 +87,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Vertical: Story = {
   render: (storyArgs) => (
-    <ScrollArea.Root
-      {...storyArgs}
-      className="h-72 w-64 rounded-md border border-muted"
-    >
+    <ScrollArea.Root {...storyArgs} className="h-72 w-64">
       <ScrollArea.Viewport>
         <ScrollArea.Content>
           <LongList />
@@ -108,10 +105,7 @@ export const Vertical: Story = {
 
 export const Horizontal: Story = {
   render: (storyArgs) => (
-    <ScrollArea.Root
-      {...storyArgs}
-      className="w-96 rounded-md border border-muted"
-    >
+    <ScrollArea.Root {...storyArgs} className="w-96">
       <ScrollArea.Viewport>
         <ScrollArea.Content>
           <WideRow />
@@ -129,10 +123,7 @@ export const Horizontal: Story = {
 
 export const Both: Story = {
   render: (storyArgs) => (
-    <ScrollArea.Root
-      {...storyArgs}
-      className="h-72 w-96 rounded-md border border-muted"
-    >
+    <ScrollArea.Root {...storyArgs} className="h-72 w-96">
       <ScrollArea.Viewport>
         <ScrollArea.Content>
           <div className="space-y-2 p-4">
@@ -173,10 +164,7 @@ export const Both: Story = {
 export const Size: Story = {
   args: { size: "lg" },
   render: (storyArgs) => (
-    <ScrollArea.Root
-      {...storyArgs}
-      className="h-72 w-64 rounded-md border border-muted"
-    >
+    <ScrollArea.Root {...storyArgs} className="h-72 w-64">
       <ScrollArea.Viewport>
         <ScrollArea.Content>
           <LongList />
@@ -195,10 +183,7 @@ export const Size: Story = {
 export const Always: Story = {
   args: { variant: "always" },
   render: (storyArgs) => (
-    <ScrollArea.Root
-      {...storyArgs}
-      className="h-72 w-64 rounded-md border border-muted"
-    >
+    <ScrollArea.Root {...storyArgs} className="h-72 w-64">
       <ScrollArea.Viewport>
         <ScrollArea.Content>
           <LongList />

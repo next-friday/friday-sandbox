@@ -178,9 +178,6 @@ export const Colors: Story = {
 };
 
 export const Sizes: Story = {
-  globals: {
-    viewport: { value: "mobile1", isRotated: false },
-  },
   parameters: {
     docs: {
       description: {
