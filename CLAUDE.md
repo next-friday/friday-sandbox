@@ -44,14 +44,14 @@ pnpm --filter @friday-sandbox/react exec vitest run src/components/bases/button/
 
 ## Architecture
 
-Turborepo + pnpm workspaces (`pnpm-workspace.yaml` → `packages/*`). All workspaces are `@friday-sandbox/*`, consumed via `workspace:*`:
+Turborepo + pnpm workspaces (`pnpm-workspace.yaml` → `packages/*`). Every workspace keeps its sources under `src/` and exposes a public surface through `package.json#exports` — folder shape is symmetric across all four packages. All workspaces are `@friday-sandbox/*`, consumed via `workspace:*`:
 
 - `@friday-sandbox/react` — React 19 UI library on `react-aria-components` + `tailwind-variants` + Tailwind v4.
   - **Workspace consumers** import sources directly: the `exports` map points `.` → `./src/index.ts` and `./*` → `./src/*/index.ts`, so a feature subpath like `@friday-sandbox/react/components/bases/button` resolves to `packages/react/src/components/bases/button/index.ts`.
   - **Publish** runs `tsdown` (`pnpm build`) to emit `dist/`, then `clean-package` (`prepack` / `postpack`) strips dev fields and points `main`/`module`/`types` at `dist/`. Do not assume consumers always read `src/` — keep public surface aligned across both.
 - `@friday-sandbox/styles` — CSS tokens and Tailwind v4 layers (`@layer theme, base, components, utilities`). Single source for color, spacing, and radius. Components compose it, never bypass it. Published as CSS only (`exports` map exposes `./index.css`). Design system follows **Dumb Tokens, Smart Components** — see [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) for the engine and scope rules. Token source: `packages/styles/src/theme/default.css` (plain values only — no `calc()`, no `color-mix()`, no relative color syntax). Derivation (foreground, hover) lives in the consuming component CSS.
-- `@friday-sandbox/eslint-config` — three flat-config presets exported as subpaths: `./base`, `./next-js`, `./react-internal`.
-- `@friday-sandbox/typescript-config` — `base.json`, `nextjs.json`, `react-library.json`. Drift between presets in `lib`, `moduleResolution`, `jsx`, `target`, `strict`, or `verbatimModuleSyntax` requires a framework-specific justification.
+- `@friday-sandbox/eslint-config` — three flat-config presets shipped from `src/` and exposed as subpaths: `./base`, `./next-js`, `./react-internal`.
+- `@friday-sandbox/typescript-config` — three tsconfig presets shipped from `src/` and exposed as subpaths: `./base.json`, `./nextjs.json`, `./react-library.json`. Drift between presets in `lib`, `moduleResolution`, `jsx`, `target`, `strict`, or `verbatimModuleSyntax` requires a framework-specific justification.
 
 Turbo task graph (`turbo.json`):
 
