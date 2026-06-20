@@ -71,6 +71,12 @@ Derived inline with `color-mix()`, blending the background toward its paired **f
 );
 ```
 
+### Transitions
+
+Timing is shared, not retyped. The `transition-base` utility carries the rhythm — `duration-100 ease-out`, plus `motion-reduce:transition-none` so reduced-motion users get none. A component adds only `transition-[…]` for the properties it animates.
+
+`transform-gpu` (a forced compositing layer) is **not** part of `transition-base` — it belongs only on an element that animates `transform` or `opacity`, where the layer keeps the animation smooth. The scroll-area scrollbar fades opacity, so it opts in; a button transitions only colour, so it does not. A layer on a colour-only transition buys nothing and costs memory, risks blurred text, and multiplies layers across many instances.
+
 ### All together (Button)
 
 ```css

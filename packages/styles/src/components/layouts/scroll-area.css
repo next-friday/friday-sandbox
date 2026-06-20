@@ -57,7 +57,7 @@
   }
 
   .fri-scroll-area-scrollbar {
-    @apply flex touch-none bg-(--scroll-area-track-color) p-px opacity-0 transition-[opacity,background-color] duration-100 ease-out select-none data-[state=visible]:opacity-100 motion-reduce:transition-none;
+    @apply flex transform-gpu touch-none bg-(--scroll-area-track-color) p-px opacity-0 transition-base transition-[opacity,background-color] select-none data-[state=visible]:opacity-100;
   }
   .fri-scroll-area-scrollbar[data-orientation="vertical"] {
     @apply w-(--scroll-area-thickness);
@@ -67,7 +67,7 @@
   }
 
   .fri-scroll-area-thumb {
-    @apply relative flex-1 rounded-full bg-(--scroll-area-thumb-color) transition-colors duration-100 ease-out;
+    @apply relative flex-1 rounded-full bg-(--scroll-area-thumb-color) transition-base transition-colors;
   }
   .fri-scroll-area-thumb:hover {
     @apply bg-(--scroll-area-thumb-color-hover);

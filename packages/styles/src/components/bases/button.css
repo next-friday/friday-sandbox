@@ -1,6 +1,6 @@
 @layer components {
   .fri-button {
-    @apply relative inline-flex h-(--action-height) w-fit shrink-0 transform-gpu cursor-pointer items-center justify-center gap-2 rounded-(--action-radius) border-(length:--border) border-solid border-(--button-border-color) bg-(--button-background) px-(--action-padding-x) text-sm font-medium whitespace-nowrap text-(--button-foreground) transition-[background-color,box-shadow,outline-color] duration-100 ease-out outline-none select-none motion-reduce:transition-none;
+    @apply relative inline-flex h-(--action-height) w-fit shrink-0 cursor-pointer items-center justify-center gap-2 rounded-(--action-radius) border-(length:--border) border-solid border-(--button-border-color) bg-(--button-background) px-(--action-padding-x) text-sm font-medium whitespace-nowrap text-(--button-foreground) transition-base transition-[background-color,box-shadow,outline-color] outline-none select-none;
 
     --action-n-xs: 6;
     --action-n-sm: 8;
