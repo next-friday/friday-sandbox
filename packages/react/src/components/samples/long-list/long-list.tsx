@@ -3,7 +3,7 @@ export interface LongListProps {
 }
 
 export const LongList = ({ count = 30 }: LongListProps) => (
-  <div className="space-y-2 p-4">
+  <div className="space-y-2">
     {Array.from({ length: count }, (_, position) => position + 1).map(
       (index) => (
         <div

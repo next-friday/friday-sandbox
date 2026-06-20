@@ -7,12 +7,11 @@ type RadixScrollAreaRootProps = ComponentPropsWithRef<
   typeof RadixScrollArea.Root
 >;
 
-export type ScrollAreaVariant = "hover" | "always";
+export type ScrollAreaVariant = "hover" | "always" | "hidden";
 
 export interface ScrollAreaRootProps
   extends Omit<RadixScrollAreaRootProps, "type">, ScrollAreaVariants {
   className?: string;
-  variant?: "hover" | "always";
 }
 
 export interface ScrollAreaViewportProps extends ComponentPropsWithRef<

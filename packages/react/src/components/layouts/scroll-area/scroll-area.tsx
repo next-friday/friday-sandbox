@@ -13,14 +13,15 @@ import type {
 } from "./scroll-area.types";
 
 const ScrollAreaRoot = (props: Readonly<ScrollAreaRootProps>) => {
-  const { variant = "hover", className, size, ...rest } = props;
-  const slots = scrollAreaVariants({ size });
+  const { className, size, variant, ...rest } = props;
+  const slots = scrollAreaVariants({ size, variant });
   const rootClassName = slots.root({ class: className });
+  const radixType = variant === "hidden" ? "scroll" : variant;
 
   return (
     <RadixScrollArea.Root
       data-slot="scroll-area"
-      type={variant}
+      type={radixType}
       className={rootClassName}
       {...rest}
     />
@@ -64,6 +65,7 @@ const ScrollAreaScrollbar = (props: Readonly<ScrollAreaScrollbarProps>) => {
     <RadixScrollArea.Scrollbar
       data-slot="scroll-area-scrollbar"
       className={scrollbarClassName}
+      forceMount
       {...rest}
     />
   );

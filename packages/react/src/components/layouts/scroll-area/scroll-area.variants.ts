@@ -17,9 +17,15 @@ export const scrollAreaVariants = tv({
       md: { root: "fri-scroll-area-md" },
       lg: { root: "fri-scroll-area-lg" },
     },
+    variant: {
+      hover: {},
+      always: {},
+      hidden: { root: "fri-scroll-area-hide-scrollbar" },
+    },
   },
   defaultVariants: {
     size: "md",
+    variant: "hover",
   },
 });
 

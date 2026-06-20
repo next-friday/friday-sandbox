@@ -1,22 +1,35 @@
 @layer components {
   .fri-button {
-    @apply relative inline-flex h-(--action-height) w-fit shrink-0 transform-gpu cursor-pointer items-center justify-center gap-2 rounded-(--action-radius) border-(length:--border) border-solid border-(--button-border-color) bg-(--button-background) px-(--action-padding-x) text-sm font-medium whitespace-nowrap text-(--button-foreground) transition-[background-color,box-shadow,outline-color] duration-100 ease-out action-rhythm outline-none select-none motion-reduce:transition-none;
+    @apply relative inline-flex h-(--action-height) w-fit shrink-0 transform-gpu cursor-pointer items-center justify-center gap-2 rounded-(--action-radius) border-(length:--border) border-solid border-(--button-border-color) bg-(--button-background) px-(--action-padding-x) text-sm font-medium whitespace-nowrap text-(--button-foreground) transition-[background-color,box-shadow,outline-color] duration-100 ease-out outline-none select-none motion-reduce:transition-none;
 
-    --action-n: 10;
+    --action-n-xs: 6;
+    --action-n-sm: 8;
+    --action-n-md: 10;
+    --action-n-lg: 12;
+    --action-n-xl: 14;
+    --action-n: var(--action-n-md);
+    --action-height: calc(var(--size-action) * var(--action-n));
+    --action-padding-x: calc(var(--action-height) / 2 - var(--size-action));
+    --action-radius: calc(
+      var(--radius-action) * var(--action-height) /
+        (var(--size-action) * var(--action-n-md))
+    );
     --button-color: var(--primary);
     --button-color-foreground: var(--primary-foreground);
+    --button-bg-mix-hover: 14%;
+    --button-bg-mix-pressed: 24%;
     --button-background: var(--button-color);
     --button-foreground: var(--button-color-foreground);
     --button-border-color: transparent;
     --button-background-hover: color-mix(
       in srgb,
       var(--button-background),
-      var(--button-color-foreground) 14%
+      var(--button-color-foreground) var(--button-bg-mix-hover)
     );
     --button-background-pressed: color-mix(
       in srgb,
       var(--button-background),
-      var(--button-color-foreground) 24%
+      var(--button-color-foreground) var(--button-bg-mix-pressed)
     );
   }
 
@@ -54,93 +67,107 @@
   }
 
   .fri-button-solid {
+    --button-bg-mix-hover: 14%;
+    --button-bg-mix-pressed: 24%;
     --button-background: var(--button-color);
     --button-foreground: var(--button-color-foreground);
     --button-border-color: transparent;
     --button-background-hover: color-mix(
       in srgb,
       var(--button-background),
-      var(--button-color-foreground) 14%
+      var(--button-color-foreground) var(--button-bg-mix-hover)
     );
     --button-background-pressed: color-mix(
       in srgb,
       var(--button-background),
-      var(--button-color-foreground) 24%
+      var(--button-color-foreground) var(--button-bg-mix-pressed)
     );
   }
   .fri-button-subtle {
+    --button-bg-mix: 12%;
+    --button-bg-mix-hover: 20%;
+    --button-bg-mix-pressed: 28%;
     --button-background: color-mix(
       in srgb,
-      var(--button-color) 12%,
+      var(--button-color) var(--button-bg-mix),
       transparent
     );
     --button-foreground: var(--button-color);
     --button-border-color: transparent;
     --button-background-hover: color-mix(
       in srgb,
-      var(--button-color) 20%,
+      var(--button-color) var(--button-bg-mix-hover),
       transparent
     );
     --button-background-pressed: color-mix(
       in srgb,
-      var(--button-color) 28%,
+      var(--button-color) var(--button-bg-mix-pressed),
       transparent
     );
   }
   .fri-button-surface {
+    --button-bg-mix: 8%;
+    --button-bg-mix-hover: 14%;
+    --button-bg-mix-pressed: 20%;
+    --button-border-mix: 40%;
     --button-background: color-mix(
       in srgb,
-      var(--button-color) 8%,
+      var(--button-color) var(--button-bg-mix),
       var(--background)
     );
     --button-foreground: var(--button-color);
     --button-border-color: color-mix(
       in srgb,
-      var(--button-color) 40%,
+      var(--button-color) var(--button-border-mix),
       transparent
     );
     --button-background-hover: color-mix(
       in srgb,
-      var(--button-color) 14%,
+      var(--button-color) var(--button-bg-mix-hover),
       var(--background)
     );
     --button-background-pressed: color-mix(
       in srgb,
-      var(--button-color) 20%,
+      var(--button-color) var(--button-bg-mix-pressed),
       var(--background)
     );
   }
   .fri-button-outline {
+    --button-bg-mix-hover: 8%;
+    --button-bg-mix-pressed: 16%;
+    --button-border-mix: 50%;
     --button-background: transparent;
     --button-foreground: var(--button-color);
     --button-border-color: color-mix(
       in srgb,
-      var(--button-color) 50%,
+      var(--button-color) var(--button-border-mix),
       transparent
     );
     --button-background-hover: color-mix(
       in srgb,
-      var(--button-color) 8%,
+      var(--button-color) var(--button-bg-mix-hover),
       transparent
     );
     --button-background-pressed: color-mix(
       in srgb,
-      var(--button-color) 16%,
+      var(--button-color) var(--button-bg-mix-pressed),
       transparent
     );
   }
   .fri-button-ghost {
+    --button-bg-mix-hover: 8%;
+    --button-bg-mix-pressed: 16%;
     --button-background: transparent;
     --button-foreground: var(--button-color);
     --button-border-color: transparent;
     --button-background-hover: color-mix(
       in srgb,
-      var(--button-color) 8%,
+      var(--button-color) var(--button-bg-mix-hover),
       transparent
     );
     --button-background-pressed: color-mix(
       in srgb,
-      var(--button-color) 16%,
+      var(--button-color) var(--button-bg-mix-pressed),
       transparent
     );
   }
@@ -153,23 +180,23 @@
   }
 
   .fri-button-xs {
-    --action-n: 6;
+    --action-n: var(--action-n-xs);
     @apply text-xs;
   }
   .fri-button-sm {
-    --action-n: 8;
+    --action-n: var(--action-n-sm);
     @apply text-xs;
   }
   .fri-button-md {
-    --action-n: 10;
+    --action-n: var(--action-n-md);
     @apply text-sm;
   }
   .fri-button-lg {
-    --action-n: 12;
+    --action-n: var(--action-n-lg);
     @apply text-base;
   }
   .fri-button-xl {
-    --action-n: 14;
+    --action-n: var(--action-n-xl);
     @apply text-lg;
   }
 

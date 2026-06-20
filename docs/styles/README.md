@@ -26,7 +26,7 @@ A Smart Component reads a few inputs and computes the rest, through three mechan
 
 ### Size rhythm
 
-Height, padding-x, and radius are not written per component. A component opts into a shared scope utility — `action-rhythm` (in `packages/styles/src/system/utilities.css`) for triggers — and turns a single knob, `--action-n`, per size variant. The utility derives the pixels:
+Height, padding-x, and radius are not hand-written per size. A component declares three `calc()` formulas once and turns a single knob, `--action-n`, per size variant. The formulas derive the pixels:
 
 `--size-action = 0.25rem`, `--radius-action = 0.5rem`:
 
@@ -38,7 +38,7 @@ Height, padding-x, and radius are not written per component. A component opts in
 | lg   | 12           | 3rem (48)   | 1.25rem (20) | 0.6rem (9.6)  |
 | xl   | 14           | 3.5rem (56) | 1.5rem (24)  | 0.7rem (11.2) |
 
-Pixels are at the 16px root. Override `--size-action` and the whole row scales; `--radius-action` scales only the radius column. The three formulas the utility computes:
+Pixels are at the 16px root. Override `--size-action` and the whole row scales; `--radius-action` scales only the radius column. The three formulas:
 
 - **Height** = `--size-action × --action-n`
 - **Padding-x** = `height / 2 − --size-action` — the `px-2 … px-6` Tailwind ladder.
@@ -75,9 +75,12 @@ Derived inline with `color-mix()`, blending the background toward its paired **f
 
 ```css
 .fri-button {
-  @apply action-rhythm ...; /* height, padding-x, radius from --action-n */
-
   --action-n: 10; /* md */
+  --action-height: calc(var(--size-action) * var(--action-n));
+  --action-padding-x: calc(var(--action-height) / 2 - var(--size-action));
+  --action-radius: calc(
+    var(--radius-action) * var(--action-height) / (var(--size-action) * 10)
+  );
   --button-background: var(--primary);
   --button-foreground: var(--primary-foreground);
   --button-background-hover: color-mix(
@@ -106,7 +109,7 @@ A colour variant swaps the intent pair; a size variant swaps `--action-n`; rhyth
 
 ## Semantic scopes, not component names
 
-Sizing tokens are scoped to a **semantic family**, never to a literal component: `action` (triggers), `field` (form entry), `box` (containers). A button is an action, so it inherits `--size-action` / `--radius-action` and the `action-rhythm` utility — it never defines a `--size-button`. New components join an existing family; a new family is added only when none fits.
+Sizing tokens are scoped to a **semantic family**, never to a literal component: `action` (triggers), `field` (form entry), `box` (containers). A button is an action, so it derives from `--size-action` / `--radius-action` — it never defines a `--size-button`. New components join an existing family; a new family is added only when none fits.
 
 ## Dark mode
 

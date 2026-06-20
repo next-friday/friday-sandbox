@@ -120,10 +120,7 @@
     @apply gap-y-8;
   }
 
-  /* GridItem — child-axis controls. The base class is a neutral anchor so
-   * raw-CSS users can target items without selecting every child. */
   .fri-grid-item {
-    /* structural anchor */
   }
 
   .fri-grid-item-col-span-1 {
