@@ -1,3 +1,3 @@
-# `@turbo/eslint-config`
+# `@friday-sandbox/eslint-config`
 
-Collection of internal eslint configurations.
+Shared ESLint flat-config presets (`base`, `next-js`, `react-internal`).

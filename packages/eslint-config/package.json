@@ -24,10 +24,15 @@
   },
   "type": "module",
   "exports": {
-    "./base": "./base.mjs",
-    "./next-js": "./next.mjs",
-    "./react-internal": "./react-internal.mjs"
+    "./base": "./src/base.mjs",
+    "./next-js": "./src/next.mjs",
+    "./react-internal": "./src/react-internal.mjs"
   },
+  "files": [
+    "src",
+    "README.md",
+    "LICENSE"
+  ],
   "devDependencies": {
     "@eslint-react/eslint-plugin": "^5.9.0",
     "@eslint/js": "^9.39.1",

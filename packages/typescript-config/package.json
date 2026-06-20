@@ -21,6 +21,16 @@
     "name": "Next Friday",
     "url": "https://github.com/next-friday"
   },
+  "exports": {
+    "./base.json": "./src/base.json",
+    "./nextjs.json": "./src/nextjs.json",
+    "./react-library.json": "./src/react-library.json"
+  },
+  "files": [
+    "src",
+    "README.md",
+    "LICENSE"
+  ],
   "engines": {
     "node": ">=22.10.0"
   },
