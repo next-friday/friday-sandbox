@@ -76,7 +76,7 @@ reviews:
     - path: packages/styles/src/**/*.css
       instructions: >-
         Enforce .claude/rules/canonical-tailwind.md and semantic-token-scope.md,
-        and the engine in docs/ARCHITECTURE.md. Key checks: respect the @layer
+        and the engine in docs/architecture.md. Key checks: respect the @layer
         system; no hardcoded colors outside the token layer; no global selectors
         that bypass layers; size and radius tokens scoped to action, field, or
         box, never a literal component name; a token rename carries a migration

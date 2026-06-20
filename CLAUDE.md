@@ -14,7 +14,7 @@ Each fact has exactly one home. Read these — never restate their content in co
 
 | Topic                                                                 | Home                                                   |
 | --------------------------------------------------------------------- | ------------------------------------------------------ |
-| Design-system engine (Dumb Tokens/Smart Components, dark mode)        | [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md)         |
+| Design-system engine (Dumb Tokens/Smart Components, dark mode)        | [`docs/architecture.md`](docs/architecture.md)         |
 | Derivation formulas (height, padding, radius, foreground, hover)      | [`docs/formulas.md`](docs/formulas.md)                 |
 | Code-convention gates                                                 | [`.claude/rules/`](.claude/rules/) (one rule per file) |
 | Contributor workflow (issue → branch → PR, commits, changeset, gates) | [`CONTRIBUTING.md`](CONTRIBUTING.md)                   |

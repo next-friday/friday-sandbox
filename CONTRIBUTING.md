@@ -2,7 +2,7 @@
 
 Thanks for your interest in improving `friday-sandbox`. The repository ships the `@friday-sandbox/*` packages: a React 19 UI library (`react`), CSS tokens and layers (`styles`), ESLint flat-config presets (`eslint-config`), and TypeScript config presets (`typescript-config`).
 
-New here? [`docs/onboarding.md`](docs/onboarding.md) maps the repo and routes you to the right document. Before changing tokens or component CSS, read [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) — the design system follows a strict **Dumb Tokens, Smart Components** model — and keep [`docs/formulas.md`](docs/formulas.md) open as the derivation lookup. The conventions you must follow while writing code live in [`.claude/rules/`](.claude/rules/); this guide covers the workflow around the change, not the code style inside it.
+New here? [`docs/onboarding.md`](docs/onboarding.md) maps the repo and routes you to the right document. Before changing tokens or component CSS, read [`docs/architecture.md`](docs/architecture.md) — the design system follows a strict **Dumb Tokens, Smart Components** model — and keep [`docs/formulas.md`](docs/formulas.md) open as the derivation lookup. The conventions you must follow while writing code live in [`.claude/rules/`](.claude/rules/); this guide covers the workflow around the change, not the code style inside it.
 
 ## Development setup
 

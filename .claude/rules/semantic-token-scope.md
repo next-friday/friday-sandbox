@@ -39,4 +39,4 @@ Heights derive inline as `calc(var(--size-{scope}) * N)` with N ∈ {6, 8, 10, 1
 
 - Before adding a component's CSS, pick its family: is it a trigger (`action`), a data entry (`field`), or a container (`box`)? Use that scope's `--size-*` / `--radius-*`.
 - Never introduce a token named after the component. If no family fits, add a new **semantic** scope, not a literal one.
-- The full engine and the per-size formulas live in [`docs/ARCHITECTURE.md`](../../docs/ARCHITECTURE.md) and [`docs/formulas.md`](../../docs/formulas.md).
+- The full engine and the per-size formulas live in [`docs/architecture.md`](../../docs/architecture.md) and [`docs/formulas.md`](../../docs/formulas.md).

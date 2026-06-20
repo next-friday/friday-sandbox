@@ -33,16 +33,16 @@ Four workspaces under `packages/*`, all `@friday-sandbox/*`, all keeping their s
 
 The design system is **Dumb Tokens, Smart Components**. `packages/styles/src/theme/default.css` holds plain values only — OKLCH literals, `rem` sizes, keywords. Every derivation (readable foreground, hover shade, height/padding/radius rhythm) lives in the consuming component's own CSS, not in a central engine. Tokens are scoped to a **semantic family** — `action`, `field`, `box` — never to a literal component name.
 
-Internalize that one idea and the rest of the codebase reads cleanly. The full engine is in [`ARCHITECTURE.md`](ARCHITECTURE.md); every formula in one lookup table is in [`formulas.md`](formulas.md).
+Internalize that one idea and the rest of the codebase reads cleanly. The full engine is in [`architecture.md`](architecture.md); every formula in one lookup table is in [`formulas.md`](formulas.md).
 
 ## Where do I go for X
 
 | I want to…                          | Start at                                                                                              |
 | ----------------------------------- | ----------------------------------------------------------------------------------------------------- |
 | Add or change a component           | [`component-structure.md`](../.claude/rules/component-structure.md); mirror the `button` folder       |
-| Understand the CSS engine           | [`ARCHITECTURE.md`](ARCHITECTURE.md)                                                                  |
+| Understand the CSS engine           | [`architecture.md`](architecture.md)                                                                  |
 | Look up a derivation formula        | [`formulas.md`](formulas.md)                                                                          |
-| Change or add a design token        | `packages/styles/src/theme/default.css` (plain values only) + [`ARCHITECTURE.md`](ARCHITECTURE.md) §1 |
+| Change or add a design token        | `packages/styles/src/theme/default.css` (plain values only) + [`architecture.md`](architecture.md) §1 |
 | Add an ESLint or tsconfig preset    | [`../CONTRIBUTING.md`](../CONTRIBUTING.md) → _Adding a preset_                                        |
 | Ship a change (issue → branch → PR) | [`../CONTRIBUTING.md`](../CONTRIBUTING.md) → _Workflow_                                               |
 | Run or scope the quality gates      | [`../CONTRIBUTING.md`](../CONTRIBUTING.md) → _Quality gates_                                          |

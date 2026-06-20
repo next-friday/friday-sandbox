@@ -2,7 +2,7 @@
 
 This repository is `friday-sandbox`, a pnpm + Turborepo monorepo shipping the `@friday-sandbox/*` packages: a React 19 UI library (`react`), CSS tokens and layers (`styles`), ESLint flat-config presets (`eslint-config`), and TypeScript config presets (`typescript-config`). The packages are consumed as workspace dependencies internally and publish to npm.
 
-The project conventions are defined once as path-scoped gates in [`.claude/rules/`](../.claude/rules/) and as the design-system engine in [`docs/ARCHITECTURE.md`](../docs/ARCHITECTURE.md). **Enforce those rules** — they are the source of truth. This guide adds the review priority order and the highest-value checks per area; it does not restate the rationale. Be terse: one sentence per finding (the problem, the location, the fix), grouped by severity, highest first. Skip praise, skip restating the diff.
+The project conventions are defined once as path-scoped gates in [`.claude/rules/`](../.claude/rules/) and as the design-system engine in [`docs/architecture.md`](../docs/architecture.md). **Enforce those rules** — they are the source of truth. This guide adds the review priority order and the highest-value checks per area; it does not restate the rationale. Be terse: one sentence per finding (the problem, the location, the fix), grouped by severity, highest first. Skip praise, skip restating the diff.
 
 ## Review priorities
 
