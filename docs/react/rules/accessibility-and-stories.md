@@ -36,4 +36,4 @@ Flag any of these in a description, prop `description`, or `parameters.docs.desc
 
 ## How to apply
 
-- Keep the story shape symmetric across files: one-line summary → `## Import` → import snippet → "Add the stylesheet once at the top of your app:" → CSS snippet. Same `gap` / `gapX` / `gapY` / `className` wording across layout primitives; same second-person tone ("Pick …", "Use …"). One story drifting from the others is a finding.
+- Keep the story shape symmetric across files: one-line summary → `## Import` → import snippet → `## Anatomy` → anatomy snippet. The import snippet imports only the component value, never its prop types; the `## Anatomy` block is a `tsx` fence showing the component's named parts as a JSX tree — nest a part that owns child parts, self-close one that has none (`<Button />`), and include a prop only where it distinguishes a part (`orientation="vertical"`). Required for every component. Same `gap` / `gapX` / `gapY` / `className` wording across layout primitives; same second-person tone ("Pick …", "Use …"). One story drifting from the others is a finding.
