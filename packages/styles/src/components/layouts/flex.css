@@ -3,6 +3,10 @@
     @apply flex;
   }
 
+  .fri-flex.fri-flex-inline {
+    @apply inline-flex;
+  }
+
   .fri-flex-row {
     @apply flex-row;
   }
@@ -107,5 +111,29 @@
   }
   .fri-flex-gap-y-xl {
     @apply gap-y-8;
+  }
+
+  .fri-flex-grow {
+    @apply grow;
+  }
+  .fri-flex-grow-0 {
+    @apply grow-0;
+  }
+
+  .fri-flex-shrink {
+    @apply shrink;
+  }
+  .fri-flex-shrink-0 {
+    @apply shrink-0;
+  }
+
+  .fri-flex-basis-auto {
+    @apply basis-auto;
+  }
+  .fri-flex-basis-full {
+    @apply basis-full;
+  }
+  .fri-flex-basis-0 {
+    @apply basis-0;
   }
 }
