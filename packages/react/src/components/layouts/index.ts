@@ -5,8 +5,8 @@ export { Grid, GridItem } from "./grid";
 export type { GridItemProps, GridProps } from "./grid";
 
 export { ScrollArea } from "./scroll-area";
-export {
-  type ScrollAreaContentProps,
+export type {
+  ScrollAreaContentProps,
   ScrollAreaCornerProps,
   ScrollAreaRootProps,
   ScrollAreaScrollbarProps,

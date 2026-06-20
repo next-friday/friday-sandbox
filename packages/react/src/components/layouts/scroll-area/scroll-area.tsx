@@ -3,13 +3,13 @@
 import { ScrollArea as RadixScrollArea } from "radix-ui";
 
 import { scrollAreaVariants } from "./scroll-area.variants";
-import {
-  type ScrollAreaContentProps,
-  type ScrollAreaCornerProps,
-  type ScrollAreaRootProps,
-  type ScrollAreaScrollbarProps,
-  type ScrollAreaThumbProps,
-  type ScrollAreaViewportProps,
+import type {
+  ScrollAreaContentProps,
+  ScrollAreaCornerProps,
+  ScrollAreaRootProps,
+  ScrollAreaScrollbarProps,
+  ScrollAreaThumbProps,
+  ScrollAreaViewportProps,
 } from "./scroll-area.types";
 
 const ScrollAreaRoot = (props: Readonly<ScrollAreaRootProps>) => {

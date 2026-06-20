@@ -8,8 +8,8 @@ export { Grid, GridItem } from "./layouts";
 export type { GridItemProps, GridProps } from "./layouts";
 
 export { ScrollArea } from "./layouts";
-export {
-  type ScrollAreaContentProps,
+export type {
+  ScrollAreaContentProps,
   ScrollAreaCornerProps,
   ScrollAreaRootProps,
   ScrollAreaScrollbarProps,
