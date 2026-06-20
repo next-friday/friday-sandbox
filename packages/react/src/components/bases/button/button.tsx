@@ -3,7 +3,7 @@
 import { Button as AriaButton } from "react-aria-components";
 import type { ComponentPropsWithRef } from "react";
 
-import { composeTailwindRenderProps } from "../../../utils/compose-tailwind-render-props";
+import { composeTailwindRenderProps } from "../../utils/compose-tailwind-render-props";
 
 import { buttonVariants } from "./button.variants";
 import type { ButtonVariants } from "./button.variants";

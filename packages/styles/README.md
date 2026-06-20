@@ -226,10 +226,10 @@ Override `--size-{scope}` and every size (`xs` → `xl`) for that scope rescales
 
 A few tokens are scoped to a component rather than the global theme — override them **on the element**, not at `:root` (where the component's own class declaration would mask them).
 
-`--grid-min` sets the minimum track width of a responsive grid (`fri-grid-cols-auto-fit` / `fri-grid-cols-auto-fill`). It defaults to `16rem` on `.fri-grid`; retune it per instance with an inline style or a selector that targets the grid:
+`--grid-min` sets the minimum track width of a responsive grid (`fri-grid-cols-auto-fit` / `fri-grid-cols-auto-fill`). It defaults to `16rem` on `.fri-grid`; retune it per instance with a Tailwind arbitrary-property utility or a selector that targets the grid:
 
 ```html
-<div class="fri-grid fri-grid-cols-auto-fit" style="--grid-min: 20rem">…</div>
+<div class="fri-grid fri-grid-cols-auto-fit [--grid-min:20rem]">…</div>
 ```
 
 ```css

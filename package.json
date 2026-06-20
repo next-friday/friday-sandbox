@@ -37,6 +37,8 @@
     "dev": "turbo run dev",
     "dev:storybook": "turbo run dev:storybook",
     "doc:check": "turbo run doc:check",
+    "doctor": "pnpm run \"/^doctor:/\"",
+    "doctor:react": "react-doctor",
     "format": "prettier --write \"**/*.{ts,tsx,md,css}\"",
     "format:check": "prettier --check \"**/*.{ts,tsx,md,css}\"",
     "knip": "knip",
@@ -59,6 +61,7 @@
     "lint-staged": "^17.0.7",
     "prettier": "^3.7.4",
     "prettier-plugin-tailwindcss": "^0.8.0",
+    "react-doctor": "^0.5.8",
     "sort-package-json": "^4.0.0",
     "turbo": "^2.9.18",
     "typescript": "5.9.2"

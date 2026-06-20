@@ -10,38 +10,53 @@ Override any of these in your app's CSS to retheme.
 
 Eight brand colors. Same value across light and dark — components handle text contrast for you.
 
-<div
-  style={{
-    display: "grid",
-    gridTemplateColumns: "repeat(4, minmax(0, 1fr))",
-    gap: "0.75rem",
-    marginTop: "1rem",
-  }}
->
+<div className="mt-4 grid grid-cols-4 gap-3">
   {[
-    "primary",
-    "secondary",
-    "accent",
-    "neutral",
-    "info",
-    "success",
-    "warning",
-    "danger",
-  ].map((name) => (
-    <div key={name}>
-      <div
-        style={{
-          height: "3rem",
-          borderRadius: "var(--radius-action)",
-          background: `var(--${name})`,
-        }}
-      />
-      <code style={{ fontSize: "0.75rem", marginTop: "0.25rem", display: "block" }}>
-        --{name}
-      </code>
+    { intent: "primary", swatch: "bg-primary" },
+    { intent: "secondary", swatch: "bg-secondary" },
+    { intent: "accent", swatch: "bg-accent" },
+    { intent: "neutral", swatch: "bg-neutral" },
+    { intent: "info", swatch: "bg-info" },
+    { intent: "success", swatch: "bg-success" },
+    { intent: "warning", swatch: "bg-warning" },
+    { intent: "danger", swatch: "bg-danger" },
+  ].map(({ intent, swatch }) => (
+    <div key={intent}>
+      <div className={`h-12 rounded-action ${swatch}`} />
+      <code className="mt-1 block text-xs">--{intent}</code>
     </div>
   ))}
 </div>
+
+## Using tokens with Tailwind
+
+Every token registered with `@theme inline` resolves to a canonical Tailwind v4 utility — reach for the alias instead of the arbitrary-var fallback (`bg-(--primary)`).
+
+<div className="mt-4 flex flex-wrap gap-3">
+  <span className="rounded-action bg-primary px-4 py-2 text-sm font-medium text-primary-foreground">
+    bg-primary
+  </span>
+  <span className="rounded-action bg-danger px-4 py-2 text-sm font-medium text-danger-foreground">
+    bg-danger
+  </span>
+  <span className="rounded-box bg-muted px-4 py-2 text-sm text-muted-foreground">
+    bg-muted
+  </span>
+</div>
+
+```tsx
+<button className="rounded-action bg-primary px-4 py-2 text-primary-foreground">
+  Save
+</button>
+<p className="text-muted-foreground">Secondary text</p>
+<div className="border-danger border" />
+```
+
+| Token kind                                      | Utilities                                                                                                                   |
+| ----------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| Intent + foreground (`--primary` … `--danger`)  | `bg-<intent>`, `text-<intent>`, `border-<intent>`, `ring-<intent>`, `fill-<intent>`, `stroke-<intent>` — each with a `-foreground` pair |
+| Radius (`--radius-{scope}`)                      | `rounded-action`, `rounded-field`, `rounded-box`                                                                            |
+| Border (`--border`)                             | `border`                                                                                                                    |
 
 ## Surfaces
 

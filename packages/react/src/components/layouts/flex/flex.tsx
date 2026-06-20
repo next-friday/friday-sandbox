@@ -1,19 +1,23 @@
-import { Slot } from "radix-ui";
+import type { ElementType, ReactElement } from "react";
 
-import type { ComponentPropsWithRef } from "react";
+import type { PolymorphicProps } from "../../utils/polymorphic-props";
 
 import { flexVariants } from "./flex.variants";
 import type { FlexVariants } from "./flex.variants";
 
-export interface FlexProps extends ComponentPropsWithRef<"div">, FlexVariants {
-  asChild?: boolean;
-  className?: string;
-}
+export type FlexProps<TElement extends ElementType = "div"> = PolymorphicProps<
+  FlexVariants & {
+    className?: string;
+  },
+  TElement
+>;
 
-export const Flex = (props: Readonly<FlexProps>) => {
+export const Flex = <TElement extends ElementType = "div">(
+  props: Readonly<FlexProps<TElement>>,
+): ReactElement => {
   const {
     align,
-    asChild,
+    as,
     basis,
     className,
     direction,
@@ -23,10 +27,13 @@ export const Flex = (props: Readonly<FlexProps>) => {
     grow,
     inline,
     justify,
+    ref,
     shrink,
     wrap,
     ...rest
   } = props;
+
+  const Component: ElementType = as ?? "div";
 
   const resolvedClassName = flexVariants({
     direction,
@@ -43,7 +50,12 @@ export const Flex = (props: Readonly<FlexProps>) => {
     className,
   });
 
-  const Component = asChild ? Slot.Root : "div";
-
-  return <Component data-slot="flex" className={resolvedClassName} {...rest} />;
+  return (
+    <Component
+      data-slot="flex"
+      ref={ref}
+      className={resolvedClassName}
+      {...rest}
+    />
+  );
 };

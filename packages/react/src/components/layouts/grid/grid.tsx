@@ -1,18 +1,22 @@
-import { Slot } from "radix-ui";
+import type { ElementType, ReactElement } from "react";
 
-import type { ComponentPropsWithRef } from "react";
+import type { PolymorphicProps } from "../../utils/polymorphic-props";
 
 import { gridVariants } from "./grid.variants";
 import type { GridVariants, GridItemVariants } from "./grid.variants";
 
-export interface GridProps extends ComponentPropsWithRef<"div">, GridVariants {
-  asChild?: boolean;
-  className?: string;
-}
+export type GridProps<TElement extends ElementType = "div"> = PolymorphicProps<
+  GridVariants & {
+    className?: string;
+  },
+  TElement
+>;
 
-export const Grid = (props: Readonly<GridProps>) => {
+export const Grid = <TElement extends ElementType = "div">(
+  props: Readonly<GridProps<TElement>>,
+): ReactElement => {
   const {
-    asChild,
+    as,
     autoCols,
     autoRows,
     className,
@@ -22,9 +26,12 @@ export const Grid = (props: Readonly<GridProps>) => {
     gapX,
     gapY,
     inline,
+    ref,
     rows,
     ...rest
   } = props;
+
+  const Component: ElementType = as ?? "div";
 
   const slots = gridVariants({
     cols,
@@ -39,29 +46,36 @@ export const Grid = (props: Readonly<GridProps>) => {
   });
   const gridClassName = slots.grid({ class: className });
 
-  const Component = asChild ? Slot.Root : "div";
-
-  return <Component data-slot="grid" className={gridClassName} {...rest} />;
+  return (
+    <Component data-slot="grid" ref={ref} className={gridClassName} {...rest} />
+  );
 };
 
-export interface GridItemProps
-  extends ComponentPropsWithRef<"div">, GridItemVariants {
-  asChild?: boolean;
-  className?: string;
-}
+export type GridItemProps<TElement extends ElementType = "div"> =
+  PolymorphicProps<
+    GridItemVariants & {
+      className?: string;
+    },
+    TElement
+  >;
 
-export const GridItem = (props: Readonly<GridItemProps>) => {
+export const GridItem = <TElement extends ElementType = "div">(
+  props: Readonly<GridItemProps<TElement>>,
+): ReactElement => {
   const {
-    asChild,
+    as,
     className,
     colEnd,
     colSpan,
     colStart,
+    ref,
     rowEnd,
     rowSpan,
     rowStart,
     ...rest
   } = props;
+
+  const Component: ElementType = as ?? "div";
 
   const slots = gridVariants({
     colSpan,
@@ -73,9 +87,12 @@ export const GridItem = (props: Readonly<GridItemProps>) => {
   });
   const itemClassName = slots.item({ class: className });
 
-  const Component = asChild ? Slot.Root : "div";
-
   return (
-    <Component data-slot="grid-item" className={itemClassName} {...rest} />
+    <Component
+      data-slot="grid-item"
+      ref={ref}
+      className={itemClassName}
+      {...rest}
+    />
   );
 };

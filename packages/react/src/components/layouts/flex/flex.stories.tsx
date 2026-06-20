@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import type { ElementType } from "react";
 
 import { Boxes } from "../../samples/boxes";
 
@@ -125,13 +126,14 @@ const meta = {
       options: ["auto", "full", 0],
       table: { type: { summary: "auto | full | 0" } },
     },
-    asChild: {
+    as: {
       description:
-        "Merge props onto the single child element instead of rendering a `<div>`, to keep semantic markup (`<nav>`, `<ul>`, `<section>`). Requires exactly one child element.",
-      control: false,
+        "Render the Flex as a different element (`section`, `nav`, `ul`, …) instead of the default `<div>`, keeping semantic markup.",
+      control: "select",
+      options: ["div", "section", "nav", "ul", "article"],
       table: {
-        type: { summary: "boolean" },
-        defaultValue: { summary: "false" },
+        type: { summary: "ElementType" },
+        defaultValue: { summary: "div" },
       },
     },
     className: {
@@ -147,7 +149,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   render: (storyArgs) => (
-    <Flex {...storyArgs}>
+    <Flex<ElementType> {...storyArgs}>
       <Boxes count={3} />
     </Flex>
   ),
@@ -156,7 +158,7 @@ export const Default: Story = {
 export const Direction: Story = {
   args: { direction: "column" },
   render: (storyArgs) => (
-    <Flex {...storyArgs}>
+    <Flex<ElementType> {...storyArgs}>
       <Boxes count={3} />
     </Flex>
   ),
@@ -165,7 +167,7 @@ export const Direction: Story = {
 export const Align: Story = {
   args: { align: "center" },
   render: (storyArgs) => (
-    <Flex {...storyArgs} className="h-32">
+    <Flex<ElementType> {...storyArgs} className="h-32">
       <Boxes count={3} />
     </Flex>
   ),
@@ -174,7 +176,7 @@ export const Align: Story = {
 export const Justify: Story = {
   args: { justify: "between" },
   render: (storyArgs) => (
-    <Flex {...storyArgs}>
+    <Flex<ElementType> {...storyArgs}>
       <Boxes count={3} />
     </Flex>
   ),
@@ -183,7 +185,7 @@ export const Justify: Story = {
 export const Wrap: Story = {
   args: { wrap: "wrap", gap: "sm" },
   render: (storyArgs) => (
-    <Flex {...storyArgs} className="w-64">
+    <Flex<ElementType> {...storyArgs} className="w-64">
       <Boxes count={10} />
     </Flex>
   ),
@@ -192,7 +194,7 @@ export const Wrap: Story = {
 export const Gap: Story = {
   args: { gap: "xl" },
   render: (storyArgs) => (
-    <Flex {...storyArgs}>
+    <Flex<ElementType> {...storyArgs}>
       <Boxes count={3} />
     </Flex>
   ),
@@ -201,7 +203,7 @@ export const Gap: Story = {
 export const Inline: Story = {
   args: { inline: true },
   render: (storyArgs) => (
-    <Flex {...storyArgs}>
+    <Flex<ElementType> {...storyArgs}>
       <Boxes count={3} />
     </Flex>
   ),
@@ -217,7 +219,7 @@ export const Grow: Story = {
     },
   },
   render: (storyArgs) => (
-    <Flex {...storyArgs}>
+    <Flex<ElementType> {...storyArgs}>
       <Flex grow>
         <Boxes count={1} />
       </Flex>
@@ -249,20 +251,19 @@ export const Basis: Story = {
   ),
 };
 
-export const AsChild: Story = {
+export const As: Story = {
+  args: { as: "nav" },
   parameters: {
     docs: {
       description: {
         story:
-          "With `asChild`, the variant classes merge onto the consumer's own element, so a Flex can be a semantic `<nav>` instead of a generic `<div>`. Requires exactly one child element.",
+          "`as` renders the Flex as a different element — here a semantic `<nav>` — instead of a generic `<div>`. The variant classes and props land on the chosen tag.",
       },
     },
   },
   render: (storyArgs) => (
-    <Flex {...storyArgs} asChild>
-      <nav aria-label="Primary">
-        <Boxes count={3} />
-      </nav>
+    <Flex<ElementType> {...storyArgs} aria-label="Primary">
+      <Boxes count={3} />
     </Flex>
   ),
 };

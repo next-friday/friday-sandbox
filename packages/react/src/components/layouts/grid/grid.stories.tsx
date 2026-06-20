@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-
-import type { CSSProperties } from "react";
+import type { ElementType } from "react";
 
 import { Box } from "../../samples/box";
 import { Boxes } from "../../samples/boxes";
@@ -110,13 +109,14 @@ const meta = {
       options: ["auto", "min", "max", "fr"],
       table: { type: { summary: "auto | min | max | fr" } },
     },
-    asChild: {
+    as: {
       description:
-        "Merge props onto the single child element instead of rendering a `<div>`, to keep semantic markup. Requires exactly one child element.",
-      control: false,
+        "Render the Grid as a different element (`section`, `ul`, …) instead of the default `<div>`, keeping semantic markup.",
+      control: "select",
+      options: ["div", "section", "ul", "main", "article"],
       table: {
-        type: { summary: "boolean" },
-        defaultValue: { summary: "false" },
+        type: { summary: "ElementType" },
+        defaultValue: { summary: "div" },
       },
     },
     className: {
@@ -132,7 +132,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   render: (storyArgs) => (
-    <Grid {...storyArgs}>
+    <Grid<ElementType> {...storyArgs}>
       <Boxes count={6} />
     </Grid>
   ),
@@ -141,7 +141,7 @@ export const Default: Story = {
 export const Columns: Story = {
   args: { cols: 4 },
   render: (storyArgs) => (
-    <Grid {...storyArgs}>
+    <Grid<ElementType> {...storyArgs}>
       <Boxes count={8} />
     </Grid>
   ),
@@ -150,7 +150,7 @@ export const Columns: Story = {
 export const Rows: Story = {
   args: { cols: 3, rows: 2 },
   render: (storyArgs) => (
-    <Grid {...storyArgs}>
+    <Grid<ElementType> {...storyArgs}>
       <Boxes count={6} />
     </Grid>
   ),
@@ -159,7 +159,7 @@ export const Rows: Story = {
 export const Flow: Story = {
   args: { rows: 2, flow: "col" },
   render: (storyArgs) => (
-    <Grid {...storyArgs}>
+    <Grid<ElementType> {...storyArgs}>
       <Boxes count={6} />
     </Grid>
   ),
@@ -168,7 +168,7 @@ export const Flow: Story = {
 export const Gap: Story = {
   args: { cols: 3, gap: "xl" },
   render: (storyArgs) => (
-    <Grid {...storyArgs}>
+    <Grid<ElementType> {...storyArgs}>
       <Boxes count={6} />
     </Grid>
   ),
@@ -177,7 +177,7 @@ export const Gap: Story = {
 export const WithItems: Story = {
   args: { cols: 4, gap: "sm" },
   render: (storyArgs) => (
-    <Grid {...storyArgs}>
+    <Grid<ElementType> {...storyArgs}>
       <GridItem colSpan={2}>
         <Box index={1} />
       </GridItem>
@@ -201,31 +201,10 @@ export const WithItems: Story = {
   ),
 };
 
-export const Responsive: Story = {
-  args: { cols: "auto-fit", autoRows: "fr" },
-  parameters: {
-    docs: {
-      description: {
-        story:
-          '`cols="auto-fit"` fits as many columns per row as will hold, each at least `--grid-min` wide (default `16rem`). Override the track width per instance with `style={{ "--grid-min": "…" }}`.',
-      },
-    },
-  },
-  render: (storyArgs) => {
-    const responsiveStyle = { "--grid-min": "8rem" } as CSSProperties;
-
-    return (
-      <Grid {...storyArgs} style={responsiveStyle}>
-        <Boxes count={10} />
-      </Grid>
-    );
-  },
-};
-
 export const Inline: Story = {
   args: { cols: 3, inline: true },
   render: (storyArgs) => (
-    <Grid {...storyArgs}>
+    <Grid<ElementType> {...storyArgs}>
       <Boxes count={6} />
     </Grid>
   ),
@@ -242,7 +221,7 @@ export const Placement: Story = {
     },
   },
   render: (storyArgs) => (
-    <Grid {...storyArgs}>
+    <Grid<ElementType> {...storyArgs}>
       <GridItem colEnd={3} colStart={1} rowEnd={3} rowStart={1}>
         <Box index={1} />
       </GridItem>
@@ -258,20 +237,46 @@ export const Placement: Story = {
   ),
 };
 
-export const AsChild: Story = {
+export const As: Story = {
+  args: { as: "section" },
   parameters: {
     docs: {
       description: {
         story:
-          "With `asChild`, the grid classes merge onto the consumer's own element — here a semantic `<section>`. Requires exactly one child element.",
+          "`as` renders the Grid as a different element — here a semantic `<section>` — instead of a generic `<div>`.",
       },
     },
   },
   render: (storyArgs) => (
-    <Grid {...storyArgs} asChild>
-      <section aria-label="Gallery">
-        <Boxes count={6} />
-      </section>
+    <Grid<ElementType> {...storyArgs} aria-label="Gallery">
+      <Boxes count={6} />
+    </Grid>
+  ),
+};
+
+export const AsList: Story = {
+  args: { as: "ul", cols: 3, gap: "sm" },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "`as` is polymorphic on every part: render the Grid as a `<ul>` and each GridItem as a `<li>` for a semantic list that still lays out on the grid.",
+      },
+    },
+  },
+  render: (storyArgs) => (
+    <Grid<ElementType> {...storyArgs} aria-label="Gallery">
+      <GridItem as="li">
+        <Box index={1} />
+      </GridItem>
+
+      <GridItem as="li">
+        <Box index={2} />
+      </GridItem>
+
+      <GridItem as="li">
+        <Box index={3} />
+      </GridItem>
     </Grid>
   ),
 };
