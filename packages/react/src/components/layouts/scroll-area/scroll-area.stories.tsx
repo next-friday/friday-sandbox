@@ -30,7 +30,7 @@ const meta = {
           "  <ScrollArea.Viewport>",
           "    <ScrollArea.Content />",
           "  </ScrollArea.Viewport>",
-          '  <ScrollArea.Scrollbar orientation="vertical">',
+          "  <ScrollArea.Scrollbar />",
           "    <ScrollArea.Thumb />",
           "  </ScrollArea.Scrollbar>",
           "  <ScrollArea.Corner />",
