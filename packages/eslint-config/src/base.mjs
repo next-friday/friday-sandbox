@@ -49,6 +49,6 @@ export const config = [
     plugins: { onlyWarn },
   },
   {
-    ignores: ["dist/**"],
+    ignores: ["dist/**", "storybook-static/**"],
   },
 ];
