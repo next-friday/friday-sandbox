@@ -56,7 +56,6 @@
     "chromatic": "chromatic --build-script-name=build:storybook --exit-zero-on-changes",
     "dev:storybook": "storybook dev -p 6006",
     "doc:check": "storybook build --quiet",
-    "generate:component": "turbo gen react-component",
     "lint": "eslint . --max-warnings 0",
     "prepack": "clean-package",
     "postpack": "clean-package restore",

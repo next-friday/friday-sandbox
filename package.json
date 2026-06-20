@@ -39,7 +39,6 @@
     "doc:check": "turbo run doc:check",
     "format": "prettier --write \"**/*.{ts,tsx,md,css}\"",
     "format:check": "prettier --check \"**/*.{ts,tsx,md,css}\"",
-    "generate:component": "pnpm --filter @friday-sandbox/react generate:component",
     "knip": "knip",
     "lint": "turbo run lint",
     "prepare": "husky",
