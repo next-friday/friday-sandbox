@@ -1,33 +1,38 @@
 # Architecture
 
-The design system follows a **Dumb Tokens, Smart Components** model — pure CSS, no build script.
+Why the design system is shaped the way it is. This page explains the model; the numbers behind it live in [`formulas.md`](formulas.md), the rules that enforce it in [`conventions/`](conventions/), and where each layer sits in [`build.md`](build.md#where-each-layer-lives).
 
-For a quick reference of every derivation a Smart Component applies, see [`formulas.md`](formulas.md).
+## Dumb tokens, smart components
 
-## 1. Dumb Tokens
+The system splits cleanly in two.
 
-`packages/styles/src/theme/default.css` exposes only plain values: OKLCH literals, `rem` sizes, keywords. **No `calc()`, no `color-mix()`, no relative color syntax at this layer.** The file maps 1-to-1 to a Figma Variables collection so designers read numbers, not formulas.
+**Tokens are dumb.** `packages/styles/src/theme/default.css` holds plain values only — OKLCH literals, `rem` sizes, keywords. No `calc()`, no `color-mix()`, no relative-color syntax. A designer, or a Figma Variables collection mapped 1-to-1, reads numbers, never formulas.
 
 ```css
 :root {
   --primary: oklch(54% 0.24 264);
+  --primary-foreground: oklch(100% 0 0);
   --background: oklch(100% 0 0);
-  --foreground: oklch(21% 0.006 285);
   --radius-action: 0.5rem;
 }
 ```
 
-## 2. Smart Components
+**Components are smart.** Every derivation — sizing rhythm, hover shade, focus ring — lives in the component's own CSS and resolves at use time. There is no central engine to keep in sync; the logic travels with the component.
 
-Each component CSS file owns its own derivation. A base rule defines the engine once; variants only swap the input.
+## How a component derives
+
+A Smart Component reads a few inputs and computes the rest:
+
+- **Rhythm** (height, padding-x, radius) comes from a shared scope utility. An action component writes `@apply action-rhythm` and sets one knob — `--action-n` — per size variant; the utility derives the pixels.
+- **Foreground** is a paired token: each intent color ships a `--<color>-foreground` partner authored for AA contrast, and the component points at it. Contrast is a design decision, not a runtime computation.
+- **Hover and pressed** are derived inline with `color-mix()`, blending the intent with the page `--background`.
 
 ```css
-/* packages/styles/src/components/bases/button.css */
 .fri-button {
+  @apply action-rhythm ...;
+  --action-n: 10; /* md */
   --button-background: var(--primary);
-  --button-foreground: oklch(
-    from var(--button-background) clamp(0, calc((0.62 - l) * 100), 1) 0 0
-  );
+  --button-foreground: var(--primary-foreground);
   --button-background-hover: color-mix(
     in oklab,
     var(--button-background) 88%,
@@ -36,43 +41,19 @@ Each component CSS file owns its own derivation. A base rule defines the engine 
 }
 .fri-button-danger {
   --button-background: var(--danger);
+  --button-foreground: var(--danger-foreground);
 }
 ```
 
-- **Auto-foreground.** `oklch(from … clamp(…))` picks pure black or white based on the input lightness. Threshold `0.62` is WCAG-tuned.
-- **Auto-hover.** `color-mix()` blends the input with the page `--background`. Hover deepens in light mode and lightens in dark mode automatically.
+A color variant swaps the intent pair; a size variant swaps `--action-n`; everything else re-derives. The exact math is in [`formulas.md`](formulas.md).
 
-A new component repeats this pattern in its own CSS file. The engine is not centralized — it travels with the component.
+## Semantic scopes, not component names
 
-## 3. Intent-Based Sizing
+Sizing tokens are scoped to a **semantic family**, never to a literal component: `action` (triggers), `field` (form entry), `box` (containers). A button is an action, so it inherits `--size-action` / `--radius-action` and the `action-rhythm` utility — it never defines a `--size-button`. New components join an existing family; a new family is added only when none fits. Enforced by [`conventions/semantic-token-scope.md`](conventions/semantic-token-scope.md).
 
-Tokens are scoped to a semantic family, not a literal component:
+## Minimal dark mode
 
-| Scope    | Tokens                             | Component family                         |
-| -------- | ---------------------------------- | ---------------------------------------- |
-| `action` | `--size-action`, `--radius-action` | button, icon-button, link-button         |
-| `field`  | `--size-field`, `--radius-field`   | input, textarea, select, checkbox, radio |
-| `box`    | `--size-box`, `--radius-box`       | card, modal, alert, popover              |
-
-Each scope owns its own base unit and radius. `--size-{scope}` is the rhythm base (default `0.25rem`); component CSS computes heights inline as `calc(var(--size-{scope}) * N)` with N ∈ {6, 8, 10, 12, 14} for xs/sm/md/lg/xl (24 / 32 / 40 / 48 / 56 px at the default base).
-
-`--radius-{scope}` is the **reference radius at `md`**. Components with size variants derive their radius linearly from height so corners stay visually proportional:
-
-```css
-.fri-button {
-  --button-radius: calc(
-    var(--radius-action) * var(--button-height) / (var(--size-action) * 10)
-  );
-}
-```
-
-At md the radius equals `--radius-action` exactly. xs/sm shrink, lg/xl grow in the same ratio. The fix is for the failure mode where a small button (24 px tall) inherits a flat radius (8 px) and looks like a pill, while a large button (56 px tall) looks square.
-
-A new scope is added only when no existing family fits; never use a literal component name as a scope.
-
-## 4. Minimalist Dark Mode
-
-`.dark` (or `[data-theme="dark"]`) overrides only the four surface tokens. Intent colors stay the same. Component-derived foreground and hover follow automatically because they read `--background` at use time.
+`.dark` (or `[data-theme="dark"]`) overrides only the four surface tokens — `--background`, `--foreground`, `--muted`, `--muted-foreground`. Intent colors are untouched. Because every component reads `--background` at use time, derived hover and focus states follow the theme automatically, with no per-component dark rules.
 
 ```css
 .dark {
@@ -83,33 +64,3 @@ A new scope is added only when no existing family fits; never use a literal comp
   --muted-foreground: oklch(70% 0.006 285);
 }
 ```
-
-## 5. Canonical Tailwind in consumer code
-
-Every theme token in `packages/styles/src/system/theme.css` is registered with `@theme inline`, so Tailwind v4 emits a real utility alias for it. Use the alias.
-
-```tsx
-// good — canonical
-<div className="rounded-md bg-muted px-4 py-2 text-sm text-foreground" />
-<div className="border border-primary" />
-
-// bad — v3-era arbitrary-var fallback on a mapped token
-<div className="rounded-md bg-(--muted) px-4 py-2 text-sm text-(--foreground)" />
-<div className="border border-(--primary)" />
-```
-
-The `*-(--var)` form is only correct for **component-local CSS variables that are not registered in `@theme inline`** — e.g. `bg-(--button-background)`, `h-(--action-height)`, `px-(--action-padding-x)`. Those have no Tailwind alias and the arbitrary-var syntax is the only way to reach them.
-
-Rule of thumb: if the variable appears in `packages/styles/src/system/theme.css`, use its canonical alias. Otherwise, the arbitrary-var form is fine.
-
-Enforced by [`docs/conventions/canonical-tailwind.md`](conventions/canonical-tailwind.md).
-
-## Layer locations
-
-| Layer                  | File                                                     | Audience             |
-| ---------------------- | -------------------------------------------------------- | -------------------- |
-| Token source           | `packages/styles/src/theme/default.css`                  | designer             |
-| Tailwind utility map   | `packages/styles/index.css` (`@theme inline`)            | build system         |
-| Component engine + CSS | `packages/styles/src/components/<tier>/<name>.css`       | contributor          |
-| Component React        | `packages/react/src/components/<tier>/<name>/<name>.tsx` | contributor          |
-| Consumer docs          | `packages/react/src/stories/*.mdx`                       | consumer (Storybook) |

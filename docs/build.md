@@ -8,6 +8,19 @@ Turborepo + pnpm workspaces (`pnpm-workspace.yaml` → `packages/*`). Four `@fri
 
 Package manager is **pnpm 10** (corepack honors `packageManager` in the root `package.json`). Node `>=22.10.0`.
 
+## Where each layer lives
+
+The design system is layered from plain tokens up to React components. Each layer has one home:
+
+| Layer                             | File                                                     |
+| --------------------------------- | -------------------------------------------------------- |
+| Token source (plain values)       | `packages/styles/src/theme/default.css`                  |
+| Tailwind alias map                | `packages/styles/src/system/theme.css` (`@theme inline`) |
+| Scope rhythm utility              | `packages/styles/src/system/utilities.css`               |
+| Component CSS (engine + variants) | `packages/styles/src/components/<tier>/<name>.css`       |
+| Component (React)                 | `packages/react/src/components/<tier>/<name>/<name>.tsx` |
+| Consumer reference                | `packages/react/src/stories/*.mdx` (deployed Storybook)  |
+
 ## Commands
 
 Root scripts fan out across workspaces via Turborepo:

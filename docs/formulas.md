@@ -1,128 +1,59 @@
-# Engine formulas
+# Formulas
 
-Every derivation a Smart Component applies, in one place. Use this as a lookup when wiring a new component.
+Every derivation a Smart Component applies, in one place — the lookup when wiring a new component. The rhythm (height, padding-x, radius) is factored into the `action-rhythm` utility in `packages/styles/src/system/utilities.css`; a component `@apply`s it and sets `--action-n`. Color (hover, pressed) stays inline because it is intent-driven, not rhythm-driven. For _why_ the system is built this way, see [`architecture.md`](architecture.md).
 
-Rhythm formulas (height, padding-x, radius) for the `action` scope are factored into the `action-rhythm` Tailwind utility in `packages/styles/src/utilities.css`. A new action component opts in with `@apply action-rhythm` and sets `--action-n` per size variant — it never needs to re-spell the rhythm math. Color formulas (foreground, hover) stay inline in each component because they are intent-driven, not rhythm-driven.
+## Rhythm reference (`action` scope, default base)
 
-## Relation overview (`action` scope, default base)
+`--size-action = 0.25rem`, `--radius-action = 0.5rem`. One knob — `--action-n` — drives the whole row:
 
-`--size-action = 0.25rem`, `--radius-action = 0.5rem`.
+| Size | `--action-n` | Height      | Padding-x    | Radius        |
+| ---- | ------------ | ----------- | ------------ | ------------- |
+| xs   | 6            | 1.5rem (24) | 0.5rem (8)   | 0.3rem (4.8)  |
+| sm   | 8            | 2rem (32)   | 0.75rem (12) | 0.4rem (6.4)  |
+| md   | 10           | 2.5rem (40) | 1rem (16)    | 0.5rem (8)    |
+| lg   | 12           | 3rem (48)   | 1.25rem (20) | 0.6rem (9.6)  |
+| xl   | 14           | 3.5rem (56) | 1.5rem (24)  | 0.7rem (11.2) |
 
-| Size | N (height) | Height      | Padding-x    | Radius        |
-| ---- | ---------- | ----------- | ------------ | ------------- |
-| xs   | 6          | 1.5rem (24) | 0.5rem (8)   | 0.3rem (4.8)  |
-| sm   | 8          | 2rem (32)   | 0.75rem (12) | 0.4rem (6.4)  |
-| md   | 10         | 2.5rem (40) | 1rem (16)    | 0.5rem (8)    |
-| lg   | 12         | 3rem (48)   | 1.25rem (20) | 0.6rem (9.6)  |
-| xl   | 14         | 3.5rem (56) | 1.5rem (24)  | 0.7rem (11.2) |
+Pixels are at the 16px root. Override `--size-action` and the whole row scales; `--radius-action` scales only the radius column. The other scopes (`field`, `box`) follow the same three formulas against their own `--size-*` / `--radius-*`.
 
-Px values are at the browser default 16-px root. The whole row scales when `--size-action` is overridden; `--radius-action` only scales the radius column.
+The derivations the `action-rhythm` utility computes:
 
-Derivations from the inputs:
+- **Height** = `--size-action × --action-n`
+- **Padding-x** = `height / 2 − --size-action` — matches the `px-2 … px-6` Tailwind ladder.
+- **Radius** = `--radius-action × height / (--size-action × 10)` — equals `--radius-action` exactly at `md`, shrinks below and grows above, so a 24px button is never a pill and a 56px button is never square.
 
-- **Height** = `--size-action × N`
-- **Padding-x** = `height / 2 - --size-action`
-- **Radius** = `--radius-action × height / (--size-action × 10)`
+## Foreground (paired token)
 
-## Auto-foreground (WCAG-safe text on intent)
+Foreground is **not** computed. Each intent ships a partner token, authored for AA contrast, that the component points at:
 
 ```css
---{component}-foreground: oklch(
-  from var(--{component}-background) clamp(0, calc((0.62 - l) * 100), 1) 0 0
-);
+--button-foreground: var(--primary-foreground);
 ```
 
-| Input lightness (`l`) | Output                            |
-| --------------------- | --------------------------------- |
-| `l < 0.62`            | white (`L = 1`, `C = 0`, `H = 0`) |
-| `l > 0.62`            | black (`L = 0`, `C = 0`, `H = 0`) |
+A color variant swaps both halves of the pair (`--button-background` and `--button-foreground`), so contrast holds for any palette a consumer themes.
 
-Why pure black/white? OKLCH lightness `0.62` is the AA threshold where neither pure colour wins on every intent; clamping to the binary keeps every variant readable without per-intent overrides. Tune the threshold inline (it is hard-coded — change the literal `0.62`) if your component needs a different break.
-
-## Auto-hover (intent blended with surface)
+## Hover and pressed (`color-mix`)
 
 ```css
---{component}-background-hover: color-mix(
+--button-background-hover: color-mix(
   in oklab,
-  var(--{component}-background) 88%,
+  var(--button-background) 88%,
   var(--background) 12%
 );
+--button-background-pressed: var(--button-background-hover);
 ```
 
-| Theme | Resulting shift                  |
-| ----- | -------------------------------- |
-| light | hover is darker than the intent  |
-| dark  | hover is lighter than the intent |
-
-`--background` flips per theme, so the same recipe deepens in light mode and lightens in dark mode. Pressed/active typically reuses the hover value (`--{component}-background-pressed: var(--{component}-background-hover)`).
-
-## Height rhythm
-
-```css
---{component}-height: calc(var(--size-{scope}) * N);
-```
-
-`--size-{scope}` is the rhythm base (default `0.25rem`). `N` is the size variant's multiplier:
-
-| Size | N   | Px (default base) |
-| ---- | --- | ----------------- |
-| xs   | 6   | 24                |
-| sm   | 8   | 32                |
-| md   | 10  | 40                |
-| lg   | 12  | 48                |
-| xl   | 14  | 56                |
-
-A new component picks one scope (`action`, `field`, `box`) and inherits the rhythm — no per-component spacing tokens.
-
-## Horizontal padding
-
-```css
---{component}-padding-x: calc(var(--{component}-height) / 2 - var(--size-{scope}));
-```
-
-Padding-x sits at half the height minus one rhythm unit. At the default `--size-action: 0.25rem`:
-
-| Size | Height | Padding-x |
-| ---- | ------ | --------- |
-| xs   | 24 px  | 8 px      |
-| sm   | 32 px  | 12 px     |
-| md   | 40 px  | 16 px     |
-| lg   | 48 px  | 20 px     |
-| xl   | 56 px  | 24 px     |
-
-Matches the `px-2 … px-6` Tailwind ladder. Override `--size-action` and padding moves with it.
-
-## Proportional radius
-
-```css
---{component}-radius: calc(
-  var(--radius-{scope}) * var(--{component}-height) / (var(--size-{scope}) * 10)
-);
-```
-
-`--radius-{scope}` is the reference radius at `md`. The formula scales radius linearly with height so:
-
-| Size | Height | Radius (at `--radius-action: 0.5rem`) |
-| ---- | ------ | ------------------------------------- |
-| xs   | 24 px  | 4.8 px                                |
-| sm   | 32 px  | 6.4 px                                |
-| md   | 40 px  | 8 px                                  |
-| lg   | 48 px  | 9.6 px                                |
-| xl   | 56 px  | 11.2 px                               |
-
-The fix is for the failure mode where a small button (24 px) inherits a flat radius and looks like a pill, while a large button (56 px) looks square.
+`--background` flips per theme, so the one recipe deepens the hover in light mode and lightens it in dark mode. Pressed reuses the hover value.
 
 ## Putting it together (Button)
 
 ```css
 .fri-button {
-  @apply h-(--action-height) rounded-(--action-radius) px-(--action-padding-x) action-rhythm ... ...;
+  @apply action-rhythm ...; /* height, padding-x, radius from --action-n */
 
-  --action-n: 10;
+  --action-n: 10; /* md */
   --button-background: var(--primary);
-  --button-foreground: oklch(
-    from var(--button-background) clamp(0, calc((0.62 - l) * 100), 1) 0 0
-  );
+  --button-foreground: var(--primary-foreground);
   --button-background-hover: color-mix(
     in oklab,
     var(--button-background) 88%,
@@ -133,6 +64,7 @@ The fix is for the failure mode where a small button (24 px) inherits a flat rad
 
 .fri-button-danger {
   --button-background: var(--danger);
+  --button-foreground: var(--danger-foreground);
 }
 
 .fri-button-xs {
@@ -140,4 +72,4 @@ The fix is for the failure mode where a small button (24 px) inherits a flat rad
 }
 ```
 
-Color variants swap `--{component}-background`. Size variants swap `--action-n`. Foreground, hover (color-driven) and height, padding-x, radius (rhythm-driven via `action-rhythm`) re-derive automatically.
+A color variant swaps the intent pair; a size variant swaps `--action-n`; rhythm and color re-derive automatically.
