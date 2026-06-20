@@ -1,84 +1,119 @@
 # Contributing
 
-Thanks for your interest in improving `friday-sandbox`. The repository ships the `@friday-sandbox/*` packages: a React 19 UI library (`react`), CSS tokens and layers (`styles`), ESLint flat-config presets (`eslint-config`), and TypeScript config presets (`typescript-config`).
+Thanks for taking the time to contribute. `friday-sandbox` is a pnpm + Turborepo monorepo that ships the `@friday-sandbox/*` packages, and every improvement is welcome — a bug fix, a new component, a sharper type, or a docs typo.
 
-New here? The [`docs/`](docs/) handbook maps the repo and routes you to the right chapter. Before changing tokens or component CSS, read the [Styles chapter](docs/styles/) — the **Dumb Tokens, Smart Components** model and its derivation formulas live there. The rules you must follow while writing code sit in each chapter; this guide covers the workflow around the change, not the code style inside it.
+By participating, you agree to uphold our [Code of Conduct](CODE_OF_CONDUCT.md).
+
+## Ways to contribute
+
+- **Report a bug** — open an issue with steps to reproduce, the expected vs. actual behavior, and your environment.
+- **Request a feature** — open an issue that describes the problem before the solution.
+- **Submit a change** — fix a bug, add or refine a component, tighten types, or improve documentation.
+
+Browsing the open issues is the easiest way to find something to work on. Comment on an issue to claim it before you start, so nobody duplicates your effort.
+
+## Packages
+
+| Package                             | What it is                        |
+| ----------------------------------- | --------------------------------- |
+| `@friday-sandbox/react`             | React 19 component library        |
+| `@friday-sandbox/styles`            | CSS design tokens and layers      |
+| `@friday-sandbox/eslint-config`     | Shared ESLint flat-config presets |
+| `@friday-sandbox/typescript-config` | Shared TypeScript config presets  |
+
+The toolchain is pnpm workspaces with Turborepo for the build graph, Storybook for component development, and Vitest in browser mode (via Playwright) for tests.
 
 ## Development setup
 
+You need **Node `>=22.10.0`** and **pnpm 10**. The pnpm version is pinned in the root `package.json`; enable Corepack so it is used automatically.
+
 ```sh
+corepack enable
 pnpm install
 pnpm dev          # Storybook for @friday-sandbox/react on http://localhost:6006
-pnpm build        # turbo run build across workspaces
 ```
 
-Node `>=22.10.0` and pnpm 10 are required (pnpm is pinned via `packageManager` in the root `package.json`; corepack honors it). Every script is defined in the root [`package.json`](package.json).
+Common scripts, all run from the repository root:
+
+```sh
+pnpm dev          # start Storybook in watch mode
+pnpm build        # build every package
+pnpm lint         # ESLint (zero warnings allowed)
+pnpm typecheck    # TypeScript, no emit
+pnpm test         # run the test suites
+pnpm changeset    # record a release note (see below)
+```
 
 ## Workflow
 
-Every change ships through one issue and one pull request.
+Every change flows through one issue and one pull request.
 
-1. Open an issue, or pick an existing one, then create a branch from it: `gh issue develop <n> --checkout`. CI rejects a branch whose head ref does not start with `<n>-`.
-2. Make the change. The conventions are enforced as gates in the docs chapters and checked by CI and the PR review bots.
-3. Add a changeset for any behavior change (`feat`, `fix`, `perf`, `refactor`): `pnpm changeset`. CI blocks behavior changes without one.
-4. Let the gates run. The `pre-commit` and `pre-push` hooks run them automatically; `--no-verify` is forbidden and is re-caught by CI. Never disable a rule, skip a check, or loosen a gate to get green — fix the root cause.
-5. Open a pull request whose body closes the issue with `Closes #<n>` (one per line). The PR title carries no `#N` — the squash merge auto-appends `(#<PR>)`.
+1. **Start from an issue.** Open one or pick an existing one, then create its branch: `gh issue develop <n> --checkout`. The branch name must start with the issue number (`<n>-…`) — CI rejects branches that don't.
+2. **Make the change** on that branch. Keep it focused: one concern per pull request.
+3. **Add a changeset** when you change published behavior (see [Changesets](#changesets)).
+4. **Run the checks** (see [Quality checks](#quality-checks)). Git hooks run them for you on commit and push.
+5. **Open a pull request.** Reference the issue in the body with `Closes #<n>` so it closes when the PR merges.
 
-## Quality gates
+## Commit and pull request titles
 
-All of these must pass before a pull request can merge:
+Commits and pull request titles follow [Conventional Commits](https://www.conventionalcommits.org): `type(scope): subject`.
+
+- **type** — one of `build`, `chore`, `ci`, `docs`, `feat`, `fix`, `perf`, `refactor`, `revert`, `setup`, `style`, `test`.
+- **scope** — required and lowercase (the package or area you touched).
+- **subject** — lowercase, imperative, **50 characters max**.
+- Commit messages carry **no body and no footer** — the description belongs in the pull request.
+
+Put issue references in the pull request body (`Closes #<n>`), never the title. Merges are squashed, and the pull request number is appended to the title automatically.
+
+```
+feat(react): add tooltip component
+fix(styles): correct focus-ring offset token
+docs(readme): clarify install steps
+```
+
+## Changesets
+
+Any change that affects published behavior — `feat`, `fix`, `perf`, `refactor` — needs a changeset. It becomes the package changelog and drives the next version bump:
 
 ```sh
-pnpm format:check
-pnpm sort:check
-pnpm lint            # eslint --max-warnings 0
-pnpm knip
-pnpm depcruise
-pnpm typecheck
-pnpm build
-pnpm doc:check       # storybook build
-pnpm test            # vitest browser mode + Storybook addon-vitest + Playwright
+pnpm changeset
+```
+
+Pick the affected packages and a semver bump (patch / minor / major), then write a short, user-facing summary. Commit the generated file alongside your change. CI blocks behavior changes that arrive without one. Pure chores (CI config, formatting, internal tooling) don't need a changeset.
+
+## Quality checks
+
+A pull request must be green before it can merge. These run automatically through the pre-commit and pre-push hooks, and again in CI:
+
+```sh
+pnpm format:check   # Prettier
+pnpm sort:check     # package.json key order
+pnpm lint           # ESLint, zero warnings
+pnpm knip           # unused files, deps, and exports
+pnpm depcruise      # dependency rules
+pnpm typecheck      # TypeScript
+pnpm build          # build all packages
+pnpm doc:check      # Storybook build
+pnpm test           # test suites
 pnpm audit --audit-level high
 ```
 
-`pnpm test` is slow. While iterating, let the hooks run the gates on what you touched rather than invoking the whole-repo tasks by hand.
+The full suite is slow — while iterating, let the hooks check what you touched instead of running everything by hand.
 
-## Adding a component (`@friday-sandbox/react`)
+Don't disable a rule, skip a check, or bypass the hooks (`--no-verify`) to force a green result; fix the underlying cause. CI re-runs every gate, so a skipped check only resurfaces later.
 
-A component is a symmetric folder under `packages/react/src/components/<tier>/<name>/` — mirror the `button` folder, which is the reference. The full skeleton, naming, export, and accessibility rules are the gates in the [React chapter](docs/react/): [`component-structure.md`](docs/react/rules/component-structure.md), [`composition.md`](docs/react/rules/composition.md), and [`accessibility-and-stories.md`](docs/react/rules/accessibility-and-stories.md). In short:
+## Pull request guidelines
 
-- Pick the tier: `bases` (interactive primitives), `layouts` (compositional primitives), or `samples` (Storybook-only demos, not exported).
-- Ship the four files — `index.ts`, `<name>.tsx`, `<name>.variants.ts`, `<name>.stories.tsx` — with a lowercase filename, a named export, and the `Props` type colocated.
-- Compose `react-aria-components` for behavior and the `layouts` primitives for structure; style through `@friday-sandbox/styles` tokens via `tailwind-variants`.
-- The story covers `Default`, `Hovered`, `Focused`, `Disabled`, and every color variant including `danger`, and its copy reads as consumer documentation.
+- Keep each pull request small and scoped to a single issue.
+- Make sure every check passes and the branch is up to date with `main`.
+- For visual changes, include a screenshot or screen recording of the before and after.
+- Fill in the pull request template — describe what changed and why.
+- A maintainer reviews and merges. Address review feedback by pushing follow-up commits to the same branch.
 
-Consumers import through the package `exports` map (`.` → `./src/index.ts`, `./*` → `./src/*/index.ts`):
+## Reporting a vulnerability
 
-```ts
-import { Button } from "@friday-sandbox/react";
-import { Button } from "@friday-sandbox/react/components/bases/button";
-```
+Don't open a public issue for security problems. Follow [`.github/SECURITY.md`](.github/SECURITY.md) and use GitHub's private vulnerability reporting instead.
 
-## Adding a preset (`@friday-sandbox/eslint-config`, `typescript-config`)
+## License
 
-Both packages ship their presets from `src/` and expose them as subpaths. A change must keep every export resolving in consumer workspaces:
-
-- `eslint-config`: `./base`, `./next-js`, `./react-internal`.
-- `typescript-config`: `./base.json`, `./nextjs.json`, `./react-library.json`.
-
-Drift between the presets (different `lib`, `moduleResolution`, `jsx`, `target`, `strict`, or `verbatimModuleSyntax`) requires a framework-specific justification.
-
-## Commit and title convention
-
-Commits and pull request titles follow `type(scope): subject`:
-
-- Type is one of `build`, `chore`, `ci`, `docs`, `feat`, `fix`, `perf`, `refactor`, `revert`, `setup`, `style`, `test`.
-- Scope is required and lowercase.
-- Subject is lowercase and at most 50 characters.
-- No body and no footer in commit messages (`body-empty` / `footer-empty` are commitlint errors); the PR body is where descriptions live.
-
-Issue references go in the pull request body as `Closes #<n>`, never the title.
-
-## Security
-
-Do not open a public issue for security vulnerabilities. Follow [`.github/SECURITY.md`](.github/SECURITY.md) and use GitHub's private vulnerability reporting.
+By contributing, you agree that your contributions are licensed under the [Apache License 2.0](LICENSE).
