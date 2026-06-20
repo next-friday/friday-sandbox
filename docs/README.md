@@ -4,14 +4,12 @@ This is the documentation hub for `friday-sandbox` — the central place every r
 
 ## Who reads what
 
-Everything canonical lives under `docs/`. The AI surfaces point back here — they never hold the source of truth.
+Everything canonical lives here, under `docs/`. AI assistants and PR-review bots keep their own configuration files, but those read from these same docs and never hold anything you cannot find here — as a human you never need to open them.
 
-| Audience                       | Start here                                                                                                                                                |
-| ------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Contributors (and any human)   | this hub → [`architecture.md`](architecture.md), [`formulas.md`](formulas.md), [`conventions/`](conventions/), [`../CONTRIBUTING.md`](../CONTRIBUTING.md) |
-| LLMs in the repo (Claude Code) | [`../CLAUDE.md`](../CLAUDE.md) + [`../.claude/rules/`](../.claude/rules/) — thin pointers that mirror [`conventions/`](conventions/)                      |
-| AI PR reviewers                | [`../.coderabbit.yaml`](../.coderabbit.yaml), [`../.gemini/styleguide.md`](../.gemini/styleguide.md) — they enforce [`conventions/`](conventions/)        |
-| npm consumers                  | the package READMEs ([`react`](../packages/react/README.md), [`styles`](../packages/styles/README.md)) and the deployed Storybook                         |
+| Audience                     | Start here                                                                                                                                                |
+| ---------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Contributors (and any human) | this hub → [`architecture.md`](architecture.md), [`formulas.md`](formulas.md), [`conventions/`](conventions/), [`../CONTRIBUTING.md`](../CONTRIBUTING.md) |
+| npm consumers                | the package READMEs ([`react`](../packages/react/README.md), [`styles`](../packages/styles/README.md)) and the deployed Storybook                         |
 
 ## First run
 
@@ -21,7 +19,7 @@ pnpm install
 pnpm dev             # Storybook for @friday-sandbox/react on http://localhost:6006
 ```
 
-Node `>=22.10.0`, pnpm 10 (pinned via `packageManager` in the root `package.json`). Everything else fans out across workspaces through Turborepo — see the command list in [`../CLAUDE.md`](../CLAUDE.md).
+Node `>=22.10.0`, pnpm 10 (pinned via `packageManager` in the root `package.json`). Everything else fans out across workspaces through Turborepo — every script is defined in the root [`package.json`](../package.json).
 
 Run one test file while iterating:
 
@@ -60,7 +58,7 @@ Internalize that one idea and the rest of the codebase reads cleanly. The full e
 
 ## Conventions that are gates, not suggestions
 
-The conventions live in [`docs/conventions/`](conventions/) — one file per rule, **canonical and tool-agnostic**, enforced by CI and the PR reviewers. Read them whatever editor you use; no AI tool required. (Claude Code users additionally get them auto-loaded by path via [`../.claude/rules/`](../.claude/rules/), which are thin pointers back to these same files.) They are enforced, not advisory:
+The conventions live in [`conventions/`](conventions/) — one file per rule, **canonical and tool-agnostic**, enforced by CI and the PR reviewers. Read them whatever editor you use; no AI tool required. They are enforced, not advisory:
 
 - [`component-structure.md`](conventions/component-structure.md) — the symmetric component folder skeleton, lowercase filenames, named export, `*.variants.ts`, exports-map reachability.
 - [`compose-and-dry.md`](conventions/compose-and-dry.md) — compose `react-aria-components` and the `layouts` primitives; extract shared logic into a hook.
@@ -72,10 +70,3 @@ The conventions live in [`docs/conventions/`](conventions/) — one file per rul
 - [`no-default-noise.md`](conventions/no-default-noise.md) — never write a config key whose value equals the tool's default.
 
 Two cross-cutting principles the reviewers and CI also expect, beyond the convention files: **DRY and symmetric** (one skeleton per file kind, shared logic extracted once), and **self-contained artifacts** — issues, PRs, and docs never cite another design system or repository as precedent; apply the convention silently and state the requirement directly.
-
-## For AI agents specifically
-
-- Read [`../CLAUDE.md`](../CLAUDE.md) top to bottom first. It is the Claude Code operating manual: orientation, the command catalog, the single-source-of-truth map, the convention gates (canonical in [`conventions/`](conventions/)), and the operating rules.
-- Let the hooks do the formatting. `PostToolUse` runs `prettier --write` and `eslint --fix` on the file you just edited; `pre-commit` and `pre-push` run the gates. Do **not** run whole-repo `lint`/`typecheck`/`build`/`test` by hand — CI and the hooks own that, and each manual run burns minutes.
-- Sources live under `src/`; the public surface is the `package.json#exports` map. Change one, keep the other in sync — a published consumer reads `dist/`, a workspace consumer reads `src/`.
-- One change ships as one issue → one branch → one PR. Behavior changes (`feat`, `fix`, `perf`, `refactor`) need a changeset (`pnpm changeset`), and the branch name must start with the issue number.

@@ -12,14 +12,14 @@ pnpm dev          # Storybook for @friday-sandbox/react on http://localhost:6006
 pnpm build        # turbo run build across workspaces
 ```
 
-Node `>=22.10.0` and pnpm 10 are required (pnpm is pinned via `packageManager` in the root `package.json`; corepack honors it). The full command catalog is in [`CLAUDE.md`](CLAUDE.md).
+Node `>=22.10.0` and pnpm 10 are required (pnpm is pinned via `packageManager` in the root `package.json`; corepack honors it). Every script is defined in the root [`package.json`](package.json).
 
 ## Workflow
 
 Every change ships through one issue and one pull request.
 
 1. Open an issue, or pick an existing one, then create a branch from it: `gh issue develop <n> --checkout`. CI rejects a branch whose head ref does not start with `<n>-`.
-2. Make the change. The conventions are enforced as gates in [`docs/conventions/`](docs/conventions/) and mirrored by the reviewers' style guides ([`.coderabbit.yaml`](.coderabbit.yaml), [`.gemini/styleguide.md`](.gemini/styleguide.md)).
+2. Make the change. The conventions are enforced as gates in [`docs/conventions/`](docs/conventions/) and checked by CI and the PR review bots.
 3. Add a changeset for any behavior change (`feat`, `fix`, `perf`, `refactor`): `pnpm changeset`. CI blocks behavior changes without one.
 4. Let the gates run. The `pre-commit` and `pre-push` hooks run them automatically; `--no-verify` is forbidden and is re-caught by CI. Never disable a rule, skip a check, or loosen a gate to get green — fix the root cause.
 5. Open a pull request whose body closes the issue with `Closes #<n>` (one per line). The PR title carries no `#N` — the squash merge auto-appends `(#<PR>)`.
