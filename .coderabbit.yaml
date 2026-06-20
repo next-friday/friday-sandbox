@@ -28,113 +28,74 @@ reviews:
     - "!.changeset/**"
     - "!**/*.snap"
   path_instructions:
+    # Conventions are defined once in .claude/rules/*.md and docs/. Each entry
+    # points the reviewer at the canonical rule and lists only the few
+    # highest-value checks per path — it never restates the full rationale.
     - path: packages/react/src/**/*.{ts,tsx}
       instructions: >-
-        Review priorities, highest first: accessibility, correctness, API
-        ergonomics, then style.
-
-        Accessibility: keyboard reachable, visible focus, ARIA only where DOM
-        does not convey intent, no pointer-only interactions, motion respects
-        prefers-reduced-motion. Prefer composing react-aria-components over
-        rolling raw handlers.
-
-        Conventions: lowercase filename (button.tsx, not Button.tsx) to satisfy
-        unicorn/filename-case. Client components start with "use client" only
-        when a client API is touched. Named export, no default export. Props
-        type colocated, suffix Props, exported alongside the component.
-
-        Exports: consumers import via the package exports map
-        (./* -> ./src/*.tsx). A new file outside that map is unreachable; flag
-        it.
-
-        DRY: focus management, ARIA wiring, controlled-vs-uncontrolled
-        patterns, and event coalescing belong in a reusable hook under src/.
-        Flag re-implementations across components.
-
-        Tailwind v4: styles ride utility classes plus the layer system in
-        @friday-sandbox/styles. Flag inline style objects, hardcoded hex
-        colors, or class strings that bypass tokens.
-
-        Canonical Tailwind: every CSS var registered in @theme inline
-        (packages/styles/src/system/theme.css) has a real utility alias. Flag
-        the v3-era arbitrary-var form on a mapped token —
-        `bg-(--muted)`, `text-(--foreground)`, `border-(--primary)`,
-        `rounded-(--radius-action)` — and ask for the canonical alias
-        (`bg-muted`, `text-foreground`, `border-primary`, `rounded-action`).
-        The `*-(--var)` form is correct only for component-local vars that
-        have no Tailwind alias (e.g. `bg-(--button-background)`).
-
-        Layout primitives: prefer Flex, Grid, GridItem, ScrollArea from
-        packages/react/src/components/layouts over raw
-        `<div className="flex …">` / `<div className="grid …">`. Flag layout
-        divs that re-implement what a primitive already provides.
-
-        Behavior changes (feat | fix | perf | refactor) require a
-        .changeset/*.md entry; flag a missing one.
+        Enforce the gates in .claude/rules/: component-structure.md,
+        compose-and-dry.md, canonical-tailwind.md, semantic-token-scope.md,
+        meaningful-identifiers.md. Priorities, highest first: accessibility,
+        correctness, API ergonomics, then style. Key checks: lowercase filename,
+        named export with colocated Props, no default export; "use client" only
+        when a client API is touched; compose react-aria-components instead of
+        hand-rolled keyboard or focus; shared logic extracted into a hook, not
+        duplicated across components; a new file is reachable through the exports
+        map (. -> ./src/index.ts, ./* -> ./src/*/index.ts); no inline style,
+        hardcoded hex, or token-bypassing class strings; canonical Tailwind alias
+        for any var mapped in @theme inline; a behavior change
+        (feat | fix | perf | refactor) carries a .changeset/*.md entry.
     - path: packages/react/src/**/*.stories.{ts,tsx}
       instructions: >-
-        A new or changed visible behavior needs story coverage of the main
-        visual and interactive states (default, hover, focus, disabled,
-        loading, error). Flag stories that mock data instead of exercising
-        real props. addon-a11y violations on the story page block the PR.
-
-
-        Storybook copy is for consumers, not contributors. The deployed
-        Storybook is the consumer-facing reference. Component descriptions,
-        prop `description`s, and per-story
-        `parameters.docs.description.story` text must read as instructions
-        to someone using the component in their own app. Flag any of:
-        internal class names (`fri-button-<variant>`, `fri-flex-*`), library
-        names (`tailwind-variants`, `react-aria`, `react-aria-components`),
-        engine math (`calc(var(--size-action) * N)`), file paths, "Maps to
-        … class", "Forwarded to …", "Proof that …", or QA notes ("Rendered
-        in mobile viewport to verify …"). Engine details, file layout, and
-        verification rationale belong in docs/ARCHITECTURE.md and
-        CONTRIBUTING.md.
-
-
-        Symmetry across .stories.tsx files: same component-description
-        shape (one-line summary → `## Import` → import snippet → "Add the
-        stylesheet once at the top of your app:" → CSS snippet), same gap /
-        gapX / gapY / className prop wording across layout primitives, same
-        tone (second-person, "Pick …", "Use …"). Flag asymmetry — one story
-        drifting from the others.
+        Enforce .claude/rules/accessibility-and-stories.md. Key checks: coverage
+        of Default, Hovered, Focused, Disabled, and every color variant including
+        danger; real props, not mocked data; addon-a11y passes on the story page;
+        story copy reads as consumer documentation — flag internal class names
+        (fri-button-*, fri-flex-*), library names (tailwind-variants, react-aria,
+        react-aria-components), engine math (calc(var(--size-action) * N)), or
+        file paths; symmetric story shape across files (summary -> Import snippet
+        -> stylesheet note -> CSS snippet, same prop wording and second-person
+        tone).
     - path: packages/react/src/**/*.test.{ts,tsx}
       instructions: >-
-        Tests run in Vitest browser mode via @storybook/addon-vitest with
-        Playwright chromium. Prefer Storybook play functions over imperative
-        DOM assertions. Cover keyboard paths alongside pointer paths.
-    - path: packages/eslint-config/*.mjs
+        Enforce .claude/rules/accessibility-and-stories.md. Tests run in Vitest
+        browser mode via @storybook/addon-vitest with Playwright chromium. Prefer
+        Storybook play functions over imperative DOM assertions; cover keyboard
+        paths alongside pointer paths.
+    - path: packages/eslint-config/src/*.mjs
       instructions: >-
         Keep all three subpath exports (./base, ./next-js, ./react-internal)
-        working in consumer workspaces. Flag a rule added to one preset that
-        belongs in another, a plugin import without a matching peer dep, or
-        a severity flipped without a noted reason.
-    - path: packages/typescript-config/*.json
+        resolving in consumer workspaces. Flag a rule added to one preset that
+        belongs in another, a plugin import without a matching peer dep, or a
+        severity flipped without a noted reason.
+    - path: packages/typescript-config/src/*.json
       instructions: >-
-        Preset trio (base.json, nextjs.json, react-library.json) must agree
+        The preset trio (base.json, nextjs.json, react-library.json) must agree
         on lib, moduleResolution, jsx, target, strict, and verbatimModuleSyntax
-        unless the framework difference justifies otherwise.
+        unless a framework difference justifies otherwise.
     - path: packages/styles/src/**/*.css
       instructions: >-
-        Respect the layer system. Flag hardcoded colors outside the token
-        layer, global selectors that bypass layers, or a token rename without
-        a migration note in the changeset.
+        Enforce .claude/rules/canonical-tailwind.md and semantic-token-scope.md,
+        and the engine in docs/ARCHITECTURE.md. Key checks: respect the @layer
+        system; no hardcoded colors outside the token layer; no global selectors
+        that bypass layers; size and radius tokens scoped to action, field, or
+        box, never a literal component name; a token rename carries a migration
+        note in the changeset.
     - path: .github/workflows/**/*.yml
       instructions: >-
-        Third-party actions must be pinned to a commit SHA, not a tag. Each
-        job sets a tight timeout-minutes and a minimal permissions block.
-        Top-level permissions stay read-only; job-level grants only the
-        scopes that step needs. Run step-security/harden-runner first.
+        Third-party actions must be pinned to a commit SHA, not a tag. Each job
+        sets a tight timeout-minutes and a minimal permissions block. Top-level
+        permissions stay read-only; job-level grants only the scopes that step
+        needs. Run step-security/harden-runner first.
     - path: .github/scripts/**/*.sh
       instructions: >-
         Shell scripts start with set -euo pipefail. Quote every variable
         expansion. Read inputs from explicit env vars, not positional args.
     - path: ".changeset/!(*README*).md"
       instructions: >-
-        Bump level (patch | minor | major) must match the PR type. A feat
-        is at least minor, a breaking change is major. The summary reads
-        as a release note to a downstream consumer, not as an internal log.
+        Bump level (patch | minor | major) must match the PR type. A feat is at
+        least minor, a breaking change is major. The summary reads as a release
+        note to a downstream consumer, not as an internal log.
 chat:
   auto_reply: true
 knowledge_base:
