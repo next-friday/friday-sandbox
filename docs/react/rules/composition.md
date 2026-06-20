@@ -1,4 +1,4 @@
-# Compose, Don't Reinvent
+# Composition and Reuse
 
 **Rule:** Reach for what already exists before writing new behavior. Compose `react-aria-components` for interaction, compose the `layouts` primitives for structure, and extract shared component logic into a hook under `src/` instead of repeating it.
 

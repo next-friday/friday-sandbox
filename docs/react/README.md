@@ -40,6 +40,6 @@ Its Storybook story proves this while doubling as the deployed consumer referenc
 
 Enforced gates for writing components — CI and the PR reviewers hold you to them:
 
-- [`component-structure.md`](component-structure.md) — the symmetric folder skeleton, lowercase filenames, named export, `*.variants.ts`, exports-map reachability.
-- [`compose-and-dry.md`](compose-and-dry.md) — compose `react-aria-components` and the `layouts` primitives; extract shared logic into a hook.
-- [`accessibility-and-stories.md`](accessibility-and-stories.md) — keyboard/focus/ARIA, `addon-a11y`, required story states, consumer-facing story copy.
+- [`component-structure.md`](rules/component-structure.md) — the symmetric folder skeleton, lowercase filenames, named export, `*.variants.ts`, exports-map reachability.
+- [`composition.md`](rules/composition.md) — compose `react-aria-components` and the `layouts` primitives; extract shared logic into a hook.
+- [`accessibility-and-stories.md`](rules/accessibility-and-stories.md) — keyboard/focus/ARIA, `addon-a11y`, required story states, consumer-facing story copy.

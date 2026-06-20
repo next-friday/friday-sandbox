@@ -1,4 +1,4 @@
-# No Default Noise
+# Lean Configuration
 
 **Rule:** Do not write config keys whose value equals the tool's documented default.
 

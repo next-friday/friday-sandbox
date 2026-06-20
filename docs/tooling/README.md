@@ -75,5 +75,5 @@ Storybook deploys to Vercel from the root `vercel.json` (built from `packages/re
 
 House-style gates that apply to any file, whatever package — CI and the PR reviewers hold you to them:
 
-- [`meaningful-identifiers.md`](meaningful-identifiers.md) — every identifier names what it represents; no prose comments.
-- [`no-default-noise.md`](no-default-noise.md) — never write a config key whose value equals the tool's documented default.
+- [`meaningful-identifiers.md`](rules/meaningful-identifiers.md) — every identifier names what it represents; no prose comments.
+- [`lean-config.md`](rules/lean-config.md) — never write a config key whose value equals the tool's documented default.

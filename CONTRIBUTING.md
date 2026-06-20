@@ -45,7 +45,7 @@ pnpm audit --audit-level high
 
 ## Adding a component (`@friday-sandbox/react`)
 
-A component is a symmetric folder under `packages/react/src/components/<tier>/<name>/` — mirror the `button` folder, which is the reference. The full skeleton, naming, export, and accessibility rules are the gates in the [React chapter](docs/react/): [`component-structure.md`](docs/react/component-structure.md), [`compose-and-dry.md`](docs/react/compose-and-dry.md), and [`accessibility-and-stories.md`](docs/react/accessibility-and-stories.md). In short:
+A component is a symmetric folder under `packages/react/src/components/<tier>/<name>/` — mirror the `button` folder, which is the reference. The full skeleton, naming, export, and accessibility rules are the gates in the [React chapter](docs/react/): [`component-structure.md`](docs/react/rules/component-structure.md), [`composition.md`](docs/react/rules/composition.md), and [`accessibility-and-stories.md`](docs/react/rules/accessibility-and-stories.md). In short:
 
 - Pick the tier: `bases` (interactive primitives), `layouts` (compositional primitives), or `samples` (Storybook-only demos, not exported).
 - Ship the four files — `index.ts`, `<name>.tsx`, `<name>.variants.ts`, `<name>.stories.tsx` — with a lowercase filename, a named export, and the `Props` type colocated.

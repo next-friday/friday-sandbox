@@ -8,4 +8,4 @@ paths:
 
 **Rule:** When a CSS variable is registered in `@theme inline`, use its canonical Tailwind utility (`bg-muted`, `text-foreground`, `rounded-action`) — never the arbitrary-var fallback `bg-(--muted)`. The `*-(--var)` form is reserved for component-local vars that have no alias.
 
-Canonical definition, read it before editing matching files: [`docs/styles/canonical-tailwind.md`](../../docs/styles/canonical-tailwind.md). This file is a Claude Code pointer that auto-loads the rule by path; the full text lives in `docs/`.
+Canonical definition, read it before editing matching files: [`docs/styles/rules/canonical-tailwind.md`](../../docs/styles/rules/canonical-tailwind.md). This file is a Claude Code pointer that auto-loads the rule by path; the full text lives in `docs/`.

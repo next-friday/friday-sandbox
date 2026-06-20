@@ -32,7 +32,7 @@ description: "Maps to .fri-button-danger. tailwind-variants computes calc(var(--
 description: "Use the danger color for destructive actions like delete.";
 ```
 
-Flag any of these in a description, prop `description`, or `parameters.docs.description.story`: internal class names (`fri-button-*`, `fri-flex-*`), library names (`tailwind-variants`, `react-aria`, `react-aria-components`), engine math (`calc(var(--size-action) * N)`), file paths, or QA notes ("Rendered in mobile viewport to verify …"). Those belong in [the Styles chapter](../styles/README.md) and [`CONTRIBUTING.md`](../../CONTRIBUTING.md).
+Flag any of these in a description, prop `description`, or `parameters.docs.description.story`: internal class names (`fri-button-*`, `fri-flex-*`), library names (`tailwind-variants`, `react-aria`, `react-aria-components`), engine math (`calc(var(--size-action) * N)`), file paths, or QA notes ("Rendered in mobile viewport to verify …"). Those belong in [the Styles chapter](../../styles/README.md) and [`CONTRIBUTING.md`](../../../CONTRIBUTING.md).
 
 ## How to apply
 

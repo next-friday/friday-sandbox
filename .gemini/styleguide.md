@@ -21,7 +21,7 @@ The `chore(release): version packages` PR is produced by `changesets/action`. It
 
 ## Components and hooks (`packages/react/src/**`)
 
-Enforce [`component-structure.md`](../docs/react/component-structure.md) and [`compose-and-dry.md`](../docs/react/compose-and-dry.md). Key checks:
+Enforce [`component-structure.md`](../docs/react/rules/component-structure.md) and [`composition.md`](../docs/react/rules/composition.md). Key checks:
 
 - Lowercase filename (`button.tsx`, not `Button.tsx`); a named export with the `Props` type colocated; no default export.
 - `"use client"` only when a client API is touched (`useState`, `useEffect`, refs, event handlers) — flag a missing directive on a client component and a needless one on a pure component.
@@ -31,7 +31,7 @@ Enforce [`component-structure.md`](../docs/react/component-structure.md) and [`c
 
 ## Accessibility, stories, and tests (`packages/react/src/**/*.{stories,test}.{ts,tsx}`)
 
-Enforce [`accessibility-and-stories.md`](../docs/react/accessibility-and-stories.md). Key checks:
+Enforce [`accessibility-and-stories.md`](../docs/react/rules/accessibility-and-stories.md). Key checks:
 
 - Keyboard reachable, focus visible, ARIA only where the DOM does not convey intent, motion respects `prefers-reduced-motion`; the story passes `addon-a11y`.
 - A new or changed behavior ships story coverage of `Default`, `Hovered`, `Focused`, `Disabled`, and every color variant including `danger`, using real props rather than mocked data.
@@ -40,7 +40,7 @@ Enforce [`accessibility-and-stories.md`](../docs/react/accessibility-and-stories
 
 ## Styles (`packages/styles/src/**`, Tailwind v4)
 
-Enforce [`canonical-tailwind.md`](../docs/styles/canonical-tailwind.md) and [`semantic-token-scope.md`](../docs/styles/semantic-token-scope.md). Key checks:
+Enforce [`canonical-tailwind.md`](../docs/styles/rules/canonical-tailwind.md) and [`semantic-token-scope.md`](../docs/styles/rules/semantic-token-scope.md). Key checks:
 
 - Respect the `@layer` system; flag inline `style` objects, hardcoded hex colors, and class strings that bypass tokens.
 - Canonical Tailwind alias for any var mapped in `@theme inline` (`bg-muted`, not `bg-(--muted)`); the `*-(--var)` form is only for component-local vars with no alias.

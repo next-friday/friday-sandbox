@@ -8,4 +8,4 @@ paths:
 
 **Rule:** Size and radius tokens are scoped to a semantic family (`action` / `field` / `box`), never to a literal component name.
 
-Canonical definition, read it before editing matching files: [`docs/styles/semantic-token-scope.md`](../../docs/styles/semantic-token-scope.md). This file is a Claude Code pointer that auto-loads the rule by path; the full text lives in `docs/`.
+Canonical definition, read it before editing matching files: [`docs/styles/rules/semantic-token-scope.md`](../../docs/styles/rules/semantic-token-scope.md). This file is a Claude Code pointer that auto-loads the rule by path; the full text lives in `docs/`.
