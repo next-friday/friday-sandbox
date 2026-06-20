@@ -95,18 +95,18 @@ That is it — you just added a fully accessible, fully styled button to your si
 
 ## See it in action
 
-Friday UI ships with a little playground called **Storybook** — a website that shows every piece in every state (normal, hovered, disabled, loading…) so you can play with it before adding it to your project. The playground is built from `packages/react` and published via [`vercel.json`](vercel.json).
+Friday UI ships with a little playground called **Storybook** — a website that shows every piece in every state (normal, hovered, disabled, loading…) so you can play with it before adding it to your project. The playground is built from `packages/react` and published via [`vercel.json`](https://github.com/next-friday/friday-sandbox/blob/main/vercel.json).
 
 ## Helping out
 
-You do not need to be an expert to help. Spotted a typo? Confused by an instruction? Have an idea for a new piece? We would love to hear it. Open an issue, start a discussion, or send a pull request — see [CONTRIBUTING.md](CONTRIBUTING.md) for a gentle walk-through.
+You do not need to be an expert to help. Spotted a typo? Confused by an instruction? Have an idea for a new piece? We would love to hear it. Open an issue, start a discussion, or send a pull request — see [CONTRIBUTING.md](https://github.com/next-friday/friday-sandbox/blob/main/CONTRIBUTING.md) for a gentle walk-through.
 
-Everyone here is expected to follow our [Code of Conduct](CODE_OF_CONDUCT.md) — be kind, be patient, be helpful.
+Everyone here is expected to follow our [Code of Conduct](https://github.com/next-friday/friday-sandbox/blob/main/CODE_OF_CONDUCT.md) — be kind, be patient, be helpful.
 
 ## Security
 
-If you think you have found a security problem, please report it privately through GitHub instead of opening a public issue. Details in [`.github/SECURITY.md`](.github/SECURITY.md).
+If you think you have found a security problem, please report it privately through GitHub instead of opening a public issue. Details in [`.github/SECURITY.md`](https://github.com/next-friday/friday-sandbox/blob/main/.github/SECURITY.md).
 
 ## License
 
-[Apache-2.0](LICENSE) — free to use, including for commercial projects.
+[Apache-2.0](https://github.com/next-friday/friday-sandbox/blob/main/LICENSE) — free to use, including for commercial projects.

@@ -52,10 +52,10 @@ Two or three bullets describing what changed and why.
 
 ## New or Changed Component (when touched)
 
-- [ ] Scaffolded with `pnpm --filter @friday-sandbox/react generate:component` so the file shape stays symmetric.
-- [ ] Component at `packages/react/src/<name>.tsx` (lowercase); client-only code starts with `"use client"`.
-- [ ] Exported via the package `exports` map (`./*` → `./src/*.tsx`) so consumers import from `@friday-sandbox/react/<name>`.
-- [ ] Story colocated under `packages/react/src/` (e.g. `stories/<Name>.stories.ts`) covering the main visual and interactive states.
+- [ ] Mirrored the `button` folder under `packages/react/src/components/<tier>/<name>/` so the file shape stays symmetric.
+- [ ] Lowercase filename, named export, `Props` colocated; `"use client"` only when a client API is touched.
+- [ ] Reachable through the `exports` map (`.` → `./src/index.ts`, `./*` → `./src/*/index.ts`).
+- [ ] Story (`<name>.stories.tsx`) covers `Default`, `Hovered`, `Focused`, `Disabled`, and every color variant including `danger`.
 - [ ] Accessible by default — semantic markup, keyboard reachable, ARIA only where DOM cannot convey intent.
 - [ ] Vitest browser tests (Storybook addon, Playwright chromium) pass for new behavior.
 
