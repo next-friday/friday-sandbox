@@ -3,7 +3,7 @@ import { tv, type VariantProps } from "tailwind-variants/lite";
 export const buttonVariants = tv({
   base: "fri-button",
   variants: {
-    variant: {
+    color: {
       primary: "fri-button-primary",
       secondary: "fri-button-secondary",
       accent: "fri-button-accent",
@@ -22,7 +22,7 @@ export const buttonVariants = tv({
     },
   },
   defaultVariants: {
-    variant: "primary",
+    color: "primary",
     size: "md",
   },
 });

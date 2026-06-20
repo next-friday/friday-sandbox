@@ -31,7 +31,7 @@ const meta = {
   },
   args: {
     children: "Button",
-    variant: "primary",
+    color: "primary",
     size: "md",
     isDisabled: false,
   },
@@ -41,7 +41,7 @@ const meta = {
       control: "text",
       table: { type: { summary: "ReactNode" } },
     },
-    variant: {
+    color: {
       description:
         "Semantic color. Match the button to the meaning of the action — `primary` for the main action, `danger` for destructive ones, and so on.",
       control: "select",
@@ -96,7 +96,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {};
 
-export const Variants: Story = {
+export const Colors: Story = {
   parameters: {
     docs: {
       description: {
@@ -107,35 +107,35 @@ export const Variants: Story = {
   },
   render: (storyArgs) => (
     <Flex wrap="wrap" align="center" gap="md">
-      <Button {...storyArgs} variant="primary">
+      <Button {...storyArgs} color="primary">
         Primary
       </Button>
 
-      <Button {...storyArgs} variant="secondary">
+      <Button {...storyArgs} color="secondary">
         Secondary
       </Button>
 
-      <Button {...storyArgs} variant="accent">
+      <Button {...storyArgs} color="accent">
         Accent
       </Button>
 
-      <Button {...storyArgs} variant="neutral">
+      <Button {...storyArgs} color="neutral">
         Neutral
       </Button>
 
-      <Button {...storyArgs} variant="info">
+      <Button {...storyArgs} color="info">
         Info
       </Button>
 
-      <Button {...storyArgs} variant="success">
+      <Button {...storyArgs} color="success">
         Success
       </Button>
 
-      <Button {...storyArgs} variant="warning">
+      <Button {...storyArgs} color="warning">
         Warning
       </Button>
 
-      <Button {...storyArgs} variant="danger">
+      <Button {...storyArgs} color="danger">
         Danger
       </Button>
     </Flex>
@@ -184,7 +184,7 @@ export const PlainHtml: Story = {
     docs: {
       description: {
         story:
-          "Use the button styles on any element by composing `fri-button` with a color class (`fri-button-primary`) and a size class (`fri-button-md`). Handy when wrapping a Next.js `<Link>` or any custom anchor.",
+          "Use the button styles on any element by composing `fri-button` with a color class (`fri-button-primary`) and a size class (`fri-button-md`). Handy for a plain `<a>`, a router's link component, or any custom anchor.",
       },
     },
   },
