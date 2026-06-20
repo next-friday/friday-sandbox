@@ -50,8 +50,9 @@ export const Button = (props: Readonly<ButtonProps>) => {
 
 - Lowercase kebab-case filenames (`button.tsx`, `scroll-area.tsx`), never PascalCase.
 - Named export only — no `default` export. The `Props` type is colocated, suffixed `Props`, and exported beside the component.
+- A component wrapping a headless primitive types its `Props` as `ComponentPropsWithRef<typeof Primitive>` (react-aria `AriaButton`, Radix `ScrollArea.Root`) intersected with its `*Variants` — it inherits the primitive's full surface (ref, ARIA, events, `data-*`) and never re-lists props by hand. A plain-element component uses `ComponentPropsWithRef<"div">`.
 - `"use client"` is the first line **only** when a client API is touched (state, effect, ref, event handler). No needless directive on a pure component.
 - Variants live in `<name>.variants.ts` (tailwind-variants), never a `.styles.ts`. Variant classes are `fri-<component>-<variant>`.
 - Reachability: the package `exports` map is `.` → `./src/index.ts` and `./*` → `./src/*/index.ts`. A file no `index.ts` re-exports is unreachable and does not ship — wire it or drop it.
-- Multi-part primitives split into sibling files (`grid.item.tsx`, `scroll-area.types.ts`, `scroll-area.namespace.ts`). `samples` ship a two-file skeleton (`index.ts` + `<name>.tsx`) — no variants, no stories.
+- A multi-part primitive keeps every part in the one `<name>.tsx`, sharing one `<name>.variants.ts` (Grid + GridItem; the ScrollArea parts) — only types and the namespace split into sibling files (`scroll-area.types.ts`, `scroll-area.namespace.ts`). `samples` ship a two-file skeleton (`index.ts` + `<name>.tsx`) — no variants, no stories.
 - New component: mirror the `button` folder so the shape stays symmetric.

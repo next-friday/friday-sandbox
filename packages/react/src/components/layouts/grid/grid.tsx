@@ -9,6 +9,7 @@ export interface GridProps extends ComponentPropsWithRef<"div">, GridVariants {
 
 export const Grid = (props: Readonly<GridProps>) => {
   const { className, cols, flow, gap, gapX, gapY, rows, ...rest } = props;
+
   const slots = gridVariants({ cols, rows, flow, gap, gapX, gapY });
   const gridClassName = slots.grid({ class: className });
 
@@ -22,6 +23,7 @@ export interface GridItemProps
 
 export const GridItem = (props: Readonly<GridItemProps>) => {
   const { className, colSpan, rowSpan, ...rest } = props;
+
   const slots = gridVariants({ colSpan, rowSpan });
   const itemClassName = slots.item({ class: className });
 
