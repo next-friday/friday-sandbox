@@ -1,7 +1,3 @@
-/* Scrollable container with overlay scrollbars. The DOM tree is provided
- * by an underlying scroll-area primitive that owns visibility state; this
- * stylesheet only paints. Thickness comes from --scroll-area-thickness,
- * swapped per size variant. */
 @layer components {
   .fri-scroll-area {
     @apply relative overflow-hidden;

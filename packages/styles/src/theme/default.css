@@ -1,9 +1,11 @@
-/* Design tokens — designer-facing.
- * Plain values only. No calc(), no color-mix(), no relative color syntax.
- * Component CSS owns its own derivation. */
-
 :root {
   color-scheme: light;
+
+  --background: oklch(100% 0 0);
+  --foreground: oklch(21% 0.006 285);
+
+  --muted: oklch(95% 0 0);
+  --muted-foreground: oklch(45% 0.006 285);
 
   --primary: oklch(0 0 0);
   --primary-foreground: oklch(100% 0 0);
@@ -29,11 +31,6 @@
   --danger: oklch(60% 0.19 21);
   --danger-foreground: oklch(100% 0 0);
 
-  --background: oklch(100% 0 0);
-  --foreground: oklch(21% 0.006 285);
-  --muted: oklch(95% 0 0);
-  --muted-foreground: oklch(45% 0.006 285);
-
   --size-action: 0.25rem;
   --radius-action: 0.5rem;
 
@@ -51,6 +48,7 @@
   color-scheme: dark;
   --background: oklch(18% 0.006 285);
   --foreground: oklch(100% 0 0);
+
   --muted: oklch(28% 0.006 285);
   --muted-foreground: oklch(70% 0.006 285);
 }

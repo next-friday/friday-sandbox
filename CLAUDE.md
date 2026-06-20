@@ -4,9 +4,7 @@ Guidance for Claude Code (claude.ai/code) when working in this repository.
 
 ## docs/ is the center
 
-[`docs/`](docs/) — starting at [`docs/README.md`](docs/README.md) — is the canonical source of truth for **every** reader: humans, LLMs, and tools. This file holds nothing canonical; it is the Claude Code operating layer that points into `docs/`. When a fact changes, change it in `docs/`, never here.
-
-`friday-sandbox` is a Turborepo + pnpm monorepo shipping the public `@friday-sandbox/*` packages: a React 19 UI library (`react`) on `react-aria-components` + `tailwind-variants` + Tailwind v4, its design-token CSS (`styles`), and shared `eslint-config` / `typescript-config` presets.
+[`docs/`](docs/) — starting at [`docs/README.md`](docs/README.md) — is the canonical source of truth for **every** reader: humans, LLMs, and tools. This file holds nothing canonical; it is the Claude Code operating layer that points into `docs/`. When a fact changes, change it in `docs/`, never here. The repository overview — what `friday-sandbox` ships and the stack behind it — lives at [`docs/README.md`](docs/README.md).
 
 ## Where things live
 

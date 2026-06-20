@@ -1,6 +1,3 @@
-/* Grid layout primitive. Mirrors flex.css: every variant value owns a
- * real, addressable class so consumers can compose at the raw-CSS layer.
- * Base class is neutral (display: grid only); every other axis is opt-in. */
 @layer components {
   .fri-grid {
     @apply grid;

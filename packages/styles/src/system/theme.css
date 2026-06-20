@@ -1,12 +1,8 @@
-/* @theme inline maps Tailwind utility namespaces (bg-primary, text-foreground,
- * bg-(--primary), …) to our CSS vars without baking a snapshot — so theme
- * switching at runtime works. Source of truth lives in src/theme/default.css (plus any preset siblings). */
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
-
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
   --color-secondary: var(--secondary);
@@ -23,9 +19,7 @@
   --color-warning-foreground: var(--warning-foreground);
   --color-danger: var(--danger);
   --color-danger-foreground: var(--danger-foreground);
-
   --border: var(--border);
-
   --radius-action: var(--radius-action);
   --radius-field: var(--radius-field);
   --radius-box: var(--radius-box);

@@ -34,7 +34,7 @@ This pulls in:
 - Tailwind CSS base styles
 - Design tokens (default theme, light + dark)
 - Tailwind theme registration (`@theme inline`)
-- Rhythm and status utilities (`action-rhythm`, `status-focused`, `status-disabled`)
+- Rhythm and status utilities (`action-rhythm`, `status-disabled`)
 - Component styles (button, flex, grid, scroll-area)
 
 ### Plain HTML / no build step
@@ -57,7 +57,7 @@ This pulls in:
     │   └── default.css    # Default theme variables (light + dark)
     ├── system/            # Tailwind v4 glue
     │   ├── index.css      # System entry point
-    │   ├── utilities.css  # @utility action-rhythm, status-focused, status-disabled
+    │   ├── utilities.css  # @utility action-rhythm, status-disabled
     │   └── theme.css      # @theme inline mappings
     └── components/        # Component classes
         ├── index.css

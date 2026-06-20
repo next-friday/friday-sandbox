@@ -56,15 +56,19 @@ Foreground is **not** computed. Each intent ships a partner token authored for A
 
 ### Hover and pressed
 
-Derived inline with `color-mix()`, blending the intent with the page `--background`. Because `--background` flips per theme, the one recipe deepens the hover in light mode and lightens it in dark mode. Pressed reuses the hover value:
+Derived inline with `color-mix()`, blending the background toward its paired **foreground** — the AA-contrast partner. Blending toward a guaranteed-contrasting colour gives a perceptible, correct-direction shift for any palette a consumer themes: a near-page-colour intent no longer washes out, and the direction never flips per theme (a dark intent lightens, a light intent darkens). Pressed blends further than hover, so a press has its own feedback:
 
 ```css
 --button-background-hover: color-mix(
   in oklab,
-  var(--button-background) 88%,
-  var(--background) 12%
+  var(--button-background),
+  var(--button-foreground) 10%
 );
---button-background-pressed: var(--button-background-hover);
+--button-background-pressed: color-mix(
+  in oklab,
+  var(--button-background),
+  var(--button-foreground) 18%
+);
 ```
 
 ### All together (Button)
@@ -78,10 +82,14 @@ Derived inline with `color-mix()`, blending the intent with the page `--backgrou
   --button-foreground: var(--primary-foreground);
   --button-background-hover: color-mix(
     in oklab,
-    var(--button-background) 88%,
-    var(--background) 12%
+    var(--button-background),
+    var(--button-foreground) 10%
   );
-  --button-background-pressed: var(--button-background-hover);
+  --button-background-pressed: color-mix(
+    in oklab,
+    var(--button-background),
+    var(--button-foreground) 18%
+  );
 }
 
 .fri-button-danger {

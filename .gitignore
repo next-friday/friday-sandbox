@@ -52,3 +52,4 @@ __screenshots__
 .claude/hooks/
 .claude/settings.json
 .claude/settings.local.json
+.mcp.json
