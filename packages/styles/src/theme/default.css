@@ -26,7 +26,7 @@
   --success-foreground: oklch(100% 0 0);
 
   --warning: oklch(77% 0.15 62);
-  --warning-foreground: oklch(21% 0.006 285);
+  --warning-foreground: oklch(100% 0 0);
 
   --danger: oklch(60% 0.19 21);
   --danger-foreground: oklch(100% 0 0);
