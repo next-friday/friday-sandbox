@@ -222,6 +222,22 @@ Override `--size-{scope}` and every size (`xs` → `xl`) for that scope rescales
 
 `--radius-{scope}` is the reference at `md`. Smaller sizes get proportionally smaller corners, larger sizes get larger ones, so a pill never collapses to a square at `xs` or stretches at `xl`.
 
+### Component-Local Tokens
+
+A few tokens are scoped to a component rather than the global theme — override them **on the element**, not at `:root` (where the component's own class declaration would mask them).
+
+`--grid-min` sets the minimum track width of a responsive grid (`fri-grid-cols-auto-fit` / `fri-grid-cols-auto-fill`). It defaults to `16rem` on `.fri-grid`; retune it per instance with an inline style or a selector that targets the grid:
+
+```html
+<div class="fri-grid fri-grid-cols-auto-fit" style="--grid-min: 20rem">…</div>
+```
+
+```css
+.product-grid.fri-grid {
+  --grid-min: 20rem;
+}
+```
+
 ### Tailwind Utility Aliases
 
 Every theme variable is registered with `@theme inline`, so Tailwind v4 emits a canonical utility class for it. Use the alias instead of the arbitrary-var fallback:
