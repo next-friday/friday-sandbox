@@ -1,6 +1,7 @@
-import { type ComponentPropsWithRef } from "react";
+import type { ComponentPropsWithRef } from "react";
 
-import { gridItemVariants, type GridItemVariants } from "./grid.item.variants";
+import { gridItemVariants } from "./grid.item.variants";
+import type { GridItemVariants } from "./grid.item.variants";
 
 export interface GridItemProps
   extends ComponentPropsWithRef<"div">, GridItemVariants {

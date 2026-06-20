@@ -1,6 +1,7 @@
-import { type ComponentPropsWithRef } from "react";
+import type { ComponentPropsWithRef } from "react";
 
-import { gridVariants, type GridVariants } from "./grid.variants";
+import { gridVariants } from "./grid.variants";
+import type { GridVariants } from "./grid.variants";
 
 export interface GridProps extends ComponentPropsWithRef<"div">, GridVariants {
   className?: string;
