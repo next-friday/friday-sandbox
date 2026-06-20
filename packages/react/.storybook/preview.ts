@@ -1,7 +1,7 @@
 import "@friday-sandbox/styles";
 
 import { MINIMAL_VIEWPORTS } from "storybook/viewport";
-import type { Decorator, Preview } from "@storybook/react-vite";
+import { type Decorator, type Preview } from "@storybook/react-vite";
 
 const withTheme: Decorator = (Story, context) => {
   const theme = (context.globals.theme as string) ?? "light";

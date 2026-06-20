@@ -1,16 +1,14 @@
 "use client";
 
-import { type ComponentPropsWithRef } from "react";
 import { Button as AriaButton } from "react-aria-components";
+import { type ComponentPropsWithRef } from "react";
 
 import { composeTailwindRenderProps } from "../../../utils/compose-tailwind-render-props";
 
-import { buttonVariants, type ButtonVariants } from "./button.styles";
+import { buttonVariants, type ButtonVariants } from "./button.variants";
 
 export interface ButtonProps
-  extends
-    Omit<ComponentPropsWithRef<typeof AriaButton>, "isPending" | "autoFocus">,
-    ButtonVariants {
+  extends ComponentPropsWithRef<typeof AriaButton>, ButtonVariants {
   className?: string;
 }
 

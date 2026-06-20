@@ -64,18 +64,18 @@ Dependency graph is enforced by `.dependency-cruiser.cjs` — `no-circular` is t
 
 ## Component conventions (`@friday-sandbox/react`)
 
-Components live under `packages/react/src/components/<tier>/<name>/`, where `<tier>` is the category: `bases` (interactive primitives, e.g. button), `layouts` (compositional primitives — flex, grid, scroll-area), and `samples` (Storybook-only demo components — box, long-list, wide-row — used by stories; **not re-exported from `@friday-sandbox/react` public surface**). The conventions below are the `bases` reference; `layouts` follow the same four-file skeleton but split multi-part primitives into sibling files (`grid.item.tsx`, `scroll-area.types.ts`, `scroll-area.namespace.ts`) and skip the interactive-state stories — they render no interactive state. `samples` ship a two-file skeleton (`index.ts` + `<name>.tsx`) — no `.styles.ts` (no variants) and no `.stories.tsx` (they ARE story content). Each `bases` component folder ships four files with the same skeleton:
+Components live under `packages/react/src/components/<tier>/<name>/`, where `<tier>` is the category: `bases` (interactive primitives, e.g. button), `layouts` (compositional primitives — flex, grid, scroll-area), and `samples` (Storybook-only demo components — box, long-list, wide-row — used by stories; **not re-exported from `@friday-sandbox/react` public surface**). The conventions below are the `bases` reference; `layouts` follow the same four-file skeleton but split multi-part primitives into sibling files (`grid.item.tsx`, `scroll-area.types.ts`, `scroll-area.namespace.ts`) and skip the interactive-state stories — they render no interactive state. `samples` ship a two-file skeleton (`index.ts` + `<name>.tsx`) — no `.variants.ts` (no variants) and no `.stories.tsx` (they ARE story content). Each `bases` component folder ships four files with the same skeleton:
 
 ```text
 packages/react/src/components/bases/<name>/
-  index.ts            # re-exports component + types from <name>.tsx
-  <name>.tsx          # component, "use client" only when needed, Props type colocated
-  <name>.styles.ts    # tailwind-variants definition + ButtonVariants-style types
-  <name>.stories.tsx  # Storybook story (Base/<Name>) covering required states
+  index.ts             # re-exports component + types from <name>.tsx
+  <name>.tsx           # component, "use client" only when needed, Props type colocated
+  <name>.variants.ts   # tailwind-variants definition + ButtonVariants-style types
+  <name>.stories.tsx   # Storybook story (Base/<Name>) covering required states
 ```
 
 - Compose `react-aria-components` for focus, selection, and keyboard behavior — do not re-implement.
-- Style with Tailwind v4 utilities + `@friday-sandbox/styles` tokens/layers via `tailwind-variants`. No inline `style`, no hardcoded hex, no class strings that bypass tokens. Variant classes follow `fri-<component>-<variant>` (see `button.styles.ts`).
+- Style with Tailwind v4 utilities + `@friday-sandbox/styles` tokens/layers via `tailwind-variants`. No inline `style`, no hardcoded hex, no class strings that bypass tokens. Variant classes follow `fri-<component>-<variant>` (see `button.variants.ts`).
 - The Storybook story **must** cover: `Default`, `Hovered` (use `play` with `userEvent.hover` from `storybook/test`), `Focused` (use `play` with `element.focus()`), `Disabled`, every color variant including `danger`. The Button story is the reference layout.
 - Scaffold with `pnpm --filter @friday-sandbox/react generate:component` so the file shape stays symmetric across components.
 - Forward all react-aria props; never re-declare them locally. `Props` extends the upstream `*Props` from `react-aria-components`.
@@ -178,4 +178,4 @@ While iterating, **let the hooks do the work** — do not run the whole-repo gat
 
 Whole-repo `pnpm exec turbo check-types lint`, `pnpm lint`, `pnpm typecheck`, `pnpm build`, etc. are reserved for the pre-push hook and CI. Running them by hand mid-task burns minutes per call and duplicates work the hooks already do.
 
-Knip is configured per workspace in `knip.json` — every rule is `error`. The react workspace treats `src/**/*.{ts,tsx}` as entry; styles treats `src/**/*.styles.ts` as entry. New files outside those globs need an explicit entry update or they will be reported as unused.
+Knip uses defaults except for two real-fixes in `knip.config.ts`: (1) a `css` compiler that rewrites `@import "..."` into virtual `import` statements so the CSS-only `packages/styles` workspace is walked correctly, and (2) `ignoreDependencies: ["eslint-import-resolver-typescript"]` on `packages/eslint-config` because the resolver is referenced by string in the eslint flat config and is invisible to static analysis. Entries are auto-detected from each workspace `package.json` (`exports`, `main`, `bin`, scripts). No rules are overridden.

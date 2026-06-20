@@ -96,7 +96,7 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
       - name: Install Playwright browsers
-        run: pnpm exec playwright install --with-deps chromium
+        run: pnpm --filter @friday-sandbox/react exec playwright install --with-deps chromium
       - run: pnpm test
 
   build:

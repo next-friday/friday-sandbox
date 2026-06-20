@@ -1,6 +1,6 @@
 import { type ComponentPropsWithRef } from "react";
 
-import { flexVariants, type FlexVariants } from "./flex.styles";
+import { flexVariants, type FlexVariants } from "./flex.variants";
 
 export interface FlexProps extends ComponentPropsWithRef<"div">, FlexVariants {
   className?: string;

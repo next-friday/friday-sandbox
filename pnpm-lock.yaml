@@ -224,6 +224,10 @@ importers:
         version: 4.1.9(@types/node@22.15.3)(@vitest/browser-playwright@4.1.9)(@vitest/coverage-v8@4.1.9)(vite@7.3.5(@types/node@22.15.3)(jiti@2.7.0)(lightningcss@1.32.0)(yaml@2.9.0))
 
   packages/styles:
+    dependencies:
+      tailwindcss:
+        specifier: ^4.0.0
+        version: 4.3.1
     devDependencies:
       '@tailwindcss/cli':
         specifier: ^4.3.1
@@ -231,9 +235,6 @@ importers:
       clean-package:
         specifier: ^2.2.0
         version: 2.2.0
-      tailwindcss:
-        specifier: ^4.3.1
-        version: 4.3.1
 
   packages/typescript-config: {}
 

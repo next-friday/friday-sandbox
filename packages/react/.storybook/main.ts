@@ -4,7 +4,7 @@ import { fileURLToPath } from "node:url";
 import tailwindcss from "@tailwindcss/vite";
 import { mergeConfig } from "vite";
 
-import type { StorybookConfig } from "@storybook/react-vite";
+import { type StorybookConfig } from "@storybook/react-vite";
 
 /**
  * Resolve the absolute path of a package — needed for Yarn PnP or monorepo setups.

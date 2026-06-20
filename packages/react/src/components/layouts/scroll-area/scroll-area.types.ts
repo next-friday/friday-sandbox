@@ -1,9 +1,9 @@
 import { ScrollArea as RadixScrollArea } from "radix-ui";
 import { type ComponentPropsWithRef } from "react";
 
-import { type ScrollAreaVariants } from "./scroll-area.styles";
+import { type ScrollAreaVariants } from "./scroll-area.variants";
 
-export type RadixScrollAreaRootProps = ComponentPropsWithRef<
+type RadixScrollAreaRootProps = ComponentPropsWithRef<
   typeof RadixScrollArea.Root
 >;
 
