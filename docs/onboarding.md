@@ -39,28 +39,32 @@ Internalize that one idea and the rest of the codebase reads cleanly. The full e
 
 | I want to…                          | Start at                                                                                              |
 | ----------------------------------- | ----------------------------------------------------------------------------------------------------- |
-| Add or change a component           | [`../CLAUDE.md`](../CLAUDE.md) → _Component conventions_; scaffold with `generate:component`          |
+| Add or change a component           | [`component-structure.md`](../.claude/rules/component-structure.md); mirror the `button` folder       |
 | Understand the CSS engine           | [`ARCHITECTURE.md`](ARCHITECTURE.md)                                                                  |
 | Look up a derivation formula        | [`formulas.md`](formulas.md)                                                                          |
 | Change or add a design token        | `packages/styles/src/theme/default.css` (plain values only) + [`ARCHITECTURE.md`](ARCHITECTURE.md) §1 |
 | Add an ESLint or tsconfig preset    | [`../CONTRIBUTING.md`](../CONTRIBUTING.md) → _Adding a preset_                                        |
 | Ship a change (issue → branch → PR) | [`../CONTRIBUTING.md`](../CONTRIBUTING.md) → _Workflow_                                               |
-| Run or scope the quality gates      | [`../CLAUDE.md`](../CLAUDE.md) → _Quality gates_                                                      |
+| Run or scope the quality gates      | [`../CONTRIBUTING.md`](../CONTRIBUTING.md) → _Quality gates_                                          |
 
 ## Conventions that are gates, not suggestions
 
 The path-scoped rules in [`../.claude/rules/`](../.claude/rules/) load automatically when a matching file enters context. They are enforced, not advisory:
 
-- [`meaningful-identifiers.md`](../.claude/rules/meaningful-identifiers.md) — every identifier names what it represents; no one- or two-letter shorthands.
-- [`no-ghosts.md`](../.claude/rules/no-ghosts.md) — every named variant/size/color/state is a real, addressable class. No defaults hidden in a base rule.
+- [`component-structure.md`](../.claude/rules/component-structure.md) — the symmetric component folder skeleton, lowercase filenames, named export, `*.variants.ts`, exports-map reachability.
+- [`compose-and-dry.md`](../.claude/rules/compose-and-dry.md) — compose `react-aria-components` and the `layouts` primitives; extract shared logic into a hook.
+- [`accessibility-and-stories.md`](../.claude/rules/accessibility-and-stories.md) — keyboard/focus/ARIA, `addon-a11y`, required story states, consumer-facing story copy.
+- [`semantic-token-scope.md`](../.claude/rules/semantic-token-scope.md) — size/radius tokens scoped to `action`/`field`/`box`, never a literal component name.
 - [`canonical-tailwind.md`](../.claude/rules/canonical-tailwind.md) — mapped theme tokens use their Tailwind alias (`bg-muted`), not the `bg-(--var)` fallback.
+- [`no-ghosts.md`](../.claude/rules/no-ghosts.md) — every named variant/size/state is a real, addressable class. No defaults hidden in a base rule.
+- [`meaningful-identifiers.md`](../.claude/rules/meaningful-identifiers.md) — every identifier names what it represents; no prose comments.
 - [`no-default-noise.md`](../.claude/rules/no-default-noise.md) — never write a config key whose value equals the tool's default.
 
-Cross-cutting principles the reviewers and CI expect: DRY and symmetric (one skeleton per file kind), semantic token scope (`action`/`field`/`box`, never a literal component scope), and **self-contained artifacts** — issues, PRs, and docs never cite another design system or repository as precedent; apply the convention silently and state the requirement directly.
+Two cross-cutting principles the reviewers and CI also expect, beyond the rule files: **DRY and symmetric** (one skeleton per file kind, shared logic extracted once), and **self-contained artifacts** — issues, PRs, and docs never cite another design system or repository as precedent; apply the convention silently and state the requirement directly.
 
 ## For AI agents specifically
 
-- Read [`../CLAUDE.md`](../CLAUDE.md) top to bottom first. It is the operating manual: commands, architecture, conventions, workflow, and gates.
+- Read [`../CLAUDE.md`](../CLAUDE.md) top to bottom first. It is the operating manual: orientation, the command catalog, the single-source-of-truth map, the rule gates, and the operating rules.
 - Let the hooks do the formatting. `PostToolUse` runs `prettier --write` and `eslint --fix` on the file you just edited; `pre-commit` and `pre-push` run the gates. Do **not** run whole-repo `lint`/`typecheck`/`build`/`test` by hand — CI and the hooks own that, and each manual run burns minutes.
 - Sources live under `src/`; the public surface is the `package.json#exports` map. Change one, keep the other in sync — a published consumer reads `dist/`, a workspace consumer reads `src/`.
 - One change ships as one issue → one branch → one PR. Behavior changes (`feat`, `fix`, `perf`, `refactor`) need a changeset (`pnpm changeset`), and the branch name must start with the issue number.
