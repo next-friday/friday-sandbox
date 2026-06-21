@@ -40,7 +40,7 @@ const meta = {
   argTypes: {
     direction: {
       description:
-        "Flow direction. `row` lays children left-to-right; `column` stacks them top-to-bottom.",
+        "Use the `direction` prop to change the flow direction of the children.",
       control: "radio",
       options: ["row", "column", "row-reverse", "column-reverse"],
       table: {
@@ -50,7 +50,7 @@ const meta = {
     },
     align: {
       description:
-        "How children line up across the layout — top, center, bottom (or left/center/right when direction is `column`).",
+        "Use the `align` prop to align the children on the cross axis.",
       control: "select",
       options: ["start", "center", "end", "stretch", "baseline"],
       table: {
@@ -60,7 +60,7 @@ const meta = {
     },
     justify: {
       description:
-        "How children spread out along the flow. `between` pushes them to the edges with equal space in the middle.",
+        "Use the `justify` prop to distribute the children along the main axis.",
       control: "select",
       options: ["start", "center", "end", "between", "around", "evenly"],
       table: {
@@ -70,7 +70,7 @@ const meta = {
     },
     wrap: {
       description:
-        "Whether children wrap to a new line when they run out of room.",
+        "Use the `wrap` prop to control whether the children wrap onto multiple lines.",
       control: "select",
       options: ["nowrap", "wrap", "wrap-reverse"],
       table: {
@@ -79,28 +79,26 @@ const meta = {
       },
     },
     gap: {
-      description:
-        "Space between children. Five-step scale from `xs` (tight) to `xl` (roomy).",
+      description: "Use the `gap` prop to change the space between children.",
       control: "radio",
       options: ["xs", "sm", "md", "lg", "xl"],
       table: { type: { summary: "xs | sm | md | lg | xl" } },
     },
     gapX: {
-      description:
-        "Horizontal gap only. Use this to override `gap` on one axis.",
+      description: "Use the `gapX` prop to set the horizontal gap only.",
       control: "radio",
       options: ["xs", "sm", "md", "lg", "xl"],
       table: { type: { summary: "xs | sm | md | lg | xl" } },
     },
     gapY: {
-      description: "Vertical gap only. Use this to override `gap` on one axis.",
+      description: "Use the `gapY` prop to set the vertical gap only.",
       control: "radio",
       options: ["xs", "sm", "md", "lg", "xl"],
       table: { type: { summary: "xs | sm | md | lg | xl" } },
     },
     inline: {
       description:
-        "Render as an inline-level flex container (`inline-flex`) instead of block-level.",
+        "Use the `inline` prop to render an inline-level flex container.",
       control: "boolean",
       table: {
         type: { summary: "boolean" },
@@ -109,26 +107,26 @@ const meta = {
     },
     grow: {
       description:
-        "Flex-grow of the Flex root itself — set when a Flex is also a flex item inside a parent Flex. `true` fills the remaining space, `false` holds its base size.",
+        "Use the `grow` prop to let the container grow when it is itself a flex item.",
       control: "boolean",
       table: { type: { summary: "boolean" } },
     },
     shrink: {
       description:
-        "Flex-shrink of the Flex root itself. `false` stops it from shrinking below its content.",
+        "Use the `shrink` prop to control whether the container shrinks when it is itself a flex item.",
       control: "boolean",
       table: { type: { summary: "boolean" } },
     },
     basis: {
       description:
-        "Flex-basis of the Flex root itself — its starting main size before grow and shrink apply.",
+        "Use the `basis` prop to set the container's base size before growing or shrinking.",
       control: "radio",
       options: ["auto", "full", 0],
       table: { type: { summary: "auto | full | 0" } },
     },
     as: {
       description:
-        "Render the Flex as a different element (`section`, `nav`, `ul`, …) instead of the default `<div>`, keeping semantic markup.",
+        "Use the `as` prop to render the container as a different element.",
       control: "select",
       options: ["div", "section", "nav", "ul", "article"],
       table: {
@@ -137,7 +135,7 @@ const meta = {
       },
     },
     className: {
-      description: "Extra Tailwind classes appended after the variant classes.",
+      description: "Additional CSS classes to apply to the container.",
       control: "text",
     },
   },
@@ -214,7 +212,7 @@ export const Grow: Story = {
     docs: {
       description: {
         story:
-          "`grow`, `shrink`, and `basis` apply to the Flex root itself, useful when a Flex is also a flex item inside a parent Flex. Here the first item grows to fill the remaining space.",
+          "Use the `grow`, `shrink`, and `basis` props to size the container when it is itself a flex item inside a parent Flex.",
       },
     },
   },
@@ -234,7 +232,7 @@ export const Basis: Story = {
     docs: {
       description: {
         story:
-          "`basis={0}` with `grow` on each item gives equal-width columns regardless of content.",
+          "Use `basis={0}` with `grow` for equal-width columns regardless of content.",
       },
     },
   },
@@ -257,7 +255,7 @@ export const As: Story = {
     docs: {
       description: {
         story:
-          "`as` renders the Flex as a different element — here a semantic `<nav>` — instead of a generic `<div>`. The variant classes and props land on the chosen tag.",
+          "Use the `as` prop to render the container as a different element while keeping its layout props.",
       },
     },
   },

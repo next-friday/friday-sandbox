@@ -36,6 +36,6 @@ return (
 ## How to apply
 
 - Focus, selection, and keyboard behavior come from `react-aria-components`. Do not re-implement what a primitive already handles; flag hand-rolled keyboard logic when an aria primitive exists.
-- Shared logic — focus management, ARIA wiring, controlled-vs-uncontrolled state, event coalescing — belongs in a reusable hook under `packages/react/src/`. Two components solving the same problem is the signal to extract.
+- Shared logic belongs in a reusable hook under `packages/react/src/`: focus management, ARIA wiring, controlled-vs-uncontrolled state, event coalescing. Two components solving the same problem is the signal to extract.
 - For rows, columns, grids, and scrollable regions, compose `Flex`, `Grid`, `GridItem`, `ScrollArea` instead of raw `<div className="flex …">` / `<div className="grid …">`.
 - This is the DRY rule applied across components, not just within one: a re-implementation in a second component is a finding, not a style preference.

@@ -1,6 +1,6 @@
 # Canonical Tailwind Classes
 
-**Rule:** When a CSS variable is registered in `@theme inline` (see `packages/styles/src/system/theme.css`), use its **canonical Tailwind utility** — never the arbitrary-var fallback. `text-foreground`, not `text-(--foreground)`. `bg-muted`, not `bg-(--muted)`. `border-primary`, not `border-(--primary)`.
+**Rule:** When a CSS variable is registered in `@theme inline`, defined in `packages/styles/src/system/theme.css`, use its **canonical Tailwind utility**, never the arbitrary-var fallback. Write `text-foreground`, not `text-(--foreground)`. Write `bg-muted`, not `bg-(--muted)`. Write `border-primary`, not `border-(--primary)`.
 
 The arbitrary-var syntax `text-(--var)` is the v3-era escape hatch. In v4 with `@theme inline`, every theme token has a real Tailwind alias. Using the escape hatch on a token that has an alias is **old Tailwind**: noisier, harder to grep, and trips `suggestCanonicalClasses`.
 
@@ -27,7 +27,7 @@ Only when the variable is **component-local** and has no Tailwind alias. Example
 ## How to apply
 
 - Open `packages/styles/src/system/theme.css`. Every `--color-*`, `--radius-*`, `--border` listed there has a canonical Tailwind alias.
-- Theme color tokens (`--background`, `--foreground`, `--muted`, `--primary`, `--primary-foreground`, `--secondary`, `--secondary-foreground`, `--accent`, `--accent-foreground`, `--neutral`, `--info`, `--info-foreground`, `--success`, `--success-foreground`, `--warning`, `--warning-foreground`, `--danger`, `--danger-foreground`) → use `bg-<name>` / `text-<name>` / `border-<name>` / `ring-<name>` / `fill-<name>` / `stroke-<name>` / `from-<name>` / `to-<name>` / `via-<name>` / `divide-<name>` / `outline-<name>` / `decoration-<name>` / `accent-<name>` / `caret-<name>` / `placeholder-<name>` / `shadow-<name>`.
-- Radius tokens (`--radius-action`, `--radius-field`, `--radius-box`) → `rounded-action` / `rounded-field` / `rounded-box`.
-- Component-local vars (anything not registered in `@theme inline`) → keep arbitrary-var syntax `bg-(--var)`.
+- Theme color tokens, namely `--background`, `--foreground`, `--muted`, `--primary`, `--primary-foreground`, `--secondary`, `--secondary-foreground`, `--accent`, `--accent-foreground`, `--neutral`, `--info`, `--info-foreground`, `--success`, `--success-foreground`, `--warning`, `--warning-foreground`, `--danger`, and `--danger-foreground` → use `bg-<name>` / `text-<name>` / `border-<name>` / `ring-<name>` / `fill-<name>` / `stroke-<name>` / `from-<name>` / `to-<name>` / `via-<name>` / `divide-<name>` / `outline-<name>` / `decoration-<name>` / `accent-<name>` / `caret-<name>` / `placeholder-<name>` / `shadow-<name>`.
+- Radius tokens, namely `--radius-action`, `--radius-field`, and `--radius-box` → `rounded-action` / `rounded-field` / `rounded-box`.
+- Component-local vars, meaning anything not registered in `@theme inline` → keep arbitrary-var syntax `bg-(--var)`.
 - Before writing `*-(--var)`, grep `packages/styles/src/system/theme.css` for the var. If it's mapped, switch to canonical. If not, arbitrary-var is correct.

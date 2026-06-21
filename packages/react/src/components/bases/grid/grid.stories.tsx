@@ -42,24 +42,22 @@ const meta = {
   argTypes: {
     cols: {
       description:
-        "Column count 1 through 12, or `auto-fit` / `auto-fill` for a responsive grid whose track width comes from the `--grid-min` token.",
+        "Use the `cols` prop to set the number of columns, or a responsive track with `auto-fit` / `auto-fill`.",
       control: "select",
       options: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, "auto-fit", "auto-fill"],
       table: {
-        type: { summary: "1 … 12 | auto-fit | auto-fill" },
+        type: { summary: "1 to 12 | auto-fit | auto-fill" },
         defaultValue: { summary: "1" },
       },
     },
     rows: {
-      description:
-        "Fixed row count, 1 through 6. Leave empty to let the grid grow automatically.",
+      description: "Use the `rows` prop to set a fixed number of rows.",
       control: { type: "number", min: 1, max: 6 },
       options: [1, 2, 3, 4, 5, 6],
       table: { type: { summary: "1 | 2 | 3 | 4 | 5 | 6" } },
     },
     flow: {
-      description:
-        "How extra items fill the grid. `row` fills left-to-right; `col` fills top-to-bottom; `dense` variants backfill earlier gaps.",
+      description: "Use the `flow` prop to control how items fill the grid.",
       control: "select",
       options: ["row", "col", "row-dense", "col-dense"],
       table: {
@@ -68,28 +66,25 @@ const meta = {
       },
     },
     gap: {
-      description:
-        "Space between cells. Five-step scale from `xs` (tight) to `xl` (roomy).",
+      description: "Use the `gap` prop to change the space between cells.",
       control: "radio",
       options: ["xs", "sm", "md", "lg", "xl"],
       table: { type: { summary: "xs | sm | md | lg | xl" } },
     },
     gapX: {
-      description:
-        "Horizontal gap only. Use this to override `gap` on one axis.",
+      description: "Use the `gapX` prop to set the horizontal gap only.",
       control: "radio",
       options: ["xs", "sm", "md", "lg", "xl"],
       table: { type: { summary: "xs | sm | md | lg | xl" } },
     },
     gapY: {
-      description: "Vertical gap only. Use this to override `gap` on one axis.",
+      description: "Use the `gapY` prop to set the vertical gap only.",
       control: "radio",
       options: ["xs", "sm", "md", "lg", "xl"],
       table: { type: { summary: "xs | sm | md | lg | xl" } },
     },
     inline: {
-      description:
-        "Render as an inline-level grid (`inline-grid`) instead of block-level.",
+      description: "Use the `inline` prop to render an inline-level grid.",
       control: "boolean",
       table: {
         type: { summary: "boolean" },
@@ -97,21 +92,21 @@ const meta = {
       },
     },
     autoRows: {
-      description:
-        "Size of implicitly-created rows. `fr` makes them share leftover space evenly.",
+      description: "Use the `autoRows` prop to size implicitly-created rows.",
       control: "select",
       options: ["auto", "min", "max", "fr"],
       table: { type: { summary: "auto | min | max | fr" } },
     },
     autoCols: {
-      description: "Size of implicitly-created columns.",
+      description:
+        "Use the `autoCols` prop to size implicitly-created columns.",
       control: "select",
       options: ["auto", "min", "max", "fr"],
       table: { type: { summary: "auto | min | max | fr" } },
     },
     as: {
       description:
-        "Render the Grid as a different element (`section`, `ul`, …) instead of the default `<div>`, keeping semantic markup.",
+        "Use the `as` prop to render the grid as a different element.",
       control: "select",
       options: ["div", "section", "ul", "main", "article"],
       table: {
@@ -120,7 +115,7 @@ const meta = {
       },
     },
     className: {
-      description: "Extra Tailwind classes appended after the variant classes.",
+      description: "Additional CSS classes to apply to the grid.",
       control: "text",
     },
   },
@@ -216,7 +211,7 @@ export const Placement: Story = {
     docs: {
       description: {
         story:
-          '`colStart`/`colEnd` and `rowStart`/`rowEnd` place an item on explicit grid lines instead of spanning. `colSpan="full"` stretches across every column.',
+          'Use `colStart` / `colEnd` and `rowStart` / `rowEnd` to place an item on explicit grid lines, or `colSpan="full"` to span every column.',
       },
     },
   },
@@ -242,8 +237,7 @@ export const As: Story = {
   parameters: {
     docs: {
       description: {
-        story:
-          "`as` renders the Grid as a different element — here a semantic `<section>` — instead of a generic `<div>`.",
+        story: "Use the `as` prop to render the grid as a different element.",
       },
     },
   },
@@ -260,7 +254,7 @@ export const AsList: Story = {
     docs: {
       description: {
         story:
-          "`as` is polymorphic on every part: render the Grid as a `<ul>` and each GridItem as a `<li>` for a semantic list that still lays out on the grid.",
+          "The `as` prop is polymorphic on every part: render the grid as a `<ul>` and each item as a `<li>`.",
       },
     },
   },

@@ -4,9 +4,9 @@ How `friday-sandbox` is structured, built, gated, and shipped, plus the code sty
 
 ## Workspaces
 
-Turborepo + pnpm workspaces (`pnpm-workspace.yaml` → `packages/*`). Four `@friday-sandbox/*` packages — `react`, `styles`, `eslint-config`, `typescript-config` — listed in [the table of contents](../README.md#table-of-contents). Every workspace keeps its sources under `src/` and exposes its public surface through `package.json#exports`; the folder shape is symmetric across all four.
+Turborepo and pnpm workspaces map `pnpm-workspace.yaml` to `packages/*`. The four `@friday-sandbox/*` packages are `react`, `styles`, `eslint-config`, and `typescript-config`, listed in [the table of contents](../README.md#table-of-contents). Every workspace keeps its sources under `src/` and exposes its public surface through `package.json#exports`; the folder shape is symmetric across all four.
 
-Package manager is **pnpm 10** (corepack honors `packageManager` in the root `package.json`). Node `>=22.10.0`.
+Package manager is **pnpm 10**; corepack honors `packageManager` in the root `package.json`. Node `>=22.10.0`.
 
 ## Where each layer lives
 
@@ -15,7 +15,7 @@ The design system is layered from plain tokens up to React components. Each laye
 | Layer                             | File                                                     |
 | --------------------------------- | -------------------------------------------------------- |
 | Token source (plain values)       | `packages/styles/src/theme/default.css`                  |
-| Tailwind alias map                | `packages/styles/src/system/theme.css` (`@theme inline`) |
+| Tailwind alias map                | `packages/styles/src/system/theme.css`, `@theme inline`  |
 | Scope rhythm utility              | `packages/styles/src/system/utilities.css`               |
 | Component CSS (engine + variants) | `packages/styles/src/components/<tier>/<name>.css`       |
 | Component (React)                 | `packages/react/src/components/<tier>/<name>/<name>.tsx` |
@@ -58,22 +58,23 @@ From `turbo.json`: `build`, `lint`, `check-types`, `doc:check`, `test`, `build:s
 
 ## Quality gates
 
-Every gate must pass before a pull request can merge. The full list and how to run it locally lives in the workflow guide ([`../../CONTRIBUTING.md`](../../CONTRIBUTING.md#quality-gates)); let the hooks run them on what you touched rather than invoking the whole-repo tasks by hand. Two enforcers worth calling out:
+Every gate must pass before a pull request can merge. The full list and how to run it locally lives in the workflow guide [`CONTRIBUTING.md`](../../CONTRIBUTING.md#quality-gates). Let the hooks run them on what you touched rather than invoking the whole-repo tasks by hand. Two enforcers worth calling out:
 
-- **Dependency graph** — `.dependency-cruiser.cjs` enforces `no-circular` at `severity: error`. Break cycles; never suppress.
-- **Knip** — runs from `knip.config.ts` on near-defaults: a `css` compiler walks the CSS-only `styles` workspace, and `eslint-import-resolver-typescript` is ignored on `eslint-config` (it is referenced by string in the flat config). Entries auto-detect from each `package.json`.
+- **Dependency graph:** `.dependency-cruiser.cjs` enforces `no-circular` at `severity: error`. Break cycles; never suppress.
+- **Knip:** runs from `knip.config.ts` on near-defaults. A `css` compiler walks the CSS-only `styles` workspace, and `eslint-import-resolver-typescript` is ignored on `eslint-config` because it is referenced by string in the flat config. Entries auto-detect from each `package.json`.
 
-## `src` ↔ `dist` (publishing)
+## `src` ↔ `dist` publishing
 
-Workspace consumers import sources directly (`exports` → `./src/*/index.ts`). Published consumers read `dist/`: `pnpm build` runs `tsdown` to emit it, then `clean-package` (`prepack` / `postpack`) strips dev fields and repoints `main` / `module` / `types`. Change one surface, keep the other aligned.
+Workspace consumers import sources directly, with `exports` pointing to `./src/*/index.ts`. Published consumers read `dist/`: `pnpm build` runs `tsdown` to emit it, then `clean-package` runs on `prepack` and `postpack` to strip dev fields and repoint `main`, `module`, and `types`. Change one surface, keep the other aligned.
 
 ## Storybook deploy
 
-Storybook deploys to Vercel from the root `vercel.json` (built from `packages/react`). `turbo-ignore @friday-sandbox/react` skips the deploy when the library and its workspace deps are unchanged.
+Storybook deploys to Vercel from the root `vercel.json`, built from `packages/react`. `turbo-ignore @friday-sandbox/react` skips the deploy when the library and its workspace deps are unchanged.
 
 ## Rules in this chapter
 
-House-style gates that apply to any file, whatever package — CI and the PR reviewers hold you to them:
+House-style gates that apply to any file, whatever package. CI and the PR reviewers hold you to them:
 
-- [`meaningful-identifiers.md`](rules/meaningful-identifiers.md) — every identifier names what it represents; no prose comments.
-- [`lean-config.md`](rules/lean-config.md) — never write a config key whose value equals the tool's documented default.
+- [`meaningful-identifiers.md`](rules/meaningful-identifiers.md): every identifier names what it represents; no prose comments.
+- [`lean-config.md`](rules/lean-config.md): never write a config key whose value equals the tool's documented default.
+- [`lean-prose.md`](rules/lean-prose.md): documentation prose is direct and token-lean; no em-dash, no parenthetical aside.

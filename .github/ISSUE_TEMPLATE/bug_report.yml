@@ -6,7 +6,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        ## Title style — Hybrid Convention
+        ## Title style: Hybrid Convention
 
         Bug issues use the `fix` type and describe the observable symptom in one line: `fix(<scope>): <symptom>`.
 

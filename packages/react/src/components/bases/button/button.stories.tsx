@@ -262,7 +262,7 @@ export const PlainHtml: Story = {
     docs: {
       description: {
         story:
-          "Use the button styles on any element by composing `fri-button` with a color class (`fri-button-primary`) and a size class (`fri-button-md`). Handy for a plain `<a>`, a router's link component, or any custom anchor.",
+          "Use the button styles on any element by composing `fri-button` with a color class such as `fri-button-primary` and a size class such as `fri-button-md`. Handy for a plain `<a>`, a router's link component, or any custom anchor.",
       },
     },
   },

@@ -30,7 +30,7 @@ reviews:
   path_instructions:
     # Conventions are defined once in the docs/ chapters (styles, react, tooling). Each entry
     # points the reviewer at the canonical rule and lists only the few
-    # highest-value checks per path — it never restates the full rationale.
+    # highest-value checks per path. It never restates the full rationale.
     - path: packages/react/src/**/*.{ts,tsx}
       instructions: >-
         Enforce the gates from the docs/ chapters: component-structure.md,
@@ -50,12 +50,15 @@ reviews:
         Enforce docs/react/rules/accessibility-and-stories.md. Key checks: coverage
         of Default, Hovered, Focused, Disabled, and every color variant including
         danger; real props, not mocked data; addon-a11y passes on the story page;
-        story copy reads as consumer documentation — flag internal class names
+        story copy reads as consumer documentation, so flag internal class names
         (fri-button-*, fri-flex-*), library names (tailwind-variants, react-aria,
         react-aria-components), engine math (calc(var(--size-action) * N)), or
-        file paths; symmetric story shape across files (summary -> Import snippet
-        -> stylesheet note -> CSS snippet, same prop wording and second-person
-        tone).
+        file paths; copy stays generic, not brittle, so flag concrete pixel sizes
+        or an exhaustive enumeration of a prop's values, and prefer the imperative
+        "Use the `X` prop to ..." form; symmetric story shape across files (summary
+        -> Import snippet -> stylesheet note -> CSS snippet, same prop wording and
+        second-person tone). Story copy also stays lean: no em-dash or
+        parenthetical aside.
     - path: packages/react/src/**/*.test.{ts,tsx}
       instructions: >-
         Enforce docs/react/rules/accessibility-and-stories.md. Tests run in Vitest
@@ -96,6 +99,12 @@ reviews:
         Bump level (patch | minor | major) must match the PR type. A feat is at
         least minor, a breaking change is major. The summary reads as a release
         note to a downstream consumer, not as an internal log.
+    - path: "**/*.md"
+      instructions: >-
+        Enforce docs/tooling/rules/lean-prose.md. Prose is direct and token-lean:
+        flag an em-dash or a parenthetical aside in prose, which should be a
+        period, comma, or colon, or folded into the sentence. Keep parentheses
+        that belong to code, a glob, or a Markdown link target.
 chat:
   auto_reply: true
 knowledge_base:

@@ -13,7 +13,7 @@ Conditional sections:
 
 ## Title Format
 
-`type(scope): subject` — conventional commits, strict. Subject 50 characters or fewer, lowercase first word, no trailing period.
+`type(scope): subject`, conventional commits, strict. Subject 50 characters or fewer, lowercase first word, no trailing period.
 
 - The title carries no `#N` reference. The squash merge auto-appends `(#<this-PR>)`; adding `(#N)` duplicates it on `main`.
 - Issue closures go in the body, one `Closes #N` per line. `Closes #1, #2` closes only `#1`.
@@ -41,8 +41,8 @@ Two or three bullets describing what changed and why.
 
 ## Architecture Compliance
 
-- [ ] DRY — no duplicated logic; reused shared helpers and constants across `packages/*`.
-- [ ] Symmetric — files of the same kind (component, story, config) share one skeleton.
+- [ ] DRY: no duplicated logic; reused shared helpers and constants across `packages/*`.
+- [ ] Symmetric: files of the same kind, whether component, story, or config, share one skeleton.
 - [ ] Typed and named clearly; no dead code; no source comments unless intent is non-obvious.
 - [ ] No lint rule disabled, gate skipped, or guard bypassed to make checks pass.
 
@@ -54,14 +54,14 @@ Two or three bullets describing what changed and why.
 
 - [ ] Mirrored the `button` folder under `packages/react/src/components/<tier>/<name>/` so the file shape stays symmetric.
 - [ ] Lowercase filename, named export, `Props` colocated; `"use client"` only when a client API is touched.
-- [ ] Reachable through the `exports` map (`.` → `./src/index.ts`, `./*` → `./src/*/index.ts`).
-- [ ] Story (`<name>.stories.tsx`) covers `Default`, `Hovered`, `Focused`, `Disabled`, and every color variant including `danger`.
-- [ ] Accessible by default — semantic markup, keyboard reachable, ARIA only where DOM cannot convey intent.
-- [ ] Vitest browser tests (Storybook addon, Playwright chromium) pass for new behavior.
+- [ ] Reachable through the `exports` map, where `.` → `./src/index.ts` and `./*` → `./src/*/index.ts`.
+- [ ] Story `<name>.stories.tsx` covers `Default`, `Hovered`, `Focused`, `Disabled`, and every color variant including `danger`.
+- [ ] Accessible by default: semantic markup, keyboard reachable, ARIA only where DOM cannot convey intent.
+- [ ] Vitest browser tests via the Storybook addon and Playwright chromium pass for new behavior.
 
 ## ESLint Config / TS Config / Styles (when touched)
 
-- [ ] `@friday-sandbox/eslint-config` keeps all three subpath exports (`./base`, `./next-js`, `./react-internal`) working in consumer workspaces.
+- [ ] `@friday-sandbox/eslint-config` keeps all three subpath exports `./base`, `./next-js`, and `./react-internal` working in consumer workspaces.
 - [ ] `@friday-sandbox/typescript-config` keeps `base.json`, `nextjs.json`, `react-library.json` consistent.
 - [ ] `@friday-sandbox/styles` token or layer change is documented; visual regressions reviewed in Storybook.
 - [ ] Consumers still pass `pnpm exec turbo check-types lint` and `pnpm knip`.

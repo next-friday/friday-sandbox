@@ -46,8 +46,7 @@ const meta = {
   },
   argTypes: {
     size: {
-      description:
-        "Scrollbar thickness. Pick a larger size if your users need easier-to-grab scrollbars (touch UIs).",
+      description: "Use the `size` prop to change the scrollbar thickness.",
       control: "radio",
       options: ["xs", "sm", "md", "lg"],
       table: {
@@ -57,7 +56,7 @@ const meta = {
     },
     variant: {
       description:
-        "When the scrollbars are visible. `hover` shows them on pointer hover; `always` keeps them visible; `hidden` removes them while the area still scrolls (wheel, touch, keyboard).",
+        "Use the `variant` prop to change when the scrollbars are visible.",
       control: "radio",
       options: ["hover", "always", "hidden"],
       table: {
@@ -67,7 +66,7 @@ const meta = {
     },
     scrollHideDelay: {
       description:
-        "How long (in ms) the scrollbars stay visible after the user stops scrolling.",
+        "Use the `scrollHideDelay` prop to set how long the scrollbars stay visible after scrolling stops.",
       control: "number",
       table: {
         type: { summary: "number" },
@@ -75,15 +74,14 @@ const meta = {
       },
     },
     dir: {
-      description:
-        "Text direction. Use `rtl` for right-to-left languages so the scrollbars and corner sit correctly.",
+      description: "Use the `dir` prop to set the text direction.",
       control: "radio",
       options: ["ltr", "rtl"],
       table: { type: { summary: "ltr | rtl" } },
     },
     asChild: {
       description:
-        "Render as the child element instead of a `<div>`, merging props onto it (Radix composition).",
+        "Use the `asChild` prop to merge props onto the child element instead of rendering a default element.",
       control: false,
       table: {
         type: { summary: "boolean" },
@@ -91,7 +89,8 @@ const meta = {
       },
     },
     nonce: {
-      description: "CSP nonce applied to the injected inline styles.",
+      description:
+        "Use the `nonce` prop to set a CSP nonce on the injected inline styles.",
       control: "text",
       table: { type: { summary: "string" } },
     },

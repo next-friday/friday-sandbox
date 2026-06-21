@@ -1,6 +1,6 @@
 # Meaningful Identifiers
 
-**Rule:** Every identifier — variable, parameter, generic, callback arg — names what it represents. No single-letter or two-letter shorthands. No `tmp`, `val`, `obj`, `arr`, `fn`, `cb`, `el`, `tw`.
+**Rule:** Every identifier names what it represents, whether a variable, parameter, generic, or callback arg. No single-letter or two-letter shorthands. No `tmp`, `val`, `obj`, `arr`, `fn`, `cb`, `el`, `tw`.
 
 ## Bad
 
@@ -36,21 +36,21 @@ Identifier length is the cheapest possible documentation. `v: T` forces every re
 
 ## How to apply
 
-- Generics: `T`, `U`, `K`, `V`, `E`, `R`, `S`, `P`, `N`, `I` → name them (`RenderProps`, `Item`, `Key`, `Value`, `Element`, `Result`, `State`, `Props`, `Node`, `Input`).
-- Parameters: `v`, `e`, `i`, `s`, `c`, `t`, `o`, `a` → name them (`value`, `event`, `index`, `state`, `child`, `target`, `option`, `accumulator`).
-- Shortenings: `tw`, `cb`, `fn`, `arr`, `obj`, `el`, `tmp`, `val`, `str`, `num` → spell out (`tailwindClasses`, `callback`, `handler`, `items`, `options`, `element`, `previous`, `value`, `text`, `count`).
-- Exceptions: `id` (universally read as "identifier"), `i` only as the loop counter in a tight `for (let i = 0; ...)` whose body fits on screen, `_` for explicitly-discarded args. Nothing else.
+- Generics: `T`, `U`, `K`, `V`, `E`, `R`, `S`, `P`, `N`, `I` → name them as `RenderProps`, `Item`, `Key`, `Value`, `Element`, `Result`, `State`, `Props`, `Node`, `Input`.
+- Parameters: `v`, `e`, `i`, `s`, `c`, `t`, `o`, `a` → name them as `value`, `event`, `index`, `state`, `child`, `target`, `option`, `accumulator`.
+- Shortenings: `tw`, `cb`, `fn`, `arr`, `obj`, `el`, `tmp`, `val`, `str`, `num` → spell out as `tailwindClasses`, `callback`, `handler`, `items`, `options`, `element`, `previous`, `value`, `text`, `count`.
+- Exceptions: `id`, which is universally read as "identifier"; `i` only as the loop counter in a tight `for (let i = 0; ...)` whose body fits on screen; `_` for explicitly-discarded args. Nothing else.
 - A new name must describe **what the thing is**, not **what type it has**. `user`, not `obj`. `nextHandler`, not `fn2`.
-- Inner callbacks must not shadow outer names. Rename the inner one to the resolved meaning (`resolved`, `current`, `next`), not a one-letter alias.
+- Inner callbacks must not shadow outer names. Rename the inner one to the resolved meaning such as `resolved`, `current`, or `next`, not a one-letter alias.
 
 ## No prose comments
 
-Intent lives in names, commits, and `docs/` — not in explanatory comments. A comment that restates what the code already says is noise; delete it and let a precise name carry the meaning. The only comment worth keeping encodes a **non-obvious invariant** the code cannot express (a threshold's rationale, a spec quirk, an ordering constraint).
+Intent lives in names, commits, and `docs/`, not in explanatory comments. A comment that restates what the code already says is noise; delete it and let a precise name carry the meaning. The only comment worth keeping encodes a **non-obvious invariant** the code cannot express, such as a threshold's rationale, a spec quirk, or an ordering constraint.
 
 ```ts
 // bad — restates the code
-const height = size * 10; // multiply size by ten
+const height = size * 9; // multiply size by nine
 
 // good — encodes a non-obvious invariant
-const height = size * 10; // N=10 is the md step; see docs/styles
+const height = size * 9; // N=9 is the md step; see docs/styles
 ```

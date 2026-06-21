@@ -1,6 +1,6 @@
 # @friday-sandbox/styles
 
-Design tokens, themes, and component CSS for the `@friday-sandbox/react` design system. Built on Tailwind CSS v4 and framework-agnostic — drop it into any app that ships CSS.
+Design tokens, themes, and component CSS for the `@friday-sandbox/react` design system. Built on Tailwind CSS v4 and framework-agnostic, so you can drop it into any app that ships CSS.
 
 ## Installation
 
@@ -32,10 +32,10 @@ import "@friday-sandbox/styles";
 This pulls in:
 
 - Tailwind CSS base styles
-- Design tokens (default theme, light + dark)
-- Tailwind theme registration (`@theme inline`)
-- Status utility (`status-disabled`)
-- Component styles (button, flex, grid, scroll-area)
+- Design tokens for the default theme in light and dark
+- Tailwind theme registration via `@theme inline`
+- Status utility `status-disabled`
+- Component styles for button, flex, grid, and scroll-area
 
 ### Plain HTML / no build step
 
@@ -98,8 +98,9 @@ Components use a kebab-case `fri-<component>-<modifier>` convention:
 - Base: `.fri-button`
 - Color variants: `.fri-button-primary`, `.fri-button-danger`
 - Sizes: `.fri-button-sm`, `.fri-button-lg`
+- Icon-only: `.fri-button-icon-only`, a square button to pair with an `aria-label`
 
-Every modifier has its own addressable class — no hidden defaults. Apply the base plus one of each axis.
+Every modifier has its own addressable class, with no hidden defaults. Apply the base plus one of each axis.
 
 #### Button Example
 
@@ -119,9 +120,10 @@ Every modifier has its own addressable class — no hidden defaults. Apply the b
 
 | Class                                                                                                        | Required | Pick   |
 | ------------------------------------------------------------------------------------------------------------ | -------- | ------ |
-| `fri-button`                                                                                                 | yes      | —      |
+| `fri-button`                                                                                                 | yes      | base   |
 | `fri-button-primary` / `-secondary` / `-accent` / `-neutral` / `-info` / `-success` / `-warning` / `-danger` | one      | 1 of 8 |
 | `fri-button-xs` / `-sm` / `-md` / `-lg` / `-xl`                                                              | one      | 1 of 5 |
+| `fri-button-icon-only`                                                                                       | no       | square |
 
 ## Themes
 
@@ -138,7 +140,7 @@ The default theme provides automatic light/dark mode support:
 <html data-theme="dark"></html>
 ```
 
-Toggle is scopable — apply `.dark` to any subtree to flip only that subtree.
+Toggle is scopable. Apply `.dark` to any subtree to flip only that subtree.
 
 ## CSS Variables
 
@@ -176,7 +178,7 @@ Eight semantic colors. Each is paired with a foreground that components use for 
 }
 ```
 
-Components compute their own hover state from the intent — change `--primary` and `.fri-button-primary` (plus its hover, focus ring, and pressed states) follows automatically.
+Components compute their own hover state from the intent. Change `--primary` and `.fri-button-primary`, plus its hover, focus ring, and pressed states, follows automatically.
 
 ### Surface Colors
 
@@ -199,7 +201,7 @@ Light by default; flipped by `.dark` or `[data-theme="dark"]`:
 
 ### Sizing Tokens
 
-Three semantic scopes — `action` (clickable triggers), `field` (form data entry), `box` (containers):
+Three semantic scopes: `action` for clickable triggers, `field` for form data entry, and `box` for containers:
 
 ```css
 :root {
@@ -216,15 +218,15 @@ Three semantic scopes — `action` (clickable triggers), `field` (form data entr
 }
 ```
 
-Override `--size-{scope}` and every size (`xs` → `xl`) for that scope rescales together — you don't have to touch each variant.
+Override `--size-{scope}` and every size from `xs` to `xl` for that scope rescales together, so you don't have to touch each variant.
 
 `--radius-{scope}` is the reference at `md`. Smaller sizes get proportionally smaller corners, larger sizes get larger ones, so a pill never collapses to a square at `xs` or stretches at `xl`.
 
 ### Component-Local Tokens
 
-A few tokens are scoped to a component rather than the global theme — override them **on the element**, not at `:root` (where the component's own class declaration would mask them).
+A few tokens are scoped to a component rather than the global theme. Override them **on the element**, not at `:root`, where the component's own class declaration would mask them.
 
-`--grid-min` sets the minimum track width of a responsive grid (`fri-grid-cols-auto-fit` / `fri-grid-cols-auto-fill`). It defaults to `16rem` on `.fri-grid`; retune it per instance with a Tailwind arbitrary-property utility or a selector that targets the grid:
+`--grid-min` sets the minimum track width of a responsive grid built with `fri-grid-cols-auto-fit` or `fri-grid-cols-auto-fill`. It defaults to `16rem` on `.fri-grid`; retune it per instance with a Tailwind arbitrary-property utility or a selector that targets the grid:
 
 ```html
 <div class="fri-grid fri-grid-cols-auto-fit [--grid-min:20rem]">…</div>
@@ -251,23 +253,23 @@ Every theme variable is registered with `@theme inline`, so Tailwind v4 emits a 
 
 Available aliases:
 
-- **Colors**: `bg-<intent>`, `text-<intent>`, `border-<intent>`, `ring-<intent>`, `fill-<intent>`, `stroke-<intent>` for every intent + foreground pair (`primary`, `primary-foreground`, …, `danger`, `danger-foreground`, `background`, `foreground`, `muted`).
+- **Colors**: `bg-<intent>`, `text-<intent>`, `border-<intent>`, `ring-<intent>`, `fill-<intent>`, `stroke-<intent>` for every intent and its foreground pair, from `primary` and `primary-foreground` through `danger` and `danger-foreground`, plus `background`, `foreground`, and `muted`.
 - **Radius**: `rounded-action`, `rounded-field`, `rounded-box`.
 - **Border**: `border` width from `--border`.
 
-The arbitrary-var form (`bg-(--button-background)`) stays correct for **component-local** variables that are not registered in `@theme inline`.
+The arbitrary-var form `bg-(--button-background)` stays correct for **component-local** variables that are not registered in `@theme inline`.
 
 ## Dependencies
 
-- **tailwindcss** `^4.0.0` — required peer dependency
+- **tailwindcss** `^4.0.0`: required peer dependency
 
 ## Build Output
 
 The package ships:
 
-- `index.css` — main unminified entry point (source CSS modules under `src/`)
-- `dist/index.css` — pre-compiled production bundle (generated by `pnpm build`)
+- `index.css`: main unminified entry point that pulls in the source CSS modules under `src/`
+- `dist/index.css`: pre-compiled production bundle generated by `pnpm build`
 
 ## Framework Integration
 
-Framework-agnostic — drop the stylesheet into any app that ships CSS. For React, use `@friday-sandbox/react`, which exports typed components that compose these classes.
+Framework-agnostic, so you can drop the stylesheet into any app that ships CSS. For React, use `@friday-sandbox/react`, which exports typed components that compose these classes.
