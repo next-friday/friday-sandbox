@@ -14,6 +14,7 @@ import type {
 
 const ScrollAreaRoot = (props: Readonly<ScrollAreaRootProps>) => {
   const { className, size, variant, ...rest } = props;
+
   const slots = scrollAreaVariants({ size, variant });
   const rootClassName = slots.root({ class: className });
   const radixType = variant === "hidden" ? "scroll" : variant;
@@ -30,6 +31,7 @@ const ScrollAreaRoot = (props: Readonly<ScrollAreaRootProps>) => {
 
 const ScrollAreaViewport = (props: Readonly<ScrollAreaViewportProps>) => {
   const { className, ...rest } = props;
+
   const slots = scrollAreaVariants();
   const viewportClassName = slots.viewport({ class: className });
 
@@ -44,6 +46,7 @@ const ScrollAreaViewport = (props: Readonly<ScrollAreaViewportProps>) => {
 
 const ScrollAreaContent = (props: Readonly<ScrollAreaContentProps>) => {
   const { className, ...rest } = props;
+
   const slots = scrollAreaVariants();
   const contentClassName = slots.content({ class: className });
 
@@ -58,6 +61,7 @@ const ScrollAreaContent = (props: Readonly<ScrollAreaContentProps>) => {
 
 const ScrollAreaScrollbar = (props: Readonly<ScrollAreaScrollbarProps>) => {
   const { className, ...rest } = props;
+
   const slots = scrollAreaVariants();
   const scrollbarClassName = slots.scrollbar({ class: className });
 
@@ -73,6 +77,7 @@ const ScrollAreaScrollbar = (props: Readonly<ScrollAreaScrollbarProps>) => {
 
 const ScrollAreaThumb = (props: Readonly<ScrollAreaThumbProps>) => {
   const { className, ...rest } = props;
+
   const slots = scrollAreaVariants();
   const thumbClassName = slots.thumb({ class: className });
 
@@ -87,6 +92,7 @@ const ScrollAreaThumb = (props: Readonly<ScrollAreaThumbProps>) => {
 
 const ScrollAreaCorner = (props: Readonly<ScrollAreaCornerProps>) => {
   const { className, ...rest } = props;
+
   const slots = scrollAreaVariants();
   const cornerClassName = slots.corner({ class: className });
 

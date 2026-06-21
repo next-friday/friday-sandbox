@@ -15,6 +15,7 @@ export interface LoadingProps
 
 export const Loading = (props: Readonly<LoadingProps>) => {
   const { isIndeterminate = true, className, color, size, ...rest } = props;
+
   const slots = loadingVariants({ color, size });
   const rootClassName = composeTailwindRenderProps(className, slots.root());
   const indicatorClassName = slots.indicator();
