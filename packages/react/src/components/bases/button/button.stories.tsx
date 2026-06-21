@@ -9,7 +9,6 @@ const COLORS = [
   { value: "primary", label: "Primary" },
   { value: "secondary", label: "Secondary" },
   { value: "accent", label: "Accent" },
-  { value: "neutral", label: "Neutral" },
   { value: "info", label: "Info" },
   { value: "success", label: "Success" },
   { value: "warning", label: "Warning" },
@@ -79,7 +78,7 @@ const meta = {
       table: {
         type: {
           summary:
-            "primary | secondary | accent | neutral | info | success | warning | danger",
+            "primary | secondary | accent | info | success | warning | danger",
         },
         defaultValue: { summary: "primary" },
       },
@@ -216,6 +215,15 @@ export const Icon: Story = {
       <Button color="danger">
         <TriangleExclamation />
         Exclamation
+      </Button>
+
+      <Button>
+        <Envelope />
+      </Button>
+
+      <Button color="accent" variant="outline">
+        <Envelope />
+        Continue With Google
       </Button>
     </Flex>
   ),

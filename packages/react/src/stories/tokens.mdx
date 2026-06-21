@@ -39,7 +39,7 @@ Every token registered with `@theme inline` resolves to a canonical Tailwind v4 
   <span className="rounded-action bg-danger px-4 py-2 text-sm font-medium text-danger-foreground">
     bg-danger
   </span>
-  <span className="rounded-box bg-muted px-4 py-2 text-sm text-muted-foreground">
+  <span className="rounded-box bg-muted px-4 py-2 text-sm text-foreground">
     bg-muted
   </span>
 </div>
@@ -48,31 +48,30 @@ Every token registered with `@theme inline` resolves to a canonical Tailwind v4 
 <button className="rounded-action bg-primary px-4 py-2 text-primary-foreground">
   Save
 </button>
-<p className="text-muted-foreground">Secondary text</p>
+<p className="text-foreground">Body text</p>
 <div className="border-danger border" />
 ```
 
-| Token kind                                      | Utilities                                                                                                                   |
-| ----------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
-| Intent + foreground (`--primary` … `--danger`)  | `bg-<intent>`, `text-<intent>`, `border-<intent>`, `ring-<intent>`, `fill-<intent>`, `stroke-<intent>` — each with a `-foreground` pair |
-| Radius (`--radius-{scope}`)                      | `rounded-action`, `rounded-field`, `rounded-box`                                                                            |
-| Border (`--border`)                             | `border`                                                                                                                    |
+| Token kind                                     | Utilities                                                                                                                               |
+| ---------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
+| Intent + foreground (`--primary` … `--danger`) | `bg-<intent>`, `text-<intent>`, `border-<intent>`, `ring-<intent>`, `fill-<intent>`, `stroke-<intent>` — each with a `-foreground` pair |
+| Radius (`--radius-{scope}`)                    | `rounded-action`, `rounded-field`, `rounded-box`                                                                                        |
+| Border (`--border`)                            | `border`                                                                                                                                |
 
 ## Surfaces
 
 Light by default; flipped by `.dark` or `[data-theme="dark"]`.
 
-| Token                | Role                                  |
-| -------------------- | ------------------------------------- |
-| `--background`       | Body surface                          |
-| `--foreground`       | Body text on `--background`           |
-| `--muted`            | Secondary surface (placeholder, etc.) |
-| `--muted-foreground` | Text on `--muted`                     |
+| Token          | Role                                  |
+| -------------- | ------------------------------------- |
+| `--background` | Body surface                          |
+| `--muted`      | Secondary surface (placeholder, etc.) |
+| `--foreground` | Body text on `--background`           |
 
 ## Sizing scopes
 
-| Scope    | Tokens                            | Component family                          |
-| -------- | --------------------------------- | ----------------------------------------- |
+| Scope    | Tokens                             | Component family                         |
+| -------- | ---------------------------------- | ---------------------------------------- |
 | `action` | `--size-action`, `--radius-action` | button, icon-button, link-button         |
 | `field`  | `--size-field`, `--radius-field`   | input, textarea, select, checkbox, radio |
 | `box`    | `--size-box`, `--radius-box`       | card, modal, alert, popover              |
@@ -81,13 +80,13 @@ Light by default; flipped by `.dark` or `[data-theme="dark"]`.
 
 At the default `--size-{scope}` of `0.25rem`, the five sizes resolve to:
 
-| Size | Height            |
-| ---- | ----------------- |
-| `xs` | 1.5rem (24 px)    |
-| `sm` | 2rem (32 px)      |
-| `md` | 2.5rem (40 px)    |
-| `lg` | 3rem (48 px)      |
-| `xl` | 3.5rem (56 px)    |
+| Size | Height         |
+| ---- | -------------- |
+| `xs` | 1.5rem (24 px) |
+| `sm` | 2rem (32 px)   |
+| `md` | 2.5rem (40 px) |
+| `lg` | 3rem (48 px)   |
+| `xl` | 3.5rem (56 px) |
 
 Override `--size-action` (or `--size-field` / `--size-box`) and every size for that scope rescales together.
 
@@ -95,6 +94,6 @@ Override `--size-action` (or `--size-field` / `--size-box`) and every size for t
 
 ## Miscellaneous
 
-| Token      | Role                  |
-| ---------- | --------------------- |
-| `--border` | Default border width  |
+| Token      | Role                 |
+| ---------- | -------------------- |
+| `--border` | Default border width |

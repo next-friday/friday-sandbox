@@ -187,7 +187,6 @@ Light by default; flipped by `.dark` or `[data-theme="dark"]`:
   --background: oklch(100% 0 0);
   --foreground: oklch(21% 0.006 285);
   --muted: oklch(95% 0 0);
-  --muted-foreground: oklch(45% 0.006 285);
 }
 
 .dark,
@@ -195,7 +194,6 @@ Light by default; flipped by `.dark` or `[data-theme="dark"]`:
   --background: oklch(18% 0.006 285);
   --foreground: oklch(100% 0 0);
   --muted: oklch(28% 0.006 285);
-  --muted-foreground: oklch(70% 0.006 285);
 }
 ```
 
@@ -248,14 +246,12 @@ Every theme variable is registered with `@theme inline`, so Tailwind v4 emits a 
 <div class="border border-primary">…</div>
 
 <!-- ✗ v3-era arbitrary var (still works, but verbose) -->
-<div class="rounded-md bg-(--muted) px-4 py-2 text-sm text-(--foreground)">
-  …
-</div>
+<div class="rounded-md bg-muted px-4 py-2 text-sm text-foreground">…</div>
 ```
 
 Available aliases:
 
-- **Colors**: `bg-<intent>`, `text-<intent>`, `border-<intent>`, `ring-<intent>`, `fill-<intent>`, `stroke-<intent>` for every intent + foreground pair (`primary`, `primary-foreground`, …, `danger`, `danger-foreground`, `background`, `foreground`, `muted`, `muted-foreground`).
+- **Colors**: `bg-<intent>`, `text-<intent>`, `border-<intent>`, `ring-<intent>`, `fill-<intent>`, `stroke-<intent>` for every intent + foreground pair (`primary`, `primary-foreground`, …, `danger`, `danger-foreground`, `background`, `foreground`, `muted`).
 - **Radius**: `rounded-action`, `rounded-field`, `rounded-box`.
 - **Border**: `border` width from `--border`.
 

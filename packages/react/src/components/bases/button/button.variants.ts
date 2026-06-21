@@ -8,7 +8,6 @@ export const buttonVariants = tv({
       primary: "fri-button-primary",
       secondary: "fri-button-secondary",
       accent: "fri-button-accent",
-      neutral: "fri-button-neutral",
       info: "fri-button-info",
       success: "fri-button-success",
       warning: "fri-button-warning",

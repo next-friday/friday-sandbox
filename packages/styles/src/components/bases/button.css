@@ -45,10 +45,6 @@
     --button-color: var(--accent);
     --button-color-foreground: var(--accent-foreground);
   }
-  .fri-button-neutral {
-    --button-color: var(--neutral);
-    --button-color-foreground: var(--neutral-foreground);
-  }
   .fri-button-info {
     --button-color: var(--info);
     --button-color-foreground: var(--info-foreground);
