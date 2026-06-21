@@ -20,7 +20,7 @@ Design tokens and Tailwind CSS v4 layers consumed by @friday-sandbox/react.
 ## Features
 
 - **Design tokens.** Semantic colors, surfaces, and sizing scopes exposed as CSS variables you can override.
-- **Tailwind CSS v4 integration.** Every token is registered with `@theme inline`, so it emits a canonical Tailwind utility.
+- **Tailwind CSS v4 integration.** Every color token is registered with `@theme inline`, so it emits a canonical Tailwind utility; component-local variables stay reachable through the arbitrary-var form.
 - **Component classes.** Ready-to-use `fri-*` classes for button and layout primitives.
 - **Light and dark themes.** Built in, switchable per subtree.
 
@@ -175,6 +175,8 @@ Light by default, flipped by `.dark` or `[data-theme="dark"]`:
 }
 ```
 
+`--surface` and `--surface-foreground` are an inverted surface pair, such as a tooltip, with `bg-surface` and `text-surface-foreground` utilities. `--neutral` is a standalone mid-tone with no foreground token and is the only color identical in light and dark.
+
 ### Sizing
 
 Three semantic scopes: `action` for clickable triggers, `field` for form data entry, and `box` for containers:
@@ -212,7 +214,7 @@ A few tokens are scoped to a component rather than the global theme. Override th
 
 ### Tailwind utility aliases
 
-Every theme variable is registered with `@theme inline`, so Tailwind v4 emits a canonical utility class for it. Use the alias, not the arbitrary-var fallback:
+Every color token is registered with `@theme inline`, so Tailwind v4 emits a canonical utility class for each. Use the alias, not the arbitrary-var fallback:
 
 ```html
 <!-- canonical -->
@@ -227,11 +229,11 @@ Every theme variable is registered with `@theme inline`, so Tailwind v4 emits a 
 
 Available aliases:
 
-- **Colors**: `bg-<color>`, `text-<color>`, `border-<color>`, `ring-<color>`, `fill-<color>`, `stroke-<color>` for every color and its foreground pair, plus `background`, `foreground`, `surface`, `neutral`, and `muted`.
+- **Colors**: `bg-<color>`, `text-<color>`, `border-<color>`, `ring-<color>`, `fill-<color>`, `stroke-<color>` for every intent and its foreground pair, plus `background`, `foreground`, `surface` and its foreground, `neutral`, and `muted`. `neutral` has an alias but no foreground token.
 - **Radius**: `rounded-action`, `rounded-field`, `rounded-box`.
 - **Border**: `border` width from `--border`.
 
-The arbitrary-var form such as `bg-(--button-background)` stays correct for component-local variables that are not registered in `@theme inline`.
+Component-local variables such as `--grid-min` are not registered in `@theme inline`, so they have no alias. Reference them with the arbitrary-var form, for example `bg-(--grid-min)`.
 
 ## Troubleshooting
 

@@ -236,8 +236,8 @@ export const Basis: Story = {
       },
     },
   },
-  render: () => (
-    <Flex className="w-80" gap="md">
+  render: (storyArgs) => (
+    <Flex<ElementType> {...storyArgs} className="w-80">
       <Flex basis={0} grow>
         <Boxes count={1} />
       </Flex>

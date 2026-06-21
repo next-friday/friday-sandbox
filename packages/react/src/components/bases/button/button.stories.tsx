@@ -5,6 +5,7 @@ import {
   FloppyDisk,
   TriangleExclamation,
 } from "@gravity-ui/icons";
+import { expect, fn, userEvent, within } from "storybook/test";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import { Flex } from "../flex";
@@ -113,11 +114,25 @@ const meta = {
     isDisabled: {
       description: "Whether the button is disabled.",
       control: "boolean",
+      table: {
+        type: { summary: "boolean" },
+        defaultValue: { summary: "false" },
+      },
     },
     isIconOnly: {
       description:
         "Whether the button should display only an icon. Provide an `aria-label` so the action is announced to assistive technologies.",
       control: "boolean",
+      table: {
+        type: { summary: "boolean" },
+        defaultValue: { summary: "false" },
+      },
+    },
+    "aria-label": {
+      description:
+        "Provide an `aria-label` so an icon-only button is announced to assistive technologies.",
+      control: "text",
+      table: { type: { summary: "string" } },
     },
     onPress: {
       description: "Handler that is called when the button is pressed.",
@@ -203,6 +218,17 @@ export const Sizes: Story = {
   ),
 };
 
+export const Disabled: Story = {
+  args: { isDisabled: true },
+  parameters: {
+    docs: {
+      description: {
+        story: "Use the `isDisabled` prop to stop the button responding.",
+      },
+    },
+  },
+};
+
 export const WithIcon: Story = {
   parameters: {
     docs: {
@@ -211,19 +237,19 @@ export const WithIcon: Story = {
       },
     },
   },
-  render: () => (
+  render: (storyArgs) => (
     <Flex wrap="wrap" align="center" gap="md">
-      <Button>
+      <Button {...storyArgs}>
         <Envelope />
         Email
       </Button>
 
-      <Button color="danger">
+      <Button {...storyArgs} color="danger">
         <TriangleExclamation />
         Exclamation
       </Button>
 
-      <Button color="accent" variant="outline">
+      <Button {...storyArgs} color="accent" variant="outline">
         <Envelope />
         Continue With Google
       </Button>
@@ -262,7 +288,7 @@ export const PlainHtml: Story = {
     docs: {
       description: {
         story:
-          "Use the button styles on any element by composing `fri-button` with a color class such as `fri-button-primary` and a size class such as `fri-button-md`. Handy for a plain `<a>`, a router's link component, or any custom anchor.",
+          "Apply the button styling to any element such as a plain anchor or a router link, so a navigation target looks like a button while staying the right element for the job.",
       },
     },
   },
@@ -271,4 +297,26 @@ export const PlainHtml: Story = {
       Button
     </a>
   ),
+};
+
+export const Interaction: Story = {
+  args: { onPress: fn() },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Tab to the button to reach it from the keyboard, then press Enter to trigger the action.",
+      },
+    },
+  },
+  play: async ({ args, canvasElement }) => {
+    const canvas = within(canvasElement);
+    const button = canvas.getByRole("button", { name: "Button" });
+
+    await userEvent.tab();
+    await expect(button).toHaveFocus();
+
+    await userEvent.keyboard("{Enter}");
+    await expect(args.onPress).toHaveBeenCalled();
+  },
 };

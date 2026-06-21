@@ -52,7 +52,7 @@ const meta = {
     },
     rows: {
       description: "Use the `rows` prop to set a fixed number of rows.",
-      control: { type: "number", min: 1, max: 6 },
+      control: "select",
       options: [1, 2, 3, 4, 5, 6],
       table: { type: { summary: "1 | 2 | 3 | 4 | 5 | 6" } },
     },

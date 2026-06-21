@@ -30,7 +30,7 @@ const meta = {
           "  <ScrollArea.Viewport>",
           "    <ScrollArea.Content />",
           "  </ScrollArea.Viewport>",
-          "  <ScrollArea.Scrollbar />",
+          "  <ScrollArea.Scrollbar>",
           "    <ScrollArea.Thumb />",
           "  </ScrollArea.Scrollbar>",
           "  <ScrollArea.Corner />",
@@ -66,12 +66,9 @@ const meta = {
     },
     scrollHideDelay: {
       description:
-        "Use the `scrollHideDelay` prop to set how long the scrollbars stay visible after scrolling stops.",
+        "Use the `scrollHideDelay` prop to set how long the scrollbars stay visible after scrolling stops. Left unset, it falls back to the underlying scroll primitive's own default.",
       control: "number",
-      table: {
-        type: { summary: "number" },
-        defaultValue: { summary: "600" },
-      },
+      table: { type: { summary: "number" } },
     },
     dir: {
       description: "Use the `dir` prop to set the text direction.",
@@ -142,25 +139,13 @@ export const Both: Story = {
     <ScrollArea.Root {...storyArgs} className="h-72">
       <ScrollArea.Viewport>
         <ScrollArea.Content>
-          <div className="space-y-2">
+          <Flex direction="column" gap="sm">
             {Array.from({ length: 12 }, (_, position) => position + 1).map(
               (rowIndex) => (
-                <Flex gap="sm" key={rowIndex}>
-                  {Array.from(
-                    { length: 12 },
-                    (_, position) => position + 1,
-                  ).map((columnIndex) => (
-                    <div
-                      className="w-24 shrink-0 rounded-md bg-muted px-3 py-2 text-sm text-foreground"
-                      key={columnIndex}
-                    >
-                      Item {rowIndex}-{columnIndex}
-                    </div>
-                  ))}
-                </Flex>
+                <WideRow count={12} key={rowIndex} />
               ),
             )}
-          </div>
+          </Flex>
         </ScrollArea.Content>
       </ScrollArea.Viewport>
 
@@ -178,26 +163,30 @@ export const Both: Story = {
 };
 
 export const Size: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Use the `size` prop to change the scrollbar thickness. The columns step through each size from thin to thick.",
+      },
+    },
+  },
   render: (storyArgs) => (
     <Flex align="start" gap="md">
       {(["xs", "sm", "md", "lg"] as const).map((size) => (
-        <Flex direction="column" gap="md" key={size}>
-          <span className="text-sm font-medium">Size {size}</span>
+        <ScrollArea.Root key={size} {...storyArgs} className="h-72" size={size}>
+          <ScrollArea.Viewport>
+            <ScrollArea.Content>
+              <Lorem paragraph={9} />
+            </ScrollArea.Content>
+          </ScrollArea.Viewport>
 
-          <ScrollArea.Root {...storyArgs} className="h-72" size={size}>
-            <ScrollArea.Viewport>
-              <ScrollArea.Content>
-                <Lorem paragraph={9} />
-              </ScrollArea.Content>
-            </ScrollArea.Viewport>
+          <ScrollArea.Scrollbar orientation="vertical">
+            <ScrollArea.Thumb />
+          </ScrollArea.Scrollbar>
 
-            <ScrollArea.Scrollbar orientation="vertical">
-              <ScrollArea.Thumb />
-            </ScrollArea.Scrollbar>
-
-            <ScrollArea.Corner />
-          </ScrollArea.Root>
-        </Flex>
+          <ScrollArea.Corner />
+        </ScrollArea.Root>
       ))}
     </Flex>
   ),
