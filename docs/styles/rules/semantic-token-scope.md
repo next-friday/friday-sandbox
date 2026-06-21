@@ -23,11 +23,11 @@ A `--*-button-*`, `--*-input-*`, or `--*-card-*` token forks the rhythm per comp
 
 ```css
 .fri-button {
-  --action-n: 9; /* button is an action; it inherits the action scope */
+  --action-n: 10; /* button is an action; it inherits the action scope */
 }
 ```
 
-Heights derive inline as `calc(var(--size-{scope}) * N)` with N ∈ {7, 8, 9, 11, 13} for xs/sm/md/lg/xl. Radius derives as `--radius-{scope} * height / (--size-{scope} * N_md)`, so it equals `--radius-{scope}` at `md` and curves with height, smaller below and larger above. The math is component-local: there are no `--spacing-{scope}-{size}` tokens.
+Heights derive inline as `calc(var(--size-{scope}) * N)` with N ∈ {7, 8, 10, 11, 12} for xs/sm/md/lg/xl. Radius derives as `--radius-{scope} * height / (--size-{scope} * N_md)`, so it equals `--radius-{scope}` at `md` and curves with height, smaller below and larger above. The math is component-local: there are no `--spacing-{scope}-{size}` tokens.
 
 ## Why
 

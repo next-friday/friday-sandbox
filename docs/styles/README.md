@@ -32,9 +32,9 @@ Height, padding-x, and radius are not hand-written per size. A component declare
 .fri-button {
   --action-n-xs: 7;
   --action-n-sm: 8;
-  --action-n-md: 9;
+  --action-n-md: 10;
   --action-n-lg: 11;
-  --action-n-xl: 13;
+  --action-n-xl: 12;
   --action-n: var(--action-n-md); /* base default = md */
 }
 .fri-button-xs {
@@ -44,19 +44,19 @@ Height, padding-x, and radius are not hand-written per size. A component declare
 
 With `--size-action: 0.25rem` and `--radius-action: 0.5rem`, the formulas derive the pixels:
 
-| Size | `--action-n`         | Height       | Padding-x     | Radius           |
-| ---- | -------------------- | ------------ | ------------- | ---------------- |
-| xs   | `--action-n-xs` (7)  | 1.75rem (28) | 0.625rem (10) | 0.389rem (6.22)  |
-| sm   | `--action-n-sm` (8)  | 2rem (32)    | 0.75rem (12)  | 0.444rem (7.11)  |
-| md   | `--action-n-md` (9)  | 2.25rem (36) | 0.875rem (14) | 0.5rem (8)       |
-| lg   | `--action-n-lg` (11) | 2.75rem (44) | 1.125rem (18) | 0.611rem (9.78)  |
-| xl   | `--action-n-xl` (13) | 3.25rem (52) | 1.375rem (22) | 0.722rem (11.56) |
+| Size | `--action-n`         | Height       | Padding-x     | Radius        |
+| ---- | -------------------- | ------------ | ------------- | ------------- |
+| xs   | `--action-n-xs` (7)  | 1.75rem (28) | 0.625rem (10) | 0.35rem (5.6) |
+| sm   | `--action-n-sm` (8)  | 2rem (32)    | 0.75rem (12)  | 0.4rem (6.4)  |
+| md   | `--action-n-md` (10) | 2.5rem (40)  | 1rem (16)     | 0.5rem (8)    |
+| lg   | `--action-n-lg` (11) | 2.75rem (44) | 1.125rem (18) | 0.55rem (8.8) |
+| xl   | `--action-n-xl` (12) | 3rem (48)    | 1.25rem (20)  | 0.6rem (9.6)  |
 
 Pixels are at the 16px root. Override `--size-action` and the whole row scales; `--radius-action` scales only the radius column. The three formulas:
 
 - **Height** = `--size-action × --action-n`.
 - **Padding-x** = `height / 2 - --size-action`, the `px-2` to `px-6` Tailwind ladder.
-- **Radius** = `--radius-action × height / (--size-action × --action-n-md)`. The divisor is pinned to the `md` step, so radius equals `--radius-action` at `md`, shrinks below, and grows above. A 28px button is never a pill and a 52px button is never square.
+- **Radius** = `--radius-action × height / (--size-action × --action-n-md)`. The divisor is pinned to the `md` step, so radius equals `--radius-action` at `md`, shrinks below, and grows above. A 28px button is never a pill and a 48px button is never square.
 
 `action` is the only scope that currently demonstrates this rhythm. The `box` scope ships a scroll-area that derives its thickness from `--size-box` through its own `--scroll-area-n` scale, not these three formulas, and there is no `field` component yet. The shared invariant is the [semantic scope](rules/semantic-token-scope.md): each scope multiplies its own `--size-*` / `--radius-*` unit and bakes no raw length.
 
@@ -131,9 +131,9 @@ Timing is shared, not retyped. The `transition-base` utility carries the rhythm:
 .fri-button {
   --action-n-xs: 7;
   --action-n-sm: 8;
-  --action-n-md: 9;
+  --action-n-md: 10;
   --action-n-lg: 11;
-  --action-n-xl: 13;
+  --action-n-xl: 12;
   --action-n: var(--action-n-md); /* base default = md */
   --action-height: calc(var(--size-action) * var(--action-n));
   --action-padding-x: calc(var(--action-height) / 2 - var(--size-action));

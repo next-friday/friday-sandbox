@@ -27,7 +27,7 @@ CSS with baked-in defaults:
   --button-color: var(
     --primary
   ); /* ← ghost. primary lives here, not a class. */
-  --action-n: 9; /* ← ghost. md lives here, not in a class. */
+  --action-n: 10; /* ← ghost. md lives here, not in a class. */
 }
 .fri-button-secondary {
   /* override */

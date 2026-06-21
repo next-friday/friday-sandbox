@@ -62,6 +62,7 @@ export const Colors: Story = {
 - Use real props, not mocked data, so `addon-a11y` exercises the real component.
 - Tests run in Vitest browser mode via `@storybook/addon-vitest` with Playwright chromium.
 - Where an interaction adds value the static render cannot show, such as a hover, focus, or pressed state, a `play` function with `userEvent` is recommended to drive and assert it. Cover keyboard paths alongside pointer paths.
+- Attach the `play` test to a story that already earns its place, usually `Default`. Do not add a story whose only difference from another is the `play` block: a second entry that renders identically reads as a duplicate and a reader cannot tell it apart from the doc example.
 
 ## Consumer-facing copy
 

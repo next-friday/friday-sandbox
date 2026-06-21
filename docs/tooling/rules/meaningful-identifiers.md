@@ -53,8 +53,8 @@ Intent lives in names, commits, and `docs/`, not in explanatory comments. A comm
 
 ```ts
 // bad: restates the code
-const height = size * 9; // multiply size by nine
+const height = size * 10; // multiply size by ten
 
 // good: encodes a non-obvious invariant
-const height = size * 9; // N=9 is the md step; see docs/styles
+const height = size * 10; // N=10 is the md step; see docs/styles
 ```
