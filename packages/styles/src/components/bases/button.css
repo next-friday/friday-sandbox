@@ -4,9 +4,9 @@
 
     --action-n-xs: 7;
     --action-n-sm: 8;
-    --action-n-md: 9;
+    --action-n-md: 10;
     --action-n-lg: 11;
-    --action-n-xl: 13;
+    --action-n-xl: 12;
     --action-n: var(--action-n-md);
     --action-height: calc(var(--size-action) * var(--action-n));
     --action-padding-x: calc(var(--action-height) / 2 - var(--size-action));
@@ -198,6 +198,10 @@
 
   .fri-button-icon-only {
     @apply w-(--action-height) px-0;
+  }
+
+  .fri-button-full-width {
+    @apply w-full;
   }
 
   @media (hover: hover) {

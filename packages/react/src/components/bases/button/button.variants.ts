@@ -31,6 +31,9 @@ export const buttonVariants = tv({
     isIconOnly: {
       true: "fri-button-icon-only",
     },
+    isFullWidth: {
+      true: "fri-button-full-width",
+    },
   },
   defaultVariants: {
     color: "primary",

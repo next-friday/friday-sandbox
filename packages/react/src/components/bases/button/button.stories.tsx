@@ -4,6 +4,7 @@ import {
   HeartFill,
   FloppyDisk,
   TriangleExclamation,
+  ArrowRightFromSquare,
 } from "@gravity-ui/icons";
 import { expect, fn, userEvent, within } from "storybook/test";
 import type { Meta, StoryObj } from "@storybook/react-vite";
@@ -71,6 +72,7 @@ const meta = {
     size: "md",
     isDisabled: false,
     isIconOnly: false,
+    isFullWidth: false,
   },
   argTypes: {
     children: {
@@ -128,6 +130,14 @@ const meta = {
         defaultValue: { summary: "false" },
       },
     },
+    isFullWidth: {
+      description: "Whether the button spans the full width of its container.",
+      control: "boolean",
+      table: {
+        type: { summary: "boolean" },
+        defaultValue: { summary: "false" },
+      },
+    },
     "aria-label": {
       description:
         "Provide an `aria-label` so an icon-only button is announced to assistive technologies.",
@@ -149,7 +159,20 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  args: { onPress: fn() },
+  play: async ({ args, canvasElement }) => {
+    const button = within(canvasElement).getByRole("button", {
+      name: "Button",
+    });
+
+    await userEvent.tab();
+    await expect(button).toHaveFocus();
+
+    await userEvent.keyboard("{Enter}");
+    await expect(args.onPress).toHaveBeenCalled();
+  },
+};
 
 export const Variants: Story = {
   parameters: {
@@ -218,12 +241,13 @@ export const Sizes: Story = {
   ),
 };
 
-export const Disabled: Story = {
-  args: { isDisabled: true },
+export const FullWidth: Story = {
+  args: { isFullWidth: true },
   parameters: {
     docs: {
       description: {
-        story: "Use the `isDisabled` prop to stop the button responding.",
+        story:
+          "Use the `isFullWidth` prop to make the button span the full width of its container.",
       },
     },
   },
@@ -239,20 +263,29 @@ export const WithIcon: Story = {
   },
   render: (storyArgs) => (
     <Flex wrap="wrap" align="center" gap="md">
-      <Button {...storyArgs}>
-        <Envelope />
-        Email
-      </Button>
+      <Flex align="center" gap="md">
+        <Button {...storyArgs}>
+          <Envelope />
+          Email
+        </Button>
 
-      <Button {...storyArgs} color="danger">
-        <TriangleExclamation />
-        Exclamation
-      </Button>
+        <Button {...storyArgs} color="danger">
+          <TriangleExclamation />
+          Exclamation
+        </Button>
 
-      <Button {...storyArgs} color="accent" variant="outline">
-        <Envelope />
-        Continue With Google
-      </Button>
+        <Button {...storyArgs} color="accent" variant="ghost">
+          Logout
+          <ArrowRightFromSquare />
+        </Button>
+      </Flex>
+
+      <Flex align="center" gap="md" flex={1}>
+        <Button {...storyArgs} color="accent" variant="ghost" isFullWidth>
+          Logout
+          <ArrowRightFromSquare />
+        </Button>
+      </Flex>
     </Flex>
   ),
 };
@@ -283,6 +316,17 @@ export const IconOnly: Story = {
   ),
 };
 
+export const Disabled: Story = {
+  args: { isDisabled: true },
+  parameters: {
+    docs: {
+      description: {
+        story: "Use the `isDisabled` prop to stop the button responding.",
+      },
+    },
+  },
+};
+
 export const PlainHtml: Story = {
   parameters: {
     docs: {
@@ -297,26 +341,4 @@ export const PlainHtml: Story = {
       Button
     </a>
   ),
-};
-
-export const Interaction: Story = {
-  args: { onPress: fn() },
-  parameters: {
-    docs: {
-      description: {
-        story:
-          "Tab to the button to reach it from the keyboard, then press Enter to trigger the action.",
-      },
-    },
-  },
-  play: async ({ args, canvasElement }) => {
-    const canvas = within(canvasElement);
-    const button = canvas.getByRole("button", { name: "Button" });
-
-    await userEvent.tab();
-    await expect(button).toHaveFocus();
-
-    await userEvent.keyboard("{Enter}");
-    await expect(args.onPress).toHaveBeenCalled();
-  },
 };
