@@ -381,6 +381,23 @@ export const Disabled: Story = {
   },
 };
 
+export const CustomStyles: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Style the button with Tailwind CSS utility classes through `className`, such as a gradient background and hover or press effects.",
+      },
+    },
+  },
+  render: () => (
+    <Button className="w-50 justify-between bg-linear-to-tr from-pink-500 to-red-500 transition hover:brightness-110 active:scale-95">
+      Button
+      <HeartFill />
+    </Button>
+  ),
+};
+
 export const PlainHtml: Story = {
   parameters: {
     docs: {
@@ -391,7 +408,10 @@ export const PlainHtml: Story = {
     },
   },
   render: () => (
-    <a className="fri-button fri-button-primary fri-button-md" href="/">
+    <a
+      className="fri-button fri-button-primary fri-button-md"
+      href="/?path=/docs/bases-actions-button--docs"
+    >
       Button
     </a>
   ),
