@@ -1,16 +1,8 @@
 import type { ElementType, ReactElement } from "react";
 
-import type { PolymorphicProps } from "../../utils/polymorphic-props";
-
 import { flexVariants } from "./flex.variants";
 import type { FlexVariants } from "./flex.variants";
-
-export type FlexProps<TElement extends ElementType = "div"> = PolymorphicProps<
-  FlexVariants & {
-    className?: string;
-  },
-  TElement
->;
+import type { FlexProps } from "./flex.types";
 
 export const Flex = <TElement extends ElementType = "div">(
   props: Readonly<FlexProps<TElement>>,
@@ -21,6 +13,7 @@ export const Flex = <TElement extends ElementType = "div">(
     basis,
     className,
     direction,
+    flex,
     gap,
     gapX,
     gapY,
@@ -44,11 +37,12 @@ export const Flex = <TElement extends ElementType = "div">(
     grow,
     shrink,
     basis,
+    flex,
     gap,
     gapX,
     gapY,
     className,
-  });
+  } as FlexVariants & { className?: string });
 
   return (
     <Component

@@ -17,3 +17,6 @@ export type {
   ScrollAreaVariant,
   ScrollAreaViewportProps,
 } from "./components";
+
+export { GoogleIcon } from "./components";
+export type { GoogleIconProps } from "./components";

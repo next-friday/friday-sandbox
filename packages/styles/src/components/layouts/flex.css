@@ -136,4 +136,17 @@
   .fri-flex-basis-0 {
     @apply basis-0;
   }
+
+  .fri-flex-1 {
+    @apply flex-1;
+  }
+  .fri-flex-auto {
+    @apply flex-auto;
+  }
+  .fri-flex-initial {
+    @apply flex-initial;
+  }
+  .fri-flex-none {
+    @apply flex-none;
+  }
 }

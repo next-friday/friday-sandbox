@@ -67,6 +67,12 @@ export const flexVariants = tv({
       full: "fri-flex-basis-full",
       0: "fri-flex-basis-0",
     },
+    flex: {
+      1: "fri-flex-1",
+      auto: "fri-flex-auto",
+      initial: "fri-flex-initial",
+      none: "fri-flex-none",
+    },
   },
   defaultVariants: {
     direction: "row",

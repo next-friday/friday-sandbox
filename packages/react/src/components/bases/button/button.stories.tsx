@@ -1,15 +1,18 @@
 import {
+  ArrowRightFromSquare,
+  ArrowsRotateLeft,
   Envelope,
+  FloppyDisk,
   Gear,
   HeartFill,
-  FloppyDisk,
   TriangleExclamation,
-  ArrowRightFromSquare,
 } from "@gravity-ui/icons";
 import { expect, fn, userEvent, within } from "storybook/test";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import { Flex } from "../flex";
+
+import { GoogleIcon } from "../../icons";
 
 import { Button } from ".";
 
@@ -271,19 +274,26 @@ export const WithIcon: Story = {
 
         <Button {...storyArgs} color="danger">
           <TriangleExclamation />
-          Exclamation
+          Delete
         </Button>
 
         <Button {...storyArgs} color="accent" variant="ghost">
-          Logout
-          <ArrowRightFromSquare />
+          Reset
+          <ArrowsRotateLeft />
         </Button>
       </Flex>
 
       <Flex align="center" gap="md" flex={1}>
-        <Button {...storyArgs} color="accent" variant="ghost" isFullWidth>
-          Logout
+        <Button {...storyArgs} color="accent" variant="solid" isFullWidth>
           <ArrowRightFromSquare />
+          Sign out
+        </Button>
+      </Flex>
+
+      <Flex align="center" gap="md" flex={1}>
+        <Button {...storyArgs} color="accent" variant="outline" isFullWidth>
+          <GoogleIcon />
+          Continue With Google
         </Button>
       </Flex>
     </Flex>
@@ -309,7 +319,13 @@ export const IconOnly: Story = {
         <HeartFill />
       </Button>
 
-      <Button {...storyArgs} color="success" aria-label="Settings" isIconOnly>
+      <Button
+        {...storyArgs}
+        color="secondary"
+        variant="outline"
+        aria-label="Settings"
+        isIconOnly
+      >
         <Gear />
       </Button>
     </Flex>

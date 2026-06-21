@@ -17,3 +17,6 @@ export type {
   ScrollAreaVariant,
   ScrollAreaViewportProps,
 } from "./bases";
+
+export { GoogleIcon } from "./icons";
+export type { GoogleIconProps } from "./icons";

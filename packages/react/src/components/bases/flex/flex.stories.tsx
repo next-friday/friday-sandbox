@@ -124,6 +124,13 @@ const meta = {
       options: ["auto", "full", 0],
       table: { type: { summary: "auto | full | 0" } },
     },
+    flex: {
+      description:
+        "Use the `flex` prop as a shorthand for grow, shrink, and basis together.",
+      control: "select",
+      options: [1, "auto", "initial", "none"],
+      table: { type: { summary: "1 | auto | initial | none" } },
+    },
     as: {
       description:
         "Use the `as` prop to render the container as a different element.",
@@ -243,6 +250,28 @@ export const Basis: Story = {
       </Flex>
 
       <Flex basis={0} grow>
+        <Boxes count={1} />
+      </Flex>
+    </Flex>
+  ),
+};
+
+export const FlexShorthand: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Use the `flex` prop as a shorthand for grow, shrink, and basis. `flex={1}` gives each child an equal share of the space.",
+      },
+    },
+  },
+  render: () => (
+    <Flex className="w-80" gap="md">
+      <Flex flex={1}>
+        <Boxes count={1} />
+      </Flex>
+
+      <Flex flex={1}>
         <Boxes count={1} />
       </Flex>
     </Flex>
