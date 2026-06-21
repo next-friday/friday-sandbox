@@ -6,8 +6,7 @@ The components in `@friday-sandbox/react` — accessible primitives built on `re
 
 Every component is a symmetric folder under `src/components/<tier>/<name>/`, where the tier is its category:
 
-- `bases` — interactive primitives (button)
-- `layouts` — compositional primitives (flex, grid, scroll-area)
+- `bases` — interactive and compositional primitives (button, flex, grid, scroll-area)
 - `samples` — Storybook-only demos (box, long-list, wide-row); not part of the public surface
 
 A `bases` component ships four files, mirroring `button`:
@@ -27,7 +26,7 @@ Filenames are lowercase, the export is named (no default), and the `Props` type 
 Reach for what already exists before writing new behaviour:
 
 - **Interaction** — focus, selection, and keyboard handling come from `react-aria-components`. Do not hand-roll what a primitive already provides.
-- **Structure** — rows, columns, grids, and scrollable regions use the `layouts` primitives (`Flex`, `Grid`, `GridItem`, `ScrollArea`), not raw `<div className="flex …">`.
+- **Structure** — rows, columns, grids, and scrollable regions use the layout primitives (`Flex`, `Grid`, `GridItem`, `ScrollArea`), not raw `<div className="flex …">`.
 - **Shared logic** — focus management, ARIA wiring, controlled-vs-uncontrolled state, and event coalescing belong in a reusable hook under `src/`. A second component solving the same problem is the signal to extract.
 
 ## Accessibility and stories
@@ -41,5 +40,5 @@ Its Storybook story proves this while doubling as the deployed consumer referenc
 Enforced gates for writing components — CI and the PR reviewers hold you to them:
 
 - [`component-structure.md`](rules/component-structure.md) — the symmetric folder skeleton, lowercase filenames, named export, `*.variants.ts`, exports-map reachability.
-- [`composition.md`](rules/composition.md) — compose `react-aria-components` and the `layouts` primitives; extract shared logic into a hook.
+- [`composition.md`](rules/composition.md) — compose `react-aria-components` and the layout primitives; extract shared logic into a hook.
 - [`accessibility-and-stories.md`](rules/accessibility-and-stories.md) — keyboard/focus/ARIA, `addon-a11y`, required story states, consumer-facing story copy.

@@ -131,6 +131,9 @@ importers:
 
   packages/react:
     dependencies:
+      '@gravity-ui/icons':
+        specifier: ^2.18.0
+        version: 2.18.0(react@19.2.0)
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
@@ -962,6 +965,14 @@ packages:
 
   '@floating-ui/utils@0.2.11':
     resolution: {integrity: sha512-RiB/yIh78pcIxl6lLMG0CgBXAZ2Y0eVHqMPYugu+9U0AeT6YBeiJpf7lbdJNIugFP5SIjwNRgo4DhR1Qxi26Gg==}
+
+  '@gravity-ui/icons@2.18.0':
+    resolution: {integrity: sha512-JoRc/4Ch9GLaufZfpGd2ePRRisMXEjMI+r3y8kPKyYIAdQZz07jpIXEgsft1gvBxjSht2MS2uu5+vfhe1WP0ow==}
+    peerDependencies:
+      react: '*'
+    peerDependenciesMeta:
+      react:
+        optional: true
 
   '@humanfs/core@0.19.1':
     resolution: {integrity: sha512-5DyQ4+1JEUzejeK1JGICcideyfUbGixgS9jNgex5nqkW+cY7WZhxBigmieN5Qnw9ZosSNVC9KQKyb+GUaGyKUA==}
@@ -7214,6 +7225,12 @@ snapshots:
       react-dom: 19.2.0(react@19.2.0)
 
   '@floating-ui/utils@0.2.11': {}
+
+  '@gravity-ui/icons@2.18.0(react@19.2.0)':
+    dependencies:
+      tslib: 2.8.1
+    optionalDependencies:
+      react: 19.2.0
 
   '@humanfs/core@0.19.1': {}
 

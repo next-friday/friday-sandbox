@@ -7,7 +7,7 @@ import { Boxes } from "../../samples/boxes";
 import { Grid, GridItem } from ".";
 
 const meta = {
-  title: "Layout/Primitives/Grid",
+  title: "Bases/Layout/Grid",
   component: Grid,
   tags: ["autodocs"],
   parameters: {

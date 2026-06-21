@@ -1,6 +1,7 @@
+import { Envelope, TriangleExclamation } from "@gravity-ui/icons";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { Flex } from "../../layouts/flex";
+import { Flex } from "../flex";
 
 import { Button } from ".";
 
@@ -33,7 +34,7 @@ const SIZES = [
 ] as const;
 
 const meta = {
-  title: "Base/Actions/Button",
+  title: "Bases/Actions/Button",
   component: Button,
   tags: ["autodocs"],
   parameters: {
@@ -193,6 +194,29 @@ export const Sizes: Story = {
           {size.label}
         </Button>
       ))}
+    </Flex>
+  ),
+};
+
+export const Icon: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: "",
+      },
+    },
+  },
+  render: () => (
+    <Flex wrap="wrap" align="center" gap="md">
+      <Button>
+        <Envelope />
+        Email
+      </Button>
+
+      <Button color="danger">
+        <TriangleExclamation />
+        Exclamation
+      </Button>
     </Flex>
   ),
 };

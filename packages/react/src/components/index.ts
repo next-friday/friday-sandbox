@@ -1,13 +1,13 @@
 export { Button } from "./bases";
 export type { ButtonProps } from "./bases";
 
-export { Flex } from "./layouts";
-export type { FlexProps } from "./layouts";
+export { Flex } from "./bases";
+export type { FlexProps } from "./bases";
 
-export { Grid, GridItem } from "./layouts";
-export type { GridItemProps, GridProps } from "./layouts";
+export { Grid, GridItem } from "./bases";
+export type { GridItemProps, GridProps } from "./bases";
 
-export { ScrollArea } from "./layouts";
+export { ScrollArea } from "./bases";
 export type {
   ScrollAreaContentProps,
   ScrollAreaCornerProps,
@@ -16,4 +16,4 @@ export type {
   ScrollAreaThumbProps,
   ScrollAreaVariant,
   ScrollAreaViewportProps,
-} from "./layouts";
+} from "./bases";

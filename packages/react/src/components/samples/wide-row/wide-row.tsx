@@ -1,4 +1,4 @@
-import { Flex } from "../../layouts/flex/flex";
+import { Flex } from "../../bases/flex/flex";
 
 export interface WideRowProps {
   count?: number;

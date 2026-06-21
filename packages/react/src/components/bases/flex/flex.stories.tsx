@@ -6,7 +6,7 @@ import { Boxes } from "../../samples/boxes";
 import { Flex } from ".";
 
 const meta = {
-  title: "Layout/Primitives/Flex",
+  title: "Bases/Layout/Flex",
   component: Flex,
   tags: ["autodocs"],
   parameters: {

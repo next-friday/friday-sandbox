@@ -4,8 +4,7 @@
 
 Tiers:
 
-- `bases` — interactive primitives (button)
-- `layouts` — compositional primitives (flex, grid, scroll-area)
+- `bases` — interactive and compositional primitives (button, flex, grid, scroll-area)
 - `samples` — Storybook-only demo components (box, long-list, wide-row); **not** re-exported from the public surface
 
 ## Bad

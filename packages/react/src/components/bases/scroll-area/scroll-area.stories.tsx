@@ -8,7 +8,7 @@ import { WideRow } from "../../samples/wide-row";
 import { ScrollArea } from ".";
 
 const meta = {
-  title: "Layout/Primitives/ScrollArea",
+  title: "Bases/Layout/ScrollArea",
   component: ScrollArea.Root,
   tags: ["autodocs"],
   parameters: {

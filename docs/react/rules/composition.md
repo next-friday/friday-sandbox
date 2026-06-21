@@ -1,6 +1,6 @@
 # Composition and Reuse
 
-**Rule:** Reach for what already exists before writing new behavior. Compose `react-aria-components` for interaction, compose the `layouts` primitives for structure, and extract shared component logic into a hook under `src/` instead of repeating it.
+**Rule:** Reach for what already exists before writing new behavior. Compose `react-aria-components` for interaction, compose the layout primitives for structure, and extract shared component logic into a hook under `src/` instead of repeating it.
 
 ## Bad
 
@@ -22,7 +22,7 @@ return (
 ```tsx
 import { Button as AriaButton } from "react-aria-components";
 
-import { Flex } from "../../layouts/flex";
+import { Flex } from "../../bases/flex";
 
 return (
   <AriaButton onPress={activate}>
