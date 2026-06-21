@@ -28,6 +28,9 @@ export const buttonVariants = tv({
       lg: "fri-button-lg",
       xl: "fri-button-xl",
     },
+    isIconOnly: {
+      true: "fri-button-icon-only",
+    },
   },
   defaultVariants: {
     color: "primary",

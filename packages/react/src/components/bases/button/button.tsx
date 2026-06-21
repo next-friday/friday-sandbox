@@ -14,11 +14,11 @@ export interface ButtonProps
 }
 
 export const Button = (props: Readonly<ButtonProps>) => {
-  const { className, color, size, variant, ...rest } = props;
+  const { className, color, isIconOnly, size, variant, ...rest } = props;
 
   const resolvedClassName = composeTailwindRenderProps(
     className,
-    buttonVariants({ color, variant, size }),
+    buttonVariants({ color, variant, size, isIconOnly }),
   );
 
   return (

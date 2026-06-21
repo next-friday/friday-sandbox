@@ -2,11 +2,11 @@
   .fri-button {
     @apply relative inline-flex h-(--action-height) w-fit shrink-0 cursor-pointer items-center justify-center gap-2 rounded-(--action-radius) border-(length:--border) border-solid border-(--button-border-color) bg-(--button-background) px-(--action-padding-x) text-sm font-medium whitespace-nowrap text-(--button-foreground) transition-base transition-[background-color,box-shadow,outline-color] outline-none select-none;
 
-    --action-n-xs: 6;
+    --action-n-xs: 7;
     --action-n-sm: 8;
-    --action-n-md: 10;
-    --action-n-lg: 12;
-    --action-n-xl: 14;
+    --action-n-md: 9;
+    --action-n-lg: 11;
+    --action-n-xl: 13;
     --action-n: var(--action-n-md);
     --action-height: calc(var(--size-action) * var(--action-n));
     --action-padding-x: calc(var(--action-height) / 2 - var(--size-action));
@@ -193,7 +193,11 @@
   }
   .fri-button-xl {
     --action-n: var(--action-n-xl);
-    @apply text-lg;
+    @apply text-base;
+  }
+
+  .fri-button-icon-only {
+    @apply w-(--action-height) px-0;
   }
 
   @media (hover: hover) {

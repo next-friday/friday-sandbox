@@ -1,4 +1,10 @@
-import { Envelope, TriangleExclamation } from "@gravity-ui/icons";
+import {
+  Envelope,
+  Gear,
+  HeartFill,
+  FloppyDisk,
+  TriangleExclamation,
+} from "@gravity-ui/icons";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import { Flex } from "../flex";
@@ -63,16 +69,16 @@ const meta = {
     variant: "solid",
     size: "md",
     isDisabled: false,
+    isIconOnly: false,
   },
   argTypes: {
     children: {
-      description: "Label or content inside the button — usually text.",
+      description: "The content to display inside the button.",
       control: "text",
       table: { type: { summary: "ReactNode" } },
     },
     color: {
-      description:
-        "Semantic color. Match the button to the meaning of the action — `primary` for the main action, `danger` for destructive ones, and so on.",
+      description: "Use the `color` prop to change the color of the button.",
       control: "select",
       options: COLORS.map((color) => color.value),
       table: {
@@ -85,7 +91,7 @@ const meta = {
     },
     variant: {
       description:
-        "Fill style. `solid` is the default; `outline`/`ghost`/`plain` step the emphasis down; `subtle`/`surface` are soft tints of the color.",
+        "Use the `variant` prop to change the visual style of the button.",
       control: "select",
       options: VARIANTS.map((variant) => variant.value),
       table: {
@@ -96,8 +102,7 @@ const meta = {
       },
     },
     size: {
-      description:
-        "Visual size. `md` is the default at 40 px tall — large enough for touch. `xs`/`sm` for compact UIs, `lg`/`xl` for hero actions.",
+      description: "Use the `size` prop to change the size of the button.",
       control: "radio",
       options: SIZES.map((size) => size.value),
       table: {
@@ -106,17 +111,20 @@ const meta = {
       },
     },
     isDisabled: {
+      description: "Whether the button is disabled.",
+      control: "boolean",
+    },
+    isIconOnly: {
       description:
-        "Disables the button. Click and keyboard events stop firing.",
+        "Whether the button should display only an icon. Provide an `aria-label` so the action is announced to assistive technologies.",
       control: "boolean",
     },
     onPress: {
-      description:
-        "Fires when the button is activated — mouse, touch, or keyboard (Space/Enter). Use this instead of `onClick`.",
+      description: "Handler that is called when the button is pressed.",
       action: "pressed",
     },
     className: {
-      description: "Extra Tailwind classes appended after the variant classes.",
+      description: "Additional CSS classes to apply to the button.",
       control: "text",
     },
   },
@@ -133,7 +141,7 @@ export const Variants: Story = {
     docs: {
       description: {
         story:
-          "Six fill styles, from the solid default down to the borderless plain — combine any with a color.",
+          "Use the `variant` prop to change the visual style of the button.",
       },
     },
   },
@@ -152,8 +160,7 @@ export const Colors: Story = {
   parameters: {
     docs: {
       description: {
-        story:
-          "Every semantic color across all six fill variants — one row per variant (solid, subtle, surface, outline, ghost, plain).",
+        story: "Use the `color` prop to change the color of the button.",
       },
     },
   },
@@ -181,8 +188,7 @@ export const Sizes: Story = {
   parameters: {
     docs: {
       description: {
-        story:
-          "Five fixed sizes from `xs` (24 px) to `xl` (56 px). `md` is the default and meets touch-target guidelines.",
+        story: "Use the `size` prop to change the size of the button.",
       },
     },
   },
@@ -197,11 +203,11 @@ export const Sizes: Story = {
   ),
 };
 
-export const Icon: Story = {
+export const WithIcon: Story = {
   parameters: {
     docs: {
       description: {
-        story: "",
+        story: "Use icons within a button.",
       },
     },
   },
@@ -217,13 +223,35 @@ export const Icon: Story = {
         Exclamation
       </Button>
 
-      <Button>
-        <Envelope />
-      </Button>
-
       <Button color="accent" variant="outline">
         <Envelope />
         Continue With Google
+      </Button>
+    </Flex>
+  ),
+};
+
+export const IconOnly: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Use the `isIconOnly` prop to render a square, icon-only button. Provide an `aria-label` so the action is announced to assistive technologies.",
+      },
+    },
+  },
+  render: (storyArgs) => (
+    <Flex wrap="wrap" align="center" gap="md">
+      <Button {...storyArgs} aria-label="Save" isIconOnly>
+        <FloppyDisk />
+      </Button>
+
+      <Button {...storyArgs} color="accent" aria-label="Like" isIconOnly>
+        <HeartFill />
+      </Button>
+
+      <Button {...storyArgs} color="success" aria-label="Settings" isIconOnly>
+        <Gear />
       </Button>
     </Flex>
   ),
