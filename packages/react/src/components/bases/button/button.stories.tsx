@@ -6,13 +6,12 @@ import {
   Gear,
   HeartFill,
   TrashBin,
-  TriangleExclamation,
+  Person,
 } from "@gravity-ui/icons";
 import { expect, fn, userEvent, within } from "storybook/test";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import { Flex } from "../flex";
-
 import { GoogleIcon } from "../../icons";
 
 import { Button } from ".";
@@ -65,19 +64,6 @@ const meta = {
           "```tsx",
           "<Button />",
           "```",
-          "",
-          "## Interactive States",
-          "",
-          "The button reflects each state automatically. Target a state with its pseudo-class or its data attribute:",
-          "",
-          "- Hover: `:hover` or `[data-hovered]`",
-          "- Pressed: `:active` or `[data-pressed]`",
-          "- Focus: `:focus-visible` or `[data-focus-visible]`",
-          "- Disabled: `:disabled` or `[aria-disabled]`",
-          "",
-          "## Styling",
-          "",
-          "Pass Tailwind CSS classes through `className` to extend or override the styles, as the Custom Styles example shows. To re-theme every button at once, override the design tokens documented on the Theming page.",
         ].join("\n"),
       },
     },
@@ -88,9 +74,9 @@ const meta = {
     variant: "solid",
     size: "md",
     isDisabled: false,
-    isIconOnly: false,
     isFullWidth: false,
     isRoundedFull: false,
+    isIconOnly: false,
   },
   argTypes: {
     children: {
@@ -139,15 +125,6 @@ const meta = {
         defaultValue: { summary: "false" },
       },
     },
-    isIconOnly: {
-      description:
-        "Whether the button should display only an icon. Provide an `aria-label` so the action is announced to assistive technologies.",
-      control: "boolean",
-      table: {
-        type: { summary: "boolean" },
-        defaultValue: { summary: "false" },
-      },
-    },
     isFullWidth: {
       description: "Whether the button spans the full width of its container.",
       control: "boolean",
@@ -158,6 +135,15 @@ const meta = {
     },
     isRoundedFull: {
       description: "Whether the button is fully rounded.",
+      control: "boolean",
+      table: {
+        type: { summary: "boolean" },
+        defaultValue: { summary: "false" },
+      },
+    },
+    isIconOnly: {
+      description:
+        "Whether the button should display only an icon. Provide an `aria-label` so the action is announced to assistive technologies.",
       control: "boolean",
       table: {
         type: { summary: "boolean" },
@@ -177,6 +163,7 @@ const meta = {
     className: {
       description: "Additional CSS classes to apply to the button.",
       control: "text",
+      table: { type: { summary: "string" } },
     },
   },
 } satisfies Meta<typeof Button>;
@@ -267,6 +254,17 @@ export const Sizes: Story = {
   ),
 };
 
+export const Disabled: Story = {
+  args: { isDisabled: true },
+  parameters: {
+    docs: {
+      description: {
+        story: "Use the `isDisabled` prop to disable the button.",
+      },
+    },
+  },
+};
+
 export const FullWidth: Story = {
   args: { isFullWidth: true },
   parameters: {
@@ -279,48 +277,16 @@ export const FullWidth: Story = {
   },
 };
 
-export const WithIcon: Story = {
+export const RoundedFull: Story = {
+  args: { isRoundedFull: true },
   parameters: {
     docs: {
       description: {
-        story: "Use icons within a button.",
+        story:
+          "Use the `isRoundedFull` prop for a fully rounded button. Combine it with `isIconOnly` for a circle.",
       },
     },
   },
-  render: (storyArgs) => (
-    <Flex wrap="wrap" align="center" gap="md">
-      <Flex align="center" gap="md">
-        <Button {...storyArgs}>
-          <Envelope />
-          Email
-        </Button>
-
-        <Button {...storyArgs} color="danger">
-          <TriangleExclamation />
-          Delete
-        </Button>
-
-        <Button {...storyArgs} color="accent" variant="ghost">
-          Reset
-          <ArrowsRotateLeft />
-        </Button>
-      </Flex>
-
-      <Flex align="center" gap="md" flex={1}>
-        <Button {...storyArgs} color="accent" variant="solid" isFullWidth>
-          <ArrowRightFromSquare />
-          Sign out
-        </Button>
-      </Flex>
-
-      <Flex align="center" gap="md" flex={1}>
-        <Button {...storyArgs} color="accent" variant="outline" isFullWidth>
-          <GoogleIcon />
-          Continue With Google
-        </Button>
-      </Flex>
-    </Flex>
-  ),
 };
 
 export const IconOnly: Story = {
@@ -339,7 +305,7 @@ export const IconOnly: Story = {
       </Button>
 
       <Button {...storyArgs} color="accent" aria-label="Like" isIconOnly>
-        <HeartFill />
+        <Gear />
       </Button>
 
       <Button
@@ -348,50 +314,56 @@ export const IconOnly: Story = {
         variant="outline"
         aria-label="Settings"
         isIconOnly
+        isRoundedFull
       >
-        <Gear />
+        <Person />
       </Button>
     </Flex>
   ),
 };
 
-export const RoundedFull: Story = {
+export const WithIcon: Story = {
   parameters: {
     docs: {
       description: {
-        story:
-          "Use the `isRoundedFull` prop for a fully rounded button. Combine it with `isIconOnly` for a circle.",
+        story: "Use icons within a button.",
       },
     },
   },
   render: (storyArgs) => (
-    <Flex align="center" gap="md">
-      <Button {...storyArgs} isRoundedFull>
-        Button
-      </Button>
+    <Flex wrap="wrap" align="center" gap="md">
+      <Flex wrap="wrap" align="center" gap="md">
+        <Button {...storyArgs}>
+          <Envelope />
+          Email
+        </Button>
 
-      <Button
-        {...storyArgs}
-        color="danger"
-        aria-label="Settings"
-        isRoundedFull
-        isIconOnly
-      >
-        <TrashBin />
-      </Button>
+        <Button {...storyArgs} color="danger">
+          <TrashBin />
+          Delete
+        </Button>
+
+        <Button {...storyArgs} color="secondary" variant="ghost">
+          Reset
+          <ArrowsRotateLeft />
+        </Button>
+      </Flex>
+
+      <Flex flex={1}>
+        <Button {...storyArgs} color="accent" variant="solid" isFullWidth>
+          <ArrowRightFromSquare />
+          Sign out
+        </Button>
+      </Flex>
+
+      <Flex flex={1}>
+        <Button {...storyArgs} color="accent" variant="outline" isFullWidth>
+          <GoogleIcon />
+          Continue With Google
+        </Button>
+      </Flex>
     </Flex>
   ),
-};
-
-export const Disabled: Story = {
-  args: { isDisabled: true },
-  parameters: {
-    docs: {
-      description: {
-        story: "Use the `isDisabled` prop to stop the button responding.",
-      },
-    },
-  },
 };
 
 export const CustomStyles: Story = {
