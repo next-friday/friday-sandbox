@@ -204,6 +204,10 @@
     @apply w-full;
   }
 
+  .fri-button-rounded-full {
+    @apply rounded-full;
+  }
+
   @media (hover: hover) {
     .fri-button[data-hovered],
     .fri-button:hover {

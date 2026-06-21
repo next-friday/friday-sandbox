@@ -34,6 +34,9 @@ export const buttonVariants = tv({
     isFullWidth: {
       true: "fri-button-full-width",
     },
+    isRoundedFull: {
+      true: "fri-button-rounded-full",
+    },
   },
   defaultVariants: {
     color: "primary",

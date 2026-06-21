@@ -5,6 +5,7 @@ import {
   FloppyDisk,
   Gear,
   HeartFill,
+  TrashBin,
   TriangleExclamation,
 } from "@gravity-ui/icons";
 import { expect, fn, userEvent, within } from "storybook/test";
@@ -76,6 +77,7 @@ const meta = {
     isDisabled: false,
     isIconOnly: false,
     isFullWidth: false,
+    isRoundedFull: false,
   },
   argTypes: {
     children: {
@@ -135,6 +137,14 @@ const meta = {
     },
     isFullWidth: {
       description: "Whether the button spans the full width of its container.",
+      control: "boolean",
+      table: {
+        type: { summary: "boolean" },
+        defaultValue: { summary: "false" },
+      },
+    },
+    isRoundedFull: {
+      description: "Whether the button is fully rounded.",
       control: "boolean",
       table: {
         type: { summary: "boolean" },
@@ -327,6 +337,34 @@ export const IconOnly: Story = {
         isIconOnly
       >
         <Gear />
+      </Button>
+    </Flex>
+  ),
+};
+
+export const RoundedFull: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Use the `isRoundedFull` prop for a fully rounded button. Combine it with `isIconOnly` for a circle.",
+      },
+    },
+  },
+  render: (storyArgs) => (
+    <Flex align="center" gap="md">
+      <Button {...storyArgs} isRoundedFull>
+        Button
+      </Button>
+
+      <Button
+        {...storyArgs}
+        color="danger"
+        aria-label="Settings"
+        isRoundedFull
+        isIconOnly
+      >
+        <TrashBin />
       </Button>
     </Flex>
   ),

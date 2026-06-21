@@ -106,8 +106,9 @@ Components use a kebab-case `fri-<component>-<modifier>` convention. Apply the b
 | `fri-button-xs` / `-sm` / `-md` / `-lg` / `-xl`                                                 | one      | 1 of 5 |
 | `fri-button-icon-only`                                                                          | no       | square |
 | `fri-button-full-width`                                                                         | no       | block  |
+| `fri-button-rounded-full`                                                                       | no       | round  |
 
-The default variant is `solid` and the default color is `primary`, baked into `.fri-button`. `fri-button-icon-only` makes a square button to pair with an `aria-label`, and `fri-button-full-width` makes the button span its container.
+The default variant is `solid` and the default color is `primary`, baked into `.fri-button`. `fri-button-icon-only` makes a square button to pair with an `aria-label`, `fri-button-full-width` makes the button span its container, and `fri-button-rounded-full` makes it fully rounded.
 
 ## Themes
 
