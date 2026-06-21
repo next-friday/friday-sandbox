@@ -150,12 +150,6 @@ const meta = {
         defaultValue: { summary: "false" },
       },
     },
-    "aria-label": {
-      description:
-        "Provide an `aria-label` so an icon-only button is announced to assistive technologies.",
-      control: "text",
-      table: { type: { summary: "string" } },
-    },
     onPress: {
       description: "Handler that is called when the button is pressed.",
       action: "pressed",

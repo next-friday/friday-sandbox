@@ -1,0 +1,88 @@
+@layer components {
+  .fri-loading {
+    @apply inline-block size-(--loading-size) shrink-0;
+
+    --feedback-n-xs: 4;
+    --feedback-n-sm: 5;
+    --feedback-n-md: 6;
+    --feedback-n-lg: 8;
+    --feedback-n-xl: 10;
+    --feedback-n: var(--feedback-n-md);
+    --loading-size: calc(var(--size-feedback) * var(--feedback-n));
+    --loading-thickness-divisor: 8;
+    --loading-thickness: calc(
+      var(--loading-size) / var(--loading-thickness-divisor)
+    );
+    --loading-track-mix: 24%;
+    --loading-percentage-scale: 1%;
+    --loading-percentage: 0;
+    --loading-indeterminate-arc: 25;
+    --loading-color: var(--primary);
+    --loading-track: color-mix(
+      in srgb,
+      var(--loading-color) var(--loading-track-mix),
+      transparent
+    );
+    --loading-mask: radial-gradient(
+      farthest-side,
+      transparent calc(100% - var(--loading-thickness)),
+      black 0
+    );
+  }
+
+  .fri-loading-indicator {
+    @apply size-full rounded-full;
+
+    background: conic-gradient(
+      var(--loading-color)
+        calc(var(--loading-percentage) * var(--loading-percentage-scale)),
+      var(--loading-track) 0
+    );
+    mask: var(--loading-mask);
+    -webkit-mask: var(--loading-mask);
+  }
+
+  .fri-loading:not([aria-valuenow]) .fri-loading-indicator {
+    @apply animate-spin motion-reduce:animate-none;
+
+    --loading-percentage: var(--loading-indeterminate-arc);
+  }
+
+  .fri-loading-primary {
+    --loading-color: var(--primary);
+  }
+  .fri-loading-secondary {
+    --loading-color: var(--secondary);
+  }
+  .fri-loading-accent {
+    --loading-color: var(--accent);
+  }
+  .fri-loading-info {
+    --loading-color: var(--info);
+  }
+  .fri-loading-success {
+    --loading-color: var(--success);
+  }
+  .fri-loading-warning {
+    --loading-color: var(--warning);
+  }
+  .fri-loading-danger {
+    --loading-color: var(--danger);
+  }
+
+  .fri-loading-xs {
+    --feedback-n: var(--feedback-n-xs);
+  }
+  .fri-loading-sm {
+    --feedback-n: var(--feedback-n-sm);
+  }
+  .fri-loading-md {
+    --feedback-n: var(--feedback-n-md);
+  }
+  .fri-loading-lg {
+    --feedback-n: var(--feedback-n-lg);
+  }
+  .fri-loading-xl {
+    --feedback-n: var(--feedback-n-xl);
+  }
+}

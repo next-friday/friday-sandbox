@@ -7,6 +7,9 @@ export type { FlexProps } from "./bases";
 export { Grid, GridItem } from "./bases";
 export type { GridItemProps, GridProps } from "./bases";
 
+export { Loading } from "./bases";
+export type { LoadingProps } from "./bases";
+
 export { ScrollArea } from "./bases";
 export type {
   ScrollAreaContentProps,
