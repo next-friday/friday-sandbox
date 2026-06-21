@@ -225,4 +225,9 @@
   .fri-button[aria-disabled="true"] {
     @apply status-disabled;
   }
+
+  .fri-button[data-focus-visible],
+  .fri-button:focus-visible {
+    @apply focus-ring;
+  }
 }

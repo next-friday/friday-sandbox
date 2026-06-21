@@ -52,7 +52,7 @@ const meta = {
     docs: {
       description: {
         component: [
-          "Accessible button with keyboard support, focus ring, and hover/press states built in.",
+          "Accessible button with keyboard support, plus hover, press, and focus states built in.",
           "",
           "## Import",
           "",
@@ -65,6 +65,19 @@ const meta = {
           "```tsx",
           "<Button />",
           "```",
+          "",
+          "## Interactive States",
+          "",
+          "The button reflects each state automatically. Target a state with its pseudo-class or its data attribute:",
+          "",
+          "- Hover: `:hover` or `[data-hovered]`",
+          "- Pressed: `:active` or `[data-pressed]`",
+          "- Focus: `:focus-visible` or `[data-focus-visible]`",
+          "- Disabled: `:disabled` or `[aria-disabled]`",
+          "",
+          "## Styling",
+          "",
+          "Pass Tailwind CSS classes through `className` to extend or override the styles, as the Custom Styles example shows. To re-theme every button at once, override the design tokens documented on the Theming page.",
         ].join("\n"),
       },
     },

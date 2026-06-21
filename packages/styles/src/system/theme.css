@@ -19,6 +19,7 @@
   --color-danger-foreground: var(--danger-foreground);
   --color-neutral: var(--neutral);
   --color-muted: var(--muted);
+  --color-ring: var(--ring);
   --border: var(--border);
   --radius-action: var(--radius-action);
   --radius-field: var(--radius-field);

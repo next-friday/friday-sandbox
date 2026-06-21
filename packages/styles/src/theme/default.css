@@ -32,6 +32,8 @@
 
   --muted: oklch(89.2% 0.0051 228.83);
 
+  --ring: oklch(57.49% 0.2084 257.52);
+
   --size-action: 0.25rem;
   --radius-action: 0.5rem;
 
@@ -78,4 +80,6 @@
   --neutral: oklch(65.47% 0.0208 248.15);
 
   --muted: oklch(30% 0.006 228.83);
+
+  --ring: oklch(64% 0.18 257.52);
 }

@@ -52,7 +52,7 @@ Import the stylesheet once at your application root, after Tailwind:
 import "@friday-sandbox/styles";
 ```
 
-This pulls in Tailwind base styles, the default theme tokens in light and dark, the `@theme inline` registrations, the `status-disabled` and `transition-base` utilities, and the component classes for button, flex, grid, and scroll-area.
+This pulls in Tailwind base styles, the default theme tokens in light and dark, the `@theme inline` registrations, the `status-disabled`, `transition-base`, and `focus-ring` utilities, and the component classes for button, flex, grid, and scroll-area.
 
 The package exposes one entry point, available as the bare specifier or as `./css`:
 
@@ -174,10 +174,11 @@ Light by default, flipped by `.dark` or `[data-theme="dark"]`:
   --surface-foreground: oklch(100% 0 0);
   --neutral: oklch(65.47% 0.0208 248.15);
   --muted: oklch(89.2% 0.0051 228.83);
+  --ring: oklch(57.49% 0.2084 257.52);
 }
 ```
 
-`--surface` and `--surface-foreground` are an inverted surface pair, such as a tooltip, with `bg-surface` and `text-surface-foreground` utilities. `--neutral` is a standalone mid-tone with no foreground token and is the only color identical in light and dark.
+`--surface` and `--surface-foreground` are an inverted surface pair, such as a tooltip, with `bg-surface` and `text-surface-foreground` utilities. `--neutral` is a standalone mid-tone with no foreground token and is the only color identical in light and dark. `--ring` is the focus ring color, applied through the `focus-ring` utility and the `ring-ring` alias.
 
 ### Sizing
 
