@@ -1,7 +1,6 @@
 import type { ElementType, ReactElement } from "react";
 
 import { flexVariants } from "./flex.variants";
-import type { FlexVariants } from "./flex.variants";
 import type { FlexProps } from "./flex.types";
 
 export const Flex = <TElement extends ElementType = "div">(
@@ -41,8 +40,8 @@ export const Flex = <TElement extends ElementType = "div">(
     gap,
     gapX,
     gapY,
-    className,
-  } as FlexVariants & { className?: string });
+    class: className,
+  });
 
   return (
     <Component

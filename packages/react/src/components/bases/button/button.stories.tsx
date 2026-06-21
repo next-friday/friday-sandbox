@@ -77,6 +77,7 @@ const meta = {
     isFullWidth: false,
     isRoundedFull: false,
     isIconOnly: false,
+    isPending: false,
   },
   argTypes: {
     children: {
@@ -144,6 +145,15 @@ const meta = {
     isIconOnly: {
       description:
         "Whether the button should display only an icon. Provide an `aria-label` so the action is announced to assistive technologies.",
+      control: "boolean",
+      table: {
+        type: { summary: "boolean" },
+        defaultValue: { summary: "false" },
+      },
+    },
+    isPending: {
+      description:
+        "Use the `isPending` prop to show a spinner and block interaction while an action is in progress.",
       control: "boolean",
       table: {
         type: { summary: "boolean" },
@@ -254,6 +264,18 @@ export const Disabled: Story = {
     docs: {
       description: {
         story: "Use the `isDisabled` prop to disable the button.",
+      },
+    },
+  },
+};
+
+export const Pending: Story = {
+  args: { isPending: true },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Use the `isPending` prop to show a spinner and block interaction while an action is in progress.",
       },
     },
   },

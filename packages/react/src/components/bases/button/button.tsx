@@ -1,9 +1,13 @@
 "use client";
 
-import { Button as AriaButton } from "react-aria-components";
+import {
+  Button as AriaButton,
+  composeRenderProps,
+} from "react-aria-components";
 import type { ComponentPropsWithRef } from "react";
 
 import { composeTailwindRenderProps } from "../../utils/compose-tailwind-render-props";
+import { Loading } from "../loading/loading";
 
 import { buttonVariants } from "./button.variants";
 import type { ButtonVariants } from "./button.variants";
@@ -15,6 +19,7 @@ export interface ButtonProps
 
 export const Button = (props: Readonly<ButtonProps>) => {
   const {
+    children,
     className,
     color,
     isFullWidth,
@@ -38,6 +43,20 @@ export const Button = (props: Readonly<ButtonProps>) => {
   );
 
   return (
-    <AriaButton data-slot="button" className={resolvedClassName} {...rest} />
+    <AriaButton data-slot="button" className={resolvedClassName} {...rest}>
+      {composeRenderProps(children, (resolvedChildren, { isPending }) => (
+        <>
+          {resolvedChildren}
+
+          {isPending && (
+            <Loading
+              data-slot="button-loading"
+              aria-label="Loading"
+              aria-hidden
+            />
+          )}
+        </>
+      ))}
+    </AriaButton>
   );
 };
