@@ -1,14 +1,14 @@
 @theme inline {
   --color-background: var(--background);
-  --color-muted: var(--muted);
   --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-surface-foreground: var(--surface-foreground);
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
   --color-secondary: var(--secondary);
   --color-secondary-foreground: var(--secondary-foreground);
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
-  --color-neutral: var(--neutral);
   --color-info: var(--info);
   --color-info-foreground: var(--info-foreground);
   --color-success: var(--success);
@@ -17,6 +17,8 @@
   --color-warning-foreground: var(--warning-foreground);
   --color-danger: var(--danger);
   --color-danger-foreground: var(--danger-foreground);
+  --color-neutral: var(--neutral);
+  --color-muted: var(--muted);
   --border: var(--border);
   --radius-action: var(--radius-action);
   --radius-field: var(--radius-field);
