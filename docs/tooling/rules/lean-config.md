@@ -27,4 +27,5 @@ Every line of config invites a future reader to ask "what is this overriding?". 
 
 - Before adding a key, check the tool's documented default. If equal, do not write it.
 - "Placeholder for future override" is not a reason. Add the key when the override actually exists.
+- Pin against the version's documented default. When a default is version- or environment-dependent, omit the key and let CI surface the drift rather than freezing a value that may move.
 - Applies to any JSON / JSONC / YAML / `.*rc*` / `*.config.{js,mjs,cjs,ts,mts,cts}` file.

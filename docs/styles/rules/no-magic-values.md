@@ -2,7 +2,7 @@
 
 **Rule:** Every value in component CSS, whether size, radius, spacing, duration, color, opacity, or font size, resolves from an **overridable token**: a `:root` theme variable, a family unit such as `--size-*` / `--radius-*`, or a theme-mapped Tailwind utility, consumed through `var()` / `calc()`. A raw literal baked into a component such as `0.625rem`, `100ms`, or `text-[0.6875rem]` is **unreachable**: consumers of the library are not contributors and cannot edit component source, so any value they cannot reach through a token can never be re-themed. Forbidden.
 
-This reaches two places that look exempt but are not. **Colors** always come from a `:root` theme variable such as `var(--primary)` or a local var that derives from one, never a raw `oklch()` / hex / named color in `components/`. And the **ratios inside `calc()` / `color-mix()`**, a multiplier or a mix `%`, are values too: lift each to a named token instead of inlining a bare `14%` or `2.5`.
+This reaches two places that look exempt but are not: raw colors, and the bare ratios inside `calc()` / `color-mix()`. Both are values, so both resolve from a token. The `## Why` and `## How to apply` sections below cover each.
 
 ## Bad
 
@@ -53,13 +53,14 @@ Override `--size-box` in a theme and every scrollbar scales with it; override `-
 
 The library's only surface for customization is the **token layer**, the variables documented in [the Styles chapter](../README.md). A consumer re-themes by overriding tokens, never by editing `components/*.css`. A literal in a component is therefore a dead end: it forks one value out of the theme and silently denies the consumer any control over it. Magic numbers also drift: the same `100ms` retyped in five components has five owners and no single source of truth.
 
+Colors are the value class consumers most expect to retheme, so they bind the hardest. A color always comes from a `:root` theme token such as `var(--primary)`, or a local var that derives from one such as `--button-color: var(--primary)`, never a raw `oklch()` / hex / named color in `components/`. A hardcoded color is unreachable for the exact use case the token layer exists to serve.
+
 ## How to apply
 
 - Before typing a number with a unit in component CSS, name the token it derives from, such as `--size-*`, `--radius-*`, a theme color, or a Tailwind theme utility. None fits? Add a token to the theme, described in [the Styles chapter](../README.md), and consume it; do not inline.
 - Unitless multipliers such as `--scroll-area-n: 2.5` or `--action-n: 9` are configuration, not magic: they are fine as local vars because the _unit_ they multiply is a token.
-- Expose a **scale**, the per-size steps of a multiplier, as one named token per step in the base rule, from `--scroll-area-n-xs` to `--scroll-area-n-lg`, and have each size class read its step via `--scroll-area-n: var(--scroll-area-n-md)`; the base default reads the same step `--scroll-area-n: var(--scroll-area-n-md)`. A consumer then retunes the whole scale from one place, at any level, where `:root { --scroll-area-n-md: 3 }` resizes every `md`, with no fork and no per-class edits.
+- Expose a **scale**, the per-size steps of a multiplier, as one named token per step in the base rule, from `--scroll-area-n-xs` to `--scroll-area-n-lg`. Each size class reads its step, such as `--scroll-area-n: var(--scroll-area-n-sm)`, and the base default reads the `md` step `--scroll-area-n: var(--scroll-area-n-md)`. A consumer then retunes the whole scale from one place: `:root { --scroll-area-n-md: 3 }` resizes every `md`, with no fork and no per-class edits.
 - A genuinely free length a consumer sets per instance, such as a responsive grid's minimum track width, is the one length literal allowed in component CSS, and only as a **component-local token with a sensible default**: `.fri-grid { --grid-min: 16rem }`, consumed via `var(--grid-min)`. The token is itself the overridable knob; a consumer retunes it at the element with a Tailwind arbitrary-property utility `[--grid-min:20rem]` or a selector that targets `.fri-grid`.
-- Colors come from a `:root` theme token such as `var(--primary)` or `var(--danger)`, or a local var that derives from one such as `--button-color: var(--primary)`, never a raw `oklch()` / hex / named color in `components/`.
-- A bare number inside `calc()` / `color-mix()`, a multiplier or a mix `%`, is still a magic value: lift it to a named local var `--button-bg-mix-hover: 14%` and reference it. The literal then lives once, named and overridable; the expression stays free of inline constants.
+- A ratio is a value too. A bare number inside `calc()` / `color-mix()`, a multiplier or a mix `%`, is still a magic value: lift it to a named local var such as `--button-bg-mix-hover: 14%` and reference it. The literal then lives once, named and overridable, and the expression stays free of inline constants.
 - Theme-backed Tailwind utilities such as `duration-100`, `gap-2`, `text-sm`, and `rounded-action` count as tokens. Arbitrary values such as `text-[0.6875rem]`, `[100ms]`, and `bg-[#fff]` do not: they are literals in disguise.
 - Size and radius carry a stricter form: they must derive from a _semantic family_ unit, described in [`semantic-token-scope.md`](semantic-token-scope.md).

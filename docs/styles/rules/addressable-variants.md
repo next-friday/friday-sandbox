@@ -23,11 +23,11 @@ CSS with baked-in defaults:
 
 ```css
 .fri-button {
-  /* layout… */
-  --button-background: var(
-    --color-primary
-  ); /* ← ghost. primary lives here, not in a class. */
-  @apply h-field-md; /* ← ghost. md lives here, not in a class. */
+  /* layout */
+  --button-color: var(
+    --primary
+  ); /* ← ghost. primary lives here, not a class. */
+  --action-n: 9; /* ← ghost. md lives here, not in a class. */
 }
 .fri-button-secondary {
   /* override */
@@ -68,10 +68,12 @@ defaultVariants: { variant: "primary", size: "md" },
   /* color tokens */
 }
 .fri-button-md {
-  @apply h-field-md px-4 text-sm;
+  --action-n: var(--action-n-md);
+  @apply text-sm;
 }
 .fri-button-lg {
-  @apply h-field-lg px-5 text-base;
+  --action-n: var(--action-n-lg);
+  @apply text-base;
 }
 ```
 
@@ -83,16 +85,18 @@ Ghosts cause:
 
 - **Bugs.** Override paths are asymmetric. `.fri-button-primary { ... }` from a user theme silently does nothing because the class is never emitted.
 - **Test confusion.** Cannot assert "renders primary" by class selector, the class isn't there.
-- **Documentation drift.** README lists "primary, secondary, …" but only 7 of 8 classes exist in CSS. Future reader cannot grep.
+- **Documentation drift.** A README that lists "primary, secondary" and more can name a value whose class is missing from CSS. A future reader cannot grep what was never emitted.
 - **Broken symmetry.** Some variants render a class, others don't. The shape of the system depends on a default, not on the variant.
 - **Hidden mental model.** "primary is the default" is invisible knowledge. New devs must read source to discover it.
 
-Symmetry is a property of code, not of style preference. Every dimension must be self-describing.
+Each failure is the same root cause: a value that is named but not addressable. Making every dimension self-describing, one class per value, removes all five at once.
 
 ## How to apply
 
 - Before declaring a variant `""` in `tailwind-variants`, ask: does the matching class exist in CSS? If no → write the class. If yes → the empty string is wrong.
 - Before baking a "default" set of tokens into a base class, ask: is there an explicit class with the same name as the default? If no → extract the tokens to that class.
 - Defaults belong in the `defaultVariants` of `tailwind-variants` or in tooling, not in CSS base rules.
-- Raw HTML use, meaning `<button class="fri-button">` alone, is fine, but the base must be either fully neutral so it works alone and looks unstyled, OR carry an explicit duplicate of the default class's tokens so raw use still resolves. Choose one, document it.
+- Raw HTML use, meaning `<button class="fri-button">` with no variant class, must still resolve. Pick one of the next two strategies for the base and document the choice.
+  - **Neutral base:** the base carries no default tokens, so the bare element renders unstyled and every look comes from an addressable class.
+  - **Self-applying base:** the base carries an explicit duplicate of the default class's tokens, so the bare element resolves to the default while the named class still exists for selection and override.
 - Applies to every dimension: color, size, variant, shape, mode, theme, state. Not just buttons.
