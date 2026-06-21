@@ -235,17 +235,17 @@
     @apply cursor-default text-transparent;
   }
 
-  .fri-button[data-pending] > :not([data-slot="button-loading"]) {
+  .fri-button[data-pending] > :not([data-slot="button-spinner"]) {
     @apply invisible;
   }
 
-  .fri-button [data-slot="button-loading"] {
+  .fri-button [data-slot="button-spinner"] {
     @apply absolute inset-0 m-auto;
 
-    --button-loading-size-divisor: 2;
-    --loading-size: calc(
-      var(--action-height) / var(--button-loading-size-divisor)
+    --button-spinner-size-divisor: 2;
+    --spinner-size: calc(
+      var(--action-height) / var(--button-spinner-size-divisor)
     );
-    --loading-color: var(--button-foreground);
+    --spinner-color: var(--button-foreground);
   }
 }

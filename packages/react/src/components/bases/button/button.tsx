@@ -7,7 +7,7 @@ import {
 import type { ComponentPropsWithRef } from "react";
 
 import { composeTailwindRenderProps } from "../../utils/compose-tailwind-render-props";
-import { Loading } from "../loading/loading";
+import { Spinner } from "../spinner/spinner";
 
 import { buttonVariants } from "./button.variants";
 import type { ButtonVariants } from "./button.variants";
@@ -48,13 +48,7 @@ export const Button = (props: Readonly<ButtonProps>) => {
         <>
           {resolvedChildren}
 
-          {isPending && (
-            <Loading
-              data-slot="button-loading"
-              aria-label="Loading"
-              aria-hidden
-            />
-          )}
+          {isPending && <Spinner data-slot="button-spinner" aria-hidden />}
         </>
       ))}
     </AriaButton>

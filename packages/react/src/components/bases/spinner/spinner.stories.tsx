@@ -1,9 +1,9 @@
-import { expect, within } from "storybook/test";
+import { expect } from "storybook/test";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import { Flex } from "../flex";
 
-import { Loading } from ".";
+import { Spinner } from ".";
 
 const COLORS = [
   { value: "primary", label: "Primary" },
@@ -23,28 +23,26 @@ const SIZES = [
   { value: "xl", label: "Extra Large" },
 ] as const;
 
-const SPINNER_LABEL = "Loading";
-
 const meta = {
-  title: "Bases/Feedback/Loading",
-  component: Loading,
+  title: "Bases/Feedback/Spinner",
+  component: Spinner,
   tags: ["autodocs"],
   parameters: {
     docs: {
       description: {
         component: [
-          "Progress indicator that announces a busy state to assistive technologies. It spins indeterminately by default, or shows determinate progress from a `value`.",
+          "Indeterminate spinner with a continuous spin, plus reduced-motion support built in.",
           "",
           "## Import",
           "",
           "```tsx",
-          'import { Loading } from "@friday-sandbox/react";',
+          'import { Spinner } from "@friday-sandbox/react";',
           "```",
           "",
           "## Anatomy",
           "",
           "```tsx",
-          "<Loading />",
+          "<Spinner />",
           "```",
         ].join("\n"),
       },
@@ -53,7 +51,6 @@ const meta = {
   args: {
     color: "primary",
     size: "md",
-    isIndeterminate: true,
   },
   argTypes: {
     color: {
@@ -77,33 +74,22 @@ const meta = {
         defaultValue: { summary: "md" },
       },
     },
-    isIndeterminate: {
-      description:
-        "Use the `isIndeterminate` prop to switch between an indeterminate spinner and determinate progress driven by `value`.",
-      control: "boolean",
-      table: {
-        type: { summary: "boolean" },
-        defaultValue: { summary: "true" },
-      },
-    },
     className: {
       description: "Additional CSS classes to apply to the spinner.",
       control: "text",
       table: { type: { summary: "string" } },
     },
   },
-} satisfies Meta<typeof Loading>;
+} satisfies Meta<typeof Spinner>;
 
 export default meta;
 
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  render: (storyArgs) => <Loading {...storyArgs} aria-label={SPINNER_LABEL} />,
+  render: (storyArgs) => <Spinner {...storyArgs} />,
   play: async ({ canvasElement }) => {
-    const spinner = within(canvasElement).getByRole("progressbar", {
-      name: SPINNER_LABEL,
-    });
+    const spinner = canvasElement.querySelector('[data-slot="spinner"]');
 
     await expect(spinner).toBeInTheDocument();
   },
@@ -120,12 +106,7 @@ export const Colors: Story = {
   render: (storyArgs) => (
     <Flex wrap="wrap" align="center" gap="md">
       {COLORS.map((color) => (
-        <Loading
-          key={color.value}
-          {...storyArgs}
-          color={color.value}
-          aria-label={SPINNER_LABEL}
-        />
+        <Spinner key={color.value} {...storyArgs} color={color.value} />
       ))}
     </Flex>
   ),
@@ -142,28 +123,10 @@ export const Sizes: Story = {
   render: (storyArgs) => (
     <Flex wrap="wrap" align="center" gap="md">
       {SIZES.map((size) => (
-        <Loading
-          key={size.value}
-          {...storyArgs}
-          size={size.value}
-          aria-label={SPINNER_LABEL}
-        />
+        <Spinner key={size.value} {...storyArgs} size={size.value} />
       ))}
     </Flex>
   ),
-};
-
-export const Determinate: Story = {
-  args: { isIndeterminate: false, value: 65 },
-  parameters: {
-    docs: {
-      description: {
-        story:
-          "Set `isIndeterminate` to `false` and pass a `value` to show determinate progress.",
-      },
-    },
-  },
-  render: (storyArgs) => <Loading {...storyArgs} aria-label={SPINNER_LABEL} />,
 };
 
 export const CustomStyles: Story = {
@@ -171,14 +134,23 @@ export const CustomStyles: Story = {
     docs: {
       description: {
         story:
-          "Retheme the spinner through its exposed CSS variables, such as a custom color and a thicker ring.",
+          "Style the spinner with Tailwind CSS utility classes through `className`, such as a custom size or color.",
+      },
+    },
+  },
+  render: () => <Spinner className="size-16 text-orange-500" />,
+};
+
+export const PlainHtml: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Apply the spinner styling to any element such as a plain span or a div, so a loading indicator renders in plain markup without the React component.",
       },
     },
   },
   render: () => (
-    <Loading
-      className="[--loading-color:var(--success)] [--loading-thickness-divisor:4]"
-      aria-label={SPINNER_LABEL}
-    />
+    <div className="fri-spinner fri-spinner-primary fri-spinner-md"></div>
   ),
 };

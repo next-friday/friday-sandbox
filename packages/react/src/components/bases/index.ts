@@ -7,9 +7,6 @@ export type { FlexProps } from "./flex";
 export { Grid, GridItem } from "./grid";
 export type { GridItemProps, GridProps } from "./grid";
 
-export { Loading } from "./loading";
-export type { LoadingProps } from "./loading";
-
 export { ScrollArea } from "./scroll-area";
 export type {
   ScrollAreaContentProps,
@@ -20,3 +17,6 @@ export type {
   ScrollAreaVariant,
   ScrollAreaViewportProps,
 } from "./scroll-area";
+
+export { Spinner } from "./spinner";
+export type { SpinnerProps } from "./spinner";

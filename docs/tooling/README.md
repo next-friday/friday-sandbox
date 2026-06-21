@@ -17,11 +17,11 @@ The design system is layered from plain tokens up to React components. Each laye
 | Token source (plain values)       | `packages/styles/src/theme/default.css`                                               |
 | Tailwind alias map                | `packages/styles/src/system/theme.css`, `@theme inline`                               |
 | Scope rhythm utility              | `packages/styles/src/system/utilities.css`                                            |
-| Component CSS (engine + variants) | `packages/styles/src/components/bases/<name>.css` or `.../layouts/<name>.css`         |
+| Component CSS (engine + variants) | `packages/styles/src/components/bases/<name>.css`                                     |
 | Component (React)                 | `packages/react/src/components/<tier>/<name>/<name>.tsx`                              |
 | Consumer reference                | the deployed Storybook: each `*.stories.tsx` autodocs page, plus the global MDX pages |
 
-The styles CSS still splits `bases/` from `layouts/`: `button.css` lives under `bases/`, while `flex.css`, `grid.css`, and `scroll-area.css` live under `layouts/`. The React side groups all four under `bases/`. The consumer reference is the deployed Storybook. Per-component docs come from each component's `*.stories.tsx` autodocs. The global pages for introduction, theming, and tokens come from `packages/react/src/stories/*.mdx`.
+The styles CSS groups every component under `bases/`, matching the React side: `button.css`, `flex.css`, `grid.css`, `scroll-area.css`, and `spinner.css` all live there. The consumer reference is the deployed Storybook. Per-component docs come from each component's `*.stories.tsx` autodocs. The global pages for introduction, theming, and tokens come from `packages/react/src/stories/*.mdx`.
 
 ## Commands
 
