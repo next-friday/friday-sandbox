@@ -48,7 +48,6 @@ storybook-static
 __screenshots__
 
 # LLM
-.claude/rules/
 .claude/hooks/
 .claude/settings.json
 .claude/settings.local.json

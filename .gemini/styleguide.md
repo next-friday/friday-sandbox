@@ -2,7 +2,7 @@
 
 This repository is `friday-sandbox`, a pnpm + Turborepo monorepo shipping the `@friday-sandbox/*` packages: a React 19 UI library in `react`, CSS tokens and layers in `styles`, ESLint flat-config presets in `eslint-config`, and TypeScript config presets in `typescript-config`. The packages are consumed as workspace dependencies internally and publish to npm.
 
-The project conventions are defined once in the [docs handbook](../docs/): the rules sit in each chapter, and the design-system engine in the [Styles chapter](../docs/styles/). **Enforce those rules**; they are the source of truth. This guide adds the review priority order and the highest-value checks per area; it does not restate the rationale. Be terse: one sentence per finding, naming the problem, the location, and the fix, grouped by severity, highest first. Skip praise, skip restating the diff.
+The project conventions are enforced in this guide. **Enforce these rules**; they are the source of truth. This guide gives the review priority order and the highest-value checks per area. Be terse: one sentence per finding, naming the problem, the location, and the fix, grouped by severity, highest first. Skip praise, skip restating the diff.
 
 ## Review priorities
 
@@ -21,7 +21,7 @@ The `chore(release): version packages` PR is produced by `changesets/action`. It
 
 ## Components and hooks: `packages/react/src/**`
 
-Enforce [`component-structure.md`](../docs/react/rules/component-structure.md) and [`composition.md`](../docs/react/rules/composition.md). Key checks:
+Key checks for components and hooks:
 
 - Lowercase filename such as `button.tsx`, not `Button.tsx`; a named export with the `Props` type colocated; no default export.
 - `"use client"` only when a client API such as `useState`, `useEffect`, refs, or event handlers is touched; flag a missing directive on a client component and a needless one on a pure component.
@@ -31,7 +31,7 @@ Enforce [`component-structure.md`](../docs/react/rules/component-structure.md) a
 
 ## Accessibility, stories, and tests: `packages/react/src/**/*.{stories,test}.{ts,tsx}`
 
-Enforce [`accessibility-and-stories.md`](../docs/react/rules/accessibility-and-stories.md). Key checks:
+Key checks for accessibility, stories, and tests:
 
 - Keyboard reachable, focus visible, ARIA only where the DOM does not convey intent, motion respects `prefers-reduced-motion`; the story passes `addon-a11y`.
 - A new or changed behavior ships story coverage of `Default`, `Hovered`, `Focused`, `Disabled`, and every color variant including `danger`, using real props rather than mocked data.
@@ -41,7 +41,7 @@ Enforce [`accessibility-and-stories.md`](../docs/react/rules/accessibility-and-s
 
 ## Styles: `packages/styles/src/**`, Tailwind v4
 
-Enforce [`canonical-tailwind.md`](../docs/styles/rules/canonical-tailwind.md) and [`semantic-token-scope.md`](../docs/styles/rules/semantic-token-scope.md). Key checks:
+Key checks for styles:
 
 - Respect the `@layer` system; flag inline `style` objects, hardcoded hex colors, and class strings that bypass tokens.
 - Canonical Tailwind alias for any var mapped in `@theme inline`, such as `bg-primary` and not `bg-(--primary)`; the `*-(--var)` form is only for component-local vars with no alias.
@@ -76,7 +76,7 @@ Enforce [`canonical-tailwind.md`](../docs/styles/rules/canonical-tailwind.md) an
 
 ## Documentation prose
 
-Enforce [`lean-prose.md`](../docs/tooling/rules/lean-prose.md). Key checks:
+Key checks for documentation prose:
 
 - Prose is direct and token-lean. Flag an em-dash or a parenthetical aside in any Markdown doc, README, changeset, or story copy. It should be a period, comma, or colon, or folded into the sentence.
 - Keep parentheses that belong to code, a glob, or a Markdown link target.
@@ -84,5 +84,5 @@ Enforce [`lean-prose.md`](../docs/tooling/rules/lean-prose.md). Key checks:
 ## Code quality
 
 - DRY across components, not just within one: flag re-implementations.
-- No prose comments in source; intent lives in names, commits, and `docs/`. Flag explanatory comments unless they encode a non-obvious invariant.
+- No prose comments in source; intent lives in names and commits. Flag explanatory comments unless they encode a non-obvious invariant.
 - `--max-warnings 0` is enforced; a warning-level lint is a CI failure.

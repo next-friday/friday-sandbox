@@ -28,14 +28,12 @@ reviews:
     - "!.changeset/**"
     - "!**/*.snap"
   path_instructions:
-    # Conventions are defined once in the docs/ chapters (styles, react, tooling). Each entry
-    # points the reviewer at the canonical rule and lists only the few
-    # highest-value checks per path. It never restates the full rationale.
+    # Each entry lists only the few highest-value checks per path.
+    # It never restates the full rationale.
     - path: packages/react/src/**/*.{ts,tsx}
       instructions: >-
-        Enforce the gates from the docs/ chapters: component-structure.md,
-        composition.md, canonical-tailwind.md, semantic-token-scope.md,
-        meaningful-identifiers.md. Priorities, highest first: accessibility,
+        Enforce the gates: component structure, composition, canonical Tailwind,
+        semantic token scope, meaningful identifiers. Priorities, highest first: accessibility,
         correctness, API ergonomics, then style. Key checks: lowercase filename,
         named export with colocated Props, no default export; "use client" only
         when a client API is touched; compose react-aria-components instead of
@@ -47,7 +45,7 @@ reviews:
         (feat | fix | perf | refactor) carries a .changeset/*.md entry.
     - path: packages/react/src/**/*.stories.{ts,tsx}
       instructions: >-
-        Enforce docs/react/rules/accessibility-and-stories.md. Key checks: coverage
+        Enforce the accessibility and stories rule. Key checks: coverage
         of Default, Hovered, Focused, Disabled, and every color variant including
         danger; real props, not mocked data; addon-a11y passes on the story page;
         story copy reads as consumer documentation, so flag internal class names
@@ -61,7 +59,7 @@ reviews:
         parenthetical aside.
     - path: packages/react/src/**/*.test.{ts,tsx}
       instructions: >-
-        Enforce docs/react/rules/accessibility-and-stories.md. Tests run in Vitest
+        Enforce the accessibility and stories rule. Tests run in Vitest
         browser mode via @storybook/addon-vitest with Playwright chromium. Prefer
         Storybook play functions over imperative DOM assertions; cover keyboard
         paths alongside pointer paths.
@@ -78,8 +76,7 @@ reviews:
         unless a framework difference justifies otherwise.
     - path: packages/styles/src/**/*.css
       instructions: >-
-        Enforce docs/styles/rules/canonical-tailwind.md and semantic-token-scope.md,
-        and the engine in docs/styles/. Key checks: respect the @layer
+        Enforce the canonical Tailwind and semantic token scope rules. Key checks: respect the @layer
         system; no hardcoded colors outside the token layer; no global selectors
         that bypass layers; size and radius tokens scoped to action, field, or
         box, never a literal component name; a token rename carries a migration
@@ -101,7 +98,7 @@ reviews:
         note to a downstream consumer, not as an internal log.
     - path: "**/*.md"
       instructions: >-
-        Enforce docs/tooling/rules/lean-prose.md. Prose is direct and token-lean:
+        Enforce the lean prose rule. Prose is direct and token-lean:
         flag an em-dash or a parenthetical aside in prose, which should be a
         period, comma, or colon, or folded into the sentence. Keep parentheses
         that belong to code, a glob, or a Markdown link target.

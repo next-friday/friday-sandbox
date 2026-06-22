@@ -6,7 +6,6 @@ How to get help with the `@friday-sandbox/*` packages.
 
 Read the docs before opening an issue, since most questions are answered there.
 
-- [Documentation hub](../docs/README.md): the canonical guide for the design tokens, components, and tooling.
 - The `README.md` in each package under [`packages/`](../packages): install and usage for that package.
 
 ## Questions and bugs
