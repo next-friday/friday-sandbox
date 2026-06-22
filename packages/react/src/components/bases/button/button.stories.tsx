@@ -202,11 +202,29 @@ export const Variants: Story = {
   },
   render: (storyArgs) => (
     <Flex wrap="wrap" align="center" gap="md">
-      {VARIANTS.map((variant) => (
-        <Button key={variant.value} {...storyArgs} variant={variant.value}>
-          {variant.label}
-        </Button>
-      ))}
+      <Button {...storyArgs} variant="solid">
+        Solid
+      </Button>
+
+      <Button {...storyArgs} variant="subtle">
+        Subtle
+      </Button>
+
+      <Button {...storyArgs} variant="surface">
+        Surface
+      </Button>
+
+      <Button {...storyArgs} variant="outline">
+        Outline
+      </Button>
+
+      <Button {...storyArgs} variant="ghost">
+        Ghost
+      </Button>
+
+      <Button {...storyArgs} variant="plain">
+        Plain
+      </Button>
     </Flex>
   ),
 };
@@ -249,11 +267,25 @@ export const Sizes: Story = {
   },
   render: (storyArgs) => (
     <Flex wrap="wrap" align="center" gap="md">
-      {SIZES.map((size) => (
-        <Button key={size.value} {...storyArgs} size={size.value}>
-          {size.label}
-        </Button>
-      ))}
+      <Button {...storyArgs} size="xs">
+        Extra Small
+      </Button>
+
+      <Button {...storyArgs} size="sm">
+        Small
+      </Button>
+
+      <Button {...storyArgs} size="md">
+        Medium
+      </Button>
+
+      <Button {...storyArgs} size="lg">
+        Large
+      </Button>
+
+      <Button {...storyArgs} size="xl">
+        Extra Large
+      </Button>
     </Flex>
   ),
 };

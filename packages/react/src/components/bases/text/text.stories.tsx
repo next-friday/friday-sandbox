@@ -32,6 +32,15 @@ const VARIANTS = [
   "overline",
 ] as const;
 
+const COLORS = [
+  "foreground",
+  "muted",
+  "placeholder",
+  "nav",
+  "link",
+  "inherit",
+] as const;
+
 const meta = {
   title: "Bases/Typography/Text",
   component: Text,
@@ -60,6 +69,7 @@ const meta = {
   args: {
     children: SAMPLE,
     as: "span",
+    color: "foreground",
   },
   argTypes: {
     children: {
@@ -84,6 +94,15 @@ const meta = {
       table: {
         type: { summary: VARIANTS.join(" | ") },
         defaultValue: { summary: "body-md" },
+      },
+    },
+    color: {
+      description: "Use the `color` prop to set the text color.",
+      control: "select",
+      options: COLORS,
+      table: {
+        type: { summary: COLORS.join(" | ") },
+        defaultValue: { summary: "foreground" },
       },
     },
     lineClamp: {
@@ -134,12 +153,48 @@ export const Variants: Story = {
     },
   },
   render: () => (
+    <Flex direction="column" gap="xl">
+      <Text variant="display-xl">Display XL</Text>
+      <Text variant="display-lg">Display LG</Text>
+      <Text variant="display-md">Display MD</Text>
+      <Text variant="display-sm">Display SM</Text>
+      <Text variant="title-lg">Title LG</Text>
+      <Text variant="title-md">Title MD</Text>
+      <Text variant="title-sm">Title SM</Text>
+      <Text variant="body-lg-strong">Body LG Strong</Text>
+      <Text variant="body-md-strong">Body MD Strong</Text>
+      <Text variant="body-sm-strong">Body SM Strong</Text>
+      <Text variant="body-lg">Body LG</Text>
+      <Text variant="body-md">Body MD</Text>
+      <Text variant="body-sm">Body SM</Text>
+      <Text variant="label-lg">Label LG</Text>
+      <Text variant="label-md">Label MD</Text>
+      <Text variant="label-sm">Label SM</Text>
+      <Text variant="caption">Caption</Text>
+      <Text variant="overline">Overline</Text>
+    </Flex>
+  ),
+};
+
+export const Colors: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: "Use the `color` prop to set the text color.",
+      },
+    },
+  },
+  render: () => (
     <Flex direction="column" gap="md">
-      {VARIANTS.map((variant) => (
-        <Text key={variant} variant={variant}>
-          {variant}
-        </Text>
-      ))}
+      <Text color="foreground">Foreground</Text>
+      <Text color="muted">Muted</Text>
+      <Text color="placeholder">Placeholder</Text>
+      <Text color="nav">Nav</Text>
+      <Text color="link">Link</Text>
+
+      <span className="text-primary">
+        <Text color="inherit">Inherit</Text>
+      </span>
     </Flex>
   ),
 };
@@ -225,5 +280,9 @@ export const PlainHtml: Story = {
       },
     },
   },
-  render: () => <span className="fri-text">{SAMPLE}</span>,
+  render: () => (
+    <span className="fri-text fri-text-body-md fri-text-foreground">
+      {SAMPLE}
+    </span>
+  ),
 };

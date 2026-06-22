@@ -105,9 +105,13 @@ export const Colors: Story = {
   },
   render: (storyArgs) => (
     <Flex wrap="wrap" align="center" gap="md">
-      {COLORS.map((color) => (
-        <Spinner key={color.value} {...storyArgs} color={color.value} />
-      ))}
+      <Spinner {...storyArgs} color="primary" />
+      <Spinner {...storyArgs} color="secondary" />
+      <Spinner {...storyArgs} color="accent" />
+      <Spinner {...storyArgs} color="info" />
+      <Spinner {...storyArgs} color="success" />
+      <Spinner {...storyArgs} color="warning" />
+      <Spinner {...storyArgs} color="danger" />
     </Flex>
   ),
 };
@@ -122,9 +126,11 @@ export const Sizes: Story = {
   },
   render: (storyArgs) => (
     <Flex wrap="wrap" align="center" gap="md">
-      {SIZES.map((size) => (
-        <Spinner key={size.value} {...storyArgs} size={size.value} />
-      ))}
+      <Spinner {...storyArgs} size="xs" />
+      <Spinner {...storyArgs} size="sm" />
+      <Spinner {...storyArgs} size="md" />
+      <Spinner {...storyArgs} size="lg" />
+      <Spinner {...storyArgs} size="xl" />
     </Flex>
   ),
 };
