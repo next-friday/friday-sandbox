@@ -32,15 +32,6 @@ const VARIANTS = [
   "overline",
 ] as const;
 
-const COLORS = [
-  "foreground",
-  "muted",
-  "placeholder",
-  "nav",
-  "link",
-  "inherit",
-] as const;
-
 const meta = {
   title: "Bases/Typography/Text",
   component: Text,
@@ -69,7 +60,6 @@ const meta = {
   args: {
     children: SAMPLE,
     as: "span",
-    color: "foreground",
   },
   argTypes: {
     children: {
@@ -94,15 +84,6 @@ const meta = {
       table: {
         type: { summary: VARIANTS.join(" | ") },
         defaultValue: { summary: "body-md" },
-      },
-    },
-    color: {
-      description: "Use the `color` prop to set the text color.",
-      control: "select",
-      options: COLORS,
-      table: {
-        type: { summary: COLORS.join(" | ") },
-        defaultValue: { summary: "foreground" },
       },
     },
     lineClamp: {
@@ -172,29 +153,6 @@ export const Variants: Story = {
       <Text variant="label-sm">Label SM</Text>
       <Text variant="caption">Caption</Text>
       <Text variant="overline">Overline</Text>
-    </Flex>
-  ),
-};
-
-export const Colors: Story = {
-  parameters: {
-    docs: {
-      description: {
-        story: "Use the `color` prop to set the text color.",
-      },
-    },
-  },
-  render: () => (
-    <Flex direction="column" gap="md">
-      <Text color="foreground">Foreground</Text>
-      <Text color="muted">Muted</Text>
-      <Text color="placeholder">Placeholder</Text>
-      <Text color="nav">Nav</Text>
-      <Text color="link">Link</Text>
-
-      <span className="text-primary">
-        <Text color="inherit">Inherit</Text>
-      </span>
     </Flex>
   ),
 };
