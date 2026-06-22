@@ -18,6 +18,9 @@ export type {
   ScrollAreaViewportProps,
 } from "./bases";
 
+export { Separator } from "./bases";
+export type { SeparatorProps } from "./bases";
+
 export { Spinner } from "./bases";
 export type { SpinnerProps } from "./bases";
 

@@ -11,13 +11,13 @@ The arbitrary-var syntax `text-(--var)` is the v3-era escape hatch. In v4 with `
 <div className="border border-(--primary)" />
 ```
 
-`--muted` and `--foreground` are both mapped in `@theme inline`. Canonical aliases exist. The arbitrary-var form is noise.
+`--neutral` and `--foreground` are both mapped in `@theme inline`. Canonical aliases exist. The arbitrary-var form is noise.
 
 ## Good
 
 ```tsx
 <div className="bg-primary px-4 py-2 text-sm text-primary-foreground">
-<div className="border border-muted" />
+<div className="border border-neutral" />
 ```
 
 The alias comes from the key, not the value. In `@theme inline` the entry `--color-foreground: var(--foreground)` is what makes Tailwind emit `text-foreground`, `bg-foreground`, `border-foreground`, and the rest of the color utilities for `--foreground`. The `--color-*` prefix is the contract: register a token under it and its canonical utility exists, so reach for the utility rather than the raw var.

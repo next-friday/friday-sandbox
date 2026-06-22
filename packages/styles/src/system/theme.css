@@ -23,5 +23,20 @@
   --radius-action: var(--radius-action);
   --radius-field: var(--radius-field);
   --radius-box: var(--radius-box);
+  --radius-feedback: var(--radius-feedback);
   --border: var(--border);
+
+  --border-fade: 60%;
+  --color-border: color-mix(
+    in srgb,
+    var(--neutral),
+    transparent var(--border-fade)
+  );
+
+  --separator-fade: 80%;
+  --color-separator: color-mix(
+    in srgb,
+    var(--neutral),
+    transparent var(--separator-fade)
+  );
 }

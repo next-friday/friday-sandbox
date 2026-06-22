@@ -18,6 +18,9 @@ export type {
   ScrollAreaViewportProps,
 } from "./components";
 
+export { Separator } from "./components";
+export type { SeparatorProps } from "./components";
+
 export { Spinner } from "./components";
 export type { SpinnerProps } from "./components";
 
