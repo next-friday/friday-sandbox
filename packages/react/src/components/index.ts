@@ -22,3 +22,6 @@ export type { SeparatorProps } from "./bases";
 
 export { Spinner } from "./bases";
 export type { SpinnerProps } from "./bases";
+
+export { Text } from "./bases";
+export type { TextProps } from "./bases";

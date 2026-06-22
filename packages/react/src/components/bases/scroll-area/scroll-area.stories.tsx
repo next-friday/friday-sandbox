@@ -233,6 +233,37 @@ export const HiddenScrollbar: Story = {
   ),
 };
 
+export const AsChild: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Use the `asChild` prop to render the scroll area as your own element, such as a `<section>`, instead of the default `<div>`. Your element receives the scroll area's props and behavior.",
+      },
+    },
+  },
+  render: (storyArgs) => (
+    <ScrollArea.Root {...storyArgs} className="h-72" asChild>
+      <section aria-label="Release notes">
+        <ScrollArea.Viewport>
+          <Lorem paragraph={9} />
+        </ScrollArea.Viewport>
+
+        <ScrollArea.Scrollbar orientation="vertical">
+          <ScrollArea.Thumb />
+        </ScrollArea.Scrollbar>
+
+        <ScrollArea.Corner />
+      </section>
+    </ScrollArea.Root>
+  ),
+  play: async ({ canvasElement }) => {
+    const scrollArea = canvasElement.querySelector('[data-slot="scroll-area"]');
+
+    await expect(scrollArea?.tagName).toBe("SECTION");
+  },
+};
+
 export const CustomStyles: Story = {
   parameters: {
     docs: {

@@ -1,0 +1,65 @@
+@layer components {
+  .fri-text {
+    @apply m-0 text-foreground;
+  }
+
+  .fri-text-display-xl {
+    @apply text-display-xl;
+  }
+  .fri-text-display-lg {
+    @apply text-display-lg;
+  }
+  .fri-text-display-md {
+    @apply text-display-md;
+  }
+  .fri-text-display-sm {
+    @apply text-display-sm;
+  }
+
+  .fri-text-title-lg {
+    @apply text-title-lg;
+  }
+  .fri-text-title-md {
+    @apply text-title-md;
+  }
+  .fri-text-title-sm {
+    @apply text-title-sm;
+  }
+
+  .fri-text-body-lg {
+    @apply text-body-lg;
+  }
+  .fri-text-body-md {
+    @apply text-body-md;
+  }
+  .fri-text-body-sm {
+    @apply text-body-sm;
+  }
+
+  .fri-text-body-lg-strong {
+    @apply text-body-lg-strong;
+  }
+  .fri-text-body-md-strong {
+    @apply text-body-md-strong;
+  }
+  .fri-text-body-sm-strong {
+    @apply text-body-sm-strong;
+  }
+
+  .fri-text-label-lg {
+    @apply text-label-lg;
+  }
+  .fri-text-label-md {
+    @apply text-label-md;
+  }
+  .fri-text-label-sm {
+    @apply text-label-sm;
+  }
+
+  .fri-text-caption {
+    @apply text-caption;
+  }
+  .fri-text-overline {
+    @apply text-overline uppercase;
+  }
+}

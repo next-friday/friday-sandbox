@@ -23,5 +23,8 @@ export type { SeparatorProps } from "./components";
 export { Spinner } from "./components";
 export type { SpinnerProps } from "./components";
 
+export { Text } from "./components";
+export type { TextProps } from "./components";
+
 export { GoogleIcon } from "./components";
 export type { GoogleIconProps } from "./components";
