@@ -1,3 +1,4 @@
+import { expect } from "storybook/test";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import { Flex } from "../flex";
@@ -91,6 +92,11 @@ const meta = {
       control: "text",
       table: { type: { summary: "string" } },
     },
+    className: {
+      description: "Additional CSS classes to apply to the scroll area.",
+      control: "text",
+      table: { type: { summary: "string" } },
+    },
   },
 } satisfies Meta<typeof ScrollArea.Root>;
 
@@ -114,6 +120,11 @@ export const Default: Story = {
       <ScrollArea.Corner />
     </ScrollArea.Root>
   ),
+  play: async ({ canvasElement }) => {
+    const scrollArea = canvasElement.querySelector('[data-slot="scroll-area"]');
+
+    await expect(scrollArea).toBeInTheDocument();
+  },
 };
 
 export const Horizontal: Story = {
@@ -162,7 +173,7 @@ export const Both: Story = {
   ),
 };
 
-export const Size: Story = {
+export const Sizes: Story = {
   parameters: {
     docs: {
       description: {
@@ -232,6 +243,32 @@ export const HiddenScrollbar: Story = {
       <ScrollArea.Scrollbar orientation="vertical">
         <ScrollArea.Thumb />
       </ScrollArea.Scrollbar>
+    </ScrollArea.Root>
+  ),
+};
+
+export const CustomStyles: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Style the scroll area with Tailwind CSS utility classes through `className`, such as a rounded border around the viewport.",
+      },
+    },
+  },
+  render: () => (
+    <ScrollArea.Root className="h-72 rounded-box border border-border p-4">
+      <ScrollArea.Viewport>
+        <ScrollArea.Content>
+          <Lorem paragraph={9} />
+        </ScrollArea.Content>
+      </ScrollArea.Viewport>
+
+      <ScrollArea.Scrollbar orientation="vertical">
+        <ScrollArea.Thumb />
+      </ScrollArea.Scrollbar>
+
+      <ScrollArea.Corner />
     </ScrollArea.Root>
   ),
 };
