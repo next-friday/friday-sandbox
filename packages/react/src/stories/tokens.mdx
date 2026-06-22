@@ -39,8 +39,8 @@ A token registered with `@theme inline` resolves to a canonical Tailwind v4 util
   <span className="rounded-action bg-danger px-4 py-2 text-sm font-medium text-danger-foreground">
     bg-danger
   </span>
-  <span className="rounded-box bg-muted px-4 py-2 text-sm text-foreground">
-    bg-muted
+  <span className="rounded-box bg-primary px-4 py-2 text-sm text-primary-foreground">
+    bg-primary
   </span>
 </div>
 
@@ -52,27 +52,27 @@ A token registered with `@theme inline` resolves to a canonical Tailwind v4 util
 <div className="border-danger border" />
 ```
 
-| Token kind                                  | Utilities                                                                                                                       |
-| ------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
-| Intent (`--primary` … `--danger`)           | `bg-<intent>`, `text-<intent>`, `border-<intent>`, `ring-<intent>`, `fill-<intent>`, `stroke-<intent>`, each with a `-foreground` pair |
-| Neutral (`--neutral`)                       | `bg-neutral`, `text-neutral`, and the rest; no `-foreground` token                                                             |
-| Radius (`--radius-{scope}`)                 | `rounded-action`, `rounded-field`, `rounded-box`                                                                               |
-| Border (`--border`)                         | `border`                                                                                                                       |
-| Surface (`--surface`, `--surface-foreground`) | `bg-surface`, `text-surface-foreground`, and the rest                                       |
+| Token kind                                    | Utilities                                                                                                                              |
+| --------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
+| Intent (`--primary` … `--danger`)             | `bg-<intent>`, `text-<intent>`, `border-<intent>`, `ring-<intent>`, `fill-<intent>`, `stroke-<intent>`, each with a `-foreground` pair |
+| Neutral (`--neutral`)                         | `bg-neutral`, `text-neutral`, and the rest; no `-foreground` token                                                                     |
+| Radius (`--radius-{scope}`)                   | `rounded-action`, `rounded-field`, `rounded-box`                                                                                       |
+| Border (`--border`)                           | `border`                                                                                                                               |
+| Surface (`--surface`, `--surface-foreground`) | `bg-surface`, `text-surface-foreground`, and the rest                                                                                  |
 
 ## Surfaces
 
 Light by default; flipped by `.dark` or `[data-theme="dark"]`. Values shown light / dark.
 
-| Token                  | Role                                                       | Light             | Dark               | Tailwind alias                  |
-| ---------------------- | --------------------------------------------------------- | ----------------- | ------------------ | ------------------------------- |
-| `--background`         | Body surface                                              | `100% 0 0`        | `18% 0 0`          | `bg-background`                 |
-| `--foreground`         | Body text on `--background`                               | `0 0 0`           | `95% 0 0`          | `text-foreground`               |
-| `--muted`              | Secondary surface, such as a placeholder                  | `89.2% 0.0051 228.83` | `30% 0.006 228.83` | `bg-muted`                      |
-| `--surface`            | Inverted surface, such as a tooltip                       | `20.9% 0 0`       | `95% 0 0`          | `bg-surface`      |
-| `--surface-foreground` | Text on `--surface`                                       | `100% 0 0`        | `20.9% 0 0`        | `text-surface-foreground` |
-| `--neutral`            | Mid-tone gray, identical in both modes; no foreground pair | `65.47% 0.0208 248.15` | `65.47% 0.0208 248.15` | `bg-neutral`                    |
-| `--ring`               | Focus ring color                                          | `57.49% 0.2084 257.52` | `64% 0.18 257.52`  | `ring-ring`                     |
+| Token                  | Role                                                       | Light                  | Dark                   | Tailwind alias            |
+| ---------------------- | ---------------------------------------------------------- | ---------------------- | ---------------------- | ------------------------- |
+| `--background`         | Body surface                                               | `100% 0 0`             | `18% 0 0`              | `bg-background`           |
+| `--foreground`         | Body text on `--background`                                | `0 0 0`                | `95% 0 0`              | `text-foreground`         |
+| `--muted`              | Secondary surface, such as a placeholder                   | `89.2% 0.0051 228.83`  | `30% 0.006 228.83`     | `bg-muted`                |
+| `--surface`            | Inverted surface, such as a tooltip                        | `20.9% 0 0`            | `95% 0 0`              | `bg-surface`              |
+| `--surface-foreground` | Text on `--surface`                                        | `100% 0 0`             | `20.9% 0 0`            | `text-surface-foreground` |
+| `--neutral`            | Mid-tone gray, identical in both modes; no foreground pair | `65.47% 0.0208 248.15` | `65.47% 0.0208 248.15` | `bg-neutral`              |
+| `--ring`               | Focus ring color                                           | `57.49% 0.2084 257.52` | `64% 0.18 257.52`      | `ring-ring`               |
 
 All values are the OKLCH channels passed to `oklch(...)` in the default theme.
 
@@ -80,15 +80,15 @@ All values are the OKLCH channels passed to `oklch(...)` in the default theme.
 
 Each intent except `neutral` ships a paired `--*-foreground` token that components use for readable text. Override these to retune contrast.
 
-| Token                    | Light       | Dark        |
-| ------------------------ | ----------- | ----------- |
-| `--primary-foreground`   | `100% 0 0`  | `100% 0 0`  |
-| `--secondary-foreground` | `100% 0 0`  | `100% 0 0`  |
-| `--accent-foreground`    | `100% 0 0`  | `0 0 0`     |
-| `--info-foreground`      | `100% 0 0`  | `100% 0 0`  |
-| `--success-foreground`   | `100% 0 0`  | `100% 0 0`  |
-| `--warning-foreground`   | `100% 0 0`  | `20.9% 0 0` |
-| `--danger-foreground`    | `100% 0 0`  | `100% 0 0`  |
+| Token                    | Light      | Dark        |
+| ------------------------ | ---------- | ----------- |
+| `--primary-foreground`   | `100% 0 0` | `100% 0 0`  |
+| `--secondary-foreground` | `100% 0 0` | `100% 0 0`  |
+| `--accent-foreground`    | `100% 0 0` | `0 0 0`     |
+| `--info-foreground`      | `100% 0 0` | `100% 0 0`  |
+| `--success-foreground`   | `100% 0 0` | `100% 0 0`  |
+| `--warning-foreground`   | `100% 0 0` | `20.9% 0 0` |
+| `--danger-foreground`    | `100% 0 0` | `100% 0 0`  |
 
 ## Sizing scopes
 
@@ -102,8 +102,8 @@ Each intent except `neutral` ships a paired `--*-foreground` token that componen
 
 At the default `--size-{scope}` of `0.25rem`, the five sizes resolve to:
 
-| Size | Height         |
-| ---- | -------------- |
+| Size | Height          |
+| ---- | --------------- |
 | `xs` | 1.75rem (28 px) |
 | `sm` | 2rem (32 px)    |
 | `md` | 2.5rem (40 px)  |

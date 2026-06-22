@@ -221,11 +221,15 @@ Every color token is registered with `@theme inline`, so Tailwind v4 emits a can
 
 ```html
 <!-- canonical -->
-<div class="rounded-md bg-muted px-4 py-2 text-sm text-foreground">…</div>
+<div class="rounded-md bg-primary px-4 py-2 text-sm text-primary-foreground">
+  …
+</div>
 <div class="border border-primary">…</div>
 
 <!-- avoid: arbitrary-var form for a registered token -->
-<div class="rounded-md bg-(--muted) px-4 py-2 text-sm text-(--foreground)">
+<div
+  class="rounded-md bg-(--primary) px-4 py-2 text-sm text-(--primary-foreground)"
+>
   …
 </div>
 ```

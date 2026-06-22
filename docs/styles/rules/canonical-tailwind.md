@@ -1,14 +1,14 @@
 # Canonical Tailwind Classes
 
-**Rule:** When a CSS variable is registered in `@theme inline`, defined in `packages/styles/src/system/theme.css`, use its **canonical Tailwind utility**, never the arbitrary-var fallback. Write `text-foreground`, not `text-(--foreground)`. Write `bg-muted`, not `bg-(--muted)`. Write `border-primary`, not `border-(--primary)`.
+**Rule:** When a CSS variable is registered in `@theme inline`, defined in `packages/styles/src/system/theme.css`, use its **canonical Tailwind utility**, never the arbitrary-var fallback. Write `text-foreground`, not `text-(--foreground)`. Write `bg-primary`, not `bg-(--primary)`. Write `border-primary`, not `border-(--primary)`.
 
 The arbitrary-var syntax `text-(--var)` is the v3-era escape hatch. In v4 with `@theme inline`, every theme token has a real Tailwind alias. Using the escape hatch on a token that has an alias is **old Tailwind**: noisier and harder to grep. No lint rule catches it; the gate is the PR reviewers.
 
 ## Bad
 
 ```tsx
-<div className="rounded-md bg-(--muted) px-4 py-2 text-sm text-(--foreground)">
-<div className="border border-(--muted)" />
+<div className="rounded-md bg-(--primary) px-4 py-2 text-sm text-(--primary-foreground)">
+<div className="border border-(--primary)" />
 ```
 
 `--muted` and `--foreground` are both mapped in `@theme inline`. Canonical aliases exist. The arbitrary-var form is noise.
@@ -16,7 +16,7 @@ The arbitrary-var syntax `text-(--var)` is the v3-era escape hatch. In v4 with `
 ## Good
 
 ```tsx
-<div className="rounded-md bg-muted px-4 py-2 text-sm text-foreground">
+<div className="rounded-md bg-primary px-4 py-2 text-sm text-primary-foreground">
 <div className="border border-muted" />
 ```
 
@@ -24,7 +24,7 @@ The alias comes from the key, not the value. In `@theme inline` the entry `--col
 
 ## Why
 
-The arbitrary-var form and the canonical alias paint the same pixels, so this is about the codebase, not the render. A token registered in `@theme inline` already has an alias; writing `bg-(--muted)` next to `bg-muted` elsewhere splits one concept across two spellings, which is harder to grep and review. The alias also reads as intent: `text-foreground` names the role, while `text-(--foreground)` exposes plumbing. Reserving the `(--var)` form for component-local vars keeps a clean signal: an arbitrary var in the source means "this has no theme alias," every time.
+The arbitrary-var form and the canonical alias paint the same pixels, so this is about the codebase, not the render. A token registered in `@theme inline` already has an alias; writing `bg-(--primary)` next to `bg-primary` elsewhere splits one concept across two spellings, which is harder to grep and review. The alias also reads as intent: `text-foreground` names the role, while `text-(--foreground)` exposes plumbing. Reserving the `(--var)` form for component-local vars keeps a clean signal: an arbitrary var in the source means "this has no theme alias," every time.
 
 ## When `(--var)` IS correct
 

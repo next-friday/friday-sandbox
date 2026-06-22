@@ -44,7 +44,7 @@ Enforce [`accessibility-and-stories.md`](../docs/react/rules/accessibility-and-s
 Enforce [`canonical-tailwind.md`](../docs/styles/rules/canonical-tailwind.md) and [`semantic-token-scope.md`](../docs/styles/rules/semantic-token-scope.md). Key checks:
 
 - Respect the `@layer` system; flag inline `style` objects, hardcoded hex colors, and class strings that bypass tokens.
-- Canonical Tailwind alias for any var mapped in `@theme inline`, such as `bg-muted` and not `bg-(--muted)`; the `*-(--var)` form is only for component-local vars with no alias.
+- Canonical Tailwind alias for any var mapped in `@theme inline`, such as `bg-primary` and not `bg-(--primary)`; the `*-(--var)` form is only for component-local vars with no alias.
 - Size and radius tokens scoped to `action`, `field`, or `box`, never a literal component name.
 - A token rename carries a migration note in the changeset; no global selectors that bypass layers.
 

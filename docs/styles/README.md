@@ -201,7 +201,7 @@ Re-theming is a token override, never an edit to `components/*.css`. Set any `:r
 
 Enforced gates for writing styles. CI and the PR reviewers hold you to them:
 
-- [`canonical-tailwind.md`](rules/canonical-tailwind.md): use a mapped token's Tailwind alias such as `bg-muted`, not the `bg-(--var)` fallback.
+- [`canonical-tailwind.md`](rules/canonical-tailwind.md): use a mapped token's Tailwind alias such as `bg-primary`, not the `bg-(--var)` fallback.
 - [`semantic-token-scope.md`](rules/semantic-token-scope.md): size/radius tokens scoped to `action` / `field` / `box`, never a literal component name.
 - [`addressable-variants.md`](rules/addressable-variants.md): every named variant/size/state is a real, addressable class; no defaults hidden in a base rule.
 - [`no-magic-values.md`](rules/no-magic-values.md): every value derives from an overridable token; no raw literals or magic numbers in component CSS.

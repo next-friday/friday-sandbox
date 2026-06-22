@@ -48,7 +48,7 @@ export const Button = (props: Readonly<ButtonProps>) => {
         <>
           {resolvedChildren}
 
-          {isPending && <Spinner data-slot="button-spinner" aria-hidden />}
+          {isPending && <Spinner data-slot="button-spinner" />}
         </>
       ))}
     </AriaButton>
