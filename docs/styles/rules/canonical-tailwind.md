@@ -16,7 +16,7 @@ The arbitrary-var syntax `text-(--var)` is the v3-era escape hatch. In v4 with `
 ## Good
 
 ```tsx
-<div className="rounded-md bg-primary px-4 py-2 text-sm text-primary-foreground">
+<div className="bg-primary px-4 py-2 text-sm text-primary-foreground">
 <div className="border border-muted" />
 ```
 
