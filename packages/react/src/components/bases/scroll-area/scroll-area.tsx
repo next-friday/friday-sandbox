@@ -4,7 +4,6 @@ import { ScrollArea as RadixScrollArea } from "radix-ui";
 
 import { scrollAreaVariants } from "./scroll-area.variants";
 import type {
-  ScrollAreaContentProps,
   ScrollAreaCornerProps,
   ScrollAreaRootProps,
   ScrollAreaScrollbarProps,
@@ -44,21 +43,6 @@ const ScrollAreaViewport = (props: Readonly<ScrollAreaViewportProps>) => {
   );
 };
 
-const ScrollAreaContent = (props: Readonly<ScrollAreaContentProps>) => {
-  const { className, ...rest } = props;
-
-  const slots = scrollAreaVariants();
-  const contentClassName = slots.content({ class: className });
-
-  return (
-    <div
-      data-slot="scroll-area-content"
-      className={contentClassName}
-      {...rest}
-    />
-  );
-};
-
 const ScrollAreaScrollbar = (props: Readonly<ScrollAreaScrollbarProps>) => {
   const { className, ...rest } = props;
 
@@ -69,7 +53,6 @@ const ScrollAreaScrollbar = (props: Readonly<ScrollAreaScrollbarProps>) => {
     <RadixScrollArea.Scrollbar
       data-slot="scroll-area-scrollbar"
       className={scrollbarClassName}
-      forceMount
       {...rest}
     />
   );
@@ -108,7 +91,6 @@ const ScrollAreaCorner = (props: Readonly<ScrollAreaCornerProps>) => {
 export {
   ScrollAreaRoot,
   ScrollAreaCorner,
-  ScrollAreaContent,
   ScrollAreaScrollbar,
   ScrollAreaThumb,
   ScrollAreaViewport,

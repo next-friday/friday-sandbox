@@ -9,7 +9,6 @@ export type { GridItemProps, GridProps } from "./bases";
 
 export { ScrollArea } from "./bases";
 export type {
-  ScrollAreaContentProps,
   ScrollAreaCornerProps,
   ScrollAreaRootProps,
   ScrollAreaScrollbarProps,
@@ -23,6 +22,3 @@ export type { SeparatorProps } from "./bases";
 
 export { Spinner } from "./bases";
 export type { SpinnerProps } from "./bases";
-
-export { GoogleIcon } from "./icons";
-export type { GoogleIconProps } from "./icons";

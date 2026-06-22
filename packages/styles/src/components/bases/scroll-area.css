@@ -39,25 +39,9 @@
   .fri-scroll-area-viewport {
     @apply h-full w-full rounded-[inherit];
   }
-  .fri-scroll-area:not(.fri-scroll-area-hide-scrollbar):has(
-      .fri-scroll-area-scrollbar[data-orientation="vertical"]
-    )
-    .fri-scroll-area-viewport {
-    @apply pe-(--scroll-area-thickness);
-  }
-  .fri-scroll-area:not(.fri-scroll-area-hide-scrollbar):has(
-      .fri-scroll-area-scrollbar[data-orientation="horizontal"]
-    )
-    .fri-scroll-area-viewport {
-    @apply pb-(--scroll-area-thickness);
-  }
-
-  .fri-scroll-area-content {
-    @apply min-w-fit;
-  }
 
   .fri-scroll-area-scrollbar {
-    @apply flex transform-gpu touch-none bg-(--scroll-area-track-color) p-px opacity-0 transition-base transition-[opacity,background-color] select-none data-[state=visible]:opacity-100;
+    @apply flex touch-none bg-(--scroll-area-track-color) p-px select-none;
   }
   .fri-scroll-area-scrollbar[data-orientation="vertical"] {
     @apply w-(--scroll-area-thickness);

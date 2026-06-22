@@ -5,7 +5,6 @@ export const scrollAreaVariants = tv({
   slots: {
     root: "fri-scroll-area",
     viewport: "fri-scroll-area-viewport",
-    content: "fri-scroll-area-content",
     scrollbar: "fri-scroll-area-scrollbar",
     thumb: "fri-scroll-area-thumb",
     corner: "fri-scroll-area-corner",

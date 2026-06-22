@@ -20,10 +20,6 @@ export interface ScrollAreaViewportProps extends ComponentPropsWithRef<
   className?: string;
 }
 
-export interface ScrollAreaContentProps extends ComponentPropsWithRef<"div"> {
-  className?: string;
-}
-
 export interface ScrollAreaScrollbarProps extends ComponentPropsWithRef<
   typeof RadixScrollArea.Scrollbar
 > {

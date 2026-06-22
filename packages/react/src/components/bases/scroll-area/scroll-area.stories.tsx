@@ -16,7 +16,7 @@ const meta = {
     docs: {
       description: {
         component: [
-          "Scrollable container with custom scrollbars that match your theme. Put your scrollable content inside `ScrollArea.Viewport > ScrollArea.Content`, and pick which scrollbars to show by adding `ScrollArea.Scrollbar` for each direction.",
+          "Scrollable container with custom scrollbars that match your theme. Put your scrollable content inside `ScrollArea.Viewport`, and pick which scrollbars to show by adding `ScrollArea.Scrollbar` for each direction.",
           "",
           "## Import",
           "",
@@ -28,9 +28,7 @@ const meta = {
           "",
           "```tsx",
           "<ScrollArea.Root>",
-          "  <ScrollArea.Viewport>",
-          "    <ScrollArea.Content />",
-          "  </ScrollArea.Viewport>",
+          "  <ScrollArea.Viewport>{/* Scrollable content */}</ScrollArea.Viewport>",
           "  <ScrollArea.Scrollbar>",
           "    <ScrollArea.Thumb />",
           "  </ScrollArea.Scrollbar>",
@@ -108,9 +106,7 @@ export const Default: Story = {
   render: (storyArgs) => (
     <ScrollArea.Root {...storyArgs} className="h-72">
       <ScrollArea.Viewport>
-        <ScrollArea.Content>
-          <Lorem paragraph={9} />
-        </ScrollArea.Content>
+        <Lorem paragraph={9} />
       </ScrollArea.Viewport>
 
       <ScrollArea.Scrollbar orientation="vertical">
@@ -131,9 +127,7 @@ export const Horizontal: Story = {
   render: (storyArgs) => (
     <ScrollArea.Root {...storyArgs} className="w-96">
       <ScrollArea.Viewport>
-        <ScrollArea.Content>
-          <WideRow />
-        </ScrollArea.Content>
+        <WideRow />
       </ScrollArea.Viewport>
 
       <ScrollArea.Scrollbar orientation="horizontal">
@@ -149,15 +143,13 @@ export const Both: Story = {
   render: (storyArgs) => (
     <ScrollArea.Root {...storyArgs} className="h-72">
       <ScrollArea.Viewport>
-        <ScrollArea.Content>
-          <Flex direction="column" gap="sm">
-            {Array.from({ length: 12 }, (_, position) => position + 1).map(
-              (rowIndex) => (
-                <WideRow count={12} key={rowIndex} />
-              ),
-            )}
-          </Flex>
-        </ScrollArea.Content>
+        <Flex direction="column" gap="sm">
+          {Array.from({ length: 12 }, (_, position) => position + 1).map(
+            (rowIndex) => (
+              <WideRow count={12} key={rowIndex} />
+            ),
+          )}
+        </Flex>
       </ScrollArea.Viewport>
 
       <ScrollArea.Scrollbar orientation="vertical">
@@ -187,9 +179,7 @@ export const Sizes: Story = {
       {(["xs", "sm", "md", "lg"] as const).map((size) => (
         <ScrollArea.Root key={size} {...storyArgs} className="h-72" size={size}>
           <ScrollArea.Viewport>
-            <ScrollArea.Content>
-              <Lorem paragraph={9} />
-            </ScrollArea.Content>
+            <Lorem paragraph={9} />
           </ScrollArea.Viewport>
 
           <ScrollArea.Scrollbar orientation="vertical">
@@ -208,9 +198,7 @@ export const Always: Story = {
   render: (storyArgs) => (
     <ScrollArea.Root {...storyArgs} className="h-72">
       <ScrollArea.Viewport>
-        <ScrollArea.Content>
-          <Lorem paragraph={9} />
-        </ScrollArea.Content>
+        <Lorem paragraph={9} />
       </ScrollArea.Viewport>
 
       <ScrollArea.Scrollbar orientation="vertical">
@@ -235,9 +223,7 @@ export const HiddenScrollbar: Story = {
   render: (storyArgs) => (
     <ScrollArea.Root {...storyArgs} className="h-72">
       <ScrollArea.Viewport>
-        <ScrollArea.Content>
-          <Lorem paragraph={9} />
-        </ScrollArea.Content>
+        <Lorem paragraph={9} />
       </ScrollArea.Viewport>
 
       <ScrollArea.Scrollbar orientation="vertical">
@@ -259,9 +245,7 @@ export const CustomStyles: Story = {
   render: () => (
     <ScrollArea.Root className="h-72 rounded-box border border-border p-4">
       <ScrollArea.Viewport>
-        <ScrollArea.Content>
-          <Lorem paragraph={9} />
-        </ScrollArea.Content>
+        <Lorem paragraph={9} />
       </ScrollArea.Viewport>
 
       <ScrollArea.Scrollbar orientation="vertical">
