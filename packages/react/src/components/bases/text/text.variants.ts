@@ -26,14 +26,7 @@ export const textVariants = tv({
       caption: { root: "fri-text-caption" },
       overline: { root: "fri-text-overline" },
     },
-    color: {
-      foreground: { root: "fri-text-foreground" },
-      muted: { root: "fri-text-muted" },
-      placeholder: { root: "fri-text-placeholder" },
-      nav: { root: "fri-text-nav" },
-      link: { root: "fri-text-link" },
-      inherit: { root: "fri-text-inherit" },
-    },
+    color: {},
     truncate: {
       true: { root: "truncate" },
     },
@@ -48,7 +41,6 @@ export const textVariants = tv({
   },
   defaultVariants: {
     variant: "body-md",
-    color: "foreground",
   },
 });
 

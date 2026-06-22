@@ -173,7 +173,6 @@ Light by default, flipped by `.dark` or `[data-theme="dark"]`:
   --surface: oklch(20.9% 0 0);
   --surface-foreground: oklch(100% 0 0);
   --neutral: oklch(65.47% 0.0208 248.15);
-  --muted: oklch(89.2% 0.0051 228.83);
   --ring: oklch(57.49% 0.2084 257.52);
 }
 ```
@@ -234,7 +233,7 @@ Every color token is registered with `@theme inline`, so Tailwind v4 emits a can
 
 Available aliases:
 
-- **Colors**: `bg-<color>`, `text-<color>`, `border-<color>`, `ring-<color>`, `fill-<color>`, `stroke-<color>` for every intent and its foreground pair, plus `background`, `foreground`, `surface` and its foreground, `neutral`, and `muted`. `neutral` has an alias but no foreground token.
+- **Colors**: `bg-<color>`, `text-<color>`, `border-<color>`, `ring-<color>`, `fill-<color>`, `stroke-<color>` for every intent and its foreground pair, plus `background`, `foreground`, `surface` and its foreground, and `neutral`. `neutral` has an alias but no foreground token.
 - **Radius**: `rounded-action`, `rounded-field`, `rounded-box`.
 - **Border**: `border` width from `--border`.
 

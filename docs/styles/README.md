@@ -177,7 +177,7 @@ Sizing tokens are scoped to a **semantic family**, never to a literal component:
 
 ## Dark mode
 
-`.dark`, or `[data-theme="dark"]`, re-tunes the palette for a dark surface. See `theme/default.css` for the values. In dark mode the surfaces flip: `--background` becomes a soft near-black and `--foreground` an off-white, neither one pure black or white, which strain the eye. `--muted` inverts to a dark panel, and `--surface` and `--accent` swap polarity with their `*-foreground`. The intent colors lift in lightness so they stay vivid on the dark surface, keeping a white foreground except where the color is light enough to need a dark one, such as `--warning` and `--secondary`. Tokens whose value already reads in both modes inherit from `:root`.
+`.dark`, or `[data-theme="dark"]`, re-tunes the palette for a dark surface. See `theme/default.css` for the values. In dark mode the surfaces flip: `--background` becomes a soft near-black and `--foreground` an off-white, neither one pure black or white, which strain the eye. `--surface` and `--accent` swap polarity with their `*-foreground`. The intent colors lift in lightness so they stay vivid on the dark surface, keeping a white foreground except where the color is light enough to need a dark one, such as `--warning` and `--secondary`. Tokens whose value already reads in both modes inherit from `:root`.
 
 Because every component reads these tokens at use time, derived hover and focus states follow the theme automatically, with no per-component dark rules.
 
@@ -189,7 +189,6 @@ Because every component reads these tokens at use time, derived hover and focus 
   --surface: oklch(95% 0 0); /* swapped */
   --surface-foreground: oklch(20.9% 0 0);
   --primary: oklch(64% 0.18 257.52); /* lifted, keeps white foreground */
-  --muted: oklch(30% 0.006 228.83); /* inverted panel */
 }
 ```
 
