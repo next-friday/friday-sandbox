@@ -11,27 +11,6 @@ const paragraph = `${SAMPLE}. ${SAMPLE}. ${SAMPLE}. ${SAMPLE}.`;
 
 const LINE_CLAMPS = [1, 2, 3, 4, 5, 6] as const;
 
-const VARIANTS = [
-  "display-xl",
-  "display-lg",
-  "display-md",
-  "display-sm",
-  "title-lg",
-  "title-md",
-  "title-sm",
-  "body-lg",
-  "body-md",
-  "body-sm",
-  "body-lg-strong",
-  "body-md-strong",
-  "body-sm-strong",
-  "label-lg",
-  "label-md",
-  "label-sm",
-  "caption",
-  "overline",
-] as const;
-
 const meta = {
   title: "Bases/Typography/Text",
   component: Text,
@@ -76,16 +55,6 @@ const meta = {
         defaultValue: { summary: "span" },
       },
     },
-    variant: {
-      description:
-        "Use the `variant` prop to apply a typographic style from the type scale.",
-      control: "select",
-      options: VARIANTS,
-      table: {
-        type: { summary: VARIANTS.join(" | ") },
-        defaultValue: { summary: "body-md" },
-      },
-    },
     lineClamp: {
       description:
         "Use the `lineClamp` prop to limit the text to a fixed number of lines with an ellipsis.",
@@ -122,39 +91,6 @@ export const Default: Story = {
     await expect(text).toBeInTheDocument();
     await expect(text).toHaveTextContent(SAMPLE);
   },
-};
-
-export const Variants: Story = {
-  parameters: {
-    docs: {
-      description: {
-        story:
-          "Use the `variant` prop to apply a typographic style from the type scale.",
-      },
-    },
-  },
-  render: () => (
-    <Flex direction="column" gap="xl">
-      <Text variant="display-xl">Display XL</Text>
-      <Text variant="display-lg">Display LG</Text>
-      <Text variant="display-md">Display MD</Text>
-      <Text variant="display-sm">Display SM</Text>
-      <Text variant="title-lg">Title LG</Text>
-      <Text variant="title-md">Title MD</Text>
-      <Text variant="title-sm">Title SM</Text>
-      <Text variant="body-lg-strong">Body LG Strong</Text>
-      <Text variant="body-md-strong">Body MD Strong</Text>
-      <Text variant="body-sm-strong">Body SM Strong</Text>
-      <Text variant="body-lg">Body LG</Text>
-      <Text variant="body-md">Body MD</Text>
-      <Text variant="body-sm">Body SM</Text>
-      <Text variant="label-lg">Label LG</Text>
-      <Text variant="label-md">Label MD</Text>
-      <Text variant="label-sm">Label SM</Text>
-      <Text variant="caption">Caption</Text>
-      <Text variant="overline">Overline</Text>
-    </Flex>
-  ),
 };
 
 export const As: Story = {
@@ -238,9 +174,5 @@ export const PlainHtml: Story = {
       },
     },
   },
-  render: () => (
-    <span className="fri-text fri-text-body-md fri-text-foreground">
-      {SAMPLE}
-    </span>
-  ),
+  render: () => <span className="fri-text">{SAMPLE}</span>,
 };

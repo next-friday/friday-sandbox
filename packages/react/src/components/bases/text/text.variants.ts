@@ -6,26 +6,6 @@ export const textVariants = tv({
     root: "fri-text",
   },
   variants: {
-    variant: {
-      "display-xl": { root: "fri-text-display-xl" },
-      "display-lg": { root: "fri-text-display-lg" },
-      "display-md": { root: "fri-text-display-md" },
-      "display-sm": { root: "fri-text-display-sm" },
-      "title-lg": { root: "fri-text-title-lg" },
-      "title-md": { root: "fri-text-title-md" },
-      "title-sm": { root: "fri-text-title-sm" },
-      "body-lg": { root: "fri-text-body-lg" },
-      "body-md": { root: "fri-text-body-md" },
-      "body-sm": { root: "fri-text-body-sm" },
-      "body-lg-strong": { root: "fri-text-body-lg-strong" },
-      "body-md-strong": { root: "fri-text-body-md-strong" },
-      "body-sm-strong": { root: "fri-text-body-sm-strong" },
-      "label-lg": { root: "fri-text-label-lg" },
-      "label-md": { root: "fri-text-label-md" },
-      "label-sm": { root: "fri-text-label-sm" },
-      caption: { root: "fri-text-caption" },
-      overline: { root: "fri-text-overline" },
-    },
     color: {},
     truncate: {
       true: { root: "truncate" },
@@ -38,9 +18,6 @@ export const textVariants = tv({
       5: { root: "line-clamp-5" },
       6: { root: "line-clamp-6" },
     },
-  },
-  defaultVariants: {
-    variant: "body-md",
   },
 });
 
