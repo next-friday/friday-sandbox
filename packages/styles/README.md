@@ -170,8 +170,6 @@ Light by default, flipped by `.dark` or `[data-theme="dark"]`:
 :root {
   --background: oklch(100% 0 0);
   --foreground: oklch(0 0 0);
-  --surface: oklch(20.9% 0 0);
-  --surface-foreground: oklch(100% 0 0);
   --neutral: oklch(65.47% 0.0208 248.15);
   --ring: oklch(57.49% 0.2084 257.52);
 }
