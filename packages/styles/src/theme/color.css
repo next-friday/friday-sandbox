@@ -1,10 +1,11 @@
 :root {
   color-scheme: light;
 
+  /* Primitive */
+
   --background: oklch(100% 0 0);
 
   --foreground: oklch(0 0 0);
-  --foreground-inverse: oklch(100% 0 0);
 
   --neutral: oklch(65.47% 0.0208 248.15);
 
@@ -41,7 +42,6 @@
   --background: oklch(18% 0 0);
 
   --foreground: oklch(95% 0 0);
-  --foreground-inverse: oklch(0 0 0);
 
   --neutral: oklch(65.47% 0.0208 248.15);
 

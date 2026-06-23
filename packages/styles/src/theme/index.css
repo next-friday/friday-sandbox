@@ -1,1 +1,4 @@
-@import "./theme.css";
+@import "./color.css";
+@import "./radius.css";
+@import "./border.css";
+@import "./typography.css";
