@@ -175,13 +175,43 @@ function buildTheme() {
   L.push("  --gap-lg: calc(var(--space) * 6);");
   L.push("  --gap-xl: calc(var(--space) * 8);");
   const imports =
-    '@import "./border.css";\n@import "./color.css";\n@import "./radius.css";\n@import "./typography.css";';
+    '@import "./registered.css";\n@import "./border.css";\n@import "./color.css";\n@import "./radius.css";\n@import "./typography.css";';
   return `${HEADER}${imports}\n\n:root {\n${L.join("\n")}\n}\n`;
 }
 
-const out = ["src/theme/color.css", "src/theme/theme.css"];
-writeFileSync(join(pkg, out[0]), buildColor());
-writeFileSync(join(pkg, out[1]), buildTheme());
+// Register the knob tokens with @property so the theme builder gets typed,
+// animatable, guarded inputs — and browsers without light-dark() fall back to
+// the (light) initial-value instead of an invalid declaration.
+function buildRegistered() {
+  const c = spec.color;
+  const L = [];
+  const reg = (name, syntax, init) =>
+    L.push(
+      `@property --${name} {\n  syntax: "${syntax}";\n  inherits: true;\n  initial-value: ${init};\n}`,
+    );
+  for (const role of BRAND_ROLES) {
+    reg(role, "<color>", oklch(c[role]));
+    reg(`${role}-foreground`, "<color>", FG_WHITE);
+  }
+  reg("background", "<color>", oklch(c.background));
+  reg("foreground", "<color>", oklch(c.foreground));
+  reg("neutral", "<color>", oklch(c.neutral));
+  for (const [name, light] of SURFACE_FAMILY) reg(name, "<color>", light);
+  reg("space", "<length>", GLOBALS.space);
+  reg("ring-width", "<length>", GLOBALS["ring-width"]);
+  reg("ring-offset-width", "<length>", GLOBALS["ring-offset-width"]);
+  reg("disabled-opacity", "<number>", GLOBALS["disabled-opacity"]);
+  return `${HEADER}${L.join("\n\n")}\n`;
+}
+
+const out = [
+  "src/theme/registered.css",
+  "src/theme/color.css",
+  "src/theme/theme.css",
+];
+writeFileSync(join(pkg, out[0]), buildRegistered());
+writeFileSync(join(pkg, out[1]), buildColor());
+writeFileSync(join(pkg, out[2]), buildTheme());
 // Format with Prettier so generated output matches the committed style, keeping
 // `pnpm build` idempotent (.prettierignore is protected, so we self-format).
 execSync(`pnpm exec prettier --write ${out.join(" ")}`, {
