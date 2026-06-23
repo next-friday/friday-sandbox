@@ -1,0 +1,23 @@
+{
+  "name": "Friday Default",
+  "mode": "both",
+  "color": {
+    "primary": { "l": 0.5749, "c": 0.2084, "h": 257.52 },
+    "secondary": { "l": 0.4392, "c": 0.0192, "h": 239.51 },
+    "accent": { "l": 0, "c": 0, "h": 0 },
+    "neutral": { "l": 0.6547, "c": 0.0208, "h": 248.15 },
+    "background": { "l": 1, "c": 0, "h": 0 },
+    "foreground": { "l": 0, "c": 0, "h": 0 },
+    "danger": { "l": 0.5613, "c": 0.1887, "h": 21.51 },
+    "warning": { "l": 0.733, "c": 0.1596, "h": 63.45 },
+    "success": { "l": 0.5324, "c": 0.1205, "h": 159.6 },
+    "info": { "l": 0.5553, "c": 0.175, "h": 255.24 }
+  },
+  "radiusScale": 1,
+  "border": "1px",
+  "density": "comfortable",
+  "typeScale": 1.2,
+  "intensity": 1,
+  "fontSans": "ui-sans-serif, system-ui, sans-serif",
+  "fontMono": "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace"
+}

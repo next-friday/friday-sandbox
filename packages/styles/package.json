@@ -35,18 +35,23 @@
       "style": "./index.css",
       "default": "./index.css"
     },
+    "./schema": "./theme-spec.schema.json",
+    "./tokens": "./tokens/default.spec.json",
     "./package.json": "./package.json"
   },
   "files": [
     "dist",
     "src",
     "index.css",
+    "theme-spec.schema.json",
+    "tokens",
     "README.md",
     "LICENSE"
   ],
   "scripts": {
-    "build": "tailwindcss --input index.css --output dist/index.css --minify",
+    "build": "node scripts/codegen.js && tailwindcss --input index.css --output dist/index.css --minify",
     "clean": "rm -rf dist",
+    "codegen": "node scripts/codegen.js",
     "prepack": "clean-package",
     "postpack": "clean-package restore"
   },
