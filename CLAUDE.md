@@ -1,0 +1,43 @@
+# CLAUDE.md
+
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+
+## Claude Code operating rules
+
+- **Let the hooks do the work.** `PostToolUse` runs `prettier --write` + `eslint --fix` on the edited file; `pre-commit` runs the gates on staged files; `pre-push` runs the full list. Do **not** run whole-repo `turbo lint`/`typecheck`/`build`/`knip`/`test` by hand, since each is minutes of duplicated work the hooks already cover.
+- **Never suppress a gate.** Fix the root cause: do not disable a lint rule, skip a check, loosen a gate, or use `--no-verify`, which is forbidden and re-caught by CI. Disabling is a last resort needing explicit approval with a stated reason.
+- **`src` ↔ `exports` invariant.** Workspace consumers read `src/`; published consumers read `dist/`. Change one surface, keep the other aligned.
+- **One change = one issue → one branch → one PR.** Behavior changes such as `feat`, `fix`, `perf`, and `refactor` require a `.changeset/*.md` entry, and the branch must start with `<issue#>-`. Full workflow in [`CONTRIBUTING.md`](CONTRIBUTING.md).
+
+## Architecture
+
+pnpm-workspace + Turborepo monorepo. Four packages under `packages/`:
+
+| Package                             | Role                                                                                                |
+| ----------------------------------- | --------------------------------------------------------------------------------------------------- |
+| `@friday-sandbox/react`             | React 19 components, built with `tsdown`, on react-aria-components + radix-ui + `tailwind-variants` |
+| `@friday-sandbox/styles`            | Tailwind v4 tokens + CSS layers, built with the `tailwindcss` CLI                                   |
+| `@friday-sandbox/eslint-config`     | shared ESLint flat-config presets                                                                   |
+| `@friday-sandbox/typescript-config` | shared tsconfig presets                                                                             |
+
+`react` consumes `styles` as a peer dependency; the two config packages are dev-only presets.
+
+**A component is split across both packages and linked by a class name, not an import.** It lives in `packages/react/src/components/bases/<name>/` as `<name>.tsx` + `<name>.variants.ts` + `index.ts` + `<name>.stories.tsx`. The `.variants.ts` uses `tailwind-variants/lite` `tv()` to map props to a stable `fri-<name>` class; the visual rules for that class live in `packages/styles/src/components/bases/<name>.css` via `@apply` inside `@layer components`. Edit one side, mirror the other.
+
+- `bases/` = real published components; `samples/` = Storybook-only demos; `icons/` and `utils/` as named.
+- **Export chain:** `src/index.ts` → `components/index.ts` → `bases/index.ts` → `<name>/index.ts`. A new base component touches all four barrels plus a `<name>.css` imported from `packages/styles/src/components/bases/index.css`.
+- **CSS cascade:** `packages/styles/index.css` declares `@layer theme, base, components, utilities`, then imports theme → system → components in that order.
+
+**Tests are stories.** There are no `*.test.tsx` files. Vitest runs every `*.stories.tsx` in real Chromium via Playwright (`@storybook/addon-vitest` + `@vitest/browser-playwright`, configured in `packages/react/vitest.config.ts`). Write a story, get a test.
+
+## Commands
+
+The hooks cover the gates (see operating rules); these are the scoped helpers they don't:
+
+```sh
+pnpm dev                                                   # Storybook on :6006
+pnpm --filter @friday-sandbox/react test                  # one package's tests
+pnpm --filter @friday-sandbox/react exec vitest run text   # one story file (substring match)
+```
+
+Full gate list and the issue → PR workflow live in [`CONTRIBUTING.md`](CONTRIBUTING.md).

@@ -1,0 +1,100 @@
+:root {
+  --font-family-sans: ui-sans-serif, system-ui, sans-serif;
+  --font-family-mono:
+    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  --display-xxl: 3.25rem;
+  --display-xxl-line-height: 4rem;
+  --display-xxl-font-weight: 700;
+  --display-xxl-letter-spacing: -0.03em;
+
+  --display-xl: 2.25rem;
+  --display-xl-line-height: 2.75rem;
+  --display-xl-font-weight: 700;
+  --display-xl-letter-spacing: -0.025em;
+
+  --display-lg: 2rem;
+  --display-lg-line-height: 2.5rem;
+  --display-lg-font-weight: 700;
+  --display-lg-letter-spacing: -0.02em;
+
+  --display-md: 1.5rem;
+  --display-md-line-height: 2rem;
+  --display-md-font-weight: 700;
+  --display-md-letter-spacing: -0.015em;
+
+  --display-sm: 1.25rem;
+  --display-sm-line-height: 1.75rem;
+  --display-sm-font-weight: 700;
+  --display-sm-letter-spacing: -0.01em;
+
+  --body-lg: 1.125rem;
+  --body-lg-line-height: 1.75rem;
+  --body-lg-font-weight: 400;
+  --body-lg-letter-spacing: 0;
+
+  --body-lg-strong: 1.125rem;
+  --body-lg-strong-line-height: 1.75rem;
+  --body-lg-strong-font-weight: 500;
+  --body-lg-strong-letter-spacing: 0;
+
+  --body-md: 1rem;
+  --body-md-line-height: 1.5rem;
+  --body-md-font-weight: 400;
+  --body-md-letter-spacing: 0;
+
+  --body-md-strong: 1rem;
+  --body-md-strong-line-height: 1.5rem;
+  --body-md-strong-font-weight: 500;
+  --body-md-strong-letter-spacing: 0;
+
+  --body-sm: 0.875rem;
+  --body-sm-line-height: 1.25rem;
+  --body-sm-font-weight: 400;
+  --body-sm-letter-spacing: 0;
+
+  --body-sm-strong: 0.875rem;
+  --body-sm-strong-line-height: 1.25rem;
+  --body-sm-strong-font-weight: 500;
+  --body-sm-strong-letter-spacing: 0;
+
+  --body-xs: 0.8125rem;
+  --body-xs-line-height: 1.125rem;
+  --body-xs-font-weight: 400;
+  --body-xs-letter-spacing: 0;
+
+  --body-xs-strong: 0.8125rem;
+  --body-xs-strong-line-height: 1.125rem;
+  --body-xs-strong-font-weight: 500;
+  --body-xs-strong-letter-spacing: 0;
+
+  --label-lg: 1rem;
+  --label-lg-line-height: 1.5rem;
+  --label-lg-font-weight: 600;
+  --label-lg-letter-spacing: 0;
+
+  --label-md: 0.875rem;
+  --label-md-line-height: 1.25rem;
+  --label-md-font-weight: 600;
+  --label-md-letter-spacing: 0;
+
+  --label-sm: 0.8125rem;
+  --label-sm-line-height: 1rem;
+  --label-sm-font-weight: 600;
+  --label-sm-letter-spacing: 0;
+
+  --caption: 0.75rem;
+  --caption-line-height: 1rem;
+  --caption-font-weight: 400;
+  --caption-letter-spacing: 0.01em;
+
+  --caption-strong: 0.75rem;
+  --caption-strong-line-height: 1rem;
+  --caption-strong-font-weight: 500;
+  --caption-strong-letter-spacing: 0.01em;
+
+  --code: 0.875rem;
+  --code-line-height: 1.25rem;
+  --code-font-weight: 400;
+  --code-letter-spacing: 0;
+}

@@ -1,0 +1,11 @@
+@utility status-disabled {
+  @apply pointer-events-none cursor-not-allowed opacity-50;
+}
+
+@utility transition-base {
+  @apply duration-100 ease-out motion-reduce:transition-none;
+}
+
+@utility focus-ring {
+  @apply ring-2 ring-ring ring-offset-1 ring-offset-background;
+}

@@ -1,0 +1,46 @@
+:root {
+  color-scheme: light;
+
+  /* Primitive */
+
+  --background: oklch(100% 0 0);
+
+  --foreground: oklch(0 0 0);
+
+  /* Inverted surface pair (e.g. a tooltip): the background/foreground roles
+   * swapped, so it stays legible and re-inverts with the theme. */
+  --surface: var(--foreground);
+  --surface-foreground: var(--background);
+
+  --neutral: oklch(65.47% 0.0208 248.15);
+
+  --primary: oklch(57.49% 0.2084 257.52);
+  --primary-foreground: oklch(100% 0 0);
+
+  --secondary: oklch(43.92% 0.0192 239.51);
+  --secondary-foreground: oklch(100% 0 0);
+
+  --accent: oklch(0 0 0);
+  --accent-foreground: oklch(100% 0 0);
+
+  --info: oklch(55.53% 0.175 255.24);
+  --info-foreground: oklch(100% 0 0);
+
+  --success: oklch(53.24% 0.1205 159.6);
+  --success-foreground: oklch(100% 0 0);
+
+  --warning: oklch(73.3% 0.1596 63.45);
+  --warning-foreground: oklch(100% 0 0);
+
+  --danger: oklch(56.13% 0.1887 21.51);
+  --danger-foreground: oklch(100% 0 0);
+
+  --ring: oklch(57.49% 0.2084 257.52);
+
+  --link: oklch(57.49% 0.2084 257.52);
+}
+
+.dark,
+[data-theme="dark"] {
+  color-scheme: dark;
+}

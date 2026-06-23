@@ -1,0 +1,23 @@
+{
+  "remove": [
+    "scripts",
+    "devDependencies",
+    "lint-staged",
+    "husky",
+    "clean-package",
+    "private"
+  ],
+  "replace": {
+    "exports": {
+      ".": {
+        "style": "./dist/index.css",
+        "default": "./dist/index.css"
+      },
+      "./css": {
+        "style": "./dist/index.css",
+        "default": "./dist/index.css"
+      },
+      "./package.json": "./package.json"
+    }
+  }
+}

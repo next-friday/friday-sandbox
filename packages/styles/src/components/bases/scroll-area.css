@@ -1,0 +1,47 @@
+@layer components {
+  .fri-scroll-area {
+    @apply relative overflow-hidden;
+  }
+
+  .fri-scroll-area-xs {
+    --scroll-area-thickness: var(--scroll-area-thickness-xs);
+  }
+  .fri-scroll-area-sm {
+    --scroll-area-thickness: var(--scroll-area-thickness-sm);
+  }
+  .fri-scroll-area-md {
+    --scroll-area-thickness: var(--scroll-area-thickness-md);
+  }
+  .fri-scroll-area-lg {
+    --scroll-area-thickness: var(--scroll-area-thickness-lg);
+  }
+
+  .fri-scroll-area-viewport {
+    @apply h-full w-full rounded-[inherit];
+  }
+
+  .fri-scroll-area-scrollbar {
+    @apply flex touch-none bg-scroll-track p-px select-none;
+  }
+  .fri-scroll-area-scrollbar[data-orientation="vertical"] {
+    @apply w-(--scroll-area-thickness);
+  }
+  .fri-scroll-area-scrollbar[data-orientation="horizontal"] {
+    @apply h-(--scroll-area-thickness) flex-col;
+  }
+
+  .fri-scroll-area-thumb {
+    @apply relative flex-1 rounded-full bg-scroll-thumb transition-base transition-colors;
+  }
+  .fri-scroll-area-thumb:hover {
+    @apply bg-scroll-thumb-hover;
+  }
+
+  .fri-scroll-area-corner {
+    @apply bg-transparent;
+  }
+
+  .fri-scroll-area-hide-scrollbar .fri-scroll-area-scrollbar {
+    @apply hidden;
+  }
+}

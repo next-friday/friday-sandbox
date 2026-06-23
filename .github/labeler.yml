@@ -1,0 +1,56 @@
+"area:react":
+  - changed-files:
+      - any-glob-to-any-file:
+          - "packages/react/**"
+
+"area:styles":
+  - changed-files:
+      - any-glob-to-any-file:
+          - "packages/styles/**"
+
+"area:eslint-config":
+  - changed-files:
+      - any-glob-to-any-file:
+          - "packages/eslint-config/**"
+
+"area:typescript-config":
+  - changed-files:
+      - any-glob-to-any-file:
+          - "packages/typescript-config/**"
+
+"area:docs":
+  - changed-files:
+      - any-glob-to-any-file:
+          - "**/*.md"
+          - "**/LICENSE"
+
+"area:ci":
+  - changed-files:
+      - any-glob-to-any-file:
+          - ".github/**"
+
+"area:tooling":
+  - changed-files:
+      - any-glob-to-any-file:
+          - "**/*.config.{ts,mjs,js,cjs}"
+          - "**/package.json"
+          - "**/tsconfig.json"
+          - ".changeset/**"
+          - ".claude/**"
+          - ".commitlintrc*"
+          - ".dependency-cruiser*"
+          - ".editorconfig"
+          - ".gitignore"
+          - ".husky/**"
+          - ".lintstagedrc*"
+          - ".npmrc"
+          - ".nvmrc"
+          - ".prettierignore"
+          - ".prettierrc*"
+          - ".vscode/**"
+          - "codecov.yml"
+          - "knip.json"
+          - "pnpm-lock.yaml"
+          - "pnpm-workspace.yaml"
+          - "sonar-project.properties"
+          - "turbo.json"

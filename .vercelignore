@@ -1,0 +1,16 @@
+.git
+.github
+.changeset
+.claude
+.husky
+.turbo
+.vscode
+.gemini
+node_modules
+coverage
+dist
+storybook-static
+*.tsbuildinfo
+*.log
+debug-storybook.log
+__screenshots__

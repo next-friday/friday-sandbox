@@ -1,0 +1,14 @@
+# dependencies
+node_modules
+pnpm-lock.yaml
+
+# build output
+dist
+coverage
+.turbo
+
+#storybook
+storybook-static
+
+#changeset
+.changeset/CHANGELOG.md

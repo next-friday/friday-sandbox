@@ -1,0 +1,43 @@
+@layer components {
+  .fri-spinner {
+    @apply inline-block size-(--spinner-size) shrink-0 animate-spin rounded-full bg-(image:--spinner-image) mask-(--spinner-mask) text-primary motion-reduce:animate-none;
+  }
+
+  .fri-spinner-primary {
+    @apply text-primary;
+  }
+  .fri-spinner-secondary {
+    @apply text-secondary;
+  }
+  .fri-spinner-accent {
+    @apply text-accent;
+  }
+  .fri-spinner-info {
+    @apply text-info;
+  }
+  .fri-spinner-success {
+    @apply text-success;
+  }
+  .fri-spinner-warning {
+    @apply text-warning;
+  }
+  .fri-spinner-danger {
+    @apply text-danger;
+  }
+
+  .fri-spinner-xs {
+    --spinner-size: var(--spinner-size-xs);
+  }
+  .fri-spinner-sm {
+    --spinner-size: var(--spinner-size-sm);
+  }
+  .fri-spinner-md {
+    --spinner-size: var(--spinner-size-md);
+  }
+  .fri-spinner-lg {
+    --spinner-size: var(--spinner-size-lg);
+  }
+  .fri-spinner-xl {
+    --spinner-size: var(--spinner-size-xl);
+  }
+}

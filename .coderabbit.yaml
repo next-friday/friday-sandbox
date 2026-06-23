@@ -1,0 +1,114 @@
+language: en-US
+tone_instructions: >-
+  Be terse. One sentence per finding: the problem, the location, the fix.
+  Skip praise, skip restating the diff. Group by severity, highest first.
+  If unsure, ask one specific question rather than guessing.
+reviews:
+  profile: assertive
+  high_level_summary: true
+  poem: false
+  review_status: true
+  collapse_walkthrough: true
+  auto_review:
+    enabled: true
+    drafts: false
+    ignore_title_keywords:
+      - "chore(release):"
+    ignore_usernames:
+      - "dependabot[bot]"
+      - "github-actions[bot]"
+      - "next-friday-release[bot]"
+  path_filters:
+    - "!**/dist/**"
+    - "!**/coverage/**"
+    - "!**/storybook-static/**"
+    - "!**/.turbo/**"
+    - "!pnpm-lock.yaml"
+    - "!**/CHANGELOG.md"
+    - "!.changeset/**"
+    - "!**/*.snap"
+  path_instructions:
+    # Each entry lists only the few highest-value checks per path.
+    # It never restates the full rationale.
+    - path: packages/react/src/**/*.{ts,tsx}
+      instructions: >-
+        Enforce the gates: component structure, composition, canonical Tailwind,
+        semantic token scope, meaningful identifiers. Priorities, highest first: accessibility,
+        correctness, API ergonomics, then style. Key checks: lowercase filename,
+        named export with colocated Props, no default export; "use client" only
+        when a client API is touched; compose react-aria-components instead of
+        hand-rolled keyboard or focus; shared logic extracted into a hook, not
+        duplicated across components; a new file is reachable through the exports
+        map (. -> ./src/index.ts, ./* -> ./src/*/index.ts); no inline style,
+        hardcoded hex, or token-bypassing class strings; canonical Tailwind alias
+        for any var mapped in @theme inline; a behavior change
+        (feat | fix | perf | refactor) carries a .changeset/*.md entry.
+    - path: packages/react/src/**/*.stories.{ts,tsx}
+      instructions: >-
+        Enforce the accessibility and stories rule. Key checks: coverage
+        of Default, Hovered, Focused, Disabled, and every color variant including
+        danger; real props, not mocked data; addon-a11y passes on the story page;
+        story copy reads as consumer documentation, so flag internal class names
+        (fri-button-*, fri-flex-*), library names (tailwind-variants, react-aria,
+        react-aria-components), engine math (calc(var(--size-action) * N)), or
+        file paths; copy stays generic, not brittle, so flag concrete pixel sizes
+        or an exhaustive enumeration of a prop's values, and prefer the imperative
+        "Use the `X` prop to ..." form; symmetric story shape across files (summary
+        -> Import snippet -> stylesheet note -> CSS snippet, same prop wording and
+        second-person tone). Story copy also stays lean: no em-dash or
+        parenthetical aside.
+    - path: packages/react/src/**/*.test.{ts,tsx}
+      instructions: >-
+        Enforce the accessibility and stories rule. Tests run in Vitest
+        browser mode via @storybook/addon-vitest with Playwright chromium. Prefer
+        Storybook play functions over imperative DOM assertions; cover keyboard
+        paths alongside pointer paths.
+    - path: packages/eslint-config/src/*.mjs
+      instructions: >-
+        Keep all three subpath exports (./base, ./next-js, ./react-internal)
+        resolving in consumer workspaces. Flag a rule added to one preset that
+        belongs in another, a plugin import without a matching peer dep, or a
+        severity flipped without a noted reason.
+    - path: packages/typescript-config/src/*.json
+      instructions: >-
+        The preset trio (base.json, nextjs.json, react-library.json) must agree
+        on lib, moduleResolution, jsx, target, strict, and verbatimModuleSyntax
+        unless a framework difference justifies otherwise.
+    - path: packages/styles/src/**/*.css
+      instructions: >-
+        Enforce the canonical Tailwind and semantic token scope rules. Key checks: respect the @layer
+        system; no hardcoded colors outside the token layer; no global selectors
+        that bypass layers; size and radius tokens scoped to action, field, or
+        box, never a literal component name; a token rename carries a migration
+        note in the changeset.
+    - path: .github/workflows/**/*.yml
+      instructions: >-
+        Third-party actions must be pinned to a commit SHA, not a tag. Each job
+        sets a tight timeout-minutes and a minimal permissions block. Top-level
+        permissions stay read-only; job-level grants only the scopes that step
+        needs. Run step-security/harden-runner first.
+    - path: .github/scripts/**/*.sh
+      instructions: >-
+        Shell scripts start with set -euo pipefail. Quote every variable
+        expansion. Read inputs from explicit env vars, not positional args.
+    - path: ".changeset/!(*README*).md"
+      instructions: >-
+        Bump level (patch | minor | major) must match the PR type. A feat is at
+        least minor, a breaking change is major. The summary reads as a release
+        note to a downstream consumer, not as an internal log.
+    - path: "**/*.md"
+      instructions: >-
+        Enforce the lean prose rule. Prose is direct and token-lean:
+        flag an em-dash or a parenthetical aside in prose, which should be a
+        period, comma, or colon, or folded into the sentence. Keep parentheses
+        that belong to code, a glob, or a Markdown link target.
+chat:
+  auto_reply: true
+knowledge_base:
+  opt_out: false
+  learnings:
+    scope: local
+  issues:
+    scope: local
+  pull_requests:
+    scope: local

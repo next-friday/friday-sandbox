@@ -1,0 +1,20 @@
+{
+  "remove": [
+    "scripts",
+    "devDependencies",
+    "lint-staged",
+    "husky",
+    "clean-package",
+    "private"
+  ],
+  "replace": {
+    "exports": {
+      ".": {
+        "types": "./dist/index.d.mts",
+        "import": "./dist/index.mjs",
+        "default": "./dist/index.mjs"
+      },
+      "./package.json": "./package.json"
+    }
+  }
+}
