@@ -6,7 +6,6 @@ export const textVariants = tv({
     root: "fri-text",
   },
   variants: {
-    color: {},
     truncate: {
       true: { root: "truncate" },
     },

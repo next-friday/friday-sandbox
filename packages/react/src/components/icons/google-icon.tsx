@@ -1,12 +1,10 @@
 import type { ComponentPropsWithRef } from "react";
 
-export type GoogleIconProps = ComponentPropsWithRef<"svg">;
-
 export const GoogleIcon = ({
   width = 18,
   height = 18,
   ...props
-}: Readonly<GoogleIconProps>) => (
+}: Readonly<ComponentPropsWithRef<"svg">>) => (
   <svg
     viewBox="0 0 18 18"
     fill="none"

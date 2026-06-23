@@ -15,9 +15,9 @@ export interface TextProps
 }
 
 export const Text = (props: Readonly<TextProps>) => {
-  const { as, className, color, lineClamp, truncate, ...rest } = props;
+  const { as, className, lineClamp, truncate, ...rest } = props;
 
-  const slots = textVariants({ color, lineClamp, truncate });
+  const slots = textVariants({ lineClamp, truncate });
   const rootClassName = slots.root({ class: className });
 
   return (
