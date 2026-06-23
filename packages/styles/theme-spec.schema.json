@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://friday-sandbox.dev/theme-spec.schema.json",
+  "title": "Friday theme spec",
+  "description": "The contract a theme spec must satisfy. The builder and the AI agent write specs validated against this; codegen expands a valid spec into the full token system.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["name", "mode", "color", "radiusScale"],
+  "properties": {
+    "name": { "type": "string", "maxLength": 60 },
+    "mode": { "enum": ["light", "dark", "both"] },
+    "color": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["primary", "neutral", "background", "foreground"],
+      "properties": {
+        "primary": { "$ref": "#/$defs/oklch" },
+        "secondary": { "$ref": "#/$defs/oklch" },
+        "accent": { "$ref": "#/$defs/oklch" },
+        "neutral": { "$ref": "#/$defs/oklch" },
+        "background": { "$ref": "#/$defs/oklch" },
+        "foreground": { "$ref": "#/$defs/oklch" },
+        "danger": { "$ref": "#/$defs/statusDanger" },
+        "warning": { "$ref": "#/$defs/statusWarning" },
+        "success": { "$ref": "#/$defs/statusSuccess" },
+        "info": { "$ref": "#/$defs/statusInfo" }
+      }
+    },
+    "radiusScale": { "type": "number", "minimum": 0, "maximum": 2 },
+    "border": { "$ref": "#/$defs/dimension" },
+    "density": { "enum": ["compact", "comfortable", "spacious"] },
+    "typeScale": { "type": "number", "minimum": 1.05, "maximum": 1.4 },
+    "intensity": { "type": "number", "minimum": 0.5, "maximum": 1.5 },
+    "fontSans": { "type": "string" },
+    "fontMono": { "type": "string" }
+  },
+  "$defs": {
+    "oklch": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["l", "c", "h"],
+      "properties": {
+        "l": { "type": "number", "minimum": 0, "maximum": 1 },
+        "c": { "type": "number", "minimum": 0, "maximum": 0.37 },
+        "h": { "type": "number", "minimum": 0, "maximum": 360 }
+      }
+    },
+    "statusDanger": {
+      "allOf": [{ "$ref": "#/$defs/oklch" }],
+      "properties": { "h": { "minimum": 15, "maximum": 35 } }
+    },
+    "statusWarning": {
+      "allOf": [{ "$ref": "#/$defs/oklch" }],
+      "properties": { "h": { "minimum": 60, "maximum": 95 } }
+    },
+    "statusSuccess": {
+      "allOf": [{ "$ref": "#/$defs/oklch" }],
+      "properties": { "h": { "minimum": 140, "maximum": 165 } }
+    },
+    "statusInfo": {
+      "allOf": [{ "$ref": "#/$defs/oklch" }],
+      "properties": { "h": { "minimum": 220, "maximum": 260 } }
+    },
+    "dimension": { "type": "string", "pattern": "^[0-9]*\\.?[0-9]+(rem|px)$" }
+  }
+}
