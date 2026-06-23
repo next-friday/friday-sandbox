@@ -75,15 +75,6 @@ const meta = {
       control: "text",
       table: { type: { summary: "ReactNode" } },
     },
-    as: {
-      description:
-        "Use the `as` prop to render the text as a different HTML element.",
-      control: "text",
-      table: {
-        type: { summary: "string" },
-        defaultValue: { summary: "span" },
-      },
-    },
     variant: {
       description: "Use the `variant` prop to apply a typography scale token.",
       control: "select",
@@ -115,6 +106,15 @@ const meta = {
       table: {
         type: { summary: "boolean" },
         defaultValue: { summary: "false" },
+      },
+    },
+    as: {
+      description:
+        "Use the `as` prop to render the text as a different HTML element.",
+      control: "text",
+      table: {
+        type: { summary: "string" },
+        defaultValue: { summary: "span" },
       },
     },
     className: {
