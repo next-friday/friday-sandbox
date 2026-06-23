@@ -38,9 +38,59 @@
   --ring: oklch(57.49% 0.2084 257.52);
 
   --link: oklch(57.49% 0.2084 257.52);
+
+  /* Surface roles — subtle, elevated and overlay surfaces plus the form-field
+   * border. Plain primitives with no interaction ladder; a ladder is added for
+   * one of these only when a component actually needs a state for it. */
+  --muted: oklch(96.5% 0.005 248.15);
+  --muted-foreground: oklch(45% 0.015 248.15);
+
+  --card: oklch(100% 0 0);
+  --card-foreground: oklch(0 0 0);
+
+  --popover: oklch(100% 0 0);
+  --popover-foreground: oklch(0 0 0);
+
+  --input: oklch(92% 0.006 248.15);
+
+  /* Destructive is an alias of danger so themes authored against the wider
+   * ecosystem vocabulary paste cleanly; danger stays the canonical role that
+   * owns the interaction ladder. */
+  --destructive: var(--danger);
+  --destructive-foreground: var(--danger-foreground);
 }
 
+/* Dark mode overrides the primitives only; the color-mix ladder in theme.css
+ * and the inverted --surface pair reflow automatically. The brand role colors
+ * are background-independent — their derived surfaces already mix against
+ * --background — so only the ground, neutrals, accent, link and ring are
+ * retuned here, each holding WCAG AA for its text role. */
 .dark,
 [data-theme="dark"] {
   color-scheme: dark;
+
+  --background: oklch(17% 0 0);
+  --foreground: oklch(96% 0 0);
+
+  --neutral: oklch(70% 0.02 248.15);
+
+  /* Accent is a near-black high-contrast action in light; it inverts to
+   * near-white on dark so it stays the high-contrast role. */
+  --accent: oklch(96% 0 0);
+  --accent-foreground: oklch(17% 0 0);
+
+  /* Lightened so link text and the focus ring read on the dark ground. */
+  --link: oklch(70% 0.16 257.52);
+  --ring: oklch(65% 0.19 257.52);
+
+  --muted: oklch(25% 0.006 248.15);
+  --muted-foreground: oklch(70% 0.015 248.15);
+
+  --card: oklch(20% 0 0);
+  --card-foreground: oklch(96% 0 0);
+
+  --popover: oklch(20% 0 0);
+  --popover-foreground: oklch(96% 0 0);
+
+  --input: oklch(35% 0.006 248.15);
 }
