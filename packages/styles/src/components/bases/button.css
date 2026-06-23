@@ -1,6 +1,6 @@
 @layer components {
   .fri-button {
-    @apply relative inline-flex h-(--action-height) w-fit shrink-0 cursor-pointer items-center justify-center gap-2 rounded-(--action-radius) border-(length:--border) border-solid border-(--button-border-color) bg-(--button-background) px-(--action-padding-x) text-sm font-medium whitespace-nowrap text-(--button-foreground) transition-base transition-[background-color,box-shadow,outline-color] outline-none select-none;
+    @apply relative inline-flex h-(--action-height) w-fit shrink-0 cursor-pointer items-center justify-center gap-2 rounded-(--action-radius) border-(length:--border) border-solid border-(--button-border-color) bg-(--button-background) px-(--action-padding-x) whitespace-nowrap text-(--button-foreground) transition-base transition-[background-color,box-shadow,outline-color] outline-none select-none;
 
     --action-n-xs: 7;
     --action-n-sm: 8;
@@ -177,23 +177,23 @@
 
   .fri-button-xs {
     --action-n: var(--action-n-xs);
-    @apply text-xs;
+    @apply text-label-sm;
   }
   .fri-button-sm {
     --action-n: var(--action-n-sm);
-    @apply text-xs;
+    @apply text-label-sm;
   }
   .fri-button-md {
     --action-n: var(--action-n-md);
-    @apply text-sm;
+    @apply text-label-md;
   }
   .fri-button-lg {
     --action-n: var(--action-n-lg);
-    @apply text-base;
+    @apply text-label-lg;
   }
   .fri-button-xl {
     --action-n: var(--action-n-xl);
-    @apply text-base;
+    @apply text-label-lg;
   }
 
   .fri-button-icon-only {

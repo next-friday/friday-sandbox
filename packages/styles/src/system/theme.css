@@ -39,47 +39,101 @@
     transparent var(--separator-fade)
   );
 
+  --font-sans: var(--font-family-sans);
+  --font-mono: var(--font-family-mono);
+
   --text-display-xxl: var(--display-xxl);
   --text-display-xxl--line-height: var(--display-xxl-line-height);
   --text-display-xxl--font-weight: var(--display-xxl-font-weight);
+  --text-display-xxl--letter-spacing: var(--display-xxl-letter-spacing);
 
   --text-display-xl: var(--display-xl);
   --text-display-xl--line-height: var(--display-xl-line-height);
   --text-display-xl--font-weight: var(--display-xl-font-weight);
+  --text-display-xl--letter-spacing: var(--display-xl-letter-spacing);
 
   --text-display-lg: var(--display-lg);
   --text-display-lg--line-height: var(--display-lg-line-height);
   --text-display-lg--font-weight: var(--display-lg-font-weight);
+  --text-display-lg--letter-spacing: var(--display-lg-letter-spacing);
 
   --text-display-md: var(--display-md);
   --text-display-md--line-height: var(--display-md-line-height);
   --text-display-md--font-weight: var(--display-md-font-weight);
+  --text-display-md--letter-spacing: var(--display-md-letter-spacing);
 
   --text-display-sm: var(--display-sm);
   --text-display-sm--line-height: var(--display-sm-line-height);
   --text-display-sm--font-weight: var(--display-sm-font-weight);
+  --text-display-sm--letter-spacing: var(--display-sm-letter-spacing);
 
   --text-body-lg: var(--body-lg);
   --text-body-lg--line-height: var(--body-lg-line-height);
   --text-body-lg--font-weight: var(--body-lg-font-weight);
+  --text-body-lg--letter-spacing: var(--body-lg-letter-spacing);
+
+  --text-body-lg-strong: var(--body-lg-strong);
+  --text-body-lg-strong--line-height: var(--body-lg-strong-line-height);
+  --text-body-lg-strong--font-weight: var(--body-lg-strong-font-weight);
+  --text-body-lg-strong--letter-spacing: var(--body-lg-strong-letter-spacing);
 
   --text-body-md: var(--body-md);
   --text-body-md--line-height: var(--body-md-line-height);
   --text-body-md--font-weight: var(--body-md-font-weight);
+  --text-body-md--letter-spacing: var(--body-md-letter-spacing);
 
   --text-body-md-strong: var(--body-md-strong);
   --text-body-md-strong--line-height: var(--body-md-strong-line-height);
   --text-body-md-strong--font-weight: var(--body-md-strong-font-weight);
+  --text-body-md-strong--letter-spacing: var(--body-md-strong-letter-spacing);
 
   --text-body-sm: var(--body-sm);
   --text-body-sm--line-height: var(--body-sm-line-height);
   --text-body-sm--font-weight: var(--body-sm-font-weight);
+  --text-body-sm--letter-spacing: var(--body-sm-letter-spacing);
 
   --text-body-sm-strong: var(--body-sm-strong);
   --text-body-sm-strong--line-height: var(--body-sm-strong-line-height);
   --text-body-sm-strong--font-weight: var(--body-sm-strong-font-weight);
+  --text-body-sm-strong--letter-spacing: var(--body-sm-strong-letter-spacing);
+
+  --text-body-xs: var(--body-xs);
+  --text-body-xs--line-height: var(--body-xs-line-height);
+  --text-body-xs--font-weight: var(--body-xs-font-weight);
+  --text-body-xs--letter-spacing: var(--body-xs-letter-spacing);
+
+  --text-body-xs-strong: var(--body-xs-strong);
+  --text-body-xs-strong--line-height: var(--body-xs-strong-line-height);
+  --text-body-xs-strong--font-weight: var(--body-xs-strong-font-weight);
+  --text-body-xs-strong--letter-spacing: var(--body-xs-strong-letter-spacing);
+
+  --text-label-lg: var(--label-lg);
+  --text-label-lg--line-height: var(--label-lg-line-height);
+  --text-label-lg--font-weight: var(--label-lg-font-weight);
+  --text-label-lg--letter-spacing: var(--label-lg-letter-spacing);
+
+  --text-label-md: var(--label-md);
+  --text-label-md--line-height: var(--label-md-line-height);
+  --text-label-md--font-weight: var(--label-md-font-weight);
+  --text-label-md--letter-spacing: var(--label-md-letter-spacing);
+
+  --text-label-sm: var(--label-sm);
+  --text-label-sm--line-height: var(--label-sm-line-height);
+  --text-label-sm--font-weight: var(--label-sm-font-weight);
+  --text-label-sm--letter-spacing: var(--label-sm-letter-spacing);
 
   --text-caption: var(--caption);
   --text-caption--line-height: var(--caption-line-height);
   --text-caption--font-weight: var(--caption-font-weight);
+  --text-caption--letter-spacing: var(--caption-letter-spacing);
+
+  --text-caption-strong: var(--caption-strong);
+  --text-caption-strong--line-height: var(--caption-strong-line-height);
+  --text-caption-strong--font-weight: var(--caption-strong-font-weight);
+  --text-caption-strong--letter-spacing: var(--caption-strong-letter-spacing);
+
+  --text-code: var(--code);
+  --text-code--line-height: var(--code-line-height);
+  --text-code--font-weight: var(--code-font-weight);
+  --text-code--letter-spacing: var(--code-letter-spacing);
 }
