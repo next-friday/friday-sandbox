@@ -160,7 +160,7 @@ Semantic colors, each paired with a foreground that components use for readable 
 }
 ```
 
-Components compute their own hover and pressed states from the color. Change `--primary` and `.fri-button-primary`, plus its hover, focus ring, and pressed states, follows automatically.
+Hover, pressed, soft and surface states are derived from each color role in the semantic layer (`theme/theme.css`), not in the components — the components only reference the finished tokens. Change `--primary` and `.fri-button-primary`, plus its hover, focus ring, and pressed states, follows automatically.
 
 ### Surfaces
 

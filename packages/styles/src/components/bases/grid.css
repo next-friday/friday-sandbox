@@ -2,6 +2,10 @@
   .fri-grid {
     @apply grid;
 
+    /* ponytail: --grid-min is a public per-element override (see README), so
+     * the auto-fit/fill template must resolve against the element's own value.
+     * A :root token would bake the default in and ignore the override, so the
+     * minmax()/repeat() stays here on the component. */
     --grid-min: 16rem;
   }
 
@@ -117,51 +121,51 @@
   }
 
   .fri-grid-gap-xs {
-    @apply gap-1;
+    @apply gap-(--gap-xs);
   }
   .fri-grid-gap-sm {
-    @apply gap-2;
+    @apply gap-(--gap-sm);
   }
   .fri-grid-gap-md {
-    @apply gap-4;
+    @apply gap-(--gap-md);
   }
   .fri-grid-gap-lg {
-    @apply gap-6;
+    @apply gap-(--gap-lg);
   }
   .fri-grid-gap-xl {
-    @apply gap-8;
+    @apply gap-(--gap-xl);
   }
 
   .fri-grid-gap-x-xs {
-    @apply gap-x-1;
+    @apply gap-x-(--gap-xs);
   }
   .fri-grid-gap-x-sm {
-    @apply gap-x-2;
+    @apply gap-x-(--gap-sm);
   }
   .fri-grid-gap-x-md {
-    @apply gap-x-4;
+    @apply gap-x-(--gap-md);
   }
   .fri-grid-gap-x-lg {
-    @apply gap-x-6;
+    @apply gap-x-(--gap-lg);
   }
   .fri-grid-gap-x-xl {
-    @apply gap-x-8;
+    @apply gap-x-(--gap-xl);
   }
 
   .fri-grid-gap-y-xs {
-    @apply gap-y-1;
+    @apply gap-y-(--gap-xs);
   }
   .fri-grid-gap-y-sm {
-    @apply gap-y-2;
+    @apply gap-y-(--gap-sm);
   }
   .fri-grid-gap-y-md {
-    @apply gap-y-4;
+    @apply gap-y-(--gap-md);
   }
   .fri-grid-gap-y-lg {
-    @apply gap-y-6;
+    @apply gap-y-(--gap-lg);
   }
   .fri-grid-gap-y-xl {
-    @apply gap-y-8;
+    @apply gap-y-(--gap-xl);
   }
 
   .fri-grid-item {

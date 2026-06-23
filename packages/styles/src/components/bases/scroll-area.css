@@ -1,39 +1,19 @@
 @layer components {
   .fri-scroll-area {
     @apply relative overflow-hidden;
-
-    --scroll-area-n-xs: 1.5;
-    --scroll-area-n-sm: 2;
-    --scroll-area-n-md: 2.5;
-    --scroll-area-n-lg: 3;
-    --scroll-area-n: var(--scroll-area-n-md);
-    --scroll-area-thickness: calc(var(--size-box) * var(--scroll-area-n));
-    --scroll-area-thumb-opacity: 40%;
-    --scroll-area-thumb-opacity-hover: 65%;
-    --scroll-area-thumb-color: color-mix(
-      in srgb,
-      var(--neutral) var(--scroll-area-thumb-opacity),
-      transparent
-    );
-    --scroll-area-thumb-color-hover: color-mix(
-      in srgb,
-      var(--neutral) var(--scroll-area-thumb-opacity-hover),
-      transparent
-    );
-    --scroll-area-track-color: transparent;
   }
 
   .fri-scroll-area-xs {
-    --scroll-area-n: var(--scroll-area-n-xs);
+    --scroll-area-thickness: var(--scroll-area-thickness-xs);
   }
   .fri-scroll-area-sm {
-    --scroll-area-n: var(--scroll-area-n-sm);
+    --scroll-area-thickness: var(--scroll-area-thickness-sm);
   }
   .fri-scroll-area-md {
-    --scroll-area-n: var(--scroll-area-n-md);
+    --scroll-area-thickness: var(--scroll-area-thickness-md);
   }
   .fri-scroll-area-lg {
-    --scroll-area-n: var(--scroll-area-n-lg);
+    --scroll-area-thickness: var(--scroll-area-thickness-lg);
   }
 
   .fri-scroll-area-viewport {
@@ -41,7 +21,7 @@
   }
 
   .fri-scroll-area-scrollbar {
-    @apply flex touch-none bg-(--scroll-area-track-color) p-px select-none;
+    @apply flex touch-none bg-scroll-track p-px select-none;
   }
   .fri-scroll-area-scrollbar[data-orientation="vertical"] {
     @apply w-(--scroll-area-thickness);
@@ -51,10 +31,10 @@
   }
 
   .fri-scroll-area-thumb {
-    @apply relative flex-1 rounded-full bg-(--scroll-area-thumb-color) transition-base transition-colors;
+    @apply relative flex-1 rounded-full bg-scroll-thumb transition-base transition-colors;
   }
   .fri-scroll-area-thumb:hover {
-    @apply bg-(--scroll-area-thumb-color-hover);
+    @apply bg-scroll-thumb-hover;
   }
 
   .fri-scroll-area-corner {

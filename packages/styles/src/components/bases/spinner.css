@@ -1,32 +1,6 @@
 @layer components {
   .fri-spinner {
     @apply inline-block size-(--spinner-size) shrink-0 animate-spin rounded-full bg-(image:--spinner-image) mask-(--spinner-mask) text-primary motion-reduce:animate-none;
-
-    --feedback-n-xs: 4;
-    --feedback-n-sm: 5;
-    --feedback-n-md: 6;
-    --feedback-n-lg: 8;
-    --feedback-n-xl: 10;
-    --feedback-n: var(--feedback-n-md);
-    --spinner-size: calc(var(--size-feedback) * var(--feedback-n));
-    --spinner-thickness: 25%;
-    --spinner-track-mix: 24%;
-    --spinner-arc: 25%;
-    --spinner-color: currentColor;
-    --spinner-track: color-mix(
-      in srgb,
-      var(--spinner-color) var(--spinner-track-mix),
-      transparent
-    );
-    --spinner-image: conic-gradient(
-      var(--spinner-color) var(--spinner-arc),
-      var(--spinner-track) 0
-    );
-    --spinner-mask: radial-gradient(
-      farthest-side,
-      transparent calc(100% - var(--spinner-thickness)),
-      black 0
-    );
   }
 
   .fri-spinner-primary {
@@ -52,18 +26,18 @@
   }
 
   .fri-spinner-xs {
-    --feedback-n: var(--feedback-n-xs);
+    --spinner-size: var(--spinner-size-xs);
   }
   .fri-spinner-sm {
-    --feedback-n: var(--feedback-n-sm);
+    --spinner-size: var(--spinner-size-sm);
   }
   .fri-spinner-md {
-    --feedback-n: var(--feedback-n-md);
+    --spinner-size: var(--spinner-size-md);
   }
   .fri-spinner-lg {
-    --feedback-n: var(--feedback-n-lg);
+    --spinner-size: var(--spinner-size-lg);
   }
   .fri-spinner-xl {
-    --feedback-n: var(--feedback-n-xl);
+    --spinner-size: var(--spinner-size-xl);
   }
 }

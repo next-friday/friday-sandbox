@@ -20,9 +20,12 @@
   --color-danger: var(--danger);
   --color-danger-foreground: var(--danger-foreground);
   --color-neutral: var(--neutral);
-  --color-border: color-mix(in srgb, var(--neutral), transparent 60%);
-  --color-separator: color-mix(in srgb, var(--neutral), transparent 80%);
+  --color-border: var(--border-color);
+  --color-separator: var(--separator-color);
   --color-ring: var(--ring);
+  --color-scroll-thumb: var(--scroll-thumb);
+  --color-scroll-thumb-hover: var(--scroll-thumb-hover);
+  --color-scroll-track: var(--scroll-track);
 
   --radius-action: var(--radius-action);
   --radius-field: var(--radius-field);

@@ -7,6 +7,11 @@
 
   --foreground: oklch(0 0 0);
 
+  /* Inverted surface pair (e.g. a tooltip): the background/foreground roles
+   * swapped, so it stays legible and re-inverts with the theme. */
+  --surface: var(--foreground);
+  --surface-foreground: var(--background);
+
   --neutral: oklch(65.47% 0.0208 248.15);
 
   --primary: oklch(57.49% 0.2084 257.52);
