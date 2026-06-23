@@ -167,7 +167,7 @@
     --button-px: var(--button-px-xs);
     --button-radius: var(--button-radius-xs);
     --button-spinner-size: var(--button-spinner-xs);
-    @apply text-label-sm;
+    @apply text-label-xs;
   }
   .fri-button-sm {
     --button-h: var(--button-h-sm);
@@ -195,7 +195,7 @@
     --button-px: var(--button-px-xl);
     --button-radius: var(--button-radius-xl);
     --button-spinner-size: var(--button-spinner-xl);
-    @apply text-label-lg;
+    @apply text-label-xl;
   }
 
   .fri-button-icon-only {

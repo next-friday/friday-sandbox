@@ -68,6 +68,11 @@
   --body-xs-strong-font-weight: 500;
   --body-xs-strong-letter-spacing: 0;
 
+  --label-xl: 1.125rem;
+  --label-xl-line-height: 1.5rem;
+  --label-xl-font-weight: 600;
+  --label-xl-letter-spacing: -0.005em;
+
   --label-lg: 1rem;
   --label-lg-line-height: 1.5rem;
   --label-lg-font-weight: 600;
@@ -82,6 +87,11 @@
   --label-sm-line-height: 1rem;
   --label-sm-font-weight: 600;
   --label-sm-letter-spacing: 0;
+
+  --label-xs: 0.75rem;
+  --label-xs-line-height: 1rem;
+  --label-xs-font-weight: 600;
+  --label-xs-letter-spacing: 0.005em;
 
   --caption: 0.75rem;
   --caption-line-height: 1rem;

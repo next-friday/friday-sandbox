@@ -192,6 +192,9 @@ Three semantic scopes: `action` for clickable triggers, `field` for form data en
   --size-box: 0.25rem;
   --radius-box: 0.75rem;
 
+  --size-feedback: 0.25rem;
+  --radius-feedback: 0.5rem;
+
   --border: 1px;
 }
 ```
@@ -232,7 +235,7 @@ Every color token is registered with `@theme inline`, so Tailwind v4 emits a can
 Available aliases:
 
 - **Colors**: `bg-<color>`, `text-<color>`, `border-<color>`, `ring-<color>`, `fill-<color>`, `stroke-<color>` for every intent and its foreground pair, plus `background`, `foreground`, `surface` and its foreground, and `neutral`. `neutral` has an alias but no foreground token.
-- **Radius**: `rounded-action`, `rounded-field`, `rounded-box`.
+- **Radius**: `rounded-action`, `rounded-field`, `rounded-box`, `rounded-feedback`.
 - **Border**: `border` width from `--border`.
 
 Component-local variables such as `--grid-min` are not registered in `@theme inline`, so they have no alias. Reference them with the arbitrary-var form, for example `bg-(--grid-min)`.

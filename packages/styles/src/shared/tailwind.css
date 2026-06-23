@@ -111,6 +111,11 @@
   --text-body-xs-strong--font-weight: var(--body-xs-strong-font-weight);
   --text-body-xs-strong--letter-spacing: var(--body-xs-strong-letter-spacing);
 
+  --text-label-xl: var(--label-xl);
+  --text-label-xl--line-height: var(--label-xl-line-height);
+  --text-label-xl--font-weight: var(--label-xl-font-weight);
+  --text-label-xl--letter-spacing: var(--label-xl-letter-spacing);
+
   --text-label-lg: var(--label-lg);
   --text-label-lg--line-height: var(--label-lg-line-height);
   --text-label-lg--font-weight: var(--label-lg-font-weight);
@@ -125,6 +130,11 @@
   --text-label-sm--line-height: var(--label-sm-line-height);
   --text-label-sm--font-weight: var(--label-sm-font-weight);
   --text-label-sm--letter-spacing: var(--label-sm-letter-spacing);
+
+  --text-label-xs: var(--label-xs);
+  --text-label-xs--line-height: var(--label-xs-line-height);
+  --text-label-xs--font-weight: var(--label-xs-font-weight);
+  --text-label-xs--letter-spacing: var(--label-xs-letter-spacing);
 
   --text-caption: var(--caption);
   --text-caption--line-height: var(--caption-line-height);
