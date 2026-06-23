@@ -38,35 +38,4 @@
 .dark,
 [data-theme="dark"] {
   color-scheme: dark;
-
-  --background: oklch(18% 0 0);
-
-  --foreground: oklch(95% 0 0);
-
-  --neutral: oklch(65.47% 0.0208 248.15);
-
-  --primary: oklch(64% 0.18 257.52);
-  --primary-foreground: oklch(100% 0 0);
-
-  --secondary: oklch(70% 0.018 239.51);
-  --secondary-foreground: oklch(100% 0 0);
-
-  --accent: oklch(100% 0 0);
-  --accent-foreground: oklch(0 0 0);
-
-  --info: oklch(64% 0.15 255.24);
-  --info-foreground: oklch(100% 0 0);
-
-  --success: oklch(62% 0.12 159.6);
-  --success-foreground: oklch(100% 0 0);
-
-  --warning: oklch(80% 0.15 63.45);
-  --warning-foreground: oklch(20.9% 0 0);
-
-  --danger: oklch(64% 0.18 21.51);
-  --danger-foreground: oklch(100% 0 0);
-
-  --link: oklch(64% 0.18 257.52);
-
-  --ring: oklch(64% 0.18 257.52);
 }
