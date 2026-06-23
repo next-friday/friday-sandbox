@@ -31,20 +31,6 @@
   --neutral: oklch(65.47% 0.0208 248.15);
 
   --ring: oklch(57.49% 0.2084 257.52);
-
-  --size-action: 0.25rem;
-  --radius-action: 0.5rem;
-
-  --size-field: 0.25rem;
-  --radius-field: 0.5rem;
-
-  --size-box: 0.25rem;
-  --radius-box: 0.5rem;
-
-  --size-feedback: 0.25rem;
-  --radius-feedback: 0.5rem;
-
-  --border: 1px;
 }
 
 .dark,

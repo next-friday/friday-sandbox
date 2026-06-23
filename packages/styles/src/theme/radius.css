@@ -1,0 +1,13 @@
+:root {
+  --size-action: 0.25rem;
+  --radius-action: 0.5rem;
+
+  --size-field: 0.25rem;
+  --radius-field: 0.5rem;
+
+  --size-box: 0.25rem;
+  --radius-box: 0.5rem;
+
+  --size-feedback: 0.25rem;
+  --radius-feedback: 0.5rem;
+}

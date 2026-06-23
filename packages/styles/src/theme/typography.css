@@ -1,0 +1,45 @@
+:root {
+  --display-xxl: 3.25rem;
+  --display-xxl-line-height: 4rem;
+  --display-xxl-font-weight: 700;
+
+  --display-xl: 2.25rem;
+  --display-xl-line-height: 2.75rem;
+  --display-xl-font-weight: 700;
+
+  --display-lg: 2rem;
+  --display-lg-line-height: 2.5rem;
+  --display-lg-font-weight: 700;
+
+  --display-md: 1.5rem;
+  --display-md-line-height: 2rem;
+  --display-md-font-weight: 700;
+
+  --display-sm: 1.25rem;
+  --display-sm-line-height: 1.75rem;
+  --display-sm-font-weight: 700;
+
+  --body-lg: 1.125rem;
+  --body-lg-line-height: 1.5rem;
+  --body-lg-font-weight: 500;
+
+  --body-md: 1rem;
+  --body-md-line-height: 1.5rem;
+  --body-md-font-weight: 400;
+
+  --body-md-strong: 1rem;
+  --body-md-strong-line-height: 1.25rem;
+  --body-md-strong-font-weight: 500;
+
+  --body-sm: 0.875rem;
+  --body-sm-line-height: 1.25rem;
+  --body-sm-font-weight: 400;
+
+  --body-sm-strong: 0.875rem;
+  --body-sm-strong-line-height: 1rem;
+  --body-sm-strong-font-weight: 500;
+
+  --caption: 0.75rem;
+  --caption-line-height: 1.25rem;
+  --caption-font-weight: 400;
+}
