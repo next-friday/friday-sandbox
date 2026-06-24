@@ -17,6 +17,7 @@ const Layout = (props: Readonly<LayoutProps>) => {
       tabMode="navbar"
       tree={source.pageTree}
       nav={{ ...nav, mode: "top" }}
+      sidebar={{ collapsible: false }}
       {...base}
     >
       {children}

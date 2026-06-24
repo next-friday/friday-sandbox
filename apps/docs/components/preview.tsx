@@ -1,4 +1,5 @@
 import { DynamicCodeBlock } from "fumadocs-ui/components/dynamic-codeblock";
+import { Flex } from "@friday-sandbox/react";
 import type { ReactNode } from "react";
 
 interface PreviewProps {
@@ -10,12 +11,12 @@ export const Preview = (properties: Readonly<PreviewProps>) => {
   const { children, code } = properties;
 
   return (
-    <div className="border-fd-border my-6 overflow-hidden rounded-lg border">
-      <div className="flex items-center justify-center gap-4 p-8">
+    <Flex direction="column" gap="xl">
+      <Flex align="end" gap="md" className="rounded-xl border p-8">
         {children}
-      </div>
+      </Flex>
 
       <DynamicCodeBlock lang="tsx" code={code} />
-    </div>
+    </Flex>
   );
 };

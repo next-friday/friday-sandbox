@@ -12,7 +12,7 @@ const RootLayout = (props: Readonly<RootLayoutProps>) => {
 
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className="flex min-h-screen flex-col">
+      <body className="min-h-screen">
         <RootProvider
           theme={{
             attribute: ["class", "data-theme"],
