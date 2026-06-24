@@ -6,7 +6,7 @@ description: An indeterminate loading indicator.
 import { Spinner } from "@friday-sandbox/react";
 
 The `Spinner` signals that work is in progress. It renders a `<span>` and is used
-on its own or inside other components — for example, `Button` shows a `Spinner`
+on its own or inside other components: for example, `Button` shows a `Spinner`
 while `isPending`.
 
 <Preview code={`<Spinner />`}>
@@ -55,8 +55,8 @@ Five sizes step from `xs` to `xl`.
 
 ## Props
 
-`Spinner` also accepts the standard `<span>` props (except `color`, which is the
-variant prop above) and a `className` string.
+`Spinner` also accepts the standard `<span>` props, except `color`, which is the
+variant prop above, and a `className` string.
 
 | Prop        | Type                                                                            | Default     |
 | ----------- | ------------------------------------------------------------------------------- | ----------- |
@@ -66,7 +66,7 @@ variant prop above) and a `className` string.
 
 ## Accessibility
 
-- The spinner is decorative; convey loading state in the surrounding context
-  (for example, a `Button` with `isPending`, or text such as "Loading…").
+- The spinner is decorative; convey loading state in the surrounding context,
+  such as a `Button` with `isPending` or text like "Loading…".
 - If a standalone spinner is the only indication of a busy region, give that
   region `role="status"` and an accessible label so screen readers announce it.

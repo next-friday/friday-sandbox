@@ -3,13 +3,13 @@ title: Theming
 description: Token-driven theming with a data-theme contract and built-in dark mode.
 ---
 
-The visual layer is driven by CSS custom properties (design tokens). Components
-never hard-code colours; they read tokens, so switching themes is a matter of
-changing which token block is active.
+The visual layer is driven by CSS custom properties, the design tokens.
+Components never hard-code colours; they read tokens, so switching themes is a
+matter of changing which token block is active.
 
 ## The `data-theme` contract
 
-Themes are selected with the `data-theme` attribute on a container — usually
+Themes are selected with the `data-theme` attribute on a container, usually
 `<html>`. Two themes ship by default:
 
 ```html
@@ -28,7 +28,7 @@ a plain attribute, it works without JavaScript and in any environment that can
 render HTML and load CSS.
 
 The dark token block also responds to the `.dark` class, so libraries that toggle
-a `dark` class keep working — but `data-theme` is the contract to build against.
+a `dark` class keep working, but `data-theme` is the contract to build against.
 
 ## Toggling themes
 
@@ -48,8 +48,8 @@ Use any theme manager that writes the attribute. This documentation site uses
 </RootProvider>
 ```
 
-It writes both `class` and `data-theme` so the documentation UI (which keys dark
-mode off `.dark`) and the design-system tokens (which key off `data-theme`) stay
+It writes both `class` and `data-theme` so the documentation UI, which keys dark
+mode off `.dark`, and the design-system tokens, which key off `data-theme`, stay
 in sync. Consumers who only use the components need just `data-theme`.
 
 ## Tokens
