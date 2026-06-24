@@ -21,7 +21,13 @@ export const nextJsConfig = [
   jsxA11y.flatConfigs.recommended,
   reactDoctor.configs.next,
   reactRefresh.configs.next,
-  globalIgnores([".next/**", "out/**", "build/**", "next-env.d.ts"]),
+  globalIgnores([
+    ".next/**",
+    ".source/**",
+    "out/**",
+    "build/**",
+    "next-env.d.ts",
+  ]),
   {
     languageOptions: {
       globals: { ...globals.browser, ...globals.serviceworker },
@@ -37,6 +43,22 @@ export const nextJsConfig = [
     rules: {
       ...pluginNext.configs.recommended.rules,
       ...pluginNext.configs["core-web-vitals"].rules,
+    },
+  },
+  {
+    rules: {
+      "unicorn/prevent-abbreviations": [
+        "warn",
+        {
+          replacements: {
+            props: false,
+            args: false,
+            ref: false,
+            refs: false,
+            params: false,
+          },
+        },
+      ],
     },
   },
 ];
