@@ -1,4 +1,5 @@
 {
   "title": "Components",
-  "pages": ["button", "spinner", "separator"]
+  "root": true,
+  "pages": ["index", "button", "spinner", "separator"]
 }

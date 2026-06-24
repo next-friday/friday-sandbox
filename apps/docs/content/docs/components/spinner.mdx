@@ -3,66 +3,92 @@ title: Spinner
 description: An indeterminate loading indicator.
 ---
 
-import { Spinner } from "@friday-sandbox/react";
+import { Flex, Spinner } from "@friday-sandbox/react";
 
 The `Spinner` signals that work is in progress. It renders a `<span>` and is used
 on its own or inside other components: for example, `Button` shows a `Spinner`
 while `isPending`.
 
-<Preview code={`<Spinner />`}>
-  <Spinner />
-</Preview>
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <Flex align="end" gap="md" className="px-4 py-6">
+      <Spinner />
+    </Flex>
+  </Tab>
+
+  <Tab value="Code">
+    ```tsx
+    <Spinner />
+    ```
+  </Tab>
+</Tabs>
 
 ## Colors
 
 The `color` prop matches the semantic colors used across the system.
 
-<Preview
-  code={`<Spinner color="primary" />
-<Spinner color="secondary" />
-<Spinner color="accent" />
-<Spinner color="info" />
-<Spinner color="success" />
-<Spinner color="warning" />
-<Spinner color="danger" />`}
->
-  <Spinner color="primary" />
-  <Spinner color="secondary" />
-  <Spinner color="accent" />
-  <Spinner color="info" />
-  <Spinner color="success" />
-  <Spinner color="warning" />
-  <Spinner color="danger" />
-</Preview>
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <Flex align="end" gap="md" className="px-4 py-6">
+      <Spinner color="primary" />
+      <Spinner color="secondary" />
+      <Spinner color="accent" />
+      <Spinner color="info" />
+      <Spinner color="success" />
+      <Spinner color="warning" />
+      <Spinner color="danger" />
+    </Flex>
+  </Tab>
+
+  <Tab value="Code">
+    ```tsx
+    <Spinner color="primary" />
+    <Spinner color="secondary" />
+    <Spinner color="accent" />
+    <Spinner color="info" />
+    <Spinner color="success" />
+    <Spinner color="warning" />
+    <Spinner color="danger" />
+    ```
+  </Tab>
+</Tabs>
 
 ## Sizes
 
 Five sizes step from `xs` to `xl`.
 
-<Preview
-  code={`<Spinner size="xs" />
-<Spinner size="sm" />
-<Spinner size="md" />
-<Spinner size="lg" />
-<Spinner size="xl" />`}
->
-  <Spinner size="xs" />
-  <Spinner size="sm" />
-  <Spinner size="md" />
-  <Spinner size="lg" />
-  <Spinner size="xl" />
-</Preview>
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <Flex align="end" gap="md" className="px-4 py-6">
+      <Spinner size="xs" />
+      <Spinner size="sm" />
+      <Spinner size="md" />
+      <Spinner size="lg" />
+      <Spinner size="xl" />
+    </Flex>
+  </Tab>
+
+  <Tab value="Code">
+    ```tsx
+    <Spinner size="xs" />
+    <Spinner size="sm" />
+    <Spinner size="md" />
+    <Spinner size="lg" />
+    <Spinner size="xl" />
+    ```
+  </Tab>
+</Tabs>
 
 ## Props
 
 `Spinner` also accepts the standard `<span>` props, except `color`, which is the
 variant prop above, and a `className` string.
 
-| Prop        | Type                                                                            | Default     |
-| ----------- | ------------------------------------------------------------------------------- | ----------- |
+| Prop        | Type                                                                                   | Default     |
+| ----------- | -------------------------------------------------------------------------------------- | ----------- |
 | `color`     | `"primary" \| "secondary" \| "accent" \| "info" \| "success" \| "warning" \| "danger"` | `"primary"` |
-| `size`      | `"xs" \| "sm" \| "md" \| "lg" \| "xl"`                                          | `"md"`      |
-| `className` | `string`                                                                        | —           |
+| `size`      | `"xs" \| "sm" \| "md" \| "lg" \| "xl"`                                                 | `"md"`      |
+| `className` | `string`                                                                               | —           |
 
 ## Accessibility
 

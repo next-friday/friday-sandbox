@@ -61,4 +61,12 @@ export const nextJsConfig = [
       ],
     },
   },
+  {
+    files: ["mdx-components.tsx"],
+    rules: {
+      "next-friday/jsx-no-data-array": "off",
+      "next-friday/jsx-no-data-object": "off",
+      "next-friday/jsx-spread-properties-last": "off",
+    },
+  },
 ];

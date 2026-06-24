@@ -64,7 +64,7 @@ Two or three bullets describing what changed and why.
 - [ ] `@friday-sandbox/eslint-config` keeps all three subpath exports `./base`, `./next-js`, and `./react-internal` working in consumer workspaces.
 - [ ] `@friday-sandbox/typescript-config` keeps `base.json`, `nextjs.json`, `react-library.json` consistent.
 - [ ] `@friday-sandbox/styles` token or layer change is documented; visual regressions reviewed in Storybook.
-- [ ] Consumers still pass `pnpm exec turbo check-types lint` and `pnpm knip`.
+- [ ] Consumers still pass `pnpm exec turbo typecheck lint` and `pnpm knip`.
 
 ## Tooling / CI (when touched)
 

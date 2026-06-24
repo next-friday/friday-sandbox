@@ -13,9 +13,6 @@
       "dependsOn": ["^build"],
       "outputs": [".next/**", "!.next/cache/**"]
     },
-    "check-types": {
-      "dependsOn": ["^check-types"]
-    },
     "clean": {
       "cache": false
     },
@@ -36,6 +33,9 @@
     "test:coverage": {
       "dependsOn": ["^build"],
       "outputs": ["coverage/**"]
+    },
+    "typecheck": {
+      "dependsOn": ["^typecheck"]
     }
   }
 }

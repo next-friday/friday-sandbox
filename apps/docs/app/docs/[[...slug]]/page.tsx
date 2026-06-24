@@ -3,7 +3,7 @@ import {
   DocsDescription,
   DocsPage,
   DocsTitle,
-} from "fumadocs-ui/page";
+} from "fumadocs-ui/layouts/notebook/page";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 
@@ -27,7 +27,13 @@ const Page = async (props: Readonly<PageProps>) => {
   const MDXContent = page.data.body;
 
   return (
-    <DocsPage toc={page.data.toc} full={page.data.full}>
+    <DocsPage
+      toc={page.data.toc}
+      full={page.data.full}
+      tableOfContent={{
+        style: "clerk",
+      }}
+    >
       <DocsTitle>{page.data.title}</DocsTitle>
       <DocsDescription>{page.data.description}</DocsDescription>
       <DocsBody>
