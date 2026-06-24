@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 import { baseOptions } from "@/lib/layout";
 
 export const metadata: Metadata = {
-  title: "Friday Sandbox",
+  title: "Friday",
   description:
     "Accessible React components built on react-aria-components and Tailwind CSS v4.",
 };

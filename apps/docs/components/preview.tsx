@@ -14,6 +14,7 @@ export const Preview = (properties: Readonly<PreviewProps>) => {
       <div className="flex items-center justify-center gap-4 p-8">
         {children}
       </div>
+
       <DynamicCodeBlock lang="tsx" code={code} />
     </div>
   );
