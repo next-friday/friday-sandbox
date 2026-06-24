@@ -4,14 +4,14 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Claude Code operating rules
 
-- **Let the hooks do the work.** `PostToolUse` runs `prettier --write` + `eslint --fix` on the edited file; `pre-commit` runs the gates on staged files; `pre-push` runs the full list. Do **not** run whole-repo `turbo lint`/`typecheck`/`build`/`knip`/`test` by hand, since each is minutes of duplicated work the hooks already cover.
+- **Let the hooks do the work.** `PostToolUse` runs `prettier --write` + `eslint --fix` on the edited file; `pre-commit` runs the gates on staged files; `pre-push` runs the full list. Do **not** run whole-repo `turbo lint`/`typecheck`/`build`/`build:storybook`/`knip`/`depcruise`/`sort:check`/`test` by hand, since each is minutes of duplicated work the hooks already cover.
 - **Never suppress a gate.** Fix the root cause: do not disable a lint rule, skip a check, loosen a gate, or use `--no-verify`, which is forbidden and re-caught by CI. Disabling is a last resort needing explicit approval with a stated reason.
 - **`src` ↔ `exports` invariant.** Workspace consumers read `src/`; published consumers read `dist/`. Change one surface, keep the other aligned.
 - **One change = one issue → one branch → one PR.** Behavior changes such as `feat`, `fix`, `perf`, and `refactor` require a `.changeset/*.md` entry, and the branch must start with `<issue#>-`. Full workflow in [`CONTRIBUTING.md`](CONTRIBUTING.md).
 
 ## Architecture
 
-pnpm-workspace + Turborepo monorepo. Four packages under `packages/`:
+pnpm-workspace + Turborepo monorepo, globbing `packages/*` and `apps/*`. Four packages under `packages/`:
 
 | Package                             | Role                                                                                                |
 | ----------------------------------- | --------------------------------------------------------------------------------------------------- |
@@ -20,7 +20,7 @@ pnpm-workspace + Turborepo monorepo. Four packages under `packages/`:
 | `@friday-sandbox/eslint-config`     | shared ESLint flat-config presets                                                                   |
 | `@friday-sandbox/typescript-config` | shared tsconfig presets                                                                             |
 
-`react` consumes `styles` as a peer dependency; the two config packages are dev-only presets.
+`react` consumes `styles` as a peer dependency; the two config packages are dev-only presets. The lone app, `@friday-sandbox/docs` under `apps/`, is a Next.js 16 + Fumadocs (`fumadocs-core`/`-mdx`/`-ui`) site that consumes `react` + `styles` as `workspace:*`; its pages are MDX under `apps/docs/content/docs`, and `fumadocs-mdx` codegen (the generated `.source/` dir) runs on `postinstall` and again before the docs `lint`/`typecheck`.
 
 **A component is split across both packages and linked by a class name, not an import.** It lives in `packages/react/src/components/bases/<name>/` as `<name>.tsx` + `<name>.variants.ts` + `index.ts` + `<name>.stories.tsx`. The `.variants.ts` uses `tailwind-variants/lite` `tv()` to map props to a stable `fri-<name>` class; the visual rules for that class live in `packages/styles/src/components/bases/<name>.css` via `@apply` inside `@layer components`. Edit one side, mirror the other.
 
@@ -37,7 +37,9 @@ pnpm-workspace + Turborepo monorepo. Four packages under `packages/`:
 The hooks cover the gates (see operating rules); these are the scoped helpers they don't:
 
 ```sh
-pnpm dev                                                   # Storybook on :6006
+pnpm dev                                                   # turbo run dev — Storybook (:6006) + docs site together
+pnpm dev:storybook                                         # Storybook only, on :6006
+pnpm dev:docs                                              # docs site only (next dev)
 pnpm --filter @friday-sandbox/react test                  # one package's tests
 pnpm --filter @friday-sandbox/react exec vitest run text   # one story file (substring match)
 ```
