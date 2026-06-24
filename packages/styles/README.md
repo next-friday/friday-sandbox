@@ -110,22 +110,94 @@ Components use a kebab-case `fri-<component>-<modifier>` convention. Apply the b
 
 The default variant is `solid` and the default color is `primary`, baked into `.fri-button`. `fri-button-icon-only` makes a square button to pair with an `aria-label`, `fri-button-full-width` makes the button span its container, and `fri-button-rounded-full` makes it fully rounded.
 
-## Themes
+## Consumer theming
 
-The default theme provides light and dark modes:
+The default theme ships **light** and **dark**, and you retheme by overriding flat CSS custom properties — no build step, plugin, or JavaScript. The same approach works in Next.js, plain HTML, WordPress, or PHP; only _where the CSS lives_ changes.
 
-- **Light mode** is applied by default to `:root`.
-- **Dark mode** is applied with the `.dark` class or the `[data-theme="dark"]` attribute.
+### 1. Load the stylesheet once
 
 ```html
-<!-- dark mode via class -->
-<html class="dark"></html>
-
-<!-- dark mode via data attribute -->
-<html data-theme="dark"></html>
+<!-- plain HTML / WordPress / PHP — via CDN -->
+<link
+  rel="stylesheet"
+  href="https://unpkg.com/@friday-sandbox/styles/dist/index.css"
+/>
 ```
 
-The toggle is scopable. Apply `.dark` to any subtree to flip only that subtree.
+```css
+/* Next.js or any bundler — app/globals.css, after Tailwind */
+@import "tailwindcss";
+@import "@friday-sandbox/styles";
+```
+
+### 2. Switch and scope with `data-theme`
+
+Light is the default. Apply dark with the `.dark` class or `[data-theme="dark"]`, on `<html>` or any subtree — themes nest:
+
+```html
+<html data-theme="dark">
+  <aside data-theme="light">light only here</aside>
+</html>
+```
+
+### 3. Author a custom theme
+
+Write one flat block. Set the role and its `-foreground` together; every interaction state (`--primary-hover`, `--primary-soft`, …) derives automatically — never set those by hand:
+
+```css
+[data-theme="brand"] {
+  color-scheme: light;
+  --primary: oklch(55% 0.3 240);
+  --primary-foreground: oklch(98% 0 0);
+  --background: oklch(98% 0 0);
+  --foreground: oklch(20% 0 0);
+}
+```
+
+```html
+<html data-theme="brand"></html>
+```
+
+A custom theme uses its own name, so it never collides with the shipped `light` / `dark` blocks.
+
+### 4. Override a few tokens for one region
+
+A normal CSS rule — the everyday way (the same idiom as the `--grid-min` override shown under [Component-local tokens](#component-local-tokens)):
+
+```css
+.promo {
+  --primary: oklch(60% 0.25 20);
+  --primary-foreground: oklch(98% 0 0);
+}
+```
+
+```html
+<section class="promo">
+  <button class="fri-button fri-button-primary">Save</button>
+</section>
+```
+
+Inline `style="--primary: …; --primary-foreground: …"` is reserved for a value known only at render time (a CMS field, a PHP `echo`) — set the role and its foreground together.
+
+### The contract
+
+Set these; everything else derives. Override a role and its foreground as a pair.
+
+| Group                                                  | Variables                                                                              |
+| ------------------------------------------------------ | -------------------------------------------------------------------------------------- |
+| Ground                                                 | `--background`, `--foreground`, `--neutral`                                            |
+| Brand roles (each `+ -foreground`)                     | `--primary`, `--secondary`, `--accent`, `--info`, `--success`, `--warning`, `--danger` |
+| Surface family (each `+ -foreground` where it has one) | `--muted`, `--card`, `--popover`, `--input`                                            |
+| Misc                                                   | `--ring`, `--link`, `--border-color`, `--separator-color`                              |
+| Inverted pair (tooltip)                                | `--surface`, `--surface-foreground`                                                    |
+
+The full per-token reference, with default values, is in [CSS Variables](#css-variables) below.
+
+### Three things to know
+
+- **Contrast is yours to keep.** The shipped `light` / `dark` are contrast-checked at build time; a runtime override is not. Always set `--<role>-foreground` alongside `--<role>` so text stays legible — runtime does not repair it.
+- **Cascade order.** Load the package CSS first and your overrides after; later rules win at equal specificity. Overriding the built-in `light` / `dark` from a bare `:root` while a `[data-theme]` is active loses to the more specific `[data-theme]` rule — override at the same level, or inline. This is the usual snag in WordPress/PHP, not the token values.
+- **Component-local tokens** (e.g. `--grid-min`) are set on the element, not `:root`, where the component's own class would mask a `:root` value.
 
 ## CSS Variables
 
@@ -152,7 +224,7 @@ Semantic colors, each paired with a foreground that components use for readable 
   --success: oklch(53.24% 0.1205 159.6);
   --success-foreground: oklch(100% 0 0);
 
-  --warning: oklch(73.3% 0.1596 63.45);
+  --warning: oklch(55% 0.15 63);
   --warning-foreground: oklch(100% 0 0);
 
   --danger: oklch(56.13% 0.1887 21.51);

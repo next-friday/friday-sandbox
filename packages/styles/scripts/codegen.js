@@ -23,7 +23,6 @@ import {
   GROUND_DARK,
   SURFACE_FAMILY,
   oklch,
-  lightDark,
 } from "./formulas.js";
 import { chooseForegrounds } from "./contrast.js";
 
@@ -44,15 +43,13 @@ const FOREGROUNDS = chooseForegrounds(spec);
 
 function buildColor() {
   const c = spec.color;
+  // Light block — every token at its light value. The shipped default theme
+  // and the contract a consumer copies into their own [data-theme] block.
   const L = [];
   L.push("  color-scheme: light;", "");
   L.push("  /* Ground */");
-  L.push(
-    `  --background: ${lightDark(oklch(c.background), GROUND_DARK.background)};`,
-  );
-  L.push(
-    `  --foreground: ${lightDark(oklch(c.foreground), GROUND_DARK.foreground)};`,
-  );
+  L.push(`  --background: ${oklch(c.background)};`);
+  L.push(`  --foreground: ${oklch(c.foreground)};`);
   L.push(`  --neutral: ${oklch(c.neutral)};`, "");
   L.push(
     "  /* Inverted surface pair (e.g. a tooltip): background/foreground swapped */",
@@ -64,29 +61,50 @@ function buildColor() {
   );
   for (const role of BRAND_ROLES) {
     if (role === "accent") {
-      L.push(`  --accent: ${lightDark(oklch(c.accent), GROUND_DARK.accent)};`);
-      L.push(
-        `  --accent-foreground: ${lightDark(FOREGROUNDS.accent, GROUND_DARK["accent-foreground"])};`,
-      );
+      L.push(`  --accent: ${oklch(c.accent)};`);
+      L.push(`  --accent-foreground: ${FOREGROUNDS.accent};`);
     } else {
       L.push(`  --${role}: ${oklch(c[role])};`);
       L.push(`  --${role}-foreground: ${FOREGROUNDS[role]};`);
     }
   }
   L.push("");
-  L.push(`  --ring: ${lightDark(oklch(c.primary), GROUND_DARK.ring)};`);
-  L.push(`  --link: ${lightDark(oklch(c.primary), GROUND_DARK.link)};`, "");
+  L.push(`  --ring: ${oklch(c.primary)};`);
+  L.push(`  --link: ${oklch(c.primary)};`, "");
   L.push(
     "  /* Surface family — shadcn-compatible vocabulary, no interaction ladder */",
   );
-  for (const [name, light, dark] of SURFACE_FAMILY) {
-    L.push(`  --${name}: ${lightDark(light, dark)};`);
+  for (const [name, light] of SURFACE_FAMILY) {
+    L.push(`  --${name}: ${light};`);
   }
   L.push("");
   L.push("  /* Destructive aliases danger (danger owns the ladder) */");
   L.push("  --destructive: var(--danger);");
   L.push("  --destructive-foreground: var(--danger-foreground);");
-  return `${HEADER}:root {\n${L.join("\n")}\n}\n\n.dark,\n[data-theme="dark"] {\n  color-scheme: dark;\n}\n`;
+
+  // Dark block — only the tokens whose value flips. Brand roles, --neutral, the
+  // inverted surface pair (var() refs that re-resolve against the dark ground)
+  // and the destructive aliases inherit from the light block. Emitted AFTER the
+  // light block so that on a dark element both :root and [data-theme="dark"]
+  // match at equal specificity (0,1,0) and the dark values win on source order.
+  const D = [];
+  D.push("  color-scheme: dark;", "");
+  D.push("  /* Ground */");
+  D.push(`  --background: ${GROUND_DARK.background};`);
+  D.push(`  --foreground: ${GROUND_DARK.foreground};`, "");
+  D.push("  /* Accent flips with the ground */");
+  D.push(`  --accent: ${GROUND_DARK.accent};`);
+  D.push(`  --accent-foreground: ${GROUND_DARK["accent-foreground"]};`, "");
+  D.push(`  --ring: ${GROUND_DARK.ring};`);
+  D.push(`  --link: ${GROUND_DARK.link};`, "");
+  D.push("  /* Surface family */");
+  for (const [name, , dark] of SURFACE_FAMILY) {
+    D.push(`  --${name}: ${dark};`);
+  }
+
+  const lightBlock = `:root,\n.light,\n[data-theme="light"] {\n${L.join("\n")}\n}`;
+  const darkBlock = `.dark,\n[data-theme="dark"] {\n${D.join("\n")}\n}`;
+  return `${HEADER}${lightBlock}\n\n${darkBlock}\n`;
 }
 
 function buildTheme() {
@@ -372,7 +390,7 @@ An agent may tune a status role's L and C, but its hue stays in band — so red 
 
 - Every \`--<role>\` has a \`--<role>-foreground\` chosen for legible contrast; never set by hand.
 - Button labels are five distinct sizes (xs < sm < md < lg < xl); no two adjacent sizes are pixel-identical.
-- Dark mode is emitted with \`light-dark()\`, so the interaction ladder reflows per \`color-scheme\`.
+- Dark mode is an explicit \`.dark, [data-theme="dark"]\` block (emitted after the light block), so the interaction ladder reflows per \`color-scheme\`.
 
 ## Worked example — "a calm fintech dark theme"
 
