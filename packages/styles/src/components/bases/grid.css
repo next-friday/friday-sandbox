@@ -13,6 +13,9 @@
     @apply inline-grid;
   }
 
+  /* 1 column is also the default (applied to the bare base via :where()), so a
+     bare .fri-grid matches the component default instead of grid's auto track. */
+  :where(.fri-grid),
   .fri-grid-cols-1 {
     @apply grid-cols-1;
   }

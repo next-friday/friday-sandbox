@@ -160,3 +160,25 @@ export const PlainHtml: Story = {
     <div className="fri-spinner fri-spinner-primary fri-spinner-md"></div>
   ),
 };
+
+export const BaseClassDefault: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "The base class on its own renders the default primary, medium spinner, so hand-written HTML needs no modifier classes for a usable default.",
+      },
+    },
+  },
+  render: () => <span className="fri-spinner" />,
+  play: async ({ canvasElement }) => {
+    const spinner = canvasElement.querySelector<HTMLElement>(".fri-spinner");
+    await expect(spinner).not.toBeNull();
+
+    // The default md size resolves to a real dimension; an unsized base would
+    // collapse to 0.
+    await expect(
+      Number.parseFloat(getComputedStyle(spinner!).width),
+    ).toBeGreaterThan(0);
+  },
+};

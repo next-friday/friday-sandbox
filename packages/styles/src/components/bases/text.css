@@ -1,4 +1,6 @@
 @layer components {
+  /* The default variant `inherit` is the element's natural inheritance, so the
+     bare base already renders it — no :where() default needed here. */
   .fri-text {
     @apply m-0 text-foreground;
   }
