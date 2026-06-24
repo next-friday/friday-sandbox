@@ -30,7 +30,9 @@ const Page = async (props: Readonly<PageProps>) => {
     <DocsPage
       toc={page.data.toc}
       full={page.data.full}
-      tableOfContent={{ style: "normal", list: { thumbBox: false } }}
+      tableOfContent={{
+        style: "clerk",
+      }}
     >
       <DocsTitle>{page.data.title}</DocsTitle>
       <DocsDescription>{page.data.description}</DocsDescription>
