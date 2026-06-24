@@ -1,6 +1,6 @@
 {
   "name": "@friday-sandbox/docs",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "private": true,
   "description": "Documentation website for the @friday-sandbox design system.",
   "license": "Apache-2.0",
@@ -14,7 +14,7 @@
     "check-types": "fumadocs-mdx && tsc --noEmit",
     "dev": "next dev",
     "postinstall": "fumadocs-mdx",
-    "lint": "eslint . --max-warnings 0",
+    "lint": "fumadocs-mdx && eslint . --max-warnings 0",
     "start": "next start"
   },
   "dependencies": {

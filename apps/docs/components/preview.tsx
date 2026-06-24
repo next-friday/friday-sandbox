@@ -1,13 +1,13 @@
 import { DynamicCodeBlock } from "fumadocs-ui/components/dynamic-codeblock";
 import type { ReactNode } from "react";
 
-export interface PreviewProps {
+interface PreviewProps {
   children: ReactNode;
   code: string;
 }
 
-export const Preview = (props: Readonly<PreviewProps>) => {
-  const { children, code } = props;
+export const Preview = (properties: Readonly<PreviewProps>) => {
+  const { children, code } = properties;
 
   return (
     <div className="border-fd-border my-6 overflow-hidden rounded-lg border">
