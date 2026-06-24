@@ -27,6 +27,10 @@ out/
 build
 dist
 
+# Fumadocs / Next generated
+.source/
+next-env.d.ts
+
 
 # Debug
 npm-debug.log*

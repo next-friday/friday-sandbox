@@ -1,0 +1,72 @@
+---
+title: Spinner
+description: An indeterminate loading indicator.
+---
+
+import { Spinner } from "@friday-sandbox/react";
+
+The `Spinner` signals that work is in progress. It renders a `<span>` and is used
+on its own or inside other components — for example, `Button` shows a `Spinner`
+while `isPending`.
+
+<Preview code={`<Spinner />`}>
+  <Spinner />
+</Preview>
+
+## Colors
+
+The `color` prop matches the semantic colors used across the system.
+
+<Preview
+  code={`<Spinner color="primary" />
+<Spinner color="secondary" />
+<Spinner color="accent" />
+<Spinner color="info" />
+<Spinner color="success" />
+<Spinner color="warning" />
+<Spinner color="danger" />`}
+>
+  <Spinner color="primary" />
+  <Spinner color="secondary" />
+  <Spinner color="accent" />
+  <Spinner color="info" />
+  <Spinner color="success" />
+  <Spinner color="warning" />
+  <Spinner color="danger" />
+</Preview>
+
+## Sizes
+
+Five sizes step from `xs` to `xl`.
+
+<Preview
+  code={`<Spinner size="xs" />
+<Spinner size="sm" />
+<Spinner size="md" />
+<Spinner size="lg" />
+<Spinner size="xl" />`}
+>
+  <Spinner size="xs" />
+  <Spinner size="sm" />
+  <Spinner size="md" />
+  <Spinner size="lg" />
+  <Spinner size="xl" />
+</Preview>
+
+## Props
+
+`Spinner` also accepts the standard `<span>` props (except `color`, which is the
+variant prop above) and a `className` string.
+
+| Prop        | Type                                                                            | Default     |
+| ----------- | ------------------------------------------------------------------------------- | ----------- |
+| `color`     | `"primary" \| "secondary" \| "accent" \| "info" \| "success" \| "warning" \| "danger"` | `"primary"` |
+| `size`      | `"xs" \| "sm" \| "md" \| "lg" \| "xl"`                                          | `"md"`      |
+| `className` | `string`                                                                        | —           |
+
+## Accessibility
+
+- The spinner is decorative; convey loading state in the surrounding context
+  (for example, a `Button` with `isPending`, or text such as "Loading…").
+- If a standalone spinner is the only indication of a busy region, give that
+  region `role="status"` and an accessible label so screen readers announce it.
