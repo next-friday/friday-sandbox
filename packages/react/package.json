@@ -46,12 +46,10 @@
   ],
   "scripts": {
     "build": "tsdown",
-    "build:storybook": "storybook build",
-    "build-storybook": "storybook build",
+    "build:storybook": "storybook build --quiet",
     "check-types": "tsc --noEmit",
     "chromatic": "chromatic --build-script-name=build:storybook --exit-zero-on-changes",
     "dev:storybook": "storybook dev -p 6006",
-    "doc:check": "storybook build --quiet",
     "lint": "eslint . --max-warnings 0",
     "prepack": "clean-package",
     "postpack": "clean-package restore",

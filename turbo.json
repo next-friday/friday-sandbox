@@ -23,10 +23,6 @@
       "cache": false,
       "persistent": true
     },
-    "doc:check": {
-      "dependsOn": ["^build"],
-      "outputs": ["storybook-static/**"]
-    },
     "lint": {
       "dependsOn": ["^lint"]
     },

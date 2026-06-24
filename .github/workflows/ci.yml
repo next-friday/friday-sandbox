@@ -28,7 +28,7 @@ jobs:
             knip,
             format:check,
             depcruise,
-            doc:check,
+            build:storybook,
             sort:check,
           ]
     steps:
