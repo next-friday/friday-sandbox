@@ -3,9 +3,7 @@
     @apply relative inline-flex h-(--button-h) w-fit shrink-0 cursor-pointer items-center justify-center gap-2 rounded-(--button-radius) border-(length:--border) border-solid border-(--button-border-color) bg-(--button-background) px-(--button-px) whitespace-nowrap text-(--button-foreground) transition-base transition-[background-color,box-shadow,outline-color] outline-none select-none;
   }
 
-  /* Color — wire the role's ladder into the button's color slots.
-     primary is also the default: :where() applies it to the bare base at zero
-     specificity, so any explicit color class still wins. */
+  /* Color — wire the role's ladder into the button's color slots */
   :where(.fri-button),
   .fri-button-primary {
     --button-color: var(--primary);
@@ -120,8 +118,7 @@
     --button-color-tint-pressed: var(--danger-tint-pressed);
   }
 
-  /* Variant — map the active color slots onto background/foreground/border.
-     solid is also the default (applied to the bare base via :where()). */
+  /* Variant — map the active color slots onto background/foreground/border */
   :where(.fri-button),
   .fri-button-solid {
     --button-background: var(--button-color);
@@ -181,7 +178,7 @@
     --button-spinner-size: var(--button-spinner-sm);
     @apply text-label-sm;
   }
-  /* md is also the default size (applied to the bare base via :where()). */
+  /* :where() bakes the default at zero specificity; explicit classes override. */
   :where(.fri-button),
   .fri-button-md {
     --button-h: var(--button-h-md);
