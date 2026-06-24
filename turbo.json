@@ -9,6 +9,10 @@
       "dependsOn": ["^build"],
       "outputs": ["storybook-static/**"]
     },
+    "@friday-sandbox/docs#build": {
+      "dependsOn": ["^build"],
+      "outputs": [".next/**", "!.next/cache/**"]
+    },
     "check-types": {
       "dependsOn": ["^check-types"]
     },

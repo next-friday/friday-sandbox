@@ -1,0 +1,60 @@
+---
+title: Theming
+description: Token-driven theming with a data-theme contract and built-in dark mode.
+---
+
+The visual layer is driven by CSS custom properties, the design tokens.
+Components never hard-code colours; they read tokens, so switching themes is a
+matter of changing which token block is active.
+
+## The `data-theme` contract
+
+Themes are selected with the `data-theme` attribute on a container, usually
+`<html>`. Two themes ship by default:
+
+```html
+<html data-theme="light">
+  <!-- light tokens -->
+</html>
+
+<html data-theme="dark">
+  <!-- dark tokens -->
+</html>
+```
+
+This is the public, framework-agnostic contract: set `data-theme="light"` or
+`data-theme="dark"` on any element and its subtree uses that theme. Because it is
+a plain attribute, it works without JavaScript and in any environment that can
+render HTML and load CSS.
+
+The dark token block also responds to the `.dark` class, so libraries that toggle
+a `dark` class keep working, but `data-theme` is the contract to build against.
+
+## Toggling themes
+
+Use any theme manager that writes the attribute. This documentation site uses
+[`next-themes`](https://github.com/pacocoursey/next-themes) configured to set
+`data-theme`:
+
+```tsx
+<RootProvider
+  theme={{
+    attribute: ["class", "data-theme"],
+    defaultTheme: "light",
+    enableSystem: false,
+  }}
+>
+  {children}
+</RootProvider>
+```
+
+It writes both `class` and `data-theme` so the documentation UI, which keys dark
+mode off `.dark`, and the design-system tokens, which key off `data-theme`, stay
+in sync. Consumers who only use the components need just `data-theme`.
+
+## Tokens
+
+Tokens are defined as CSS custom properties in `@friday-sandbox/styles` and grouped
+into a light block (`:root, [data-theme="light"]`) and a dark block
+(`.dark, [data-theme="dark"]`). To customise a theme, override the relevant custom
+properties in your own CSS after importing the styles package.

@@ -1,0 +1,64 @@
+---
+title: Separator
+description: A visual divider between content, horizontal or vertical.
+---
+
+import { Separator } from "@friday-sandbox/react";
+
+The `Separator` draws a divider between sections of content. It wraps
+[React Aria `Separator`](https://react-spectrum.adobe.com/react-aria/Separator.html),
+so it is exposed to assistive technology with the correct role.
+
+<Preview
+  code={`<div style={{ width: "100%" }}>
+  <p>Above</p>
+  <Separator />
+  <p>Below</p>
+</div>`}
+>
+  <div style={{ width: "100%" }}>
+    <p>Above</p>
+    <Separator />
+    <p>Below</p>
+  </div>
+</Preview>
+
+## Orientation
+
+Use `orientation="vertical"` to divide content laid out in a row. A vertical
+separator takes its height from its container.
+
+<Preview
+  code={`<div style={{ display: "flex", alignItems: "center", height: 24, gap: 12 }}>
+  <span>Edit</span>
+  <Separator orientation="vertical" />
+  <span>Duplicate</span>
+  <Separator orientation="vertical" />
+  <span>Delete</span>
+</div>`}
+>
+  <div style={{ display: "flex", alignItems: "center", height: 24, gap: 12 }}>
+    <span>Edit</span>
+    <Separator orientation="vertical" />
+    <span>Duplicate</span>
+    <Separator orientation="vertical" />
+    <span>Delete</span>
+  </div>
+</Preview>
+
+## Props
+
+`Separator` also accepts the props from React Aria `Separator`, excluding
+`orientation`, which is the variant prop above, and a `className` string.
+
+| Prop          | Type                          | Default        |
+| ------------- | ----------------------------- | -------------- |
+| `orientation` | `"horizontal" \| "vertical"`  | `"horizontal"` |
+| `className`   | `string`                      | —              |
+
+## Accessibility
+
+- Exposed with `role="separator"`, so assistive technology announces the
+  division between regions.
+- Set `orientation` to match the layout direction so the separator reports the
+  correct orientation.

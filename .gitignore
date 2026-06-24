@@ -27,6 +27,13 @@ out/
 build
 dist
 
+# Fumadocs / Next generated
+.source/
+next-env.d.ts
+
+# Local agent worktrees
+.claude/worktrees/
+
 
 # Debug
 npm-debug.log*

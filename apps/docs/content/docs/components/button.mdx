@@ -1,0 +1,111 @@
+---
+title: Button
+description: A button for triggering actions, built on React Aria Button.
+---
+
+import { Button } from "@friday-sandbox/react";
+
+The `Button` triggers an action. It wraps
+[React Aria `Button`](https://react-spectrum.adobe.com/react-aria/Button.html),
+so it is keyboard accessible and exposes press behaviour through `onPress`.
+
+<Preview code={`<Button>Save changes</Button>`}>
+  <Button>Save changes</Button>
+</Preview>
+
+## Colors
+
+Seven semantic colors are available through the `color` prop.
+
+<Preview
+  code={`<Button color="primary">Primary</Button>
+<Button color="secondary">Secondary</Button>
+<Button color="accent">Accent</Button>
+<Button color="info">Info</Button>
+<Button color="success">Success</Button>
+<Button color="warning">Warning</Button>
+<Button color="danger">Danger</Button>`}
+>
+  <Button color="primary">Primary</Button>
+  <Button color="secondary">Secondary</Button>
+  <Button color="accent">Accent</Button>
+  <Button color="info">Info</Button>
+  <Button color="success">Success</Button>
+  <Button color="warning">Warning</Button>
+  <Button color="danger">Danger</Button>
+</Preview>
+
+## Variants
+
+The `variant` prop sets the visual emphasis.
+
+<Preview
+  code={`<Button variant="solid">Solid</Button>
+<Button variant="subtle">Subtle</Button>
+<Button variant="surface">Surface</Button>
+<Button variant="outline">Outline</Button>
+<Button variant="ghost">Ghost</Button>
+<Button variant="plain">Plain</Button>`}
+>
+  <Button variant="solid">Solid</Button>
+  <Button variant="subtle">Subtle</Button>
+  <Button variant="surface">Surface</Button>
+  <Button variant="outline">Outline</Button>
+  <Button variant="ghost">Ghost</Button>
+  <Button variant="plain">Plain</Button>
+</Preview>
+
+## Sizes
+
+Five sizes step from `xs` to `xl`.
+
+<Preview
+  code={`<Button size="xs">Extra small</Button>
+<Button size="sm">Small</Button>
+<Button size="md">Medium</Button>
+<Button size="lg">Large</Button>
+<Button size="xl">Extra large</Button>`}
+>
+  <Button size="xs">Extra small</Button>
+  <Button size="sm">Small</Button>
+  <Button size="md">Medium</Button>
+  <Button size="lg">Large</Button>
+  <Button size="xl">Extra large</Button>
+</Preview>
+
+## States
+
+`isDisabled` blocks interaction; `isPending` shows a spinner for in-flight
+actions.
+
+<Preview
+  code={`<Button isDisabled>Disabled</Button>
+<Button isPending>Saving</Button>`}
+>
+  <Button isDisabled>Disabled</Button>
+  <Button isPending>Saving</Button>
+</Preview>
+
+## Props
+
+`Button` also accepts every prop from React Aria `Button`, such as `onPress`,
+`isDisabled`, `isPending`, and `type`, and a `className` string.
+
+| Prop            | Type                                                                            | Default     |
+| --------------- | ------------------------------------------------------------------------------- | ----------- |
+| `color`         | `"primary" \| "secondary" \| "accent" \| "info" \| "success" \| "warning" \| "danger"` | `"primary"` |
+| `variant`       | `"solid" \| "subtle" \| "surface" \| "outline" \| "ghost" \| "plain"`           | `"solid"`   |
+| `size`          | `"xs" \| "sm" \| "md" \| "lg" \| "xl"`                                          | `"md"`      |
+| `isIconOnly`    | `boolean`                                                                       | `false`     |
+| `isFullWidth`   | `boolean`                                                                       | `false`     |
+| `isRoundedFull` | `boolean`                                                                       | `false`     |
+| `className`     | `string`                                                                        | —           |
+
+## Accessibility
+
+- Rendered as a native `<button>` and reachable by keyboard.
+- Activates with both <kbd>Enter</kbd> and <kbd>Space</kbd>.
+- Use `isDisabled` rather than the native `disabled` attribute so assistive
+  technology and focus management stay consistent.
+- When a button shows only an icon, set `isIconOnly` and provide an accessible
+  label with `aria-label`.
