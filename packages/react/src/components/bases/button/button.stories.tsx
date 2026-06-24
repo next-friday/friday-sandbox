@@ -449,3 +449,31 @@ export const PlainHtml: Story = {
     </a>
   ),
 };
+
+export const BaseClassDefault: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "The base class on its own renders the default solid, primary, medium button, so hand-written HTML needs no modifier classes for a usable default.",
+      },
+    },
+  },
+  render: () => (
+    <button className="fri-button" type="button">
+      Button
+    </button>
+  ),
+  play: async ({ canvasElement }) => {
+    const button =
+      canvasElement.querySelector<HTMLButtonElement>(".fri-button");
+    await expect(button).not.toBeNull();
+
+    const styles = getComputedStyle(button!);
+    // The solid+primary default fills the background; an unstyled base would be
+    // transparent. getComputedStyle resolves height to pixels, so the medium
+    // default (~40px) reads well above an unsized base (~content height).
+    await expect(styles.backgroundColor).not.toBe("rgba(0, 0, 0, 0)");
+    await expect(Number.parseFloat(styles.height)).toBeGreaterThan(30);
+  },
+};
