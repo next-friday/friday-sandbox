@@ -1,7 +1,7 @@
 import { type KnipConfig } from "knip";
 
 const cssImportPattern = /@import\s+["']([^"']+)["']/g;
-const mdxImportPattern = /import\s+[^"']*?from\s+["']([^"']+)["']/g;
+const mdxImportPattern = /import\s+(?:[^"']*?\s+from\s+)?["']([^"']+)["']/g;
 
 const config: KnipConfig = {
   compilers: {
