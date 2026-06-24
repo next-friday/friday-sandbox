@@ -11,11 +11,11 @@ so it is exposed to assistive technology with the correct role.
 
 <Tabs items={["Preview", "Code"]}>
   <Tab value="Preview">
-    <Flex align="end" gap="md">
+    <Flex align="end" gap="md" className="px-4 py-6">
       <div style={{ width: "100%" }}>
-        <p>Above</p>
+        <span>Above</span>
         <Separator />
-        <p>Below</p>
+        <span>Below</span>
       </div>
     </Flex>
   </Tab>
@@ -23,9 +23,9 @@ so it is exposed to assistive technology with the correct role.
   <Tab value="Code">
     ```tsx
     <div style={{ width: "100%" }}>
-      <p>Above</p>
+      <span>Above</span>
       <Separator />
-      <p>Below</p>
+      <span>Below</span>
     </div>
     ```
   </Tab>
@@ -38,7 +38,7 @@ separator takes its height from its container.
 
 <Tabs items={["Preview", "Code"]}>
   <Tab value="Preview">
-    <Flex align="end" gap="md">
+    <Flex align="end" gap="md" className="px-4 py-6">
       <div style={{ display: "flex", alignItems: "center", height: 24, gap: 12 }}>
         <span>Edit</span>
         <Separator orientation="vertical" />
