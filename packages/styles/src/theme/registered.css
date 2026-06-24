@@ -62,7 +62,7 @@
 @property --warning {
   syntax: "<color>";
   inherits: true;
-  initial-value: oklch(73.3% 0.1596 63.45);
+  initial-value: oklch(55% 0.15 63);
 }
 
 @property --warning-foreground {

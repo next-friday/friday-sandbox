@@ -128,7 +128,7 @@ export const SURFACE_FAMILY = [
 ];
 
 /** Number → clean string (no float artifacts, trailing zeros trimmed). */
-export const num = (n) => `${+n.toFixed(4)}`;
+const num = (n) => `${+n.toFixed(4)}`;
 
 /** OKLCH spec triple → CSS string, L as percentage. */
 export const oklch = ({ l, c, h }) =>
