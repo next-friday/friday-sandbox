@@ -53,7 +53,7 @@ export function pageBackground(spec, mode) {
 /**
  * Resolve a brand role's fill color in a given mode. Brand roles are
  * single-valued (background-independent) except accent, which flips with the
- * ground — matching codegen's light-dark() emission.
+ * ground — matching codegen's dark-block emission.
  */
 export function roleFill(spec, role, mode) {
   if (role === "accent") {

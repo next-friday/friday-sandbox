@@ -63,7 +63,7 @@ An agent may tune a status role's L and C, but its hue stays in band — so red 
 
 - Every `--<role>` has a `--<role>-foreground` chosen for legible contrast; never set by hand.
 - Button labels are five distinct sizes (xs < sm < md < lg < xl); no two adjacent sizes are pixel-identical.
-- Dark mode is emitted with `light-dark()`, so the interaction ladder reflows per `color-scheme`.
+- Dark mode is an explicit `.dark, [data-theme="dark"]` block (emitted after the light block), so the interaction ladder reflows per `color-scheme`.
 
 ## Worked example — "a calm fintech dark theme"
 

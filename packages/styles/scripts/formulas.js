@@ -133,7 +133,3 @@ const num = (n) => `${+n.toFixed(4)}`;
 /** OKLCH spec triple → CSS string, L as percentage. */
 export const oklch = ({ l, c, h }) =>
   `oklch(${num(l * 100)}% ${num(c)} ${num(h)})`;
-
-/** light-dark() pair, collapsing to a single value when identical. */
-export const lightDark = (light, dark) =>
-  dark == null || dark === light ? light : `light-dark(${light}, ${dark})`;
