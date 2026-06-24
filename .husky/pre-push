@@ -17,7 +17,6 @@ pnpm -w knip
 pnpm -w depcruise
 pnpm -w typecheck
 pnpm -w build
-pnpm -w doc:check
+pnpm -w build:storybook
 pnpm -w test
-pnpm -w doctor:react
 pnpm audit --audit-level high

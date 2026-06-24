@@ -33,7 +33,6 @@
     "depcruise": "depcruise packages",
     "dev": "turbo run dev",
     "dev:storybook": "turbo run dev:storybook",
-    "doc:check": "turbo run doc:check",
     "doctor": "pnpm run \"/^doctor:/\"",
     "doctor:react": "react-doctor",
     "format": "prettier --write \"**/*.{ts,tsx,md,css}\"",

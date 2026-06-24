@@ -93,7 +93,7 @@ pnpm knip           # unused files, deps, and exports
 pnpm depcruise      # dependency rules
 pnpm typecheck      # TypeScript
 pnpm build          # build all packages
-pnpm doc:check      # Storybook build
+pnpm build:storybook # Storybook build
 pnpm test           # test suites
 pnpm audit --audit-level high
 ```
