@@ -1,11 +1,21 @@
-/*
- * Sole CSS entrypoint for the docs app.
- * @friday-sandbox/styles brings in Tailwind v4 (it imports "tailwindcss") plus
- * the design-system theme and `fri-` component layers, so Tailwind is imported
- * exactly once here. The Fumadocs UI stylesheets layer on top.
- */
 @import "@friday-sandbox/styles/css";
 @import "fumadocs-ui/css/neutral.css";
 @import "fumadocs-ui/css/preset.css";
 
 @source "../node_modules/fumadocs-ui/dist/**/*.js";
+
+:root {
+  --color-fd-background: var(--background);
+  --color-fd-foreground: var(--foreground);
+  --color-fd-border: var(--border-color);
+}
+
+.dark {
+  --color-fd-background: var(--background);
+  --color-fd-foreground: var(--foreground);
+  --color-fd-border: var(--border-color);
+}
+
+#nd-subnav > div {
+  border-bottom: none;
+}

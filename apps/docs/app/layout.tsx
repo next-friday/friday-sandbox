@@ -16,7 +16,7 @@ const RootLayout = (props: Readonly<RootLayoutProps>) => {
         <RootProvider
           theme={{
             attribute: ["class", "data-theme"],
-            defaultTheme: "light",
+            defaultTheme: "dark",
             enableSystem: false,
           }}
         >

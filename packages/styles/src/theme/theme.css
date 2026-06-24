@@ -27,8 +27,8 @@
   --mix-tint-pressed: 16%;
 
   /* Neutral-derived line colors */
-  --mix-border-line: 60%;
-  --mix-separator-line: 80%;
+  --mix-border-line: 50%;
+  --mix-separator-line: 70%;
   --border-color: color-mix(
     in oklab,
     var(--neutral),

@@ -7,18 +7,19 @@
   /* Ground */
   --background: oklch(100% 0 0);
   --foreground: oklch(0% 0 0);
-  --neutral: oklch(65.47% 0.0208 248.15);
+
+  --neutral: #ddd;
 
   /* Inverted surface pair (e.g. a tooltip): background/foreground swapped */
   --surface: var(--foreground);
   --surface-foreground: var(--background);
 
   /* Brand roles — single-valued (background-independent) except accent */
-  --primary: oklch(57.49% 0.2084 257.52);
+  --primary: oklch(0% 0 0);
   --primary-foreground: oklch(100% 0 0);
   --secondary: oklch(43.92% 0.0192 239.51);
   --secondary-foreground: oklch(100% 0 0);
-  --accent: oklch(0% 0 0);
+  --accent: oklch(57.49% 0.2084 257.52);
   --accent-foreground: oklch(100% 0 0);
   --info: oklch(55.53% 0.175 255.24);
   --info-foreground: oklch(100% 0 0);
@@ -51,22 +52,44 @@
   color-scheme: dark;
 
   /* Ground */
-  --background: oklch(17% 0 0);
-  --foreground: oklch(96% 0 0);
+  --background: oklch(0% 0 0);
+  --foreground: oklch(100% 0 0);
 
-  /* Accent flips with the ground */
-  --accent: oklch(96% 0 0);
-  --accent-foreground: oklch(17% 0 0);
+  --neutral: #5a5a5a;
 
-  --ring: oklch(65% 0.19 257.52);
-  --link: oklch(70% 0.16 257.52);
+  /* Inverted surface pair (e.g. a tooltip): background/foreground swapped */
+  --surface: var(--foreground);
+  --surface-foreground: var(--background);
 
-  /* Surface family */
-  --muted: oklch(25% 0.006 248.15);
-  --muted-foreground: oklch(70% 0.015 248.15);
-  --card: oklch(20% 0 0);
-  --card-foreground: oklch(96% 0 0);
-  --popover: oklch(20% 0 0);
-  --popover-foreground: oklch(96% 0 0);
-  --input: oklch(35% 0.006 248.15);
+  /* Brand roles — single-valued (background-independent) except accent */
+  --primary: oklch(100% 0 0);
+  --primary-foreground: oklch(0% 0 0);
+  --secondary: oklch(43.92% 0.0192 239.51);
+  --secondary-foreground: oklch(100% 0 0);
+  --accent: oklch(57.49% 0.2084 257.52);
+  --accent-foreground: oklch(100% 0 0);
+  --info: oklch(55.53% 0.175 255.24);
+  --info-foreground: oklch(100% 0 0);
+  --success: oklch(53.24% 0.1205 159.6);
+  --success-foreground: oklch(100% 0 0);
+  --warning: oklch(55% 0.15 63);
+  --warning-foreground: oklch(100% 0 0);
+  --danger: oklch(56.13% 0.1887 21.51);
+  --danger-foreground: oklch(100% 0 0);
+
+  --ring: oklch(57.49% 0.2084 257.52);
+  --link: oklch(57.49% 0.2084 257.52);
+
+  /* Surface family — shadcn-compatible vocabulary, no interaction ladder */
+  --muted: oklch(96.5% 0.005 248.15);
+  --muted-foreground: oklch(45% 0.015 248.15);
+  --card: oklch(100% 0 0);
+  --card-foreground: oklch(0% 0 0);
+  --popover: oklch(100% 0 0);
+  --popover-foreground: oklch(0% 0 0);
+  --input: oklch(92% 0.006 248.15);
+
+  /* Destructive aliases danger (danger owns the ladder) */
+  --destructive: var(--danger);
+  --destructive-foreground: var(--danger-foreground);
 }
