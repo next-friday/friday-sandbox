@@ -59,10 +59,9 @@ reviews:
         parenthetical aside.
     - path: packages/react/src/**/*.test.{ts,tsx}
       instructions: >-
-        Enforce the accessibility and stories rule. Tests run in Vitest
-        browser mode via @storybook/addon-vitest with Playwright chromium. Prefer
-        Storybook play functions over imperative DOM assertions; cover keyboard
-        paths alongside pointer paths.
+        This repository has no separate test files; a behavior is verified by its
+        story, run in Vitest browser mode. Flag a new *.test.* file and ask for
+        the behavior to be covered by a *.stories.tsx play function instead.
     - path: packages/eslint-config/src/*.mjs
       instructions: >-
         Keep all three subpath exports (./base, ./next-js, ./react-internal)
@@ -81,6 +80,19 @@ reviews:
         that bypass layers; size and radius tokens scoped to action, field, or
         box, never a literal component name; a token rename carries a migration
         note in the changeset.
+    - path: apps/docs/**/*.{ts,tsx}
+      instructions: >-
+        Documentation site on Next.js App Router and Fumadocs. It consumes the
+        published @friday-sandbox/react and @friday-sandbox/styles packages, so
+        flag a component re-implemented here instead of imported, and a deep
+        import that bypasses the package exports map. "use client" only when a
+        client API is touched; keep demos on the real public component API.
+    - path: apps/docs/content/docs/**/*.mdx
+      instructions: >-
+        Component documentation prose and examples. Enforce the lean prose rule:
+        no em-dash or parenthetical aside. Examples must use the real exported
+        prop names and types; flag a documented prop the component does not
+        expose. Import snippets use the package name, not a workspace path.
     - path: .github/workflows/**/*.yml
       instructions: >-
         Third-party actions must be pinned to a commit SHA, not a tag. Each job

@@ -1,6 +1,6 @@
 # Review style guide
 
-This repository is `friday-sandbox`, a pnpm + Turborepo monorepo shipping the `@friday-sandbox/*` packages: a React 19 UI library in `react`, CSS tokens and layers in `styles`, ESLint flat-config presets in `eslint-config`, and TypeScript config presets in `typescript-config`. The packages are consumed as workspace dependencies internally and publish to npm.
+This repository is `friday-sandbox`, a pnpm + Turborepo monorepo shipping the `@friday-sandbox/*` packages: a React 19 UI library in `react`, CSS tokens and layers in `styles`, ESLint flat-config presets in `eslint-config`, and TypeScript config presets in `typescript-config`. A documentation site in `apps/docs`, built on Next.js App Router and Fumadocs, consumes the published packages. The packages are consumed as workspace dependencies internally and publish to npm.
 
 The project conventions are enforced in this guide. **Enforce these rules**; they are the source of truth. This guide gives the review priority order and the highest-value checks per area. Be terse: one sentence per finding, naming the problem, the location, and the fix, grouped by severity, highest first. Skip praise, skip restating the diff.
 
@@ -29,13 +29,14 @@ Key checks for components and hooks:
 - Shared logic such as focus management, ARIA wiring, controlled-vs-uncontrolled, and event coalescing lives in a reusable hook under `packages/react/src/`; flag re-implementations across components.
 - A new file is reachable through the package `exports` map, where `.` → `./src/index.ts` and `./*` → `./src/*/index.ts`; a file no `index.ts` re-exports is unreachable.
 
-## Accessibility, stories, and tests: `packages/react/src/**/*.{stories,test}.{ts,tsx}`
+## Accessibility and stories: `packages/react/src/**/*.stories.{ts,tsx}`
 
-Key checks for accessibility, stories, and tests:
+Key checks for accessibility and stories:
 
 - Keyboard reachable, focus visible, ARIA only where the DOM does not convey intent, motion respects `prefers-reduced-motion`; the story passes `addon-a11y`.
 - A new or changed behavior ships story coverage of `Default`, `Hovered`, `Focused`, `Disabled`, and every color variant including `danger`, using real props rather than mocked data.
-- Tests run in Vitest browser mode via `@storybook/addon-vitest` with Playwright chromium; prefer Storybook play functions over imperative DOM assertions and cover keyboard paths alongside pointer paths.
+- Stories are the test suite: they run in Vitest browser mode via `@storybook/addon-vitest` with Playwright chromium; prefer Storybook play functions over imperative DOM assertions and cover keyboard paths alongside pointer paths.
+- No separate `*.test.*` files exist or belong here; a behavior is verified by its story. Flag a new test file and ask for a `*.stories.tsx` play function instead.
 - Story copy is consumer-facing: flag internal class names such as `fri-button-*` and `fri-flex-*`, library names such as `tailwind-variants` and `react-aria`, engine math such as `calc(var(--size-action) * N)`, or file paths. Symmetric story shape across files.
 - Story copy stays generic, not brittle: flag concrete pixel sizes or an exhaustive enumeration of a prop's values; prefer the imperative `Use the \`X\` prop to …` form and let the stories demonstrate the values.
 
@@ -52,6 +53,12 @@ Key checks for styles:
 
 - `eslint-config` keeps `./base`, `./next-js`, `./react-internal` resolving in consumer workspaces. A rule added to the wrong preset, or a plugin import without a matching peer dep, is a deviation.
 - `typescript-config` keeps `base.json`, `nextjs.json`, and `react-library.json` agreeing on `lib`, `moduleResolution`, `jsx`, `target`, `strict`, and `verbatimModuleSyntax`, unless a framework difference justifies otherwise.
+
+## Documentation site: `apps/docs/**`, Next.js + Fumadocs
+
+- Consumes the published `@friday-sandbox/react` and `@friday-sandbox/styles`; flag a component re-implemented here instead of imported, or a deep import that bypasses the package `exports` map.
+- `"use client"` only when a client API is touched; demos exercise the real public component API, not internal class names or private paths.
+- MDX under `content/docs/**` documents the real exported prop names and types; flag a documented prop the component does not expose, or an import snippet that uses a workspace path rather than the package name.
 
 ## Workflows: `.github/workflows/**`
 
