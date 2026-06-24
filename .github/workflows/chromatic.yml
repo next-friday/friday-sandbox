@@ -8,7 +8,7 @@ on:
     branches: [main]
 
 concurrency:
-  group: chromatic-${{ github.ref }}
+  group: chromatic-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
 
 permissions:

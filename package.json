@@ -24,14 +24,11 @@
     "url": "https://github.com/next-friday"
   },
   "scripts": {
-    "audit": "pnpm audit --audit-level high",
     "build": "turbo run build",
     "build:storybook": "turbo run build:storybook",
-    "build:watch": "turbo run build:watch",
     "changeset": "changeset",
     "changeset:publish": "changeset publish",
     "changeset:version": "changeset version",
-    "check-types": "turbo run check-types",
     "clean": "turbo run clean",
     "depcruise": "depcruise packages",
     "dev": "turbo run dev",

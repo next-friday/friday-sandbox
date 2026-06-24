@@ -9,10 +9,6 @@
       "dependsOn": ["^build"],
       "outputs": ["storybook-static/**"]
     },
-    "build:watch": {
-      "cache": false,
-      "persistent": true
-    },
     "check-types": {
       "dependsOn": ["^check-types"]
     },
