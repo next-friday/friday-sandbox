@@ -4,12 +4,18 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Claude Code operating rules
 
-- **Let the hooks do the work.** `PostToolUse` runs `prettier --write` + `eslint --fix` on the edited file; `pre-commit` runs the gates on staged files; `pre-push` runs the full list. Do **not** run whole-repo `turbo lint`/`typecheck`/`build`/`build:storybook`/`knip`/`depcruise`/`sort:check`/`test` by hand, since each is minutes of duplicated work the hooks already cover.
+- **Let the hooks do the work.** `pre-commit` runs the gates on staged files; `pre-push` runs the full list. Do **not** run whole-repo `turbo lint`/`typecheck`/`build`/`build:storybook`/`knip`/`depcruise`/`sort:check`/`test` by hand, since each is minutes of duplicated work the hooks already cover.
 - **Never suppress a gate.** Fix the root cause: do not disable a lint rule, skip a check, loosen a gate, or use `--no-verify`, which is forbidden and re-caught by CI. Disabling is a last resort needing explicit approval with a stated reason.
 - **`src` ↔ `exports` invariant.** Workspace consumers read `src/`; published consumers read `dist/`. Change one surface, keep the other aligned.
-- **One change = one issue → one branch → one PR.** Behavior changes such as `feat`, `fix`, `perf`, and `refactor` require a `.changeset/*.md` entry, and the branch must start with `<issue#>-`. Full workflow in [`CONTRIBUTING.md`](CONTRIBUTING.md).
+- **One change = one issue → one branch → one PR.** Behavior changes such as `feat`, `fix`, `perf`, and `refactor` require a `.changeset/*.md` entry, and the branch must start with `<issue#>-`. Titles are Conventional Commits `type(scope): subject` (≤50 chars, lowercase imperative, no body/footer); put `Closes #<n>` in the PR body, never the title. Full workflow in [`CONTRIBUTING.md`](CONTRIBUTING.md).
+
+Project rules, imported into context:
+
+@.claude/rules/no-guessing.md
 
 ## Architecture
+
+**Toolchain:** Node `>=22.10.0`, pnpm `10` via Corepack (`corepack enable`); the pnpm version is pinned in the root `package.json`.
 
 pnpm-workspace + Turborepo monorepo, globbing `packages/*` and `apps/*`. Four packages under `packages/`:
 
