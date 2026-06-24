@@ -1,3 +1,4 @@
+import { expect } from "storybook/test";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import type { ElementType } from "react";
 
@@ -273,4 +274,24 @@ export const AsList: Story = {
       </GridItem>
     </Grid>
   ),
+};
+
+export const BaseClassDefault: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "The base class on its own renders the default single-column grid, so hand-written HTML matches the component default without a columns class.",
+      },
+    },
+  },
+  render: () => <div className="fri-grid" />,
+  play: async ({ canvasElement }) => {
+    const grid = canvasElement.querySelector<HTMLElement>(".fri-grid");
+    await expect(grid).not.toBeNull();
+
+    // The default single column sets an explicit grid template; a bare grid
+    // without the default would fall back to `none` (auto tracks).
+    await expect(getComputedStyle(grid!).gridTemplateColumns).not.toBe("none");
+  },
 };

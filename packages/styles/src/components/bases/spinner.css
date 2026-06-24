@@ -1,8 +1,10 @@
 @layer components {
   .fri-spinner {
-    @apply inline-block size-(--spinner-size) shrink-0 animate-spin rounded-full bg-(image:--spinner-image) mask-(--spinner-mask) text-primary motion-reduce:animate-none;
+    @apply inline-block size-(--spinner-size) shrink-0 animate-spin rounded-full bg-(image:--spinner-image) mask-(--spinner-mask) motion-reduce:animate-none;
   }
 
+  /* :where() bakes the default at zero specificity; explicit classes override. */
+  :where(.fri-spinner),
   .fri-spinner-primary {
     @apply text-primary;
   }
@@ -31,6 +33,7 @@
   .fri-spinner-sm {
     --spinner-size: var(--spinner-size-sm);
   }
+  :where(.fri-spinner),
   .fri-spinner-md {
     --spinner-size: var(--spinner-size-md);
   }

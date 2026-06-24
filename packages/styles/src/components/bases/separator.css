@@ -3,6 +3,8 @@
     @apply m-0 shrink-0 border-none bg-separator;
   }
 
+  /* :where() bakes the default at zero specificity; explicit classes override. */
+  :where(.fri-separator),
   .fri-separator-horizontal {
     @apply h-(--separator-thickness) w-full;
   }

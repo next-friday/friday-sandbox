@@ -9,6 +9,8 @@
   .fri-scroll-area-sm {
     --scroll-area-thickness: var(--scroll-area-thickness-sm);
   }
+  /* :where() bakes the default at zero specificity; explicit classes override. */
+  :where(.fri-scroll-area),
   .fri-scroll-area-md {
     --scroll-area-thickness: var(--scroll-area-thickness-md);
   }

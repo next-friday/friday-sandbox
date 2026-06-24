@@ -4,6 +4,7 @@
   }
 
   /* Color — wire the role's ladder into the button's color slots */
+  :where(.fri-button),
   .fri-button-primary {
     --button-color: var(--primary);
     --button-color-foreground: var(--primary-foreground);
@@ -118,6 +119,7 @@
   }
 
   /* Variant — map the active color slots onto background/foreground/border */
+  :where(.fri-button),
   .fri-button-solid {
     --button-background: var(--button-color);
     --button-foreground: var(--button-color-foreground);
@@ -176,6 +178,8 @@
     --button-spinner-size: var(--button-spinner-sm);
     @apply text-label-sm;
   }
+  /* :where() bakes the default at zero specificity; explicit classes override. */
+  :where(.fri-button),
   .fri-button-md {
     --button-h: var(--button-h-md);
     --button-px: var(--button-px-md);

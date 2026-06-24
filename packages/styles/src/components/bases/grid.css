@@ -13,6 +13,8 @@
     @apply inline-grid;
   }
 
+  /* :where() bakes the default at zero specificity; explicit classes override. */
+  :where(.fri-grid),
   .fri-grid-cols-1 {
     @apply grid-cols-1;
   }
