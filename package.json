@@ -46,7 +46,7 @@
     "sort:check": "sort-package-json --check \"package.json\" \"packages/*/package.json\" \"apps/*/package.json\"",
     "test": "turbo run test",
     "test:coverage": "turbo run test:coverage",
-    "typecheck": "turbo run check-types"
+    "typecheck": "turbo run typecheck"
   },
   "devDependencies": {
     "@changesets/changelog-github": "^0.7.0",

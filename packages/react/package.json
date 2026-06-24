@@ -47,15 +47,14 @@
   "scripts": {
     "build": "tsdown",
     "build:storybook": "storybook build --quiet",
-    "check-types": "tsc --noEmit",
     "chromatic": "chromatic --build-script-name=build:storybook --exit-zero-on-changes",
     "dev:storybook": "storybook dev -p 6006",
     "lint": "eslint . --max-warnings 0",
     "prepack": "clean-package",
     "postpack": "clean-package restore",
-    "storybook": "storybook dev -p 6006",
     "test": "vitest run",
-    "test:coverage": "vitest run --coverage"
+    "test:coverage": "vitest run --coverage",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@gravity-ui/icons": "^2.18.0",
