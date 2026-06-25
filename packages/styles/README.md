@@ -162,7 +162,7 @@ A custom theme uses its own name, so it never collides with the shipped `light` 
 
 ### 4. Override a few tokens for one region
 
-A normal CSS rule, the everyday way. It uses the same idiom as the `--grid-min` override shown under [Component-local tokens](#component-local-tokens):
+A normal CSS rule, the everyday way. It uses the same idiom as the component-local `--grid-min` override described below:
 
 ```css
 .promo {
@@ -197,7 +197,7 @@ Everything else, such as `--fri-card`, `--fri-fill`, `--fri-foreground-muted`, `
 
 - **Contrast is yours to keep.** The shipped `light` / `dark` are contrast-checked at build time; a runtime override is not. Always set `--<role>-foreground` alongside `--<role>` so text stays legible; runtime does not repair it.
 - **Cascade order.** Load the package CSS first and your overrides after; later rules win at equal specificity. Overriding the built-in `light` / `dark` from a bare `:root` while a `[data-theme]` is active loses to the more specific `[data-theme]` rule; override at the same level, or inline. This is the usual snag in WordPress/PHP, not the token values.
-- **Component-local tokens** (e.g. `--grid-min`) are set on the element, not `:root`, where the component's own class would mask a `:root` value.
+- **Component-local tokens** such as `--grid-min` are set on the element, not `:root`, where the component's own class would mask a `:root` value.
 
 ## CSS Variables
 
