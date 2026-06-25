@@ -29,6 +29,7 @@ always_gates() {
   fi
   pnpm -w format:check
   pnpm -w sort:check
+  pnpm -w lint:prose
 }
 
 # Graph-wide, no per-package turbo task → run only when a package/dep changed.

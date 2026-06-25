@@ -4,6 +4,7 @@ const cssImportPattern = /@import\s+["']([^"']+)["']/g;
 const mdxImportPattern = /import\s+(?:[^"']*?\s+from\s+)?["']([^"']+)["']/g;
 
 const config: KnipConfig = {
+  ignore: [".github/doc-templates/**"],
   compilers: {
     css: (text) =>
       [...text.matchAll(cssImportPattern)]

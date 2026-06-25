@@ -5,9 +5,23 @@ description: A button for triggering actions, built on React Aria Button.
 
 import { Button, Flex } from "@friday-sandbox/react";
 
-The `Button` triggers an action. It wraps
+## Purpose
+
+The `Button` triggers a single action. It wraps
 [React Aria `Button`](https://react-spectrum.adobe.com/react-aria/Button.html),
-so it is keyboard accessible and exposes press behaviour through `onPress`.
+so it is keyboard accessible and exposes press behavior through `onPress`.
+
+## When to use
+
+Use `Button` for an action on the current view, such as saving, submitting, or
+confirming.
+
+## When not to use
+
+Do not use `Button` to navigate to another page. Use a link, so the browser
+keeps history and open-in-new-tab behavior.
+
+## Example
 
 <Tabs items={["Preview", "Code"]}>
   <Tab value="Preview">

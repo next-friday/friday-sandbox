@@ -1,0 +1,55 @@
+{
+  "$comment": "Single source of truth for the prose linter. STYLE.md describes the rules in prose; this file is what scripts/prose/lint-prose.mjs enforces.",
+  "marketing": [
+    "powerful",
+    "robust",
+    "seamless",
+    "seamlessly",
+    "intuitive",
+    "intuitively",
+    "modern",
+    "elegant",
+    "elegantly",
+    "beautiful",
+    "blazing",
+    "blazingly",
+    "effortless",
+    "effortlessly",
+    "cutting-edge",
+    "world-class",
+    "best-in-class",
+    "game-changing",
+    "revolutionary",
+    "next-generation",
+    "lightning-fast",
+    "feature-rich",
+    "state-of-the-art",
+    "supercharge",
+    "supercharged"
+  ],
+  "terms": {
+    "widget": "component"
+  },
+  "structure": [
+    {
+      "glob": "apps/docs/content/docs/components/",
+      "headings": [
+        "Purpose",
+        "When to use",
+        "When not to use",
+        "Example",
+        "Accessibility"
+      ]
+    }
+  ],
+  "exclude": [
+    "node_modules/",
+    ".agents/skills/",
+    ".claude/skills/",
+    "CHANGELOG.md",
+    ".changeset/",
+    "packages/styles/design.md",
+    "STYLE.md",
+    ".github/doc-templates/"
+  ]
+}
