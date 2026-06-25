@@ -12,7 +12,7 @@ determinism, tooling-friendliness:
 - Bad: "AI/LLM predictability, an assistant can generate a complete, valid theme from the grammar alone."
 - Good: "Machine predictability: token names follow a regular grammar so generators, tests, docs, and LLM-assisted contributors can infer the expected shape consistently."
 
-The claim must be about the artifact's own structure (which is verifiable), not
-about a model's output (which is not). Applies to design goals, value
+The claim must be about the artifact's own structure, which is verifiable, not
+about a model's output, which is not. Applies to design goals, value
 propositions, and any marketing-adjacent wording. Pairs with the no-guessing
 rule: assert only what you can verify.
