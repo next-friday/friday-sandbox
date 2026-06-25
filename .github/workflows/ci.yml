@@ -30,6 +30,7 @@ jobs:
             depcruise,
             build:storybook,
             sort:check,
+            lint:prose,
           ]
     steps:
       - uses: step-security/harden-runner@9af89fc71515a100421586dfdb3dc9c984fbf411

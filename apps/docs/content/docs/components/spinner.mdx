@@ -5,9 +5,21 @@ description: An indeterminate loading indicator.
 
 import { Flex, Spinner } from "@friday-sandbox/react";
 
-The `Spinner` signals that work is in progress. It renders a `<span>` and is used
-on its own or inside other components: for example, `Button` shows a `Spinner`
-while `isPending`.
+## Purpose
+
+The `Spinner` signals that work is in progress. It renders a `<span>`, on its own
+or inside another component, such as `Button` while `isPending`.
+
+## When to use
+
+Use `Spinner` for an indeterminate wait, where the duration is unknown.
+
+## When not to use
+
+Do not use `Spinner` for determinate progress. Show a progress indicator with a
+known percentage instead.
+
+## Example
 
 <Tabs items={["Preview", "Code"]}>
   <Tab value="Preview">

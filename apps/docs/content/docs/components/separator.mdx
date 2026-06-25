@@ -5,9 +5,21 @@ description: A visual divider between content, horizontal or vertical.
 
 import { Flex, Separator } from "@friday-sandbox/react";
 
+## Purpose
+
 The `Separator` draws a divider between sections of content. It wraps
 [React Aria `Separator`](https://react-spectrum.adobe.com/react-aria/Separator.html),
-so it is exposed to assistive technology with the correct role.
+so assistive technology announces it with the correct role.
+
+## When to use
+
+Use `Separator` to divide groups of related content, in a row or a column.
+
+## When not to use
+
+Do not use `Separator` for spacing alone. Set a layout gap for that.
+
+## Example
 
 <Tabs items={["Preview", "Code"]}>
   <Tab value="Preview">

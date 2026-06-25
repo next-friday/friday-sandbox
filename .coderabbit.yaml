@@ -106,6 +106,13 @@ reviews:
         Bump level (patch | minor | major) must match the PR type. A feat is at
         least minor, a breaking change is major. The summary reads as a release
         note to a downstream consumer, not as an internal log.
+    - path: "**/*.{md,mdx}"
+      instructions: >-
+        Prose follows the editorial style guide in STYLE.md. Flag a banned
+        marketing adjective, an off-vocabulary synonym, a switch of narrator or
+        voice within one document, or maintainer-internal detail in a consumer
+        page. Component docs under apps/docs/content/docs/components carry the
+        sections Purpose, When to use, When not to use, Example, Accessibility.
 chat:
   auto_reply: true
 knowledge_base:
