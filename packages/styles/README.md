@@ -112,12 +112,12 @@ Components use a kebab-case `fri-<component>-<modifier>` convention. Apply the b
 
 ## Consumer theming
 
-The default theme ships **light** and **dark**, and you retheme by overriding flat CSS custom properties — no build step, plugin, or JavaScript. The same approach works in Next.js, plain HTML, WordPress, or PHP; only _where the CSS lives_ changes.
+The default theme ships **light** and **dark**, and you retheme by overriding flat CSS custom properties, with no build step, plugin, or JavaScript. The same approach works in Next.js, plain HTML, WordPress, or PHP; only _where the CSS lives_ changes.
 
 ### 1. Load the stylesheet once
 
 ```html
-<!-- plain HTML / WordPress / PHP — via CDN -->
+<!-- plain HTML / WordPress / PHP, via CDN -->
 <link
   rel="stylesheet"
   href="https://unpkg.com/@friday-sandbox/styles/dist/index.css"
@@ -125,14 +125,14 @@ The default theme ships **light** and **dark**, and you retheme by overriding fl
 ```
 
 ```css
-/* Next.js or any bundler — app/globals.css, after Tailwind */
+/* Next.js or any bundler: app/globals.css, after Tailwind */
 @import "tailwindcss";
 @import "@friday-sandbox/styles";
 ```
 
 ### 2. Switch and scope with `data-theme`
 
-Light is the default. Apply dark with the `.dark` class or `[data-theme="dark"]`, on `<html>` or any subtree — themes nest:
+Light is the default. Apply dark with the `.dark` class or `[data-theme="dark"]`, on `<html>` or any subtree, and themes nest:
 
 ```html
 <html data-theme="dark">
@@ -142,7 +142,7 @@ Light is the default. Apply dark with the `.dark` class or `[data-theme="dark"]`
 
 ### 3. Author a custom theme
 
-Write one flat block. Set the role and its `-foreground` together; every interaction state (`--fri-primary-hover`, `--fri-primary-soft`, …) derives automatically — never set those by hand:
+Write one flat block. Set the role and its `-foreground` together; every interaction state such as `--fri-primary-hover` and `--fri-primary-soft` derives automatically, so never set those by hand:
 
 ```css
 [data-theme="brand"] {
@@ -162,7 +162,7 @@ A custom theme uses its own name, so it never collides with the shipped `light` 
 
 ### 4. Override a few tokens for one region
 
-A normal CSS rule — the everyday way (the same idiom as the `--grid-min` override shown under [Component-local tokens](#component-local-tokens)):
+A normal CSS rule, the everyday way. It uses the same idiom as the `--grid-min` override shown under [Component-local tokens](#component-local-tokens):
 
 ```css
 .promo {
@@ -177,7 +177,7 @@ A normal CSS rule — the everyday way (the same idiom as the `--grid-min` overr
 </section>
 ```
 
-Inline `style="--fri-primary: …; --fri-primary-foreground: …"` is reserved for a value known only at render time (a CMS field, a PHP `echo`) — set the role and its foreground together.
+Inline `style="--fri-primary: …; --fri-primary-foreground: …"` is reserved for a value known only at render time, such as a CMS field or a PHP `echo`. Set the role and its foreground together.
 
 ### The contract
 
@@ -191,18 +191,18 @@ Set these Tier-1 base tokens; the system derives every interaction state, surfac
 | Focus, links                  | `--fri-ring`, `--fri-link`                                                                                    |
 | Geometry, type                | `--fri-radius-*`, `--fri-spacing-*`, `--fri-border-width`, `--fri-font-family-sans`, `--fri-font-family-mono` |
 
-Everything else — `--fri-card`, `--fri-surface`, `--fri-foreground-muted`, `--fri-border`, the 12-rung interaction ladder, … — is **derived** and recomputes when you change a base token. A copy-paste starter ships at `@friday-sandbox/styles/template`; the complete generated reference is in `design.md`. For drop-in shadcn/Tailwind unprefixed names, import `@friday-sandbox/styles/compat`.
+Everything else, such as `--fri-card`, `--fri-fill`, `--fri-foreground-muted`, `--fri-border`, and the 12-rung interaction ladder, is **derived** and recomputes when you change a base token. A copy-paste starter ships at `@friday-sandbox/styles/template`; the complete generated reference is in `design.md`. For drop-in shadcn/Tailwind unprefixed names, import `@friday-sandbox/styles/compat`.
 
 ### Three things to know
 
-- **Contrast is yours to keep.** The shipped `light` / `dark` are contrast-checked at build time; a runtime override is not. Always set `--<role>-foreground` alongside `--<role>` so text stays legible — runtime does not repair it.
-- **Cascade order.** Load the package CSS first and your overrides after; later rules win at equal specificity. Overriding the built-in `light` / `dark` from a bare `:root` while a `[data-theme]` is active loses to the more specific `[data-theme]` rule — override at the same level, or inline. This is the usual snag in WordPress/PHP, not the token values.
+- **Contrast is yours to keep.** The shipped `light` / `dark` are contrast-checked at build time; a runtime override is not. Always set `--<role>-foreground` alongside `--<role>` so text stays legible; runtime does not repair it.
+- **Cascade order.** Load the package CSS first and your overrides after; later rules win at equal specificity. Overriding the built-in `light` / `dark` from a bare `:root` while a `[data-theme]` is active loses to the more specific `[data-theme]` rule; override at the same level, or inline. This is the usual snag in WordPress/PHP, not the token values.
 - **Component-local tokens** (e.g. `--grid-min`) are set on the element, not `:root`, where the component's own class would mask a `:root` value.
 
 ## CSS Variables
 
-The complete, always-current token reference — every `--fri-*` token with its
-default value — is generated, never hand-maintained, so it cannot drift from the
+The complete, always-current token reference, every `--fri-*` token with its
+default value, is generated, never hand-maintained, so it cannot drift from the
 shipped CSS. Read it in [`design.md`](./design.md), or copy the starter
 `src/theme-template.css` (exported as `@friday-sandbox/styles/template`).
 
