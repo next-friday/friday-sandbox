@@ -49,7 +49,24 @@ function lintFile(path) {
   lines.forEach((raw, i) => {
     const ln = i + 1;
     if (inFrontmatter) {
-      if (i > 0 && raw.trim() === "---") inFrontmatter = false;
+      if (i > 0 && raw.trim() === "---") {
+        inFrontmatter = false;
+        return;
+      }
+      const fm = raw.match(/^\s*(title|description):\s*(.+)$/);
+      if (fm) {
+        const text = clean(fm[2]);
+        for (const [w, re] of MARKETING)
+          if (re.test(text))
+            findings.push(
+              `${path}:${ln}: marketing word "${w}" in frontmatter ${fm[1]}; describe behavior, not quality`,
+            );
+        for (const [bad, good, re] of TERMS)
+          if (re.test(text))
+            findings.push(
+              `${path}:${ln}: term "${bad}" in frontmatter ${fm[1]}; use "${good}"`,
+            );
+      }
       return;
     }
     if (/^\s*```/.test(raw)) {
@@ -122,6 +139,11 @@ function selfcheck() {
   assert(
     lintFile(f("d.md", "Use a widget for this.")).length === 1,
     "off-vocabulary term not flagged",
+  );
+  assert(
+    lintFile(f("e.md", "---\ndescription: A beautiful component.\n---\n"))
+      .length === 1,
+    "marketing word in frontmatter not flagged",
   );
   console.log("selfcheck OK");
   process.exit(0);
