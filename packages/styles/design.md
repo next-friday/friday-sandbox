@@ -1,12 +1,12 @@
 ---
 generated: true
 namespace: --fri-*
-pipeline: spec -> validate (schema) -> derive (formulas.js) -> emit (tokens.css, tailwind.css, registered.css)
+pipeline: spec -> validate (schema) -> derive (formulas.ts) -> emit (tokens.css, tailwind.css, registered.css)
 ---
 
 # Friday Design System token contract
 
-Generated from `tokens/default.spec.json` through `scripts/formulas.js`. Every
+Generated from `tokens/default.spec.json` through `scripts/formulas.ts`. Every
 token is `--fri-*` prefixed; every colour mix is `color-mix(in oklab, …)`. Edit
 the spec or the formula table, never the generated CSS.
 

@@ -1,4 +1,4 @@
-// Unit checks for the derivation engine. Run: `node --test scripts/formulas.test.js`.
+// Unit checks for the derivation engine. Run: `node --test scripts/formulas.test.ts`.
 // The engine is the single source of truth for every token formula; these pin
 // the --fri-* naming, the `color-mix(in oklab, …)` shape, and the derive-from-
 // ground model so the emitted CSS can never silently drift.
@@ -18,7 +18,7 @@ import {
   SIZE_ARCHETYPE,
   SPACING_SCALE,
   oklch,
-} from "./formulas.js";
+} from "./formulas.ts";
 
 test("every token name is --fri-* prefixed and mixes in oklab", () => {
   for (const role of BRAND_ROLES) {
@@ -122,7 +122,7 @@ test("radius and size archetypes share one symmetric, role-led key set", () => {
   assert.deepEqual(Object.keys(RADIUS_ARCHETYPE), keys);
   assert.deepEqual(Object.keys(SIZE_ARCHETYPE), keys);
   // size archetypes are concrete block-axis dimensions, not a collapsed single token
-  assert.ok(Object.values(SIZE_ARCHETYPE).every((s) => /rem$/.test(s)));
+  assert.ok(Object.values(SIZE_ARCHETYPE).every((s) => s.endsWith("rem")));
 });
 
 test("oklch triple renders L as a percentage", () => {

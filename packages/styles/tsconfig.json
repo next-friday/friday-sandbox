@@ -1,0 +1,10 @@
+{
+  "extends": "@friday-sandbox/typescript-config/base.json",
+  "compilerOptions": {
+    "noEmit": true,
+    "allowImportingTsExtensions": true,
+    "verbatimModuleSyntax": true,
+    "erasableSyntaxOnly": true
+  },
+  "include": ["scripts"]
+}

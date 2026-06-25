@@ -4,7 +4,7 @@
     "pnpm exec prettier --write"
   ],
   "packages/styles/**/*.{ts,mts,mjs,cjs}": [
-    "pnpm --filter @friday-sandbox/styles exec tsc --noEmit",
+    "pnpm --filter @friday-sandbox/styles exec eslint --fix --max-warnings 0",
     "pnpm exec prettier --write"
   ],
   "*.{js,jsx,ts,tsx,cts,mts,mjs,cjs}": "pnpm exec prettier --write",

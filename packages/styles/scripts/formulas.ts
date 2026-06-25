@@ -1,14 +1,16 @@
 // THE single derivation authority. Every ladder rung, surface, text/border
 // tier, scale and geometry step lives here exactly once. The CSS emitter
-// (codegen.js) and the contrast validator (validate.js) both read this table,
+// (codegen.ts) and the contrast validator (validate.ts) both read this table,
 // so the formulas can never drift between the painted CSS and the validated
 // numbers. Every color token is `--fri-*` prefixed and every mix is `in oklab`.
+
+import type { BrandRole, OklchTriple } from "./types.ts";
 
 /** Vendor prefix for every token. */
 export const P = "--fri-";
 
 /** Brand and status roles that own a full interaction ladder. */
-export const BRAND_ROLES = [
+export const BRAND_ROLES: BrandRole[] = [
   "primary",
   "secondary",
   "accent",
@@ -58,22 +60,28 @@ export const MIX_RATIOS = {
   "mix-tint-pressed": "16%",
 };
 
-/** Render one ladder rung to its runtime `color-mix` string (`--fri-*`). */
-export function ladder(role, suffix) {
+/**
+ * Render one ladder rung to its runtime `color-mix` string (`--fri-*`).
+ */
+export function ladder(role: BrandRole, suffix: string): string {
   const rung = LADDER.find((r) => r.suffix === suffix);
   if (!rung) throw new Error(`unknown ladder rung: ${suffix}`);
   const r = `var(${P}${role})`;
   const fg = `var(${P}${role}-foreground)`;
   const ratio = `var(${P}${rung.ratio})`;
   switch (rung.kind) {
-    case "mixFg":
+    case "mixFg": {
       return `color-mix(in oklab, ${r}, ${fg} ${ratio})`;
-    case "alpha":
+    }
+    case "alpha": {
       return `color-mix(in oklab, ${r} ${ratio}, transparent)`;
-    case "surface":
+    }
+    case "surface": {
       return `color-mix(in oklab, ${r} ${ratio}, var(${P}background))`;
-    default:
+    }
+    default: {
       throw new Error(`unknown rung kind: ${rung.kind}`);
+    }
   }
 }
 
@@ -85,26 +93,34 @@ export function ladder(role, suffix) {
  */
 const SURFACE_NEUTRAL_MIX = { fill: 5, "fill-strong": 10 };
 
-export function surface(name) {
+/** The CSS value of a derived surface token (card/popover/field, fill tiers, inverse, overlay). */
+export function surface(name: string): string {
   switch (name) {
     case "card":
     case "popover":
-    case "field":
+    case "field": {
       return `var(${P}background)`;
+    }
     case "fill":
-    case "fill-strong":
+    case "fill-strong": {
       return `color-mix(in oklab, var(${P}background), var(${P}neutral) ${SURFACE_NEUTRAL_MIX[name]}%)`;
-    case "inverse":
+    }
+    case "inverse": {
       return `var(${P}foreground)`;
-    case "overlay":
+    }
+    case "overlay": {
       return `color-mix(in oklab, black 50%, transparent)`;
-    default:
+    }
+    default: {
       throw new Error(`unknown surface: ${name}`);
+    }
   }
 }
 
-/** The foreground that pairs with a surface (inverse swaps; the rest = page text). */
-export function surfaceForeground(name) {
+/**
+ * The foreground that pairs with a surface (inverse swaps; the rest = page text).
+ */
+export function surfaceForeground(name: string): string {
   return name === "inverse" ? `var(${P}background)` : `var(${P}foreground)`;
 }
 
@@ -129,20 +145,26 @@ export const FIELD_EXTRAS = {
 };
 
 /** Text emphasis tiers — fade the foreground toward the background. */
-export const TEXT_TIERS = { muted: 40, faint: 60 };
+export const TEXT_TIERS: Record<string, number> = { muted: 40, faint: 60 };
 
-export function textTier(name) {
+/** A text emphasis tier (muted, faint) as a foreground-toward-background mix. */
+export function textTier(name: string): string {
   const pct = TEXT_TIERS[name];
-  if (pct == null) throw new Error(`unknown text tier: ${name}`);
+  if (pct == undefined) throw new Error(`unknown text tier: ${name}`);
   return `color-mix(in oklab, var(${P}foreground), var(${P}background) ${pct}%)`;
 }
 
 /** Border/line tiers — fade the neutral toward transparent. */
-export const BORDER_TIERS = { strong: 40, default: 60, subtle: 80 };
+export const BORDER_TIERS: Record<string, number> = {
+  strong: 40,
+  default: 60,
+  subtle: 80,
+};
 
-export function borderTier(name) {
+/** A border tier (strong, default, subtle) as a neutral-toward-transparent mix. */
+export function borderTier(name: string): string {
   const pct = BORDER_TIERS[name];
-  if (pct == null) throw new Error(`unknown border tier: ${name}`);
+  if (pct == undefined) throw new Error(`unknown border tier: ${name}`);
   return `color-mix(in oklab, var(${P}neutral), transparent ${pct}%)`;
 }
 
@@ -159,16 +181,22 @@ export const POINTERS = { link: `var(${P}primary)` };
 /** Radius ladder ratios against the `md` base; none and full are literal endpoints. */
 const RADIUS_RATIO = { xs: 2 / 7, sm: 4 / 7, md: 1, lg: 10 / 7, xl: 16 / 7 };
 
+/** A rung name on the t-shirt radius ladder, including the literal endpoints. */
+type RadiusRung = "none" | keyof typeof RADIUS_RATIO | "full";
+
+/** The full radius ladder: every rung mapped to its `rem`/`px` value. */
+type RadiusScale = Record<RadiusRung, string>;
+
 /**
  * t-shirt radius ladder (Tier 1) derived from a base `rem`, the `md` anchor the
  * consumer sets through the spec `radius` knob. Numeric rungs are `base * ratio`;
  * none and full are literal endpoints. Each step stays distinct.
  */
-export const radiusScale = (base) => {
-  const rem = parseFloat(base);
-  const rungs = { none: "0" };
+export const radiusScale = (base: string): RadiusScale => {
+  const rem = Number.parseFloat(base);
+  const rungs = { none: "0" } as RadiusScale;
   for (const [step, ratio] of Object.entries(RADIUS_RATIO))
-    rungs[step] = `${num(rem * ratio)}rem`;
+    rungs[step as keyof typeof RADIUS_RATIO] = `${number_(rem * ratio)}rem`;
   rungs.full = "9999px";
   return rungs;
 };
@@ -246,20 +274,36 @@ export const SIZE_ARCHETYPE = {
 export const GAP_SCALE = ["xs", "sm", "md", "lg", "xl"];
 
 /**
+ * Ground tokens that flip in dark. `muted-foreground` is reserved (no dark
+ * override today): the contrast gate reads it and falls back when absent.
+ */
+interface GroundDark {
+  accent: string;
+  background: string;
+  foreground: string;
+  "accent-foreground": string;
+  "muted-foreground"?: string;
+}
+
+/**
  * Ground tokens that flip in dark. The brand fill roles are background-
  * independent and stay single-valued, derived from the spec. accent flips with
  * the ground; ring/link lighten so they read on a dark surface.
  */
-export const GROUND_DARK = {
+export const GROUND_DARK: GroundDark = {
   background: "oklch(17% 0 0)",
   foreground: "oklch(96% 0 0)",
   accent: "oklch(96% 0 0)",
   "accent-foreground": "oklch(17% 0 0)",
 };
 
-/** Number → clean string (no float artifacts, trailing zeros trimmed). */
-const num = (n) => `${+n.toFixed(4)}`;
+/**
+ * Number → clean string (no float artifacts, trailing zeros trimmed).
+ */
+const number_ = (n: number): string => `${+n.toFixed(4)}`;
 
-/** OKLCH spec triple → CSS string, L as a percentage. */
-export const oklch = ({ l, c, h }) =>
-  `oklch(${num(l * 100)}% ${num(c)} ${num(h)})`;
+/**
+ * OKLCH spec triple → CSS string, L as a percentage.
+ */
+export const oklch = ({ l, c, h }: OklchTriple): string =>
+  `oklch(${number_(l * 100)}% ${number_(c)} ${number_(h)})`;

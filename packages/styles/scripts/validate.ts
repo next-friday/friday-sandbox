@@ -4,22 +4,23 @@
 // the text on its own tint — are advisory: a failure there needs a darker spec
 // value, a brand decision the build must not silently make.
 
-import { readFileSync } from "node:fs";
-import { fileURLToPath } from "node:url";
-import { dirname, join } from "node:path";
 import { parse } from "culori";
-import { validateTheme, APCA_BODY, WCAG_MIN } from "./contrast.js";
-import { GROUND_DARK } from "./formulas.js";
 
-const here = dirname(fileURLToPath(import.meta.url));
-const spec = JSON.parse(
-  readFileSync(join(here, "../tokens/default.spec.json"), "utf8"),
-);
+import { validateTheme, APCA_BODY, WCAG_MIN } from "./contrast.ts";
+import { GROUND_DARK } from "./formulas.ts";
+import { loadSpec } from "./spec.ts";
+import type { ContrastFailure, OklchTriple } from "./types.ts";
 
-/** A base colour is opaque (no alpha, or alpha 1). */
-export const isOpaque = (color) => {
-  const c = typeof color === "string" ? parse(color) : color;
-  return Boolean(c) && (c.alpha === undefined || c.alpha === 1);
+const spec = loadSpec();
+
+/**
+ * A base colour is opaque: a spec triple carries no alpha; a string is parsed and checked.
+ */
+export const isOpaque = (color: OklchTriple | string): boolean => {
+  if (typeof color !== "string") return true;
+  const c = parse(color);
+  if (!c) return false;
+  return c.alpha === undefined || c.alpha === 1;
 };
 
 // Alpha-trap: every base colour must be opaque. color-mix over a translucent
@@ -31,10 +32,10 @@ const alphaFails = [
     .filter(([, c]) => !isOpaque(c))
     .map(([k]) => `spec.color.${k}`),
   ...Object.entries(GROUND_DARK)
-    .filter(([, val]) => typeof val === "string" && !isOpaque(val))
+    .filter(([, value]) => typeof value === "string" && !isOpaque(value))
     .map(([k]) => `GROUND_DARK.${k}`),
 ];
-if (alphaFails.length) {
+if (alphaFails.length > 0) {
   console.error(
     `\n  ✗ alpha-trap — base colours must be opaque: ${alphaFails.join(", ")}`,
   );
@@ -42,22 +43,22 @@ if (alphaFails.length) {
 }
 
 const fail = validateTheme(spec);
-const fmt = (arr) =>
-  arr
+const fmt = (array: ContrastFailure[]): string =>
+  array
     .map((f) => `    ${f.id} [${f.mode}]  APCA ${f.lc}  WCAG ${f.wcag}`)
     .join("\n");
 
 console.log(`contrast gate — APCA ≥ ${APCA_BODY}, WCAG ≥ ${WCAG_MIN}`);
 
-if (fail.tinted.length) {
+if (fail.tinted.length > 0) {
   console.log(
-    "\n  ⚠ tinted advisories (role used AS TEXT on its own tint — needs a darker spec value, not a foreground fix):",
+    "\n  tinted advisories (role used AS TEXT on its own tint, needs a darker spec value, not a foreground fix):",
   );
   console.log(fmt(fail.tinted));
 }
 
 const hard = [...fail.solid, ...fail.text];
-if (hard.length) {
+if (hard.length > 0) {
   console.error("\n  ✗ HARD FAIL — solid/core-text pairs below threshold:");
   console.error(fmt(hard));
   process.exit(1);
@@ -65,6 +66,8 @@ if (hard.length) {
 
 console.log(
   `\n  ✓ all solid + core-text pairs pass${
-    fail.tinted.length ? ` (${fail.tinted.length} tinted advisories above)` : ""
+    fail.tinted.length > 0
+      ? ` (${fail.tinted.length} tinted advisories above)`
+      : ""
   }`,
 );
