@@ -1,87 +1,34 @@
 ---
-$schema: ./theme-spec.schema.json
 generated: true
-pipeline: spec → validate (schema) → expand (formulas.js) → emit (color.css, theme.css, registered.css)
-tier_a:
-  [
-    name,
-    mode,
-    color,
-    radiusScale,
-    border,
-    density,
-    typeScale,
-    intensity,
-    fontSans,
-    fontMono,
-  ]
-derived_per_role:
-  [
-    hover,
-    pressed,
-    soft,
-    soft-hover,
-    soft-pressed,
-    surface,
-    surface-hover,
-    surface-pressed,
-    border,
-    outline-border,
-    tint-hover,
-    tint-pressed,
-  ]
+namespace: --fri-*
+pipeline: spec -> validate (schema) -> derive (formulas.js) -> emit (tokens.css, tailwind.css, registered.css)
 ---
 
-# Friday Design System — theme contract
+# Friday Design System token contract
 
-This file is the human- and machine-readable contract for a Friday theme. A theme is a
-small spec validated against `theme-spec.schema.json`; `scripts/codegen.js` expands it
-through `scripts/formulas.js` into the full token system — no hand-authored color
-values. Edit the spec or the formula table, never the generated CSS.
+Generated from `tokens/default.spec.json` through `scripts/formulas.js`. Every
+token is `--fri-*` prefixed; every colour mix is `color-mix(in oklab, …)`. Edit
+the spec or the formula table, never the generated CSS.
 
-## Roles
+## Two tiers
 
-- Brand roles (each owns a full interaction ladder): primary, secondary, accent, info, success, warning, danger.
-- Ground: background, foreground, neutral.
-- Surface family (shadcn-compatible): muted, card, popover, input.
-- `destructive` aliases `danger` (danger owns the ladder).
+- **Tier 1 (consumer base):** brand `primary/secondary/accent`, status `info/success/warning/danger` (each + `-foreground`); ground `background/foreground/neutral`; `ring`; the radius and spacing scales; type, motion, and z-index. A consumer sets these; the system derives the rest.
+- **Tier 2 (derived):** the 12-rung interaction ladder (hover, pressed, soft, soft-hover, soft-pressed, surface, surface-hover, surface-pressed, border, outline-border, tint-hover, tint-pressed) per brand role; surfaces (card, popover, field, fill, fill-strong, inverse, overlay) derived from the ground; text tiers (foreground-muted, foreground-faint); border tiers (border-strong, border, border-subtle). Public and overridable, but names freeze only at the first stable release.
 
-Every brand role derives 12 interaction rungs: hover, pressed, soft, soft-hover, soft-pressed, surface, surface-hover, surface-pressed, border, outline-border, tint-hover, tint-pressed.
+## Emission
 
-## Status hue locks (enforced by the schema)
+Token definitions live in `@layer theme`; the derived system is emitted under
+`:root, [data-theme]` so a nested `[data-theme]` scope recomputes its own
+`color-mix` against that scope's ground. The `@theme inline` Tailwind map is
+emitted unlayered in `tailwind.css`. `@property` registers the base colours as
+progressive enhancement with a static `initial-value`.
 
-| role    | hue band |
-| ------- | -------- |
-| danger  | 15–35    |
-| warning | 60–95    |
-| success | 140–165  |
-| info    | 220–260  |
+## Declared grammar exceptions
 
-An agent may tune a status role's L and C, but its hue stays in band — so red stays red.
+These irregularities are intentional and declared, not accidental:
 
-## Invariants
-
-- Every `--<role>` has a `--<role>-foreground` chosen for legible contrast; never set by hand.
-- Button labels are five distinct sizes (xs < sm < md < lg < xl); no two adjacent sizes are pixel-identical.
-- Dark mode is an explicit `.dark, [data-theme="dark"]` block (emitted after the light block), so the interaction ladder reflows per `color-scheme`.
-
-## Worked example — "a calm fintech dark theme"
-
-calm → low chroma (C ≤ 0.12) · fintech → blue family (hue 220–260) · dark → `mode: "dark"`.
-
-```json
-{
-  "name": "Calm Fintech",
-  "mode": "dark",
-  "color": {
-    "primary": { "l": 0.62, "c": 0.11, "h": 245 },
-    "neutral": { "l": 0.65, "c": 0.01, "h": 245 },
-    "background": { "l": 0.17, "c": 0, "h": 0 },
-    "foreground": { "l": 0.96, "c": 0, "h": 0 }
-  },
-  "radiusScale": 0.75
-}
-```
-
-Validate it against the schema, then run codegen to expand it into palette, ladder,
-surfaces, and dark values.
+- **Scale vocabularies.** `spacing` is the full scale (2xs to 4xl). `gap` is a deliberate subset of it (xs to xl). `radius` carries the semantic endpoints `none` and `full` around an xs to xl range. The differences are by design, not omissions.
+- **Dark re-declarations.** `background`, `foreground`, `accent` and `accent-foreground` are emitted twice, once light and once under the dark scope, because they flip with the ground.
+- **Geometry archetypes.** `--fri-<archetype>-radius` and `--fri-<archetype>-size` (action, field, box, feedback) are single default values, role-led to mirror the colour grammar. `size` is the default block-axis control dimension, that is a control height, not an icon size, a width, or a spacing unit. Per-size variants are produced inside each component from local `--_*` variables and are not public tokens.
+- **Interaction ladder state coverage.** `soft` and `surface` are stateful fills with base, hover and pressed rungs. `tint` is an interaction-only overlay with hover and pressed and no base, by design. `border` and `outline-border` are static line colours with no interaction rungs.
+- **Private variables.** Custom properties beginning `--_` are component-internal and carry no SemVer guarantee. Only `--fri-*` is the public contract.

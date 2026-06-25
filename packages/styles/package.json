@@ -37,7 +37,14 @@
     },
     "./schema": "./theme-spec.schema.json",
     "./tokens": "./tokens/default.spec.json",
-    "./knobs": "./tokens/knobs.json",
+    "./template": {
+      "style": "./src/theme-template.css",
+      "default": "./src/theme-template.css"
+    },
+    "./compat": {
+      "style": "./src/theme/compat.css",
+      "default": "./src/theme/compat.css"
+    },
     "./package.json": "./package.json"
   },
   "files": [
@@ -56,6 +63,7 @@
     "codegen": "node scripts/codegen.js",
     "prepack": "clean-package",
     "postpack": "clean-package restore",
+    "test": "node --test \"scripts/*.test.js\"",
     "validate": "node scripts/validate.js"
   },
   "devDependencies": {

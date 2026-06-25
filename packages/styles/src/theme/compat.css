@@ -1,0 +1,25 @@
+/* Optional shadcn/Tailwind compatibility adapter. One-way aliases the unprefixed
+   community token names to the canonical --fri-* tokens. Import this ONLY if you
+   consume unprefixed names; it does not make them canonical — Friday's own
+   components consume --fri-* directly, never --primary. */
+:root {
+  --background: var(--fri-background);
+  --foreground: var(--fri-foreground);
+  --primary: var(--fri-primary);
+  --primary-foreground: var(--fri-primary-foreground);
+  --secondary: var(--fri-secondary);
+  --secondary-foreground: var(--fri-secondary-foreground);
+  --accent: var(--fri-accent);
+  --accent-foreground: var(--fri-accent-foreground);
+  --muted: var(--fri-fill);
+  --muted-foreground: var(--fri-foreground-muted);
+  --card: var(--fri-card);
+  --card-foreground: var(--fri-card-foreground);
+  --popover: var(--fri-popover);
+  --popover-foreground: var(--fri-popover-foreground);
+  --input: var(--fri-field);
+  --border: var(--fri-border);
+  --ring: var(--fri-ring);
+  --destructive: var(--fri-danger);
+  --destructive-foreground: var(--fri-danger-foreground);
+}

@@ -1,5 +1,5 @@
 @utility status-disabled {
-  @apply pointer-events-none cursor-not-allowed opacity-(--disabled-opacity);
+  @apply pointer-events-none cursor-not-allowed opacity-(--fri-disabled-opacity);
 }
 
 @utility transition-base {
@@ -7,5 +7,5 @@
 }
 
 @utility focus-ring {
-  @apply ring-(length:--ring-width) ring-ring ring-offset-(length:--ring-offset-width) ring-offset-background;
+  @apply ring-(length:--fri-ring-width) ring-ring ring-offset-(length:--fri-ring-offset-width) ring-offset-background;
 }

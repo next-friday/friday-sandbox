@@ -1,6 +1,22 @@
 @layer components {
   .fri-spinner {
-    @apply inline-block size-(--spinner-size) shrink-0 animate-spin rounded-full bg-(image:--spinner-image) mask-(--spinner-mask) motion-reduce:animate-none;
+    /* The conic sweep, the track ring and the radial cutout are pure rendering
+       internals; only the spin size ties back to the public spacing scale. */
+    --_spinner-arc: 25%;
+    --_spinner-thickness: 25%;
+    --_spinner-track: color-mix(in oklab, currentColor 24%, transparent);
+    --_spinner-image: conic-gradient(
+      currentColor var(--_spinner-arc),
+      var(--_spinner-track) 0
+    );
+    --_spinner-mask: radial-gradient(
+      farthest-side,
+      transparent calc(100% - var(--_spinner-thickness)),
+      black 0
+    );
+    --spinner-size: calc(var(--fri-spacing-xs) * var(--_spinner-n));
+
+    @apply inline-block size-(--spinner-size) shrink-0 animate-spin rounded-full bg-(image:--_spinner-image) mask-(--_spinner-mask) motion-reduce:animate-none;
   }
 
   /* :where() bakes the default at zero specificity; explicit classes override. */
@@ -27,20 +43,22 @@
     @apply text-danger;
   }
 
-  .fri-spinner-xs {
-    --spinner-size: var(--spinner-size-xs);
-  }
-  .fri-spinner-sm {
-    --spinner-size: var(--spinner-size-sm);
-  }
+  /* Size — each class sets only the ramp multiplier; the formula above turns it
+     into the spin size. :where() bakes the md default at zero specificity. */
   :where(.fri-spinner),
   .fri-spinner-md {
-    --spinner-size: var(--spinner-size-md);
+    --_spinner-n: 6;
+  }
+  .fri-spinner-xs {
+    --_spinner-n: 4;
+  }
+  .fri-spinner-sm {
+    --_spinner-n: 5;
   }
   .fri-spinner-lg {
-    --spinner-size: var(--spinner-size-lg);
+    --_spinner-n: 8;
   }
   .fri-spinner-xl {
-    --spinner-size: var(--spinner-size-xl);
+    --_spinner-n: 10;
   }
 }

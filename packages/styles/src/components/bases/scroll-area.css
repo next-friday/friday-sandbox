@@ -1,21 +1,27 @@
 @layer components {
   .fri-scroll-area {
+    /* Thickness from a component-local ramp multiplier × the public spacing scale. */
+    --scroll-area-thickness: calc(
+      var(--fri-spacing-xs) * var(--_scroll-area-n)
+    );
     @apply relative overflow-hidden;
   }
 
+  /* :where() bakes the md default at zero specificity; explicit classes override. */
+  :where(.fri-scroll-area) {
+    --_scroll-area-n: 2.5;
+  }
   .fri-scroll-area-xs {
-    --scroll-area-thickness: var(--scroll-area-thickness-xs);
+    --_scroll-area-n: 1.5;
   }
   .fri-scroll-area-sm {
-    --scroll-area-thickness: var(--scroll-area-thickness-sm);
+    --_scroll-area-n: 2;
   }
-  /* :where() bakes the default at zero specificity; explicit classes override. */
-  :where(.fri-scroll-area),
   .fri-scroll-area-md {
-    --scroll-area-thickness: var(--scroll-area-thickness-md);
+    --_scroll-area-n: 2.5;
   }
   .fri-scroll-area-lg {
-    --scroll-area-thickness: var(--scroll-area-thickness-lg);
+    --_scroll-area-n: 3;
   }
 
   .fri-scroll-area-viewport {

@@ -112,12 +112,12 @@ Components use a kebab-case `fri-<component>-<modifier>` convention. Apply the b
 
 ## Consumer theming
 
-The default theme ships **light** and **dark**, and you retheme by overriding flat CSS custom properties — no build step, plugin, or JavaScript. The same approach works in Next.js, plain HTML, WordPress, or PHP; only _where the CSS lives_ changes.
+The default theme ships **light** and **dark**, and you retheme by overriding flat CSS custom properties, with no build step, plugin, or JavaScript. The same approach works in Next.js, plain HTML, WordPress, or PHP; only _where the CSS lives_ changes.
 
 ### 1. Load the stylesheet once
 
 ```html
-<!-- plain HTML / WordPress / PHP — via CDN -->
+<!-- plain HTML / WordPress / PHP, via CDN -->
 <link
   rel="stylesheet"
   href="https://unpkg.com/@friday-sandbox/styles/dist/index.css"
@@ -125,14 +125,14 @@ The default theme ships **light** and **dark**, and you retheme by overriding fl
 ```
 
 ```css
-/* Next.js or any bundler — app/globals.css, after Tailwind */
+/* Next.js or any bundler: app/globals.css, after Tailwind */
 @import "tailwindcss";
 @import "@friday-sandbox/styles";
 ```
 
 ### 2. Switch and scope with `data-theme`
 
-Light is the default. Apply dark with the `.dark` class or `[data-theme="dark"]`, on `<html>` or any subtree — themes nest:
+Light is the default. Apply dark with the `.dark` class or `[data-theme="dark"]`, on `<html>` or any subtree, and themes nest:
 
 ```html
 <html data-theme="dark">
@@ -142,15 +142,15 @@ Light is the default. Apply dark with the `.dark` class or `[data-theme="dark"]`
 
 ### 3. Author a custom theme
 
-Write one flat block. Set the role and its `-foreground` together; every interaction state (`--primary-hover`, `--primary-soft`, …) derives automatically — never set those by hand:
+Write one flat block. Set the role and its `-foreground` together; every interaction state such as `--fri-primary-hover` and `--fri-primary-soft` derives automatically, so never set those by hand:
 
 ```css
 [data-theme="brand"] {
   color-scheme: light;
-  --primary: oklch(55% 0.3 240);
-  --primary-foreground: oklch(98% 0 0);
-  --background: oklch(98% 0 0);
-  --foreground: oklch(20% 0 0);
+  --fri-primary: oklch(55% 0.3 240);
+  --fri-primary-foreground: oklch(98% 0 0);
+  --fri-background: oklch(98% 0 0);
+  --fri-foreground: oklch(20% 0 0);
 }
 ```
 
@@ -162,12 +162,12 @@ A custom theme uses its own name, so it never collides with the shipped `light` 
 
 ### 4. Override a few tokens for one region
 
-A normal CSS rule — the everyday way (the same idiom as the `--grid-min` override shown under [Component-local tokens](#component-local-tokens)):
+A normal CSS rule, the everyday way. It uses the same idiom as the component-local `--grid-min` override described below:
 
 ```css
 .promo {
-  --primary: oklch(60% 0.25 20);
-  --primary-foreground: oklch(98% 0 0);
+  --fri-primary: oklch(60% 0.25 20);
+  --fri-primary-foreground: oklch(98% 0 0);
 }
 ```
 
@@ -177,140 +177,34 @@ A normal CSS rule — the everyday way (the same idiom as the `--grid-min` overr
 </section>
 ```
 
-Inline `style="--primary: …; --primary-foreground: …"` is reserved for a value known only at render time (a CMS field, a PHP `echo`) — set the role and its foreground together.
+Inline `style="--fri-primary: …; --fri-primary-foreground: …"` is reserved for a value known only at render time, such as a CMS field or a PHP `echo`. Set the role and its foreground together.
 
 ### The contract
 
-Set these; everything else derives. Override a role and its foreground as a pair.
+Set these Tier-1 base tokens; the system derives every interaction state, surface, and tier from them. Override a fill and its `-foreground` as a pair.
 
-| Group                                                  | Variables                                                                              |
-| ------------------------------------------------------ | -------------------------------------------------------------------------------------- |
-| Ground                                                 | `--background`, `--foreground`, `--neutral`                                            |
-| Brand roles (each `+ -foreground`)                     | `--primary`, `--secondary`, `--accent`, `--info`, `--success`, `--warning`, `--danger` |
-| Surface family (each `+ -foreground` where it has one) | `--muted`, `--card`, `--popover`, `--input`                                            |
-| Misc                                                   | `--ring`, `--link`, `--border-color`, `--separator-color`                              |
-| Inverted pair (tooltip)                                | `--surface`, `--surface-foreground`                                                    |
+| Group                         | Variables                                                                                                     |
+| ----------------------------- | ------------------------------------------------------------------------------------------------------------- |
+| Ground                        | `--fri-background`, `--fri-foreground`, `--fri-neutral`                                                       |
+| Brand (each `+ -foreground`)  | `--fri-primary`, `--fri-secondary`, `--fri-accent`                                                            |
+| Status (each `+ -foreground`) | `--fri-info`, `--fri-success`, `--fri-warning`, `--fri-danger`                                                |
+| Focus, links                  | `--fri-ring`, `--fri-link`                                                                                    |
+| Geometry, type                | `--fri-radius-*`, `--fri-spacing-*`, `--fri-border-width`, `--fri-font-family-sans`, `--fri-font-family-mono` |
 
-The full per-token reference, with default values, is in [CSS Variables](#css-variables) below.
+Everything else, such as `--fri-card`, `--fri-fill`, `--fri-foreground-muted`, `--fri-border`, and the 12-rung interaction ladder, is **derived** and recomputes when you change a base token. A copy-paste starter ships at `@friday-sandbox/styles/template`; the complete generated reference is in `design.md`. For drop-in shadcn/Tailwind unprefixed names, import `@friday-sandbox/styles/compat`.
 
 ### Three things to know
 
-- **Contrast is yours to keep.** The shipped `light` / `dark` are contrast-checked at build time; a runtime override is not. Always set `--<role>-foreground` alongside `--<role>` so text stays legible — runtime does not repair it.
-- **Cascade order.** Load the package CSS first and your overrides after; later rules win at equal specificity. Overriding the built-in `light` / `dark` from a bare `:root` while a `[data-theme]` is active loses to the more specific `[data-theme]` rule — override at the same level, or inline. This is the usual snag in WordPress/PHP, not the token values.
-- **Component-local tokens** (e.g. `--grid-min`) are set on the element, not `:root`, where the component's own class would mask a `:root` value.
+- **Contrast is yours to keep.** The shipped `light` / `dark` are contrast-checked at build time; a runtime override is not. Always set `--<role>-foreground` alongside `--<role>` so text stays legible; runtime does not repair it.
+- **Cascade order.** Load the package CSS first and your overrides after; later rules win at equal specificity. Overriding the built-in `light` / `dark` from a bare `:root` while a `[data-theme]` is active loses to the more specific `[data-theme]` rule; override at the same level, or inline. This is the usual snag in WordPress/PHP, not the token values.
+- **Component-local tokens** such as `--grid-min` are set on the element, not `:root`, where the component's own class would mask a `:root` value.
 
 ## CSS Variables
 
-Override any token in your app's CSS to retheme.
-
-### Colors
-
-Semantic colors, each paired with a foreground that components use for readable text:
-
-```css
-:root {
-  --primary: oklch(57.49% 0.2084 257.52);
-  --primary-foreground: oklch(100% 0 0);
-
-  --secondary: oklch(43.92% 0.0192 239.51);
-  --secondary-foreground: oklch(100% 0 0);
-
-  --accent: oklch(0 0 0);
-  --accent-foreground: oklch(100% 0 0);
-
-  --info: oklch(55.53% 0.175 255.24);
-  --info-foreground: oklch(100% 0 0);
-
-  --success: oklch(53.24% 0.1205 159.6);
-  --success-foreground: oklch(100% 0 0);
-
-  --warning: oklch(55% 0.15 63);
-  --warning-foreground: oklch(100% 0 0);
-
-  --danger: oklch(56.13% 0.1887 21.51);
-  --danger-foreground: oklch(100% 0 0);
-}
-```
-
-Hover, pressed, soft and surface states are derived from each color role in the semantic layer (`theme/theme.css`), not in the components — the components only reference the finished tokens. Change `--primary` and `.fri-button-primary`, plus its hover, focus ring, and pressed states, follows automatically.
-
-### Surfaces
-
-Light by default, flipped by `.dark` or `[data-theme="dark"]`:
-
-```css
-:root {
-  --background: oklch(100% 0 0);
-  --foreground: oklch(0 0 0);
-  --neutral: oklch(65.47% 0.0208 248.15);
-  --ring: oklch(57.49% 0.2084 257.52);
-}
-```
-
-`--surface` and `--surface-foreground` are an inverted surface pair, such as a tooltip, with `bg-surface` and `text-surface-foreground` utilities. `--neutral` is a standalone mid-tone with no foreground token and is the only color identical in light and dark. `--ring` is the focus ring color, applied through the `focus-ring` utility and the `ring-ring` alias.
-
-### Sizing
-
-Three semantic scopes: `action` for clickable triggers, `field` for form data entry, and `box` for containers:
-
-```css
-:root {
-  --size-action: 0.25rem;
-  --radius-action: 0.5rem;
-
-  --size-field: 0.25rem;
-  --radius-field: 0.375rem;
-
-  --size-box: 0.25rem;
-  --radius-box: 0.75rem;
-
-  --size-feedback: 0.25rem;
-  --radius-feedback: 0.5rem;
-
-  --border: 1px;
-}
-```
-
-Override `--size-{scope}` and every size from `xs` to `xl` for that scope rescales together, so you do not have to touch each variant. `--radius-{scope}` is the reference at `md`. Smaller sizes get proportionally smaller corners and larger sizes get larger ones, so a pill never collapses to a square at `xs` or stretches at `xl`.
-
-### Component-local tokens
-
-A few tokens are scoped to a component rather than the global theme. Override them on the element, not at `:root`, where the component's own class declaration would mask them. `--grid-min` sets the minimum track width of a responsive grid built with `fri-grid-cols-auto-fit` or `fri-grid-cols-auto-fill`. It defaults to `16rem` on `.fri-grid`:
-
-```html
-<div class="fri-grid fri-grid-cols-auto-fit [--grid-min:20rem]">…</div>
-```
-
-```css
-.product-grid.fri-grid {
-  --grid-min: 20rem;
-}
-```
-
-### Tailwind utility aliases
-
-Every color token is registered with `@theme inline`, so Tailwind v4 emits a canonical utility class for each. Use the alias, not the arbitrary-var fallback:
-
-```html
-<!-- canonical -->
-<div class="bg-primary px-4 py-2 text-sm text-primary-foreground">…</div>
-<div class="border border-primary">…</div>
-
-<!-- avoid: arbitrary-var form for a registered token -->
-<div
-  class="rounded-md bg-(--primary) px-4 py-2 text-sm text-(--primary-foreground)"
->
-  …
-</div>
-```
-
-Available aliases:
-
-- **Colors**: `bg-<color>`, `text-<color>`, `border-<color>`, `ring-<color>`, `fill-<color>`, `stroke-<color>` for every intent and its foreground pair, plus `background`, `foreground`, `surface` and its foreground, and `neutral`. `neutral` has an alias but no foreground token.
-- **Radius**: `rounded-action`, `rounded-field`, `rounded-box`, `rounded-feedback`.
-- **Border**: `border` width from `--border`.
-
-Component-local variables such as `--grid-min` are not registered in `@theme inline`, so they have no alias. Reference them with the arbitrary-var form, for example `bg-(--grid-min)`.
+The complete, always-current token reference, every `--fri-*` token with its
+default value, is generated, never hand-maintained, so it cannot drift from the
+shipped CSS. Read it in [`design.md`](./design.md), or copy the starter
+`src/theme-template.css` (exported as `@friday-sandbox/styles/template`).
 
 ## Troubleshooting
 

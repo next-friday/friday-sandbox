@@ -274,7 +274,7 @@ export const CustomStyles: Story = {
     },
   },
   render: () => (
-    <ScrollArea.Root className="h-72 rounded-box border border-border p-4">
+    <ScrollArea.Root className="rounded-box h-72 border border-border p-4">
       <ScrollArea.Viewport>
         <Lorem paragraph={9} />
       </ScrollArea.Viewport>
