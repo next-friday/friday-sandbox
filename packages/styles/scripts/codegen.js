@@ -243,7 +243,7 @@ function colorMap() {
     ["border", "border"],
     ["border-strong", "border-strong"],
     ["border-subtle", "border-subtle"],
-    ["separator", "separator-color"],
+    ["separator", "border-subtle"],
     ["scroll-thumb", "scroll-thumb"],
     ["scroll-thumb-hover", "scroll-thumb-hover"],
     ["scroll-track", "scroll-track"],

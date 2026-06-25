@@ -171,17 +171,21 @@ export const RADIUS_ARCHETYPE = {
   feedback: "sm",
 };
 
-/** Spacing scale (Tier 1). 4px base with a 2px micro-step. */
+/**
+ * Spacing scale (Tier 1). 4px base grid with a 2px micro-step, up to 64px.
+ * A regular t-shirt scale (no `base`/`section` outliers) so a step is
+ * predictable from its name.
+ */
 export const SPACING_SCALE = {
-  xxs: "0.125rem",
+  "2xs": "0.125rem",
   xs: "0.25rem",
   sm: "0.5rem",
   md: "0.75rem",
-  base: "1rem",
-  lg: "1.5rem",
-  xl: "2rem",
-  xxl: "3rem",
-  section: "4rem",
+  lg: "1rem",
+  xl: "1.5rem",
+  "2xl": "2rem",
+  "3xl": "3rem",
+  "4xl": "4rem",
 };
 
 /** Motion (Tier 1). */
@@ -234,7 +238,6 @@ export const GROUND_DARK = {
   foreground: "oklch(96% 0 0)",
   accent: "oklch(96% 0 0)",
   "accent-foreground": "oklch(17% 0 0)",
-  ring: "oklch(65% 0.19 257.52)",
 };
 
 /** Number → clean string (no float artifacts, trailing zeros trimmed). */

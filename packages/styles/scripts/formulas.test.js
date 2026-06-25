@@ -97,8 +97,11 @@ test("t-shirt radius and spacing scales carry distinct values", () => {
   assert.equal(RADIUS_SCALE.full, "9999px");
   const radii = Object.values(RADIUS_SCALE);
   assert.equal(new Set(radii).size, radii.length, "radius steps are distinct");
-  assert.equal(SPACING_SCALE.base, "1rem");
-  assert.equal(SPACING_SCALE.section, "4rem");
+  // Spacing is a regular t-shirt scale: no `base`/`section` semantic outliers.
+  assert.equal(SPACING_SCALE["2xs"], "0.125rem");
+  assert.equal(SPACING_SCALE.lg, "1rem");
+  assert.equal(SPACING_SCALE["4xl"], "4rem");
+  assert.ok(!("base" in SPACING_SCALE) && !("section" in SPACING_SCALE));
 });
 
 test("oklch triple renders L as a percentage", () => {

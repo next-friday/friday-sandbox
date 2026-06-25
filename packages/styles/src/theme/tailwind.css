@@ -9,7 +9,7 @@
   --color-border: var(--fri-border);
   --color-border-strong: var(--fri-border-strong);
   --color-border-subtle: var(--fri-border-subtle);
-  --color-separator: var(--fri-separator-color);
+  --color-separator: var(--fri-border-subtle);
   --color-scroll-thumb: var(--fri-scroll-thumb);
   --color-scroll-thumb-hover: var(--fri-scroll-thumb-hover);
   --color-scroll-track: var(--fri-scroll-track);
@@ -134,15 +134,15 @@
   --radius-lg: var(--fri-radius-lg);
   --radius-xl: var(--fri-radius-xl);
   --radius-full: var(--fri-radius-full);
-  --spacing-xxs: var(--fri-spacing-xxs);
+  --spacing-2xs: var(--fri-spacing-2xs);
   --spacing-xs: var(--fri-spacing-xs);
   --spacing-sm: var(--fri-spacing-sm);
   --spacing-md: var(--fri-spacing-md);
-  --spacing-base: var(--fri-spacing-base);
   --spacing-lg: var(--fri-spacing-lg);
   --spacing-xl: var(--fri-spacing-xl);
-  --spacing-xxl: var(--fri-spacing-xxl);
-  --spacing-section: var(--fri-spacing-section);
+  --spacing-2xl: var(--fri-spacing-2xl);
+  --spacing-3xl: var(--fri-spacing-3xl);
+  --spacing-4xl: var(--fri-spacing-4xl);
   --font-sans: var(--fri-font-family-sans);
   --font-mono: var(--fri-font-family-mono);
 }

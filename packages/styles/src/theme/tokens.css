@@ -39,15 +39,15 @@
     --fri-radius-full: 9999px;
 
     /* Spacing scale */
-    --fri-spacing-xxs: 0.125rem;
+    --fri-spacing-2xs: 0.125rem;
     --fri-spacing-xs: 0.25rem;
     --fri-spacing-sm: 0.5rem;
     --fri-spacing-md: 0.75rem;
-    --fri-spacing-base: 1rem;
-    --fri-spacing-lg: 1.5rem;
-    --fri-spacing-xl: 2rem;
-    --fri-spacing-xxl: 3rem;
-    --fri-spacing-section: 4rem;
+    --fri-spacing-lg: 1rem;
+    --fri-spacing-xl: 1.5rem;
+    --fri-spacing-2xl: 2rem;
+    --fri-spacing-3xl: 3rem;
+    --fri-spacing-4xl: 4rem;
 
     /* Type */
     --fri-font-family-sans: ui-sans-serif, system-ui, sans-serif;
