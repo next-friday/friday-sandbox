@@ -156,15 +156,21 @@ export const SCROLL_THUMB = {
 /** Pointers derived from the primary (the consumer may override `--fri-ring`). */
 export const POINTERS = { link: `var(${P}primary)` };
 
-/** t-shirt radius scale (Tier 1). Each step distinct; consumer-tunable. */
-export const RADIUS_SCALE = {
-  none: "0",
-  xs: "0.25rem",
-  sm: "0.5rem",
-  md: "0.875rem",
-  lg: "1.25rem",
-  xl: "2rem",
-  full: "9999px",
+/** Radius ladder ratios against the `md` base; none and full are literal endpoints. */
+const RADIUS_RATIO = { xs: 2 / 7, sm: 4 / 7, md: 1, lg: 10 / 7, xl: 16 / 7 };
+
+/**
+ * t-shirt radius ladder (Tier 1) derived from a base `rem`, the `md` anchor the
+ * consumer sets through the spec `radius` knob. Numeric rungs are `base * ratio`;
+ * none and full are literal endpoints. Each step stays distinct.
+ */
+export const radiusScale = (base) => {
+  const rem = parseFloat(base);
+  const rungs = { none: "0" };
+  for (const [step, ratio] of Object.entries(RADIUS_RATIO))
+    rungs[step] = `${num(rem * ratio)}rem`;
+  rungs.full = "9999px";
+  return rungs;
 };
 
 /**

@@ -13,7 +13,7 @@ import {
   surface,
   textTier,
   borderTier,
-  RADIUS_SCALE,
+  radiusScale,
   RADIUS_ARCHETYPE,
   SIZE_ARCHETYPE,
   SPACING_SCALE,
@@ -94,10 +94,23 @@ test("border tiers fade the neutral toward transparent", () => {
   );
 });
 
-test("t-shirt radius and spacing scales carry distinct values", () => {
-  assert.equal(RADIUS_SCALE.none, "0");
-  assert.equal(RADIUS_SCALE.full, "9999px");
-  const radii = Object.values(RADIUS_SCALE);
+test("radius derives from the base and spacing carries distinct values", () => {
+  // Default base reproduces the prior fixed ladder exactly (no visual regression).
+  assert.deepEqual(radiusScale("0.875rem"), {
+    none: "0",
+    xs: "0.25rem",
+    sm: "0.5rem",
+    md: "0.875rem",
+    lg: "1.25rem",
+    xl: "2rem",
+    full: "9999px",
+  });
+  // Base scales the numeric rungs; none and full stay literal endpoints.
+  assert.equal(radiusScale("0.5rem").md, "0.5rem");
+  assert.equal(radiusScale("0.5rem").sm, "0.2857rem");
+  assert.equal(radiusScale("0.5rem").none, "0");
+  assert.equal(radiusScale("0.5rem").full, "9999px");
+  const radii = Object.values(radiusScale("0.875rem"));
   assert.equal(new Set(radii).size, radii.length, "radius steps are distinct");
   // Spacing is a regular t-shirt scale: no `base`/`section` semantic outliers.
   assert.equal(SPACING_SCALE["2xs"], "0.125rem");
