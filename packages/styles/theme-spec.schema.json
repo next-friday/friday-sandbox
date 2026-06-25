@@ -5,7 +5,7 @@
   "description": "The contract a theme spec must satisfy. The builder and the AI agent write specs validated against this; codegen expands a valid spec into the full token system.",
   "type": "object",
   "additionalProperties": false,
-  "required": ["name", "mode", "color", "radiusScale"],
+  "required": ["name", "mode", "color"],
   "properties": {
     "name": { "type": "string", "maxLength": 60 },
     "mode": { "enum": ["light", "dark", "both"] },
@@ -26,11 +26,8 @@
         "info": { "$ref": "#/$defs/statusInfo" }
       }
     },
-    "radiusScale": { "type": "number", "minimum": 0, "maximum": 2 },
+    "radius": { "$ref": "#/$defs/remDimension" },
     "border": { "$ref": "#/$defs/dimension" },
-    "density": { "enum": ["compact", "comfortable", "spacious"] },
-    "typeScale": { "type": "number", "minimum": 1.05, "maximum": 1.4 },
-    "intensity": { "type": "number", "minimum": 0.5, "maximum": 1.5 },
     "fontSans": { "type": "string" },
     "fontMono": { "type": "string" }
   },
@@ -61,6 +58,7 @@
       "allOf": [{ "$ref": "#/$defs/oklch" }],
       "properties": { "h": { "minimum": 220, "maximum": 260 } }
     },
-    "dimension": { "type": "string", "pattern": "^[0-9]*\\.?[0-9]+(rem|px)$" }
+    "dimension": { "type": "string", "pattern": "^[0-9]*\\.?[0-9]+(rem|px)$" },
+    "remDimension": { "type": "string", "pattern": "^[0-9]*\\.?[0-9]+rem$" }
   }
 }
