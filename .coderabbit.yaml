@@ -55,8 +55,7 @@ reviews:
         or an exhaustive enumeration of a prop's values, and prefer the imperative
         "Use the `X` prop to ..." form; symmetric story shape across files (summary
         -> Import snippet -> stylesheet note -> CSS snippet, same prop wording and
-        second-person tone). Story copy also stays lean: no em-dash or
-        parenthetical aside.
+        second-person tone).
     - path: packages/react/src/**/*.test.{ts,tsx}
       instructions: >-
         This repository has no separate test files; a behavior is verified by its
@@ -89,8 +88,7 @@ reviews:
         client API is touched; keep demos on the real public component API.
     - path: apps/docs/content/docs/**/*.mdx
       instructions: >-
-        Component documentation prose and examples. Enforce the lean prose rule:
-        no em-dash or parenthetical aside. Examples must use the real exported
+        Component documentation prose and examples. Examples must use the real exported
         prop names and types; flag a documented prop the component does not
         expose. Import snippets use the package name, not a workspace path.
     - path: .github/workflows/**/*.yml
@@ -108,12 +106,6 @@ reviews:
         Bump level (patch | minor | major) must match the PR type. A feat is at
         least minor, a breaking change is major. The summary reads as a release
         note to a downstream consumer, not as an internal log.
-    - path: "**/*.md"
-      instructions: >-
-        Enforce the lean prose rule. Prose is direct and token-lean:
-        flag an em-dash or a parenthetical aside in prose, which should be a
-        period, comma, or colon, or folded into the sentence. Keep parentheses
-        that belong to code, a glob, or a Markdown link target.
 chat:
   auto_reply: true
 knowledge_base:

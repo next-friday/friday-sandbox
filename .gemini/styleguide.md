@@ -81,13 +81,6 @@ Key checks for styles:
 - Branches are created from an issue with `gh issue develop <n>`, so `head_ref` starts with `<n>-`.
 - `--no-verify` is forbidden and is re-caught by CI.
 
-## Documentation prose
-
-Key checks for documentation prose:
-
-- Prose is direct and token-lean. Flag an em-dash or a parenthetical aside in any Markdown doc, README, changeset, or story copy. It should be a period, comma, or colon, or folded into the sentence.
-- Keep parentheses that belong to code, a glob, or a Markdown link target.
-
 ## Code quality
 
 - DRY across components, not just within one: flag re-implementations.
