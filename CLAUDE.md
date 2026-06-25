@@ -12,6 +12,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 Project rules, imported into context:
 
 @.claude/rules/no-guessing.md
+@.claude/rules/no-unprovable-llm-claims.md
 
 ## Architecture
 
