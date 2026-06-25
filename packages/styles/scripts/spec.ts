@@ -15,8 +15,10 @@ import schema from "../theme-spec.schema.json" with { type: "json" };
 
 import type { ThemeSpec } from "./types.ts";
 
-// Ajv ships CommonJS (`module.exports = Ajv2020`), so under NodeNext the default
-// import is the module namespace and the class is its `.default`.
+// ajv 8 is CommonJS. The bare default import and its `.default` both resolve to
+// the Ajv2020 class at runtime under Node's native ESM interop, but tsc types the
+// bare default import as non-constructable under NodeNext (TS2351), so the class
+// is read from `.default` to keep `new Ajv2020()` typechecking.
 const Ajv2020 = ajvModule.default;
 
 const here = path.dirname(fileURLToPath(import.meta.url));
