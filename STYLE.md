@@ -88,8 +88,10 @@ Each document type follows one fixed skeleton, so a reader learns the layout
 once. The templates in [`.github/doc-templates/`](.github/doc-templates) carry
 these skeletons.
 
-- Component doc (`apps/docs/content/docs/components/*.mdx`): `Purpose`, `When to
-use`, `When not to use`, `Example`, `Accessibility`, in that order.
+- Component doc (`apps/docs/content/docs/components/*.mdx`): the required spine is
+  `Purpose`, `When to use`, `When not to use`, `Example`, then `Accessibility`
+  last. A component adds its own sections, such as a `Props` table and one demo
+  per feature, between `Example` and `Accessibility`.
 - Package README: `<name>`, one-line summary, `Installation`, `Usage`.
 - Guide or how-to: a task title, then numbered steps.
 
