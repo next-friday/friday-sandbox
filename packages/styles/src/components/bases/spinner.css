@@ -1,6 +1,6 @@
 @layer components {
   .fri-spinner {
-    @apply inline-block size-(--spinner-size) shrink-0 animate-spin rounded-full bg-(image:--spinner-image) mask-(--spinner-mask) motion-reduce:animate-none;
+    @apply inline-block size-(--spinner-size) shrink-0 animate-spin rounded-full bg-(image:--fri-spinner-image) mask-(--fri-spinner-mask) motion-reduce:animate-none;
   }
 
   /* :where() bakes the default at zero specificity; explicit classes override. */
@@ -28,19 +28,19 @@
   }
 
   .fri-spinner-xs {
-    --spinner-size: var(--spinner-size-xs);
+    --spinner-size: var(--fri-spinner-size-xs);
   }
   .fri-spinner-sm {
-    --spinner-size: var(--spinner-size-sm);
+    --spinner-size: var(--fri-spinner-size-sm);
   }
   :where(.fri-spinner),
   .fri-spinner-md {
-    --spinner-size: var(--spinner-size-md);
+    --spinner-size: var(--fri-spinner-size-md);
   }
   .fri-spinner-lg {
-    --spinner-size: var(--spinner-size-lg);
+    --spinner-size: var(--fri-spinner-size-lg);
   }
   .fri-spinner-xl {
-    --spinner-size: var(--spinner-size-xl);
+    --spinner-size: var(--fri-spinner-size-xl);
   }
 }

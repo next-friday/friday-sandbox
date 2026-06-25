@@ -1,0 +1,39 @@
+/* Friday theme override template — copy into your global CSS after
+   `@import "@friday-sandbox/styles"`. Set only these base tokens; the
+   system derives the ladder, surfaces, and tiers from them. Override a
+   foreground together with its fill so the text stays legible. */
+
+:root,
+[data-theme="light"] {
+  /* Brand */
+  --fri-primary: oklch(57.49% 0.2084 257.52);
+  --fri-primary-foreground: oklch(100% 0 0);
+  --fri-secondary: oklch(43.92% 0.0192 239.51);
+  --fri-secondary-foreground: oklch(100% 0 0);
+  --fri-accent: oklch(0% 0 0);
+  --fri-accent-foreground: oklch(100% 0 0);
+  /* Status */
+  --fri-info: oklch(55.53% 0.175 255.24);
+  --fri-info-foreground: oklch(100% 0 0);
+  --fri-success: oklch(53.24% 0.1205 159.6);
+  --fri-success-foreground: oklch(100% 0 0);
+  --fri-warning: oklch(55% 0.15 63);
+  --fri-warning-foreground: oklch(100% 0 0);
+  --fri-danger: oklch(56.13% 0.1887 21.51);
+  --fri-danger-foreground: oklch(100% 0 0);
+  /* Ground */
+  --fri-background: oklch(100% 0 0);
+  --fri-foreground: oklch(0% 0 0);
+  --fri-neutral: oklch(65.47% 0.0208 248.15);
+  /* Focus, geometry, type */
+  --fri-ring: var(--fri-primary);
+  --fri-radius-md: 0.875rem;
+  --fri-border-width: 1px;
+}
+
+.dark,
+[data-theme="dark"] {
+  /* Only the ground flips; brand and status fills carry across. */
+  --fri-background: oklch(17% 0 0);
+  --fri-foreground: oklch(96% 0 0);
+}

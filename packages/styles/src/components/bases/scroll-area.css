@@ -4,18 +4,18 @@
   }
 
   .fri-scroll-area-xs {
-    --scroll-area-thickness: var(--scroll-area-thickness-xs);
+    --scroll-area-thickness: var(--fri-scroll-area-thickness-xs);
   }
   .fri-scroll-area-sm {
-    --scroll-area-thickness: var(--scroll-area-thickness-sm);
+    --scroll-area-thickness: var(--fri-scroll-area-thickness-sm);
   }
   /* :where() bakes the default at zero specificity; explicit classes override. */
   :where(.fri-scroll-area),
   .fri-scroll-area-md {
-    --scroll-area-thickness: var(--scroll-area-thickness-md);
+    --scroll-area-thickness: var(--fri-scroll-area-thickness-md);
   }
   .fri-scroll-area-lg {
-    --scroll-area-thickness: var(--scroll-area-thickness-lg);
+    --scroll-area-thickness: var(--fri-scroll-area-thickness-lg);
   }
 
   .fri-scroll-area-viewport {

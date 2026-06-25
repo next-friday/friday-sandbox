@@ -66,51 +66,51 @@
   }
 
   .fri-flex-gap-xs {
-    @apply gap-(--gap-xs);
+    @apply gap-(--fri-gap-xs);
   }
   .fri-flex-gap-sm {
-    @apply gap-(--gap-sm);
+    @apply gap-(--fri-gap-sm);
   }
   .fri-flex-gap-md {
-    @apply gap-(--gap-md);
+    @apply gap-(--fri-gap-md);
   }
   .fri-flex-gap-lg {
-    @apply gap-(--gap-lg);
+    @apply gap-(--fri-gap-lg);
   }
   .fri-flex-gap-xl {
-    @apply gap-(--gap-xl);
+    @apply gap-(--fri-gap-xl);
   }
 
   .fri-flex-gap-x-xs {
-    @apply gap-x-(--gap-xs);
+    @apply gap-x-(--fri-gap-xs);
   }
   .fri-flex-gap-x-sm {
-    @apply gap-x-(--gap-sm);
+    @apply gap-x-(--fri-gap-sm);
   }
   .fri-flex-gap-x-md {
-    @apply gap-x-(--gap-md);
+    @apply gap-x-(--fri-gap-md);
   }
   .fri-flex-gap-x-lg {
-    @apply gap-x-(--gap-lg);
+    @apply gap-x-(--fri-gap-lg);
   }
   .fri-flex-gap-x-xl {
-    @apply gap-x-(--gap-xl);
+    @apply gap-x-(--fri-gap-xl);
   }
 
   .fri-flex-gap-y-xs {
-    @apply gap-y-(--gap-xs);
+    @apply gap-y-(--fri-gap-xs);
   }
   .fri-flex-gap-y-sm {
-    @apply gap-y-(--gap-sm);
+    @apply gap-y-(--fri-gap-sm);
   }
   .fri-flex-gap-y-md {
-    @apply gap-y-(--gap-md);
+    @apply gap-y-(--fri-gap-md);
   }
   .fri-flex-gap-y-lg {
-    @apply gap-y-(--gap-lg);
+    @apply gap-y-(--fri-gap-lg);
   }
   .fri-flex-gap-y-xl {
-    @apply gap-y-(--gap-xl);
+    @apply gap-y-(--fri-gap-xl);
   }
 
   .fri-flex-grow {

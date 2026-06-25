@@ -6,10 +6,10 @@
   /* :where() bakes the default at zero specificity; explicit classes override. */
   :where(.fri-separator),
   .fri-separator-horizontal {
-    @apply h-(--separator-thickness) w-full;
+    @apply h-(--fri-separator-thickness) w-full;
   }
 
   .fri-separator-vertical {
-    @apply h-full min-h-(--separator-length) w-(--separator-thickness);
+    @apply h-full min-h-(--fri-separator-length) w-(--fri-separator-thickness);
   }
 }
