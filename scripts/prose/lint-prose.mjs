@@ -12,7 +12,13 @@
 // reviewer-governed, not linted here, since matching string literals is high-FP.
 
 import { execFileSync } from "node:child_process";
-import { readFileSync, writeFileSync, mkdtempSync } from "node:fs";
+import {
+  readFileSync,
+  writeFileSync,
+  mkdtempSync,
+  existsSync,
+  rmSync,
+} from "node:fs";
 import { tmpdir } from "node:os";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
@@ -41,7 +47,7 @@ function clean(line) {
 
 function lintFile(path) {
   const findings = [];
-  const lines = readFileSync(path, "utf8").split("\n");
+  const lines = readFileSync(path, "utf8").split(/\r?\n/);
   const headings = new Set();
   let inFence = false;
   let inFrontmatter = lines[0]?.trim() === "---";
@@ -76,7 +82,13 @@ function lintFile(path) {
     if (inFence) return;
 
     const headingMatch = raw.match(/^#{1,6}\s+(.*?)\s*$/);
-    if (headingMatch) headings.add(headingMatch[1].replace(/[`*]/g, "").trim());
+    if (headingMatch)
+      headings.add(
+        headingMatch[1]
+          .replace(/\{#[^}]*\}/g, "")
+          .replace(/[`*]/g, "")
+          .trim(),
+      );
 
     const text = clean(raw);
     for (const [w, re] of MARKETING)
@@ -105,47 +117,53 @@ function targets() {
     encoding: "utf8",
   });
   return out
-    .split("\n")
+    .split(/\r?\n/)
     .filter(Boolean)
-    .filter((p) => !VOCAB.exclude.some((e) => p.includes(e)));
+    .filter((p) => !VOCAB.exclude.some((e) => p.includes(e)))
+    .filter((p) => existsSync(p));
 }
 
 function selfcheck() {
   const dir = mkdtempSync(join(tmpdir(), "prose-"));
+  const cleanup = () => rmSync(dir, { recursive: true, force: true });
   const f = (name, body) => {
     const p = join(dir, name);
     writeFileSync(p, body);
     return p;
   };
   const assert = (cond, msg) => {
-    if (!cond) {
-      console.error(`selfcheck FAIL: ${msg}`);
-      process.exit(1);
-    }
+    if (!cond) throw new Error(msg);
   };
 
-  assert(
-    lintFile(f("a.md", "A powerful button.")).length === 1,
-    "marketing word not flagged",
-  );
-  assert(
-    lintFile(f("b.md", "A button for a single action.")).length === 0,
-    "clean prose flagged",
-  );
-  assert(
-    lintFile(f("c.md", "Use the `powerful` flag here.")).length === 0,
-    "code span flagged",
-  );
-  assert(
-    lintFile(f("d.md", "Use a widget for this.")).length === 1,
-    "off-vocabulary term not flagged",
-  );
-  assert(
-    lintFile(f("e.md", "---\ndescription: A beautiful component.\n---\n"))
-      .length === 1,
-    "marketing word in frontmatter not flagged",
-  );
-  console.log("selfcheck OK");
+  try {
+    assert(
+      lintFile(f("a.md", "A powerful button.")).length === 1,
+      "marketing word not flagged",
+    );
+    assert(
+      lintFile(f("b.md", "A button for a single action.")).length === 0,
+      "clean prose flagged",
+    );
+    assert(
+      lintFile(f("c.md", "Use the `powerful` flag here.")).length === 0,
+      "code span flagged",
+    );
+    assert(
+      lintFile(f("d.md", "Use a widget for this.")).length === 1,
+      "off-vocabulary term not flagged",
+    );
+    assert(
+      lintFile(f("e.md", "---\ndescription: A beautiful component.\n---\n"))
+        .length === 1,
+      "marketing word in frontmatter not flagged",
+    );
+    console.log("selfcheck OK");
+  } catch (err) {
+    console.error(`selfcheck FAIL: ${err.message}`);
+    cleanup();
+    process.exit(1);
+  }
+  cleanup();
   process.exit(0);
 }
 
