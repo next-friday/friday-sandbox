@@ -93,9 +93,7 @@ export function ladder(role: BrandRole, suffix: string): string {
  */
 const SURFACE_NEUTRAL_MIX = { fill: 5, "fill-strong": 10 };
 
-/**
- *
- */
+/** The CSS value of a derived surface token (card/popover/field, fill tiers, inverse, overlay). */
 export function surface(name: string): string {
   switch (name) {
     case "card":
@@ -149,9 +147,7 @@ export const FIELD_EXTRAS = {
 /** Text emphasis tiers — fade the foreground toward the background. */
 export const TEXT_TIERS: Record<string, number> = { muted: 40, faint: 60 };
 
-/**
- *
- */
+/** A text emphasis tier (muted, faint) as a foreground-toward-background mix. */
 export function textTier(name: string): string {
   const pct = TEXT_TIERS[name];
   if (pct == undefined) throw new Error(`unknown text tier: ${name}`);
@@ -165,9 +161,7 @@ export const BORDER_TIERS: Record<string, number> = {
   subtle: 80,
 };
 
-/**
- *
- */
+/** A border tier (strong, default, subtle) as a neutral-toward-transparent mix. */
 export function borderTier(name: string): string {
   const pct = BORDER_TIERS[name];
   if (pct == undefined) throw new Error(`unknown border tier: ${name}`);

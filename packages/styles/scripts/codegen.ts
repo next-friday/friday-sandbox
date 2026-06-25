@@ -183,9 +183,7 @@ function derived() {
   return D.join("\n");
 }
 
-/**
- *
- */
+/** The full `@layer theme` token CSS: the light and dark base blocks plus the derived system. */
 function buildTokens() {
   const light = `:root,\n.light,\n[data-theme="light"] {\n${baseLight()}\n}`;
   const dark = `.dark,\n[data-theme="dark"] {\n${baseDark()}\n}`;
@@ -312,9 +310,7 @@ function buildTemplate() {
   return `${L.join("\n")}\n`;
 }
 
-/**
- *
- */
+/** The generated `design.md` token contract. */
 function buildDesignMd() {
   const rungs = LADDER.map((r) => r.suffix).join(", ");
   return `---
