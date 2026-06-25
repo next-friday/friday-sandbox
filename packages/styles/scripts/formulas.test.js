@@ -14,6 +14,8 @@ import {
   textTier,
   borderTier,
   RADIUS_SCALE,
+  RADIUS_ARCHETYPE,
+  SIZE_ARCHETYPE,
   SPACING_SCALE,
   oklch,
 } from "./formulas.js";
@@ -52,11 +54,11 @@ test("surfaces derive from the ground so a --fri-background override reflows the
   assert.equal(surface("card"), "var(--fri-background)");
   assert.equal(surface("popover"), "var(--fri-background)");
   assert.equal(
-    surface("surface"),
+    surface("fill"),
     "color-mix(in oklab, var(--fri-background), var(--fri-neutral) 5%)",
   );
   assert.equal(
-    surface("surface-strong"),
+    surface("fill-strong"),
     "color-mix(in oklab, var(--fri-background), var(--fri-neutral) 10%)",
   );
   assert.equal(surface("inverse"), "var(--fri-foreground)");
@@ -102,6 +104,14 @@ test("t-shirt radius and spacing scales carry distinct values", () => {
   assert.equal(SPACING_SCALE.lg, "1rem");
   assert.equal(SPACING_SCALE["4xl"], "4rem");
   assert.ok(!("base" in SPACING_SCALE) && !("section" in SPACING_SCALE));
+});
+
+test("radius and size archetypes share one symmetric, role-led key set", () => {
+  const keys = ["action", "field", "box", "feedback"];
+  assert.deepEqual(Object.keys(RADIUS_ARCHETYPE), keys);
+  assert.deepEqual(Object.keys(SIZE_ARCHETYPE), keys);
+  // size archetypes are concrete block-axis dimensions, not a collapsed single token
+  assert.ok(Object.values(SIZE_ARCHETYPE).every((s) => /rem$/.test(s)));
 });
 
 test("oklch triple renders L as a percentage", () => {

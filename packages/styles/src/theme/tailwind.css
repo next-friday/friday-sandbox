@@ -119,10 +119,10 @@
   --color-popover-foreground: var(--fri-popover-foreground);
   --color-field: var(--fri-field);
   --color-field-foreground: var(--fri-field-foreground);
-  --color-surface: var(--fri-surface);
-  --color-surface-foreground: var(--fri-surface-foreground);
-  --color-surface-strong: var(--fri-surface-strong);
-  --color-surface-strong-foreground: var(--fri-surface-strong-foreground);
+  --color-fill: var(--fri-fill);
+  --color-fill-foreground: var(--fri-fill-foreground);
+  --color-fill-strong: var(--fri-fill-strong);
+  --color-fill-strong-foreground: var(--fri-fill-strong-foreground);
   --color-inverse: var(--fri-inverse);
   --color-inverse-foreground: var(--fri-inverse-foreground);
   --color-field-border-color: var(--fri-field-border-color);

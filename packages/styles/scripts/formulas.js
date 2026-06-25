@@ -80,10 +80,10 @@ export function ladder(role, suffix) {
 /**
  * Surfaces, derived from the ground so a single `--fri-background` override
  * reflows the whole UI. card/popover/field default flat with the page; the
- * neutral surface tiers and the inverse pair carry hue from the ground; the
+ * neutral fill tiers and the inverse pair carry hue from the ground; the
  * overlay is a fixed dark scrim (a backdrop must darken predictably).
  */
-const SURFACE_NEUTRAL_MIX = { surface: 5, "surface-strong": 10 };
+const SURFACE_NEUTRAL_MIX = { fill: 5, "fill-strong": 10 };
 
 export function surface(name) {
   switch (name) {
@@ -91,8 +91,8 @@ export function surface(name) {
     case "popover":
     case "field":
       return `var(${P}background)`;
-    case "surface":
-    case "surface-strong":
+    case "fill":
+    case "fill-strong":
       return `color-mix(in oklab, var(${P}background), var(${P}neutral) ${SURFACE_NEUTRAL_MIX[name]}%)`;
     case "inverse":
       return `var(${P}foreground)`;
@@ -108,13 +108,17 @@ export function surfaceForeground(name) {
   return name === "inverse" ? `var(${P}background)` : `var(${P}foreground)`;
 }
 
-/** Surfaces that carry a `-foreground` pair. */
+/**
+ * Surfaces that carry a `-foreground` pair. `fill`/`fill-strong` are the neutral
+ * container tiers; the word `surface` is reserved for the per-role interaction
+ * ladder rung (`--fri-<role>-surface`), so the two never collide in one name.
+ */
 export const SURFACES = [
   "card",
   "popover",
   "field",
-  "surface",
-  "surface-strong",
+  "fill",
+  "fill-strong",
   "inverse",
 ];
 
@@ -163,7 +167,11 @@ export const RADIUS_SCALE = {
   full: "9999px",
 };
 
-/** Archetype radii alias scale steps (Tier 2): components reference these. */
+/**
+ * Archetype radii alias scale steps (Tier 2), emitted role-led as
+ * `--fri-<archetype>-radius` to mirror the colour grammar. Components reference
+ * these (e.g. a button reads `--fri-action-radius`).
+ */
 export const RADIUS_ARCHETYPE = {
   action: "sm",
   field: "sm",
@@ -214,15 +222,18 @@ export const GLOBALS = {
   "ring-offset-width": "1px",
 };
 
-/** Geometry step counts per size — the only place these magic ramps live. */
-export const BUTTON_N = { xs: 7, sm: 8, md: 10, lg: 11, xl: 12 };
-export const SCROLL_N = { xs: 1.5, sm: 2, md: 2.5, lg: 3 };
-export const SPINNER_N = { xs: 4, sm: 5, md: 6, lg: 8, xl: 10 };
-export const SEPARATOR_N = 8;
-export const SPINNER_VALS = {
-  "spinner-arc": "25%",
-  "spinner-thickness": "25%",
-  "mix-spinner-track": "24%",
+/**
+ * Archetype default sizes (Tier 2) — the role's default block-axis control
+ * dimension, role-led to mirror `RADIUS_ARCHETYPE`. `action`/`feedback` preserve
+ * the current button/spinner medium defaults; `field`/`box` are net-new (no
+ * component consumes them yet) and provisional — tune before the first freeze.
+ * Per-size ramps (xs…xl) live component-locally, not here.
+ */
+export const SIZE_ARCHETYPE = {
+  action: "2.5rem",
+  field: "2.5rem",
+  box: "4rem",
+  feedback: "1.5rem",
 };
 
 /** Layout gap scale aliases the spacing scale. */

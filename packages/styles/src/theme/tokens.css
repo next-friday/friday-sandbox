@@ -75,7 +75,6 @@
     --fri-disabled-opacity: 0.5;
     --fri-ring-width: 2px;
     --fri-ring-offset-width: 1px;
-    --fri-size: 0.25rem;
   }
 
   .dark,
@@ -536,18 +535,18 @@
     --fri-popover-foreground: var(--fri-foreground);
     --fri-field: var(--fri-background);
     --fri-field-foreground: var(--fri-foreground);
-    --fri-surface: color-mix(
+    --fri-fill: color-mix(
       in oklab,
       var(--fri-background),
       var(--fri-neutral) 5%
     );
-    --fri-surface-foreground: var(--fri-foreground);
-    --fri-surface-strong: color-mix(
+    --fri-fill-foreground: var(--fri-foreground);
+    --fri-fill-strong: color-mix(
       in oklab,
       var(--fri-background),
       var(--fri-neutral) 10%
     );
-    --fri-surface-strong-foreground: var(--fri-foreground);
+    --fri-fill-strong-foreground: var(--fri-foreground);
     --fri-inverse: var(--fri-foreground);
     --fri-inverse-foreground: var(--fri-background);
     --fri-overlay: color-mix(in oklab, black 50%, transparent);
@@ -593,11 +592,16 @@
     /* Pointers */
     --fri-link: var(--fri-primary);
 
-    /* Archetype radii alias the t-shirt scale */
-    --fri-radius-action: var(--fri-radius-sm);
-    --fri-radius-field: var(--fri-radius-sm);
-    --fri-radius-box: var(--fri-radius-md);
-    --fri-radius-feedback: var(--fri-radius-sm);
+    /* Geometry archetypes — role-led `--fri-<archetype>-radius` / `-size`. */
+    /* Radius aliases the t-shirt scale; size is the default block-axis dimension. */
+    --fri-action-radius: var(--fri-radius-sm);
+    --fri-field-radius: var(--fri-radius-sm);
+    --fri-box-radius: var(--fri-radius-md);
+    --fri-feedback-radius: var(--fri-radius-sm);
+    --fri-action-size: 2.5rem;
+    --fri-field-size: 2.5rem;
+    --fri-box-size: 4rem;
+    --fri-feedback-size: 1.5rem;
 
     /* Layout gap aliases the spacing scale */
     --fri-gap-xs: var(--fri-spacing-xs);
@@ -605,88 +609,5 @@
     --fri-gap-md: var(--fri-spacing-md);
     --fri-gap-lg: var(--fri-spacing-lg);
     --fri-gap-xl: var(--fri-spacing-xl);
-
-    /* Component geometry ramps */
-    --fri-button-n-xs: 7;
-    --fri-button-n-sm: 8;
-    --fri-button-n-md: 10;
-    --fri-button-n-lg: 11;
-    --fri-button-n-xl: 12;
-    --fri-button-h-xs: calc(var(--fri-size) * var(--fri-button-n-xs));
-    --fri-button-h-sm: calc(var(--fri-size) * var(--fri-button-n-sm));
-    --fri-button-h-md: calc(var(--fri-size) * var(--fri-button-n-md));
-    --fri-button-h-lg: calc(var(--fri-size) * var(--fri-button-n-lg));
-    --fri-button-h-xl: calc(var(--fri-size) * var(--fri-button-n-xl));
-    --fri-button-px-xs: calc(var(--fri-button-h-xs) / 2 - var(--fri-size));
-    --fri-button-px-sm: calc(var(--fri-button-h-sm) / 2 - var(--fri-size));
-    --fri-button-px-md: calc(var(--fri-button-h-md) / 2 - var(--fri-size));
-    --fri-button-px-lg: calc(var(--fri-button-h-lg) / 2 - var(--fri-size));
-    --fri-button-px-xl: calc(var(--fri-button-h-xl) / 2 - var(--fri-size));
-    --fri-button-radius-xs: calc(
-      var(--fri-radius-action) * var(--fri-button-n-xs) / var(--fri-button-n-md)
-    );
-    --fri-button-radius-sm: calc(
-      var(--fri-radius-action) * var(--fri-button-n-sm) / var(--fri-button-n-md)
-    );
-    --fri-button-radius-md: calc(
-      var(--fri-radius-action) * var(--fri-button-n-md) / var(--fri-button-n-md)
-    );
-    --fri-button-radius-lg: calc(
-      var(--fri-radius-action) * var(--fri-button-n-lg) / var(--fri-button-n-md)
-    );
-    --fri-button-radius-xl: calc(
-      var(--fri-radius-action) * var(--fri-button-n-xl) / var(--fri-button-n-md)
-    );
-    --fri-button-spinner-xs: calc(var(--fri-button-h-xs) / 2);
-    --fri-button-spinner-sm: calc(var(--fri-button-h-sm) / 2);
-    --fri-button-spinner-md: calc(var(--fri-button-h-md) / 2);
-    --fri-button-spinner-lg: calc(var(--fri-button-h-lg) / 2);
-    --fri-button-spinner-xl: calc(var(--fri-button-h-xl) / 2);
-    --fri-scroll-area-n-xs: 1.5;
-    --fri-scroll-area-n-sm: 2;
-    --fri-scroll-area-n-md: 2.5;
-    --fri-scroll-area-n-lg: 3;
-    --fri-scroll-area-thickness-xs: calc(
-      var(--fri-size) * var(--fri-scroll-area-n-xs)
-    );
-    --fri-scroll-area-thickness-sm: calc(
-      var(--fri-size) * var(--fri-scroll-area-n-sm)
-    );
-    --fri-scroll-area-thickness-md: calc(
-      var(--fri-size) * var(--fri-scroll-area-n-md)
-    );
-    --fri-scroll-area-thickness-lg: calc(
-      var(--fri-size) * var(--fri-scroll-area-n-lg)
-    );
-    --fri-spinner-n-xs: 4;
-    --fri-spinner-n-sm: 5;
-    --fri-spinner-n-md: 6;
-    --fri-spinner-n-lg: 8;
-    --fri-spinner-n-xl: 10;
-    --fri-spinner-size-xs: calc(var(--fri-size) * var(--fri-spinner-n-xs));
-    --fri-spinner-size-sm: calc(var(--fri-size) * var(--fri-spinner-n-sm));
-    --fri-spinner-size-md: calc(var(--fri-size) * var(--fri-spinner-n-md));
-    --fri-spinner-size-lg: calc(var(--fri-size) * var(--fri-spinner-n-lg));
-    --fri-spinner-size-xl: calc(var(--fri-size) * var(--fri-spinner-n-xl));
-    --fri-spinner-arc: 25%;
-    --fri-spinner-thickness: 25%;
-    --fri-mix-spinner-track: 24%;
-    --fri-spinner-track: color-mix(
-      in oklab,
-      currentColor var(--fri-mix-spinner-track),
-      transparent
-    );
-    --fri-spinner-image: conic-gradient(
-      currentColor var(--fri-spinner-arc),
-      var(--fri-spinner-track) 0
-    );
-    --fri-spinner-mask: radial-gradient(
-      farthest-side,
-      transparent calc(100% - var(--fri-spinner-thickness)),
-      black 0
-    );
-    --fri-separator-n: 8;
-    --fri-separator-thickness: var(--fri-border-width);
-    --fri-separator-length: calc(var(--fri-size) * var(--fri-separator-n));
   }
 }

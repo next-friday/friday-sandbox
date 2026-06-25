@@ -35,16 +35,12 @@ import {
   POINTERS,
   RADIUS_SCALE,
   RADIUS_ARCHETYPE,
+  SIZE_ARCHETYPE,
   SPACING_SCALE,
   DURATION,
   EASING,
   Z_INDEX,
   GLOBALS,
-  BUTTON_N,
-  SCROLL_N,
-  SPINNER_N,
-  SEPARATOR_N,
-  SPINNER_VALS,
   GAP_SCALE,
   GROUND_DARK,
   oklch,
@@ -114,7 +110,6 @@ function baseLight() {
   for (const [k, val] of Object.entries(Z_INDEX)) L.push(decl(`z-${k}`, val));
   L.push("", "  /* Global scalars */");
   for (const [k, val] of Object.entries(GLOBALS)) L.push(decl(k, val));
-  L.push(decl("size", "0.25rem"));
   return L.join("\n");
 }
 
@@ -157,66 +152,17 @@ function derived() {
   for (const [k, val] of Object.entries(SCROLL_THUMB)) D.push(decl(k, val));
   D.push("", "  /* Pointers */");
   for (const [k, val] of Object.entries(POINTERS)) D.push(decl(k, val));
-  D.push("", "  /* Archetype radii alias the t-shirt scale */");
+  D.push(
+    "",
+    "  /* Geometry archetypes — role-led `--fri-<archetype>-radius` / `-size`. */",
+    "  /* Radius aliases the t-shirt scale; size is the default block-axis dimension. */",
+  );
   for (const [k, alias] of Object.entries(RADIUS_ARCHETYPE))
-    D.push(decl(`radius-${k}`, v(`radius-${alias}`)));
+    D.push(decl(`${k}-radius`, v(`radius-${alias}`)));
+  for (const [k, val] of Object.entries(SIZE_ARCHETYPE))
+    D.push(decl(`${k}-size`, val));
   D.push("", "  /* Layout gap aliases the spacing scale */");
   for (const k of GAP_SCALE) D.push(decl(`gap-${k}`, v(`spacing-${k}`)));
-  D.push("", "  /* Component geometry ramps */");
-  for (const [s, n] of Object.entries(BUTTON_N))
-    D.push(decl(`button-n-${s}`, `${n}`));
-  for (const s of Object.keys(BUTTON_N))
-    D.push(decl(`button-h-${s}`, `calc(${v("size")} * ${v(`button-n-${s}`)})`));
-  for (const s of Object.keys(BUTTON_N))
-    D.push(
-      decl(`button-px-${s}`, `calc(${v(`button-h-${s}`)} / 2 - ${v("size")})`),
-    );
-  for (const s of Object.keys(BUTTON_N))
-    D.push(
-      decl(
-        `button-radius-${s}`,
-        `calc(${v("radius-action")} * ${v(`button-n-${s}`)} / ${v("button-n-md")})`,
-      ),
-    );
-  for (const s of Object.keys(BUTTON_N))
-    D.push(decl(`button-spinner-${s}`, `calc(${v(`button-h-${s}`)} / 2)`));
-  for (const [s, n] of Object.entries(SCROLL_N))
-    D.push(decl(`scroll-area-n-${s}`, `${n}`));
-  for (const s of Object.keys(SCROLL_N))
-    D.push(
-      decl(
-        `scroll-area-thickness-${s}`,
-        `calc(${v("size")} * ${v(`scroll-area-n-${s}`)})`,
-      ),
-    );
-  for (const [s, n] of Object.entries(SPINNER_N))
-    D.push(decl(`spinner-n-${s}`, `${n}`));
-  for (const s of Object.keys(SPINNER_N))
-    D.push(
-      decl(`spinner-size-${s}`, `calc(${v("size")} * ${v(`spinner-n-${s}`)})`),
-    );
-  for (const [k, val] of Object.entries(SPINNER_VALS)) D.push(decl(k, val));
-  D.push(
-    decl(
-      "spinner-track",
-      `color-mix(in oklab, currentColor ${v("mix-spinner-track")}, transparent)`,
-    ),
-  );
-  D.push(
-    decl(
-      "spinner-image",
-      `conic-gradient(currentColor ${v("spinner-arc")}, ${v("spinner-track")} 0)`,
-    ),
-  );
-  D.push(
-    decl(
-      "spinner-mask",
-      `radial-gradient(farthest-side, transparent calc(100% - ${v("spinner-thickness")}), black 0)`,
-    ),
-  );
-  D.push(decl("separator-n", `${SEPARATOR_N}`));
-  D.push(decl("separator-thickness", v("border-width")));
-  D.push(decl("separator-length", `calc(${v("size")} * ${v("separator-n")})`));
   return D.join("\n");
 }
 
@@ -356,7 +302,7 @@ the spec or the formula table, never the generated CSS.
 ## Two tiers
 
 - **Tier 1 (consumer base):** brand \`primary/secondary/accent\`, status \`info/success/warning/danger\` (each + \`-foreground\`); ground \`background/foreground/neutral\`; \`ring\`; the radius and spacing scales; type, motion, and z-index. A consumer sets these; the system derives the rest.
-- **Tier 2 (derived):** the ${LADDER.length}-rung interaction ladder (${rungs}) per brand role; surfaces (card, popover, field, surface, surface-strong, inverse, overlay) derived from the ground; text tiers (foreground-muted, foreground-faint); border tiers (border-strong, border, border-subtle). Public and overridable, but names freeze only at the first stable release.
+- **Tier 2 (derived):** the ${LADDER.length}-rung interaction ladder (${rungs}) per brand role; surfaces (card, popover, field, fill, fill-strong, inverse, overlay) derived from the ground; text tiers (foreground-muted, foreground-faint); border tiers (border-strong, border, border-subtle). Public and overridable, but names freeze only at the first stable release.
 
 ## Emission
 
@@ -365,6 +311,16 @@ Token definitions live in \`@layer theme\`; the derived system is emitted under
 \`color-mix\` against that scope's ground. The \`@theme inline\` Tailwind map is
 emitted unlayered in \`tailwind.css\`. \`@property\` registers the base colours as
 progressive enhancement with a static \`initial-value\`.
+
+## Declared grammar exceptions
+
+These irregularities are intentional and declared, not accidental:
+
+- **Scale vocabularies.** \`spacing\` is the full scale (2xs to 4xl). \`gap\` is a deliberate subset of it (xs to xl). \`radius\` carries the semantic endpoints \`none\` and \`full\` around an xs to xl range. The differences are by design, not omissions.
+- **Dark re-declarations.** \`background\`, \`foreground\`, \`accent\` and \`accent-foreground\` are emitted twice, once light and once under the dark scope, because they flip with the ground.
+- **Geometry archetypes.** \`--fri-<archetype>-radius\` and \`--fri-<archetype>-size\` (action, field, box, feedback) are single default values, role-led to mirror the colour grammar. \`size\` is the default block-axis control dimension, that is a control height, not an icon size, a width, or a spacing unit. Per-size variants are produced inside each component from local \`--_*\` variables and are not public tokens.
+- **Interaction ladder state coverage.** \`soft\` and \`surface\` are stateful fills with base, hover and pressed rungs. \`tint\` is an interaction-only overlay with hover and pressed and no base, by design. \`border\` and \`outline-border\` are static line colours with no interaction rungs.
+- **Private variables.** Custom properties beginning \`--_\` are component-internal and carry no SemVer guarantee. Only \`--fri-*\` is the public contract.
 `;
 }
 

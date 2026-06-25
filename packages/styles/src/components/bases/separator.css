@@ -1,15 +1,19 @@
 @layer components {
   .fri-separator {
+    /* A hairline of the border width; the vertical min length is a fixed
+       multiple of the public spacing scale. Both are component-local. */
+    --_separator-thickness: var(--fri-border-width);
+    --_separator-length: calc(var(--fri-spacing-xs) * 8);
     @apply m-0 shrink-0 border-none bg-separator;
   }
 
   /* :where() bakes the default at zero specificity; explicit classes override. */
   :where(.fri-separator),
   .fri-separator-horizontal {
-    @apply h-(--fri-separator-thickness) w-full;
+    @apply h-(--_separator-thickness) w-full;
   }
 
   .fri-separator-vertical {
-    @apply h-full min-h-(--fri-separator-length) w-(--fri-separator-thickness);
+    @apply h-full min-h-(--_separator-length) w-(--_separator-thickness);
   }
 }

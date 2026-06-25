@@ -11,7 +11,7 @@
   --secondary-foreground: var(--fri-secondary-foreground);
   --accent: var(--fri-accent);
   --accent-foreground: var(--fri-accent-foreground);
-  --muted: var(--fri-surface);
+  --muted: var(--fri-fill);
   --muted-foreground: var(--fri-foreground-muted);
   --card: var(--fri-card);
   --card-foreground: var(--fri-card-foreground);

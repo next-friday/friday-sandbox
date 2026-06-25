@@ -1,5 +1,13 @@
 @layer components {
   .fri-button {
+    /* Geometry — one internal ramp multiplier drives height; padding, radius and
+       the inline spinner derive from it. References only the public spacing scale
+       and the action radius archetype; the multiplier stays component-local. */
+    --button-h: calc(var(--fri-spacing-xs) * var(--_button-n));
+    --button-px: calc(var(--button-h) / 2 - var(--fri-spacing-xs));
+    --button-radius: calc(var(--fri-action-radius) * var(--_button-n) / 10);
+    --button-spinner-size: calc(var(--button-h) / 2);
+
     @apply relative inline-flex h-(--button-h) w-fit shrink-0 cursor-pointer items-center justify-center gap-2 rounded-(--button-radius) border-(length:--fri-border-width) border-solid border-(--button-border-color) bg-(--button-background) px-(--button-px) whitespace-nowrap text-(--button-foreground) transition-base transition-[background-color,box-shadow,outline-color] outline-none select-none;
   }
 
@@ -163,42 +171,31 @@
     --button-background-pressed: transparent;
   }
 
-  /* Size — height drives padding, radius and the inline spinner */
+  /* Size — each class sets only the ramp multiplier; the geometry formula above
+     turns it into height, padding, radius and spinner. :where() bakes the md
+     default at zero specificity so explicit size classes override it. */
+  :where(.fri-button) {
+    --_button-n: 10;
+    @apply text-label-md;
+  }
   .fri-button-xs {
-    --button-h: var(--fri-button-h-xs);
-    --button-px: var(--fri-button-px-xs);
-    --button-radius: var(--fri-button-radius-xs);
-    --button-spinner-size: var(--fri-button-spinner-xs);
+    --_button-n: 7;
     @apply text-label-xs;
   }
   .fri-button-sm {
-    --button-h: var(--fri-button-h-sm);
-    --button-px: var(--fri-button-px-sm);
-    --button-radius: var(--fri-button-radius-sm);
-    --button-spinner-size: var(--fri-button-spinner-sm);
+    --_button-n: 8;
     @apply text-label-sm;
   }
-  /* :where() bakes the default at zero specificity; explicit classes override. */
-  :where(.fri-button),
   .fri-button-md {
-    --button-h: var(--fri-button-h-md);
-    --button-px: var(--fri-button-px-md);
-    --button-radius: var(--fri-button-radius-md);
-    --button-spinner-size: var(--fri-button-spinner-md);
+    --_button-n: 10;
     @apply text-label-md;
   }
   .fri-button-lg {
-    --button-h: var(--fri-button-h-lg);
-    --button-px: var(--fri-button-px-lg);
-    --button-radius: var(--fri-button-radius-lg);
-    --button-spinner-size: var(--fri-button-spinner-lg);
+    --_button-n: 11;
     @apply text-label-lg;
   }
   .fri-button-xl {
-    --button-h: var(--fri-button-h-xl);
-    --button-px: var(--fri-button-px-xl);
-    --button-radius: var(--fri-button-radius-xl);
-    --button-spinner-size: var(--fri-button-spinner-xl);
+    --_button-n: 12;
     @apply text-label-xl;
   }
 
