@@ -16,8 +16,8 @@ const config: KnipConfig = {
   },
   workspaces: {
     "packages/styles": {
-      entry: ["scripts/{codegen,validate}.js"],
-      project: ["**/*.css", "scripts/**/*.js"],
+      entry: ["scripts/{codegen,validate}.ts"],
+      project: ["**/*.css", "scripts/**/*.ts"],
     },
     "packages/eslint-config": {
       ignoreDependencies: ["eslint-import-resolver-typescript"],
