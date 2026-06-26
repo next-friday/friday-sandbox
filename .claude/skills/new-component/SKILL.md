@@ -1,7 +1,6 @@
 ---
 name: new-component
 description: Use when adding or building a base component in @friday-sandbox/react (e.g. "add a Button", "create a Tooltip component", "scaffold a new component"). Drives the full build — generate, fill the judgment surfaces against the repo conventions, then verify — so one trigger produces a complete component instead of prompting each step.
-version: "1.0.0"
 ---
 
 # New Component
@@ -24,7 +23,7 @@ The generator leaves stubs. Fill each against these conventions:
 
 - **`packages/react/src/components/bases/<name>/<name>.variants.ts`** — define the real `tv()` variants and map every value to a distinct `fri-<name>-<value>` class. Keep each size and color distinct; never collapse several into one token.
 - **`packages/styles/src/components/bases/<name>.css`** — write the visual rules for `.fri-<name>` and one class per variant, inside `@layer components`, via `@apply`. The component and its styles are linked by the `fri-<name>` class name, not an import, so keep this file and `.variants.ts` mirrored.
-- **`<name>.tsx`** — the real element and props. Wrap the headless primitive the pattern calls for (react-aria-components, radix, or native HTML); keep `data-slot="<name>"` and compose `className` through the variants.
+- **`<name>.tsx`** — the real props and the primitive it wraps (react-aria-components, radix, or native HTML, per the pattern); keep `data-slot="<name>"` and compose `className` through the variants.
 - **`<name>.stories.tsx`** — stories are the tests (Vitest runs them in Chromium via Playwright). Cover `Default`, every variant, and the states, with `play` assertions, not just renders.
 - **`apps/docs/content/docs/components/<name>.mdx`** — fill the `STYLE.md` spine prose in order: Purpose, When to use, When not to use, Example, Accessibility. Honor the marketing-word banlist in `STYLE.md`.
 
