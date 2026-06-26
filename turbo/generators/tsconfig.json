@@ -1,0 +1,10 @@
+{
+  "extends": "@friday-sandbox/typescript-config/base.json",
+  "compilerOptions": {
+    "module": "Preserve",
+    "moduleResolution": "Bundler",
+    "types": ["node"],
+    "noEmit": true
+  },
+  "include": ["config.ts"]
+}
