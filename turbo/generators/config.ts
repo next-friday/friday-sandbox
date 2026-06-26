@@ -115,7 +115,7 @@ export default function generator(plop: PlopTypes.NodePlopAPI): void {
         message: "Storybook category (e.g. Forms, Layout, Feedback):",
         default: "Components",
         validate: (value: string) =>
-          /^[\w /-]+$/.test(value.trim())
+          /^[A-Za-z0-9 /-]+$/.test(value.trim())
             ? true
             : "category may use only letters, digits, spaces, / and -",
       },
