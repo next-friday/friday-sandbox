@@ -4,7 +4,10 @@ const cssImportPattern = /@import\s+["']([^"']+)["']/g;
 const mdxImportPattern = /import\s+(?:[^"']*?\s+from\s+)?["']([^"']+)["']/g;
 
 const config: KnipConfig = {
-  ignore: [".github/doc-templates/**"],
+  // turbo/generators is executed by `turbo gen` at runtime, which knip does not
+  // trace, so its files and the dependencies they use read as unused here.
+  ignore: [".github/doc-templates/**", "turbo/generators/**"],
+  ignoreDependencies: ["@turbo/gen", "@friday-sandbox/typescript-config"],
   compilers: {
     css: (text) =>
       [...text.matchAll(cssImportPattern)]

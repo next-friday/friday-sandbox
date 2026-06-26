@@ -54,6 +54,16 @@ Every change flows through one issue and one pull request.
 4. **Run the checks**, described in [Quality checks](#quality-checks). Git hooks run them for you on commit and push.
 5. **Open a pull request.** Reference the issue in the body with `Closes #<n>` so it closes when the PR merges.
 
+## Adding a component
+
+Scaffold a base component instead of hand-creating its files:
+
+```sh
+pnpm gen component   # prompts for the component name and its Storybook category
+```
+
+The generator (Turborepo `turbo gen`, defined in `turbo/generators/`) creates `<name>.tsx`, `<name>.variants.ts`, `index.ts`, and `<name>.stories.tsx` under `packages/react/src/components/bases/<name>/`, adds the `<name>.css` stub in `@friday-sandbox/styles` with its `@import`, wires the three export barrels, and writes a changeset. Then fill in the variants, the `@apply` rules, and the stories. Don't hand-create or hand-wire these files.
+
 ## Commit and pull request titles
 
 Commits and pull request titles follow [Conventional Commits](https://www.conventionalcommits.org): `type(scope): subject`.

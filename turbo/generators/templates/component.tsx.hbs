@@ -1,0 +1,24 @@
+"use client";
+
+import type { ComponentPropsWithRef } from "react";
+
+import { {{ camelCase name }}Variants } from "./{{ kebabCase name }}.variants";
+import type { {{ pascalCase name }}Variants } from "./{{ kebabCase name }}.variants";
+
+export interface {{ pascalCase name }}Props
+  extends ComponentPropsWithRef<"div">,
+    {{ pascalCase name }}Variants {
+  className?: string;
+}
+
+export const {{ pascalCase name }} = (props: Readonly<{{ pascalCase name }}Props>) => {
+  const { children, className, ...rest } = props;
+
+  const resolvedClassName = {{ camelCase name }}Variants({ className });
+
+  return (
+    <div data-slot="{{ kebabCase name }}" className={resolvedClassName} {...rest}>
+      {children}
+    </div>
+  );
+};

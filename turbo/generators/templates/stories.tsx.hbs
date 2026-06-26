@@ -1,0 +1,25 @@
+import { expect } from "storybook/test";
+import type { Meta, StoryObj } from "@storybook/react-vite";
+
+import { {{ pascalCase name }} } from ".";
+
+const meta = {
+  title: "Bases/{{ category }}/{{ pascalCase name }}",
+  component: {{ pascalCase name }},
+  tags: ["autodocs"],
+} satisfies Meta<typeof {{ pascalCase name }}>;
+
+export default meta;
+
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = {
+  render: (storyArgs) => (
+    <{{ pascalCase name }} {...storyArgs}>{{ pascalCase name }}</{{ pascalCase name }}>
+  ),
+  play: async ({ canvasElement }) => {
+    const element = canvasElement.querySelector('[data-slot="{{ kebabCase name }}"]');
+
+    await expect(element).toBeInTheDocument();
+  },
+};
