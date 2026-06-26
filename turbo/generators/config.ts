@@ -94,13 +94,18 @@ export default function generator(plop: PlopTypes.NodePlopAPI): void {
     patch("packages/styles/src/components/bases/index.css", (content) =>
       insertImportLine(content, kebab, `@import "./${kebab}.css";`),
     );
+    patch("apps/docs/content/docs/components/meta.json", (content) => {
+      const meta = JSON.parse(content) as { pages: string[] };
+      if (!meta.pages.includes(kebab)) meta.pages.push(kebab);
+      return `${JSON.stringify(meta, null, 2)}\n`;
+    });
 
-    return `wired ${Pascal} into the 3 export barrels and the styles css index`;
+    return `wired ${Pascal} into the 3 export barrels, the styles css index, and the docs nav`;
   };
 
   plop.setGenerator("component", {
     description:
-      "Scaffold a base component across react, styles, the export barrels, and a changeset",
+      "Scaffold a base component across react, styles, docs, the export barrels, and a changeset",
     prompts: [
       {
         type: "input",
@@ -145,6 +150,11 @@ export default function generator(plop: PlopTypes.NodePlopAPI): void {
         type: "add",
         path: "{{ turbo.paths.root }}/packages/styles/src/components/bases/{{ kebabCase name }}.css",
         templateFile: "templates/styles.css.hbs",
+      },
+      {
+        type: "add",
+        path: "{{ turbo.paths.root }}/apps/docs/content/docs/components/{{ kebabCase name }}.mdx",
+        templateFile: "templates/mdx.hbs",
       },
       {
         type: "add",
