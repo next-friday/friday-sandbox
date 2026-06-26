@@ -39,9 +39,14 @@ const insertImportLine = (
     .map((entry) => entry.trim())
     .filter(Boolean);
   if (lines.some((entry) => nameOf(entry) === name)) return content;
-  lines.push(line.trim());
-  lines.sort((a, b) => nameOf(a).localeCompare(nameOf(b), "en"));
-  return `${lines.join("\n")}\n`;
+  const imports: string[] = [];
+  const others: string[] = [];
+  for (const entry of lines) (nameOf(entry) ? imports : others).push(entry);
+  imports.push(line.trim());
+  imports.sort((a, b) =>
+    nameOf(a).localeCompare(nameOf(b), "en", { sensitivity: "base" }),
+  );
+  return `${[...others, ...imports].join("\n")}\n`;
 };
 
 export default function generator(plop: PlopTypes.NodePlopAPI): void {
@@ -109,6 +114,10 @@ export default function generator(plop: PlopTypes.NodePlopAPI): void {
         name: "category",
         message: "Storybook category (e.g. Forms, Layout, Feedback):",
         default: "Components",
+        validate: (value: string) =>
+          /^[\w /-]+$/.test(value.trim())
+            ? true
+            : "category may use only letters, digits, spaces, / and -",
       },
     ],
     actions: [
