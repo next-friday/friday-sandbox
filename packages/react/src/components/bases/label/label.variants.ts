@@ -14,6 +14,11 @@ export const labelVariants = tv({
       true: "fri-label-invalid",
     },
   },
+  defaultVariants: {
+    isRequired: false,
+    isDisabled: false,
+    isInvalid: false,
+  },
 });
 
 export type LabelVariants = VariantProps<typeof labelVariants>;

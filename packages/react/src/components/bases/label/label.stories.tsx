@@ -1,4 +1,4 @@
-import { expect } from "storybook/test";
+import { expect, userEvent } from "storybook/test";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import { Flex } from "../flex";
@@ -15,7 +15,7 @@ const meta = {
     docs: {
       description: {
         component: [
-          "Accessible form label built on react-aria-components, with required, invalid, and disabled states.",
+          "Accessible form label with required, invalid, and disabled states.",
           "",
           "## Import",
           "",
@@ -131,6 +131,18 @@ export const WithInput: Story = {
       <input id="label-with-input" type="email" placeholder="you@example.com" />
     </Flex>
   ),
+  play: async ({ canvasElement }) => {
+    const label = canvasElement.querySelector<HTMLElement>(
+      '[data-slot="label"]',
+    );
+    const input =
+      canvasElement.querySelector<HTMLInputElement>("#label-with-input");
+    await expect(label).toBeTruthy();
+    await expect(input).toBeTruthy();
+
+    await userEvent.click(label!);
+    await expect(input).toHaveFocus();
+  },
 };
 
 export const CustomStyles: Story = {
