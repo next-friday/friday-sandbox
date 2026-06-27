@@ -62,4 +62,4 @@ React libraries:
 
 ## License
 
-[Apache-2.0](https://github.com/next-friday/friday-sandbox/blob/main/LICENSE)
+[MIT](https://github.com/next-friday/friday-sandbox/blob/main/LICENSE)

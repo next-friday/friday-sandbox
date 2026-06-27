@@ -8,6 +8,6 @@
 pnpm add <package-name>
 ```
 
-## Usage
+## Quick start
 
 <The smallest real example of using the package.>

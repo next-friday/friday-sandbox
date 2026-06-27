@@ -54,7 +54,7 @@ Two or three bullets describing what changed and why.
 
 - [ ] Mirrored the `button` folder under `packages/react/src/components/<tier>/<name>/` so the file shape stays symmetric.
 - [ ] Lowercase filename, named export, `Props` colocated; `"use client"` only when a client API is touched.
-- [ ] Reachable through the `exports` map, where `.` → `./src/index.ts` and `./*` → `./src/*/index.ts`.
+- [ ] Reachable through the package's single `.` export (`./src/index.ts`) by wiring the barrel chain `components/index.ts` → `<tier>/index.ts` → `<name>/index.ts`.
 - [ ] Story `<name>.stories.tsx` covers `Default`, `Hovered`, `Focused`, `Disabled`, and every color variant including `danger`.
 - [ ] Accessible by default: semantic markup, keyboard reachable, ARIA only where DOM cannot convey intent.
 - [ ] Vitest browser tests via the Storybook addon and Playwright chromium pass for new behavior.

@@ -85,8 +85,8 @@ Key checks for styles:
 
 ## Documentation prose
 
-- Prose follows the editorial style guide in `STYLE.md`. The `scripts/prose/lint-prose.mjs` gate flags a banned marketing adjective, an off-vocabulary synonym, and a component doc missing a required section, so those are caught before review.
-- For the judgment axes the linter cannot check, flag a switch of narrator or voice within one document, and maintainer-internal detail in a consumer page. Name the `STYLE.md` section.
+- Prose follows the editorial style guide in `STYLE.md`. Flag a banned marketing adjective, an off-vocabulary synonym, and a component doc missing a required section.
+- Also flag a switch of narrator or voice within one document, and maintainer-internal detail in a consumer page. Name the `STYLE.md` section.
 
 ## Code quality
 

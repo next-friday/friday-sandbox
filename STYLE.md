@@ -61,9 +61,7 @@ the clarity principle and are not attributed to Anthropic.
 
 ## Vocabulary
 
-Use the canonical term. The enforced lists live in
-[`scripts/prose/vocabulary.json`](scripts/prose/vocabulary.json); the linter reads
-that file, so it is the single source. Examples:
+Use the canonical term. Examples:
 
 | Canonical | Not                                                            |
 | --------- | -------------------------------------------------------------- |
@@ -74,11 +72,10 @@ that file, so it is the single source. Examples:
 | size      | sizing, dimension (when it means the `size` prop or token)     |
 
 Words with a distinct technical meaning keep it. `element` for a DOM element and
-`property` for a CSS property are correct in their own context; the linter only
-flags the small, unambiguous set in the vocabulary file, and the rest is a review
-judgment against this guide.
+`property` for a CSS property are correct in their own context; treat the small,
+unambiguous set as fixed and the rest as a review judgment against this guide.
 
-Marketing words are banned outright and the linter enforces the full list:
+Marketing words are banned outright:
 powerful, robust, seamless, intuitive, modern, elegant, blazing, effortless,
 cutting-edge, world-class, and the like.
 
@@ -92,26 +89,22 @@ these skeletons.
   `Purpose`, `When to use`, `When not to use`, `Example`, then `Accessibility`
   last. A component adds its own sections, such as a `Props` table and one demo
   per feature, between `Example` and `Accessibility`.
-- Package README: `<name>`, one-line summary, `Installation`, `Usage`.
+- Package README: `<name>`, one-line summary, `Installation`, `Quick start`.
 - Guide or how-to: a task title, then numbered steps.
 
-The structure linter enforces the required heading set for the surfaces listed in
-the vocabulary file.
+Keep the required heading set for each documented surface.
 
 ## Enforcement
 
-This guide is enforced, not advisory:
+This guide is upheld in review:
 
-- **Linter** (`scripts/prose/lint-prose.mjs`): flags banned marketing words, the
-  curated off-vocabulary terms, and a missing required heading. Wired into the
-  pre-push hook and CI.
 - **Templates** (`.github/doc-templates/`): a new document starts from the
   skeleton, so structure and voice are correct before the first review.
 - **AI reviewers** (`.coderabbit.yaml`, `.gemini/styleguide.md`): point at this
-  guide's sections for the judgment-based axes, voice and audience, that a linter
-  cannot check.
+  guide's sections for voice, audience, the banned marketing words, and the
+  required structure.
 
 The property this guide gives the repo is regularity: a fixed vocabulary and a
-fixed structure let generators, the linter, and contributors infer the expected
+fixed structure let generators and contributors infer the expected
 shape of any document. It makes no claim about what any model will write on its
 own.

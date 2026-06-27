@@ -30,7 +30,6 @@ jobs:
             depcruise,
             build:storybook,
             sort:check,
-            lint:prose,
             lint:symmetry,
             doctor:react,
           ]

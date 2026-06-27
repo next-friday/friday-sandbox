@@ -1,6 +1,6 @@
 import { Box } from "../box/box";
 
-export interface BoxesProps {
+interface BoxesProps {
   count: number;
 }
 

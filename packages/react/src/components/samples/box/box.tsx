@@ -1,4 +1,4 @@
-export interface BoxProps {
+interface BoxProps {
   index: number;
 }
 

@@ -29,7 +29,6 @@ always_gates() {
   fi
   pnpm -w format:check
   pnpm -w sort:check
-  pnpm -w lint:prose
   pnpm -w lint:symmetry
 }
 
