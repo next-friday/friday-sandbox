@@ -49,4 +49,4 @@ The ship station: move a change through this repo's issue → branch → changes
 
 - Workflow, commit, changeset, and gate rules: `CONTRIBUTING.md`. Operating rules and the `src` ↔ `exports` invariant: `CLAUDE.md`.
 - The generator pre-writes a component's changeset (`turbo/generators/templates/changeset.md.hbs`) — verify it, never duplicate it.
-- The tracker is shared (`CONTRIBUTING.md`: claim before you start; one issue, one PR). Chromatic (`CHROMATIC_PROJECT_TOKEN`) and Sonar (`SONAR_TOKEN`) can show red when their secrets aren't configured (`.github/workflows/`); whether a check blocks merge is branch-protection config — confirm via the PR's checks (see `component-review`).
+- The tracker is shared (`CONTRIBUTING.md`: claim before you start; one issue, one PR). Chromatic (`CHROMATIC_PROJECT_TOKEN`) can show red when its secret isn't configured (`.github/workflows/`); whether a check blocks merge is branch-protection config — confirm via the PR's checks (see `component-review`).

@@ -52,5 +52,4 @@
           - "knip.config.ts"
           - "pnpm-lock.yaml"
           - "pnpm-workspace.yaml"
-          - "sonar-project.properties"
           - "turbo.json"
