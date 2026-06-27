@@ -3,7 +3,7 @@ name: component-build
 description: Use when a base component in @friday-sandbox/react needs building, fixing, or completing — adding a new one ("add a Button", "create a Tooltip"), filling missing or asymmetric variants, styles, stories, or docs, or finishing a component left half-done. Keywords tailwind-variants, fri-class, stories-as-tests, react-aria.
 ---
 
-# Component Build
+# Component build
 
 The build station for `@friday-sandbox/react` base components. `pnpm gen component` scaffolds a generic `<div>` stub with empty variants plus a ready-made changeset; the real work is swapping in the primitive, filling the variant ladder, and mirroring it in `@friday-sandbox/styles` — proven against a fixed contract. Stop only when the contract holds.
 

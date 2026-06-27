@@ -1,6 +1,6 @@
 # @friday-sandbox/eslint-config
 
-Shared ESLint flat-config presets (base, next-js, react-internal) for @friday-sandbox packages and apps.
+Shared ESLint flat-config presets.
 
 > Internal workspace preset. This package is private and is not published to npm. It is consumed only within this monorepo through `workspace:*`.
 
@@ -27,7 +27,7 @@ Shared ESLint flat-config presets (base, next-js, react-internal) for @friday-sa
 }
 ```
 
-## Usage
+## Quick start
 
 Create an `eslint.config.mjs` and re-export the preset for your package type.
 

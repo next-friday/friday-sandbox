@@ -1,4 +1,4 @@
-# Design It Twice
+# Design it twice
 
 Your first idea is rarely the best. For a non-trivial component — a new prop or compound API, or a visual structure that isn't obvious — diverge before you converge. Skip this when grilling already settled the shape in one pass (a trivial variant-only component): say so and go straight to the primitive.
 

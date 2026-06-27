@@ -41,7 +41,7 @@ Key checks for accessibility and stories:
 - Story copy is consumer-facing: flag internal class names such as `fri-button-*` and `fri-flex-*`, library names such as `tailwind-variants` and `react-aria`, engine math such as `calc(var(--fri-spacing-xs) * var(--_button-n))`, or file paths. Symmetric story shape across files.
 - Story copy stays generic, not brittle: flag concrete pixel sizes or an exhaustive enumeration of a prop's values; prefer the imperative `Use the \`X\` prop to …` form and let the stories demonstrate the values.
 
-## Styles: `packages/styles/src/**`, Tailwind v4
+## Styles: `packages/styles/src/**`, Tailwind CSS v4
 
 Key checks for styles:
 

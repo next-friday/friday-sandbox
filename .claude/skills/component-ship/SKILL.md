@@ -3,7 +3,7 @@ name: component-ship
 description: Use to ship a repo change through this repo's GitHub lifecycle, or when a pull request needs setting up, a branch or changeset is missing, the gates are red, or an issue needs closing by a PR. Triggers "ship this", "open the PR", "start the branch", "the gates are red", "add the changeset".
 ---
 
-# Component Ship
+# Component ship
 
 The ship station: move a change through this repo's issue → branch → changeset → gates → PR lifecycle. The issue tracker is shared by many contributors, so a tracker write is confirmed with the user first and scoped to what you own.
 

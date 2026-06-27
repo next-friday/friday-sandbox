@@ -23,13 +23,13 @@
 | Package                                                                                                     | Description                                                                     |
 | ----------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
 | [`@friday-sandbox/react`](./packages/react) · [npm](https://www.npmjs.com/package/@friday-sandbox/react)    | Accessible React components built on react-aria-components and Tailwind CSS v4. |
-| [`@friday-sandbox/styles`](./packages/styles) · [npm](https://www.npmjs.com/package/@friday-sandbox/styles) | Framework-agnostic design tokens and Tailwind v4 layers.                        |
-| [`@friday-sandbox/eslint-config`](./packages/eslint-config)                                                 | Shared ESLint presets. Internal to this workspace.                              |
-| [`@friday-sandbox/typescript-config`](./packages/typescript-config)                                         | Shared TypeScript presets. Internal to this workspace.                          |
+| [`@friday-sandbox/styles`](./packages/styles) · [npm](https://www.npmjs.com/package/@friday-sandbox/styles) | Framework-agnostic design tokens and Tailwind CSS v4 layers.                    |
+| [`@friday-sandbox/eslint-config`](./packages/eslint-config)                                                 | Shared ESLint flat-config presets.                                              |
+| [`@friday-sandbox/typescript-config`](./packages/typescript-config)                                         | Shared TypeScript config presets.                                               |
 
 ## Quick start
 
-```bash
+```sh
 npm install @friday-sandbox/react @friday-sandbox/styles
 ```
 

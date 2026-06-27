@@ -3,7 +3,7 @@ name: component-design
 description: Use before building a base component in @friday-sandbox/react when its shape is not settled — which primitive to wrap (react-aria-components, radix, native), which color/variant/size ladder it needs, which tokens and states. Triggers "design a Tooltip", "what variants should X have", "plan this component".
 ---
 
-# Component Design
+# Component design
 
 The design station for `@friday-sandbox/react` base components: choose the primitive, the variant ladder, and the token mapping against the repo's existing vocabulary before any build, so `component-build` has a fixed target. A precise design is the leverage; a vague one propagates into every surface. Grill one decision at a time, each with a recommended answer; the design is done when an implementer could build it without asking another question.
 

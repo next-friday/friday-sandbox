@@ -1,6 +1,6 @@
 # @friday-sandbox/typescript-config
 
-Shared TypeScript base configs (base, nextjs, react-library) for @friday-sandbox packages and apps.
+Shared TypeScript config presets.
 
 > Internal workspace preset. This package is private and is not published to npm. It is consumed only within this monorepo through `workspace:*`.
 
@@ -26,7 +26,7 @@ Shared TypeScript base configs (base, nextjs, react-library) for @friday-sandbox
 }
 ```
 
-## Usage
+## Quick start
 
 Extend the config that matches your package type from `tsconfig.json`.
 

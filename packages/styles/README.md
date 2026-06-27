@@ -2,7 +2,7 @@
 
 # @friday-sandbox/styles
 
-**A framework-agnostic design-token system. Retheme any stack by overriding plain CSS variables. Your theme needs no plugin, no JavaScript, and no build step.**
+**Framework-agnostic design tokens and Tailwind CSS v4 layers.**
 
 [![npm version](https://img.shields.io/npm/v/@friday-sandbox/styles?style=flat)](https://www.npmjs.com/package/@friday-sandbox/styles)
 [![npm downloads](https://img.shields.io/npm/dm/@friday-sandbox/styles.svg?style=flat)](https://www.npmjs.com/package/@friday-sandbox/styles)
@@ -22,7 +22,7 @@
 
 ## Installation
 
-```bash
+```sh
 npm install @friday-sandbox/styles
 # or
 pnpm add @friday-sandbox/styles
@@ -74,7 +74,7 @@ Author your own theme by overriding base tokens. Set each fill and its `-foregro
 
 That is the whole model: set the base tokens you want to change, and every derived value (surfaces, borders, the interaction ladder) recomputes. The [starter template](./src/theme-template.css) lists the full base set.
 
-**Good to know:**
+### Good to know
 
 - **Pair each fill with its `-foreground`.** Shipped themes are contrast-checked at build time; runtime overrides are not, so set them together to keep text legible.
 - **Load order matters.** Import the package CSS first and your overrides after; later rules win at equal specificity.

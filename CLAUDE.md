@@ -5,7 +5,7 @@ This file provides guidance to Claude Code (code.claude.com) when working with c
 ## Claude Code operating rules
 
 - **Let the hooks do the work.** `pre-commit` runs the gates on staged files; `pre-push` runs the full list. Do **not** run whole-repo `lint`/`typecheck`/`build`/`build:storybook`/`knip`/`depcruise`/`sort:check`/`format:check`/`lint:symmetry`/`test` by hand, since each is minutes of duplicated work the hooks already cover.
-- **Never suppress a gate.** Fix the root cause: do not disable a lint rule, skip a check, loosen a gate, or use `--no-verify`, which is forbidden and re-caught by CI. Disabling is a last resort needing explicit approval with a stated reason.
+- **Never suppress a gate.** Fix the root cause: do not disable a lint rule, skip or loosen a gate, or use `--no-verify`, which is forbidden and re-caught by CI. Disabling is a last resort needing explicit approval with a stated reason.
 - **`src` ↔ `exports` invariant.** Workspace consumers read `src/`; published consumers read `dist/`. Change one surface, keep the other aligned.
 - **One change = one issue → one branch → one PR.** Behavior changes such as `feat`, `fix`, `perf`, and `refactor` require a `.changeset/*.md` entry, and the branch must start with `<issue#>-`. Titles are Conventional Commits `type(scope): subject` (≤50 chars, lowercase imperative, no body/footer); put `Closes #<n>` in the PR body, never the title. Full workflow in [`CONTRIBUTING.md`](CONTRIBUTING.md).
 - **Generate components; do not hand-roll.** Scaffold a base component with `pnpm gen component` (Turborepo `turbo gen`; the generator and its Handlebars templates live in `turbo/generators/`, authored in TypeScript). It prompts for the name, the primitive (`native` or `aria`), and the Storybook category, then writes the component files plus the docs page, its nav entry, and a changeset, and wires every export barrel and the styles `@import`. Do not hand-create those files or add a second changeset; the `component-*` skill suite (`.claude/skills/component-{loop,design,build,ship,review}/`) drives the lifecycle. `component-loop` runs the whole thing from one goal to the verified build contract, then pauses for authorization before any GitHub write; under it or standalone, `component-design` settles the variants and primitive, `component-build` generates then fills the surfaces and verifies, `component-ship` runs branch → gates → PR, and `component-review` handles the bot-review round.
@@ -22,12 +22,12 @@ Project rules, imported into context:
 
 pnpm-workspace + Turborepo monorepo, globbing `packages/*` and `apps/*`. Four packages under `packages/`:
 
-| Package                             | Role                                                                                                |
+| Package                             | Description                                                                                         |
 | ----------------------------------- | --------------------------------------------------------------------------------------------------- |
 | `@friday-sandbox/react`             | React 19 components, built with `tsdown`, on react-aria-components + radix-ui + `tailwind-variants` |
-| `@friday-sandbox/styles`            | Tailwind v4 tokens + CSS layers, built with the `tailwindcss` CLI                                   |
-| `@friday-sandbox/eslint-config`     | shared ESLint flat-config presets                                                                   |
-| `@friday-sandbox/typescript-config` | shared tsconfig presets                                                                             |
+| `@friday-sandbox/styles`            | Tailwind CSS v4 tokens + CSS layers, built with the `tailwindcss` CLI                               |
+| `@friday-sandbox/eslint-config`     | Shared ESLint flat-config presets                                                                   |
+| `@friday-sandbox/typescript-config` | Shared tsconfig presets                                                                             |
 
 `react` consumes `styles` as a peer dependency; the two config packages are dev-only presets. The lone app, `@friday-sandbox/docs` under `apps/`, is a Next.js 16 + Fumadocs (`fumadocs-core`/`-mdx`/`-ui`) site that consumes `react` + `styles` as `workspace:*`; its pages are MDX under `apps/docs/content/docs`, and `fumadocs-mdx` codegen (the generated `.source/` dir) runs on `postinstall` and again before the docs `lint`/`typecheck`.
 
