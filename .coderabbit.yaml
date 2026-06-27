@@ -46,8 +46,8 @@ reviews:
         tailwind-variants tv() mapping every value to a distinct fri-<name>-<value>
         class with the repo vocabulary (primary..danger, solid..plain, xs..xl) and
         defaultVariants, never a hardcoded color (wire the --fri-<role> ladder); a new
-        file is reachable through the exports map (. -> ./src/index.ts, ./* ->
-        ./src/*/index.ts); a behavior change (feat | fix | perf | refactor) carries a
+        file is reachable through the exports map's one public entry (. -> ./src/index.ts) via
+        the barrel chain; a behavior change (feat | fix | perf | refactor) carries a
         .changeset/*.md entry.
     - path: packages/react/src/**/*.stories.{ts,tsx}
       instructions: >-
