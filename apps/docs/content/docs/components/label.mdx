@@ -1,0 +1,131 @@
+---
+title: Label
+description: An accessible form label associated with its control.
+---
+
+import { Flex, Label } from "@friday-sandbox/react";
+
+## Purpose
+
+The `Label` names a form control. It wraps
+[React Aria `Label`](https://react-spectrum.adobe.com/react-aria/Label.html),
+so it associates with its control through `htmlFor` or a field context, and
+clicking it moves focus to that control.
+
+## When to use
+
+Use `Label` to name an input, checkbox, or other form control.
+
+## When not to use
+
+Do not use `Label` for descriptive body text. Use `Text` for that.
+
+## Example
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <Flex direction="column" gap="xs" className="px-4 py-6">
+      <Label htmlFor="example-email">Email</Label>
+      <input id="example-email" type="email" placeholder="you@example.com" />
+    </Flex>
+  </Tab>
+
+  <Tab value="Code">
+    ```tsx
+    <Label htmlFor="email">Email</Label>
+    <input id="email" type="email" />
+    ```
+  </Tab>
+</Tabs>
+
+## Required
+
+Set `isRequired` to append a danger-colored marker. The marker is decorative;
+mark the control itself required so assistive technology conveys it.
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <Flex direction="column" gap="xs" className="px-4 py-6">
+      <Label htmlFor="example-required" isRequired>
+        Email
+      </Label>
+      <input id="example-required" type="email" required />
+    </Flex>
+  </Tab>
+
+  <Tab value="Code">
+    ```tsx
+    <Label htmlFor="email" isRequired>Email</Label>
+    <input id="email" type="email" required />
+    ```
+  </Tab>
+</Tabs>
+
+## Invalid
+
+Set `isInvalid` to mark the label in a danger color when its field fails
+validation.
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <Flex direction="column" gap="xs" className="px-4 py-6">
+      <Label htmlFor="example-invalid" isInvalid>
+        Email
+      </Label>
+      <input id="example-invalid" type="email" aria-invalid />
+    </Flex>
+  </Tab>
+
+  <Tab value="Code">
+    ```tsx
+    <Label htmlFor="email" isInvalid>Email</Label>
+    <input id="email" type="email" aria-invalid />
+    ```
+  </Tab>
+</Tabs>
+
+## Disabled
+
+Set `isDisabled` to mute the label alongside a disabled control.
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <Flex direction="column" gap="xs" className="px-4 py-6">
+      <Label htmlFor="example-disabled" isDisabled>
+        Email
+      </Label>
+      <input id="example-disabled" type="email" disabled />
+    </Flex>
+  </Tab>
+
+  <Tab value="Code">
+    ```tsx
+    <Label htmlFor="email" isDisabled>Email</Label>
+    <input id="email" type="email" disabled />
+    ```
+  </Tab>
+</Tabs>
+
+## Props
+
+`Label` also accepts the props from React Aria `Label` and a `className` string.
+
+| Prop         | Type      | Default |
+| ------------ | --------- | ------- |
+| `isRequired` | `boolean` | `false` |
+| `isInvalid`  | `boolean` | `false` |
+| `isDisabled` | `boolean` | `false` |
+| `className`  | `string`  | —       |
+
+## Accessibility
+
+- Associate the label with its control through `htmlFor`, or render it inside a
+  React Aria field so the association is wired automatically. Clicking the label
+  then focuses the control.
+- The `isRequired` marker is presentational. Mark the control itself required
+  (`aria-required` or the field's `isRequired`) so assistive technology conveys
+  it.
+- The `isInvalid` styling is presentational. Mark the control itself invalid
+  (`aria-invalid` or the field's `isInvalid`) so assistive technology conveys it.
+- `isDisabled` only mutes the label. Disable the control itself for the
+  interaction state.

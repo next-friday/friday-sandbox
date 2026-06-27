@@ -1,0 +1,19 @@
+@layer components {
+  /* :where() bakes the default at zero specificity; explicit classes override. */
+  :where(.fri-label) {
+    @apply m-0 text-label-md text-foreground;
+  }
+
+  .fri-label-required::after {
+    @apply ms-1 text-danger;
+    content: "*";
+  }
+
+  .fri-label-disabled {
+    @apply status-disabled;
+  }
+
+  .fri-label-invalid {
+    @apply text-danger;
+  }
+}
