@@ -39,6 +39,14 @@ The review station: drive a whole round of AI review on the PR to clean — turn
 - Exactly one push carried the round's whole batch; no extra push re-triggered the bots mid-round.
 - Each sub-issue is linked to the parent and carries `Closes #<sub>` in the PR body.
 
+## Closing summary table
+
+On finishing, report one markdown table — the result at a glance, one row per round:
+
+| Round | PR      | Findings              | Fixed                 | Pushed             |
+| ----- | ------- | --------------------- | --------------------- | ------------------ |
+| `<k>` | `#<pr>` | `<real>` after verify | `<closed>` sub-issues | `<sha>` (one push) |
+
 ## Red flags — STOP
 
 - Reacting to one bot before the other configured reviewers' rounds land → wait for all of them, then batch.

@@ -36,6 +36,14 @@ The ship station: move a change through this repo's issue → branch → changes
 - Confirm the branch matches `^<n>-`, the title parses as `type(scope): subject` within 50 chars, and exactly one changeset covers the change.
 - Do not claim green from memory — the hooks' output is the evidence.
 
+## Closing summary table
+
+On finishing, report one markdown table — the result at a glance:
+
+| Issue  | Branch       | Commit              | Gates          | PR                      |
+| ------ | ------------ | ------------------- | -------------- | ----------------------- |
+| `#<n>` | `<n>-<slug>` | `<sha>` `<subject>` | pass via hooks | `#<pr>` (`Closes #<n>`) |
+
 ## Red flags — STOP
 
 - Creating or editing a tracker artifact without confirming with the user → STOP (shared tracker).

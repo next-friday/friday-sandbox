@@ -39,6 +39,14 @@ The design station for `@friday-sandbox/react` base components: choose the primi
 - Re-read the ladder: would any two values share a class or token, or any color be hardcoded instead of a `--fri-<role>` slot? That is a defect — fix it here.
 - Optional sub-agent: have a reviewer pressure-test the premise and ladder for gaps — a missing state, an ambiguous variant — before any build.
 
+## Closing summary table
+
+On finishing, report one markdown table — the result at a glance:
+
+| Primitive                     | Variants                 | Sizes     | Tokens               | States         |
+| ----------------------------- | ------------------------ | --------- | -------------------- | -------------- |
+| `aria`/`native` — `<wrapped>` | `<roles>` × `<variants>` | `<xs…xl>` | `--fri-<role>` slots | `<data-attrs>` |
+
 ## Red flags — STOP
 
 - Deciding variants before the primitive → the primitive gates the props; choose it first.

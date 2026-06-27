@@ -56,6 +56,14 @@ The loop that removes per-step prompting. From one goal it drives nested loops �
 - The outer stopping condition is a review round with no real findings, reached by batched one-push rounds.
 - Confirm the human acted only at plan and merge, no second PR was opened, and no GitHub create happened without authorization.
 
+## Closing summary table
+
+On finishing, report one markdown table — the result at a glance:
+
+| Issue  | Branch       | Commit              | Gates          | PR                      |
+| ------ | ------------ | ------------------- | -------------- | ----------------------- |
+| `#<n>` | `<n>-<slug>` | `<sha>` `<subject>` | pass via hooks | `#<pr>` (`Closes #<n>`) |
+
 ## Red flags — STOP
 
 - Hand-prompting each station in turn → set the goal once; the loops drive them.
