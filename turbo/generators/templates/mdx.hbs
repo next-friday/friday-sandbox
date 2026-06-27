@@ -3,25 +3,27 @@ title: {{ pascalCase name }}
 description: {{ pascalCase name }} component.
 ---
 
+import { Flex, {{ pascalCase name }} } from "@friday-sandbox/react";
+
+## Import
+
+```tsx
 import { {{ pascalCase name }} } from "@friday-sandbox/react";
+```
 
-## Purpose
+[Source](https://github.com/next-friday/friday-sandbox/blob/main/packages/react/src/components/bases/{{ kebabCase name }}/{{ kebabCase name }}.tsx) · [Style](https://github.com/next-friday/friday-sandbox/blob/main/packages/styles/src/components/bases/{{ kebabCase name }}.css) · [Storybook](STORYBOOK_URL) · [Headless](HEADLESS_DOCS_URL)
 
-Describe what `{{ pascalCase name }}` is for and when to reach for it.
+{/* Replace STORYBOOK_URL with the deployed Storybook story link, and HEADLESS_DOCS_URL with the wrapped library's component docs (or remove Headless for a plain HTML element). */}
 
-## When to use
+## Usage
 
-Describe when `{{ pascalCase name }}` is the right choice.
-
-## When not to use
-
-Describe when another component or pattern fits better.
-
-## Example
+Describe the basic use of `{{ pascalCase name }}` in a line or two.
 
 <Tabs items={["Preview", "Code"]}>
   <Tab value="Preview">
-    <{{ pascalCase name }} />
+    <Flex align="center" gap="md" className="px-4 py-6">
+      <{{ pascalCase name }} />
+    </Flex>
   </Tab>
 
   <Tab value="Code">
@@ -31,6 +33,38 @@ Describe when another component or pattern fits better.
   </Tab>
 </Tabs>
 
+## Examples
+
+{/* One Tabs block per feature you expose; mirror the showcase stories in {{ kebabCase name }}.stories.tsx so docs and Storybook stay symmetric. */}
+
+## API
+
+### Anatomy
+
+```tsx
+<{{ pascalCase name }} />
+```
+
+## Props
+
+`{{ pascalCase name }}` also accepts the props of the element or primitive it wraps, plus a `className` string.
+
+| Prop        | Type     | Default | Description                      |
+| ----------- | -------- | ------- | -------------------------------- |
+| `className` | `string` | —       | Additional CSS classes to apply. |
+
 ## Accessibility
 
-Document keyboard interaction, ARIA, and any caveats.
+Document keyboard interaction, ARIA roles, and any state caveats.
+
+## Styling
+
+`{{ pascalCase name }}` is styled through CSS classes ([source styles](https://github.com/next-friday/friday-sandbox/blob/main/packages/styles/src/components/bases/{{ kebabCase name }}.css)), so the look applies to any element that carries them.
+
+### Base class
+
+- `fri-{{ kebabCase name }}` — base `{{ kebabCase name }}` styles.
+
+### State modifier classes
+
+{/* List each fri-{{ kebabCase name }}-<modifier> class you define (e.g. fri-{{ kebabCase name }}-disabled), with the state it applies. Remove this section if the component has no modifier classes. */}

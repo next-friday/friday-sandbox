@@ -1,0 +1,99 @@
+---
+title: {{ pascalCase name }}
+description: {{ pascalCase name }} component.
+---
+
+import { Flex, {{ pascalCase name }} } from "@friday-sandbox/react";
+
+## Import
+
+```tsx
+import { {{ pascalCase name }} } from "@friday-sandbox/react";
+```
+
+[Source](https://github.com/next-friday/friday-sandbox/blob/main/packages/react/src/components/bases/{{ kebabCase name }}/{{ kebabCase name }}.tsx) · [Style](https://github.com/next-friday/friday-sandbox/blob/main/packages/styles/src/components/bases/{{ kebabCase name }}.css) · [Storybook](STORYBOOK_URL) · [Headless](HEADLESS_DOCS_URL)
+
+{/* Replace STORYBOOK_URL with the deployed Storybook story link, and HEADLESS_DOCS_URL with the wrapped library's component docs. */}
+
+## Usage
+
+Describe the basic use of `{{ pascalCase name }}` in a line or two.
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <Flex align="center" gap="md" className="px-4 py-6">
+      <{{ pascalCase name }}>{{ pascalCase name }}</{{ pascalCase name }}>
+    </Flex>
+  </Tab>
+
+  <Tab value="Code">
+    ```tsx
+    <{{ pascalCase name }}>{{ pascalCase name }}</{{ pascalCase name }}>
+    ```
+  </Tab>
+</Tabs>
+
+## Examples
+
+### Sizes
+
+Five sizes step from `xs` to `xl`.
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <Flex align="center" gap="md" className="px-4 py-6">
+      <{{ pascalCase name }} size="xs">Extra small</{{ pascalCase name }}>
+      <{{ pascalCase name }} size="sm">Small</{{ pascalCase name }}>
+      <{{ pascalCase name }} size="md">Medium</{{ pascalCase name }}>
+      <{{ pascalCase name }} size="lg">Large</{{ pascalCase name }}>
+      <{{ pascalCase name }} size="xl">Extra large</{{ pascalCase name }}>
+    </Flex>
+  </Tab>
+
+  <Tab value="Code">
+    ```tsx
+    <{{ pascalCase name }} size="xs">Extra small</{{ pascalCase name }}>
+    <{{ pascalCase name }} size="sm">Small</{{ pascalCase name }}>
+    <{{ pascalCase name }} size="md">Medium</{{ pascalCase name }}>
+    <{{ pascalCase name }} size="lg">Large</{{ pascalCase name }}>
+    <{{ pascalCase name }} size="xl">Extra large</{{ pascalCase name }}>
+    ```
+  </Tab>
+</Tabs>
+
+{/* Add Colors / Variants / States example blocks as you fill the ladder; mirror the showcase stories in {{ kebabCase name }}.stories.tsx so docs and Storybook stay symmetric. */}
+
+## API
+
+### Anatomy
+
+```tsx
+<{{ pascalCase name }}>Label</{{ pascalCase name }}>
+```
+
+## Props
+
+`{{ pascalCase name }}` also accepts every prop of the react-aria primitive it wraps, plus a `className` string.
+
+| Prop        | Type                                   | Default | Description                      |
+| ----------- | -------------------------------------- | ------- | -------------------------------- |
+| `size`      | `"xs" \| "sm" \| "md" \| "lg" \| "xl"` | `"md"`  | Sets the size of the {{ kebabCase name }}.   |
+| `className` | `string`                               | —       | Additional CSS classes to apply. |
+
+## Accessibility
+
+Document keyboard interaction, ARIA roles, and any state caveats.
+
+## Styling
+
+`{{ pascalCase name }}` is styled through CSS classes ([source styles](https://github.com/next-friday/friday-sandbox/blob/main/packages/styles/src/components/bases/{{ kebabCase name }}.css)), so the look applies to any element that carries them.
+
+### Base class
+
+- `fri-{{ kebabCase name }}` — base `{{ kebabCase name }}` styles with the medium-size default.
+
+### Size and state modifier classes
+
+- `fri-{{ kebabCase name }}-xs` … `fri-{{ kebabCase name }}-xl` — size steps.
+
+{/* List each remaining fri-{{ kebabCase name }}-<modifier> class you define (colors, variants, states), with what it applies. */}
