@@ -31,6 +31,9 @@ const config: StorybookConfig = {
   viteFinal: (viteConfig) =>
     mergeConfig(viteConfig, {
       plugins: [tailwindcss()],
+      optimizeDeps: {
+        include: ["react-aria-components/Label"],
+      },
     }),
 };
 
