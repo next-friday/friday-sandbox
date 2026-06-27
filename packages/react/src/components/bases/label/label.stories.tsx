@@ -15,7 +15,7 @@ const meta = {
     docs: {
       description: {
         component: [
-          "Accessible form label with required, invalid, and disabled states.",
+          "Accessible form label that names a control and associates with it through `htmlFor`.",
           "",
           "## Import",
           "",
@@ -36,33 +36,6 @@ const meta = {
     children: "Email",
   },
   argTypes: {
-    isRequired: {
-      description:
-        "Use the `isRequired` prop to append a danger-colored required marker.",
-      control: "boolean",
-      table: {
-        type: { summary: "boolean" },
-        defaultValue: { summary: "false" },
-      },
-    },
-    isInvalid: {
-      description:
-        "Use the `isInvalid` prop to mark the label when its field fails validation.",
-      control: "boolean",
-      table: {
-        type: { summary: "boolean" },
-        defaultValue: { summary: "false" },
-      },
-    },
-    isDisabled: {
-      description:
-        "Use the `isDisabled` prop to mute the label when its field is disabled.",
-      control: "boolean",
-      table: {
-        type: { summary: "boolean" },
-        defaultValue: { summary: "false" },
-      },
-    },
     className: {
       description: "Additional CSS classes to apply to the label.",
       control: "text",
@@ -83,34 +56,6 @@ export const Default: Story = {
     await expect(label).toBeInTheDocument();
     await expect(label?.tagName).toBe("LABEL");
   },
-};
-
-export const States: Story = {
-  parameters: {
-    docs: {
-      description: {
-        story:
-          "Layer the `isRequired`, `isInvalid`, and `isDisabled` flags over the default resting label.",
-      },
-    },
-  },
-  render: (storyArgs) => (
-    <Flex direction="column" gap="md">
-      <Label {...storyArgs}>Default</Label>
-
-      <Label {...storyArgs} isRequired>
-        Required
-      </Label>
-
-      <Label {...storyArgs} isInvalid>
-        Invalid
-      </Label>
-
-      <Label {...storyArgs} isDisabled>
-        Disabled
-      </Label>
-    </Flex>
-  ),
 };
 
 export const WithInput: Story = {
@@ -162,19 +107,11 @@ export const PlainHtml: Story = {
     docs: {
       description: {
         story:
-          "Apply the label styling to a plain label element, so a label renders in plain markup without the React component.",
+          "Apply the label styling to a plain element, so a label renders in plain markup without the React component.",
       },
     },
   },
-  render: () => (
-    <Flex direction="column" gap="xs">
-      <label className="fri-label" htmlFor="label-plain-html">
-        Email
-      </label>
-
-      <input id="label-plain-html" type="email" />
-    </Flex>
-  ),
+  render: () => <div className="fri-label" />,
 };
 
 export const BaseClassDefault: Story = {

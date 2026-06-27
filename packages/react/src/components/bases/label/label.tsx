@@ -1,6 +1,6 @@
 "use client";
 
-import { Label as AriaLabel } from "react-aria-components";
+import { Label as AriaLabel } from "react-aria-components/Label";
 import type { ComponentPropsWithRef } from "react";
 
 import { labelVariants } from "./label.variants";
@@ -14,15 +14,9 @@ export interface LabelProps
 }
 
 export const Label = (props: Readonly<LabelProps>) => {
-  const { children, className, isDisabled, isInvalid, isRequired, ...rest } =
-    props;
+  const { children, className, ...rest } = props;
 
-  const resolvedClassName = labelVariants({
-    isRequired,
-    isDisabled,
-    isInvalid,
-    className,
-  });
+  const resolvedClassName = labelVariants({ className });
 
   return (
     <AriaLabel data-slot="label" className={resolvedClassName} {...rest}>
