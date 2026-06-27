@@ -2,7 +2,7 @@
 
 # @friday-sandbox/react
 
-**Accessible, themeable React components with keyboard and screen-reader support built in.**
+**Accessible React components built on react-aria-components and Tailwind CSS v4.**
 
 [![npm version](https://img.shields.io/npm/v/@friday-sandbox/react?style=flat)](https://www.npmjs.com/package/@friday-sandbox/react)
 [![npm downloads](https://img.shields.io/npm/dm/@friday-sandbox/react.svg?style=flat)](https://www.npmjs.com/package/@friday-sandbox/react)
@@ -15,14 +15,14 @@
 
 ## Why
 
-- **Accessible by default.** Interactive components wrap [react-aria-components](https://react-spectrum.adobe.com/react-aria/) and radix-ui; layout and text primitives use semantic HTML. Keyboard and screen-reader support come standard.
+- **Accessible by default.** Interactive components wrap [react-aria-components](https://react-spectrum.adobe.com/react-aria/) and radix-ui; layout and text components use semantic HTML. Keyboard and screen-reader support come standard.
 - **Themeable without forking.** Components read their styling from the CSS variables in `@friday-sandbox/styles`. Restyle by overriding tokens, not by overriding components.
-- **Polymorphic primitives.** `Flex`, `Grid`, and `Text` render as any element through an `as` prop, with the correct typed props forwarded.
+- **Polymorphic components.** `Flex`, `Grid`, and `Text` render as any element through an `as` prop, with the correct typed props forwarded.
 - **Tiny by default.** Written in TypeScript with `sideEffects: false`, so bundlers keep only what you import.
 
 ## Installation
 
-```bash
+```sh
 npm install @friday-sandbox/react @friday-sandbox/styles
 # or
 pnpm add @friday-sandbox/react @friday-sandbox/styles

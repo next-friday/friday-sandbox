@@ -3,7 +3,7 @@ name: component-loop
 description: Use when a whole base component should be driven end to end from one goal, rather than prompting each step by hand. Triggers "build a Tooltip end to end", "take X to a PR", "do the whole component", or when you keep re-prompting now-do-stories / now-ship / now-fix-the-review.
 ---
 
-# Component Loop
+# Component loop
 
 The loop that removes per-step prompting. From one goal it drives nested loops — an inner build↔verify loop that closes on the build contract, then an outer ship→AI-review→fix loop that closes when every AI reviewer is clean — re-reading the goal and a disk state file each pass. The human is first and last: a detailed plan up front, then the final merge gate once the AI reviewers stop requesting changes. Everything between runs autonomously, and a human rejection re-enters the loop.
 
@@ -18,7 +18,7 @@ The loop that removes per-step prompting. From one goal it drives nested loops �
 
 1. **Human plans in detail and authorizes (touchpoint 1).** The human writes the detailed goal and, for the shared tracker, authorizes this one component's pipeline up front: the parent issue, its single PR, and the sub-issues the review loop will open. Write the goal and a station checklist to a disk state file you re-read each pass; the state file, not memory, survives a context reset. No authorization → pause before the first GitHub create and ask. The state file is a fixed checklist, so every run's spine reads the same:
 
-   ```md
+   ```text
    # <component> — loop state
 
    Goal: <one line> · Authorized: issue #_, PR #_, review sub-issues

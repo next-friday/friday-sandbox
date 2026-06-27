@@ -6,12 +6,12 @@ conditional section that does not apply rather than filling it with "N/A".
 Keeping only the relevant sections keeps the review surface short.
 
 Conditional sections:
-- New or Changed Component (when touched)
-- ESLint Config / TS Config / Styles (when touched)
+- New or changed component (when touched)
+- ESLint config / TS config / styles (when touched)
 - Tooling / CI (when touched)
 -->
 
-## Title Format
+## Title format
 
 `type(scope): subject`, conventional commits, strict. Subject 50 characters or fewer, lowercase first word, no trailing period.
 
@@ -39,18 +39,18 @@ Closes #2
 
 Two or three bullets describing what changed and why.
 
-## Architecture Compliance
+## Architecture compliance
 
 - [ ] DRY: no duplicated logic; reused shared helpers and constants across `packages/*`.
 - [ ] Symmetric: files of the same kind, whether component, story, or config, share one skeleton.
 - [ ] Typed and named clearly; no dead code; no source comments unless intent is non-obvious.
-- [ ] No lint rule disabled, gate skipped, or guard bypassed to make checks pass.
+- [ ] No lint rule disabled, gate skipped, or guard bypassed to make gates pass.
 
-## Release Impact
+## Release impact
 
 - Semver bump: <!-- patch | minor | major | none -->
 
-## New or Changed Component (when touched)
+## New or changed component (when touched)
 
 - [ ] Mirrored the `button` folder under `packages/react/src/components/<tier>/<name>/` so the file shape stays symmetric.
 - [ ] Lowercase filename, named export, `Props` colocated; `"use client"` only when a client API is touched.
@@ -59,7 +59,7 @@ Two or three bullets describing what changed and why.
 - [ ] Accessible by default: semantic markup, keyboard reachable, ARIA only where DOM cannot convey intent.
 - [ ] Vitest browser tests via the Storybook addon and Playwright chromium pass for new behavior.
 
-## ESLint Config / TS Config / Styles (when touched)
+## ESLint config / TS config / styles (when touched)
 
 - [ ] `@friday-sandbox/eslint-config` keeps all three subpath exports `./base`, `./next-js`, and `./react-internal` working in consumer workspaces.
 - [ ] `@friday-sandbox/typescript-config` keeps `base.json`, `nextjs.json`, `react-library.json` consistent.

@@ -3,7 +3,7 @@ name: component-review
 description: Use after opening or pushing to a pull request that AI code-review bots (CodeRabbit, Gemini Code Assist) or humans have commented and the threads need triaging before merge. Triggers "handle the coderabbit comments", "go through the bot review", "respond to the reviewer", "the PR has review comments".
 ---
 
-# Component Review
+# Component review
 
 The review station: drive a whole round of AI review on the PR to clean — turn every finding into a tracked sub-issue, fix them in one batch, and push once, repeating per round — then hand to the human's final gate. The human reviews only once the AI reviewers stop requesting changes.
 

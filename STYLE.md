@@ -63,13 +63,18 @@ the clarity principle and are not attributed to Anthropic.
 
 Use the canonical term. Examples:
 
-| Canonical | Not                                                            |
-| --------- | -------------------------------------------------------------- |
-| component | widget, control, element (when it means a component)           |
-| variant   | kind, flavor, style (when it means a `tv()` variant)           |
-| token     | theme variable, custom property (when it means a design token) |
-| prop      | option, parameter (when it means a component prop)             |
-| size      | sizing, dimension (when it means the `size` prop or token)     |
+| Canonical        | Not                                                                                                              |
+| ---------------- | ---------------------------------------------------------------------------------------------------------------- |
+| component        | widget, control, element (when it means a component)                                                             |
+| variant          | kind, flavor, style (when it means a `tv()` variant)                                                             |
+| token            | theme variable, custom property (when it means a design token)                                                   |
+| prop             | option, parameter (when it means a component prop)                                                               |
+| size             | sizing, dimension (when it means the `size` prop or token)                                                       |
+| gates            | checks, quality checks (when it means the CI and hook verification step)                                         |
+| primitive        | base component (when it means the platform tech a component wraps: react-aria-components, radix-ui, native HTML) |
+| layout component | primitive (when it means `Flex`, `Grid`, or `Text` — a published component)                                      |
+| Tailwind CSS v4  | Tailwind v4, Tailwind 4                                                                                          |
+| radix-ui         | radix, Radix (when it means the package)                                                                         |
 
 Words with a distinct technical meaning keep it. `element` for a DOM element and
 `property` for a CSS property are correct in their own context; treat the small,
@@ -89,10 +94,42 @@ these skeletons.
   `Purpose`, `When to use`, `When not to use`, `Example`, then `Accessibility`
   last. A component adds its own sections, such as a `Props` table and one demo
   per feature, between `Example` and `Accessibility`.
-- Package README: `<name>`, one-line summary, `Installation`, `Quick start`.
+- Package README: `<name>`, the canonical one-line summary (see below), then
+  `Quick start`. A published package (`react`, `styles`) adds badges and a
+  `Why <name>` section above `Quick start`; an internal package
+  (`eslint-config`, `typescript-config`) lists its presets or configs after it.
+- Skill (`.claude/skills/*/SKILL.md`): `When to use`, `Steps`, `Done — the
+contract`, `Verify`, `Red flags — STOP`, `What this encodes`, then an optional
+  trailing appendix (such as `Running unattended`) when the skill needs one.
 - Guide or how-to: a task title, then numbered steps.
 
+Every package table across the repo uses the columns `Package | Description` and
+copies these canonical one-line descriptions verbatim:
+
+| Package                             | Description                                                                     |
+| ----------------------------------- | ------------------------------------------------------------------------------- |
+| `@friday-sandbox/react`             | Accessible React components built on react-aria-components and Tailwind CSS v4. |
+| `@friday-sandbox/styles`            | Framework-agnostic design tokens and Tailwind CSS v4 layers.                    |
+| `@friday-sandbox/eslint-config`     | Shared ESLint flat-config presets.                                              |
+| `@friday-sandbox/typescript-config` | Shared TypeScript config presets.                                               |
+
 Keep the required heading set for each documented surface.
+
+## Markdown conventions
+
+These are mechanical, so a gate enforces them and review need not:
+
+- Headings are sentence case: capitalize the first word and proper nouns only
+  (`## Quick start`, not `## Quick Start`). One `#` H1 per document.
+- Every fenced code block declares a language. Shell is `sh`, a literal, template,
+  or diagram block is `text`; never an empty fence.
+- A heading is a real `#` heading, never a bold paragraph (`**Label:**`) standing
+  in for one.
+
+`pnpm lint:md` (markdownlint, wired into the hooks and CI) checks the fence
+language, the single H1, heading punctuation, and heading increment. It enforces
+only these mechanical rules and defers all formatting to Prettier, so it never
+overrides an authored Markdown pattern.
 
 ## Enforcement
 
@@ -100,6 +137,8 @@ This guide is upheld in review:
 
 - **Templates** (`.github/doc-templates/`): a new document starts from the
   skeleton, so structure and voice are correct before the first review.
+- **Markdownlint** (`pnpm lint:md`): enforces the mechanical Markdown conventions
+  above — fence language, single H1, heading punctuation — in the hooks and CI.
 - **AI reviewers** (`.coderabbit.yaml`, `.gemini/styleguide.md`): point at this
   guide's sections for voice, audience, the banned marketing words, and the
   required structure.

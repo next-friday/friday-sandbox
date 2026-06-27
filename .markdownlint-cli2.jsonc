@@ -1,0 +1,26 @@
+{
+  "globs": ["**/*.md", "**/*.mdx"],
+  "ignores": [
+    "**/node_modules/**",
+    "**/dist/**",
+    "**/.source/**",
+    "**/.next/**",
+    "**/.turbo/**",
+    "**/build/**",
+    "**/storybook-static/**",
+    ".changeset/**",
+    ".claude/skills/react-doctor/**",
+    ".agents/skills/react-doctor/**",
+  ],
+  "config": {
+    "default": false,
+    "MD001": true,
+    "MD003": { "style": "atx" },
+    "MD022": true,
+    "MD025": true,
+    "MD026": { "punctuation": ".,;:!" },
+    "MD040": true,
+    "MD046": { "style": "fenced" },
+    "MD048": { "style": "backtick" },
+  },
+}
