@@ -1,6 +1,0 @@
-@layer components {
-  /* :where() bakes the default at zero specificity; explicit classes override. */
-  :where(.fri-label) {
-    @apply m-0 text-label-md text-foreground;
-  }
-}

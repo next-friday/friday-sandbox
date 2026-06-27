@@ -117,7 +117,8 @@ export default function generator(plop: PlopTypes.NodePlopAPI): void {
       {
         type: "list",
         name: "primitive",
-        message: "Primitive kind:",
+        message:
+          "Primitive kind — native (display/layout, incl. non-interactive react-aria like Label/Text) or aria (interactive: focus/hover/press, size ramp):",
         choices: ["native", "aria"],
         default: "native",
       },
