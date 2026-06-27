@@ -1,6 +1,6 @@
 ---
 name: component-ship
-description: Use to ship a repo change through this repo's GitHub lifecycle, or when a pull request needs setting up, a branch or changeset is missing, the gates are red, or an issue needs closing by a PR. Triggers "ship this", "open the PR", "start the branch", "the gates are red", "add the changeset".
+description: Use to ship a base-component change in @friday-sandbox/react through the repo's issue → branch → changeset → gates → PR lifecycle — when a component's branch, changeset, or PR needs settling, or a component PR's gates are red. Triggers "ship this component", "open the component PR", "start the component branch", "the gates are red on the component". Not for docs, config, tooling, or other non-component changes.
 ---
 
 # Component ship

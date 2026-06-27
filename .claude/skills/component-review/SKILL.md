@@ -1,6 +1,6 @@
 ---
 name: component-review
-description: Use after opening or pushing to a pull request that AI code-review bots (CodeRabbit, Gemini Code Assist) or humans have commented and the threads need triaging before merge. Triggers "handle the coderabbit comments", "go through the bot review", "respond to the reviewer", "the PR has review comments".
+description: Use after opening or pushing a base-component PR in @friday-sandbox/react that AI code-review bots (CodeRabbit, Gemini Code Assist) or humans have commented, and the component PR's threads need triaging before merge. Triggers "handle the coderabbit comments on the component PR", "go through the bot review on the component", "respond to the reviewer on the component PR". Not for docs, config, tooling, or other non-component PRs.
 ---
 
 # Component review

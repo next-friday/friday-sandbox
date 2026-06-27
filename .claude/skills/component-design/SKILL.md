@@ -1,6 +1,6 @@
 ---
 name: component-design
-description: Use before building a base component in @friday-sandbox/react when its shape is not settled — which primitive to wrap (react-aria-components, radix, native), which color/variant/size ladder it needs, which tokens and states. Triggers "design a Tooltip", "what variants should X have", "plan this component".
+description: Use before building a base component in @friday-sandbox/react when its shape is not settled — which primitive to wrap (react-aria-components, radix, native), which color/variant/size ladder it needs, which tokens and states. Triggers "design a Tooltip", "what variants should X have", "plan this component". Not for docs, config, tooling, or other non-component design or planning.
 ---
 
 # Component design
