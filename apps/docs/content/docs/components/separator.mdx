@@ -5,21 +5,21 @@ description: A visual divider between content, horizontal or vertical.
 
 import { Flex, Separator } from "@friday-sandbox/react";
 
-## Purpose
+## Import
 
-The `Separator` draws a divider between sections of content. It wraps
-[React Aria `Separator`](https://react-spectrum.adobe.com/react-aria/Separator.html),
-so assistive technology announces it with the correct role.
+```tsx
+import { Separator } from "@friday-sandbox/react";
+```
 
-## When to use
+[Source](https://github.com/next-friday/friday-sandbox/blob/main/packages/react/src/components/bases/separator/separator.tsx) · [Style](https://github.com/next-friday/friday-sandbox/blob/main/packages/styles/src/components/bases/separator.css) · [Storybook](STORYBOOK_URL) · [Headless](https://react-spectrum.adobe.com/react-aria/Separator.html)
 
-Use `Separator` to divide groups of related content, in a row or a column.
+{/* Replace STORYBOOK_URL with the deployed Storybook story link. */}
 
-## When not to use
+## Usage
 
-Do not use `Separator` for spacing alone. Set a layout gap for that.
-
-## Example
+The `Separator` draws a divider between groups of related content, in a row or a
+column. It wraps React Aria `Separator`, so assistive technology announces it
+with the correct role. For spacing alone, set a layout gap instead.
 
 <Tabs items={["Preview", "Code"]}>
   <Tab value="Preview">
@@ -43,7 +43,9 @@ Do not use `Separator` for spacing alone. Set a layout gap for that.
   </Tab>
 </Tabs>
 
-## Orientation
+## Examples
+
+### Orientation
 
 Use `orientation="vertical"` to divide content laid out in a row. A vertical
 separator takes its height from its container.
@@ -74,15 +76,23 @@ separator takes its height from its container.
   </Tab>
 </Tabs>
 
+## API
+
+### Anatomy
+
+```tsx
+<Separator />
+```
+
 ## Props
 
-`Separator` also accepts the props from React Aria `Separator`, excluding
-`orientation`, which is the variant prop above, and a `className` string.
+`Separator` also accepts the props from React Aria `Separator`, plus a
+`className` string.
 
-| Prop          | Type                         | Default        |
-| ------------- | ---------------------------- | -------------- |
-| `orientation` | `"horizontal" \| "vertical"` | `"horizontal"` |
-| `className`   | `string`                     | —              |
+| Prop          | Type                         | Default        | Description                          |
+| ------------- | ---------------------------- | -------------- | ------------------------------------ |
+| `orientation` | `"horizontal" \| "vertical"` | `"horizontal"` | Sets the divider direction.          |
+| `className`   | `string`                     | —              | Additional CSS classes to apply.     |
 
 ## Accessibility
 
@@ -90,3 +100,16 @@ separator takes its height from its container.
   division between regions.
 - Set `orientation` to match the layout direction so the separator reports the
   correct orientation.
+
+## Styling
+
+`Separator` is styled through CSS classes ([source styles](https://github.com/next-friday/friday-sandbox/blob/main/packages/styles/src/components/bases/separator.css)), so the look applies to any element that carries them.
+
+### Base class
+
+- `fri-separator` — base separator styles with the horizontal default.
+
+### Orientation modifier classes
+
+- `fri-separator-horizontal` — a full-width hairline.
+- `fri-separator-vertical` — a full-height hairline that takes its height from the container.

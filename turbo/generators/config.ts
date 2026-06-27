@@ -171,7 +171,7 @@ export default function generator(plop: PlopTypes.NodePlopAPI): void {
         {
           type: "add",
           path: "{{ turbo.paths.root }}/apps/docs/content/docs/components/{{ kebabCase name }}.mdx",
-          templateFile: "templates/mdx.hbs",
+          templateFile: `templates/mdx${suffix}.hbs`,
         },
         {
           type: "add",
