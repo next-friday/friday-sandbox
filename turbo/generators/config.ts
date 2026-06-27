@@ -115,6 +115,13 @@ export default function generator(plop: PlopTypes.NodePlopAPI): void {
           value.trim().length > 0 ? true : "name is required",
       },
       {
+        type: "list",
+        name: "primitive",
+        message: "Primitive kind:",
+        choices: ["native", "aria"],
+        default: "native",
+      },
+      {
         type: "input",
         name: "category",
         message: "Storybook category (e.g. Forms, Layout, Feedback):",
@@ -125,43 +132,53 @@ export default function generator(plop: PlopTypes.NodePlopAPI): void {
             : "category may use only letters, digits, spaces, / and -",
       },
     ],
-    actions: [
-      {
-        type: "add",
-        path: `${reactBases}/{{ kebabCase name }}.tsx`,
-        templateFile: "templates/component.tsx.hbs",
-      },
-      {
-        type: "add",
-        path: `${reactBases}/{{ kebabCase name }}.variants.ts`,
-        templateFile: "templates/variants.ts.hbs",
-      },
-      {
-        type: "add",
-        path: `${reactBases}/index.ts`,
-        templateFile: "templates/index.ts.hbs",
-      },
-      {
-        type: "add",
-        path: `${reactBases}/{{ kebabCase name }}.stories.tsx`,
-        templateFile: "templates/stories.tsx.hbs",
-      },
-      {
-        type: "add",
-        path: "{{ turbo.paths.root }}/packages/styles/src/components/bases/{{ kebabCase name }}.css",
-        templateFile: "templates/styles.css.hbs",
-      },
-      {
-        type: "add",
-        path: "{{ turbo.paths.root }}/apps/docs/content/docs/components/{{ kebabCase name }}.mdx",
-        templateFile: "templates/mdx.hbs",
-      },
-      {
-        type: "add",
-        path: "{{ turbo.paths.root }}/.changeset/{{ kebabCase name }}-component.md",
-        templateFile: "templates/changeset.md.hbs",
-      },
-      wireBarrels,
-    ],
+    actions: (data) => {
+      // Un-suffixed templates are the native (display / layout) default; the
+      // `.aria.` variants scaffold the interactive skeleton (size axis, ramp
+      // geometry, focus/disabled states, interaction + base-class stories).
+      // Both stay valid on generation, so the scaffold compiles and passes the
+      // gates before any fill — the deterministic, symmetric starting point.
+      const primitive = (data as { primitive?: string } | undefined)?.primitive;
+      const suffix = primitive === "aria" ? ".aria" : "";
+
+      return [
+        {
+          type: "add",
+          path: `${reactBases}/{{ kebabCase name }}.tsx`,
+          templateFile: `templates/component${suffix}.tsx.hbs`,
+        },
+        {
+          type: "add",
+          path: `${reactBases}/{{ kebabCase name }}.variants.ts`,
+          templateFile: `templates/variants${suffix}.ts.hbs`,
+        },
+        {
+          type: "add",
+          path: `${reactBases}/index.ts`,
+          templateFile: "templates/index.ts.hbs",
+        },
+        {
+          type: "add",
+          path: `${reactBases}/{{ kebabCase name }}.stories.tsx`,
+          templateFile: `templates/stories${suffix}.tsx.hbs`,
+        },
+        {
+          type: "add",
+          path: "{{ turbo.paths.root }}/packages/styles/src/components/bases/{{ kebabCase name }}.css",
+          templateFile: `templates/styles${suffix}.css.hbs`,
+        },
+        {
+          type: "add",
+          path: "{{ turbo.paths.root }}/apps/docs/content/docs/components/{{ kebabCase name }}.mdx",
+          templateFile: "templates/mdx.hbs",
+        },
+        {
+          type: "add",
+          path: "{{ turbo.paths.root }}/.changeset/{{ kebabCase name }}-component.md",
+          templateFile: "templates/changeset.md.hbs",
+        },
+        wireBarrels,
+      ];
+    },
   });
 }

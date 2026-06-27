@@ -1,0 +1,20 @@
+import { tv } from "tailwind-variants/lite";
+import type { VariantProps } from "tailwind-variants/lite";
+
+export const {{ camelCase name }}Variants = tv({
+  base: "fri-{{ kebabCase name }}",
+  variants: {
+    size: {
+      xs: "fri-{{ kebabCase name }}-xs",
+      sm: "fri-{{ kebabCase name }}-sm",
+      md: "fri-{{ kebabCase name }}-md",
+      lg: "fri-{{ kebabCase name }}-lg",
+      xl: "fri-{{ kebabCase name }}-xl",
+    },
+  },
+  defaultVariants: {
+    size: "md",
+  },
+});
+
+export type {{ pascalCase name }}Variants = VariantProps<typeof {{ camelCase name }}Variants>;

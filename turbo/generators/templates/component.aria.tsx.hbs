@@ -1,0 +1,27 @@
+import type { ComponentPropsWithRef } from "react";
+
+import { {{ camelCase name }}Variants } from "./{{ kebabCase name }}.variants";
+import type { {{ pascalCase name }}Variants } from "./{{ kebabCase name }}.variants";
+
+export interface {{ pascalCase name }}Props
+  extends ComponentPropsWithRef<"button">,
+    {{ pascalCase name }}Variants {
+  className?: string;
+}
+
+// Interactive scaffold over a native <button>. Swap it for the
+// react-aria-components primitive this component wraps (see button.tsx) — add
+// "use client" at the top then, since that primitive is a client component —
+// composing className through composeTailwindRenderProps for render-prop
+// primitives, and add the color and variant axes the component needs.
+export const {{ pascalCase name }} = (props: Readonly<{{ pascalCase name }}Props>) => {
+  const { children, className, size, ...rest } = props;
+
+  const resolvedClassName = {{ camelCase name }}Variants({ size, className });
+
+  return (
+    <button data-slot="{{ kebabCase name }}" className={resolvedClassName} {...rest}>
+      {children}
+    </button>
+  );
+};

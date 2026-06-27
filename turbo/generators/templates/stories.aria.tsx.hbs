@@ -1,0 +1,127 @@
+import { expect, userEvent, within } from "storybook/test";
+import type { Meta, StoryObj } from "@storybook/react-vite";
+
+import { Flex } from "../flex";
+
+import { {{ pascalCase name }} } from ".";
+
+const SIZES = [
+  { value: "xs", label: "Extra Small" },
+  { value: "sm", label: "Small" },
+  { value: "md", label: "Medium" },
+  { value: "lg", label: "Large" },
+  { value: "xl", label: "Extra Large" },
+] as const;
+
+const meta = {
+  title: "Bases/{{ category }}/{{ pascalCase name }}",
+  component: {{ pascalCase name }},
+  tags: ["autodocs"],
+  args: {
+    children: "{{ pascalCase name }}",
+    size: "md",
+  },
+  argTypes: {
+    children: {
+      description: "The content to display inside the {{ kebabCase name }}.",
+      control: "text",
+      table: { type: { summary: "ReactNode" } },
+    },
+    size: {
+      description: "Use the `size` prop to change the size of the {{ kebabCase name }}.",
+      control: "radio",
+      options: SIZES.map((size) => size.value),
+      table: {
+        type: { summary: "xs | sm | md | lg | xl" },
+        defaultValue: { summary: "md" },
+      },
+    },
+    className: {
+      description: "Additional CSS classes to apply.",
+      control: "text",
+      table: { type: { summary: "string" } },
+    },
+  },
+} satisfies Meta<typeof {{ pascalCase name }}>;
+
+export default meta;
+
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = {
+  play: async ({ canvasElement }) => {
+    const element = within(canvasElement).getByText("{{ pascalCase name }}");
+
+    await expect(element).toBeInTheDocument();
+    await expect(
+      element.closest('[data-slot="{{ kebabCase name }}"]'),
+    ).not.toBeNull();
+
+    await userEvent.tab();
+    await expect(element).toHaveFocus();
+  },
+};
+
+export const Sizes: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: "Use the `size` prop to change the size of the {{ kebabCase name }}.",
+      },
+    },
+  },
+  render: (storyArgs) => (
+    <Flex wrap="wrap" align="center" gap="md">
+      {SIZES.map((size) => (
+        <{{ pascalCase name }} key={size.value} {...storyArgs} size={size.value}>
+          {size.label}
+        </{{ pascalCase name }}>
+      ))}
+    </Flex>
+  ),
+};
+
+export const BaseClassDefault: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "The base class on its own renders the default size, so hand-written HTML needs no modifier classes for a usable default.",
+      },
+    },
+  },
+  render: () => (
+    <button className="fri-{{ kebabCase name }}" type="button">
+      {{ pascalCase name }}
+    </button>
+  ),
+  play: async ({ canvasElement }) => {
+    const element = canvasElement.querySelector<HTMLButtonElement>(
+      ".fri-{{ kebabCase name }}",
+    );
+    await expect(element).not.toBeNull();
+
+    const styles = getComputedStyle(element!);
+    // The solid default fills the background; an unstyled base would be
+    // transparent. getComputedStyle resolves height to pixels, so the medium
+    // default reads well above an unsized base.
+    await expect(styles.backgroundColor).not.toBe("rgba(0, 0, 0, 0)");
+    await expect(Number.parseFloat(styles.height)).toBeGreaterThan(30);
+  },
+};
+
+export const PlainHtml: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Apply the styling to any element by using the classes directly, so a non-button element can carry the look while staying the right element for the job.",
+      },
+    },
+  },
+  render: () => (
+    <span className="fri-{{ kebabCase name }} fri-{{ kebabCase name }}-md">
+      {{ pascalCase name }}
+    </span>
+  ),
+};
