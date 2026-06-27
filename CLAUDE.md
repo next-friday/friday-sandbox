@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (code.claude.com) when working with c
 
 ## Claude Code operating rules
 
-- **Let the hooks do the work.** `pre-commit` runs the gates on staged files; `pre-push` runs the full list. Do **not** run whole-repo `lint`/`typecheck`/`build`/`build:storybook`/`knip`/`depcruise`/`sort:check`/`format:check`/`lint:prose`/`lint:symmetry`/`test` by hand, since each is minutes of duplicated work the hooks already cover.
+- **Let the hooks do the work.** `pre-commit` runs the gates on staged files; `pre-push` runs the full list. Do **not** run whole-repo `lint`/`typecheck`/`build`/`build:storybook`/`knip`/`depcruise`/`sort:check`/`format:check`/`lint:symmetry`/`test` by hand, since each is minutes of duplicated work the hooks already cover.
 - **Never suppress a gate.** Fix the root cause: do not disable a lint rule, skip a check, loosen a gate, or use `--no-verify`, which is forbidden and re-caught by CI. Disabling is a last resort needing explicit approval with a stated reason.
 - **`src` ↔ `exports` invariant.** Workspace consumers read `src/`; published consumers read `dist/`. Change one surface, keep the other aligned.
 - **One change = one issue → one branch → one PR.** Behavior changes such as `feat`, `fix`, `perf`, and `refactor` require a `.changeset/*.md` entry, and the branch must start with `<issue#>-`. Titles are Conventional Commits `type(scope): subject` (≤50 chars, lowercase imperative, no body/footer); put `Closes #<n>` in the PR body, never the title. Full workflow in [`CONTRIBUTING.md`](CONTRIBUTING.md).

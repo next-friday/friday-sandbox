@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "description": "Documentation website for the @friday-sandbox design system.",
-  "license": "Apache-2.0",
+  "license": "MIT",
   "author": {
     "name": "Next Friday",
     "url": "https://github.com/next-friday"

@@ -1,34 +1,24 @@
+<div align="center">
+
 # @friday-sandbox/react
 
-Accessible React UI components built on react-aria-components and Tailwind CSS v4.
+**Accessible, themeable React components with keyboard and screen-reader support built in.**
 
-<p>
-  <a href="https://www.npmjs.com/package/@friday-sandbox/react">
-    <img src="https://img.shields.io/npm/v/@friday-sandbox/react?style=flat" alt="npm version">
-  </a>
-  <a href="https://www.npmjs.com/package/@friday-sandbox/react">
-    <img src="https://img.shields.io/npm/dm/@friday-sandbox/react.svg?style=flat" alt="npm downloads">
-  </a>
-  <a href="https://github.com/next-friday/friday-sandbox/blob/main/LICENSE">
-    <img src="https://img.shields.io/npm/l/@friday-sandbox/react?style=flat" alt="License">
-  </a>
-  <a href="https://github.com/next-friday/friday-sandbox/actions/workflows/ci.yml">
-    <img src="https://github.com/next-friday/friday-sandbox/actions/workflows/ci.yml/badge.svg" alt="CI">
-  </a>
-</p>
+[![npm version](https://img.shields.io/npm/v/@friday-sandbox/react?style=flat)](https://www.npmjs.com/package/@friday-sandbox/react)
+[![npm downloads](https://img.shields.io/npm/dm/@friday-sandbox/react.svg?style=flat)](https://www.npmjs.com/package/@friday-sandbox/react)
+[![License](https://img.shields.io/npm/l/@friday-sandbox/react?style=flat)](https://github.com/next-friday/friday-sandbox/blob/main/LICENSE)
+[![CI](https://github.com/next-friday/friday-sandbox/actions/workflows/ci.yml/badge.svg)](https://github.com/next-friday/friday-sandbox/actions/workflows/ci.yml)
 
-## Features
+[Components](#components) · [Quick start](#quick-start) · [Contributing](https://github.com/next-friday/friday-sandbox/blob/main/CONTRIBUTING.md)
 
-- **Accessible by default.** Interactive components wrap [react-aria-components](https://react-spectrum.adobe.com/react-aria/) or radix-ui; layout and text primitives use semantic native HTML, so keyboard and screen-reader support are built in.
-- **Tailwind CSS v4 styling.** Components consume the design tokens and component classes from `@friday-sandbox/styles`, themeable through CSS variables.
-- **Polymorphic layout primitives.** `Flex` and `Grid` render as any element via an `as` prop and forward the correct typed props.
-- **Typed and tree-shakeable.** Written in TypeScript with `sideEffects: false`, so bundlers drop what you do not import.
+</div>
 
-## Requirements
+## Why
 
-- React 19
-- Tailwind CSS v4
-- `@friday-sandbox/styles` (peer dependency, supplies the component CSS)
+- **Accessible by default.** Interactive components wrap [react-aria-components](https://react-spectrum.adobe.com/react-aria/) and radix-ui; layout and text primitives use semantic HTML. Keyboard and screen-reader support come standard.
+- **Themeable without forking.** Components read their styling from the CSS variables in `@friday-sandbox/styles`. Restyle by overriding tokens, not by overriding components.
+- **Polymorphic primitives.** `Flex`, `Grid`, and `Text` render as any element through an `as` prop, with the correct typed props forwarded.
+- **Tiny by default.** Written in TypeScript with `sideEffects: false`, so bundlers keep only what you import.
 
 ## Installation
 
@@ -40,12 +30,13 @@ pnpm add @friday-sandbox/react @friday-sandbox/styles
 yarn add @friday-sandbox/react @friday-sandbox/styles
 ```
 
-## Usage
+Requires React 19 and Tailwind CSS v4. `@friday-sandbox/styles` is a peer dependency and supplies the component CSS.
 
-Import Tailwind and the styles package once at your application root:
+## Quick start
+
+Import Tailwind and the styles once at your app root:
 
 ```css
-/* app/globals.css */
 @import "tailwindcss";
 @import "@friday-sandbox/styles";
 ```
@@ -62,23 +53,8 @@ export function Save() {
 
 ## Components
 
-| Export             | Description                                            |
-| ------------------ | ------------------------------------------------------ |
-| `Button`           | Accessible button with color, variant, and size props. |
-| `Flex`             | Polymorphic flexbox primitive.                         |
-| `Grid`, `GridItem` | Polymorphic grid primitive and its item.               |
-| `ScrollArea`       | Styled, accessible scroll container.                   |
-| `Separator`        | Accessible divider, horizontal or vertical.            |
-| `Spinner`          | Loading spinner.                                       |
-| `Text`             | Polymorphic typography primitive.                      |
-
-Every component renders to a Storybook story. Storybook is built from this package and deployed on every push. The setup lives in [`packages/react`](https://github.com/next-friday/friday-sandbox/tree/main/packages/react); run it locally with `pnpm dev:storybook`.
-
-## Troubleshooting
-
-- **Styles are not applied.** The CSS import is missing. Add `@import "@friday-sandbox/styles";` after `@import "tailwindcss";` at your app root.
-- **Build or type errors on import.** React 19 and Tailwind CSS v4 are required. Older majors are not supported.
+Browse every component, its props, and live examples in Storybook, deployed on every push. Run it locally with `pnpm dev:storybook`.
 
 ## License
 
-[Apache-2.0](https://github.com/next-friday/friday-sandbox/blob/main/LICENSE)
+[MIT](https://github.com/next-friday/friday-sandbox/blob/main/LICENSE)

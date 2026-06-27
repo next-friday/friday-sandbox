@@ -16,7 +16,7 @@
     "url": "git+https://github.com/next-friday/friday-sandbox.git",
     "directory": "packages/typescript-config"
   },
-  "license": "Apache-2.0",
+  "license": "MIT",
   "author": {
     "name": "Next Friday",
     "url": "https://github.com/next-friday"

@@ -1,56 +1,46 @@
-# @friday-sandbox/react
+<div align="center">
 
-Accessible React UI components built on react-aria-components and Tailwind CSS v4.
+# friday-sandbox
 
-<p>
-  <a href="https://www.npmjs.com/package/@friday-sandbox/react">
-    <img src="https://img.shields.io/npm/v/@friday-sandbox/react?style=flat" alt="npm version">
-  </a>
-  <a href="https://www.npmjs.com/package/@friday-sandbox/react">
-    <img src="https://img.shields.io/npm/dm/@friday-sandbox/react.svg?style=flat" alt="npm downloads">
-  </a>
-  <a href="https://github.com/next-friday/friday-sandbox/blob/main/LICENSE">
-    <img src="https://img.shields.io/npm/l/@friday-sandbox/react?style=flat" alt="License">
-  </a>
-  <a href="https://github.com/next-friday/friday-sandbox/actions/workflows/ci.yml">
-    <img src="https://github.com/next-friday/friday-sandbox/actions/workflows/ci.yml/badge.svg" alt="CI">
-  </a>
-</p>
+**Accessible React components and a framework-agnostic, CSS-variable design system.**
 
-## Features
+[![CI](https://github.com/next-friday/friday-sandbox/actions/workflows/ci.yml/badge.svg)](https://github.com/next-friday/friday-sandbox/actions/workflows/ci.yml)
+[![License](https://img.shields.io/github/license/next-friday/friday-sandbox?style=flat)](https://github.com/next-friday/friday-sandbox/blob/main/LICENSE)
 
-- **Accessible by default.** Interactive components wrap [react-aria-components](https://react-spectrum.adobe.com/react-aria/) or radix-ui; layout and text primitives use semantic native HTML, so keyboard and screen-reader support are built in.
-- **Tailwind CSS v4 styling.** Components consume the design tokens and component classes from `@friday-sandbox/styles`, themeable through CSS variables.
-- **Polymorphic layout primitives.** `Flex` and `Grid` render as any element via an `as` prop and forward the correct typed props.
-- **Typed and tree-shakeable.** Written in TypeScript with `sideEffects: false`, so bundlers drop what you do not import.
+[Packages](#packages) · [Quick start](#quick-start) · [Contributing](https://github.com/next-friday/friday-sandbox/blob/main/CONTRIBUTING.md)
 
-## Requirements
+</div>
 
-- React 19
-- Tailwind CSS v4
-- `@friday-sandbox/styles` (peer dependency, supplies the component CSS)
+## Why friday-sandbox
 
-## Installation
+- **Accessible by default.** Components build on [react-aria-components](https://react-spectrum.adobe.com/react-aria/) and radix-ui, so keyboard and screen-reader support ship as standard.
+- **Theme anywhere.** Styling is plain CSS variables. Retheme React, plain HTML, WordPress, or PHP by overriding tokens, with no build step, plugin, or JavaScript.
+- **Generated, contrast-checked tokens.** Colors and scales derive from one spec; the shipped light and dark themes are contrast-checked at build time.
+- **Typed and tree-shakeable.** TypeScript throughout, `sideEffects: false`, so bundlers drop what you do not import.
+
+## Packages
+
+| Package                                                                                                     | Description                                                                     |
+| ----------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
+| [`@friday-sandbox/react`](./packages/react) · [npm](https://www.npmjs.com/package/@friday-sandbox/react)    | Accessible React components built on react-aria-components and Tailwind CSS v4. |
+| [`@friday-sandbox/styles`](./packages/styles) · [npm](https://www.npmjs.com/package/@friday-sandbox/styles) | Framework-agnostic design tokens and Tailwind v4 layers.                        |
+| [`@friday-sandbox/eslint-config`](./packages/eslint-config)                                                 | Shared ESLint presets. Internal to this workspace.                              |
+| [`@friday-sandbox/typescript-config`](./packages/typescript-config)                                         | Shared TypeScript presets. Internal to this workspace.                          |
+
+## Quick start
 
 ```bash
 npm install @friday-sandbox/react @friday-sandbox/styles
-# or
-pnpm add @friday-sandbox/react @friday-sandbox/styles
-# or
-yarn add @friday-sandbox/react @friday-sandbox/styles
 ```
 
-## Usage
-
-Import Tailwind and the styles package once at your application root:
+Import the styles once at your app root, after Tailwind:
 
 ```css
-/* app/globals.css */
 @import "tailwindcss";
 @import "@friday-sandbox/styles";
 ```
 
-Then render a component anywhere:
+Render a component anywhere:
 
 ```tsx
 import { Button } from "@friday-sandbox/react";
@@ -60,25 +50,12 @@ export function Save() {
 }
 ```
 
-## Components
+## Documentation
 
-| Export             | Description                                            |
-| ------------------ | ------------------------------------------------------ |
-| `Button`           | Accessible button with color, variant, and size props. |
-| `Flex`             | Polymorphic flexbox primitive.                         |
-| `Grid`, `GridItem` | Polymorphic grid primitive and its item.               |
-| `ScrollArea`       | Styled, accessible scroll container.                   |
-| `Separator`        | Accessible divider, horizontal or vertical.            |
-| `Spinner`          | Loading spinner.                                       |
-| `Text`             | Polymorphic typography primitive.                      |
-
-Every component renders to a Storybook story. Storybook is built from this package and deployed on every push. The setup lives in [`packages/react`](https://github.com/next-friday/friday-sandbox/tree/main/packages/react); run it locally with `pnpm dev:storybook`.
-
-## Troubleshooting
-
-- **Styles are not applied.** The CSS import is missing. Add `@import "@friday-sandbox/styles";` after `@import "tailwindcss";` at your app root.
-- **Build or type errors on import.** React 19 and Tailwind CSS v4 are required. Older majors are not supported.
+- **Components.** Browse and interact in Storybook, deployed on every push. Run it locally with `pnpm dev:storybook`.
+- **Theming.** The complete, always-current token reference lives in [`packages/styles/design.md`](./packages/styles/design.md).
+- **Contributing.** The issue → PR workflow and the full gate list are in [CONTRIBUTING.md](https://github.com/next-friday/friday-sandbox/blob/main/CONTRIBUTING.md).
 
 ## License
 
-[Apache-2.0](https://github.com/next-friday/friday-sandbox/blob/main/LICENSE)
+[MIT](https://github.com/next-friday/friday-sandbox/blob/main/LICENSE)
