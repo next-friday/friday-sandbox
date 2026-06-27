@@ -71,7 +71,8 @@ The loop that removes per-step prompting. From one goal it drives nested loops �
 ## What this encodes
 
 - Nested loops: the inner (stations → verify) closes on the build Done contract; the outer (ship → AI-review → back to inner) closes when every AI reviewer is clean; then the human gate decides. The four `component-*` stations run inside them.
-- The human is first (the detailed plan and authorization) and last (the merge gate); the gate opens only after the AI reviewers are clean and is the sole merge authority — a rejection loops back through fix → verify → AI-clean → human re-review. The autonomous spans are inner-build and the batched AI review-fix. One issue, one PR, with per-finding sub-issues closed by the PR — `component-ship` and `component-review` hold the shared-tracker rule.- Parallel or isolated builds: a git worktree, its branch named `<n>-…` (the CI gate), one component per tree.
+- The human is first (the detailed plan and authorization) and last (the merge gate); the gate opens only after the AI reviewers are clean and is the sole merge authority — a rejection loops back through fix → verify → AI-clean → human re-review. The autonomous spans are inner-build and the batched AI review-fix. One issue, one PR, with per-finding sub-issues closed by the PR — `component-ship` and `component-review` hold the shared-tracker rule.
+- Parallel or isolated builds: a git worktree, its branch named `<n>-…` (the CI gate), one component per tree.
 
 ## Running unattended (heartbeat)
 

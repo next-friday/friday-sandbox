@@ -62,7 +62,7 @@ Scaffold a base component instead of hand-creating its files:
 pnpm gen component   # prompts for the name, the primitive kind (native or aria), and the Storybook category
 ```
 
-The generator (Turborepo `turbo gen`, defined in `turbo/generators/`) creates `<name>.tsx`, `<name>.variants.ts`, `index.ts`, and `<name>.stories.tsx` under `packages/react/src/components/bases/<name>/`, adds the `<name>.css` stub in `@friday-sandbox/styles` with its `@import`, wires the three export barrels and the docs nav, and writes a changeset. Choose the `aria` primitive for an interactive component — it scaffolds the size, state, and story skeleton — or `native` for a minimal display element. Then fill in the variants, the `@apply` rules, the stories, and the docs. `pnpm lint:symmetry` verifies that `<name>.variants.ts` and `<name>.css` stay a 1:1 mirror. Don't hand-create or hand-wire these files.
+The generator (Turborepo `turbo gen`, defined in `turbo/generators/`) creates `<name>.tsx`, `<name>.variants.ts`, `index.ts`, and `<name>.stories.tsx` under `packages/react/src/components/bases/<name>/`, adds the `<name>.css` stub in `@friday-sandbox/styles` with its `@import`, wires the export barrels and the docs nav, and writes a changeset. Choose the `aria` primitive for an interactive component — it scaffolds the size, state, and story skeleton — or `native` for a minimal display element. Then fill in the variants, the `@apply` rules, the stories, and the docs. `pnpm lint:symmetry` verifies that `<name>.variants.ts` and `<name>.css` stay a 1:1 mirror. Don't hand-create or hand-wire these files.
 
 ## Commit and pull request titles
 

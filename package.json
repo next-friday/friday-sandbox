@@ -43,7 +43,7 @@
     "knip": "knip",
     "lint": "turbo run lint",
     "lint:prose": "node scripts/prose/lint-prose.mjs",
-    "lint:symmetry": "node --experimental-strip-types scripts/check-component-symmetry.mts",
+    "lint:symmetry": "node --experimental-strip-types scripts/check-component-symmetry.ts",
     "prepare": "husky",
     "sort": "sort-package-json \"package.json\" \"packages/*/package.json\" \"apps/*/package.json\"",
     "sort:check": "sort-package-json --check \"package.json\" \"packages/*/package.json\" \"apps/*/package.json\"",

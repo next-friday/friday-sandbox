@@ -27,7 +27,7 @@ The build station for `@friday-sandbox/react` base components. `pnpm gen compone
    - size classes set only `--_<name>-n` and `text-label-<size>`; bake the `md` default at zero specificity with `:where(.fri-<name>)`.
    - states via react-aria data attrs (`[data-hovered] [data-pressed] [data-disabled] [data-focus-visible]`) and repo utilities (`transition-base focus-ring status-disabled`).
    - mirror **1:1**: every variant value has its class here, none orphaned either side.
-5. **Stories in `<name>.stories.tsx` ARE the tests** (Vitest in Chromium via Playwright, `storybook/test`). Follow `button.stories.tsx`: full `argTypes`; a showcase story per variant axis (every value, laid out with `Flex`) and per state — render-only visual coverage, no `play`. Add `play` on exactly the two stories that assert behavior: `Default` (interaction — `userEvent.tab()` → `toHaveFocus`, keyboard → a `fn()` handler) and `BaseClassDefault` (`getComputedStyle` — the base class renders usably with no modifiers). Include a class-only / `PlainHtml` story (the `fri-` classes work on a plain element).
+5. **Stories in `<name>.stories.tsx` ARE the tests** (Vitest in Chromium via Playwright, `storybook/test`). Follow `button.stories.tsx`: full `argTypes`; a showcase story per variant axis (every value, laid out with `Flex`) and per state — render-only visual coverage, no `play`. For interactive bases, add `play` on `Default` (interaction — `userEvent.tab()` → `toHaveFocus`, keyboard → a `fn()` handler) and `BaseClassDefault` (`getComputedStyle` — the base class renders usably with no modifiers); for display/layout bases (text, flex, grid, separator, spinner), keep render-only coverage and skip the behavior plays. Include a class-only / `PlainHtml` story (the `fri-` classes work on a plain element).
 6. **Docs `<name>.mdx`** — the STYLE.md spine: Purpose, When to use, When not to use, Example, [Props + one demo per feature], Accessibility last. The generator appended `<name>` to the curated `components/meta.json` `pages`; order it sensibly.
 7. **Compound component?** The generator wires ONE export name. For multiple parts (`Grid` + `GridItem`, `ScrollArea` + parts) add the extra `export {…}` / `export type {…}` blocks by hand to `bases/<name>/index.ts`, `bases/index.ts`, `components/index.ts`, and `src/index.ts`, mirroring the existing Grid / ScrollArea blocks. Complex props → `<name>.types.ts` (see `flex`); compound API → `<name>.namespace.ts` (see `scroll-area`).
 8. **Self-check** the contract, then the **two-axis sub-agent audit** (verifier ≠ builder, see Verify), then **iterate** until it holds. Build and fix sub-agents return one of DONE / DONE_WITH_CONCERNS / BLOCKED / NEEDS_CONTEXT — it is always OK to stop and escalate (bad work is worse than no work); never force the same model to retry unchanged. Never stop on a half-pass.
@@ -38,7 +38,7 @@ The build station for `@friday-sandbox/react` base components. `pnpm gen compone
 - [ ] Variant vocabulary reuses the repo set, every value a distinct `fri-<name>-<value>`, `defaultVariants` set.
 - [ ] `<name>.css` mirrors `.variants.ts` 1:1 — verified by `pnpm lint:symmetry` — via the ladder + `:where()` default + ramp-multiplier pattern; no orphan class either side; no hardcoded color (use the `--fri-<role>` ladder).
 - [ ] States wired via react-aria data attrs and repo utilities (`focus-ring`, `status-disabled`, `transition-base`).
-- [ ] Stories cover every variant value and every state (showcase renders), with `play` on the interaction story (`Default`) and the base-class proof (`BaseClassDefault`), plus a class-only story; all pass.
+- [ ] Stories cover every variant value and every state (showcase renders); interactive bases add `play` on `Default` (interaction) and `BaseClassDefault` (base-class proof), display/layout bases stay render-only; plus a class-only story; all pass.
 - [ ] mdx on the STYLE.md spine; `meta.json` carries `<name>`.
 - [ ] Compound exports / `.types.ts` / `.namespace.ts` added if needed; generator-owned single-name wiring not hand-broken.
 - [ ] Exactly one changeset — the generated `<name>-component.md`, not a duplicate.
@@ -62,7 +62,7 @@ The build station for `@friday-sandbox/react` base components. `pnpm gen compone
 - A variant class without its css rule, or the reverse → orphan; the mirror is broken.
 - Two sizes or colors share a class → forbidden; every value distinct.
 - A compound component with only the generated single export wired → add the extra blocks by hand.
-- A variant value or state with no story, or missing `play` on `Default` (interaction) or `BaseClassDefault` (base-class proof) → coverage gap; those two stories must assert.
+- A variant value or state with no story, or an interactive base missing `play` on `Default` (interaction) or `BaseClassDefault` (base-class proof) → coverage gap.
 - Hand-edited a barrel for a non-compound, or `meta.json` / `index.ts` casually → the generator owns the single-name wiring.
 - Hand-writing boilerplate the generator could emit → that's a template gap; fix `turbo/generators/`, don't free-gen it.
 

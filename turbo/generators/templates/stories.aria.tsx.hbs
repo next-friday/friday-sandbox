@@ -1,4 +1,4 @@
-import { expect, within } from "storybook/test";
+import { expect, userEvent, within } from "storybook/test";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import { Flex } from "../flex";
@@ -56,6 +56,9 @@ export const Default: Story = {
     await expect(
       element.closest('[data-slot="{{ kebabCase name }}"]'),
     ).not.toBeNull();
+
+    await userEvent.tab();
+    await expect(element).toHaveFocus();
   },
 };
 
