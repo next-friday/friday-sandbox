@@ -19,7 +19,7 @@ Accessible React UI components built on react-aria-components and Tailwind CSS v
 
 ## Features
 
-- **Accessible by default.** Interaction, focus, and ARIA are handled by [react-aria-components](https://react-spectrum.adobe.com/react-aria/), so keyboard and screen-reader support ship with every component.
+- **Accessible by default.** Interactive components wrap [react-aria-components](https://react-spectrum.adobe.com/react-aria/) or radix-ui; layout and text primitives use semantic native HTML, so keyboard and screen-reader support are built in.
 - **Tailwind CSS v4 styling.** Components consume the design tokens and component classes from `@friday-sandbox/styles`, themeable through CSS variables.
 - **Polymorphic layout primitives.** `Flex` and `Grid` render as any element via an `as` prop and forward the correct typed props.
 - **Typed and tree-shakeable.** Written in TypeScript with `sideEffects: false`, so bundlers drop what you do not import.
@@ -68,6 +68,9 @@ export function Save() {
 | `Flex`             | Polymorphic flexbox primitive.                         |
 | `Grid`, `GridItem` | Polymorphic grid primitive and its item.               |
 | `ScrollArea`       | Styled, accessible scroll container.                   |
+| `Separator`        | Accessible divider, horizontal or vertical.            |
+| `Spinner`          | Loading spinner.                                       |
+| `Text`             | Polymorphic typography primitive.                      |
 
 Every component renders to a Storybook story. Storybook is built from this package and deployed on every push. The setup lives in [`packages/react`](https://github.com/next-friday/friday-sandbox/tree/main/packages/react); run it locally with `pnpm dev:storybook`.
 

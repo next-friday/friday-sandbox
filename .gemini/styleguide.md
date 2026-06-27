@@ -28,7 +28,7 @@ A base component is scaffolded with `pnpm gen component` (Turborepo `turbo gen`)
 - Wrap the right primitive for the job: `react-aria-components` for interactive and accessibility (button), a `radix` part for a compound component (scroll-area), or native HTML for layout and text (flex, text). Flag hand-rolled keyboard or focus where a primitive exists.
 - Props widen from the primitive (`ComponentPropsWithRef<typeof X>`); a render-prop primitive composes `className` through `composeTailwindRenderProps`; keep `data-slot="<name>"`.
 - Variants map props to the `fri-<name>` class via `tailwind-variants/lite` `tv()`: every value is a distinct `fri-<name>-<value>` class, reusing the repo vocabulary (color `primary…danger`, `variant` `solid…plain`, `size` `xs…xl`), with `defaultVariants` set and no hardcoded color — wire the `--fri-<role>` token ladder.
-- A new file is reachable through the package `exports` map, where `.` → `./src/index.ts` and `./*` → `./src/*/index.ts`; a file no `index.ts` re-exports is unreachable. A compound component wires every part through all four barrels.
+- A new file is reachable through the package `exports` map's one public entry, `.` → `./src/index.ts`, via the barrel chain; a file no `index.ts` re-exports is unreachable. A compound component wires every part through all four barrels.
 
 ## Accessibility and stories: `packages/react/src/**/*.stories.{ts,tsx}`
 
