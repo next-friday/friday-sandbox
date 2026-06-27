@@ -22,12 +22,12 @@ Project rules, imported into context:
 
 pnpm-workspace + Turborepo monorepo, globbing `packages/*` and `apps/*`. Four packages under `packages/`:
 
-| Package                             | Description                                                                                         |
-| ----------------------------------- | --------------------------------------------------------------------------------------------------- |
-| `@friday-sandbox/react`             | React 19 components, built with `tsdown`, on react-aria-components + radix-ui + `tailwind-variants` |
-| `@friday-sandbox/styles`            | Tailwind CSS v4 tokens + CSS layers, built with the `tailwindcss` CLI                               |
-| `@friday-sandbox/eslint-config`     | Shared ESLint flat-config presets                                                                   |
-| `@friday-sandbox/typescript-config` | Shared tsconfig presets                                                                             |
+| Package                             | Description                                                                     |
+| ----------------------------------- | ------------------------------------------------------------------------------- |
+| `@friday-sandbox/react`             | Accessible React components built on react-aria-components and Tailwind CSS v4. |
+| `@friday-sandbox/styles`            | Framework-agnostic design tokens and Tailwind CSS v4 layers.                    |
+| `@friday-sandbox/eslint-config`     | Shared ESLint flat-config presets.                                              |
+| `@friday-sandbox/typescript-config` | Shared TypeScript config presets.                                               |
 
 `react` consumes `styles` as a peer dependency; the two config packages are dev-only presets. The lone app, `@friday-sandbox/docs` under `apps/`, is a Next.js 16 + Fumadocs (`fumadocs-core`/`-mdx`/`-ui`) site that consumes `react` + `styles` as `workspace:*`; its pages are MDX under `apps/docs/content/docs`, and `fumadocs-mdx` codegen (the generated `.source/` dir) runs on `postinstall` and again before the docs `lint`/`typecheck`.
 
