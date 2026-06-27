@@ -52,4 +52,4 @@ The review station: drive a whole round of AI review on the PR to clean — turn
 
 - Address review by pushing follow-up commits to the same branch (`CONTRIBUTING.md`); here, batched once per round.
 - The configured AI reviewers are `.coderabbit.yaml` and `.gemini/styleguide.md`. Sub-issues are created after confirming with the user, linked to the parent and closed by the PR; the tracker is shared (`CONTRIBUTING.md`) — confirm before creating and don't touch others' work (see `component-ship`).
-- Chromatic (`CHROMATIC_PROJECT_TOKEN`) and Sonar (`SONAR_TOKEN`) can show red when their secrets aren't configured (`.github/workflows/chromatic.yml`, `sonarqube.yml`); whether any check blocks merge is branch-protection config — confirm via the PR's checks, don't assume.
+- Chromatic (`CHROMATIC_PROJECT_TOKEN`) can show red when its secret isn't configured (`.github/workflows/chromatic.yml`); whether any check blocks merge is branch-protection config — confirm via the PR's checks, don't assume.
