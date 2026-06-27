@@ -28,10 +28,11 @@ reviews:
     - "!.changeset/**"
     - "!**/*.snap"
   path_instructions:
-    - path: packages/react/src/**/*.{ts,tsx}
+    - path: packages/react/src/components/bases/**/*.{ts,tsx}
       instructions: >-
         Base components are scaffolded with "pnpm gen component" (turbo gen), never
-        hand-created, and live in bases/<name>/ as <name>.tsx + <name>.variants.ts +
+        hand-created, and live in components/bases/<name>/ as <name>.tsx +
+        <name>.variants.ts +
         index.ts + <name>.stories.tsx, linked to styles by a fri-<name> class, not an
         import. Priorities, highest first: accessibility, correctness, API ergonomics,
         then style. Key checks: lowercase filename, named export with colocated Props,
@@ -84,7 +85,8 @@ reviews:
         unless a framework difference justifies otherwise.
     - path: packages/styles/src/**/*.css
       instructions: >-
-        A component's rules live in bases/<name>.css under @layer components, keyed
+        A component's rules live in components/bases/<name>.css under @layer
+        components, keyed
         to the fri-<name> class, and must mirror <name>.variants.ts 1:1 — every
         fri-<name>-<value> class has a rule and vice versa (the lint:symmetry gate
         enforces it); flag an orphan either side. Respect the @layer system; no

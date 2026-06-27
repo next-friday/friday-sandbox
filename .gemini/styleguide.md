@@ -21,7 +21,7 @@ The `chore(release): version packages` PR is produced by `changesets/action`. It
 
 ## Components: `packages/react/src/components/bases/**`
 
-A base component is scaffolded with `pnpm gen component` (Turborepo `turbo gen`), never hand-created. It lives in `bases/<name>/` as `<name>.tsx` + `<name>.variants.ts` + `index.ts` + `<name>.stories.tsx`, and is linked to its styles by a stable `fri-<name>` class, not an import. Key checks:
+A base component is scaffolded with `pnpm gen component` (Turborepo `turbo gen`), never hand-created. It lives in `components/bases/<name>/` as `<name>.tsx` + `<name>.variants.ts` + `index.ts` + `<name>.stories.tsx`, and is linked to its styles by a stable `fri-<name>` class, not an import. Key checks:
 
 - Lowercase filename such as `button.tsx`, not `Button.tsx`; a named export with the `Props` type colocated; no default export.
 - `"use client"` only when a client API such as `useState`, `useEffect`, refs, or event handlers — or a `react-aria-components` / `radix` client primitive — is touched; flag a needless directive on a pure layout or text component.
@@ -45,7 +45,7 @@ Key checks for accessibility and stories:
 
 Key checks for styles:
 
-- A component's rules live in `bases/<name>.css` under `@layer components`, keyed to the `fri-<name>` class, and must mirror `<name>.variants.ts` 1:1 — every `fri-<name>-<value>` class has a rule and vice versa (the `lint:symmetry` gate enforces it); flag an orphan class on either side.
+- A component's rules live in `components/bases/<name>.css` under `@layer components`, keyed to the `fri-<name>` class, and must mirror `<name>.variants.ts` 1:1 — every `fri-<name>-<value>` class has a rule and vice versa (the `lint:symmetry` gate enforces it); flag an orphan class on either side.
 - Respect the `@layer` system; flag inline `style` objects, hardcoded hex colors, and class strings that bypass tokens. Wire colors through the `--fri-<role>` ladder and geometry through a component-local ramp multiplier (`--_<name>-n`), with the `md` default baked at zero specificity via `:where(.fri-<name>)`.
 - Canonical Tailwind alias for any var mapped in `@theme inline`, such as `bg-primary` and not `bg-(--fri-primary)`; the `*-(--var)` form is only for component-local vars with no alias.
 - Size and radius tokens scoped to `action`, `field`, or `box`, never a literal component name. The `src/theme/` CSS carrying a `GENERATED` header is codegen output — flag hand-edits; change `tokens/default.spec.json` or `scripts/formulas.ts` and rerun codegen.
