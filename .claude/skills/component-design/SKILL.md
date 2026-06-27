@@ -1,6 +1,6 @@
 ---
 name: component-design
-description: Use before building a base component in @friday-sandbox/react when its shape is not settled — which primitive to wrap (react-aria-components, radix, native), which color/variant/size ladder it needs, which tokens and states. Triggers "design a Tooltip", "what variants should X have", "plan this component".
+description: Use before building a base component in @friday-sandbox/react when its shape is not settled — which primitive to wrap (react-aria-components, radix-ui, native), which color/variant/size ladder it needs, which tokens and states. Triggers "design a Tooltip", "what variants should X have", "plan this component". Not for docs, config, tooling, or other non-component design or planning.
 ---
 
 # Component design
@@ -38,6 +38,14 @@ The design station for `@friday-sandbox/react` base components: choose the primi
 
 - Re-read the ladder: would any two values share a class or token, or any color be hardcoded instead of a `--fri-<role>` slot? That is a defect — fix it here.
 - Optional sub-agent: have a reviewer pressure-test the premise and ladder for gaps — a missing state, an ambiguous variant — before any build.
+
+## Closing summary table
+
+On finishing, report one markdown table — the result at a glance:
+
+| Primitive                     | Variants                 | Sizes     | Tokens               | States         |
+| ----------------------------- | ------------------------ | --------- | -------------------- | -------------- |
+| `aria`/`native` — `<wrapped>` | `<roles>` × `<variants>` | `<xs…xl>` | `--fri-<role>` slots | `<data-attrs>` |
 
 ## Red flags — STOP
 

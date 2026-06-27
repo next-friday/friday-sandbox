@@ -54,6 +54,14 @@ The build station for `@friday-sandbox/react` base components. `pnpm gen compone
 - Stories are the gate — let the hooks run them; do not run whole-repo gates by hand.
 - A gate red? Diagnose the root cause before patching, and escalate to `component-design` after the third thrashing fix — see [`references/DIAGNOSING.md`](references/DIAGNOSING.md).
 
+## Closing summary table
+
+On finishing, report one markdown table — the result at a glance:
+
+| Component | Files                | Variants                     | Stories         | Gates                          |
+| --------- | -------------------- | ---------------------------- | --------------- | ------------------------------ |
+| `<name>`  | 5 surfaces + barrels | `<roles>×<variants>×<sizes>` | `<count>` green | `lint:symmetry` + stories pass |
+
 ## Red flags — STOP
 
 - Left the `<div>` stub or empty `variants: {}` → that is unfinished generator output, not a component.

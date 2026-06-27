@@ -1,6 +1,6 @@
 ---
 name: component-review
-description: Use after opening or pushing to a pull request that AI code-review bots (CodeRabbit, Gemini Code Assist) or humans have commented and the threads need triaging before merge. Triggers "handle the coderabbit comments", "go through the bot review", "respond to the reviewer", "the PR has review comments".
+description: Use after opening or pushing a base-component PR in @friday-sandbox/react that AI code-review bots (CodeRabbit, Gemini Code Assist) or humans have commented, and the component PR's threads need triaging before merge. Triggers "handle the coderabbit comments on the component PR", "go through the bot review on the component", "respond to the reviewer on the component PR". Not for docs, config, tooling, or other non-component PRs.
 ---
 
 # Component review
@@ -38,6 +38,14 @@ The review station: drive a whole round of AI review on the PR to clean — turn
 - Machine-confirm the round, don't declare it clean by eye: `"${CLAUDE_SKILL_DIR}/scripts/verify-coverage.sh" <pr>` reads `answered N / N` and `"${CLAUDE_SKILL_DIR}/scripts/ci-status.sh" <pr>` reads `ci: green`.
 - Exactly one push carried the round's whole batch; no extra push re-triggered the bots mid-round.
 - Each sub-issue is linked to the parent and carries `Closes #<sub>` in the PR body.
+
+## Closing summary table
+
+On finishing, report one markdown table — the result at a glance, one row per round:
+
+| Round | PR      | Findings              | Fixed                 | Pushed             |
+| ----- | ------- | --------------------- | --------------------- | ------------------ |
+| `<k>` | `#<pr>` | `<real>` after verify | `<closed>` sub-issues | `<sha>` (one push) |
 
 ## Red flags — STOP
 
