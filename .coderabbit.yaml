@@ -28,34 +28,44 @@ reviews:
     - "!.changeset/**"
     - "!**/*.snap"
   path_instructions:
-    # Each entry lists only the few highest-value checks per path.
-    # It never restates the full rationale.
     - path: packages/react/src/**/*.{ts,tsx}
       instructions: >-
-        Enforce the gates: component structure, composition, canonical Tailwind,
-        semantic token scope, meaningful identifiers. Priorities, highest first: accessibility,
-        correctness, API ergonomics, then style. Key checks: lowercase filename,
-        named export with colocated Props, no default export; "use client" only
-        when a client API is touched; compose react-aria-components instead of
-        hand-rolled keyboard or focus; shared logic extracted into a hook, not
-        duplicated across components; a new file is reachable through the exports
-        map (. -> ./src/index.ts, ./* -> ./src/*/index.ts); no inline style,
-        hardcoded hex, or token-bypassing class strings; canonical Tailwind alias
-        for any var mapped in @theme inline; a behavior change
-        (feat | fix | perf | refactor) carries a .changeset/*.md entry.
+        Base components are scaffolded with "pnpm gen component" (turbo gen), never
+        hand-created, and live in bases/<name>/ as <name>.tsx + <name>.variants.ts +
+        index.ts + <name>.stories.tsx, linked to styles by a fri-<name> class, not an
+        import. Priorities, highest first: accessibility, correctness, API ergonomics,
+        then style. Key checks: lowercase filename, named export with colocated Props,
+        no default export; "use client" only when a client API — or a react-aria or
+        radix client primitive — is touched, never on a pure layout or text component;
+        wrap the right primitive (react-aria-components for interactive, a radix part
+        for a compound component, native HTML for layout or text) and flag hand-rolled
+        keyboard or focus where a primitive exists; props widen from the primitive
+        (ComponentPropsWithRef<typeof X>), render-prop primitives compose className
+        through composeTailwindRenderProps, keep data-slot; variants use
+        tailwind-variants tv() mapping every value to a distinct fri-<name>-<value>
+        class with the repo vocabulary (primary..danger, solid..plain, xs..xl) and
+        defaultVariants, never a hardcoded color (wire the --fri-<role> ladder); a new
+        file is reachable through the exports map (. -> ./src/index.ts, ./* ->
+        ./src/*/index.ts); a behavior change (feat | fix | perf | refactor) carries a
+        .changeset/*.md entry.
     - path: packages/react/src/**/*.stories.{ts,tsx}
       instructions: >-
-        Enforce the accessibility and stories rule. Key checks: coverage
-        of Default, Hovered, Focused, Disabled, and every color variant including
-        danger; real props, not mocked data; addon-a11y passes on the story page;
-        story copy reads as consumer documentation, so flag internal class names
-        (fri-button-*, fri-flex-*), library names (tailwind-variants, react-aria,
-        react-aria-components), engine math (calc(var(--size-action) * N)), or
-        file paths; copy stays generic, not brittle, so flag concrete pixel sizes
-        or an exhaustive enumeration of a prop's values, and prefer the imperative
-        "Use the `X` prop to ..." form; symmetric story shape across files (summary
-        -> Import snippet -> stylesheet note -> CSS snippet, same prop wording and
-        second-person tone).
+        Stories ARE the tests (Vitest browser mode via @storybook/addon-vitest +
+        Playwright chromium). Key checks: a showcase story per variant axis (Variants,
+        Colors, Sizes, laid out with Flex) and per state, real props not mocked data,
+        addon-a11y passes; play functions assert behavior only where it fits — an
+        interactive base gets Default (userEvent.tab -> toHaveFocus) and
+        BaseClassDefault (getComputedStyle), a display or layout base (text, flex,
+        grid, separator, spinner) stays render-only, so never ask one for an
+        interaction play; include a class-only / PlainHtml story. Story copy reads as
+        consumer documentation, so flag internal class names (fri-button-*,
+        fri-flex-*), library names (tailwind-variants, react-aria,
+        react-aria-components), engine math (calc(var(--fri-spacing-xs) *
+        var(--_button-n))), or file paths; copy stays generic, not brittle, so flag
+        concrete pixel sizes or an exhaustive enumeration of a prop's values, and
+        prefer the imperative "Use the `X` prop to ..." form; symmetric story shape
+        across files (summary -> Import snippet -> stylesheet note -> CSS snippet,
+        same prop wording and second-person tone).
     - path: packages/react/src/**/*.test.{ts,tsx}
       instructions: >-
         This repository has no separate test files; a behavior is verified by its
@@ -74,11 +84,19 @@ reviews:
         unless a framework difference justifies otherwise.
     - path: packages/styles/src/**/*.css
       instructions: >-
-        Enforce the canonical Tailwind and semantic token scope rules. Key checks: respect the @layer
-        system; no hardcoded colors outside the token layer; no global selectors
-        that bypass layers; size and radius tokens scoped to action, field, or
-        box, never a literal component name; a token rename carries a migration
-        note in the changeset.
+        A component's rules live in bases/<name>.css under @layer components, keyed
+        to the fri-<name> class, and must mirror <name>.variants.ts 1:1 — every
+        fri-<name>-<value> class has a rule and vice versa (the lint:symmetry gate
+        enforces it); flag an orphan either side. Respect the @layer system; no
+        hardcoded colors outside the token layer; no global selectors that bypass
+        layers; wire colors through the --fri-<role> ladder and geometry through a
+        component-local ramp multiplier (--_<name>-n) with the md default at zero
+        specificity via :where(.fri-<name>); canonical Tailwind alias for a var
+        mapped in @theme inline (bg-primary, not bg-(--fri-primary)). Size and radius
+        tokens scoped to action, field, or box, never a literal component name; the
+        src/theme/ CSS carrying a GENERATED header is codegen output (flag
+        hand-edits; change tokens/default.spec.json or scripts/formulas.ts). A token
+        rename carries a migration note in the changeset.
     - path: apps/docs/**/*.{ts,tsx}
       instructions: >-
         Documentation site on Next.js App Router and Fumadocs. It consumes the

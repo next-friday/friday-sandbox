@@ -8,6 +8,7 @@ code_review:
     help: false
     summary: true
     code_review: true
+    include_drafts: false
 
 ignore_patterns:
   - "**/dist/**"
@@ -17,8 +18,3 @@ ignore_patterns:
   - "**/CHANGELOG.md"
   - ".changeset/**"
   - "packages/*/package.json"
-
-ignore_users:
-  - "dependabot[bot]"
-  - "github-actions[bot]"
-  - "next-friday-release[bot]"

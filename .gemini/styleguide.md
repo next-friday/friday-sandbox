@@ -19,34 +19,36 @@ Rank findings from highest to lowest:
 
 The `chore(release): version packages` PR is produced by `changesets/action`. It contains only generated diffs: `.changeset/*` removed, `packages/*/CHANGELOG.md` added, and `packages/*/package.json` version bumps. Do not review it; the diff is mechanical and not human-authored.
 
-## Components and hooks: `packages/react/src/**`
+## Components: `packages/react/src/components/bases/**`
 
-Key checks for components and hooks:
+A base component is scaffolded with `pnpm gen component` (Turborepo `turbo gen`), never hand-created. It lives in `bases/<name>/` as `<name>.tsx` + `<name>.variants.ts` + `index.ts` + `<name>.stories.tsx`, and is linked to its styles by a stable `fri-<name>` class, not an import. Key checks:
 
 - Lowercase filename such as `button.tsx`, not `Button.tsx`; a named export with the `Props` type colocated; no default export.
-- `"use client"` only when a client API such as `useState`, `useEffect`, refs, or event handlers is touched; flag a missing directive on a client component and a needless one on a pure component.
-- Compose `react-aria-components` for focus, selection, and keyboard behavior instead of hand-rolling it.
-- Shared logic such as focus management, ARIA wiring, controlled-vs-uncontrolled, and event coalescing lives in a reusable hook under `packages/react/src/`; flag re-implementations across components.
-- A new file is reachable through the package `exports` map, where `.` → `./src/index.ts` and `./*` → `./src/*/index.ts`; a file no `index.ts` re-exports is unreachable.
+- `"use client"` only when a client API such as `useState`, `useEffect`, refs, or event handlers — or a `react-aria-components` / `radix` client primitive — is touched; flag a needless directive on a pure layout or text component.
+- Wrap the right primitive for the job: `react-aria-components` for interactive and accessibility (button), a `radix` part for a compound component (scroll-area), or native HTML for layout and text (flex, text). Flag hand-rolled keyboard or focus where a primitive exists.
+- Props widen from the primitive (`ComponentPropsWithRef<typeof X>`); a render-prop primitive composes `className` through `composeTailwindRenderProps`; keep `data-slot="<name>"`.
+- Variants map props to the `fri-<name>` class via `tailwind-variants/lite` `tv()`: every value is a distinct `fri-<name>-<value>` class, reusing the repo vocabulary (color `primary…danger`, `variant` `solid…plain`, `size` `xs…xl`), with `defaultVariants` set and no hardcoded color — wire the `--fri-<role>` token ladder.
+- A new file is reachable through the package `exports` map, where `.` → `./src/index.ts` and `./*` → `./src/*/index.ts`; a file no `index.ts` re-exports is unreachable. A compound component wires every part through all four barrels.
 
 ## Accessibility and stories: `packages/react/src/**/*.stories.{ts,tsx}`
 
 Key checks for accessibility and stories:
 
 - Keyboard reachable, focus visible, ARIA only where the DOM does not convey intent, motion respects `prefers-reduced-motion`; the story passes `addon-a11y`.
-- A new or changed behavior ships story coverage of `Default`, `Hovered`, `Focused`, `Disabled`, and every color variant including `danger`, using real props rather than mocked data.
-- Stories are the test suite: they run in Vitest browser mode via `@storybook/addon-vitest` with Playwright chromium; prefer Storybook play functions over imperative DOM assertions and cover keyboard paths alongside pointer paths.
+- Cover every variant value — a showcase story per axis (`Variants`, `Colors`, `Sizes`, laid out with `Flex`) and per state — using real props rather than mocked data.
+- Stories are the test suite: they run in Vitest browser mode via `@storybook/addon-vitest` with Playwright chromium. A `play` function asserts behavior only where it fits: an interactive base gets `Default` (interaction — `userEvent.tab()` → `toHaveFocus`) and `BaseClassDefault` (`getComputedStyle`); a display or layout base (`text`, `flex`, `grid`, `separator`, `spinner`) stays render-only, so never ask one for an interaction play. Include a class-only / `PlainHtml` story.
 - No separate `*.test.*` files exist or belong here; a behavior is verified by its story. Flag a new test file and ask for a `*.stories.tsx` play function instead.
-- Story copy is consumer-facing: flag internal class names such as `fri-button-*` and `fri-flex-*`, library names such as `tailwind-variants` and `react-aria`, engine math such as `calc(var(--size-action) * N)`, or file paths. Symmetric story shape across files.
+- Story copy is consumer-facing: flag internal class names such as `fri-button-*` and `fri-flex-*`, library names such as `tailwind-variants` and `react-aria`, engine math such as `calc(var(--fri-spacing-xs) * var(--_button-n))`, or file paths. Symmetric story shape across files.
 - Story copy stays generic, not brittle: flag concrete pixel sizes or an exhaustive enumeration of a prop's values; prefer the imperative `Use the \`X\` prop to …` form and let the stories demonstrate the values.
 
 ## Styles: `packages/styles/src/**`, Tailwind v4
 
 Key checks for styles:
 
-- Respect the `@layer` system; flag inline `style` objects, hardcoded hex colors, and class strings that bypass tokens.
-- Canonical Tailwind alias for any var mapped in `@theme inline`, such as `bg-primary` and not `bg-(--primary)`; the `*-(--var)` form is only for component-local vars with no alias.
-- Size and radius tokens scoped to `action`, `field`, or `box`, never a literal component name.
+- A component's rules live in `bases/<name>.css` under `@layer components`, keyed to the `fri-<name>` class, and must mirror `<name>.variants.ts` 1:1 — every `fri-<name>-<value>` class has a rule and vice versa (the `lint:symmetry` gate enforces it); flag an orphan class on either side.
+- Respect the `@layer` system; flag inline `style` objects, hardcoded hex colors, and class strings that bypass tokens. Wire colors through the `--fri-<role>` ladder and geometry through a component-local ramp multiplier (`--_<name>-n`), with the `md` default baked at zero specificity via `:where(.fri-<name>)`.
+- Canonical Tailwind alias for any var mapped in `@theme inline`, such as `bg-primary` and not `bg-(--fri-primary)`; the `*-(--var)` form is only for component-local vars with no alias.
+- Size and radius tokens scoped to `action`, `field`, or `box`, never a literal component name. The `src/theme/` CSS carrying a `GENERATED` header is codegen output — flag hand-edits; change `tokens/default.spec.json` or `scripts/formulas.ts` and rerun codegen.
 - A token rename carries a migration note in the changeset; no global selectors that bypass layers.
 
 ## Configs: `packages/eslint-config`, `packages/typescript-config`
