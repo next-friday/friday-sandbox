@@ -1,7 +1,6 @@
 @layer components {
-  /* {{ pascalCase name }} — visual rules for the fri-{{ kebabCase name }} class.
-     Replace with the component's geometry, color, and variant rules. */
-  .fri-{{ kebabCase name }} {
+  /* :where() bakes the default at zero specificity; explicit classes override. */
+  :where(.fri-{{ kebabCase name }}) {
     @apply block;
   }
 }
