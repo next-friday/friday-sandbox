@@ -24,18 +24,18 @@ The loop that removes per-step prompting. From one goal it drives nested loops �
    Goal: <one line> · Authorized: issue #_, PR #_, review sub-issues
 
    - [ ] design
-   - [ ] build — 5 surfaces filled
-   - [ ] verify — mirror self-checked, sub-agent audit clean, scoped stories green
-   - [ ] ship — branch <n>-, changeset, gates, PR (Closes #parent)
+   - [ ] build — issue + branch <n>-, 5 surfaces filled on the branch
+   - [ ] verify — component-build's Verify holds (mirror, audit, scoped stories)
+   - [ ] ship — changeset, gates, PR (Closes #parent)
    - [ ] review — every bot round N/N clean
    - [ ] human merge
    ```
 
-2. **Inner loop — build to clean (autonomous).** Run the stations as one pass: `component-design` (only if the shape is unsettled) → `component-build` (generate non-interactively with `pnpm gen component --args <name> <primitive> <category>`, since the loop cannot answer prompts → swap the primitive → fill the ladder → mirror the css → stories). Then **verify**: self-check the variants↔css mirror by reading them (the pre-commit hook runs `lint:symmetry` — don't run it by hand), run the scoped story file (`pnpm --filter @friday-sandbox/react exec vitest run <name>`), self-check `component-build`'s Done contract, then dispatch the two-axis sub-agent audit (Standards | Spec, kept un-merged, verifier ≠ builder — see `component-build` Verify) for the judgment the script can't check. Findings → repeat the pass. Exit only when the script is clean AND the contract holds AND the audit is clean — never on a half-pass.
+2. **Inner loop — build to clean (autonomous).** First `component-design`, only if the shape is unsettled — planning, no files yet, so a "this should extend Button instead" verdict costs no orphan issue. Then go branch-first like `component-ship`: create the authorized issue if it does not exist yet (`gh issue create`) and `gh issue develop <n> --checkout`, so every `component-build` edit lands on the `<n>-` branch and nothing has to be rescued from an uncommitted ride-along later. Run `component-build`, generating non-interactively with `pnpm gen component --args <name> <primitive> <category>` since the loop cannot answer prompts. **Verify per `component-build`'s Verify** (its mirror self-check → scoped story run → Done contract → two-axis Standards|Spec audit, verifier ≠ builder) — the loop adds nothing to that contract, so don't restate it. Findings → repeat the pass. Exit only when `component-build`'s Verify holds — never on a half-pass.
 
-3. **Ship once.** Create the authorized issue if it does not exist yet (`gh issue create`), then run `component-ship`: branch `<n>-`, verified changeset, gates green via hooks, PR with `Closes #<n>`.
+3. **Ship once.** The `<n>-` branch already exists from step 2, so `component-ship` here is just its remaining steps: verified changeset, gates green via hooks, PR with `Closes #<n>`.
 
-4. **Outer loop — review to clean (autonomous).** → `component-review`: wait for the full AI round (CodeRabbit, Gemini) plus any human comments, then decide every finding yourself (fix or rebut), fix on the same branch, answer every PR thread, and push ONCE — one push per round prevents re-review thrash. Sub-issues only for deferred work, closed by the PR (`Closes #<sub>`). The push re-runs the bots → repeat until a round returns no real findings. No human in this loop — the conversation with reviewers stays in the PR threads, never the chat.
+4. **Outer loop — review to clean (autonomous).** Run `component-review` to its Done contract: each round waits for the full AI round (CodeRabbit, Gemini) plus any human comments, batches every decision (fix or rebut) onto the same branch, answers every PR thread, and pushes ONCE, repeating until a round is machine-clean. No human in this loop — the reviewer conversation stays in the PR threads, never the chat.
 
 5. **Human checkpoint — the sole merge authority (touchpoint 2, first and last).** The checkpoint is _pushed right_: it opens only after the loop has done all it can autonomously — build, verify, and drive every AI reviewer clean. The loop then hands the human a **Brief** — a decision-ready summary: what was built (component + surfaces), what each AI reviewer flagged and how it was fixed (the closed sub-issues), and anything left to decide — so the human decides from the Brief, not by digging. Correct → the human merges and the loop closes. Not correct → the requested changes re-enter the loop (back to step 2): fix → re-verify → drive the AI reviewers clean again → a fresh Brief → the human reviews again. Merge happens only on the human's approval; an AI-clean round opens the checkpoint, it never merges on its own.
 

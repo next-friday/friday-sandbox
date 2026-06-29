@@ -13,7 +13,7 @@ The design station for `@friday-sandbox/react` base components: choose the primi
 - Symptoms: unsure which primitive to wrap, how many roles/sizes, which states, or what the doc demos are.
 - Not this station:
   - The shape is already clear → go straight to `component-build`.
-  - gh issue, branch, PR → `component-ship`. Record a design to an issue only with explicit per-artifact authorization (shared tracker).
+  - gh issue, branch, PR, or recording this design to an issue → `component-ship`, which holds the shared-tracker authorization rule.
 
 ## Steps
 
@@ -30,7 +30,7 @@ The design station for `@friday-sandbox/react` base components: choose the primi
 3. **Resolve the variant ladder** — first decide whether the component is colored/interactive or structural. A **colored/interactive** component (button-like) reuses the full vocabulary: color roles `primary secondary accent info success warning danger`; visual `variant` `solid subtle surface outline ghost plain`; `size` `xs sm md lg xl`; boolean modifiers. A **structural/typography** component (label, text, separator-like) **drops the color and visual-variant axes entirely** — state that as the reason — and uses only its domain axis (a typography scale, an orientation) plus boolean state modifiers; mirror `text.variants.ts` / `separator.variants.ts`, not `button`. Either way, add a new axis only with a stated reason, every value distinct, each with its `fri-<name>-<value>` class.
 4. **Map tokens and states.** A **colored** component maps each color → the generated `--fri-<role>` ladder slots (`-foreground`, `-hover`/`-pressed`, `-soft*`, `-surface*`, `-border`, `-outline-border`, `-tint-*` — the full set is in `button.css`), size → the ramp-multiplier pattern, and references `button.css`. A **structural** component reuses existing tokens instead — neutral `text-foreground`, the `text-label-*` / typography scale, `text-danger`, and the shared `status-disabled` utility (`shared/utilities.css`) — and references `text.css` / `separator.css`, not `button.css`. Never hardcode a color. States: which react-aria data attrs apply (`data-hovered`, `data-pressed`, `data-disabled`, `data-focus-visible`, plus component-specific).
 5. **Plan the surfaces and demos.** The five surfaces, and the stories — one per variant axis (laid out with `Flex`), one per state, plus `BaseClassDefault` and a class-only proof — so `component-build`'s contract is pre-drawn.
-6. **Hand off.** Output the design: primitive + ladder + token/state map + surface/demo plan, plus a **Global Constraints** block — the repo invariants every build step inherits (`fri-<name>` naming, the token ladder, `@layer theme/base/components/utilities` order, `src ↔ exports`, the contrast floor, every value distinct), taken verbatim from `CLAUDE.md` and `packages/styles/design.md` rather than restated. No placeholders: "the usual variants" or "like Button" → enumerate every value with its token. Recording it on GitHub is `component-ship` and needs explicit authorization.
+6. **Hand off.** Output the design: primitive + ladder + token/state map + surface/demo plan, plus a **Global Constraints** block — the repo invariants every build step inherits (`fri-<name>` naming, the token ladder, `@layer theme/base/components/utilities` order, `src ↔ exports`, the contrast floor, every value distinct), taken verbatim from `CLAUDE.md` and `packages/styles/design.md` rather than restated. No placeholders: "the usual variants" or "like Button" → enumerate every value with its token.
 
 ## Done — the contract
 
