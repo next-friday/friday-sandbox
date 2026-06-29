@@ -68,41 +68,39 @@ The generator (Turborepo `turbo gen`, defined in `turbo/generators/`) creates `<
 
 The `pnpm gen component` route above is the manual one. This repo also ships a suite of Claude Code skills under `.claude/skills/component-*` that drive the same lifecycle from a plain-language goal: you describe _what_ you want and Claude runs the stations, starting from the scaffold above. Those skill files are Claude's instructions, not a manual you read — all you need are the trigger phrases below.
 
-**The phrase you'll use most.** In Claude Code — the `claude` CLI in your terminal, or the editor extension — tell Claude, in plain language, to take a component all the way to a review-ready pull request:
+**The phrase you'll use most.** In Claude Code — the `claude` CLI in your terminal, or the editor extension — tell Claude, in plain language, to design a component:
 
 ```text
-build a Badge end to end
+design a Badge
 ```
 
-That starts `component-loop`, which runs every station and pauses only at the two human checkpoints below.
+That starts `component-blueprint`, which records an approved issue you then implement and ship. The flow runs in three issue-driven phases, and you step in only at the two human checkpoints below.
 
 ### You step in twice, and only twice
 
-1. **Up front** — you write the goal and approve the plan. The issue tracker is shared, so Claude asks you to authorize the issue, the pull request, and any review sub-issues before creating them; it never touches an issue, branch, or PR you didn't approve.
-2. **At the end** — you are the only one who merges. Approve and it lands; request changes and the loop re-enters: fix, re-verify, drive the reviewers clean, back to you.
+1. **Up front** — you approve the design. The issue tracker is shared, so Claude asks you to authorize the issue (and later the pull request and any review sub-issues) before creating them; it never touches an issue, branch, or PR you didn't approve.
+2. **At the end** — you are the only one who merges. Approve and it lands; request changes and `component-rebut` re-enters: fix, re-verify, drive the reviewers clean, back to you.
 
 Between those two points it runs without you prompting each step:
 
 ```text
-YOU      write the goal, approve the plan
+YOU      approve the design  →  blueprint records the issue
   ↓
-CLAUDE   design → build → ship → bot review → fix
-         (repeats until checks + every bot round are clean)
+CLAUDE   implement: branch → build → gates → PR → green CI
+         rebut: bot review → fix → push  (repeats until checks + every bot round are clean)
   ↓
 YOU      merge   ·   or request changes → back to Claude
 ```
 
-**Driving one station yourself.** You don't have to run the whole loop — each station has its own trigger, so you can stop and inspect between them:
+**Driving one phase yourself.** Each phase has its own trigger, so you can stop and inspect between them:
 
-| Tell Claude                  | Station            | What it does                                            | Tracker writes |
-| ---------------------------- | ------------------ | ------------------------------------------------------- | -------------- |
-| `build a Badge end to end`   | `component-loop`   | runs every station below to a merge-ready PR            | yes            |
-| `design a Badge`             | `component-design` | settles the primitive, variant ladder, tokens — no code | no             |
-| `build the Badge`            | `component-build`  | generates the files, fills them in, then verifies       | no             |
-| `ship the Badge`             | `component-ship`   | branch, changeset, gates, opens the PR                  | yes            |
-| `handle the review comments` | `component-review` | triages the bot review, fixes, pushes once per round    | yes            |
+| Tell Claude                  | Skill                 | What it does                                                  | Tracker writes  |
+| ---------------------------- | --------------------- | ------------------------------------------------------------- | --------------- |
+| `design a Badge`             | `component-blueprint` | settles the primitive/ladder/tokens, records the issue + plan | yes (the issue) |
+| `implement issue #N`         | `component-implement` | branches, generates + fills the surfaces, gates, opens the PR | yes             |
+| `handle the review comments` | `component-rebut`     | triages the bot review, fixes, pushes once per round          | yes             |
 
-`design` and `build` stay local, so they're the safe place to start experimenting. `ship` and `review` write to the shared tracker, so Claude confirms each issue, branch, and PR with you first — it never guesses a target.
+`component-blueprint`'s design work stays in chat until you authorize the issue write, so it's the safe place to start. `component-implement` and `component-rebut` write to the shared tracker, so Claude confirms each issue, branch, and PR with you first — it never guesses a target.
 
 The gates and the human merge exist for a reason: generated code is shipped, not understood, until you read it. Review the diff.
 

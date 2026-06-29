@@ -35,8 +35,6 @@
     "dev": "turbo run dev",
     "dev:docs": "turbo run dev --filter=@friday-sandbox/docs",
     "dev:storybook": "turbo run dev:storybook",
-    "doctor": "pnpm run \"/^doctor:/\"",
-    "doctor:react": "react-doctor",
     "format": "prettier --write \"**/*.{ts,tsx,md,css}\"",
     "format:check": "prettier --check \"**/*.{ts,tsx,md,css}\"",
     "gen": "turbo gen",
@@ -66,7 +64,6 @@
     "markdownlint-cli2": "^0.22.1",
     "prettier": "^3.7.4",
     "prettier-plugin-tailwindcss": "^0.8.0",
-    "react-doctor": "^0.5.8",
     "sort-package-json": "^4.0.0",
     "turbo": "^2.9.18",
     "typescript": "5.9.2"

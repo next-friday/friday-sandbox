@@ -42,7 +42,7 @@ fi
 echo "$rows"
 states=$(printf '%s\n' "$rows" | awk -F'\t' '{ print $2 }')
 
-if printf '%s\n' "$states" | grep -qiE '^(fail|failing|failure|error|cancelled|canceled|timed_out)$'; then
+if printf '%s\n' "$states" | grep -qiE '^(fail|failing|failure|error|cancel|cancelled|canceled|timed_out)$'; then
   echo "ci: failing"
   exit 1
 fi
