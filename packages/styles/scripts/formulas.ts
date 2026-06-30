@@ -178,41 +178,6 @@ export const SCROLL_THUMB = {
 /** Pointers derived from the primary (the consumer may override `--fri-ring`). */
 export const POINTERS = { link: `var(${P}primary)` };
 
-/** Radius ladder ratios against the `md` base; none and full are literal endpoints. */
-const RADIUS_RATIO = { xs: 2 / 7, sm: 4 / 7, md: 1, lg: 10 / 7, xl: 16 / 7 };
-
-/** A rung name on the t-shirt radius ladder, including the literal endpoints. */
-type RadiusRung = "none" | keyof typeof RADIUS_RATIO | "full";
-
-/** The full radius ladder: every rung mapped to its `rem`/`px` value. */
-type RadiusScale = Record<RadiusRung, string>;
-
-/**
- * t-shirt radius ladder (Tier 1) derived from a base `rem`, the `md` anchor the
- * consumer sets through the spec `radius` knob. Numeric rungs are `base * ratio`;
- * none and full are literal endpoints. Each step stays distinct.
- */
-export const radiusScale = (base: string): RadiusScale => {
-  const rem = Number.parseFloat(base);
-  const rungs = { none: "0" } as RadiusScale;
-  for (const [step, ratio] of Object.entries(RADIUS_RATIO))
-    rungs[step as keyof typeof RADIUS_RATIO] = `${number_(rem * ratio)}rem`;
-  rungs.full = "9999px";
-  return rungs;
-};
-
-/**
- * Archetype radii alias scale steps (Tier 2), emitted role-led as
- * `--fri-<archetype>-radius` to mirror the colour grammar. Components reference
- * these (e.g. a button reads `--fri-action-radius`).
- */
-export const RADIUS_ARCHETYPE = {
-  action: "sm",
-  field: "sm",
-  box: "md",
-  feedback: "sm",
-};
-
 /**
  * Spacing scale (Tier 1). 4px base grid with a 2px micro-step, up to 64px.
  * A regular t-shirt scale (no `base`/`section` outliers) so a step is
@@ -258,7 +223,7 @@ export const GLOBALS = {
 
 /**
  * Archetype default sizes (Tier 2) — the role's default block-axis control
- * dimension, role-led to mirror `RADIUS_ARCHETYPE`. `action`/`feedback` preserve
+ * dimension, role-led to mirror the colour grammar. `action`/`feedback` preserve
  * the current button/spinner medium defaults; `field`/`box` are net-new (no
  * component consumes them yet) and provisional — tune before the first freeze.
  * Per-size ramps (xs…xl) live component-locally, not here.

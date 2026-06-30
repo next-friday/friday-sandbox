@@ -29,15 +29,6 @@
     /* Focus ring — defaults to primary; override for an a11y focus colour */
     --fri-ring: var(--fri-primary);
 
-    /* Radius scale */
-    --fri-radius-none: 0;
-    --fri-radius-xs: 0.25rem;
-    --fri-radius-sm: 0.5rem;
-    --fri-radius-md: 0.875rem;
-    --fri-radius-lg: 1.25rem;
-    --fri-radius-xl: 2rem;
-    --fri-radius-full: 9999px;
-
     /* Spacing scale */
     --fri-spacing-2xs: 0.125rem;
     --fri-spacing-xs: 0.25rem;
@@ -592,12 +583,7 @@
     /* Pointers */
     --fri-link: var(--fri-primary);
 
-    /* Geometry archetypes — role-led `--fri-<archetype>-radius` / `-size`. */
-    /* Radius aliases the t-shirt scale; size is the default block-axis dimension. */
-    --fri-action-radius: var(--fri-radius-sm);
-    --fri-field-radius: var(--fri-radius-sm);
-    --fri-box-radius: var(--fri-radius-md);
-    --fri-feedback-radius: var(--fri-radius-sm);
+    /* Geometry archetypes — role-led `--fri-<archetype>-size`, the default block-axis dimension. */
     --fri-action-size: 2.5rem;
     --fri-field-size: 2.5rem;
     --fri-box-size: 4rem;

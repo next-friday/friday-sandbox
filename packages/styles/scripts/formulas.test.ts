@@ -13,8 +13,6 @@ import {
   surface,
   textTier,
   borderTier,
-  radiusScale,
-  RADIUS_ARCHETYPE,
   SIZE_ARCHETYPE,
   SPACING_SCALE,
   oklch,
@@ -94,33 +92,20 @@ test("border tiers fade the neutral toward transparent", () => {
   );
 });
 
-test("radius derives from the base and spacing carries distinct values", () => {
-  assert.deepEqual(radiusScale("0.875rem"), {
-    none: "0",
-    xs: "0.25rem",
-    sm: "0.5rem",
-    md: "0.875rem",
-    lg: "1.25rem",
-    xl: "2rem",
-    full: "9999px",
-  });
-  assert.equal(radiusScale("0.5rem").md, "0.5rem");
-  assert.equal(radiusScale("0.5rem").sm, "0.2857rem");
-  assert.equal(radiusScale("0.5rem").none, "0");
-  assert.equal(radiusScale("0.5rem").full, "9999px");
-  const radii = Object.values(radiusScale("0.875rem"));
-  assert.equal(new Set(radii).size, radii.length, "radius steps are distinct");
-  // Spacing is a regular t-shirt scale: no `base`/`section` semantic outliers.
+test("spacing is a regular t-shirt scale with no semantic outliers", () => {
   assert.equal(SPACING_SCALE["2xs"], "0.125rem");
   assert.equal(SPACING_SCALE.lg, "1rem");
   assert.equal(SPACING_SCALE["4xl"], "4rem");
   assert.ok(!("base" in SPACING_SCALE) && !("section" in SPACING_SCALE));
 });
 
-test("radius and size archetypes share one symmetric, role-led key set", () => {
-  const keys = ["action", "field", "box", "feedback"];
-  assert.deepEqual(Object.keys(RADIUS_ARCHETYPE), keys);
-  assert.deepEqual(Object.keys(SIZE_ARCHETYPE), keys);
+test("size archetypes are concrete block-axis dimensions, role-led", () => {
+  assert.deepEqual(Object.keys(SIZE_ARCHETYPE), [
+    "action",
+    "field",
+    "box",
+    "feedback",
+  ]);
   // size archetypes are concrete block-axis dimensions, not a collapsed single token
   assert.ok(Object.values(SIZE_ARCHETYPE).every((s) => s.endsWith("rem")));
 });

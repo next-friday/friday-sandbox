@@ -9,7 +9,7 @@
 [![License](https://img.shields.io/npm/l/@friday-sandbox/styles?style=flat)](https://github.com/next-friday/friday-sandbox/blob/main/LICENSE)
 [![CI](https://github.com/next-friday/friday-sandbox/actions/workflows/ci.yml/badge.svg)](https://github.com/next-friday/friday-sandbox/actions/workflows/ci.yml)
 
-[Theming](#theming) · [Token reference](./design.md) · [Contributing](https://github.com/next-friday/friday-sandbox/blob/main/CONTRIBUTING.md)
+[Theming](#theming) · [Contributing](https://github.com/next-friday/friday-sandbox/blob/main/CONTRIBUTING.md)
 
 </div>
 
@@ -93,7 +93,7 @@ Components use a `fri-<component>-<modifier>` convention, usable in plain HTML:
 
 ## Reference
 
-- **Every token, always current.** [`design.md`](./design.md) is generated from the spec, so it never drifts from the shipped CSS.
+- **One spec, no drift.** [`tokens/default.spec.json`](./tokens/default.spec.json) is the single source the shipped CSS is generated from.
 - **Starter template.** Copy [`@friday-sandbox/styles/template`](./src/theme-template.css) to scaffold a custom theme.
 - **Drop-in compatibility.** Unprefixed shadcn/Tailwind token names via `@friday-sandbox/styles/compat`.
 

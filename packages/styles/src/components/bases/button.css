@@ -1,14 +1,13 @@
 @layer components {
   .fri-button {
-    /* Geometry — one internal ramp multiplier drives height; padding, radius and
-       the inline spinner derive from it. References only the public spacing scale
-       and the action radius archetype; the multiplier stays component-local. */
+    /* Geometry — one internal ramp multiplier drives height; padding and the
+       inline spinner derive from it. References only the public spacing scale;
+       the multiplier stays component-local. Corner radius is Tailwind native. */
     --button-h: calc(var(--fri-spacing-xs) * var(--_button-n));
     --button-px: calc(var(--button-h) / 2 - var(--fri-spacing-xs));
-    --button-radius: calc(var(--fri-action-radius) * var(--_button-n) / 10);
     --button-spinner-size: calc(var(--button-h) / 2);
 
-    @apply relative inline-flex h-(--button-h) w-fit shrink-0 cursor-pointer items-center justify-center gap-sm rounded-(--button-radius) border-(length:--fri-border-width) border-solid border-(--button-border-color) bg-(--button-background) px-(--button-px) whitespace-nowrap text-(--button-foreground) transition-base transition-[background-color,box-shadow,outline-color] outline-none select-none;
+    @apply relative inline-flex h-(--button-h) w-fit shrink-0 cursor-pointer items-center justify-center gap-sm rounded-sm border-(length:--fri-border-width) border-solid border-(--button-border-color) bg-(--button-background) px-(--button-px) whitespace-nowrap text-(--button-foreground) transition-base transition-[background-color,box-shadow,outline-color] outline-none select-none;
   }
 
   /* Color — wire the role's ladder into the button's color slots */
@@ -172,8 +171,8 @@
   }
 
   /* Size — each class sets only the ramp multiplier; the geometry formula above
-     turns it into height, padding, radius and spinner. :where() bakes the md
-     default at zero specificity so explicit size classes override it. */
+     turns it into height, padding and spinner. :where() bakes the md default at
+     zero specificity so explicit size classes override it. */
   :where(.fri-button) {
     --_button-n: 10;
     @apply text-label-md;

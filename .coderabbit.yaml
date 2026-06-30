@@ -93,8 +93,9 @@ reviews:
         layers; wire colors through the --fri-<role> ladder and geometry through a
         component-local ramp multiplier (--_<name>-n) with the md default at zero
         specificity via :where(.fri-<name>); canonical Tailwind alias for a var
-        mapped in @theme inline (bg-primary, not bg-(--fri-primary)). Size and radius
-        tokens scoped to action, field, or box, never a literal component name; the
+        mapped in @theme inline (bg-primary, not bg-(--fri-primary)). Size tokens
+        scoped to action, field, or box, never a literal component name; corner
+        radius is Tailwind native (rounded-*), not a token; the
         src/theme/ CSS carrying a GENERATED header is codegen output (flag
         hand-edits; change tokens/default.spec.json or scripts/formulas.ts). A token
         rename carries a migration note in the changeset.

@@ -48,7 +48,7 @@ Key checks for styles:
 - A component's rules live in `components/bases/<name>.css` under `@layer components`, keyed to the `fri-<name>` class, and must mirror `<name>.variants.ts` 1:1 — every `fri-<name>-<value>` class has a rule and vice versa (the `lint:symmetry` gate enforces it); flag an orphan class on either side.
 - Respect the `@layer` system; flag inline `style` objects, hardcoded hex colors, and class strings that bypass tokens. Wire colors through the `--fri-<role>` ladder and geometry through a component-local ramp multiplier (`--_<name>-n`), with the `md` default baked at zero specificity via `:where(.fri-<name>)`.
 - Canonical Tailwind alias for any var mapped in `@theme inline`, such as `bg-primary` and not `bg-(--fri-primary)`; the `*-(--var)` form is only for component-local vars with no alias.
-- Size and radius tokens scoped to `action`, `field`, or `box`, never a literal component name. The `src/theme/` CSS carrying a `GENERATED` header is codegen output — flag hand-edits; change `tokens/default.spec.json` or `scripts/formulas.ts` and rerun codegen.
+- Size tokens scoped to `action`, `field`, or `box`, never a literal component name; corner radius is Tailwind native (`rounded-*`), not a token. The `src/theme/` CSS carrying a `GENERATED` header is codegen output — flag hand-edits; change `tokens/default.spec.json` or `scripts/formulas.ts` and rerun codegen.
 - A token rename carries a migration note in the changeset; no global selectors that bypass layers.
 
 ## Configs: `packages/eslint-config`, `packages/typescript-config`

@@ -43,7 +43,7 @@ a lint gate fails on an orphan class on either side.
 
 The theme is **generated, not hand-written**. A small spec of Tier-A knobs is
 the single source of truth; a codegen script expands it through a derivation
-table into the generated theme CSS — the color, border, radius, and spacing
+table into the generated theme CSS — the color, border, and spacing
 tokens and the Tailwind `@theme` map. Generated files carry a `GENERATED`
 header and are overwritten on every codegen run: **never hand-edit them.** To
 change a color or scale, edit the spec or the formulas and rerun codegen.
@@ -54,7 +54,7 @@ tokens because the spec maps them into `@theme`. Never a raw numeric (`gap-2`),
 and never a bare `gap-(--fri-*)` var form when an alias exists.
 
 Two files carry the `@theme` map, split by origin and never overlapping: the
-generated one (color, radius, spacing, font) and a hand-authored one (the
+generated one (color, spacing, font) and a hand-authored one (the
 typography type scale, which is not formula-derived). A build-time **contrast
 gate** fails the build on any text/surface pair below the APCA/WCAG floor, so
 the generated palette cannot ship an inaccessible default.

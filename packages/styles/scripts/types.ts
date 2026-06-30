@@ -37,7 +37,6 @@ export interface ThemeSpec {
   border?: string;
   fontMono?: string;
   fontSans?: string;
-  radius?: string;
 }
 
 /** Each brand role's chosen `-foreground` CSS string, keyed by role. */

@@ -53,7 +53,7 @@ export function Save() {
 ## Documentation
 
 - **Components.** Browse and interact in Storybook, deployed on every push. Run it locally with `pnpm dev:storybook`.
-- **Theming.** The complete, always-current token reference lives in [`packages/styles/design.md`](./packages/styles/design.md).
+- **Theming.** Tokens are generated from one spec; see [`@friday-sandbox/styles`](./packages/styles#theming) for the contract and override template.
 - **Contributing.** The issue → PR workflow and the full gate list are in [CONTRIBUTING.md](https://github.com/next-friday/friday-sandbox/blob/main/CONTRIBUTING.md).
 
 ## License
