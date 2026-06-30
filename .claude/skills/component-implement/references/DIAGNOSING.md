@@ -1,6 +1,6 @@
 # Diagnosing a red gate
 
-When a story, the contrast gate, `lint:symmetry`, or a Chromatic diff goes red, don't patch the symptom — diagnose.
+When a story, `lint:symmetry`, or a Chromatic diff goes red, don't patch the symptom — diagnose.
 
 ## The loop is the skill
 

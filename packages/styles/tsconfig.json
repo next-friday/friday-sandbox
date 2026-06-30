@@ -6,5 +6,5 @@
     "verbatimModuleSyntax": true,
     "erasableSyntaxOnly": true
   },
-  "include": ["scripts"]
+  "files": []
 }
