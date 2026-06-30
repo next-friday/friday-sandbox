@@ -1,6 +1,6 @@
 "use client";
 
-import { Separator as AriaSeparator } from "react-aria-components";
+import { Separator as AriaSeparator } from "react-aria-components/Separator";
 import type { ComponentPropsWithRef } from "react";
 
 import { separatorVariants } from "./separator.variants";

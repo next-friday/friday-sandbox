@@ -1,6 +1,6 @@
 "use client";
 
-import { Text as AriaText } from "react-aria-components";
+import { Text as AriaText } from "react-aria-components/Text";
 import type { ComponentPropsWithRef } from "react";
 
 import { textVariants } from "./text.variants";

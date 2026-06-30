@@ -1,9 +1,7 @@
 "use client";
 
-import {
-  Button as AriaButton,
-  composeRenderProps,
-} from "react-aria-components";
+import { Button as AriaButton } from "react-aria-components/Button";
+import { composeRenderProps } from "react-aria-components/composeRenderProps";
 import type { ComponentPropsWithRef } from "react";
 
 import { composeTailwindRenderProps } from "../../utils/compose-tailwind-render-props";

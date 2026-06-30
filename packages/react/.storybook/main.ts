@@ -30,6 +30,14 @@ const config: StorybookConfig = {
   framework: getAbsolutePath("@storybook/react-vite"),
   viteFinal: (viteConfig) =>
     mergeConfig(viteConfig, {
+      optimizeDeps: {
+        include: [
+          "react-aria-components/Button",
+          "react-aria-components/Separator",
+          "react-aria-components/Text",
+          "react-aria-components/composeRenderProps",
+        ],
+      },
       plugins: [tailwindcss()],
     }),
 };
