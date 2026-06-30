@@ -63,7 +63,7 @@ const pascal = (name: string): string =>
     .join("");
 
 const stripComments = (text: string): string =>
-  text.replace(/\/\*[\s\S]*?\*\//g, "").replace(/\/\/.*/g, "");
+  text.replace(/\/\*[\s\S]*?\*\//g, "").replace(/(?<!:)\/\/.*/g, "");
 
 // Every `fri-<name>` / `fri-<name>-<value>` token, with a trailing token boundary so `fri-x`
 // is not matched inside `fri-xy`. Comments stripped so a class merely named in prose isn't
@@ -240,9 +240,20 @@ for (const name of components) {
     continue;
   }
   const sections = docSections(docText);
-  for (const required of REQUIRED_DOC_SECTIONS)
-    if (!sections.includes(required))
+  let prevIndex = -1;
+  for (const required of REQUIRED_DOC_SECTIONS) {
+    const at = sections.indexOf(required);
+    if (at === -1) {
       fail(name, `doc is missing the "${required}" section`);
+      continue;
+    }
+    if (at < prevIndex)
+      fail(
+        name,
+        `doc section "${required}" is out of order — keep the spine order`,
+      );
+    prevIndex = at;
+  }
   if (sections.at(-1) !== LAST_DOC_SECTION)
     fail(
       name,
