@@ -42,14 +42,6 @@
       "import": "./src/components/*/index.ts",
       "default": "./src/components/*/index.ts"
     },
-    "./template": {
-      "style": "./themes/template.css",
-      "default": "./themes/template.css"
-    },
-    "./compat": {
-      "style": "./themes/shared/compat.css",
-      "default": "./themes/shared/compat.css"
-    },
     "./package.json": "./package.json"
   },
   "main": "./dist/index.mjs",

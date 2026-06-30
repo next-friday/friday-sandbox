@@ -94,8 +94,6 @@ Components use a `fri-<component>-<modifier>` convention, usable in plain HTML:
 ## Reference
 
 - **Hand-authored tokens.** The theme lives in [`themes/`](./themes/) as plain CSS variables — base roles, surfaces, and tiers explicit per mode in `default/variables.css`; only the per-role interaction ladder derives via runtime `color-mix`. Each component's `tv()` variant map lives in [`src/components/`](./src/components/) and is exported from `@friday-sandbox/styles/components/<name>`.
-- **Starter template.** Copy [`@friday-sandbox/styles/template`](./themes/template.css) — both light and dark modes — and edit the values to scaffold a custom theme.
-- **Drop-in compatibility.** Unprefixed shadcn/Tailwind token names via `@friday-sandbox/styles/compat`.
 
 ## License
 
