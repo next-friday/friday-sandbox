@@ -14,6 +14,7 @@ This file provides guidance to Claude Code (code.claude.com) when working with c
 
 Project rules, imported into context:
 
+@.claude/rules/docs-follow-code.md
 @.claude/rules/no-guessing.md
 @.claude/rules/no-redundancy.md
 @.claude/rules/no-unprovable-llm-claims.md
