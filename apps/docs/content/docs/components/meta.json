@@ -1,5 +1,14 @@
 {
   "title": "Components",
   "root": true,
-  "pages": ["index", "button", "spinner", "separator"]
+  "pages": [
+    "index",
+    "button",
+    "flex",
+    "grid",
+    "scroll-area",
+    "spinner",
+    "separator",
+    "text"
+  ]
 }

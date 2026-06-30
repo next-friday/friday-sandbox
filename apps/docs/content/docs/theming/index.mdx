@@ -2,3 +2,29 @@
 title: Theming
 description: Customize design tokens, dark mode, and styles from @friday-sandbox/styles.
 ---
+
+The theme is plain CSS variables (`--fri-*`). Override them in your own CSS to
+retheme, with no build step or plugin.
+
+## Override design tokens
+
+Override any `--fri-*` token after the package import. Set each fill with its
+`-foreground` so text stays legible:
+
+```css
+:root {
+  --fri-primary: oklch(55% 0.3 240);
+  --fri-primary-foreground: oklch(98% 0 0);
+}
+```
+
+## Dark mode
+
+Light is the default. Switch to dark on `<html>` or any subtree with
+`data-theme`:
+
+```html
+<html data-theme="dark">
+  ...
+</html>
+```

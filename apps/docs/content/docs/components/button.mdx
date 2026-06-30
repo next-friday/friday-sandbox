@@ -5,22 +5,27 @@ description: A button for triggering actions, built on React Aria Button.
 
 import { Button, Flex } from "@friday-sandbox/react";
 
-## Import
+## Purpose
 
-```tsx
-import { Button } from "@friday-sandbox/react";
-```
+The `Button` triggers a single action on the current view, such as saving or
+submitting. It wraps React Aria `Button`, so it is keyboard accessible and
+exposes press behavior through `onPress`.
 
 [Source](https://github.com/next-friday/friday-sandbox/blob/main/packages/react/src/components/bases/button/button.tsx) · [Style](https://github.com/next-friday/friday-sandbox/blob/main/packages/styles/src/components/bases/button.css) · [Storybook](STORYBOOK_URL) · [Headless](https://react-spectrum.adobe.com/react-aria/Button.html)
 
 {/* Replace STORYBOOK_URL with the deployed Storybook story link. */}
 
-## Usage
+## When to use
 
-The `Button` triggers a single action on the current view, such as saving or
-submitting. It wraps React Aria `Button`, so it is keyboard accessible and
-exposes press behavior through `onPress`. To navigate to another page, use a
-link instead.
+- Trigger a single action on the current view, such as saving, submitting, or
+  confirming.
+- You need keyboard-accessible press behavior through `onPress`.
+
+## When not to use
+
+- To navigate to another page or view — use a link instead.
+
+## Example
 
 <Tabs items={["Preview", "Code"]}>
   <Tab value="Preview">
@@ -31,14 +36,13 @@ link instead.
 
   <Tab value="Code">
     ```tsx
+    import { Button } from "@friday-sandbox/react";
     <Button>Save changes</Button>
     ```
   </Tab>
 </Tabs>
 
-## Examples
-
-### Colors
+## Colors
 
 Seven semantic colors are available through the `color` prop.
 
@@ -68,7 +72,7 @@ Seven semantic colors are available through the `color` prop.
   </Tab>
 </Tabs>
 
-### Variants
+## Variants
 
 The `variant` prop sets the visual emphasis.
 
@@ -96,7 +100,7 @@ The `variant` prop sets the visual emphasis.
   </Tab>
 </Tabs>
 
-### Sizes
+## Sizes
 
 Five sizes step from `xs` to `xl`.
 
@@ -122,7 +126,7 @@ Five sizes step from `xs` to `xl`.
   </Tab>
 </Tabs>
 
-### States
+## States
 
 `isDisabled` blocks interaction; `isPending` shows a spinner for in-flight
 actions.
@@ -143,14 +147,6 @@ actions.
   </Tab>
 </Tabs>
 
-## API
-
-### Anatomy
-
-```tsx
-<Button>Save changes</Button>
-```
-
 ## Props
 
 `Button` also accepts every prop from React Aria `Button`, such as `onPress`,
@@ -165,15 +161,6 @@ actions.
 | `isFullWidth`   | `boolean`                                                                              | `false`     | Stretches the button to the container width.            |
 | `isRoundedFull` | `boolean`                                                                              | `false`     | Uses a fully rounded pill shape.                        |
 | `className`     | `string`                                                                               | —           | Additional CSS classes to apply.                        |
-
-## Accessibility
-
-- Rendered as a native `<button>` and reachable by keyboard.
-- Activates with both <kbd>Enter</kbd> and <kbd>Space</kbd>.
-- Use `isDisabled` rather than the native `disabled` attribute so assistive
-  technology and focus management stay consistent.
-- When a button shows only an icon, set `isIconOnly` and provide an accessible
-  label with `aria-label`.
 
 ## Styling
 
@@ -204,3 +191,12 @@ actions.
 ### State selectors
 
 State styling responds to React Aria data attributes: `[data-hovered]`, `[data-pressed]`, `[data-disabled]`, `[data-focus-visible]`, and `[data-pending]`.
+
+## Accessibility
+
+- Rendered as a native `<button>` and reachable by keyboard.
+- Activates with both <kbd>Enter</kbd> and <kbd>Space</kbd>.
+- Use `isDisabled` rather than the native `disabled` attribute so assistive
+  technology and focus management stay consistent.
+- When a button shows only an icon, set `isIconOnly` and provide an accessible
+  label with `aria-label`.

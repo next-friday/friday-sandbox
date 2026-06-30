@@ -277,20 +277,3 @@ export const FlexShorthand: Story = {
     </Flex>
   ),
 };
-
-export const As: Story = {
-  args: { as: "nav" },
-  parameters: {
-    docs: {
-      description: {
-        story:
-          "Use the `as` prop to render the container as a different element while keeping its layout props.",
-      },
-    },
-  },
-  render: (storyArgs) => (
-    <Flex<ElementType> {...storyArgs} aria-label="Primary">
-      <Boxes count={3} />
-    </Flex>
-  ),
-};

@@ -4,7 +4,7 @@ const cssImportPattern = /@import\s+["']([^"']+)["']/g;
 const mdxImportPattern = /import\s+(?:[^"']*?\s+from\s+)?["']([^"']+)["']/g;
 
 const config: KnipConfig = {
-  ignore: [".github/doc-templates/**", "turbo/generators/**"],
+  ignore: ["turbo/generators/**"],
   ignoreDependencies: ["@turbo/gen", "@friday-sandbox/typescript-config"],
   compilers: {
     css: (text) =>

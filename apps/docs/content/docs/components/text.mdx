@@ -1,0 +1,121 @@
+---
+title: Text
+description: A polymorphic component that applies design-system typography tokens to any element.
+---
+
+import { Flex, Text } from "@friday-sandbox/react";
+
+## Purpose
+
+`Text` is a polymorphic component that renders any element while keeping
+the design system color baseline. It maps typography scale tokens to a named
+`variant` prop so you get consistent type across the UI without repeating utility
+class strings.
+
+[Source](https://github.com/next-friday/friday-sandbox/blob/main/packages/react/src/components/bases/text/text.tsx) · [Style](https://github.com/next-friday/friday-sandbox/blob/main/packages/styles/src/components/bases/text.css) · [Storybook](STORYBOOK_URL)
+
+{/* Replace STORYBOOK_URL with the deployed Storybook story link. */}
+
+## When to use
+
+- Rendering headings, body copy, labels, captions, or code snippets that must
+  follow the type scale.
+- Applying alignment, truncation, or line-clamping without adding utility
+  classes directly.
+
+## When not to use
+
+- Rich editorial content where each paragraph carries its own semantic element —
+  write the HTML directly and style through the type scale CSS.
+- Interactive text such as links or buttons — use the appropriate interactive
+  component instead.
+
+## Example
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <Flex align="end" gap="md" className="px-4 py-6">
+      <Text variant="body-md">The quick brown fox jumps over the lazy dog</Text>
+    </Flex>
+  </Tab>
+
+  <Tab value="Code">
+    ```tsx
+    import { Text } from "@friday-sandbox/react";
+    <Text variant="body-md">The quick brown fox jumps over the lazy dog</Text>
+    ```
+  </Tab>
+</Tabs>
+
+## Variant
+
+The `variant` prop applies a typography scale token. Display steps are for large
+hero text; body steps cover running copy; label and caption steps cover UI
+chrome.
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <Flex direction="column" gap="md" className="px-4 py-6">
+      <Text variant="display-lg">Display LG</Text>
+      <Text variant="body-lg">Body LG</Text>
+      <Text variant="body-md">Body MD</Text>
+      <Text variant="body-sm">Body SM</Text>
+      <Text variant="label-md">Label MD</Text>
+      <Text variant="caption">Caption</Text>
+    </Flex>
+  </Tab>
+
+  <Tab value="Code">
+    ```tsx
+    <Text variant="display-lg">Display LG</Text>
+    <Text variant="body-lg">Body LG</Text>
+    <Text variant="body-md">Body MD</Text>
+    <Text variant="body-sm">Body SM</Text>
+    <Text variant="label-md">Label MD</Text>
+    <Text variant="caption">Caption</Text>
+    ```
+  </Tab>
+</Tabs>
+
+## Props
+
+`Text` also accepts an `as` prop (default `"span"`) to render as a different
+HTML element.
+
+| Prop        | Type                                                                                                                                                                                                                                                                      | Default     | Description                                                       |
+| ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- | ----------------------------------------------------------------- |
+| `variant`   | `"inherit" \| "display-xxl" \| "display-xl" \| "display-lg" \| "display-md" \| "display-sm" \| "body-lg" \| "body-lg-strong" \| "body-md" \| "body-md-strong" \| "body-sm" \| "body-sm-strong" \| "body-xs" \| "body-xs-strong" \| "label-lg" \| "label-md" \| "label-sm" \| "caption" \| "caption-strong" \| "code"` | `"inherit"` | Applies a typography scale token.                                 |
+| `align`     | `"left" \| "center" \| "right" \| "justify"`                                                                                                                                                                                                                             | —           | Sets the text alignment.                                          |
+| `truncate`  | `boolean`                                                                                                                                                                                                                                                                 | `false`     | Cuts a single line of overflowing text with an ellipsis.          |
+| `lineClamp` | `1 \| 2 \| 3 \| 4 \| 5 \| 6`                                                                                                                                                                                                                                            | —           | Limits the text to a fixed number of lines with an ellipsis.      |
+| `className` | `string`                                                                                                                                                                                                                                                                  | —           | Additional CSS classes to apply.                                  |
+
+## Styling
+
+`Text` is styled through CSS classes ([source styles](https://github.com/next-friday/friday-sandbox/blob/main/packages/styles/src/components/bases/text.css)), so the scale applies to any element that carries them.
+
+### Base class
+
+- `fri-text` — base text styles that keep the design system color baseline.
+
+### Variant modifier classes
+
+- `fri-text-inherit` · `fri-text-display-xxl` · `fri-text-display-xl` · `fri-text-display-lg` · `fri-text-display-md` · `fri-text-display-sm`
+- `fri-text-body-lg` · `fri-text-body-lg-strong` · `fri-text-body-md` · `fri-text-body-md-strong`
+- `fri-text-body-sm` · `fri-text-body-sm-strong` · `fri-text-body-xs` · `fri-text-body-xs-strong`
+- `fri-text-label-lg` · `fri-text-label-md` · `fri-text-label-sm`
+- `fri-text-caption` · `fri-text-caption-strong` · `fri-text-code`
+
+### Alignment, truncation, and line-clamp
+
+The `align`, `truncate`, and `lineClamp` props apply Tailwind utility classes
+(`text-left`, `truncate`, `line-clamp-2`, and so on) directly — they have no
+custom `fri-` class.
+
+## Accessibility
+
+- `Text` renders a `<span>` by default. Use the `as` prop to render a heading
+  (`"h1"`–`"h6"`), paragraph (`"p"`), or other semantic element when the content
+  requires it.
+- The `truncate` and `lineClamp` props hide overflow visually but do not hide it
+  from assistive technology, which reads the full text.

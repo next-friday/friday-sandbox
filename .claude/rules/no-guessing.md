@@ -5,6 +5,12 @@ runtime behavior, and any comparison table, must be backed by a real source
 before it is written: official docs, source code, or a live fetch
 (WebFetch / WebSearch / context7). Do not answer such questions from model memory.
 
+**Official docs first — before answering or acting.** The first move on any such
+question is to open the official documentation, not to draft from recall. Sources
+rank in order: (1) official docs or the published spec, (2) the tool's own source
+code, (3) a live fetch (WebFetch / WebSearch / context7). Model memory is never a
+source and never the first step; recall only hints which doc to open.
+
 - If the source has not been read yet, say so and go read it. Do not fill the gap with a guess.
 - Every factual cell in a comparison must trace back to a source you actually consulted; cite the URL where it matters.
 - For multi-library or high-stakes comparisons, fan out research and adversarially verify each claim, defaulting to "refuted" when no source supports it, rather than asserting from recall.

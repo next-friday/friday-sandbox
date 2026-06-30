@@ -8,7 +8,7 @@
     --button-radius: calc(var(--fri-action-radius) * var(--_button-n) / 10);
     --button-spinner-size: calc(var(--button-h) / 2);
 
-    @apply relative inline-flex h-(--button-h) w-fit shrink-0 cursor-pointer items-center justify-center gap-2 rounded-(--button-radius) border-(length:--fri-border-width) border-solid border-(--button-border-color) bg-(--button-background) px-(--button-px) whitespace-nowrap text-(--button-foreground) transition-base transition-[background-color,box-shadow,outline-color] outline-none select-none;
+    @apply relative inline-flex h-(--button-h) w-fit shrink-0 cursor-pointer items-center justify-center gap-sm rounded-(--button-radius) border-(length:--fri-border-width) border-solid border-(--button-border-color) bg-(--button-background) px-(--button-px) whitespace-nowrap text-(--button-foreground) transition-base transition-[background-color,box-shadow,outline-color] outline-none select-none;
   }
 
   /* Color — wire the role's ladder into the button's color slots */

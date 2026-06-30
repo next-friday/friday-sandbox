@@ -21,7 +21,7 @@ The `chore(release): version packages` PR is produced by `changesets/action`. It
 
 ## Components: `packages/react/src/components/bases/**`
 
-A base component is scaffolded with `pnpm gen component` (Turborepo `turbo gen`), never hand-created. It lives in `components/bases/<name>/` as `<name>.tsx` + `<name>.variants.ts` + `index.ts` + `<name>.stories.tsx`, and is linked to its styles by a stable `fri-<name>` class, not an import. Key checks:
+Architecture and the `fri-<name>` react↔styles contract live in `ARCHITECTURE.md`. A base component is generated (`pnpm gen component`), never hand-created. Flag in a base component's diff:
 
 - Lowercase filename such as `button.tsx`, not `Button.tsx`; a named export with the `Props` type colocated; no default export.
 - `"use client"` only when a client API such as `useState`, `useEffect`, refs, or event handlers — or a `react-aria-components` / `radix` client primitive — is touched; flag a needless directive on a pure layout or text component.
@@ -36,7 +36,7 @@ Key checks for accessibility and stories:
 
 - Keyboard reachable, focus visible, ARIA only where the DOM does not convey intent, motion respects `prefers-reduced-motion`; the story passes `addon-a11y`.
 - Cover every variant value — a showcase story per axis (`Variants`, `Colors`, `Sizes`, laid out with `Flex`) and per state — using real props rather than mocked data.
-- Stories are the test suite: they run in Vitest browser mode via `@storybook/addon-vitest` with Playwright chromium. A `play` function asserts behavior only where it fits: an interactive base gets `Default` (interaction — `userEvent.tab()` → `toHaveFocus`) and `BaseClassDefault` (`getComputedStyle`); a display or layout base (`text`, `flex`, `grid`, `separator`, `spinner`) stays render-only, so never ask one for an interaction play. Include a class-only / `PlainHtml` story.
+- Stories are the test suite (the testing setup is in `CLAUDE.md`). A `play` function asserts behavior only where it fits: an interactive base gets `Default` (interaction — `userEvent.tab()` → `toHaveFocus`); a display or layout base (`text`, `flex`, `grid`, `separator`, `spinner`) skips the `userEvent` interaction plays, so never ask one for an interaction play, though a presence or `getComputedStyle` assertion on `Default` still fits.
 - No separate `*.test.*` files exist or belong here; a behavior is verified by its story. Flag a new test file and ask for a `*.stories.tsx` play function instead.
 - Story copy is consumer-facing: flag internal class names such as `fri-button-*` and `fri-flex-*`, library names such as `tailwind-variants` and `react-aria`, engine math such as `calc(var(--fri-spacing-xs) * var(--_button-n))`, or file paths. Symmetric story shape across files.
 - Story copy stays generic, not brittle: flag concrete pixel sizes or an exhaustive enumeration of a prop's values; prefer the imperative `Use the \`X\` prop to …` form and let the stories demonstrate the values.
@@ -74,14 +74,11 @@ Key checks for styles:
 
 ## Changesets (`.changeset/!(README).md`)
 
-- A behavior-changing PR type such as `feat`, `fix`, `perf`, or `refactor` requires one entry; the bump level of patch, minor, or major matches the change, so `feat` is at least minor and a breaking change is major. The summary reads as a release note to a downstream consumer.
+The changeset rules are in `CONTRIBUTING.md` — flag a behavior-changing PR (`feat`, `fix`, `perf`, `refactor`) with no entry or a bump level that does not match the change. The summary must read as a release note to a downstream consumer.
 
 ## Commits, branches, and pull requests
 
-- Conventional commits, strict: `type(scope): subject`, type from the enum `build | chore | ci | docs | feat | fix | perf | refactor | revert | setup | style | test`, scope required, all lowercase, subject 50 characters or fewer, no body, no footer.
-- The PR title carries no `#N`; issue closures go in the PR body as `Closes #N`, one per line.
-- Branches are created from an issue with `gh issue develop <n>`, so `head_ref` starts with `<n>-`.
-- `--no-verify` is forbidden and is re-caught by CI.
+The commit, branch, and PR rules are defined in `CONTRIBUTING.md` — flag any violation: a commit not matching `type(scope): subject` (type off the enum, missing scope, not lowercase, subject over 50 characters, or a body/footer present), a `#N` in the PR title instead of `Closes #N` in the body, a branch that does not start with `<n>-`, or a `--no-verify` bypass.
 
 ## Documentation prose
 

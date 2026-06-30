@@ -602,12 +602,5 @@
     --fri-field-size: 2.5rem;
     --fri-box-size: 4rem;
     --fri-feedback-size: 1.5rem;
-
-    /* Layout gap aliases the spacing scale */
-    --fri-gap-xs: var(--fri-spacing-xs);
-    --fri-gap-sm: var(--fri-spacing-sm);
-    --fri-gap-md: var(--fri-spacing-md);
-    --fri-gap-lg: var(--fri-spacing-lg);
-    --fri-gap-xl: var(--fri-spacing-xl);
   }
 }

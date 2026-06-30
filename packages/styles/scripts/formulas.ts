@@ -270,9 +270,6 @@ export const SIZE_ARCHETYPE = {
   feedback: "1.5rem",
 };
 
-/** Layout gap scale aliases the spacing scale. */
-export const GAP_SCALE = ["xs", "sm", "md", "lg", "xl"];
-
 /**
  * Ground tokens that flip in dark. `muted-foreground` is reserved (no dark
  * override today): the contrast gate reads it and falls back when absent.

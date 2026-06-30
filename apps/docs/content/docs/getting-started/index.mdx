@@ -1,4 +1,32 @@
 ---
-title: Getting Started
+title: Getting started
 description: Install the packages and render your first component.
 ---
+
+## Install
+
+```sh
+pnpm add @friday-sandbox/react @friday-sandbox/styles
+```
+
+## Import the styles
+
+Import Tailwind and the package CSS once at your app root, so the `fri-*`
+classes resolve:
+
+```css
+@import "tailwindcss";
+@import "@friday-sandbox/styles";
+```
+
+## Render a component
+
+Import a component and render it:
+
+```tsx
+import { Button } from "@friday-sandbox/react";
+
+export function Save() {
+  return <Button onPress={() => save()}>Save changes</Button>;
+}
+```

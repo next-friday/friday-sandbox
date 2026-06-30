@@ -5,19 +5,23 @@ description: {{ pascalCase name }} component.
 
 import { Flex, {{ pascalCase name }} } from "@friday-sandbox/react";
 
-## Import
+## Purpose
 
-```tsx
-import { {{ pascalCase name }} } from "@friday-sandbox/react";
-```
+Describe what `{{ pascalCase name }}` is for in a line or two.
 
 [Source](https://github.com/next-friday/friday-sandbox/blob/main/packages/react/src/components/bases/{{ kebabCase name }}/{{ kebabCase name }}.tsx) · [Style](https://github.com/next-friday/friday-sandbox/blob/main/packages/styles/src/components/bases/{{ kebabCase name }}.css) · [Storybook](STORYBOOK_URL) · [Headless](HEADLESS_DOCS_URL)
 
-{/* Replace STORYBOOK_URL with the deployed Storybook story link, and HEADLESS_DOCS_URL with the wrapped library's component docs (or remove Headless for a plain HTML element). */}
+{/* Replace STORYBOOK_URL with the deployed Storybook story link, and HEADLESS_DOCS_URL with the wrapped library's component docs; drop the Headless link when the wrapped part has no standalone page (a plain HTML element). */}
 
-## Usage
+## When to use
 
-Describe the basic use of `{{ pascalCase name }}` in a line or two.
+{/* List the cases where `{{ pascalCase name }}` is the right choice. */}
+
+## When not to use
+
+{/* List the cases where another component or element fits better, and name it. */}
+
+## Example
 
 <Tabs items={["Preview", "Code"]}>
   <Tab value="Preview">
@@ -28,22 +32,13 @@ Describe the basic use of `{{ pascalCase name }}` in a line or two.
 
   <Tab value="Code">
     ```tsx
+    import { {{ pascalCase name }} } from "@friday-sandbox/react";
     <{{ pascalCase name }} />
     ```
   </Tab>
 </Tabs>
 
-## Examples
-
-{/* One Tabs block per feature you expose; mirror the showcase stories in {{ kebabCase name }}.stories.tsx so docs and Storybook stay symmetric. */}
-
-## API
-
-### Anatomy
-
-```tsx
-<{{ pascalCase name }} />
-```
+{/* Add one Tabs block per feature you expose, each as its own `##` section between Example and Props; mirror the showcase stories in {{ kebabCase name }}.stories.tsx so docs and Storybook stay symmetric. */}
 
 ## Props
 
@@ -52,10 +47,6 @@ Describe the basic use of `{{ pascalCase name }}` in a line or two.
 | Prop        | Type     | Default | Description                      |
 | ----------- | -------- | ------- | -------------------------------- |
 | `className` | `string` | —       | Additional CSS classes to apply. |
-
-## Accessibility
-
-Document keyboard interaction, ARIA roles, and any state caveats.
 
 ## Styling
 
@@ -68,3 +59,7 @@ Document keyboard interaction, ARIA roles, and any state caveats.
 ### State modifier classes
 
 {/* List each fri-{{ kebabCase name }}-<modifier> class you define (e.g. fri-{{ kebabCase name }}-disabled), with the state it applies. Remove this section if the component has no modifier classes. */}
+
+## Accessibility
+
+Document keyboard interaction, ARIA roles, and any state caveats.

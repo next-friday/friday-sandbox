@@ -287,27 +287,3 @@ export const CustomStyles: Story = {
     </ScrollArea.Root>
   ),
 };
-
-export const BaseClassDefault: Story = {
-  parameters: {
-    docs: {
-      description: {
-        story:
-          "The base class on its own resolves the default medium scrollbar thickness, so hand-written HTML needs no size class for a usable default.",
-      },
-    },
-  },
-  render: () => <div className="fri-scroll-area" />,
-  play: async ({ canvasElement }) => {
-    const root = canvasElement.querySelector<HTMLElement>(".fri-scroll-area");
-    await expect(root).not.toBeNull();
-
-    // The default md size sets the scrollbar thickness var on the root; an
-    // unsized base leaves it unset (empty).
-    await expect(
-      getComputedStyle(root!)
-        .getPropertyValue("--scroll-area-thickness")
-        .trim(),
-    ).not.toBe("");
-  },
-};

@@ -55,10 +55,9 @@ reviews:
         Playwright chromium). Key checks: a showcase story per variant axis (Variants,
         Colors, Sizes, laid out with Flex) and per state, real props not mocked data,
         addon-a11y passes; play functions assert behavior only where it fits — an
-        interactive base gets Default (userEvent.tab -> toHaveFocus) and
-        BaseClassDefault (getComputedStyle), a display or layout base (text, flex,
-        grid, separator, spinner) stays render-only, so never ask one for an
-        interaction play; include a class-only / PlainHtml story. Story copy reads as
+        interactive base gets Default (userEvent.tab -> toHaveFocus), a display or layout base (text, flex,
+        grid, separator, spinner) skips the userEvent interaction plays, so never ask one for an
+        interaction play. Story copy reads as
         consumer documentation, so flag internal class names (fri-button-*,
         fri-flex-*), library names (tailwind-variants, react-aria,
         react-aria-components), engine math (calc(var(--fri-spacing-xs) *

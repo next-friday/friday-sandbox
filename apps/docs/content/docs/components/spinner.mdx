@@ -5,21 +5,26 @@ description: An indeterminate loading indicator.
 
 import { Flex, Spinner } from "@friday-sandbox/react";
 
-## Import
+## Purpose
 
-```tsx
-import { Spinner } from "@friday-sandbox/react";
-```
+The `Spinner` signals indeterminate progress, on its own or inside another
+component such as `Button` while `isPending`. It renders a `<span>`.
 
 [Source](https://github.com/next-friday/friday-sandbox/blob/main/packages/react/src/components/bases/spinner/spinner.tsx) · [Style](https://github.com/next-friday/friday-sandbox/blob/main/packages/styles/src/components/bases/spinner.css) · [Storybook](STORYBOOK_URL)
 
 {/* Replace STORYBOOK_URL with the deployed Storybook story link. Spinner renders a plain span, so it has no headless library. */}
 
-## Usage
+## When to use
 
-The `Spinner` signals indeterminate progress, on its own or inside another
-component such as `Button` while `isPending`. It renders a `<span>`. For
-determinate progress with a known percentage, use a progress indicator instead.
+- Signal indeterminate progress, on its own or inside another component such as
+  `Button` while `isPending`.
+
+## When not to use
+
+- For determinate progress with a known percentage — use a progress indicator
+  instead.
+
+## Example
 
 <Tabs items={["Preview", "Code"]}>
   <Tab value="Preview">
@@ -30,14 +35,13 @@ determinate progress with a known percentage, use a progress indicator instead.
 
   <Tab value="Code">
     ```tsx
+    import { Spinner } from "@friday-sandbox/react";
     <Spinner />
     ```
   </Tab>
 </Tabs>
 
-## Examples
-
-### Colors
+## Colors
 
 The `color` prop matches the semantic colors used across the system.
 
@@ -67,7 +71,7 @@ The `color` prop matches the semantic colors used across the system.
   </Tab>
 </Tabs>
 
-### Sizes
+## Sizes
 
 Five sizes step from `xs` to `xl`.
 
@@ -93,14 +97,6 @@ Five sizes step from `xs` to `xl`.
   </Tab>
 </Tabs>
 
-## API
-
-### Anatomy
-
-```tsx
-<Spinner />
-```
-
 ## Props
 
 `Spinner` also accepts the standard `<span>` props, plus a `className` string.
@@ -110,13 +106,6 @@ Five sizes step from `xs` to `xl`.
 | `color`     | `"primary" \| "secondary" \| "accent" \| "info" \| "success" \| "warning" \| "danger"` | `"primary"` | Sets the semantic color role.    |
 | `size`      | `"xs" \| "sm" \| "md" \| "lg" \| "xl"`                                                 | `"md"`      | Sets the spinner size.           |
 | `className` | `string`                                                                               | —           | Additional CSS classes to apply. |
-
-## Accessibility
-
-- The spinner is decorative; convey loading state in the surrounding context,
-  such as a `Button` with `isPending` or text like "Loading…".
-- If a standalone spinner is the only indication of a busy region, give that
-  region `role="status"` and an accessible label so screen readers announce it.
 
 ## Styling
 
@@ -133,3 +122,10 @@ Five sizes step from `xs` to `xl`.
 ### Size modifier classes
 
 - `fri-spinner-xs` · `fri-spinner-sm` · `fri-spinner-md` · `fri-spinner-lg` · `fri-spinner-xl`
+
+## Accessibility
+
+- The spinner is decorative; convey loading state in the surrounding context,
+  such as a `Button` with `isPending` or text like "Loading…".
+- If a standalone spinner is the only indication of a busy region, give that
+  region `role="status"` and an accessible label so screen readers announce it.
