@@ -50,6 +50,11 @@ const insertImportLine = (
 };
 
 export default function generator(plop: PlopTypes.NodePlopAPI): void {
+  plop.setHelper("sortedNamedImports", (...names: unknown[]) => {
+    const identifiers = names.slice(0, -1) as string[];
+    return [...identifiers].sort((a, b) => a.localeCompare(b)).join(", ");
+  });
+
   const reactBases =
     "{{ turbo.paths.root }}/packages/react/src/components/bases/{{ kebabCase name }}";
 

@@ -2,16 +2,9 @@ import { expect, userEvent, within } from "storybook/test";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import { Flex } from "../flex";
+import { SIZES } from "../../samples/story-constants";
 
 import { {{ pascalCase name }} } from ".";
-
-const SIZES = [
-  { value: "xs", label: "Extra Small" },
-  { value: "sm", label: "Small" },
-  { value: "md", label: "Medium" },
-  { value: "lg", label: "Large" },
-  { value: "xl", label: "Extra Large" },
-] as const;
 
 const meta = {
   title: "Bases/{{ category }}/{{ pascalCase name }}",
@@ -37,7 +30,7 @@ const meta = {
       },
     },
     className: {
-      description: "Additional CSS classes to apply.",
+      description: "Additional CSS classes to apply to the {{ kebabCase name }}.",
       control: "text",
       table: { type: { summary: "string" } },
     },

@@ -1,5 +1,5 @@
 import { clsx } from "clsx";
-import { composeRenderProps } from "react-aria-components";
+import { composeRenderProps } from "react-aria-components/composeRenderProps";
 
 /**
  * Merge a Tailwind class string with a render-prop or static `className`.

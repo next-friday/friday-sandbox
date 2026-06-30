@@ -12,7 +12,7 @@ export interface {{ pascalCase name }}Props
 export const {{ pascalCase name }} = (props: Readonly<{{ pascalCase name }}Props>) => {
   const { children, className, size, ...rest } = props;
 
-  const resolvedClassName = {{ camelCase name }}Variants({ size, className });
+  const resolvedClassName = {{ camelCase name }}Variants({ size, class: className });
 
   return (
     <button data-slot="{{ kebabCase name }}" className={resolvedClassName} {...rest}>
