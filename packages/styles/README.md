@@ -93,7 +93,7 @@ Components use a `fri-<component>-<modifier>` convention, usable in plain HTML:
 
 ## Reference
 
-- **One spec, no drift.** [`tokens/default.spec.json`](./tokens/default.spec.json) is the single source the shipped CSS is generated from.
+- **Hand-authored tokens.** The theme lives in [`src/theme/`](./src/theme/) as plain CSS variables; the interaction ladder, surfaces, and tiers derive from the base roles via runtime `color-mix`.
 - **Starter template.** Copy [`@friday-sandbox/styles/template`](./src/theme-template.css) to scaffold a custom theme.
 - **Drop-in compatibility.** Unprefixed shadcn/Tailwind token names via `@friday-sandbox/styles/compat`.
 

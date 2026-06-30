@@ -4,8 +4,8 @@
 framework-agnostic design-token system. The goal it serves: a component's look
 is driven entirely by design tokens, so theming is plain CSS variables with no
 build step; the React API stays accessible (built on `react-aria-components`);
-and the whole system is machine-predictable (a regular token grammar, a
-generated theme, and stories that double as tests).
+and the whole system is machine-predictable (a regular token grammar and
+stories that double as tests).
 
 This document is the bird's-eye view — the codemap and the invariants. It names
 entities rather than linking paths (links go stale; search by name). For the
@@ -22,9 +22,8 @@ tokens or theme. Build `styles` correct first; `react`, and any future package,
 consumes it. `react` depends on `styles` as a peer dependency.
 
 A component that needs a token which does not exist yet adds that token
-**upstream in `styles` first** — through the spec and codegen when it is
-formula-derivable, or a hand-authored theme file when it is not — then consumes
-it downstream. Reuse an existing token before inventing one.
+**upstream in `styles` first** — by hand-authoring it in the theme CSS — then
+consumes it downstream. Reuse an existing token before inventing one.
 
 ## The class-name contract
 
@@ -39,30 +38,29 @@ hand-written element, not only the React component.
 Every variant value has exactly one class on each side; the two mirror 1:1, and
 a lint gate fails on an orphan class on either side.
 
-## The token system is generated from one spec
+## The token system is hand-authored CSS
 
-The theme is **generated, not hand-written**. A small spec of Tier-A knobs is
-the single source of truth; a codegen script expands it through a derivation
-table into the generated theme CSS — the color, border, and spacing
-tokens and the Tailwind `@theme` map. Generated files carry a `GENERATED`
-header and are overwritten on every codegen run: **never hand-edit them.** To
-change a color or scale, edit the spec or the formulas and rerun codegen.
+The theme is **hand-authored CSS variables**. The base roles — brand, status,
+and ground — are flat `oklch` values in `tokens.css`; the interaction ladder,
+surfaces, and emphasis tiers derive from those bases through runtime
+`color-mix`, so overriding a base role reflows everything built on it. There is
+no spec, no codegen, and no generated file — edit the theme CSS directly.
 
 Components consume spacing and size through the **semantic Tailwind alias** the
 theme exposes — `gap-sm`, `p-md`, `bg-primary` — which resolve to the `--fri-*`
-tokens because the spec maps them into `@theme`. Never a raw numeric (`gap-2`),
-and never a bare `gap-(--fri-*)` var form when an alias exists.
+tokens because `tailwind.css` maps them into `@theme`. Never a raw numeric
+(`gap-2`), and never a bare `gap-(--fri-*)` var form when an alias exists.
 
-Two files carry the `@theme` map, split by origin and never overlapping: the
-generated one (color, spacing, font) and a hand-authored one (the
-typography type scale, which is not formula-derived). A build-time **contrast
-gate** fails the build on any text/surface pair below the APCA/WCAG floor, so
-the generated palette cannot ship an inaccessible default.
+The `@theme` map (`tailwind.css`) and the `@property` registrations
+(`registered.css`) sit alongside the token values and are kept in sync with them
+by hand; the typography type scale is its own hand-authored file. A11y contrast
+is the author's responsibility — verify text/surface pairs against the
+APCA/WCAG floor when changing a color.
 
 ## Codemap
 
-- **`styles`** — the upstream source: tokens (spec → codegen → generated
-  theme), the Tailwind layers (`@layer theme, base, components, utilities`,
+- **`styles`** — the upstream source: hand-authored token CSS, the Tailwind
+  layers (`@layer theme, base, components, utilities`,
   imported in that order), shared utilities, and one CSS file per component.
 - **`react`** — accessible components built on `react-aria-components` (when
   interactive) or native HTML (display and layout), styled only through

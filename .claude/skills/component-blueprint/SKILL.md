@@ -91,5 +91,5 @@ On finishing, report one markdown table — the result at a glance:
 ## What this encodes
 
 - The existing `bases/` components are the pattern menu: `button` (aria + full ladder), `text`, `flex` (`.types.ts`), `grid` (layout), `scroll-area` (radix + `.namespace.ts`), `separator`, `spinner`.
-- The generated `--fri-*` token ladder (roles + slots) comes from `packages/styles/tokens/default.spec.json`; the five surfaces and the react/styles split: `CLAUDE.md` → Architecture, `button.css`.
+- The `--fri-*` token ladder (roles + slots) is hand-authored in `packages/styles/src/theme/tokens.css`; the five surfaces and the react/styles split: `CLAUDE.md` → Architecture, `button.css`.
 - The issue body is the single source of truth for design + plan (GitHub keeps its edit history); `component-implement` branches from it and ships the PR that closes it. The tracker is shared (`CONTRIBUTING.md`) — every write needs an explicit per-artifact yes, and never touch an issue this session did not create.

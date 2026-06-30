@@ -64,7 +64,7 @@ pnpm gen component   # prompts for the name, the primitive kind (native or aria)
 
 The generator (Turborepo `turbo gen`, defined in `turbo/generators/`) creates `<name>.tsx`, `<name>.variants.ts`, `index.ts`, and `<name>.stories.tsx` under `packages/react/src/components/bases/<name>/`, adds the `<name>.css` stub in `@friday-sandbox/styles` with its `@import`, creates the `<name>.mdx` docs page and its nav entry, wires the export barrels, and writes a changeset. Choose the `aria` primitive for an interactive component (it scaffolds the size, state, and story skeleton), or `native` for a minimal display element. Then fill in the variants, the `@apply` rules, the stories, and the docs. `pnpm lint:symmetry` verifies that `<name>.variants.ts` and `<name>.css` stay a 1:1 mirror. Don't hand-create or hand-wire these files. To have Claude run this scaffolding step and everything after it from a plain-language goal instead, see [Building a component with Claude](#building-a-component-with-claude).
 
-If the component needs a design token that does not exist yet, add it upstream in `@friday-sandbox/styles` first — through the spec and codegen, or a hand-authored theme file — then consume it downstream; `react` never defines its own tokens. The styles-is-upstream split, the `fri-<name>` class contract, and the token flow are in [`ARCHITECTURE.md`](ARCHITECTURE.md).
+If the component needs a design token that does not exist yet, add it upstream in `@friday-sandbox/styles` first — by hand-authoring it in the theme CSS — then consume it downstream; `react` never defines its own tokens. The styles-is-upstream split, the `fri-<name>` class contract, and the token flow are in [`ARCHITECTURE.md`](ARCHITECTURE.md).
 
 ## Building a component with Claude
 

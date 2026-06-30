@@ -96,8 +96,8 @@ reviews:
         mapped in @theme inline (bg-primary, not bg-(--fri-primary)). Size tokens
         scoped to action, field, or box, never a literal component name; corner
         radius is Tailwind native (rounded-*), not a token; the
-        src/theme/ CSS carrying a GENERATED header is codegen output (flag
-        hand-edits; change tokens/default.spec.json or scripts/formulas.ts). A token
+        src/theme/ CSS is hand-authored token values (keep the @theme map and
+        @property registrations in sync with the token names). A token
         rename carries a migration note in the changeset.
     - path: apps/docs/**/*.{ts,tsx}
       instructions: >-
