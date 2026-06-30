@@ -32,7 +32,7 @@
     "changeset:version": "changeset version",
     "clean": "turbo run clean",
     "depcruise": "depcruise packages",
-    "dev": "turbo run dev",
+    "dev": "turbo run dev dev:storybook",
     "dev:docs": "turbo run dev --filter=@friday-sandbox/docs",
     "dev:storybook": "turbo run dev:storybook",
     "format": "prettier --write \"**/*.{ts,tsx,md,css}\"",

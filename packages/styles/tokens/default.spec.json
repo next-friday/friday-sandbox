@@ -13,7 +13,6 @@
     "success": { "l": 0.5324, "c": 0.1205, "h": 159.6 },
     "info": { "l": 0.5553, "c": 0.175, "h": 255.24 }
   },
-  "radius": "0.875rem",
   "border": "1px",
   "fontSans": "ui-sans-serif, system-ui, sans-serif",
   "fontMono": "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace"

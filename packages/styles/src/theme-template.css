@@ -27,9 +27,8 @@
   --fri-background: oklch(100% 0 0);
   --fri-foreground: oklch(0% 0 0);
   --fri-neutral: oklch(65.47% 0.0208 248.15);
-  /* Focus, geometry, type */
+  /* Focus and geometry */
   --fri-ring: oklch(57.49% 0.2084 257.52);
-  --fri-radius-md: 0.875rem;
   --fri-border-width: 1px;
 }
 
