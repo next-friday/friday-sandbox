@@ -1,5 +1,5 @@
 /* `@property` registrations for the `--fri-*` color tokens — hand-authored;
-   keep in sync with the roles declared in tokens.css. */
+   keep in sync with the roles declared in ../default/variables.css. */
 @property --fri-primary {
   syntax: "<color>";
   inherits: true;

@@ -1,6 +1,7 @@
+import { flexVariants } from "@friday-sandbox/styles/components/flex";
+
 import type { ElementType, ReactElement } from "react";
 
-import { flexVariants } from "./flex.variants";
 import type { FlexProps } from "./flex.types";
 
 export const Flex = <TElement extends ElementType = "div">(

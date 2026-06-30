@@ -10,7 +10,7 @@ Fix the constraints first (which primitive, which states, controlled vs uncontro
 - **Maximal composability** — compound parts plus render-props / `as`.
 - **Optimize the common caller** — the trivial default just works (e.g. `<Tooltip>text</Tooltip>`).
 
-Compare on three lenses: leverage per prop; locality (does a change land in one `.variants.ts`/`.css` pair); seam placement (react-aria vs radix vs native). Recommend one, or hybridize — "the header from B with the sidebar from C" is often the real design.
+Compare on three lenses: leverage per prop; locality (does a change land in one `.styles.ts`/`.css` pair); seam placement (react-aria vs radix vs native). Recommend one, or hybridize — "the header from B with the sidebar from C" is often the real design.
 
 ## Visual axis — Storybook is the switcher
 

@@ -16,4 +16,4 @@ Trace back to the original trigger and fix there, never where the error surfaces
 
 ## Escalation tripwire
 
-Count the fixes. If a third fix reveals new coupling somewhere else — a style chased across `.variants.ts` → `.css` → token → barrel, each fix surfacing a fresh break — STOP: the component's variant or token shape is wrong. Escalate to `component-blueprint`; do not attempt fix #4.
+Count the fixes. If a third fix reveals new coupling somewhere else — a style chased across `.styles.ts` → `.css` → token → barrel, each fix surfacing a fresh break — STOP: the component's variant or token shape is wrong. Escalate to `component-blueprint`; do not attempt fix #4.

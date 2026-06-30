@@ -22,8 +22,8 @@ Project rules, imported into context:
 
 Full codemap and invariants: [`ARCHITECTURE.md`](ARCHITECTURE.md). The essentials to hold every session:
 
-- **`styles` is upstream, `react` is downstream.** `styles` owns the design tokens, the Tailwind `@theme` map, and each component's CSS; `react` consumes them and never redefines theme. A component is split across both packages and linked by a `fri-<name>` class, not an import — mirror the two sides 1:1.
-- **The theme is hand-authored CSS.** Token values live in `packages/styles/src/theme/*.css` and are edited directly — base roles are flat `oklch`, while the ladder, surfaces, and tiers derive from them via runtime `color-mix`. Keep `tailwind.css` (`@theme`) and `registered.css` (`@property`) in sync with the token names by hand. Consume spacing/size through the semantic alias (`gap-sm`, `p-md`, `bg-primary`), never a raw numeric (`gap-2`) or a `gap-(--fri-*)` var form when an alias exists.
+- **`styles` is upstream, `react` is downstream.** `styles` owns the design tokens, the Tailwind `@theme` map, each component's CSS, and each component's `tv()` variant map (`src/components/<name>/<name>.styles.ts`, shipped as JS); `react` **imports** the variant map from `@friday-sandbox/styles/components/<name>` and never redefines theme. The variant map and the component CSS are linked by the `fri-<name>` class, mirrored 1:1 — both inside `styles`.
+- **The theme is hand-authored CSS.** Token values live in `packages/styles/src/themes/` and are edited directly — base roles are flat `oklch` in `default/variables.css`, while the ladder, surfaces, and tiers derive from them via runtime `color-mix`. Keep `shared/theme.css` (`@theme`) and `shared/registered.css` (`@property`) in sync with the token names by hand. Consume spacing/size through the semantic alias (`gap-sm`, `p-md`, `bg-primary`), never a raw numeric (`gap-2`) or a `gap-(--fri-*)` var form when an alias exists.
 - **Tests are stories.** There are no `*.test` files; Vitest runs every `*.stories.tsx` in real Chromium via Playwright. Write a story, get a test.
 
 ## Commands

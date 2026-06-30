@@ -1,9 +1,13 @@
+import { gridVariants } from "@friday-sandbox/styles/components/grid";
+
 import type { ElementType, ReactElement } from "react";
 
-import type { PolymorphicProps } from "../../utils/polymorphic-props";
+import type {
+  GridVariants,
+  GridItemVariants,
+} from "@friday-sandbox/styles/components/grid";
 
-import { gridVariants } from "./grid.variants";
-import type { GridVariants, GridItemVariants } from "./grid.variants";
+import type { PolymorphicProps } from "../../utils/polymorphic-props";
 
 export type GridProps<TElement extends ElementType = "div"> = PolymorphicProps<
   GridVariants & {
