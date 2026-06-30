@@ -2,13 +2,13 @@
 
 import { Button as AriaButton } from "react-aria-components/Button";
 import { composeRenderProps } from "react-aria-components/composeRenderProps";
+import { buttonVariants } from "@friday-sandbox/styles/components/button";
+
 import type { ComponentPropsWithRef } from "react";
+import type { ButtonVariants } from "@friday-sandbox/styles/components/button";
 
 import { composeTailwindRenderProps } from "../../utils/compose-tailwind-render-props";
 import { Spinner } from "../spinner/spinner";
-
-import { buttonVariants } from "./button.variants";
-import type { ButtonVariants } from "./button.variants";
 
 export interface ButtonProps
   extends ComponentPropsWithRef<typeof AriaButton>, ButtonVariants {

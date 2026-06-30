@@ -27,43 +27,48 @@ consumes it downstream. Reuse an existing token before inventing one.
 
 ## The class-name contract
 
-A component is split across both packages and **linked by a class name, not an
-import**. In `react`, a component's `tv()` variants map its props to a stable
-`fri-<name>` class plus `fri-<name>-<value>` modifier classes. In `styles`, the
-visual rules for those classes live in that component's CSS file under `@layer
-components`. Neither side imports the other for styling — the `fri-<name>` class
-is the entire contract, and it is what lets the same look apply to a
-hand-written element, not only the React component.
+`styles` owns the full visual contract. Each component's `tv()` variant map
+(`src/components/<name>/<name>.styles.ts`) maps its props to a stable
+`fri-<name>` class plus `fri-<name>-<value>` modifier classes, and the CSS rules
+for those classes live in that component's file under `@layer components`. The
+variant map and the CSS are **linked by the class name** — both inside `styles`,
+mirrored 1:1, and a lint gate fails on an orphan class on either side.
 
-Every variant value has exactly one class on each side; the two mirror 1:1, and
-a lint gate fails on an orphan class on either side.
+`react` **imports** the variant map from `@friday-sandbox/styles/components/<name>`
+and wraps it in an accessible component; it declares no classes of its own.
+Because the contract is a plain class string, the same look applies to a
+hand-written element, not only the React component.
 
 ## The token system is hand-authored CSS
 
-The theme is **hand-authored CSS variables**. The base roles — brand, status,
-and ground — are flat `oklch` values in `tokens.css`; the interaction ladder,
-surfaces, and emphasis tiers derive from those bases through runtime
-`color-mix`, so overriding a base role reflows everything built on it. There is
-no spec, no codegen, and no generated file — edit the theme CSS directly.
+The theme is **hand-authored CSS variables, declared explicitly per mode**. The
+base roles (brand, status, ground), the surfaces, and the emphasis tiers are
+flat `oklch` (or alpha) values set in the light and dark blocks of
+`themes/default/variables.css`; only the per-role interaction ladder (hover,
+pressed, soft, surface, border, and tint rungs) derives from the roles through
+runtime `color-mix`. There is no spec, no codegen, and no generated file — edit
+the theme CSS directly.
 
 Components consume spacing and size through the **semantic Tailwind alias** the
 theme exposes — `gap-sm`, `p-md`, `bg-primary` — which resolve to the `--fri-*`
-tokens because `tailwind.css` maps them into `@theme`. Never a raw numeric
-(`gap-2`), and never a bare `gap-(--fri-*)` var form when an alias exists.
+tokens because `themes/shared/theme.css` maps them into `@theme`. Never a raw
+numeric (`gap-2`), and never a bare `gap-(--fri-*)` var form when an alias exists.
 
-The `@theme` map (`tailwind.css`) and the `@property` registrations
-(`registered.css`) sit alongside the token values and are kept in sync with them
-by hand; the typography type scale is its own hand-authored file. A11y contrast
-is the author's responsibility — verify text/surface pairs against the
-APCA/WCAG floor when changing a color.
+The `@theme` map (`themes/shared/theme.css`) sits alongside the token values and
+is kept in sync with them by hand; the typography type scale lives in the same
+`variables.css`.
+A11y contrast is the author's responsibility — verify text/surface pairs against
+the APCA/WCAG floor when changing a color.
 
 ## Codemap
 
-- **`styles`** — the upstream source: hand-authored token CSS, the Tailwind
-  layers (`@layer theme, base, components, utilities`,
-  imported in that order), shared utilities, and one CSS file per component.
+- **`styles`** — the upstream source and shared core: hand-authored token CSS,
+  the Tailwind layers (`@layer theme, base, components, utilities`, imported in
+  that order), the `themes/`, `utilities/`, and `variants/` layers, one CSS file
+  per component, and each component's `tv()` variant map (shipped as JS).
 - **`react`** — accessible components built on `react-aria-components` (when
-  interactive) or native HTML (display and layout), styled only through
+  interactive) or native HTML (display and layout), each importing its variant
+  map from `@friday-sandbox/styles/components/<name>` and styled only through
   `fri-<name>` classes. `bases/` holds real published components; `samples/`
   holds Storybook-only demos; `icons/` and `utils/` as named.
 - **`eslint-config`, `typescript-config`** — dev-only shared presets, extended

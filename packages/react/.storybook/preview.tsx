@@ -1,4 +1,4 @@
-import "@friday-sandbox/styles";
+import "@friday-sandbox/styles/css";
 import "./preview.css";
 
 import { useEffect } from "react";

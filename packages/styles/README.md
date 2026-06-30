@@ -72,11 +72,11 @@ Author your own theme by overriding base tokens. Set each fill and its `-foregro
 }
 ```
 
-That is the whole model: set the base tokens you want to change, and every derived value (surfaces, borders, the interaction ladder) recomputes. The [starter template](./src/theme-template.css) lists the full base set.
+That is the model: set the tokens you want to change, per mode. The per-role interaction ladder recomputes from the roles via `color-mix`; surfaces and tiers are explicit per mode, so edit them directly. The full token set is declared in [`variables.css`](./themes/default/variables.css).
 
 ### Good to know
 
-- **Pair each fill with its `-foreground`.** Shipped themes are contrast-checked at build time; runtime overrides are not, so set them together to keep text legible.
+- **Pair each fill with its `-foreground`.** Contrast is the theme author's responsibility — nothing checks it for you, so set them together and verify text stays legible against the APCA/WCAG floor.
 - **Load order matters.** Import the package CSS first and your overrides after; later rules win at equal specificity.
 
 ## Component classes
@@ -93,9 +93,7 @@ Components use a `fri-<component>-<modifier>` convention, usable in plain HTML:
 
 ## Reference
 
-- **Hand-authored tokens.** The theme lives in [`src/theme/`](./src/theme/) as plain CSS variables; the interaction ladder, surfaces, and tiers derive from the base roles via runtime `color-mix`.
-- **Starter template.** Copy [`@friday-sandbox/styles/template`](./src/theme-template.css) to scaffold a custom theme.
-- **Drop-in compatibility.** Unprefixed shadcn/Tailwind token names via `@friday-sandbox/styles/compat`.
+- **Hand-authored tokens.** The theme lives in [`themes/`](./themes/) as plain CSS variables — base roles, surfaces, and tiers explicit per mode in `default/variables.css`; only the per-role interaction ladder derives via runtime `color-mix`. Each component's `tv()` variant map lives in [`src/components/`](./src/components/) and is exported from `@friday-sandbox/styles/components/<name>`.
 
 ## License
 

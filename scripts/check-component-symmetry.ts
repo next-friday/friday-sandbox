@@ -2,7 +2,7 @@
 // verify deterministically — so the regularity the templates promise is proven, not
 // trusted, and an LLM filling a component cannot quietly drift from the pattern.
 // Dimensions, per component:
-//   1. presence        — every surface exists (.tsx, .variants.ts, index.ts, .stories.tsx, .css)
+//   1. presence        — every surface exists (.tsx, index.ts, .stories.tsx in react; .styles.ts, .css in styles)
 //   2. variants <-> css — every fri-<name>-<value> class mirrors 1:1, none duplicated
 //   3. barrels         — exported through all three react barrels + the styles @import
 //   4. axis <-> control — every variant axis the main component exposes has a Storybook argType
@@ -27,7 +27,8 @@ import { existsSync, readdirSync, readFileSync, type Dirent } from "node:fs";
 import { join } from "node:path";
 
 const REACT_BASES = "packages/react/src/components/bases";
-const STYLES_BASES = "packages/styles/src/components/bases";
+const STYLES_BASES = "packages/styles/components";
+const STYLES_VARIANTS = "packages/styles/src/components";
 const DOCS = "apps/docs/content/docs/components";
 
 const REACT_INDEX = "packages/react/src/index.ts";
@@ -157,7 +158,7 @@ let checked = 0;
 
 for (const name of components) {
   const dir = join(REACT_BASES, name);
-  const variantsPath = join(dir, `${name}.variants.ts`);
+  const variantsPath = join(STYLES_VARIANTS, name, `${name}.styles.ts`);
   const storiesPath = join(dir, `${name}.stories.tsx`);
   const cssPath = join(STYLES_BASES, `${name}.css`);
 
@@ -205,7 +206,7 @@ for (const name of components) {
     if (!declared.has(cls))
       fail(
         name,
-        `".${cls}" in ${name}.css has no variant in ${name}.variants.ts (orphan css)`,
+        `".${cls}" in ${name}.css has no variant in ${name}.styles.ts (orphan css)`,
       );
 
   // 3. Barrels — exported through all three react barrels + the styles @import.

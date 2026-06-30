@@ -1,10 +1,10 @@
 "use client";
 
 import { Text as AriaText } from "react-aria-components/Text";
-import type { ComponentPropsWithRef } from "react";
+import { textVariants } from "@friday-sandbox/styles/components/text";
 
-import { textVariants } from "./text.variants";
-import type { TextVariants } from "./text.variants";
+import type { ComponentPropsWithRef } from "react";
+import type { TextVariants } from "@friday-sandbox/styles/components/text";
 
 export interface TextProps
   extends

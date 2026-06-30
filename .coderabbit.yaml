@@ -32,9 +32,9 @@ reviews:
       instructions: >-
         Base components are scaffolded with "pnpm gen component" (turbo gen), never
         hand-created, and live in components/bases/<name>/ as <name>.tsx +
-        <name>.variants.ts +
-        index.ts + <name>.stories.tsx, linked to styles by a fri-<name> class, not an
-        import. Priorities, highest first: accessibility, correctness, API ergonomics,
+        index.ts + <name>.stories.tsx; each imports its tv() variant map from
+        @friday-sandbox/styles/components/<name> and is linked to the styles CSS by a
+        fri-<name> class. Priorities, highest first: accessibility, correctness, API ergonomics,
         then style. Key checks: lowercase filename, named export with colocated Props,
         no default export; "use client" only when a client API — or a react-aria or
         radix client primitive — is touched, never on a pure layout or text component;
@@ -84,9 +84,10 @@ reviews:
         unless a framework difference justifies otherwise.
     - path: packages/styles/src/**/*.css
       instructions: >-
-        A component's rules live in components/bases/<name>.css under @layer
+        A component's rules live in components/<name>.css under @layer
         components, keyed
-        to the fri-<name> class, and must mirror <name>.variants.ts 1:1 — every
+        to the fri-<name> class, and must mirror its
+        src/components/<name>/<name>.styles.ts variant map 1:1 — every
         fri-<name>-<value> class has a rule and vice versa (the lint:symmetry gate
         enforces it); flag an orphan either side. Respect the @layer system; no
         hardcoded colors outside the token layer; no global selectors that bypass
@@ -96,8 +97,8 @@ reviews:
         mapped in @theme inline (bg-primary, not bg-(--fri-primary)). Size tokens
         scoped to action, field, or box, never a literal component name; corner
         radius is Tailwind native (rounded-*), not a token; the
-        src/theme/ CSS is hand-authored token values (keep the @theme map and
-        @property registrations in sync with the token names). A token
+        themes/ CSS is hand-authored token values (keep the @theme map in
+        sync with the token names). A token
         rename carries a migration note in the changeset.
     - path: apps/docs/**/*.{ts,tsx}
       instructions: >-

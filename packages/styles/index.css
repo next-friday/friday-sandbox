@@ -3,9 +3,8 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
-@import "./src/theme/index.css";
-@import "./src/shared/index.css";
-@import "./src/base/base.css";
-@import "./src/components/index.css";
-
-@custom-variant dark (&:where(.dark, .dark *, [data-theme="dark"], [data-theme="dark"] *));
+@import "./themes/default/index.css";
+@import "./base/base.css";
+@import "./components/index.css";
+@import "./utilities/index.css";
+@import "./variants/index.css";

@@ -1,10 +1,10 @@
 "use client";
 
 import { Separator as AriaSeparator } from "react-aria-components/Separator";
-import type { ComponentPropsWithRef } from "react";
+import { separatorVariants } from "@friday-sandbox/styles/components/separator";
 
-import { separatorVariants } from "./separator.variants";
-import type { SeparatorVariants } from "./separator.variants";
+import type { ComponentPropsWithRef } from "react";
+import type { SeparatorVariants } from "@friday-sandbox/styles/components/separator";
 
 export interface SeparatorProps
   extends

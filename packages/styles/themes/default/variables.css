@@ -1,5 +1,6 @@
-/* Theme tokens — hand-authored. Base roles are flat oklch; the interaction
-   ladder, surfaces, and tiers derive from them via runtime `color-mix`. */
+/* Theme tokens — hand-authored, explicit per mode. Base roles, surfaces, and
+   emphasis tiers are declared per mode in the light/dark blocks; only the
+   per-role interaction ladder derives from the roles via runtime `color-mix`. */
 @layer theme {
   :root,
   .light,
@@ -46,6 +47,92 @@
     --fri-font-family-mono:
       ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 
+    /* Type scale */
+    --fri-display-xxl: 3.25rem;
+    --fri-display-xxl-line-height: 4rem;
+    --fri-display-xxl-font-weight: 700;
+    --fri-display-xxl-letter-spacing: -0.03em;
+    --fri-display-xl: 2.25rem;
+    --fri-display-xl-line-height: 2.75rem;
+    --fri-display-xl-font-weight: 700;
+    --fri-display-xl-letter-spacing: -0.025em;
+    --fri-display-lg: 2rem;
+    --fri-display-lg-line-height: 2.5rem;
+    --fri-display-lg-font-weight: 700;
+    --fri-display-lg-letter-spacing: -0.02em;
+    --fri-display-md: 1.5rem;
+    --fri-display-md-line-height: 2rem;
+    --fri-display-md-font-weight: 700;
+    --fri-display-md-letter-spacing: -0.015em;
+    --fri-display-sm: 1.25rem;
+    --fri-display-sm-line-height: 1.75rem;
+    --fri-display-sm-font-weight: 700;
+    --fri-display-sm-letter-spacing: -0.01em;
+    --fri-body-lg: 1.125rem;
+    --fri-body-lg-line-height: 1.75rem;
+    --fri-body-lg-font-weight: 400;
+    --fri-body-lg-letter-spacing: 0;
+    --fri-body-lg-strong: 1.125rem;
+    --fri-body-lg-strong-line-height: 1.75rem;
+    --fri-body-lg-strong-font-weight: 500;
+    --fri-body-lg-strong-letter-spacing: 0;
+    --fri-body-md: 1rem;
+    --fri-body-md-line-height: 1.5rem;
+    --fri-body-md-font-weight: 400;
+    --fri-body-md-letter-spacing: 0;
+    --fri-body-md-strong: 1rem;
+    --fri-body-md-strong-line-height: 1.5rem;
+    --fri-body-md-strong-font-weight: 500;
+    --fri-body-md-strong-letter-spacing: 0;
+    --fri-body-sm: 0.875rem;
+    --fri-body-sm-line-height: 1.25rem;
+    --fri-body-sm-font-weight: 400;
+    --fri-body-sm-letter-spacing: 0;
+    --fri-body-sm-strong: 0.875rem;
+    --fri-body-sm-strong-line-height: 1.25rem;
+    --fri-body-sm-strong-font-weight: 500;
+    --fri-body-sm-strong-letter-spacing: 0;
+    --fri-body-xs: 0.8125rem;
+    --fri-body-xs-line-height: 1.125rem;
+    --fri-body-xs-font-weight: 400;
+    --fri-body-xs-letter-spacing: 0;
+    --fri-body-xs-strong: 0.8125rem;
+    --fri-body-xs-strong-line-height: 1.125rem;
+    --fri-body-xs-strong-font-weight: 500;
+    --fri-body-xs-strong-letter-spacing: 0;
+    --fri-label-xl: 1.125rem;
+    --fri-label-xl-line-height: 1.5rem;
+    --fri-label-xl-font-weight: 600;
+    --fri-label-xl-letter-spacing: -0.005em;
+    --fri-label-lg: 1rem;
+    --fri-label-lg-line-height: 1.5rem;
+    --fri-label-lg-font-weight: 600;
+    --fri-label-lg-letter-spacing: 0;
+    --fri-label-md: 0.875rem;
+    --fri-label-md-line-height: 1.25rem;
+    --fri-label-md-font-weight: 600;
+    --fri-label-md-letter-spacing: 0;
+    --fri-label-sm: 0.8125rem;
+    --fri-label-sm-line-height: 1rem;
+    --fri-label-sm-font-weight: 600;
+    --fri-label-sm-letter-spacing: 0;
+    --fri-label-xs: 0.75rem;
+    --fri-label-xs-line-height: 1rem;
+    --fri-label-xs-font-weight: 600;
+    --fri-label-xs-letter-spacing: 0.005em;
+    --fri-caption: 0.75rem;
+    --fri-caption-line-height: 1rem;
+    --fri-caption-font-weight: 400;
+    --fri-caption-letter-spacing: 0.01em;
+    --fri-caption-strong: 0.75rem;
+    --fri-caption-strong-line-height: 1rem;
+    --fri-caption-strong-font-weight: 500;
+    --fri-caption-strong-letter-spacing: 0.01em;
+    --fri-code: 0.875rem;
+    --fri-code-line-height: 1.25rem;
+    --fri-code-font-weight: 400;
+    --fri-code-letter-spacing: 0;
+
     /* Motion */
     --fri-duration-fast: 100ms;
     --fri-duration-base: 200ms;
@@ -67,6 +154,25 @@
     --fri-disabled-opacity: 0.5;
     --fri-ring-width: 2px;
     --fri-ring-offset-width: 1px;
+
+    /* Surfaces */
+    --fri-card: oklch(100% 0 0);
+    --fri-popover: oklch(100% 0 0);
+    --fri-field: oklch(100% 0 0);
+    --fri-fill: oklch(98.27% 0.001 248.15);
+    --fri-fill-strong: oklch(96.55% 0.002 248.15);
+    --fri-inverse: oklch(0% 0 0);
+
+    /* Text emphasis tiers */
+    --fri-foreground-muted: oklch(40% 0 0);
+    --fri-foreground-faint: oklch(60% 0 0);
+
+    /* Border / line tiers */
+    --fri-border-strong: oklch(65.47% 0.0208 248.15 / 0.6);
+    --fri-border: oklch(65.47% 0.0208 248.15 / 0.4);
+    --fri-border-subtle: oklch(65.47% 0.0208 248.15 / 0.2);
+    --fri-scroll-thumb: oklch(65.47% 0.0208 248.15 / 0.4);
+    --fri-scroll-thumb-hover: oklch(65.47% 0.0208 248.15 / 0.65);
   }
 
   .dark,
@@ -80,6 +186,25 @@
     /* Accent flips with the ground */
     --fri-accent: oklch(96% 0 0);
     --fri-accent-foreground: oklch(17% 0 0);
+
+    /* Surfaces */
+    --fri-card: oklch(17% 0 0);
+    --fri-popover: oklch(17% 0 0);
+    --fri-field: oklch(17% 0 0);
+    --fri-fill: oklch(19.42% 0.001 248.15);
+    --fri-fill-strong: oklch(21.85% 0.002 248.15);
+    --fri-inverse: oklch(96% 0 0);
+
+    /* Text emphasis tiers */
+    --fri-foreground-muted: oklch(64.4% 0 0);
+    --fri-foreground-faint: oklch(48.6% 0 0);
+
+    /* Border / line tiers */
+    --fri-border-strong: oklch(65.47% 0.0208 248.15 / 0.6);
+    --fri-border: oklch(65.47% 0.0208 248.15 / 0.4);
+    --fri-border-subtle: oklch(65.47% 0.0208 248.15 / 0.2);
+    --fri-scroll-thumb: oklch(65.47% 0.0208 248.15 / 0.4);
+    --fri-scroll-thumb-hover: oklch(65.47% 0.0208 248.15 / 0.65);
   }
 
   :root,
@@ -520,65 +645,17 @@
       transparent
     );
 
-    /* Surfaces (derived from the ground) */
-    --fri-card: var(--fri-background);
+    /* Surface foregrounds + overlay + field/scroll refs (the surface and tier
+       values themselves are declared per mode in the light/dark blocks) */
     --fri-card-foreground: var(--fri-foreground);
-    --fri-popover: var(--fri-background);
     --fri-popover-foreground: var(--fri-foreground);
-    --fri-field: var(--fri-background);
     --fri-field-foreground: var(--fri-foreground);
-    --fri-fill: color-mix(
-      in oklab,
-      var(--fri-background),
-      var(--fri-neutral) 5%
-    );
     --fri-fill-foreground: var(--fri-foreground);
-    --fri-fill-strong: color-mix(
-      in oklab,
-      var(--fri-background),
-      var(--fri-neutral) 10%
-    );
     --fri-fill-strong-foreground: var(--fri-foreground);
-    --fri-inverse: var(--fri-foreground);
     --fri-inverse-foreground: var(--fri-background);
-    --fri-overlay: color-mix(in oklab, black 50%, transparent);
+    --fri-overlay: oklch(0% 0 0 / 0.5);
     --fri-field-border-color: var(--fri-border);
     --fri-field-placeholder: var(--fri-foreground-muted);
-
-    /* Text emphasis tiers */
-    --fri-foreground-muted: color-mix(
-      in oklab,
-      var(--fri-foreground),
-      var(--fri-background) 40%
-    );
-    --fri-foreground-faint: color-mix(
-      in oklab,
-      var(--fri-foreground),
-      var(--fri-background) 60%
-    );
-
-    /* Border / line tiers */
-    --fri-border-strong: color-mix(
-      in oklab,
-      var(--fri-neutral),
-      transparent 40%
-    );
-    --fri-border: color-mix(in oklab, var(--fri-neutral), transparent 60%);
-    --fri-border-subtle: color-mix(
-      in oklab,
-      var(--fri-neutral),
-      transparent 80%
-    );
-    --fri-scroll-thumb: color-mix(
-      in oklab,
-      var(--fri-neutral) 40%,
-      transparent
-    );
-    --fri-scroll-thumb-hover: color-mix(
-      in oklab,
-      var(--fri-neutral) 65%,
-      transparent
-    );
     --fri-scroll-track: transparent;
 
     /* Pointers */

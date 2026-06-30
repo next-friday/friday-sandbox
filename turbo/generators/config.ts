@@ -49,6 +49,27 @@ const insertImportLine = (
   return `${[...others, ...imports].join("\n")}\n`;
 };
 
+// Insert an `export * from "./<name>";` line into the styles component barrel,
+// ordered by name and idempotent for the same reason as the helpers above.
+const insertStarExport = (
+  content: string,
+  name: string,
+  line: string,
+): string => {
+  const nameOf = (entry: string): string =>
+    (/\.\/([a-z0-9-]+)"/.exec(entry) ?? [])[1] ?? "";
+  const lines = content
+    .split("\n")
+    .map((entry) => entry.trim())
+    .filter(Boolean);
+  if (lines.some((entry) => nameOf(entry) === name)) return content;
+  lines.push(line.trim());
+  lines.sort((a, b) =>
+    nameOf(a).localeCompare(nameOf(b), "en", { sensitivity: "base" }),
+  );
+  return `${lines.join("\n")}\n`;
+};
+
 export default function generator(plop: PlopTypes.NodePlopAPI): void {
   plop.setHelper("sortedNamedImports", (...names: unknown[]) => {
     const identifiers = names.slice(0, -1) as string[];
@@ -57,6 +78,8 @@ export default function generator(plop: PlopTypes.NodePlopAPI): void {
 
   const reactBases =
     "{{ turbo.paths.root }}/packages/react/src/components/bases/{{ kebabCase name }}";
+  const stylesComponent =
+    "{{ turbo.paths.root }}/packages/styles/src/components/{{ kebabCase name }}";
 
   const wireBarrels: PlopTypes.CustomActionFunction = (answers) => {
     const { name, turbo } = answers as {
@@ -96,8 +119,11 @@ export default function generator(plop: PlopTypes.NodePlopAPI): void {
         `export { ${Pascal} } from "./components";\nexport type { ${Pascal}Props } from "./components";`,
       ),
     );
-    patch("packages/styles/src/components/bases/index.css", (content) =>
+    patch("packages/styles/components/index.css", (content) =>
       insertImportLine(content, kebab, `@import "./${kebab}.css";`),
+    );
+    patch("packages/styles/src/components/index.ts", (content) =>
+      insertStarExport(content, kebab, `export * from "./${kebab}";`),
     );
     patch("apps/docs/content/docs/components/meta.json", (content) => {
       const meta = JSON.parse(content) as { pages: string[] };
@@ -155,8 +181,13 @@ export default function generator(plop: PlopTypes.NodePlopAPI): void {
         },
         {
           type: "add",
-          path: `${reactBases}/{{ kebabCase name }}.variants.ts`,
+          path: `${stylesComponent}/{{ kebabCase name }}.styles.ts`,
           templateFile: `templates/variants${suffix}.ts.hbs`,
+        },
+        {
+          type: "add",
+          path: `${stylesComponent}/index.ts`,
+          templateFile: "templates/styles-index.ts.hbs",
         },
         {
           type: "add",
@@ -170,7 +201,7 @@ export default function generator(plop: PlopTypes.NodePlopAPI): void {
         },
         {
           type: "add",
-          path: "{{ turbo.paths.root }}/packages/styles/src/components/bases/{{ kebabCase name }}.css",
+          path: "{{ turbo.paths.root }}/packages/styles/components/{{ kebabCase name }}.css",
           templateFile: `templates/styles${suffix}.css.hbs`,
         },
         {
