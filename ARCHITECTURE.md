@@ -54,9 +54,9 @@ theme exposes — `gap-sm`, `p-md`, `bg-primary` — which resolve to the `--fri
 tokens because `themes/shared/theme.css` maps them into `@theme`. Never a raw
 numeric (`gap-2`), and never a bare `gap-(--fri-*)` var form when an alias exists.
 
-The `@theme` map (`themes/shared/theme.css`) and the `@property` registrations
-(`themes/shared/registered.css`) sit alongside the token values and are kept in
-sync with them by hand; the typography type scale is its own hand-authored file.
+The `@theme` map (`themes/shared/theme.css`) sits alongside the token values and
+is kept in sync with them by hand; the typography type scale is its own
+hand-authored file.
 A11y contrast is the author's responsibility — verify text/surface pairs against
 the APCA/WCAG floor when changing a color.
 
