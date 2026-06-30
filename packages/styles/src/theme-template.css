@@ -32,7 +32,9 @@
 
 .dark,
 [data-theme="dark"] {
-  /* Only the ground flips; brand and status fills carry across. */
+  /* Ground flips; accent flips with it; brand and status fills carry across. */
   --fri-background: oklch(17% 0 0);
   --fri-foreground: oklch(96% 0 0);
+  --fri-accent: oklch(96% 0 0);
+  --fri-accent-foreground: oklch(17% 0 0);
 }
