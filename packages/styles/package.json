@@ -42,6 +42,10 @@
       "import": "./src/components/*/index.ts",
       "default": "./src/components/*/index.ts"
     },
+    "./template": {
+      "style": "./src/themes/template.css",
+      "default": "./src/themes/template.css"
+    },
     "./compat": {
       "style": "./src/themes/shared/compat.css",
       "default": "./src/themes/shared/compat.css"
