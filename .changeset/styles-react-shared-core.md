@@ -3,10 +3,10 @@
 "@friday-sandbox/react": major
 ---
 
-Make `@friday-sandbox/styles` the shared CSS + JS core and move the component variant maps into it.
+Make `@friday-sandbox/styles` the shared CSS + JS core and adopt a layered, per-mode theme architecture.
 
-- `@friday-sandbox/styles` now ships JavaScript: each component's `tv()` variant map lives at `src/components/<name>/<name>.styles.ts` and is exported from `@friday-sandbox/styles/components/<name>`. The package builds a JS bundle with `tsdown` alongside the CSS and gains `tailwind-variants` as a dependency.
-- The theme layer is reorganized into a multi-theme-ready tree: `src/themes/shared/` (the `@theme` map, type scale, `@property` registrations, the shadcn/Tailwind `compat.css`) and `src/themes/default/` (token values). New `src/utilities/` (`@utility` helpers) and `src/variants/` (`@custom-variant` `dark`, `motion-reduce`, `motion-safe`) layers. The `./compat` export now resolves to `themes/shared/compat.css`.
-- `@friday-sandbox/react` no longer declares component variant maps; each component imports its map from `@friday-sandbox/styles/components/<name>`, and the `tailwind-variants` dependency is dropped.
+- **Variant maps in the core.** Each component's `tv()` variant map lives at `src/components/<name>/<name>.styles.ts` and is exported from `@friday-sandbox/styles/components/<name>`. The package builds a JS bundle (Rollup) alongside its CSS and gains `tailwind-variants` as a dependency; `@friday-sandbox/react` imports each map from here and drops `tailwind-variants`.
+- **Root CSS layout.** The CSS lives at the package root in `base/`, `components/` (one file per component), `themes/`, `utilities/`, and `variants/`; `src/` holds only TypeScript (the variant maps, `src/index.ts`, `src/utils/`). The build copies the CSS tree into `dist/` and emits a per-component JS bundle.
+- **Per-mode token model.** `themes/default/variables.css` declares the base roles, surfaces, and emphasis tiers explicitly in the light and dark blocks; only the per-role interaction ladder derives via runtime `color-mix`. `themes/shared/` holds the `@theme` map, type scale, `@property` registrations, and the shadcn `compat.css`; `utilities/` and `variants/` add `@utility` helpers and the `dark`/`motion-reduce`/`motion-safe` variants. The `./template` export ships a two-mode customization starter.
 
 BREAKING CHANGE: `@friday-sandbox/styles` adds the `./components/*` export, ships JS, and moves the `./compat` export path. `@friday-sandbox/react` now requires `@friday-sandbox/styles` to provide the component variant maps.

@@ -84,7 +84,7 @@ reviews:
         unless a framework difference justifies otherwise.
     - path: packages/styles/src/**/*.css
       instructions: >-
-        A component's rules live in components/bases/<name>.css under @layer
+        A component's rules live in components/<name>.css under @layer
         components, keyed
         to the fri-<name> class, and must mirror its
         src/components/<name>/<name>.styles.ts variant map 1:1 — every
@@ -97,7 +97,7 @@ reviews:
         mapped in @theme inline (bg-primary, not bg-(--fri-primary)). Size tokens
         scoped to action, field, or box, never a literal component name; corner
         radius is Tailwind native (rounded-*), not a token; the
-        src/themes/ CSS is hand-authored token values (keep the @theme map and
+        themes/ CSS is hand-authored token values (keep the @theme map and
         @property registrations in sync with the token names). A token
         rename carries a migration note in the changeset.
     - path: apps/docs/**/*.{ts,tsx}

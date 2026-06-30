@@ -72,7 +72,7 @@ Author your own theme by overriding base tokens. Set each fill and its `-foregro
 }
 ```
 
-That is the whole model: set the base tokens you want to change, and every derived value (surfaces, borders, the interaction ladder) recomputes. The full base set is declared in [`variables.css`](./src/themes/default/variables.css).
+That is the model: set the tokens you want to change, per mode. The per-role interaction ladder recomputes from the roles via `color-mix`; surfaces and tiers are explicit per mode, so edit them directly. The full token set is declared in [`variables.css`](./themes/default/variables.css).
 
 ### Good to know
 
@@ -93,8 +93,8 @@ Components use a `fri-<component>-<modifier>` convention, usable in plain HTML:
 
 ## Reference
 
-- **Hand-authored tokens.** The theme lives in [`src/themes/`](./src/themes/) as plain CSS variables; the interaction ladder, surfaces, and tiers derive from the base roles via runtime `color-mix`. Each component's `tv()` variant map lives in [`src/components/`](./src/components/) and is exported from `@friday-sandbox/styles/components/<name>`.
-- **Starter template.** Copy [`@friday-sandbox/styles/template`](./src/themes/template.css) — both light and dark modes — and edit the values to scaffold a custom theme.
+- **Hand-authored tokens.** The theme lives in [`themes/`](./themes/) as plain CSS variables — base roles, surfaces, and tiers explicit per mode in `default/variables.css`; only the per-role interaction ladder derives via runtime `color-mix`. Each component's `tv()` variant map lives in [`src/components/`](./src/components/) and is exported from `@friday-sandbox/styles/components/<name>`.
+- **Starter template.** Copy [`@friday-sandbox/styles/template`](./themes/template.css) — both light and dark modes — and edit the values to scaffold a custom theme.
 - **Drop-in compatibility.** Unprefixed shadcn/Tailwind token names via `@friday-sandbox/styles/compat`.
 
 ## License

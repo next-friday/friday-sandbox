@@ -2,3 +2,4 @@
 @import "../shared/typography.css";
 @import "../shared/registered.css";
 @import "./variables.css";
+@import "./components/index.css";

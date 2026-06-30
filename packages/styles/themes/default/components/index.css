@@ -1,0 +1,4 @@
+/* Default-theme component overrides — empty until a component needs a
+   theme-coupled token override; custom themes override component styles here. */
+@layer components {
+}

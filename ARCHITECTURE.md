@@ -41,22 +41,24 @@ hand-written element, not only the React component.
 
 ## The token system is hand-authored CSS
 
-The theme is **hand-authored CSS variables**. The base roles — brand, status,
-and ground — are flat `oklch` values in `themes/default/variables.css`; the interaction ladder,
-surfaces, and emphasis tiers derive from those bases through runtime
-`color-mix`, so overriding a base role reflows everything built on it. There is
-no spec, no codegen, and no generated file — edit the theme CSS directly.
+The theme is **hand-authored CSS variables, declared explicitly per mode**. The
+base roles (brand, status, ground), the surfaces, and the emphasis tiers are
+flat `oklch` (or alpha) values set in the light and dark blocks of
+`themes/default/variables.css`; only the per-role interaction ladder (hover,
+pressed, soft, surface, border, and tint rungs) derives from the roles through
+runtime `color-mix`. There is no spec, no codegen, and no generated file — edit
+the theme CSS directly.
 
 Components consume spacing and size through the **semantic Tailwind alias** the
 theme exposes — `gap-sm`, `p-md`, `bg-primary` — which resolve to the `--fri-*`
-tokens because `tailwind.css` maps them into `@theme`. Never a raw numeric
-(`gap-2`), and never a bare `gap-(--fri-*)` var form when an alias exists.
+tokens because `themes/shared/theme.css` maps them into `@theme`. Never a raw
+numeric (`gap-2`), and never a bare `gap-(--fri-*)` var form when an alias exists.
 
-The `@theme` map (`tailwind.css`) and the `@property` registrations
-(`registered.css`) sit alongside the token values and are kept in sync with them
-by hand; the typography type scale is its own hand-authored file. A11y contrast
-is the author's responsibility — verify text/surface pairs against the
-APCA/WCAG floor when changing a color.
+The `@theme` map (`themes/shared/theme.css`) and the `@property` registrations
+(`themes/shared/registered.css`) sit alongside the token values and are kept in
+sync with them by hand; the typography type scale is its own hand-authored file.
+A11y contrast is the author's responsibility — verify text/surface pairs against
+the APCA/WCAG floor when changing a color.
 
 ## Codemap
 
