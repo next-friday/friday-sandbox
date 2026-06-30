@@ -5,18 +5,13 @@ import { fileURLToPath } from "node:url";
 const componentsDirectory = path.resolve(
   path.dirname(fileURLToPath(import.meta.url)),
   "..",
+  "dist",
   "components",
 );
 
-const ARIA_ATTRIBUTES = [
-  "aria-disabled",
-  "aria-invalid",
-  "aria-checked",
-  "aria-selected",
-  "aria-expanded",
-  "aria-pressed",
-  "aria-current",
-];
+// Only truly boolean ARIA states — token-valued ones (aria-current, aria-invalid,
+// aria-checked, aria-pressed) carry non-"true" values, so a bare selector is valid.
+const ARIA_ATTRIBUTES = ["aria-disabled", "aria-expanded", "aria-selected"];
 
 const fixFile = (filePath: string): void => {
   let css = fs.readFileSync(filePath, "utf8");
