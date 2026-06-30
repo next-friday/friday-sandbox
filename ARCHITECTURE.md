@@ -55,8 +55,8 @@ tokens because `themes/shared/theme.css` maps them into `@theme`. Never a raw
 numeric (`gap-2`), and never a bare `gap-(--fri-*)` var form when an alias exists.
 
 The `@theme` map (`themes/shared/theme.css`) sits alongside the token values and
-is kept in sync with them by hand; the typography type scale is its own
-hand-authored file.
+is kept in sync with them by hand; the typography type scale lives in the same
+`variables.css`.
 A11y contrast is the author's responsibility — verify text/surface pairs against
 the APCA/WCAG floor when changing a color.
 

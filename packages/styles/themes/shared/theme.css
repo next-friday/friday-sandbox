@@ -1,6 +1,6 @@
 /* Tailwind v4 `@theme` map — exposes the `--fri-*` color, spacing, and type-scale
    tokens as semantic utilities (bg-primary, gap-sm, text-body-md). Hand-authored;
-   keep in sync with ../default/variables.css and ./typography.css. */
+   keep in sync with ../default/variables.css. */
 @theme inline {
   --color-background: var(--fri-background);
   --color-foreground: var(--fri-foreground);
