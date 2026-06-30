@@ -5,21 +5,24 @@ description: A visual divider between content, horizontal or vertical.
 
 import { Flex, Separator } from "@friday-sandbox/react";
 
-## Import
-
-```tsx
-import { Separator } from "@friday-sandbox/react";
-```
-
-[Source](https://github.com/next-friday/friday-sandbox/blob/main/packages/react/src/components/bases/separator/separator.tsx) · [Style](https://github.com/next-friday/friday-sandbox/blob/main/packages/styles/src/components/bases/separator.css) · [Storybook](STORYBOOK_URL) · [Headless](https://react-spectrum.adobe.com/react-aria/Separator.html)
-
-{/* Replace STORYBOOK_URL with the deployed Storybook story link. */}
-
-## Usage
+## Purpose
 
 The `Separator` draws a divider between groups of related content, in a row or a
 column. It wraps React Aria `Separator`, so assistive technology announces it
-with the correct role. For spacing alone, set a layout gap instead.
+with the correct role.
+
+[Source](https://github.com/next-friday/friday-sandbox/blob/main/packages/react/src/components/bases/separator/separator.tsx) · [Style](https://github.com/next-friday/friday-sandbox/blob/main/packages/styles/src/components/bases/separator.css) · [Headless](https://react-spectrum.adobe.com/react-aria/Separator.html)
+
+## When to use
+
+- Divide groups of related content laid out in a row or a column.
+- You want the division announced to assistive technology with the correct role.
+
+## When not to use
+
+- For spacing alone — set a layout gap instead.
+
+## Example
 
 <Tabs items={["Preview", "Code"]}>
   <Tab value="Preview">
@@ -34,6 +37,7 @@ with the correct role. For spacing alone, set a layout gap instead.
 
   <Tab value="Code">
     ```tsx
+    import { Separator } from "@friday-sandbox/react";
     <div style={{ width: "100%" }}>
       <span>Above</span>
       <Separator />
@@ -43,9 +47,7 @@ with the correct role. For spacing alone, set a layout gap instead.
   </Tab>
 </Tabs>
 
-## Examples
-
-### Orientation
+## Orientation
 
 Use `orientation="vertical"` to divide content laid out in a row. A vertical
 separator takes its height from its container.
@@ -76,14 +78,6 @@ separator takes its height from its container.
   </Tab>
 </Tabs>
 
-## API
-
-### Anatomy
-
-```tsx
-<Separator />
-```
-
 ## Props
 
 `Separator` also accepts the props from React Aria `Separator`, plus a
@@ -93,13 +87,6 @@ separator takes its height from its container.
 | ------------- | ---------------------------- | -------------- | ------------------------------------ |
 | `orientation` | `"horizontal" \| "vertical"` | `"horizontal"` | Sets the divider direction.          |
 | `className`   | `string`                     | —              | Additional CSS classes to apply.     |
-
-## Accessibility
-
-- Exposed with `role="separator"`, so assistive technology announces the
-  division between regions.
-- Set `orientation` to match the layout direction so the separator reports the
-  correct orientation.
 
 ## Styling
 
@@ -113,3 +100,10 @@ separator takes its height from its container.
 
 - `fri-separator-horizontal` — a full-width hairline.
 - `fri-separator-vertical` — a full-height hairline that takes its height from the container.
+
+## Accessibility
+
+- Exposed with `role="separator"`, so assistive technology announces the
+  division between regions.
+- Set `orientation` to match the layout direction so the separator reports the
+  correct orientation.

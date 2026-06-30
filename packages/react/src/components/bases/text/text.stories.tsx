@@ -256,32 +256,6 @@ export const LineClamp: Story = {
   ),
 };
 
-export const As: Story = {
-  parameters: {
-    docs: {
-      description: {
-        story:
-          "Use the `as` prop to render the text as a different HTML element.",
-      },
-    },
-  },
-  render: (storyArgs) => (
-    <Flex direction="column" gap="md">
-      <Text {...storyArgs} as="p">
-        Paragraph
-      </Text>
-
-      <Text {...storyArgs} as="strong">
-        Strong
-      </Text>
-
-      <Text {...storyArgs} as="em">
-        Emphasis
-      </Text>
-    </Flex>
-  ),
-};
-
 export const CustomStyles: Story = {
   parameters: {
     docs: {
@@ -294,16 +268,4 @@ export const CustomStyles: Story = {
   render: () => (
     <Text className="text-2xl font-bold text-primary">{SAMPLE}</Text>
   ),
-};
-
-export const PlainHtml: Story = {
-  parameters: {
-    docs: {
-      description: {
-        story:
-          "Apply the text styling to any element such as a plain span, so text renders in plain markup without the React component.",
-      },
-    },
-  },
-  render: () => <span className="fri-text">{SAMPLE}</span>,
 };

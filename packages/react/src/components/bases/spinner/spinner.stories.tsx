@@ -2,26 +2,9 @@ import { expect } from "storybook/test";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import { Flex } from "../flex";
+import { COLORS, SIZES } from "../../samples/story-constants";
 
 import { Spinner } from ".";
-
-const COLORS = [
-  { value: "primary", label: "Primary" },
-  { value: "secondary", label: "Secondary" },
-  { value: "accent", label: "Accent" },
-  { value: "info", label: "Info" },
-  { value: "success", label: "Success" },
-  { value: "warning", label: "Warning" },
-  { value: "danger", label: "Danger" },
-] as const;
-
-const SIZES = [
-  { value: "xs", label: "Extra Small" },
-  { value: "sm", label: "Small" },
-  { value: "md", label: "Medium" },
-  { value: "lg", label: "Large" },
-  { value: "xl", label: "Extra Large" },
-] as const;
 
 const meta = {
   title: "Bases/Feedback/Spinner",
@@ -145,40 +128,4 @@ export const CustomStyles: Story = {
     },
   },
   render: () => <Spinner className="size-16 text-orange-500" />,
-};
-
-export const PlainHtml: Story = {
-  parameters: {
-    docs: {
-      description: {
-        story:
-          "Apply the spinner styling to any element such as a plain span or a div, so a loading indicator renders in plain markup without the React component.",
-      },
-    },
-  },
-  render: () => (
-    <div className="fri-spinner fri-spinner-primary fri-spinner-md"></div>
-  ),
-};
-
-export const BaseClassDefault: Story = {
-  parameters: {
-    docs: {
-      description: {
-        story:
-          "The base class on its own renders the default primary, medium spinner, so hand-written HTML needs no modifier classes for a usable default.",
-      },
-    },
-  },
-  render: () => <span className="fri-spinner" />,
-  play: async ({ canvasElement }) => {
-    const spinner = canvasElement.querySelector<HTMLElement>(".fri-spinner");
-    await expect(spinner).not.toBeNull();
-
-    // The default md size resolves to a real dimension; an unsized base would
-    // collapse to 0.
-    await expect(
-      Number.parseFloat(getComputedStyle(spinner!).width),
-    ).toBeGreaterThan(0);
-  },
 };

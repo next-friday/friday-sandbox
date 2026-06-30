@@ -1,0 +1,154 @@
+---
+title: Flex
+description: A flexbox layout container with named props for direction, alignment, distribution, wrapping, and gap.
+---
+
+import { Flex } from "@friday-sandbox/react";
+
+## Purpose
+
+`Flex` is a flexbox layout container. It exposes direction, alignment,
+distribution, wrapping, and gap as named props so you can compose single-axis
+layouts without writing utility class strings by hand.
+
+[Source](https://github.com/next-friday/friday-sandbox/blob/main/packages/react/src/components/bases/flex/flex.tsx) · [Style](https://github.com/next-friday/friday-sandbox/blob/main/packages/styles/src/components/bases/flex.css)
+
+## When to use
+
+- Laying out children in a single axis — row or column.
+- Controlling alignment, distribution, and spacing without writing class strings
+  by hand.
+- Building horizontal toolbars, button groups, or stacked card lists.
+
+## When not to use
+
+- Two-dimensional layouts — use `Grid` instead.
+- A single element that only needs margin or padding — plain HTML is simpler.
+
+## Example
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <Flex gap="md" className="px-4 py-6">
+      <div className="h-8 w-20 rounded bg-base-200" />
+      <div className="h-8 w-20 rounded bg-base-200" />
+      <div className="h-8 w-20 rounded bg-base-200" />
+    </Flex>
+  </Tab>
+
+  <Tab value="Code">
+    ```tsx
+    import { Flex } from "@friday-sandbox/react";
+    <Flex gap="md">...</Flex>
+    ```
+  </Tab>
+</Tabs>
+
+## Direction
+
+The `direction` prop sets the main axis. `"row"` (default) runs left to right;
+`"column"` stacks top to bottom.
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <Flex direction="column" gap="md" className="px-4 py-6">
+      <div className="h-8 w-20 rounded bg-base-200" />
+      <div className="h-8 w-20 rounded bg-base-200" />
+      <div className="h-8 w-20 rounded bg-base-200" />
+    </Flex>
+  </Tab>
+
+  <Tab value="Code">
+    ```tsx
+    <Flex direction="column" gap="md">...</Flex>
+    ```
+  </Tab>
+</Tabs>
+
+## Gap
+
+The `gap` prop sets the space between all children. Use `gapX` or `gapY` to
+target a single axis independently.
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <Flex gap="xl" className="px-4 py-6">
+      <div className="h-8 w-20 rounded bg-base-200" />
+      <div className="h-8 w-20 rounded bg-base-200" />
+      <div className="h-8 w-20 rounded bg-base-200" />
+    </Flex>
+  </Tab>
+
+  <Tab value="Code">
+    ```tsx
+    <Flex gap="xl">...</Flex>
+    ```
+  </Tab>
+</Tabs>
+
+## Props
+
+`Flex` also accepts an `as` prop (default `"div"`) to render as a different
+element.
+
+| Prop        | Type                                                                  | Default     | Description                                                           |
+| ----------- | --------------------------------------------------------------------- | ----------- | --------------------------------------------------------------------- |
+| `direction` | `"row" \| "column" \| "row-reverse" \| "column-reverse"`             | `"row"`     | Controls the flow direction of the children.                          |
+| `align`     | `"start" \| "center" \| "end" \| "stretch" \| "baseline"`            | `"stretch"` | Aligns the children on the cross axis.                                |
+| `justify`   | `"start" \| "center" \| "end" \| "between" \| "around" \| "evenly"` | `"start"`   | Distributes the children along the main axis.                         |
+| `wrap`      | `"nowrap" \| "wrap" \| "wrap-reverse"`                                | `"nowrap"`  | Controls whether children wrap onto multiple lines.                   |
+| `inline`    | `boolean`                                                             | `false`     | Renders an inline-level flex container.                               |
+| `gap`       | `"xs" \| "sm" \| "md" \| "lg" \| "xl"`                               | —           | Sets the gap between all children.                                    |
+| `gapX`      | `"xs" \| "sm" \| "md" \| "lg" \| "xl"`                               | —           | Sets the horizontal gap only.                                         |
+| `gapY`      | `"xs" \| "sm" \| "md" \| "lg" \| "xl"`                               | —           | Sets the vertical gap only.                                           |
+| `grow`      | `boolean`                                                             | —           | Lets the container grow when it is itself a flex item.                |
+| `shrink`    | `boolean`                                                             | —           | Controls whether the container shrinks when it is itself a flex item. |
+| `basis`     | `"auto" \| "full" \| 0`                                               | —           | Sets the container's base size before growing or shrinking.           |
+| `flex`      | `1 \| "auto" \| "initial" \| "none"`                                  | —           | Shorthand for `grow`, `shrink`, and `basis` together.                 |
+| `className` | `string`                                                              | —           | Additional CSS classes to apply.                                      |
+
+## Styling
+
+`Flex` is styled through CSS classes ([source styles](https://github.com/next-friday/friday-sandbox/blob/main/packages/styles/src/components/bases/flex.css)), so the look applies to any element that carries them.
+
+### Base class
+
+- `fri-flex` — base flex container with row direction, stretch alignment, start
+  justification, and no-wrap defaults.
+
+### Direction modifier classes
+
+- `fri-flex-row` · `fri-flex-column` · `fri-flex-row-reverse` · `fri-flex-column-reverse`
+
+### Alignment modifier classes
+
+- `fri-flex-align-start` · `fri-flex-align-center` · `fri-flex-align-end` · `fri-flex-align-stretch` · `fri-flex-align-baseline`
+
+### Justification modifier classes
+
+- `fri-flex-justify-start` · `fri-flex-justify-center` · `fri-flex-justify-end` · `fri-flex-justify-between` · `fri-flex-justify-around` · `fri-flex-justify-evenly`
+
+### Wrap modifier classes
+
+- `fri-flex-nowrap` · `fri-flex-wrap` · `fri-flex-wrap-reverse`
+
+### Gap modifier classes
+
+- `fri-flex-gap-xs` · `fri-flex-gap-sm` · `fri-flex-gap-md` · `fri-flex-gap-lg` · `fri-flex-gap-xl`
+- `fri-flex-gap-x-xs` · `fri-flex-gap-x-sm` · `fri-flex-gap-x-md` · `fri-flex-gap-x-lg` · `fri-flex-gap-x-xl`
+- `fri-flex-gap-y-xs` · `fri-flex-gap-y-sm` · `fri-flex-gap-y-md` · `fri-flex-gap-y-lg` · `fri-flex-gap-y-xl`
+
+### Flex item modifier classes
+
+- `fri-flex-inline` — inline-level container.
+- `fri-flex-grow` / `fri-flex-grow-0` — grow enabled / disabled.
+- `fri-flex-shrink` / `fri-flex-shrink-0` — shrink enabled / disabled.
+- `fri-flex-basis-auto` · `fri-flex-basis-full` · `fri-flex-basis-0`
+- `fri-flex-1` · `fri-flex-auto` · `fri-flex-initial` · `fri-flex-none`
+
+## Accessibility
+
+- `Flex` renders a `<div>` by default. Use the `as` prop to render a semantic
+  element such as `<nav>`, `<section>`, or `<ul>` when the content calls for it.
+- Flex order is visual only; screen readers follow DOM order, so keep DOM order
+  meaningful.

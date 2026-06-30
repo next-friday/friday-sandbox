@@ -27,7 +27,7 @@ progressive enhancement with a static `initial-value`.
 
 These irregularities are intentional and declared, not accidental:
 
-- **Scale vocabularies.** `spacing` is the full scale (2xs to 4xl). `gap` is a deliberate subset of it (xs to xl). `radius` carries the semantic endpoints `none` and `full` around an xs to xl range. The differences are by design, not omissions.
+- **Scale vocabularies.** `spacing` is the full scale (2xs to 4xl). `radius` carries the semantic endpoints `none` and `full` around an xs to xl range. The differences are by design, not omissions.
 - **Dark re-declarations.** `background`, `foreground`, `accent` and `accent-foreground` are emitted twice, once light and once under the dark scope, because they flip with the ground.
 - **Geometry archetypes.** `--fri-<archetype>-radius` and `--fri-<archetype>-size` (action, field, box, feedback) are single default values, role-led to mirror the colour grammar. `size` is the default block-axis control dimension, that is a control height, not an icon size, a width, or a spacing unit. Per-size variants are produced inside each component from local `--_*` variables and are not public tokens.
 - **Interaction ladder state coverage.** `soft` and `surface` are stateful fills with base, hover and pressed rungs. `tint` is an interaction-only overlay with hover and pressed and no base, by design. `border` and `outline-border` are static line colours with no interaction rungs.

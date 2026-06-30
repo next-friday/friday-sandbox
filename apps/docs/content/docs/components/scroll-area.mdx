@@ -1,0 +1,125 @@
+---
+title: Scroll Area
+description: A scrollable container with custom scrollbars that match the design system theme.
+---
+
+import { ScrollArea } from "@friday-sandbox/react";
+
+## Purpose
+
+`ScrollArea` is a scrollable container with custom scrollbars that match your
+theme. Content goes inside `ScrollArea.Viewport`; add a `ScrollArea.Scrollbar`
+for each direction you want to scroll.
+
+[Source](https://github.com/next-friday/friday-sandbox/blob/main/packages/react/src/components/bases/scroll-area/scroll-area.tsx) · [Style](https://github.com/next-friday/friday-sandbox/blob/main/packages/styles/src/components/bases/scroll-area.css) · [Headless](https://www.radix-ui.com/primitives/docs/components/scroll-area)
+
+## When to use
+
+- A fixed-height or fixed-width container whose content overflows and needs a
+  styled scrollbar that matches the design system.
+- You want scrollbar visibility to respond to hover or to always be shown.
+
+## When not to use
+
+- Native browser scrollbars are acceptable — the extra markup is not worth it.
+- The entire page scroll — style the document scroll track in CSS instead.
+
+## Example
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <ScrollArea.Root className="h-48 px-4 py-2">
+      <ScrollArea.Viewport>
+        <p>The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.</p>
+      </ScrollArea.Viewport>
+      <ScrollArea.Scrollbar orientation="vertical">
+        <ScrollArea.Thumb />
+      </ScrollArea.Scrollbar>
+      <ScrollArea.Corner />
+    </ScrollArea.Root>
+  </Tab>
+
+  <Tab value="Code">
+    ```tsx
+    import { ScrollArea } from "@friday-sandbox/react";
+    <ScrollArea.Root className="h-48">
+      <ScrollArea.Viewport>{/* scrollable content */}</ScrollArea.Viewport>
+      <ScrollArea.Scrollbar orientation="vertical">
+        <ScrollArea.Thumb />
+      </ScrollArea.Scrollbar>
+      <ScrollArea.Corner />
+    </ScrollArea.Root>
+    ```
+  </Tab>
+</Tabs>
+
+## Sizes
+
+The `size` prop controls the scrollbar thickness. Choose a thinner track for
+compact interfaces and a thicker one for touch-friendly targets.
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <ScrollArea.Root size="lg" className="h-48 px-4 py-2">
+      <ScrollArea.Viewport>
+        <p>The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.</p>
+      </ScrollArea.Viewport>
+      <ScrollArea.Scrollbar orientation="vertical">
+        <ScrollArea.Thumb />
+      </ScrollArea.Scrollbar>
+      <ScrollArea.Corner />
+    </ScrollArea.Root>
+  </Tab>
+
+  <Tab value="Code">
+    ```tsx
+    <ScrollArea.Root size="lg" className="h-48">
+      <ScrollArea.Viewport>{/* scrollable content */}</ScrollArea.Viewport>
+      <ScrollArea.Scrollbar orientation="vertical">
+        <ScrollArea.Thumb />
+      </ScrollArea.Scrollbar>
+      <ScrollArea.Corner />
+    </ScrollArea.Root>
+    ```
+  </Tab>
+</Tabs>
+
+## Props
+
+`ScrollArea.Root` also accepts all props from the underlying Radix UI
+`ScrollArea.Root`, such as `scrollHideDelay`, `dir`, `asChild`, and `nonce`.
+
+| Prop        | Type                             | Default   | Description                                          |
+| ----------- | -------------------------------- | --------- | ---------------------------------------------------- |
+| `size`      | `"xs" \| "sm" \| "md" \| "lg"`  | `"md"`    | Sets the scrollbar thickness.                        |
+| `variant`   | `"hover" \| "always" \| "hidden"` | `"hover"` | Controls when the scrollbars are visible.            |
+| `className` | `string`                         | —         | Additional CSS classes to apply to the scroll area root. |
+
+## Styling
+
+`ScrollArea` is styled through CSS classes ([source styles](https://github.com/next-friday/friday-sandbox/blob/main/packages/styles/src/components/bases/scroll-area.css)), so the look applies to any element that carries them.
+
+### Base classes
+
+- `fri-scroll-area` — scroll area root with the medium size default.
+- `fri-scroll-area-viewport` — the scrollable viewport.
+- `fri-scroll-area-scrollbar` — the scrollbar track.
+- `fri-scroll-area-thumb` — the draggable thumb inside the track.
+- `fri-scroll-area-corner` — the corner overlap between vertical and horizontal scrollbars.
+
+### Size modifier classes
+
+- `fri-scroll-area-xs` · `fri-scroll-area-sm` · `fri-scroll-area-md` · `fri-scroll-area-lg`
+
+### Variant modifier class
+
+- `fri-scroll-area-hide-scrollbar` — applied by the `"hidden"` variant to visually hide the scrollbar while keeping the area scrollable.
+
+## Accessibility
+
+- The scroll area is reachable by keyboard; content inside `ScrollArea.Viewport`
+  can be scrolled with <kbd>Tab</kbd>, arrow keys, <kbd>Page Up</kbd> / <kbd>Page Down</kbd>, and <kbd>Home</kbd> / <kbd>End</kbd>.
+- The `"hidden"` variant hides the scrollbar visually but does not disable
+  scrolling via wheel, touch, or keyboard.
+- When the scrollable region contains interactive elements, ensure they are all
+  reachable by keyboard without relying on mouse scroll.

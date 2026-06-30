@@ -1,0 +1,147 @@
+---
+title: Grid
+description: A CSS Grid layout container with named props for columns, rows, flow, and gap.
+---
+
+import { Grid, GridItem } from "@friday-sandbox/react";
+
+## Purpose
+
+`Grid` is a CSS Grid layout container. It exposes columns, rows, flow, gap, and
+implicit-track sizing as named props so you can build two-dimensional layouts
+without writing class strings by hand. Use `GridItem` inside `Grid` when a child
+needs to span or start at an explicit position.
+
+[Source](https://github.com/next-friday/friday-sandbox/blob/main/packages/react/src/components/bases/grid/grid.tsx) · [Style](https://github.com/next-friday/friday-sandbox/blob/main/packages/styles/src/components/bases/grid.css)
+
+## When to use
+
+- Two-dimensional page sections such as card galleries, dashboards, or form
+  layouts.
+- Any layout that needs items to span multiple columns or rows.
+
+## When not to use
+
+- A single row or column of items — use `Flex` instead.
+- Fully custom grid tracks that `cols` / `rows` cannot express — write the CSS
+  directly and pass it through `className`.
+
+## Example
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <Grid cols={3} gap="md" className="px-4 py-6">
+      <div className="h-8 rounded bg-base-200" />
+      <div className="h-8 rounded bg-base-200" />
+      <div className="h-8 rounded bg-base-200" />
+      <div className="h-8 rounded bg-base-200" />
+      <div className="h-8 rounded bg-base-200" />
+      <div className="h-8 rounded bg-base-200" />
+    </Grid>
+  </Tab>
+
+  <Tab value="Code">
+    ```tsx
+    import { Grid } from "@friday-sandbox/react";
+    <Grid cols={3} gap="md">...</Grid>
+    ```
+  </Tab>
+</Tabs>
+
+## Columns
+
+The `cols` prop sets equal-width columns from 1 to 12. Use `"auto-fit"` or
+`"auto-fill"` for responsive tracks that fill available space.
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <Grid cols={4} gap="md" className="px-4 py-6">
+      <div className="h-8 rounded bg-base-200" />
+      <div className="h-8 rounded bg-base-200" />
+      <div className="h-8 rounded bg-base-200" />
+      <div className="h-8 rounded bg-base-200" />
+      <div className="h-8 rounded bg-base-200" />
+      <div className="h-8 rounded bg-base-200" />
+      <div className="h-8 rounded bg-base-200" />
+      <div className="h-8 rounded bg-base-200" />
+    </Grid>
+  </Tab>
+
+  <Tab value="Code">
+    ```tsx
+    <Grid cols={4} gap="md">...</Grid>
+    ```
+  </Tab>
+</Tabs>
+
+## Props
+
+`Grid` also accepts an `as` prop (default `"div"`) to render as a different
+element.
+
+| Prop       | Type                                                      | Default  | Description                                      |
+| ---------- | --------------------------------------------------------- | -------- | ------------------------------------------------ |
+| `cols`     | `1 \| 2 \| 3 \| 4 \| 5 \| 6 \| 7 \| 8 \| 9 \| 10 \| 11 \| 12 \| "auto-fit" \| "auto-fill"` | `1` | Sets the number of equal-width columns, or a responsive track. |
+| `rows`     | `1 \| 2 \| 3 \| 4 \| 5 \| 6`                             | —        | Sets a fixed number of rows.                     |
+| `flow`     | `"row" \| "col" \| "row-dense" \| "col-dense"`            | `"row"`  | Controls how items fill the grid.                |
+| `inline`   | `boolean`                                                 | `false`  | Renders an inline-level grid container.          |
+| `autoRows` | `"auto" \| "min" \| "max" \| "fr"`                        | —        | Sizes implicitly-created rows.                   |
+| `autoCols` | `"auto" \| "min" \| "max" \| "fr"`                        | —        | Sizes implicitly-created columns.                |
+| `gap`      | `"xs" \| "sm" \| "md" \| "lg" \| "xl"`                   | —        | Sets the gap between all cells.                  |
+| `gapX`     | `"xs" \| "sm" \| "md" \| "lg" \| "xl"`                   | —        | Sets the horizontal gap only.                    |
+| `gapY`     | `"xs" \| "sm" \| "md" \| "lg" \| "xl"`                   | —        | Sets the vertical gap only.                      |
+| `className` | `string`                                                 | —        | Additional CSS classes to apply.                 |
+
+### GridItem props
+
+`GridItem` also accepts an `as` prop (default `"div"`) and a `className` string.
+
+| Prop       | Type                                                                      | Default | Description                                    |
+| ---------- | ------------------------------------------------------------------------- | ------- | ---------------------------------------------- |
+| `colSpan`  | `1 \| 2 \| 3 \| 4 \| 5 \| 6 \| 7 \| 8 \| 9 \| 10 \| 11 \| 12 \| "full"` | —       | Number of columns the item spans.              |
+| `rowSpan`  | `1 \| 2 \| 3 \| 4 \| 5 \| 6`                                             | —       | Number of rows the item spans.                 |
+| `colStart` | `1 \| 2 \| 3 \| 4 \| 5 \| 6 \| 7 \| 8 \| 9 \| 10 \| 11 \| 12 \| 13`   | —       | Column line the item starts at.                |
+| `colEnd`   | `1 \| 2 \| 3 \| 4 \| 5 \| 6 \| 7 \| 8 \| 9 \| 10 \| 11 \| 12 \| 13`   | —       | Column line the item ends at.                  |
+| `rowStart` | `1 \| 2 \| 3 \| 4 \| 5 \| 6 \| 7`                                       | —       | Row line the item starts at.                   |
+| `rowEnd`   | `1 \| 2 \| 3 \| 4 \| 5 \| 6 \| 7`                                       | —       | Row line the item ends at.                     |
+
+## Styling
+
+`Grid` is styled through CSS classes ([source styles](https://github.com/next-friday/friday-sandbox/blob/main/packages/styles/src/components/bases/grid.css)), so the look applies to any element that carries them.
+
+### Base classes
+
+- `fri-grid` — base grid container with the single-column default.
+- `fri-grid-item` — base grid item with no span or placement.
+
+### Column modifier classes
+
+- `fri-grid-cols-1` through `fri-grid-cols-12`, `fri-grid-cols-auto-fit`, `fri-grid-cols-auto-fill`
+
+### Row modifier classes
+
+- `fri-grid-rows-1` through `fri-grid-rows-6`
+
+### Flow modifier classes
+
+- `fri-grid-flow-row` · `fri-grid-flow-col` · `fri-grid-flow-row-dense` · `fri-grid-flow-col-dense`
+
+### Gap modifier classes
+
+- `fri-grid-gap-xs` · `fri-grid-gap-sm` · `fri-grid-gap-md` · `fri-grid-gap-lg` · `fri-grid-gap-xl`
+- `fri-grid-gap-x-xs` through `fri-grid-gap-x-xl`
+- `fri-grid-gap-y-xs` through `fri-grid-gap-y-xl`
+
+### Inline and implicit-track classes
+
+- `fri-grid-inline` — inline-level grid container.
+- `fri-grid-auto-rows-auto` · `fri-grid-auto-rows-min` · `fri-grid-auto-rows-max` · `fri-grid-auto-rows-fr`
+- `fri-grid-auto-cols-auto` · `fri-grid-auto-cols-min` · `fri-grid-auto-cols-max` · `fri-grid-auto-cols-fr`
+
+## Accessibility
+
+- `Grid` renders a `<div>` by default. Use the `as` prop to render a semantic
+  element such as `<ul>` when the grid represents a list, and pair each
+  `GridItem` with `as="li"`.
+- Grid placement is visual only; screen readers follow DOM order, so keep DOM
+  order logical.

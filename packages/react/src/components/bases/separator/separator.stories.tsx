@@ -104,38 +104,3 @@ export const CustomStyles: Story = {
   },
   render: () => <Separator className="h-1 bg-primary" />,
 };
-
-export const PlainHtml: Story = {
-  parameters: {
-    docs: {
-      description: {
-        story:
-          "Apply the separator styling to any element such as a plain hr element, so a divider renders in plain markup without the React component.",
-      },
-    },
-  },
-  render: () => <hr className="fri-separator fri-separator-horizontal" />,
-};
-
-export const BaseClassDefault: Story = {
-  parameters: {
-    docs: {
-      description: {
-        story:
-          "The base class on its own renders the default horizontal separator, so hand-written HTML needs no orientation class for a usable default.",
-      },
-    },
-  },
-  render: () => <div className="fri-separator" />,
-  play: async ({ canvasElement }) => {
-    const separator =
-      canvasElement.querySelector<HTMLElement>(".fri-separator");
-    await expect(separator).not.toBeNull();
-
-    // The horizontal default gives the separator its thickness as height; an
-    // orientation-less base would collapse to 0.
-    await expect(
-      Number.parseFloat(getComputedStyle(separator!).height),
-    ).toBeGreaterThan(0);
-  },
-};

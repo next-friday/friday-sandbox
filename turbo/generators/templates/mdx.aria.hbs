@@ -5,19 +5,23 @@ description: {{ pascalCase name }} component.
 
 import { Flex, {{ pascalCase name }} } from "@friday-sandbox/react";
 
-## Import
+## Purpose
 
-```tsx
-import { {{ pascalCase name }} } from "@friday-sandbox/react";
-```
+Describe what `{{ pascalCase name }}` is for in a line or two.
 
-[Source](https://github.com/next-friday/friday-sandbox/blob/main/packages/react/src/components/bases/{{ kebabCase name }}/{{ kebabCase name }}.tsx) · [Style](https://github.com/next-friday/friday-sandbox/blob/main/packages/styles/src/components/bases/{{ kebabCase name }}.css) · [Storybook](STORYBOOK_URL) · [Headless](HEADLESS_DOCS_URL)
+[Source](https://github.com/next-friday/friday-sandbox/blob/main/packages/react/src/components/bases/{{ kebabCase name }}/{{ kebabCase name }}.tsx) · [Style](https://github.com/next-friday/friday-sandbox/blob/main/packages/styles/src/components/bases/{{ kebabCase name }}.css) · [Headless](HEADLESS_DOCS_URL)
 
-{/* Replace STORYBOOK_URL with the deployed Storybook story link, and HEADLESS_DOCS_URL with the wrapped library's component docs. */}
+{/* Replace HEADLESS_DOCS_URL with the wrapped library's component docs; drop the Headless link when the wrapped part has no standalone page. */}
 
-## Usage
+## When to use
 
-Describe the basic use of `{{ pascalCase name }}` in a line or two.
+{/* List the cases where `{{ pascalCase name }}` is the right choice. */}
+
+## When not to use
+
+{/* List the cases where another component or element fits better, and name it. */}
+
+## Example
 
 <Tabs items={["Preview", "Code"]}>
   <Tab value="Preview">
@@ -28,14 +32,13 @@ Describe the basic use of `{{ pascalCase name }}` in a line or two.
 
   <Tab value="Code">
     ```tsx
+    import { {{ pascalCase name }} } from "@friday-sandbox/react";
     <{{ pascalCase name }}>{{ pascalCase name }}</{{ pascalCase name }}>
     ```
   </Tab>
 </Tabs>
 
-## Examples
-
-### Sizes
+## Sizes
 
 Five sizes step from `xs` to `xl`.
 
@@ -61,15 +64,7 @@ Five sizes step from `xs` to `xl`.
   </Tab>
 </Tabs>
 
-{/* Add Colors / Variants / States example blocks as you fill the ladder; mirror the showcase stories in {{ kebabCase name }}.stories.tsx so docs and Storybook stay symmetric. */}
-
-## API
-
-### Anatomy
-
-```tsx
-<{{ pascalCase name }}>Label</{{ pascalCase name }}>
-```
+{/* Add a Tabs block per remaining feature (colors, variants, states) as its own `##` section as you fill the ladder; mirror the showcase stories. */}
 
 ## Props
 
@@ -79,10 +74,6 @@ Five sizes step from `xs` to `xl`.
 | ----------- | -------------------------------------- | ------- | -------------------------------- |
 | `size`      | `"xs" \| "sm" \| "md" \| "lg" \| "xl"` | `"md"`  | Sets the size of the {{ kebabCase name }}.   |
 | `className` | `string`                               | —       | Additional CSS classes to apply. |
-
-## Accessibility
-
-Document keyboard interaction, ARIA roles, and any state caveats.
 
 ## Styling
 
@@ -97,3 +88,7 @@ Document keyboard interaction, ARIA roles, and any state caveats.
 - `fri-{{ kebabCase name }}-xs` … `fri-{{ kebabCase name }}-xl` — size steps.
 
 {/* List each remaining fri-{{ kebabCase name }}-<modifier> class you define (colors, variants, states), with what it applies. */}
+
+## Accessibility
+
+Document keyboard interaction, ARIA roles, and any state caveats.

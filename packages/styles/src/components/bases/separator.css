@@ -3,7 +3,7 @@
     /* A hairline of the border width; the vertical min length is a fixed
        multiple of the public spacing scale. Both are component-local. */
     --_separator-thickness: var(--fri-border-width);
-    --_separator-length: calc(var(--fri-spacing-xs) * 8);
+    --_separator-length: var(--fri-spacing-2xl);
     @apply m-0 shrink-0 border-none bg-separator;
   }
 

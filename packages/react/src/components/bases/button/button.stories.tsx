@@ -13,18 +13,9 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import { Flex } from "../flex";
 import { GoogleIcon } from "../../icons";
+import { COLORS, SIZES } from "../../samples/story-constants";
 
 import { Button } from ".";
-
-const COLORS = [
-  { value: "primary", label: "Primary" },
-  { value: "secondary", label: "Secondary" },
-  { value: "accent", label: "Accent" },
-  { value: "info", label: "Info" },
-  { value: "success", label: "Success" },
-  { value: "warning", label: "Warning" },
-  { value: "danger", label: "Danger" },
-] as const;
 
 const VARIANTS = [
   { value: "solid", label: "Solid" },
@@ -33,14 +24,6 @@ const VARIANTS = [
   { value: "outline", label: "Outline" },
   { value: "ghost", label: "Ghost" },
   { value: "plain", label: "Plain" },
-] as const;
-
-const SIZES = [
-  { value: "xs", label: "Extra Small" },
-  { value: "sm", label: "Small" },
-  { value: "md", label: "Medium" },
-  { value: "lg", label: "Large" },
-  { value: "xl", label: "Extra Large" },
 ] as const;
 
 const meta = {
@@ -429,51 +412,4 @@ export const CustomStyles: Story = {
       <HeartFill />
     </Button>
   ),
-};
-
-export const PlainHtml: Story = {
-  parameters: {
-    docs: {
-      description: {
-        story:
-          "Apply the button styling to any element such as a plain anchor or a router link, so a navigation target looks like a button while staying the right element for the job.",
-      },
-    },
-  },
-  render: () => (
-    <a
-      className="fri-button fri-button-primary fri-button-md"
-      href="/?path=/docs/bases-actions-button--docs"
-    >
-      Button
-    </a>
-  ),
-};
-
-export const BaseClassDefault: Story = {
-  parameters: {
-    docs: {
-      description: {
-        story:
-          "The base class on its own renders the default solid, primary, medium button, so hand-written HTML needs no modifier classes for a usable default.",
-      },
-    },
-  },
-  render: () => (
-    <button className="fri-button" type="button">
-      Button
-    </button>
-  ),
-  play: async ({ canvasElement }) => {
-    const button =
-      canvasElement.querySelector<HTMLButtonElement>(".fri-button");
-    await expect(button).not.toBeNull();
-
-    const styles = getComputedStyle(button!);
-    // The solid+primary default fills the background; an unstyled base would be
-    // transparent. getComputedStyle resolves height to pixels, so the medium
-    // default (~40px) reads well above an unsized base (~content height).
-    await expect(styles.backgroundColor).not.toBe("rgba(0, 0, 0, 0)");
-    await expect(Number.parseFloat(styles.height)).toBeGreaterThan(30);
-  },
 };

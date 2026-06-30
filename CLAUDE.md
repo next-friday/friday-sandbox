@@ -4,42 +4,27 @@ This file provides guidance to Claude Code (code.claude.com) when working with c
 
 ## Claude Code operating rules
 
-- **Let the hooks do the work.** `pre-commit` runs the gates on staged files; `pre-push` runs the full list. Do **not** run whole-repo `lint`/`typecheck`/`build`/`build:storybook`/`knip`/`depcruise`/`sort:check`/`format:check`/`lint:symmetry`/`test` by hand, since each is minutes of duplicated work the hooks already cover.
+- **Let the hooks do the work.** `pre-commit` runs the gates on staged files; `pre-push` runs the full list (in [`CONTRIBUTING.md`](CONTRIBUTING.md)). Do **not** run the whole-repo gates (`lint`, `typecheck`, `build`, `test`, and the rest) by hand, since each is minutes of duplicated work the hooks already cover.
 - **Never suppress a gate.** Fix the root cause: do not disable a lint rule, skip or loosen a gate, or use `--no-verify`, which is forbidden and re-caught by CI. Disabling is a last resort needing explicit approval with a stated reason.
 - **`src` ↔ `exports` invariant.** Workspace consumers read `src/`; published consumers read `dist/`. Change one surface, keep the other aligned.
 - **One change = one issue → one branch → one PR.** Behavior changes such as `feat`, `fix`, `perf`, and `refactor` require a `.changeset/*.md` entry, and the branch must start with `<issue#>-`. Titles are Conventional Commits `type(scope): subject` (≤50 chars, lowercase imperative, no body/footer); put `Closes #<n>` in the PR body, never the title. Full workflow in [`CONTRIBUTING.md`](CONTRIBUTING.md).
-- **Generate components; do not hand-roll.** Scaffold a base component with `pnpm gen component` (Turborepo `turbo gen`; the generator and its Handlebars templates live in `turbo/generators/`, authored in TypeScript). It prompts for the name, the primitive (`native` or `aria`), and the Storybook category, then writes the component files plus the docs page, its nav entry, and a changeset, and wires every export barrel and the styles `@import`. Do not hand-create those files or add a second changeset; the `component-*` skill suite (`.claude/skills/component-{blueprint,implement,rebut}/`) drives the lifecycle as an issue-driven flow. `component-blueprint` settles the primitive and variant ladder then records the design + implementation plan to a GitHub issue; `component-implement` branches from that issue, generates then fills the surfaces, and runs gates → PR → green CI; `component-rebut` handles the bot-review round. Each writes to the shared tracker only with explicit per-artifact authorization.
+- **Generate components; do not hand-roll.** Scaffold a base component with `pnpm gen component` (Turborepo `turbo gen`; templates in `turbo/generators/`) — never hand-create the files or add a second changeset. The `component-*` skill suite (`.claude/skills/component-{blueprint,implement,rebut}/`) drives the issue-driven lifecycle, each writing to the shared tracker only with explicit per-artifact authorization. Full generator behavior and the blueprint → implement → rebut workflow: [`CONTRIBUTING.md`](CONTRIBUTING.md).
+- **Skill docs mirror the code they describe.** The `component-*` skills reference the generator (`turbo/generators/`), the base-component patterns, and the token ladder by concrete path, token name, and scaffold output. Change one of those and the skill rots silently — update the skill in the **same change**, the way `src` ↔ `exports` stay aligned. When a skill and the tree disagree, the tree is right and the skill is the bug.
 - **TypeScript only, never `.js`.** Source and scripts are TypeScript (`.ts`/`.tsx`), run with `node --experimental-strip-types <file>.ts` (Node's native type-stripping, not `tsx` or `ts-node`); a config or root build script a tool loads only as ESM uses `.mjs`.
 
 Project rules, imported into context:
 
 @.claude/rules/no-guessing.md
+@.claude/rules/no-redundancy.md
 @.claude/rules/no-unprovable-llm-claims.md
 
 ## Architecture
 
-**Toolchain:** Node `>=22.10.0`, pnpm `10` via Corepack (`corepack enable`); the pnpm version is pinned in the root `package.json`.
+Full codemap and invariants: [`ARCHITECTURE.md`](ARCHITECTURE.md). The essentials to hold every session:
 
-pnpm-workspace + Turborepo monorepo, globbing `packages/*` and `apps/*`. Four packages under `packages/`:
-
-| Package                             | Description                                                                     |
-| ----------------------------------- | ------------------------------------------------------------------------------- |
-| `@friday-sandbox/react`             | Accessible React components built on react-aria-components and Tailwind CSS v4. |
-| `@friday-sandbox/styles`            | Framework-agnostic design tokens and Tailwind CSS v4 layers.                    |
-| `@friday-sandbox/eslint-config`     | Shared ESLint flat-config presets.                                              |
-| `@friday-sandbox/typescript-config` | Shared TypeScript config presets.                                               |
-
-`react` consumes `styles` as a peer dependency; the two config packages are dev-only presets. The lone app, `@friday-sandbox/docs` under `apps/`, is a Next.js 16 + Fumadocs (`fumadocs-core`/`-mdx`/`-ui`) site that consumes `react` + `styles` as `workspace:*`; its pages are MDX under `apps/docs/content/docs`, and `fumadocs-mdx` codegen (the generated `.source/` dir) runs on `postinstall` and again before the docs `lint`/`typecheck`.
-
-**A component is split across both packages and linked by a class name, not an import.** It lives in `packages/react/src/components/bases/<name>/` as `<name>.tsx` + `<name>.variants.ts` + `index.ts` + `<name>.stories.tsx`. The `.variants.ts` uses `tailwind-variants/lite` `tv()` to map props to a stable `fri-<name>` class; the visual rules for that class live in `packages/styles/src/components/bases/<name>.css` via `@apply` inside `@layer components`. Edit one side, mirror the other.
-
-- `bases/` = real published components; `samples/` = Storybook-only demos; `icons/` and `utils/` as named.
-- **Export chain:** `src/index.ts` → `components/index.ts` → `bases/index.ts` → `<name>/index.ts`. A new base component touches all four barrels plus a `<name>.css` imported from `packages/styles/src/components/bases/index.css`; `pnpm gen component` writes and wires all of them.
-- **CSS cascade:** `packages/styles/index.css` declares `@layer theme, base, components, utilities`, then imports `src/theme` → `src/shared` → `src/base` → `src/components` in that order.
-
-**The theme is generated, not hand-written.** The files in `packages/styles/src/theme/` that carry a `GENERATED by scripts/codegen.ts` header — `registered.css`, `tailwind.css`, `tokens.css` (the latter two hold the color, border, and radius tokens) — are overwritten on codegen; never hand-edit them. The single source of truth is `tokens/default.spec.json` (a handful of Tier-A knobs, validated against `theme-spec.schema.json` at the package root), expanded through the derivation table in `scripts/formulas.ts`. Every ladder rung, mix ratio, and dark value lives there exactly once. `pnpm --filter @friday-sandbox/styles codegen` regenerates the CSS plus `design.md`; `pnpm --filter @friday-sandbox/styles build` runs codegen, then a **contrast gate** (`scripts/validate.ts`, APCA/WCAG via `contrast.ts`+`expand.ts`) that **fails the build** on any solid/core-text pair below the floor. To change a color or scale, edit the spec or `formulas.ts` and rerun codegen, never the generated `.css`. Only `compat.css`, `index.css`, and `typography.css` are hand-written.
-
-**Tests are stories.** There are no `*.test.tsx` files. Vitest runs every `*.stories.tsx` in real Chromium via Playwright (`@storybook/addon-vitest` + `@vitest/browser-playwright`, configured in `packages/react/vitest.config.ts`). Write a story, get a test.
+- **`styles` is upstream, `react` is downstream.** `styles` owns the design tokens, the Tailwind `@theme` map, and each component's CSS; `react` consumes them and never redefines theme. A component is split across both packages and linked by a `fri-<name>` class, not an import — mirror the two sides 1:1.
+- **The theme is generated from a spec.** The files under `packages/styles/src/theme/` with a `GENERATED` header are codegen output — never hand-edit; change `tokens/default.spec.json` or `scripts/formulas.ts` and rerun `pnpm --filter @friday-sandbox/styles codegen`. Consume spacing/size through the semantic alias (`gap-sm`, `p-md`, `bg-primary`), never a raw numeric (`gap-2`) or a `gap-(--fri-*)` var form when an alias exists.
+- **Tests are stories.** There are no `*.test` files; Vitest runs every `*.stories.tsx` in real Chromium via Playwright. Write a story, get a test.
 
 ## Commands
 
@@ -49,7 +34,7 @@ The hooks cover the gates (see operating rules); these are the scoped helpers th
 pnpm dev                                                   # turbo run dev: Storybook on :6006 + docs site together
 pnpm dev:storybook                                         # Storybook only, on :6006
 pnpm dev:docs                                              # docs site only (next dev)
-pnpm --filter @friday-sandbox/react test                  # one package's tests
+pnpm --filter @friday-sandbox/react test                   # one package's tests
 pnpm --filter @friday-sandbox/react exec vitest run text   # one story file (substring match)
 ```
 

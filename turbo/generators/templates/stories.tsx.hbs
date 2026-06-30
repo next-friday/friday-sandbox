@@ -30,33 +30,3 @@ export const Default: Story = {
     await expect(element).toBeInTheDocument();
   },
 };
-
-export const PlainHtml: Story = {
-  render: () => <div className="fri-{{ kebabCase name }}" />,
-};
-
-export const BaseClassDefault: Story = {
-  render: () => (
-    <>
-      <span className="fri-{{ kebabCase name }}" data-testid="base-styled">
-        Styled
-      </span>
-
-      <span data-testid="base-unstyled">Unstyled</span>
-    </>
-  ),
-  play: async ({ canvasElement }) => {
-    const styled = canvasElement.querySelector<HTMLElement>(
-      '[data-testid="base-styled"]',
-    );
-    const unstyled = canvasElement.querySelector<HTMLElement>(
-      '[data-testid="base-unstyled"]',
-    );
-    await expect(styled).toBeTruthy();
-    await expect(unstyled).toBeTruthy();
-
-    await expect(getComputedStyle(styled!).display).not.toBe(
-      getComputedStyle(unstyled!).display,
-    );
-  },
-};

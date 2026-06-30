@@ -1,4 +1,5 @@
 import { Box } from "../box/box";
+import { range } from "../range";
 
 interface BoxesProps {
   count: number;
@@ -6,10 +7,8 @@ interface BoxesProps {
 
 export const Boxes = ({ count }: BoxesProps) => (
   <>
-    {Array.from({ length: count }, (_, position) => position + 1).map(
-      (index) => (
-        <Box key={index} index={index} />
-      ),
-    )}
+    {range(count).map((position) => (
+      <Box key={position} index={position} />
+    ))}
   </>
 );

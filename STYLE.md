@@ -4,7 +4,9 @@ The single source of truth for prose in this repository. Every README, doc page,
 changeset, story copy, and generated document follows it. The goal is that the
 whole repo reads as if one person wrote it.
 
-This guide governs writing. For code conventions see [`CONTRIBUTING.md`](CONTRIBUTING.md).
+This guide governs writing. For code conventions see [`CONTRIBUTING.md`](CONTRIBUTING.md); for architecture see [`ARCHITECTURE.md`](ARCHITECTURE.md).
+
+For generic editorial questions this guide adopts the [Google developer documentation style guide](https://developers.google.com/style) as its base — grammar, punctuation, capitalization, and any word choice not fixed below. What follows is only what is specific to this repository: its audience map, vocabulary, document structure, and the conventions a gate or an AI reviewer enforces. Do not re-derive generic editorial rules here; cite the base.
 
 ## Audience
 
@@ -87,8 +89,9 @@ cutting-edge, world-class, and the like.
 ## Document structure
 
 Each document type follows one fixed skeleton, so a reader learns the layout
-once. The templates in [`.github/doc-templates/`](.github/doc-templates) carry
-these skeletons.
+once. A new component doc is scaffolded by `pnpm gen component` (templates in
+[`turbo/generators/`](turbo/generators)); the skeletons for the other types are
+the section sets described below.
 
 - Component doc (`apps/docs/content/docs/components/*.mdx`): the required spine is
   `Purpose`, `When to use`, `When not to use`, `Example`, then `Accessibility`
@@ -135,8 +138,9 @@ overrides an authored Markdown pattern.
 
 This guide is upheld in review:
 
-- **Templates** (`.github/doc-templates/`): a new document starts from the
-  skeleton, so structure and voice are correct before the first review.
+- **Generator** (`pnpm gen component`, templates in `turbo/generators/`): a new
+  component doc is scaffolded with the correct structure and voice before the
+  first review.
 - **Markdownlint** (`pnpm lint:md`): enforces the mechanical Markdown conventions
   above — fence language, single H1, heading punctuation — in the hooks and CI.
 - **AI reviewers** (`.coderabbit.yaml`, `.gemini/styleguide.md`): point at this
