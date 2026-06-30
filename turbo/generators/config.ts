@@ -119,7 +119,7 @@ export default function generator(plop: PlopTypes.NodePlopAPI): void {
         `export { ${Pascal} } from "./components";\nexport type { ${Pascal}Props } from "./components";`,
       ),
     );
-    patch("packages/styles/src/components/bases/index.css", (content) =>
+    patch("packages/styles/components/index.css", (content) =>
       insertImportLine(content, kebab, `@import "./${kebab}.css";`),
     );
     patch("packages/styles/src/components/index.ts", (content) =>
@@ -201,7 +201,7 @@ export default function generator(plop: PlopTypes.NodePlopAPI): void {
         },
         {
           type: "add",
-          path: "{{ turbo.paths.root }}/packages/styles/src/components/bases/{{ kebabCase name }}.css",
+          path: "{{ turbo.paths.root }}/packages/styles/components/{{ kebabCase name }}.css",
           templateFile: `templates/styles${suffix}.css.hbs`,
         },
         {

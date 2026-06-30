@@ -1,9 +1,10 @@
 {
   "extends": "@friday-sandbox/typescript-config/base.json",
   "compilerOptions": {
+    "lib": ["es2023", "dom", "dom.iterable"],
     "module": "Preserve",
     "moduleResolution": "Bundler",
     "noEmit": true
   },
-  "include": ["src"]
+  "include": ["src", "scripts"]
 }

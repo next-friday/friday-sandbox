@@ -27,7 +27,7 @@ import { existsSync, readdirSync, readFileSync, type Dirent } from "node:fs";
 import { join } from "node:path";
 
 const REACT_BASES = "packages/react/src/components/bases";
-const STYLES_BASES = "packages/styles/src/components/bases";
+const STYLES_BASES = "packages/styles/components";
 const STYLES_VARIANTS = "packages/styles/src/components";
 const DOCS = "apps/docs/content/docs/components";
 

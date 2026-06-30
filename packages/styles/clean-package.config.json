@@ -11,7 +11,7 @@
     "exports": {
       ".": {
         "style": "./dist/index.css",
-        "types": "./dist/index.d.mts",
+        "types": "./dist/index.d.ts",
         "import": "./dist/index.mjs",
         "default": "./dist/index.mjs"
       },
@@ -20,9 +20,17 @@
         "default": "./dist/index.css"
       },
       "./components/*": {
-        "types": "./dist/components/*/index.d.mts",
+        "types": "./dist/components/*/index.d.ts",
         "import": "./dist/components/*/index.mjs",
         "default": "./dist/components/*/index.mjs"
+      },
+      "./template": {
+        "style": "./dist/themes/template.css",
+        "default": "./dist/themes/template.css"
+      },
+      "./compat": {
+        "style": "./dist/themes/shared/compat.css",
+        "default": "./dist/themes/shared/compat.css"
       },
       "./package.json": "./package.json"
     }

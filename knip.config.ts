@@ -18,7 +18,9 @@ const config: KnipConfig = {
   },
   workspaces: {
     "packages/styles": {
-      project: ["src/**/*.ts", "**/*.css"],
+      entry: ["scripts/copy-css.ts", "scripts/fix-css-attributes.ts"],
+      project: ["src/**/*.ts", "scripts/**/*.ts", "**/*.css", "*.mjs"],
+      ignoreDependencies: ["@tailwindcss/cli"],
     },
     "packages/eslint-config": {
       ignoreDependencies: ["eslint-import-resolver-typescript"],
