@@ -15,7 +15,7 @@
 
 - **Accessible by default.** Components build on [react-aria-components](https://react-spectrum.adobe.com/react-aria/) and radix-ui, so keyboard and screen-reader support ship as standard.
 - **Theme anywhere.** Styling is plain CSS variables. Retheme React, plain HTML, WordPress, or PHP by overriding tokens, with no build step, plugin, or JavaScript.
-- **Generated, contrast-checked tokens.** Colors and scales derive from one spec; the shipped light and dark themes are contrast-checked at build time.
+- **Hand-authored, derived tokens.** Set a handful of seed tokens per mode; surfaces, tiers, and interaction states derive automatically via `color-mix`. No spec, no build step.
 - **Typed and tree-shakeable.** TypeScript throughout, `sideEffects: false`, so bundlers drop what you do not import.
 
 ## Packages
@@ -53,7 +53,7 @@ export function Save() {
 ## Documentation
 
 - **Components.** Browse and interact in Storybook, deployed on every push. Run it locally with `pnpm dev:storybook`.
-- **Theming.** Tokens are generated from one spec; see [`@friday-sandbox/styles`](./packages/styles#theming) for the contract and override template.
+- **Theming.** Tokens are hand-authored CSS variables — seeds you edit plus derived tokens; see [`@friday-sandbox/styles`](./packages/styles#theming) for the override template.
 - **Contributing.** The issue → PR workflow and the full gate list are in [CONTRIBUTING.md](https://github.com/next-friday/friday-sandbox/blob/main/CONTRIBUTING.md).
 
 ## License

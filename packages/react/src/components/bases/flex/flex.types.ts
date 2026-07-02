@@ -1,8 +1,8 @@
 import type { ElementType } from "react";
 
-import type { FlexVariants } from "@friday-sandbox/styles/components/flex";
-
 import type { PolymorphicProps } from "../../utils/polymorphic-props";
+
+import type { FlexVariants } from "./flex.styles";
 
 export type FlexProps<TElement extends ElementType = "div"> = PolymorphicProps<
   FlexOwnProps,

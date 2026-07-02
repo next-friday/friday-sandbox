@@ -11,18 +11,11 @@
     "exports": {
       ".": {
         "style": "./dist/index.css",
-        "types": "./dist/index.d.ts",
-        "import": "./dist/index.mjs",
-        "default": "./dist/index.mjs"
+        "default": "./dist/index.css"
       },
       "./css": {
         "style": "./dist/index.css",
         "default": "./dist/index.css"
-      },
-      "./components/*": {
-        "types": "./dist/components/*/index.d.ts",
-        "import": "./dist/components/*/index.mjs",
-        "default": "./dist/components/*/index.mjs"
       },
       "./package.json": "./package.json"
     }

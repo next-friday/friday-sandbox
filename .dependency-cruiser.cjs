@@ -15,7 +15,7 @@ module.exports = {
     exclude: {
       path: [
         "node_modules",
-        "\\.turbo",
+        String.raw`\.turbo`,
         "dist",
         "coverage",
         "storybook-static",

@@ -19,7 +19,7 @@ const config: KnipConfig = {
   workspaces: {
     "packages/styles": {
       entry: ["scripts/copy-css.ts", "scripts/fix-css-attributes.ts"],
-      project: ["src/**/*.ts", "scripts/**/*.ts", "**/*.css", "*.mjs"],
+      project: ["scripts/**/*.ts", "**/*.css", "*.mjs"],
       ignoreDependencies: ["@tailwindcss/cli"],
     },
     "packages/eslint-config": {

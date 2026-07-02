@@ -44,8 +44,18 @@ the Anthropic guidance they derive from.
    - Do: "`Button` collects a single user action."
    - Don't: "A powerful, intuitive, seamless Button for modern apps."
 
-4. **Structure over dense prose.** Group with headings and short lists. Source:
-   [memory](https://code.claude.com/docs/en/memory), "organized sections are easier to follow than dense paragraphs."
+4. **Structure over dense prose.** Group with headings; give the reader
+   something to scan rather than a wall of sentences. Use a **table** for
+   multi-column or reference data — a prop with its type and default, a
+   use-it-when versus reach-for-something-else split, or a component's modifier
+   classes and state selectors: enumerate each named class (a color, variant, or
+   size step) as its own `| Class | Type | Description |` row, compacting only a
+   dense integer sequence into a single range row. Use a **bulleted list** for a
+   short run of discrete points, such as when-to-use cases. Reserve prose for
+   rationale and narrative that neither would flatten.
+   Source: [memory](https://code.claude.com/docs/en/memory), "organized sections are easier to follow than dense paragraphs."
+   - Do: `| Prop | Type | Default |` for props; ``| `fri-button-solid` | Variant | Solid variant. |`` for a class list.
+   - Don't: a paragraph that lists three props and their defaults in sentences.
 
 5. **Even depth.** Comparable items get comparable length. Document every
    component against the same section set, so none is twelve paragraphs while its
@@ -93,10 +103,10 @@ once. A new component doc is scaffolded by `pnpm gen component` (templates in
 [`turbo/generators/`](turbo/generators)); the skeletons for the other types are
 the section sets described below.
 
-- Component doc (`apps/docs/content/docs/components/*.mdx`): the required spine is
-  `Purpose`, `When to use`, `When not to use`, `Example`, then `Accessibility`
-  last. A component adds its own sections, such as a `Props` table and one demo
-  per feature, between `Example` and `Accessibility`.
+- Component doc (`apps/docs/content/docs/components/*.mdx`): the required spine is a
+  `<SourceLinks>` header, then `Import`, `Usage`, `Purpose`, `When to use`,
+  `When not to use`, the component's own feature sections (one demo each),
+  `Props`, `Styling`, then `Accessibility` last.
 - Package README: `<name>`, the canonical one-line summary (see below), then
   `Quick start`. A published package (`react`, `styles`) adds badges and a
   `Why <name>` section above `Quick start`; an internal package

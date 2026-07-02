@@ -5,12 +5,38 @@ description: An indeterminate loading indicator.
 
 import { Flex, Spinner } from "@friday-sandbox/react";
 
+<SourceLinks
+  source="https://github.com/next-friday/friday-sandbox/blob/main/packages/react/src/components/bases/spinner/spinner.tsx"
+  style="https://github.com/next-friday/friday-sandbox/blob/main/packages/styles/src/components/spinner.css"
+  storybook="https://6a3fa7f0eb37cf8c0aaa146f-arscokrphb.chromatic.com/?path=/docs/bases-feedback-spinner--docs"
+/>
+
+## Import
+
+```tsx
+import { Spinner } from "@friday-sandbox/react";
+```
+
+## Usage
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <Flex align="end" gap="md" className="px-4 py-6">
+      <Spinner />
+    </Flex>
+  </Tab>
+
+  <Tab value="Code">
+    ```tsx
+    <Spinner />
+    ```
+  </Tab>
+</Tabs>
+
 ## Purpose
 
 The `Spinner` signals indeterminate progress, on its own or inside another
 component such as `Button` while `isPending`. It renders a `<span>`.
-
-[Source](https://github.com/next-friday/friday-sandbox/blob/main/packages/react/src/components/bases/spinner/spinner.tsx) · [Style](https://github.com/next-friday/friday-sandbox/blob/main/packages/styles/components/spinner.css)
 
 ## When to use
 
@@ -22,23 +48,6 @@ component such as `Button` while `isPending`. It renders a `<span>`.
 - For determinate progress with a known percentage — use a progress indicator
   instead.
 
-## Example
-
-<Tabs items={["Preview", "Code"]}>
-  <Tab value="Preview">
-    <Flex align="end" gap="md" className="px-4 py-6">
-      <Spinner />
-    </Flex>
-  </Tab>
-
-  <Tab value="Code">
-    ```tsx
-    import { Spinner } from "@friday-sandbox/react";
-    <Spinner />
-    ```
-  </Tab>
-</Tabs>
-
 ## Colors
 
 The `color` prop matches the semantic colors used across the system.
@@ -47,7 +56,6 @@ The `color` prop matches the semantic colors used across the system.
   <Tab value="Preview">
     <Flex align="end" gap="md" className="px-4 py-6">
       <Spinner color="primary" />
-      <Spinner color="secondary" />
       <Spinner color="accent" />
       <Spinner color="info" />
       <Spinner color="success" />
@@ -59,7 +67,6 @@ The `color` prop matches the semantic colors used across the system.
   <Tab value="Code">
     ```tsx
     <Spinner color="primary" />
-    <Spinner color="secondary" />
     <Spinner color="accent" />
     <Spinner color="info" />
     <Spinner color="success" />
@@ -99,27 +106,32 @@ Five sizes step from `xs` to `xl`.
 
 `Spinner` also accepts the standard `<span>` props, plus a `className` string.
 
-| Prop        | Type                                                                                   | Default     | Description                      |
-| ----------- | -------------------------------------------------------------------------------------- | ----------- | -------------------------------- |
-| `color`     | `"primary" \| "secondary" \| "accent" \| "info" \| "success" \| "warning" \| "danger"` | `"primary"` | Sets the semantic color role.    |
-| `size`      | `"xs" \| "sm" \| "md" \| "lg" \| "xl"`                                                 | `"md"`      | Sets the spinner size.           |
-| `className` | `string`                                                                               | —           | Additional CSS classes to apply. |
+| Prop        | Default     | Type                                                                                                       |
+| ----------- | ----------- | ----------------------------------------------------------------------------------------------------------- |
+| `color`     | `"primary"` | `"primary" \| "accent" \| "info" \| "success" \| "warning" \| "danger"`<br />Sets the semantic color role.    |
+| `size`      | `"md"`      | `"xs" \| "sm" \| "md" \| "lg" \| "xl"`<br />Sets the spinner size.                                          |
+| `className` | —           | `string`<br />Additional CSS classes to apply.                                                              |
 
 ## Styling
 
-`Spinner` is styled through CSS classes ([source styles](https://github.com/next-friday/friday-sandbox/blob/main/packages/styles/components/spinner.css)), so the look applies to any element that carries them.
+`Spinner` is styled through CSS classes, so the look applies to any element that carries them.
 
-### Base class
+### Modifier classes
 
-- `fri-spinner` — base spinner styles with the primary color and medium-size defaults.
-
-### Color modifier classes
-
-- `fri-spinner-primary` · `fri-spinner-secondary` · `fri-spinner-accent` · `fri-spinner-info` · `fri-spinner-success` · `fri-spinner-warning` · `fri-spinner-danger`
-
-### Size modifier classes
-
-- `fri-spinner-xs` · `fri-spinner-sm` · `fri-spinner-md` · `fri-spinner-lg` · `fri-spinner-xl`
+| Class                 | Type  | Description                              |
+| --------------------- | ----- | ----------------------------------------- |
+| `fri-spinner`         | Base  | Base styles: primary color, md size.      |
+| `fri-spinner-primary` | Color | Primary color role.                       |
+| `fri-spinner-accent`  | Color | Accent color role.                        |
+| `fri-spinner-info`    | Color | Info color role.                          |
+| `fri-spinner-success` | Color | Success color role.                       |
+| `fri-spinner-warning` | Color | Warning color role.                       |
+| `fri-spinner-danger`  | Color | Danger color role.                        |
+| `fri-spinner-xs`      | Size  | Extra small size.                         |
+| `fri-spinner-sm`      | Size  | Small size.                                |
+| `fri-spinner-md`      | Size  | Medium size (default).                    |
+| `fri-spinner-lg`      | Size  | Large size.                                |
+| `fri-spinner-xl`      | Size  | Extra large size.                          |
 
 ## Accessibility
 

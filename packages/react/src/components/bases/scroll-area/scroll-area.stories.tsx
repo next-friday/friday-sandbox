@@ -23,18 +23,6 @@ const meta = {
           "```tsx",
           'import { ScrollArea } from "@friday-sandbox/react";',
           "```",
-          "",
-          "## Anatomy",
-          "",
-          "```tsx",
-          "<ScrollArea.Root>",
-          "  <ScrollArea.Viewport>{/* Scrollable content */}</ScrollArea.Viewport>",
-          "  <ScrollArea.Scrollbar>",
-          "    <ScrollArea.Thumb />",
-          "  </ScrollArea.Scrollbar>",
-          "  <ScrollArea.Corner />",
-          "</ScrollArea.Root>",
-          "```",
         ].join("\n"),
       },
     },
@@ -274,7 +262,7 @@ export const CustomStyles: Story = {
     },
   },
   render: () => (
-    <ScrollArea.Root className="rounded-box h-72 border border-border p-4">
+    <ScrollArea.Root className="h-72 rounded-box border border-border p-4">
       <ScrollArea.Viewport>
         <Lorem paragraph={9} />
       </ScrollArea.Viewport>

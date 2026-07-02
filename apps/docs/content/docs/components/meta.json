@@ -3,12 +3,16 @@
   "root": true,
   "pages": [
     "index",
+    "---Actions---",
     "button",
+    "---Layout---",
     "flex",
     "grid",
     "scroll-area",
-    "spinner",
     "separator",
+    "---Feedback---",
+    "spinner",
+    "---Typography---",
     "text"
   ]
 }

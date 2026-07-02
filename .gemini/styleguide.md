@@ -35,7 +35,7 @@ Architecture and the `fri-<name>` react↔styles contract live in `ARCHITECTURE.
 Key checks for accessibility and stories:
 
 - Keyboard reachable, focus visible, ARIA only where the DOM does not convey intent, motion respects `prefers-reduced-motion`; the story passes `addon-a11y`.
-- Cover every variant value — a showcase story per axis (`Variants`, `Colors`, `Sizes`, laid out with `Flex`) and per state — using real props rather than mocked data.
+- Cover every variant value — a showcase story per axis (`Variants`, `Colors`, `Sizes`, laid out with `Flex`/`Grid`) and per state — using real props rather than mocked data. Never a raw `<div>` for layout or placeholders; pull placeholder content from the samples subpath (`@friday-sandbox/react/samples`: `Boxes`, `Lorem`).
 - Stories are the test suite (the testing setup is in `CLAUDE.md`). A `play` function asserts behavior only where it fits: an interactive base gets `Default` (interaction — `userEvent.tab()` → `toHaveFocus`); a display or layout base (`text`, `flex`, `grid`, `separator`, `spinner`) skips the `userEvent` interaction plays, so never ask one for an interaction play, though a presence or `getComputedStyle` assertion on `Default` still fits.
 - No separate `*.test.*` files exist or belong here; a behavior is verified by its story. Flag a new test file and ask for a `*.stories.tsx` play function instead.
 - Story copy is consumer-facing: flag internal class names such as `fri-button-*` and `fri-flex-*`, library names such as `tailwind-variants` and `react-aria`, engine math such as `calc(var(--fri-spacing-xs) * var(--_button-n))`, or file paths. Symmetric story shape across files.
@@ -45,10 +45,10 @@ Key checks for accessibility and stories:
 
 Key checks for styles:
 
-- A component's rules live in `components/<name>.css` under `@layer components`, keyed to the `fri-<name>` class, and must mirror its `src/components/<name>/<name>.styles.ts` variant map (in `@friday-sandbox/styles`) 1:1 — every `fri-<name>-<value>` class has a rule and vice versa (the `lint:symmetry` gate enforces it); flag an orphan class on either side.
+- A component's rules live in `src/components/<name>.css` under `@layer components`, keyed to the `fri-<name>` class, and must mirror its `tv()` variant map (`<name>.styles.ts`, in `@friday-sandbox/react`) 1:1 — every `fri-<name>-<value>` class has a rule and vice versa (the `lint:symmetry` gate enforces it across the package boundary); flag an orphan class on either side.
 - Respect the `@layer` system; flag inline `style` objects, hardcoded hex colors, and class strings that bypass tokens. Wire colors through the `--fri-<role>` ladder and geometry through a component-local ramp multiplier (`--_<name>-n`), with the `md` default baked at zero specificity via `:where(.fri-<name>)`.
 - Canonical Tailwind alias for any var mapped in `@theme inline`, such as `bg-primary` and not `bg-(--fri-primary)`; the `*-(--var)` form is only for component-local vars with no alias.
-- Size tokens scoped to `action`, `field`, or `box`, never a literal component name; corner radius is Tailwind native (`rounded-*`), not a token. The `themes/` CSS is hand-authored token values; keep the `@theme` map (`shared/theme.css`) in sync with the token names.
+- Size tokens scoped to `action`, `field`, or `box`, never a literal component name; corner radius derives from an archetype radius token (`--fri-action`/`field`/`box-radius`), scaled by the component's size ramp (`--_<name>-n`) and applied as `rounded-(--<name>-radius)` — see `button.css`. The `src/themes/` CSS is hand-authored token values; keep the `@theme` map (`tailwind/theme.css`) in sync with the token names.
 - A token rename carries a migration note in the changeset; no global selectors that bypass layers.
 
 ## Configs: `packages/eslint-config`, `packages/typescript-config`

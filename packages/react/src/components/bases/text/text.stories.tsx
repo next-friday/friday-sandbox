@@ -34,6 +34,15 @@ const VARIANTS = [
   { value: "code", label: "Code" },
 ] as const;
 
+const COLORS = [
+  { value: "inherit", label: "Inherit" },
+  { value: "ink", label: "Ink" },
+  { value: "body", label: "Body" },
+  { value: "muted", label: "Muted" },
+  { value: "danger", label: "Danger" },
+  { value: "link", label: "Link" },
+] as const;
+
 const ALIGNS = [
   { value: "left", label: "Left" },
   { value: "center", label: "Center" },
@@ -49,18 +58,12 @@ const meta = {
     docs: {
       description: {
         component: [
-          "Polymorphic text primitive that renders any element while keeping the design system color baseline.",
+          "Polymorphic text primitive that renders any element and inherits its color from the parent unless a color tone is set.",
           "",
           "## Import",
           "",
           "```tsx",
           'import { Text } from "@friday-sandbox/react";',
-          "```",
-          "",
-          "## Anatomy",
-          "",
-          "```tsx",
-          "<Text>Text</Text>",
           "```",
         ].join("\n"),
       },
@@ -68,6 +71,10 @@ const meta = {
   },
   args: {
     children: SAMPLE,
+    variant: "inherit",
+    color: "inherit",
+    truncate: false,
+    underline: false,
   },
   argTypes: {
     children: {
@@ -81,6 +88,15 @@ const meta = {
       options: VARIANTS.map((variant) => variant.value),
       table: {
         type: { summary: VARIANTS.map((variant) => variant.value).join(" | ") },
+        defaultValue: { summary: "inherit" },
+      },
+    },
+    color: {
+      description: "Use the `color` prop to set the text-emphasis tone.",
+      control: "select",
+      options: COLORS.map((color) => color.value),
+      table: {
+        type: { summary: COLORS.map((color) => color.value).join(" | ") },
         defaultValue: { summary: "inherit" },
       },
     },
@@ -102,6 +118,14 @@ const meta = {
     truncate: {
       description:
         "Use the `truncate` prop to cut a single line of overflowing text with an ellipsis.",
+      control: "boolean",
+      table: {
+        type: { summary: "boolean" },
+        defaultValue: { summary: "false" },
+      },
+    },
+    underline: {
+      description: "Use the `underline` prop to underline the text.",
       control: "boolean",
       table: {
         type: { summary: "boolean" },
@@ -224,6 +248,58 @@ export const Variant: Story = {
   ),
 };
 
+export const Color: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: "Use the `color` prop to set the text-emphasis tone.",
+      },
+    },
+  },
+  render: (storyArgs) => (
+    <Flex direction="column" gap="md">
+      <Text {...storyArgs} color="inherit">
+        Inherit
+      </Text>
+
+      <Text {...storyArgs} color="ink">
+        Ink
+      </Text>
+
+      <Text {...storyArgs} color="body">
+        Body
+      </Text>
+
+      <Text {...storyArgs} color="muted">
+        Muted
+      </Text>
+
+      <Text {...storyArgs} color="danger">
+        Danger
+      </Text>
+
+      <Text {...storyArgs} color="link">
+        Link
+      </Text>
+    </Flex>
+  ),
+};
+
+export const Underline: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: "Use the `underline` prop to underline the text.",
+      },
+    },
+  },
+  render: (storyArgs) => (
+    <Text {...storyArgs} underline>
+      {SAMPLE}
+    </Text>
+  ),
+};
+
 export const Truncate: Story = {
   parameters: {
     docs: {
@@ -266,6 +342,8 @@ export const CustomStyles: Story = {
     },
   },
   render: () => (
-    <Text className="text-2xl font-bold text-primary">{SAMPLE}</Text>
+    <Text className="bg-linear-to-r from-pink-500 to-red-500 bg-clip-text text-2xl font-bold text-transparent">
+      {SAMPLE}
+    </Text>
   ),
 };

@@ -2,7 +2,7 @@
 
 import { ScrollArea as RadixScrollArea } from "radix-ui";
 
-import { scrollAreaVariants } from "@friday-sandbox/styles/components/scroll-area";
+import { scrollAreaVariants } from "./scroll-area.styles";
 
 import type {
   ScrollAreaCornerProps,

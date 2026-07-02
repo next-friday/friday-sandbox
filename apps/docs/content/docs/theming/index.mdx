@@ -3,13 +3,16 @@ title: Theming
 description: Customize design tokens, dark mode, and styles from @friday-sandbox/styles.
 ---
 
-The theme is plain CSS variables (`--fri-*`). Override them in your own CSS to
-retheme, with no build step or plugin.
+The theme is plain CSS variables (`--fri-*`) — override them in your own CSS to
+retheme, with no build step or plugin. Tokens come in two layers: **seeds** you
+set, and **derived** tokens (surfaces, hover/pressed ladders, content tones) the
+system computes from the seeds with `color-mix()`. Override seeds; the derived
+tokens follow automatically.
 
 ## Override design tokens
 
-Override any `--fri-*` token after the package import. Set each fill with its
-`-foreground` so text stays legible:
+Override any seed after the package import. Set each fill with its `-foreground`
+so text stays legible:
 
 ```css
 :root {
@@ -18,13 +21,60 @@ Override any `--fri-*` token after the package import. Set each fill with its
 }
 ```
 
+Overriding one role changes only that role — set `--fri-primary` alone and
+accent, info, and the rest keep their defaults. A complete retheme sets the full
+seed set below.
+
+## Seed tokens
+
+Every fill pairs with its `-foreground` (the text and icon color on that fill).
+The six semantic roles are `primary accent info success warning danger`.
+
+| Token                                       | Role                                                |
+| ------------------------------------------- | --------------------------------------------------- |
+| `--fri-background` / `--fri-foreground`     | Page ground and default text                        |
+| `--fri-neutral`                             | Neutral for borders, fills, and muted text          |
+| `--fri-primary` / `--fri-primary-foreground` | Primary action                                     |
+| `--fri-accent` / `--fri-accent-foreground`  | Accent                                              |
+| `--fri-info` / `--fri-info-foreground`      | Info                                                |
+| `--fri-success` / `--fri-success-foreground` | Success                                            |
+| `--fri-warning` / `--fri-warning-foreground` | Warning                                            |
+| `--fri-danger` / `--fri-danger-foreground`  | Danger                                              |
+| `--fri-ring`                                | Focus ring                                          |
+| `--fri-overlay`                             | Overlay scrim behind modals                         |
+| `--fri-link`                                | Link                                                |
+
+The spacing, type, radius, motion, and shadow scales are seeds too — override
+them the same way when a theme needs to reshape more than color.
+
+## Named themes
+
+Scope a full theme to a `data-theme` value and switch it on `<html>` or any
+subtree. Set the theme's own `color-scheme` and every seed it changes:
+
+```css
+[data-theme="brand"] {
+  color-scheme: light;
+  --fri-background: oklch(98% 0 0);
+  --fri-foreground: oklch(20% 0 0);
+  --fri-primary: oklch(55% 0.3 240);
+  --fri-primary-foreground: oklch(98% 0 0);
+  /* set every seed the theme changes — unset seeds keep the light defaults */
+}
+```
+
+```html
+<html data-theme="brand"> ... </html>
+```
+
+A named theme replaces the mode: it carries its own `color-scheme` and seeds, so
+don't combine it with the `.dark` class — the two set the same seeds and compete.
+
 ## Dark mode
 
 Light is the default. Switch to dark with the `data-theme="dark"` attribute or
 the `.dark` class, on `<html>` or any subtree:
 
 ```html
-<html data-theme="dark">
-  ...
-</html>
+<html data-theme="dark"> ... </html>
 ```

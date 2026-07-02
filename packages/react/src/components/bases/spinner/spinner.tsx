@@ -1,7 +1,7 @@
-import { spinnerVariants } from "@friday-sandbox/styles/components/spinner";
-
 import type { ComponentPropsWithRef } from "react";
-import type { SpinnerVariants } from "@friday-sandbox/styles/components/spinner";
+
+import { spinnerVariants } from "./spinner.styles";
+import type { SpinnerVariants } from "./spinner.styles";
 
 export interface SpinnerProps
   extends Omit<ComponentPropsWithRef<"span">, "color">, SpinnerVariants {

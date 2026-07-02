@@ -41,12 +41,6 @@ const meta = {
           "```tsx",
           'import { Button } from "@friday-sandbox/react";',
           "```",
-          "",
-          "## Anatomy",
-          "",
-          "```tsx",
-          "<Button />",
-          "```",
         ].join("\n"),
       },
     },
@@ -74,8 +68,7 @@ const meta = {
       options: COLORS.map((color) => color.value),
       table: {
         type: {
-          summary:
-            "primary | secondary | accent | info | success | warning | danger",
+          summary: "primary | accent | info | success | warning | danger",
         },
         defaultValue: { summary: "primary" },
       },
@@ -212,29 +205,133 @@ export const Variants: Story = {
   ),
 };
 
-export const Colors: Story = {
+export const Primary: Story = {
   parameters: {
     docs: {
-      description: {
-        story: "Use the `color` prop to change the color of the button.",
-      },
+      description: { story: "The `primary` color across every variant." },
     },
   },
   render: (storyArgs) => (
-    <Flex direction="column" gap="md">
+    <Flex wrap="wrap" align="center" gap="md">
       {VARIANTS.map((variant) => (
-        <Flex wrap="wrap" align="center" gap="md" key={variant.value}>
-          {COLORS.map((color) => (
-            <Button
-              key={color.value}
-              {...storyArgs}
-              variant={variant.value}
-              color={color.value}
-            >
-              {color.label}
-            </Button>
-          ))}
-        </Flex>
+        <Button
+          key={variant.value}
+          {...storyArgs}
+          color="primary"
+          variant={variant.value}
+        >
+          {variant.label}
+        </Button>
+      ))}
+    </Flex>
+  ),
+};
+
+export const Accent: Story = {
+  parameters: {
+    docs: {
+      description: { story: "The `accent` color across every variant." },
+    },
+  },
+  render: (storyArgs) => (
+    <Flex wrap="wrap" align="center" gap="md">
+      {VARIANTS.map((variant) => (
+        <Button
+          key={variant.value}
+          {...storyArgs}
+          color="accent"
+          variant={variant.value}
+        >
+          {variant.label}
+        </Button>
+      ))}
+    </Flex>
+  ),
+};
+
+export const Info: Story = {
+  parameters: {
+    docs: {
+      description: { story: "The `info` color across every variant." },
+    },
+  },
+  render: (storyArgs) => (
+    <Flex wrap="wrap" align="center" gap="md">
+      {VARIANTS.map((variant) => (
+        <Button
+          key={variant.value}
+          {...storyArgs}
+          color="info"
+          variant={variant.value}
+        >
+          {variant.label}
+        </Button>
+      ))}
+    </Flex>
+  ),
+};
+
+export const Success: Story = {
+  parameters: {
+    docs: {
+      description: { story: "The `success` color across every variant." },
+    },
+  },
+  render: (storyArgs) => (
+    <Flex wrap="wrap" align="center" gap="md">
+      {VARIANTS.map((variant) => (
+        <Button
+          key={variant.value}
+          {...storyArgs}
+          color="success"
+          variant={variant.value}
+        >
+          {variant.label}
+        </Button>
+      ))}
+    </Flex>
+  ),
+};
+
+export const Warning: Story = {
+  parameters: {
+    docs: {
+      description: { story: "The `warning` color across every variant." },
+    },
+  },
+  render: (storyArgs) => (
+    <Flex wrap="wrap" align="center" gap="md">
+      {VARIANTS.map((variant) => (
+        <Button
+          key={variant.value}
+          {...storyArgs}
+          color="warning"
+          variant={variant.value}
+        >
+          {variant.label}
+        </Button>
+      ))}
+    </Flex>
+  ),
+};
+
+export const Danger: Story = {
+  parameters: {
+    docs: {
+      description: { story: "The `danger` color across every variant." },
+    },
+  },
+  render: (storyArgs) => (
+    <Flex wrap="wrap" align="center" gap="md">
+      {VARIANTS.map((variant) => (
+        <Button
+          key={variant.value}
+          {...storyArgs}
+          color="danger"
+          variant={variant.value}
+        >
+          {variant.label}
+        </Button>
       ))}
     </Flex>
   ),
@@ -335,15 +432,14 @@ export const IconOnly: Story = {
         <FloppyDisk />
       </Button>
 
-      <Button {...storyArgs} color="accent" aria-label="Like" isIconOnly>
+      <Button {...storyArgs} color="danger" aria-label="Settings" isIconOnly>
         <Gear />
       </Button>
 
       <Button
         {...storyArgs}
-        color="secondary"
         variant="outline"
-        aria-label="Settings"
+        aria-label="Account"
         isIconOnly
         isRoundedFull
       >
@@ -374,7 +470,7 @@ export const WithIcon: Story = {
           Delete
         </Button>
 
-        <Button {...storyArgs} color="secondary" variant="ghost">
+        <Button {...storyArgs} color="accent" variant="ghost">
           Reset
           <ArrowsRotateLeft />
         </Button>

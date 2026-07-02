@@ -1,0 +1,358 @@
+@layer components {
+  .fri-grid {
+    @apply grid;
+
+    /* ponytail: --grid-min is a public per-element override (see README), so
+     * the auto-fit/fill template must resolve against the element's own value.
+     * A :root token would bake the default in and ignore the override, so the
+     * minmax()/repeat() stays here on the component. */
+    --grid-min: 16rem;
+  }
+
+  .fri-grid.fri-grid-inline {
+    @apply inline-grid;
+  }
+
+  /* :where() bakes the default at zero specificity; explicit classes override. */
+  :where(.fri-grid),
+  .fri-grid-cols-1 {
+    @apply grid-cols-1;
+  }
+  .fri-grid-cols-2 {
+    @apply grid-cols-2;
+  }
+  .fri-grid-cols-3 {
+    @apply grid-cols-3;
+  }
+  .fri-grid-cols-4 {
+    @apply grid-cols-4;
+  }
+  .fri-grid-cols-5 {
+    @apply grid-cols-5;
+  }
+  .fri-grid-cols-6 {
+    @apply grid-cols-6;
+  }
+  .fri-grid-cols-7 {
+    @apply grid-cols-7;
+  }
+  .fri-grid-cols-8 {
+    @apply grid-cols-8;
+  }
+  .fri-grid-cols-9 {
+    @apply grid-cols-9;
+  }
+  .fri-grid-cols-10 {
+    @apply grid-cols-10;
+  }
+  .fri-grid-cols-11 {
+    @apply grid-cols-11;
+  }
+  .fri-grid-cols-12 {
+    @apply grid-cols-12;
+  }
+  .fri-grid-cols-auto-fit {
+    grid-template-columns: repeat(
+      auto-fit,
+      minmax(min(var(--grid-min), 100%), 1fr)
+    );
+  }
+  .fri-grid-cols-auto-fill {
+    grid-template-columns: repeat(
+      auto-fill,
+      minmax(min(var(--grid-min), 100%), 1fr)
+    );
+  }
+
+  .fri-grid-rows-1 {
+    @apply grid-rows-1;
+  }
+  .fri-grid-rows-2 {
+    @apply grid-rows-2;
+  }
+  .fri-grid-rows-3 {
+    @apply grid-rows-3;
+  }
+  .fri-grid-rows-4 {
+    @apply grid-rows-4;
+  }
+  .fri-grid-rows-5 {
+    @apply grid-rows-5;
+  }
+  .fri-grid-rows-6 {
+    @apply grid-rows-6;
+  }
+
+  .fri-grid-flow-row {
+    @apply grid-flow-row;
+  }
+  .fri-grid-flow-col {
+    @apply grid-flow-col;
+  }
+  .fri-grid-flow-row-dense {
+    @apply grid-flow-row-dense;
+  }
+  .fri-grid-flow-col-dense {
+    @apply grid-flow-col-dense;
+  }
+
+  .fri-grid-auto-rows-auto {
+    @apply auto-rows-auto;
+  }
+  .fri-grid-auto-rows-min {
+    @apply auto-rows-min;
+  }
+  .fri-grid-auto-rows-max {
+    @apply auto-rows-max;
+  }
+  .fri-grid-auto-rows-fr {
+    @apply auto-rows-fr;
+  }
+
+  .fri-grid-auto-cols-auto {
+    @apply auto-cols-auto;
+  }
+  .fri-grid-auto-cols-min {
+    @apply auto-cols-min;
+  }
+  .fri-grid-auto-cols-max {
+    @apply auto-cols-max;
+  }
+  .fri-grid-auto-cols-fr {
+    @apply auto-cols-fr;
+  }
+
+  .fri-grid-gap-xs {
+    @apply gap-xsmall;
+  }
+  .fri-grid-gap-sm {
+    @apply gap-small;
+  }
+  .fri-grid-gap-md {
+    @apply gap-medium;
+  }
+  .fri-grid-gap-lg {
+    @apply gap-large;
+  }
+  .fri-grid-gap-xl {
+    @apply gap-xlarge;
+  }
+
+  .fri-grid-gap-x-xs {
+    @apply gap-x-xsmall;
+  }
+  .fri-grid-gap-x-sm {
+    @apply gap-x-small;
+  }
+  .fri-grid-gap-x-md {
+    @apply gap-x-medium;
+  }
+  .fri-grid-gap-x-lg {
+    @apply gap-x-large;
+  }
+  .fri-grid-gap-x-xl {
+    @apply gap-x-xlarge;
+  }
+
+  .fri-grid-gap-y-xs {
+    @apply gap-y-xsmall;
+  }
+  .fri-grid-gap-y-sm {
+    @apply gap-y-small;
+  }
+  .fri-grid-gap-y-md {
+    @apply gap-y-medium;
+  }
+  .fri-grid-gap-y-lg {
+    @apply gap-y-large;
+  }
+  .fri-grid-gap-y-xl {
+    @apply gap-y-xlarge;
+  }
+
+  .fri-grid-item {
+  }
+
+  .fri-grid-item-col-span-1 {
+    @apply col-span-1;
+  }
+  .fri-grid-item-col-span-2 {
+    @apply col-span-2;
+  }
+  .fri-grid-item-col-span-3 {
+    @apply col-span-3;
+  }
+  .fri-grid-item-col-span-4 {
+    @apply col-span-4;
+  }
+  .fri-grid-item-col-span-5 {
+    @apply col-span-5;
+  }
+  .fri-grid-item-col-span-6 {
+    @apply col-span-6;
+  }
+  .fri-grid-item-col-span-7 {
+    @apply col-span-7;
+  }
+  .fri-grid-item-col-span-8 {
+    @apply col-span-8;
+  }
+  .fri-grid-item-col-span-9 {
+    @apply col-span-9;
+  }
+  .fri-grid-item-col-span-10 {
+    @apply col-span-10;
+  }
+  .fri-grid-item-col-span-11 {
+    @apply col-span-11;
+  }
+  .fri-grid-item-col-span-12 {
+    @apply col-span-12;
+  }
+  .fri-grid-item-col-span-full {
+    @apply col-span-full;
+  }
+
+  .fri-grid-item-row-span-1 {
+    @apply row-span-1;
+  }
+  .fri-grid-item-row-span-2 {
+    @apply row-span-2;
+  }
+  .fri-grid-item-row-span-3 {
+    @apply row-span-3;
+  }
+  .fri-grid-item-row-span-4 {
+    @apply row-span-4;
+  }
+  .fri-grid-item-row-span-5 {
+    @apply row-span-5;
+  }
+  .fri-grid-item-row-span-6 {
+    @apply row-span-6;
+  }
+
+  .fri-grid-item-col-start-1 {
+    @apply col-start-1;
+  }
+  .fri-grid-item-col-start-2 {
+    @apply col-start-2;
+  }
+  .fri-grid-item-col-start-3 {
+    @apply col-start-3;
+  }
+  .fri-grid-item-col-start-4 {
+    @apply col-start-4;
+  }
+  .fri-grid-item-col-start-5 {
+    @apply col-start-5;
+  }
+  .fri-grid-item-col-start-6 {
+    @apply col-start-6;
+  }
+  .fri-grid-item-col-start-7 {
+    @apply col-start-7;
+  }
+  .fri-grid-item-col-start-8 {
+    @apply col-start-8;
+  }
+  .fri-grid-item-col-start-9 {
+    @apply col-start-9;
+  }
+  .fri-grid-item-col-start-10 {
+    @apply col-start-10;
+  }
+  .fri-grid-item-col-start-11 {
+    @apply col-start-11;
+  }
+  .fri-grid-item-col-start-12 {
+    @apply col-start-12;
+  }
+  .fri-grid-item-col-start-13 {
+    @apply col-start-13;
+  }
+
+  .fri-grid-item-col-end-1 {
+    @apply col-end-1;
+  }
+  .fri-grid-item-col-end-2 {
+    @apply col-end-2;
+  }
+  .fri-grid-item-col-end-3 {
+    @apply col-end-3;
+  }
+  .fri-grid-item-col-end-4 {
+    @apply col-end-4;
+  }
+  .fri-grid-item-col-end-5 {
+    @apply col-end-5;
+  }
+  .fri-grid-item-col-end-6 {
+    @apply col-end-6;
+  }
+  .fri-grid-item-col-end-7 {
+    @apply col-end-7;
+  }
+  .fri-grid-item-col-end-8 {
+    @apply col-end-8;
+  }
+  .fri-grid-item-col-end-9 {
+    @apply col-end-9;
+  }
+  .fri-grid-item-col-end-10 {
+    @apply col-end-10;
+  }
+  .fri-grid-item-col-end-11 {
+    @apply col-end-11;
+  }
+  .fri-grid-item-col-end-12 {
+    @apply col-end-12;
+  }
+  .fri-grid-item-col-end-13 {
+    @apply col-end-13;
+  }
+
+  .fri-grid-item-row-start-1 {
+    @apply row-start-1;
+  }
+  .fri-grid-item-row-start-2 {
+    @apply row-start-2;
+  }
+  .fri-grid-item-row-start-3 {
+    @apply row-start-3;
+  }
+  .fri-grid-item-row-start-4 {
+    @apply row-start-4;
+  }
+  .fri-grid-item-row-start-5 {
+    @apply row-start-5;
+  }
+  .fri-grid-item-row-start-6 {
+    @apply row-start-6;
+  }
+  .fri-grid-item-row-start-7 {
+    @apply row-start-7;
+  }
+
+  .fri-grid-item-row-end-1 {
+    @apply row-end-1;
+  }
+  .fri-grid-item-row-end-2 {
+    @apply row-end-2;
+  }
+  .fri-grid-item-row-end-3 {
+    @apply row-end-3;
+  }
+  .fri-grid-item-row-end-4 {
+    @apply row-end-4;
+  }
+  .fri-grid-item-row-end-5 {
+    @apply row-end-5;
+  }
+  .fri-grid-item-row-end-6 {
+    @apply row-end-6;
+  }
+  .fri-grid-item-row-end-7 {
+    @apply row-end-7;
+  }
+}

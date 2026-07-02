@@ -5,23 +5,22 @@ description: {{ pascalCase name }} component.
 
 import { {{ sortedNamedImports "Flex" (pascalCase name) }} } from "@friday-sandbox/react";
 
-## Purpose
+<SourceLinks
+  source="https://github.com/next-friday/friday-sandbox/blob/main/packages/react/src/components/bases/{{ kebabCase name }}/{{ kebabCase name }}.tsx"
+  style="https://github.com/next-friday/friday-sandbox/blob/main/packages/styles/src/components/{{ kebabCase name }}.css"
+  storybook="STORYBOOK_URL"
+  headless="HEADLESS_DOCS_URL"
+/>
 
-Describe what `{{ pascalCase name }}` is for in a line or two.
+{/* Replace STORYBOOK_URL with this component's published Storybook page, and HEADLESS_DOCS_URL with the wrapped library's component docs; drop the `headless` prop when the wrapped part has no standalone page (a plain HTML element). */}
 
-[Source](https://github.com/next-friday/friday-sandbox/blob/main/packages/react/src/components/bases/{{ kebabCase name }}/{{ kebabCase name }}.tsx) · [Style](https://github.com/next-friday/friday-sandbox/blob/main/packages/styles/src/components/bases/{{ kebabCase name }}.css) · [Headless](HEADLESS_DOCS_URL)
+## Import
 
-{/* Replace HEADLESS_DOCS_URL with the wrapped library's component docs; drop the Headless link when the wrapped part has no standalone page (a plain HTML element). */}
+```tsx
+import { {{ pascalCase name }} } from "@friday-sandbox/react";
+```
 
-## When to use
-
-{/* List the cases where `{{ pascalCase name }}` is the right choice. */}
-
-## When not to use
-
-{/* List the cases where another component or element fits better, and name it. */}
-
-## Example
+## Usage
 
 <Tabs items={["Preview", "Code"]}>
   <Tab value="Preview">
@@ -32,33 +31,46 @@ Describe what `{{ pascalCase name }}` is for in a line or two.
 
   <Tab value="Code">
     ```tsx
-    import { {{ pascalCase name }} } from "@friday-sandbox/react";
     <{{ pascalCase name }} />
     ```
   </Tab>
 </Tabs>
 
-{/* Add one Tabs block per feature you expose, each as its own `##` section between Example and Props; mirror the showcase stories in {{ kebabCase name }}.stories.tsx so docs and Storybook stay symmetric. */}
+## Purpose
+
+Describe what `{{ pascalCase name }}` is for in a line or two.
+
+## When to use
+
+{/* List the cases where `{{ pascalCase name }}` is the right choice. */}
+
+## When not to use
+
+{/* List the cases where another component or element fits better, and name it. */}
+
+{/* Add one Tabs block per feature you expose, each as its own `##` section between When not to use and Props; mirror the showcase stories in {{ kebabCase name }}.stories.tsx so docs and Storybook stay symmetric. */}
 
 ## Props
 
 `{{ pascalCase name }}` also accepts the props of the element or primitive it wraps, plus a `className` string.
 
-| Prop        | Type     | Default | Description                      |
-| ----------- | -------- | ------- | -------------------------------- |
-| `className` | `string` | —       | Additional CSS classes to apply. |
+| Prop        | Default | Type                                           |
+| ----------- | ------- | ---------------------------------------------- |
+| `className` | —       | `string`<br />Additional CSS classes to apply. |
 
 ## Styling
 
-`{{ pascalCase name }}` is styled through CSS classes ([source styles](https://github.com/next-friday/friday-sandbox/blob/main/packages/styles/src/components/bases/{{ kebabCase name }}.css)), so the look applies to any element that carries them.
+`{{ pascalCase name }}` is styled through CSS classes, so the look applies to any element that carries them.
 
-### Base class
+### Modifier classes
 
-- `fri-{{ kebabCase name }}` — base `{{ kebabCase name }}` styles.
+| Class | Type | Description |
+| --- | --- | --- |
+| `fri-{{ kebabCase name }}` | Base | Base `{{ kebabCase name }}` styles. |
 
-### State modifier classes
+{/* Add one row per fri-{{ kebabCase name }}-<value> class you define; enumerate each named step (size, color, variant) as its own row, and compact a dense integer sequence into a single range row `| \`fri-{{ kebabCase name }}-<first>\` … \`-<last>\` | <Type> | <first> to <last>. |` (see button.mdx / grid.mdx). */}
 
-{/* List each fri-{{ kebabCase name }}-<modifier> class you define (e.g. fri-{{ kebabCase name }}-disabled), with the state it applies. Remove this section if the component has no modifier classes. */}
+{/* If the component carries React Aria data-state styling, add a `### State selectors` table below with `| Selector | Applies when |` columns, one `[data-*]` row each — mirror the aria template / button.mdx. */}
 
 ## Accessibility
 

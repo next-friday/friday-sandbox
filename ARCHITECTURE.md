@@ -16,10 +16,11 @@ contribution workflow see `CONTRIBUTING.md`; for prose conventions see
 
 `@friday-sandbox/styles` is the **upstream source of truth** — design tokens,
 the Tailwind v4 `@theme` map, shared utilities, and one CSS file per component
-holding its visual rules. `@friday-sandbox/react` is a **downstream consumer**:
-accessible React components that _use_ what `styles` defines, never redefining
-tokens or theme. Build `styles` correct first; `react`, and any future package,
-consumes it. `react` depends on `styles` as a peer dependency.
+holding its visual rules. It ships **CSS only**, no JavaScript.
+`@friday-sandbox/react` is a **downstream consumer**: accessible React
+components that _use_ what `styles` defines, never redefining tokens or theme.
+Build `styles` correct first; `react`, and any future package, consumes it.
+`react` depends on `styles` as a peer dependency — for its CSS, not its JS.
 
 A component that needs a token which does not exist yet adds that token
 **upstream in `styles` first** — by hand-authoring it in the theme CSS — then
@@ -27,50 +28,88 @@ consumes it downstream. Reuse an existing token before inventing one.
 
 ## The class-name contract
 
-`styles` owns the full visual contract. Each component's `tv()` variant map
-(`src/components/<name>/<name>.styles.ts`) maps its props to a stable
-`fri-<name>` class plus `fri-<name>-<value>` modifier classes, and the CSS rules
-for those classes live in that component's file under `@layer components`. The
-variant map and the CSS are **linked by the class name** — both inside `styles`,
-mirrored 1:1, and a lint gate fails on an orphan class on either side.
+The visual contract is split across the two packages and linked **by the class
+name**. `styles` owns the CSS half: each component's file
+(`src/components/<name>.css`) defines the `fri-<name>` class plus
+`fri-<name>-<value>` modifier classes under `@layer components`. `react` owns
+the JS half: each component's `tv()` variant map (`<name>.styles.ts`,
+co-located with `<name>.tsx` in `packages/react/src/components/bases/<name>/`)
+maps its props to that same set of class names. The two halves are mirrored
+1:1 across the package boundary — a deterministic gate fails on an orphan
+class on either side.
 
-`react` **imports** the variant map from `@friday-sandbox/styles/components/<name>`
-and wraps it in an accessible component; it declares no classes of its own.
-Because the contract is a plain class string, the same look applies to a
-hand-written element, not only the React component.
+`react` wraps its own variant map in an accessible component; it declares no
+CSS of its own. Because the CSS half of the contract is a plain, framework-
+agnostic class name, the same look applies to a hand-written element that
+reproduces the class names by hand, not only the React component.
 
-## The token system is hand-authored CSS
+## The token system is a four-layer pipeline
 
-The theme is **hand-authored CSS variables, declared explicitly per mode**. The
-base roles (brand, status, ground), the surfaces, and the emphasis tiers are
-flat `oklch` (or alpha) values set in the light and dark blocks of
-`themes/default/variables.css`; only the per-role interaction ladder (hover,
-pressed, soft, surface, border, and tint rungs) derives from the roles through
-runtime `color-mix`. There is no spec, no codegen, and no generated file — edit
-the theme CSS directly.
+The theme is **hand-authored CSS variables** organised into four layers, each
+with one job. A value lives in one place by its nature — a **static constant**
+in `tokens.css`, a **derivation** in `variables.css` — and `theme.css` bridges
+both to Tailwind. The pipeline never redefines a Tailwind theme variable, save
+the `--font-sans`/`--font-mono` exception.
 
-Components consume spacing and size through the **semantic Tailwind alias** the
-theme exposes — `gap-sm`, `p-md`, `bg-primary` — which resolve to the `--fri-*`
-tokens because `themes/shared/theme.css` maps them into `@theme`. Never a raw
-numeric (`gap-2`), and never a bare `gap-(--fri-*)` var form when an alias exists.
+1. **`src/themes/default/tokens.css` — static.** Base, constant `--fri-*` values
+   with **no `calc()` or `var()`**: the ground, brand/status roles, ring,
+   overlay, the spacing / type / motion / radius / shadow scales, the radius
+   archetypes (`--fri-action/field/box-radius`, set directly) and geometry
+   archetype sizes, and the interaction mix ratios. Declared per mode in the
+   light/dark blocks; a custom theme edits only this file.
+2. **`src/themes/default/variables.css` — computed + semantic.** Everything derived
+   from the static tokens through runtime `color-mix()`/`var()`: the surfaces,
+   emphasis tiers, content tones, line tiers, the slot foregrounds, and the
+   per-role interaction ladder (hover, pressed, soft, surface, border, tint) —
+   the accent role itself is a seed in `tokens.css`, only its ladder is derived
+   here. No constant lives here — derivations only.
+3. **`src/tailwind/theme.css` — the Tailwind bridge.** One `@theme inline`
+   block maps `--fri-*` onto Tailwind theme variables (`--color-*`,
+   `--spacing-*`, `--radius-action/…`, `--shadow-surface/…`, `--text-*`) so they
+   emit semantic utilities (`bg-primary`, `gap-small`, `rounded-action`,
+   `shadow-surface`). It **adds new names only** — Tailwind's own defaults
+   (`--radius-sm`, `--ease-*`, `--shadow-sm/md/lg`, bare `--spacing`) stay native
+   so a consumer can still use them — save the `--font-sans`/`--font-mono`
+   exception.
+4. **`src/components/<name>.css` — consume + component-local calc.**
+   Components apply the semantic utilities and add only the arithmetic unique to
+   that component, driven by a local ramp multiplier (`--_<name>-n`).
 
-The `@theme` map (`themes/shared/theme.css`) sits alongside the token values and
-is kept in sync with them by hand; the typography type scale lives in the same
-`variables.css`.
-A11y contrast is the author's responsibility — verify text/surface pairs against
-the APCA/WCAG floor when changing a color.
+**Worked example — radius.** `tokens.css` holds two static sets: the generic
+scale (`--fri-radius-xs … xl`; for a `radius` prop or a consumer's own
+`rounded-(--fri-radius-md)`) and the per-component archetypes
+(`--fri-action-radius`, `--fri-box-radius`) a consumer sets directly.
+`theme.css` maps the archetypes to `rounded-action/field/box`; `button.css`
+scales its archetype per size:
+
+```css
+--button-radius: calc(var(--fri-action-radius) * var(--_button-n) / 10);
+```
+
+Radius is fully static, so it never touches `variables.css`.
+
+Components consume spacing and size through the **semantic Tailwind alias** —
+`gap-small`, `p-medium`, `bg-primary` — never a raw numeric (`gap-2`) or a bare
+`gap-(--fri-*)` var form when an alias exists. There is no spec, no codegen, no
+generated file — edit the CSS directly. A11y contrast is the author's
+responsibility — verify text/surface pairs against the APCA/WCAG floor when
+changing a color.
 
 ## Codemap
 
 - **`styles`** — the upstream source and shared core: hand-authored token CSS,
   the Tailwind layers (`@layer theme, base, components, utilities`, imported in
-  that order), the `themes/`, `utilities/`, and `variants/` layers, one CSS file
-  per component, and each component's `tv()` variant map (shipped as JS).
+  that order), the `themes/` token seeds, the `tailwind/` `@theme` bridge, the
+  `layers/` base/utilities/variants files, and one CSS file per component. Ships
+  CSS only, no JavaScript.
 - **`react`** — accessible components built on `react-aria-components` (when
-  interactive) or native HTML (display and layout), each importing its variant
-  map from `@friday-sandbox/styles/components/<name>` and styled only through
-  `fri-<name>` classes. `bases/` holds real published components; `samples/`
-  holds Storybook-only demos; `icons/` and `utils/` as named.
+  interactive) or native HTML (display and layout), each owning its own `tv()`
+  variant map (`<name>.styles.ts`, co-located with `<name>.tsx`) and styled
+  only through `fri-<name>` classes. `bases/` holds real published components;
+  `samples/` holds demo fixtures (`Boxes`, `Lorem`, …) that stories and the docs
+  previews use for placeholder content — exposed to the workspace via the
+  `@friday-sandbox/react/samples` subpath and stripped from the published package;
+  `icons/` and `utils/` as named.
 - **`eslint-config`, `typescript-config`** — dev-only shared presets, extended
   rather than copied by the other packages.
 - **`docs`** — the lone app, a Next.js + Fumadocs site that consumes `react`
@@ -82,8 +121,8 @@ Components are **generated, not hand-rolled.** One generator command scaffolds
 the symmetric file set across both packages — the React surfaces, the styles
 CSS, the docs page, and a changeset — and wires every export barrel. The build
 is then an issue-driven lifecycle (design, implement, review) carried by the
-`component-*` skills. The export chain runs `src/index` → `components/index` →
-`bases/index` → the component's own `index`.
+`component-*` skills. The export chain runs `src/index` → `components/bases/index`
+→ the component's own `index`.
 
 ## Tests are stories
 

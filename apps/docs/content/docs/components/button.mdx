@@ -5,13 +5,40 @@ description: A button for triggering actions, built on React Aria Button.
 
 import { Button, Flex } from "@friday-sandbox/react";
 
+<SourceLinks
+  source="https://github.com/next-friday/friday-sandbox/blob/main/packages/react/src/components/bases/button/button.tsx"
+  style="https://github.com/next-friday/friday-sandbox/blob/main/packages/styles/src/components/button.css"
+  storybook="https://6a3fa7f0eb37cf8c0aaa146f-arscokrphb.chromatic.com/?path=/docs/bases-actions-button--docs"
+  headless="https://react-spectrum.adobe.com/react-aria/Button.html"
+/>
+
+## Import
+
+```tsx
+import { Button } from "@friday-sandbox/react";
+```
+
+## Usage
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <Flex align="end" gap="md" className="px-4 py-6">
+      <Button>Button</Button>
+    </Flex>
+  </Tab>
+
+  <Tab value="Code">
+    ```tsx
+    <Button>Button</Button>
+    ```
+  </Tab>
+</Tabs>
+
 ## Purpose
 
 The `Button` triggers a single action on the current view, such as saving or
 submitting. It wraps React Aria `Button`, so it is keyboard accessible and
 exposes press behavior through `onPress`.
-
-[Source](https://github.com/next-friday/friday-sandbox/blob/main/packages/react/src/components/bases/button/button.tsx) · [Style](https://github.com/next-friday/friday-sandbox/blob/main/packages/styles/components/button.css) · [Headless](https://react-spectrum.adobe.com/react-aria/Button.html)
 
 ## When to use
 
@@ -23,32 +50,14 @@ exposes press behavior through `onPress`.
 
 - To navigate to another page or view — use a link instead.
 
-## Example
-
-<Tabs items={["Preview", "Code"]}>
-  <Tab value="Preview">
-    <Flex align="end" gap="md" className="px-4 py-6">
-      <Button>Save changes</Button>
-    </Flex>
-  </Tab>
-
-  <Tab value="Code">
-    ```tsx
-    import { Button } from "@friday-sandbox/react";
-    <Button>Save changes</Button>
-    ```
-  </Tab>
-</Tabs>
-
 ## Colors
 
-Seven semantic colors are available through the `color` prop.
+Six semantic colors are available through the `color` prop.
 
 <Tabs items={["Preview", "Code"]}>
   <Tab value="Preview">
     <Flex align="end" gap="md" className="px-4 py-6">
       <Button color="primary">Primary</Button>
-      <Button color="secondary">Secondary</Button>
       <Button color="accent">Accent</Button>
       <Button color="info">Info</Button>
       <Button color="success">Success</Button>
@@ -60,7 +69,6 @@ Seven semantic colors are available through the `color` prop.
   <Tab value="Code">
     ```tsx
     <Button color="primary">Primary</Button>
-    <Button color="secondary">Secondary</Button>
     <Button color="accent">Accent</Button>
     <Button color="info">Info</Button>
     <Button color="success">Success</Button>
@@ -150,45 +158,57 @@ actions.
 `Button` also accepts every prop from React Aria `Button`, such as `onPress`,
 `isDisabled`, `isPending`, and `type`, plus a `className` string.
 
-| Prop            | Type                                                                                   | Default     | Description                                              |
-| --------------- | -------------------------------------------------------------------------------------- | ----------- | ------------------------------------------------------- |
-| `color`         | `"primary" \| "secondary" \| "accent" \| "info" \| "success" \| "warning" \| "danger"` | `"primary"` | Sets the semantic color role.                           |
-| `variant`       | `"solid" \| "subtle" \| "surface" \| "outline" \| "ghost" \| "plain"`                  | `"solid"`   | Sets the visual emphasis.                               |
-| `size`          | `"xs" \| "sm" \| "md" \| "lg" \| "xl"`                                                 | `"md"`      | Sets the button size.                                   |
-| `isIconOnly`    | `boolean`                                                                              | `false`     | Renders a square icon-only button; pair with `aria-label`. |
-| `isFullWidth`   | `boolean`                                                                              | `false`     | Stretches the button to the container width.            |
-| `isRoundedFull` | `boolean`                                                                              | `false`     | Uses a fully rounded pill shape.                        |
-| `className`     | `string`                                                                               | —           | Additional CSS classes to apply.                        |
+| Prop            | Default     | Type                                                                     |
+| --------------- | ----------- | ----------------------------------------------------------------------- |
+| `color`         | `"primary"` | `"primary" \| "accent" \| "info" \| "success" \| "warning" \| "danger"`<br />Sets the semantic color role. |
+| `variant`       | `"solid"`   | `"solid" \| "subtle" \| "surface" \| "outline" \| "ghost" \| "plain"`<br />Sets the visual emphasis. |
+| `size`          | `"md"`      | `"xs" \| "sm" \| "md" \| "lg" \| "xl"`<br />Sets the button size. |
+| `isIconOnly`    | `false`     | `boolean`<br />Renders a square icon-only button. Pair it with `aria-label`. |
+| `isFullWidth`   | `false`     | `boolean`<br />Stretches the button to the container width. |
+| `isRoundedFull` | `false`     | `boolean`<br />Uses a fully rounded pill shape. |
+| `className`     | —           | `string`<br />Additional CSS classes to apply. |
 
 ## Styling
 
-`Button` is styled through CSS classes ([source styles](https://github.com/next-friday/friday-sandbox/blob/main/packages/styles/components/button.css)), so the look applies to any element that carries them.
+`Button` is styled through CSS classes, so the look applies to any element that carries them.
 
-### Base class
+### Modifier classes
 
-- `fri-button` — base button styles with the primary color, solid variant, and medium-size defaults.
-
-### Color modifier classes
-
-- `fri-button-primary` · `fri-button-secondary` · `fri-button-accent` · `fri-button-info` · `fri-button-success` · `fri-button-warning` · `fri-button-danger`
-
-### Variant modifier classes
-
-- `fri-button-solid` · `fri-button-subtle` · `fri-button-surface` · `fri-button-outline` · `fri-button-ghost` · `fri-button-plain`
-
-### Size modifier classes
-
-- `fri-button-xs` · `fri-button-sm` · `fri-button-md` · `fri-button-lg` · `fri-button-xl`
-
-### Shape and width modifier classes
-
-- `fri-button-icon-only` — square, icon-only footprint.
-- `fri-button-full-width` — stretches to the container width.
-- `fri-button-rounded-full` — fully rounded pill shape.
+| Class                     | Type     | Description                                          |
+| ------------------------- | -------- | --------------------------------------------------- |
+| `fri-button`              | Base     | Base styles: primary color, solid variant, md size. |
+| `fri-button-primary`      | Color    | Primary color role.                                 |
+| `fri-button-accent`       | Color    | Accent color role.                                  |
+| `fri-button-info`         | Color    | Info color role.                                    |
+| `fri-button-success`      | Color    | Success color role.                                 |
+| `fri-button-warning`      | Color    | Warning color role.                                 |
+| `fri-button-danger`       | Color    | Danger color role.                                  |
+| `fri-button-solid`        | Variant  | Solid variant.                                      |
+| `fri-button-subtle`       | Variant  | Subtle variant.                                     |
+| `fri-button-surface`      | Variant  | Surface variant.                                    |
+| `fri-button-outline`      | Variant  | Outline variant.                                    |
+| `fri-button-ghost`        | Variant  | Ghost variant.                                      |
+| `fri-button-plain`        | Variant  | Plain variant.                                      |
+| `fri-button-xs`           | Size     | Extra small size.                                   |
+| `fri-button-sm`           | Size     | Small size.                                         |
+| `fri-button-md`           | Size     | Medium size (default).                              |
+| `fri-button-lg`           | Size     | Large size.                                         |
+| `fri-button-xl`           | Size     | Extra large size.                                   |
+| `fri-button-icon-only`    | Modifier | Square, icon-only footprint.                        |
+| `fri-button-full-width`   | Modifier | Full-width button.                                  |
+| `fri-button-rounded-full` | Modifier | Fully rounded pill shape.                           |
 
 ### State selectors
 
-State styling responds to React Aria data attributes: `[data-hovered]`, `[data-pressed]`, `[data-disabled]`, `[data-focus-visible]`, and `[data-pending]`.
+State styling responds to these React Aria data attributes:
+
+| Selector               | Applies when                              |
+| ---------------------- | ----------------------------------------- |
+| `[data-hovered]`       | A pointer is over the button.             |
+| `[data-pressed]`       | The button is being pressed or activated. |
+| `[data-focus-visible]` | The button is focused by keyboard.        |
+| `[data-disabled]`      | The button is disabled.                   |
+| `[data-pending]`       | The button is in a pending state.         |
 
 ## Accessibility
 

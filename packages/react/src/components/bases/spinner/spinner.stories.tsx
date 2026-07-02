@@ -21,12 +21,6 @@ const meta = {
           "```tsx",
           'import { Spinner } from "@friday-sandbox/react";',
           "```",
-          "",
-          "## Anatomy",
-          "",
-          "```tsx",
-          "<Spinner />",
-          "```",
         ].join("\n"),
       },
     },
@@ -42,8 +36,7 @@ const meta = {
       options: COLORS.map((color) => color.value),
       table: {
         type: {
-          summary:
-            "primary | secondary | accent | info | success | warning | danger",
+          summary: "primary | accent | info | success | warning | danger",
         },
         defaultValue: { summary: "primary" },
       },
@@ -89,7 +82,6 @@ export const Colors: Story = {
   render: (storyArgs) => (
     <Flex wrap="wrap" align="center" gap="md">
       <Spinner {...storyArgs} color="primary" />
-      <Spinner {...storyArgs} color="secondary" />
       <Spinner {...storyArgs} color="accent" />
       <Spinner {...storyArgs} color="info" />
       <Spinner {...storyArgs} color="success" />
@@ -127,5 +119,5 @@ export const CustomStyles: Story = {
       },
     },
   },
-  render: () => <Spinner className="size-16 text-orange-500" />,
+  render: () => <Spinner className="size-16 text-red-500" />,
 };
