@@ -1,0 +1,38 @@
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-border, currentColor);
+  }
+
+  html {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    scrollbar-width: var(--fri-scroll-width);
+    scrollbar-color: var(--color-scroll-thumb) var(--color-scroll-track);
+  }
+
+  /* Native scrollbar modes — set data-scrollbar on the root or any subtree */
+  [data-scrollbar="default"] {
+    scrollbar-width: auto;
+    scrollbar-color: auto;
+  }
+  [data-scrollbar="none"] {
+    scrollbar-width: none;
+  }
+  [data-scrollbar="thin"] {
+    scrollbar-width: var(--fri-scroll-width);
+    scrollbar-color: var(--color-scroll-thumb) var(--color-scroll-track);
+  }
+
+  ::selection {
+    background-color: color-mix(
+      in oklab,
+      var(--color-primary) 30%,
+      transparent
+    );
+  }
+}

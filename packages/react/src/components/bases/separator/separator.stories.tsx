@@ -25,12 +25,6 @@ const meta = {
           "```tsx",
           'import { Separator } from "@friday-sandbox/react";',
           "```",
-          "",
-          "## Anatomy",
-          "",
-          "```tsx",
-          "<Separator />",
-          "```",
         ].join("\n"),
       },
     },
@@ -102,5 +96,7 @@ export const CustomStyles: Story = {
       },
     },
   },
-  render: () => <Separator className="h-1 bg-primary" />,
+  render: () => (
+    <Separator className="h-1 bg-linear-to-r from-pink-500 to-red-500" />
+  ),
 };

@@ -26,8 +26,13 @@ const fixFile = (filePath: string): void => {
   if (hasChange) fs.writeFileSync(filePath, css);
 };
 
-if (fs.existsSync(componentsDirectory)) {
-  for (const file of fs.readdirSync(componentsDirectory)) {
-    if (file.endsWith(".css")) fixFile(path.join(componentsDirectory, file));
+// Component CSS is co-located under dist/components/<name>/<name>.css, so walk recursively.
+const walk = (directory: string): void => {
+  for (const entry of fs.readdirSync(directory, { withFileTypes: true })) {
+    const entryPath = path.join(directory, entry.name);
+    if (entry.isDirectory()) walk(entryPath);
+    else if (entry.name.endsWith(".css")) fixFile(entryPath);
   }
-}
+};
+
+if (fs.existsSync(componentsDirectory)) walk(componentsDirectory);

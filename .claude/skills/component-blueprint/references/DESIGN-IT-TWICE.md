@@ -4,7 +4,7 @@ Your first idea is rarely the best. For a non-trivial component — a new prop o
 
 ## API axis — parallel sub-agents
 
-Fix the constraints first (which primitive, which states, controlled vs uncontrolled, compound parts), then dispatch 2–3 sub-agents, each designing a deliberately different interface. They return designs only — no file edits.
+Fix the constraints first (which primitive, which states, controlled vs uncontrolled, compound parts), then dispatch 2–3 sub-agents in a **single message** (on **opus** — design divergence is judgment), each designing a deliberately different interface. They return designs only — no file edits.
 
 - **Minimal surface** — 1–3 props, lean on `tailwind-variants` defaults.
 - **Maximal composability** — compound parts plus render-props / `as`.

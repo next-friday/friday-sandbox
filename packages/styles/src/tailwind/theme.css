@@ -1,0 +1,267 @@
+/* Tailwind v4 `@theme` map — exposes the `--fri-*` color, spacing, radius,
+   shadow, and type-scale tokens as semantic utilities (bg-primary, gap-small,
+   rounded-small, shadow-surface, text-body-medium). Token scale suffixes are
+   spelled in full (small/medium/large, 2xlarge…) so they never collide with
+   Tailwind's abbreviated defaults, which stay native: `rounded-sm/md/lg`,
+   `shadow-sm/md/lg`, `ease-*`, bare `--spacing`. The one deliberate override is
+   `--font-sans`/`--font-mono` (the theme's font is a first-class knob).
+   Hand-authored; keep in sync with ../default/tokens.css and
+   ../default/variables.css. */
+@theme inline {
+  --color-background: var(--fri-background);
+  --color-foreground: var(--fri-foreground);
+  --color-neutral: var(--fri-neutral);
+  --color-ring: var(--fri-ring);
+  --color-link: var(--fri-link);
+  --color-overlay: var(--fri-overlay);
+  --color-border: var(--fri-border);
+  --color-border-strong: var(--fri-border-strong);
+  --color-border-subtle: var(--fri-border-subtle);
+  --color-separator: var(--fri-border-subtle);
+  --color-scroll-thumb: var(--fri-scroll-thumb);
+  --color-scroll-thumb-hover: var(--fri-scroll-thumb-hover);
+  --color-scroll-track: var(--fri-scroll-track);
+  --color-foreground-body: var(--fri-foreground-body);
+  --color-foreground-muted: var(--fri-foreground-muted);
+  --color-primary-content: var(--fri-primary-content);
+  --color-accent-content: var(--fri-accent-content);
+  --color-info-content: var(--fri-info-content);
+  --color-success-content: var(--fri-success-content);
+  --color-warning-content: var(--fri-warning-content);
+  --color-danger-content: var(--fri-danger-content);
+  --color-primary: var(--fri-primary);
+  --color-primary-foreground: var(--fri-primary-foreground);
+  --color-primary-hover: var(--fri-primary-hover);
+  --color-primary-pressed: var(--fri-primary-pressed);
+  --color-primary-soft: var(--fri-primary-soft);
+  --color-primary-soft-hover: var(--fri-primary-soft-hover);
+  --color-primary-soft-pressed: var(--fri-primary-soft-pressed);
+  --color-primary-surface: var(--fri-primary-surface);
+  --color-primary-surface-hover: var(--fri-primary-surface-hover);
+  --color-primary-surface-pressed: var(--fri-primary-surface-pressed);
+  --color-primary-border: var(--fri-primary-border);
+  --color-primary-outline-border: var(--fri-primary-outline-border);
+  --color-primary-tint-hover: var(--fri-primary-tint-hover);
+  --color-primary-tint-pressed: var(--fri-primary-tint-pressed);
+  --color-accent: var(--fri-accent);
+  --color-accent-foreground: var(--fri-accent-foreground);
+  --color-accent-hover: var(--fri-accent-hover);
+  --color-accent-pressed: var(--fri-accent-pressed);
+  --color-accent-soft: var(--fri-accent-soft);
+  --color-accent-soft-hover: var(--fri-accent-soft-hover);
+  --color-accent-soft-pressed: var(--fri-accent-soft-pressed);
+  --color-accent-surface: var(--fri-accent-surface);
+  --color-accent-surface-hover: var(--fri-accent-surface-hover);
+  --color-accent-surface-pressed: var(--fri-accent-surface-pressed);
+  --color-accent-border: var(--fri-accent-border);
+  --color-accent-outline-border: var(--fri-accent-outline-border);
+  --color-accent-tint-hover: var(--fri-accent-tint-hover);
+  --color-accent-tint-pressed: var(--fri-accent-tint-pressed);
+  --color-info: var(--fri-info);
+  --color-info-foreground: var(--fri-info-foreground);
+  --color-info-hover: var(--fri-info-hover);
+  --color-info-pressed: var(--fri-info-pressed);
+  --color-info-soft: var(--fri-info-soft);
+  --color-info-soft-hover: var(--fri-info-soft-hover);
+  --color-info-soft-pressed: var(--fri-info-soft-pressed);
+  --color-info-surface: var(--fri-info-surface);
+  --color-info-surface-hover: var(--fri-info-surface-hover);
+  --color-info-surface-pressed: var(--fri-info-surface-pressed);
+  --color-info-border: var(--fri-info-border);
+  --color-info-outline-border: var(--fri-info-outline-border);
+  --color-info-tint-hover: var(--fri-info-tint-hover);
+  --color-info-tint-pressed: var(--fri-info-tint-pressed);
+  --color-success: var(--fri-success);
+  --color-success-foreground: var(--fri-success-foreground);
+  --color-success-hover: var(--fri-success-hover);
+  --color-success-pressed: var(--fri-success-pressed);
+  --color-success-soft: var(--fri-success-soft);
+  --color-success-soft-hover: var(--fri-success-soft-hover);
+  --color-success-soft-pressed: var(--fri-success-soft-pressed);
+  --color-success-surface: var(--fri-success-surface);
+  --color-success-surface-hover: var(--fri-success-surface-hover);
+  --color-success-surface-pressed: var(--fri-success-surface-pressed);
+  --color-success-border: var(--fri-success-border);
+  --color-success-outline-border: var(--fri-success-outline-border);
+  --color-success-tint-hover: var(--fri-success-tint-hover);
+  --color-success-tint-pressed: var(--fri-success-tint-pressed);
+  --color-warning: var(--fri-warning);
+  --color-warning-foreground: var(--fri-warning-foreground);
+  --color-warning-hover: var(--fri-warning-hover);
+  --color-warning-pressed: var(--fri-warning-pressed);
+  --color-warning-soft: var(--fri-warning-soft);
+  --color-warning-soft-hover: var(--fri-warning-soft-hover);
+  --color-warning-soft-pressed: var(--fri-warning-soft-pressed);
+  --color-warning-surface: var(--fri-warning-surface);
+  --color-warning-surface-hover: var(--fri-warning-surface-hover);
+  --color-warning-surface-pressed: var(--fri-warning-surface-pressed);
+  --color-warning-border: var(--fri-warning-border);
+  --color-warning-outline-border: var(--fri-warning-outline-border);
+  --color-warning-tint-hover: var(--fri-warning-tint-hover);
+  --color-warning-tint-pressed: var(--fri-warning-tint-pressed);
+  --color-danger: var(--fri-danger);
+  --color-danger-foreground: var(--fri-danger-foreground);
+  --color-danger-hover: var(--fri-danger-hover);
+  --color-danger-pressed: var(--fri-danger-pressed);
+  --color-danger-soft: var(--fri-danger-soft);
+  --color-danger-soft-hover: var(--fri-danger-soft-hover);
+  --color-danger-soft-pressed: var(--fri-danger-soft-pressed);
+  --color-danger-surface: var(--fri-danger-surface);
+  --color-danger-surface-hover: var(--fri-danger-surface-hover);
+  --color-danger-surface-pressed: var(--fri-danger-surface-pressed);
+  --color-danger-border: var(--fri-danger-border);
+  --color-danger-outline-border: var(--fri-danger-outline-border);
+  --color-danger-tint-hover: var(--fri-danger-tint-hover);
+  --color-danger-tint-pressed: var(--fri-danger-tint-pressed);
+  --color-card: var(--fri-card);
+  --color-card-foreground: var(--fri-card-foreground);
+  --color-popover: var(--fri-popover);
+  --color-popover-foreground: var(--fri-popover-foreground);
+  --color-field: var(--fri-field);
+  --color-field-foreground: var(--fri-field-foreground);
+  --color-muted: var(--fri-muted);
+  --color-muted-foreground: var(--fri-muted-foreground);
+  --color-muted-strong: var(--fri-muted-strong);
+  --color-muted-strong-foreground: var(--fri-muted-strong-foreground);
+  --color-inverse: var(--fri-inverse);
+  --color-inverse-foreground: var(--fri-inverse-foreground);
+  --color-field-border-color: var(--fri-field-border-color);
+  --color-field-placeholder: var(--fri-field-placeholder);
+  --spacing-xxsmall: var(--fri-spacing-xxsmall);
+  --spacing-xsmall: var(--fri-spacing-xsmall);
+  --spacing-small: var(--fri-spacing-small);
+  --spacing-medium: var(--fri-spacing-medium);
+  --spacing-large: var(--fri-spacing-large);
+  --spacing-xlarge: var(--fri-spacing-xlarge);
+  --spacing-2xlarge: var(--fri-spacing-2xlarge);
+  --spacing-3xlarge: var(--fri-spacing-3xlarge);
+  --spacing-4xlarge: var(--fri-spacing-4xlarge);
+  --font-sans: var(--fri-font-family-sans);
+  --font-mono: var(--fri-font-family-mono);
+  --radius-action: var(--fri-action-radius);
+  --radius-field: var(--fri-field-radius);
+  --radius-box: var(--fri-box-radius);
+  --radius-xsmall: var(--fri-radius-xsmall);
+  --radius-small: var(--fri-radius-small);
+  --radius-medium: var(--fri-radius-medium);
+  --radius-large: var(--fri-radius-large);
+  --radius-xlarge: var(--fri-radius-xlarge);
+  --shadow-surface: var(--fri-shadow-surface);
+  --shadow-overlay: var(--fri-shadow-overlay);
+  --text-display-2xlarge: var(--fri-display-2xlarge);
+  --text-display-2xlarge--line-height: var(--fri-display-2xlarge-line-height);
+  --text-display-2xlarge--font-weight: var(--fri-display-2xlarge-font-weight);
+  --text-display-2xlarge--letter-spacing: var(
+    --fri-display-2xlarge-letter-spacing
+  );
+  --text-display-xlarge: var(--fri-display-xlarge);
+  --text-display-xlarge--line-height: var(--fri-display-xlarge-line-height);
+  --text-display-xlarge--font-weight: var(--fri-display-xlarge-font-weight);
+  --text-display-xlarge--letter-spacing: var(
+    --fri-display-xlarge-letter-spacing
+  );
+  --text-display-large: var(--fri-display-large);
+  --text-display-large--line-height: var(--fri-display-large-line-height);
+  --text-display-large--font-weight: var(--fri-display-large-font-weight);
+  --text-display-large--letter-spacing: var(--fri-display-large-letter-spacing);
+  --text-display-medium: var(--fri-display-medium);
+  --text-display-medium--line-height: var(--fri-display-medium-line-height);
+  --text-display-medium--font-weight: var(--fri-display-medium-font-weight);
+  --text-display-medium--letter-spacing: var(
+    --fri-display-medium-letter-spacing
+  );
+  --text-display-small: var(--fri-display-small);
+  --text-display-small--line-height: var(--fri-display-small-line-height);
+  --text-display-small--font-weight: var(--fri-display-small-font-weight);
+  --text-display-small--letter-spacing: var(--fri-display-small-letter-spacing);
+  --text-body-large: var(--fri-body-large);
+  --text-body-large--line-height: var(--fri-body-large-line-height);
+  --text-body-large--font-weight: var(--fri-body-large-font-weight);
+  --text-body-large--letter-spacing: var(--fri-body-large-letter-spacing);
+  --text-body-large-strong: var(--fri-body-large-strong);
+  --text-body-large-strong--line-height: var(
+    --fri-body-large-strong-line-height
+  );
+  --text-body-large-strong--font-weight: var(
+    --fri-body-large-strong-font-weight
+  );
+  --text-body-large-strong--letter-spacing: var(
+    --fri-body-large-strong-letter-spacing
+  );
+  --text-body-medium: var(--fri-body-medium);
+  --text-body-medium--line-height: var(--fri-body-medium-line-height);
+  --text-body-medium--font-weight: var(--fri-body-medium-font-weight);
+  --text-body-medium--letter-spacing: var(--fri-body-medium-letter-spacing);
+  --text-body-medium-strong: var(--fri-body-medium-strong);
+  --text-body-medium-strong--line-height: var(
+    --fri-body-medium-strong-line-height
+  );
+  --text-body-medium-strong--font-weight: var(
+    --fri-body-medium-strong-font-weight
+  );
+  --text-body-medium-strong--letter-spacing: var(
+    --fri-body-medium-strong-letter-spacing
+  );
+  --text-body-small: var(--fri-body-small);
+  --text-body-small--line-height: var(--fri-body-small-line-height);
+  --text-body-small--font-weight: var(--fri-body-small-font-weight);
+  --text-body-small--letter-spacing: var(--fri-body-small-letter-spacing);
+  --text-body-small-strong: var(--fri-body-small-strong);
+  --text-body-small-strong--line-height: var(
+    --fri-body-small-strong-line-height
+  );
+  --text-body-small-strong--font-weight: var(
+    --fri-body-small-strong-font-weight
+  );
+  --text-body-small-strong--letter-spacing: var(
+    --fri-body-small-strong-letter-spacing
+  );
+  --text-body-xsmall: var(--fri-body-xsmall);
+  --text-body-xsmall--line-height: var(--fri-body-xsmall-line-height);
+  --text-body-xsmall--font-weight: var(--fri-body-xsmall-font-weight);
+  --text-body-xsmall--letter-spacing: var(--fri-body-xsmall-letter-spacing);
+  --text-body-xsmall-strong: var(--fri-body-xsmall-strong);
+  --text-body-xsmall-strong--line-height: var(
+    --fri-body-xsmall-strong-line-height
+  );
+  --text-body-xsmall-strong--font-weight: var(
+    --fri-body-xsmall-strong-font-weight
+  );
+  --text-body-xsmall-strong--letter-spacing: var(
+    --fri-body-xsmall-strong-letter-spacing
+  );
+  --text-label-xlarge: var(--fri-label-xlarge);
+  --text-label-xlarge--line-height: var(--fri-label-xlarge-line-height);
+  --text-label-xlarge--font-weight: var(--fri-label-xlarge-font-weight);
+  --text-label-xlarge--letter-spacing: var(--fri-label-xlarge-letter-spacing);
+  --text-label-large: var(--fri-label-large);
+  --text-label-large--line-height: var(--fri-label-large-line-height);
+  --text-label-large--font-weight: var(--fri-label-large-font-weight);
+  --text-label-large--letter-spacing: var(--fri-label-large-letter-spacing);
+  --text-label-medium: var(--fri-label-medium);
+  --text-label-medium--line-height: var(--fri-label-medium-line-height);
+  --text-label-medium--font-weight: var(--fri-label-medium-font-weight);
+  --text-label-medium--letter-spacing: var(--fri-label-medium-letter-spacing);
+  --text-label-small: var(--fri-label-small);
+  --text-label-small--line-height: var(--fri-label-small-line-height);
+  --text-label-small--font-weight: var(--fri-label-small-font-weight);
+  --text-label-small--letter-spacing: var(--fri-label-small-letter-spacing);
+  --text-label-xsmall: var(--fri-label-xsmall);
+  --text-label-xsmall--line-height: var(--fri-label-xsmall-line-height);
+  --text-label-xsmall--font-weight: var(--fri-label-xsmall-font-weight);
+  --text-label-xsmall--letter-spacing: var(--fri-label-xsmall-letter-spacing);
+  --text-caption: var(--fri-caption);
+  --text-caption--line-height: var(--fri-caption-line-height);
+  --text-caption--font-weight: var(--fri-caption-font-weight);
+  --text-caption--letter-spacing: var(--fri-caption-letter-spacing);
+  --text-caption-strong: var(--fri-caption-strong);
+  --text-caption-strong--line-height: var(--fri-caption-strong-line-height);
+  --text-caption-strong--font-weight: var(--fri-caption-strong-font-weight);
+  --text-caption-strong--letter-spacing: var(
+    --fri-caption-strong-letter-spacing
+  );
+  --text-code: var(--fri-code);
+  --text-code--line-height: var(--fri-code-line-height);
+  --text-code--font-weight: var(--fri-code-font-weight);
+  --text-code--letter-spacing: var(--fri-code-letter-spacing);
+}

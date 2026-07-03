@@ -9,7 +9,7 @@ const rootDirectory = path.resolve(
 const distributionDirectory = path.join(rootDirectory, "dist");
 
 const copyCssDirectory = (directoryName: string): void => {
-  const sourceDirectory = path.join(rootDirectory, directoryName);
+  const sourceDirectory = path.join(rootDirectory, "src", directoryName);
   if (!fs.existsSync(sourceDirectory)) return;
   for (const file of fs.readdirSync(sourceDirectory)) {
     const sourcePath = path.join(sourceDirectory, file);
@@ -28,12 +28,6 @@ const copyCssDirectory = (directoryName: string): void => {
 };
 
 fs.mkdirSync(distributionDirectory, { recursive: true });
-for (const directory of [
-  "base",
-  "components",
-  "themes",
-  "utilities",
-  "variants",
-]) {
+for (const directory of ["components", "layers", "tailwind", "themes"]) {
   copyCssDirectory(directory);
 }

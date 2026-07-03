@@ -1,0 +1,89 @@
+@layer components {
+  .fri-text {
+    @apply m-0;
+  }
+
+  .fri-text-inherit {
+    font: inherit;
+    letter-spacing: inherit;
+  }
+
+  .fri-text-display-xxl {
+    @apply text-display-2xlarge;
+  }
+  .fri-text-display-xl {
+    @apply text-display-xlarge;
+  }
+  .fri-text-display-lg {
+    @apply text-display-large;
+  }
+  .fri-text-display-md {
+    @apply text-display-medium;
+  }
+  .fri-text-display-sm {
+    @apply text-display-small;
+  }
+
+  .fri-text-body-lg {
+    @apply text-body-large;
+  }
+  .fri-text-body-lg-strong {
+    @apply text-body-large-strong;
+  }
+  .fri-text-body-md {
+    @apply text-body-medium;
+  }
+  .fri-text-body-md-strong {
+    @apply text-body-medium-strong;
+  }
+  .fri-text-body-sm {
+    @apply text-body-small;
+  }
+  .fri-text-body-sm-strong {
+    @apply text-body-small-strong;
+  }
+  .fri-text-body-xs {
+    @apply text-body-xsmall;
+  }
+  .fri-text-body-xs-strong {
+    @apply text-body-xsmall-strong;
+  }
+
+  .fri-text-label-lg {
+    @apply text-label-large;
+  }
+  .fri-text-label-md {
+    @apply text-label-medium;
+  }
+  .fri-text-label-sm {
+    @apply text-label-small;
+  }
+
+  .fri-text-caption {
+    @apply text-caption;
+  }
+  .fri-text-caption-strong {
+    @apply text-caption-strong;
+  }
+
+  .fri-text-code {
+    @apply font-mono text-code;
+  }
+
+  /* Color — text-emphasis tone; default inherits the parent color */
+  .fri-text-ink {
+    @apply text-foreground;
+  }
+  .fri-text-body {
+    @apply text-foreground-body;
+  }
+  .fri-text-muted {
+    @apply text-foreground-muted;
+  }
+  .fri-text-danger {
+    @apply text-danger;
+  }
+  .fri-text-link {
+    @apply text-link;
+  }
+}

@@ -1,0 +1,55 @@
+@layer components {
+  .fri-scroll-area {
+    /* Thickness from a component-local ramp multiplier × the public spacing scale. */
+    --scroll-area-thickness: calc(
+      var(--fri-spacing-xsmall) * var(--_scroll-area-n)
+    );
+    @apply relative overflow-hidden;
+  }
+
+  /* :where() bakes the md default at zero specificity; explicit classes override. */
+  :where(.fri-scroll-area) {
+    --_scroll-area-n: 2.5;
+  }
+  .fri-scroll-area-xs {
+    --_scroll-area-n: 1.5;
+  }
+  .fri-scroll-area-sm {
+    --_scroll-area-n: 2;
+  }
+  .fri-scroll-area-md {
+    --_scroll-area-n: 2.5;
+  }
+  .fri-scroll-area-lg {
+    --_scroll-area-n: 3;
+  }
+
+  .fri-scroll-area-viewport {
+    @apply h-full w-full rounded-[inherit];
+  }
+
+  .fri-scroll-area-scrollbar {
+    @apply flex touch-none bg-scroll-track p-(length:--fri-border-width) select-none;
+  }
+  .fri-scroll-area-scrollbar[data-orientation="vertical"] {
+    @apply w-(--scroll-area-thickness);
+  }
+  .fri-scroll-area-scrollbar[data-orientation="horizontal"] {
+    @apply h-(--scroll-area-thickness) flex-col;
+  }
+
+  .fri-scroll-area-thumb {
+    @apply relative flex-1 rounded-full bg-scroll-thumb transition-base transition-colors;
+  }
+  .fri-scroll-area-thumb:hover {
+    @apply bg-scroll-thumb-hover;
+  }
+
+  .fri-scroll-area-corner {
+    @apply bg-transparent;
+  }
+
+  .fri-scroll-area-hide-scrollbar .fri-scroll-area-scrollbar {
+    @apply hidden;
+  }
+}

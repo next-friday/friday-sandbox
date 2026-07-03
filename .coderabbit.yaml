@@ -32,9 +32,9 @@ reviews:
       instructions: >-
         Base components are scaffolded with "pnpm gen component" (turbo gen), never
         hand-created, and live in components/bases/<name>/ as <name>.tsx +
-        index.ts + <name>.stories.tsx; each imports its tv() variant map from
-        @friday-sandbox/styles/components/<name> and is linked to the styles CSS by a
-        fri-<name> class. Priorities, highest first: accessibility, correctness, API ergonomics,
+        <name>.styles.ts (its own tv() variant map) + index.ts +
+        <name>.stories.tsx; the variant map is linked to @friday-sandbox/styles'
+        CSS by a fri-<name> class, mirrored across the package boundary. Priorities, highest first: accessibility, correctness, API ergonomics,
         then style. Key checks: lowercase filename, named export with colocated Props,
         no default export; "use client" only when a client API — or a react-aria or
         radix client primitive — is touched, never on a pure layout or text component;
@@ -53,7 +53,9 @@ reviews:
       instructions: >-
         Stories ARE the tests (Vitest browser mode via @storybook/addon-vitest +
         Playwright chromium). Key checks: a showcase story per variant axis (Variants,
-        Colors, Sizes, laid out with Flex) and per state, real props not mocked data,
+        Colors, Sizes, laid out with Flex/Grid — never a raw div, and pull placeholder
+        content from the samples subpath (@friday-sandbox/react/samples: Boxes, Lorem))
+        and per state, real props not mocked data,
         addon-a11y passes; play functions assert behavior only where it fits — an
         interactive base gets Default (userEvent.tab -> toHaveFocus), a display or layout base (text, flex,
         grid, separator, spinner) skips the userEvent interaction plays, so never ask one for an
@@ -84,19 +86,20 @@ reviews:
         unless a framework difference justifies otherwise.
     - path: packages/styles/src/**/*.css
       instructions: >-
-        A component's rules live in components/<name>.css under @layer
-        components, keyed
-        to the fri-<name> class, and must mirror its
-        src/components/<name>/<name>.styles.ts variant map 1:1 — every
-        fri-<name>-<value> class has a rule and vice versa (the lint:symmetry gate
-        enforces it); flag an orphan either side. Respect the @layer system; no
+        A component's rules live in src/components/<name>.css under
+        @layer components, keyed to the fri-<name> class, and must mirror its
+        tv() variant map (<name>.styles.ts, in @friday-sandbox/react) 1:1 —
+        every fri-<name>-<value> class has a rule and vice versa (the
+        lint:symmetry gate enforces it, across the package boundary); flag an
+        orphan either side. Respect the @layer system; no
         hardcoded colors outside the token layer; no global selectors that bypass
         layers; wire colors through the --fri-<role> ladder and geometry through a
         component-local ramp multiplier (--_<name>-n) with the md default at zero
         specificity via :where(.fri-<name>); canonical Tailwind alias for a var
         mapped in @theme inline (bg-primary, not bg-(--fri-primary)). Size tokens
         scoped to action, field, or box, never a literal component name; corner
-        radius is Tailwind native (rounded-*), not a token; the
+        radius derives from an archetype token (--fri-action/field/box-radius)
+        scaled by the component size ramp, applied as rounded-(--<name>-radius); the
         themes/ CSS is hand-authored token values (keep the @theme map in
         sync with the token names). A token
         rename carries a migration note in the changeset.
@@ -133,7 +136,11 @@ reviews:
         marketing adjective, an off-vocabulary synonym, a switch of narrator or
         voice within one document, or maintainer-internal detail in a consumer
         page. Component docs under apps/docs/content/docs/components carry the
-        sections Purpose, When to use, When not to use, Example, Accessibility.
+        sections Import, Usage, Purpose, When to use, When not to use, feature
+        sections, Props, Styling, Accessibility, after a SourceLinks header.
+        Demos dogfood the design system — Text for text and headings, Button for
+        buttons, Lorem for placeholder copy, Flex/Grid for layout; never a raw
+        div/span/p/button (lint:symmetry enforces it).
 chat:
   auto_reply: true
 knowledge_base:

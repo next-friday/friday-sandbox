@@ -1,13 +1,13 @@
-export { Button } from "./components";
-export type { ButtonProps } from "./components";
+export { Button } from "./components/bases";
+export type { ButtonProps } from "./components/bases";
 
-export { Flex } from "./components";
-export type { FlexProps } from "./components";
+export { Flex } from "./components/bases";
+export type { FlexProps } from "./components/bases";
 
-export { Grid, GridItem } from "./components";
-export type { GridItemProps, GridProps } from "./components";
+export { Grid, GridItem } from "./components/bases";
+export type { GridItemProps, GridProps } from "./components/bases";
 
-export { ScrollArea } from "./components";
+export { ScrollArea } from "./components/bases";
 export type {
   ScrollAreaCornerProps,
   ScrollAreaRootProps,
@@ -15,13 +15,13 @@ export type {
   ScrollAreaThumbProps,
   ScrollAreaVariant,
   ScrollAreaViewportProps,
-} from "./components";
+} from "./components/bases";
 
-export { Separator } from "./components";
-export type { SeparatorProps } from "./components";
+export { Separator } from "./components/bases";
+export type { SeparatorProps } from "./components/bases";
 
-export { Spinner } from "./components";
-export type { SpinnerProps } from "./components";
+export { Spinner } from "./components/bases";
+export type { SpinnerProps } from "./components/bases";
 
-export { Text } from "./components";
-export type { TextProps } from "./components";
+export { Text } from "./components/bases";
+export type { TextProps } from "./components/bases";

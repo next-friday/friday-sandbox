@@ -34,6 +34,11 @@
       "import": "./src/index.ts",
       "default": "./src/index.ts"
     },
+    "./samples": {
+      "types": "./src/components/samples/index.ts",
+      "import": "./src/components/samples/index.ts",
+      "default": "./src/components/samples/index.ts"
+    },
     "./package.json": "./package.json"
   },
   "main": "./dist/index.mjs",
@@ -48,6 +53,7 @@
     "build": "tsdown",
     "build:storybook": "storybook build --quiet",
     "chromatic": "chromatic --build-script-name=build:storybook --exit-zero-on-changes",
+    "clean": "rm -rf dist .turbo storybook-static build-storybook.log debug-storybook.log",
     "dev:storybook": "storybook dev -p 6006",
     "lint": "eslint . --max-warnings 0",
     "prepack": "clean-package",
@@ -60,12 +66,12 @@
     "@gravity-ui/icons": "^2.18.0",
     "clsx": "^2.1.1",
     "radix-ui": "^1.6.0",
-    "react-aria-components": "^1.18.0"
+    "react-aria-components": "^1.18.0",
+    "tailwind-variants": "^3.2.2"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^5.2.1",
     "@friday-sandbox/eslint-config": "workspace:*",
-    "@friday-sandbox/styles": "workspace:*",
     "@friday-sandbox/typescript-config": "workspace:*",
     "@storybook/addon-a11y": "^10.4.6",
     "@storybook/addon-docs": "^10.4.6",

@@ -1,0 +1,152 @@
+@layer components {
+  .fri-flex {
+    @apply flex;
+  }
+
+  .fri-flex.fri-flex-inline {
+    @apply inline-flex;
+  }
+
+  .fri-flex-row {
+    @apply flex-row;
+  }
+  .fri-flex-column {
+    @apply flex-col;
+  }
+  .fri-flex-row-reverse {
+    @apply flex-row-reverse;
+  }
+  .fri-flex-column-reverse {
+    @apply flex-col-reverse;
+  }
+
+  .fri-flex-align-start {
+    @apply items-start;
+  }
+  .fri-flex-align-center {
+    @apply items-center;
+  }
+  .fri-flex-align-end {
+    @apply items-end;
+  }
+  .fri-flex-align-stretch {
+    @apply items-stretch;
+  }
+  .fri-flex-align-baseline {
+    @apply items-baseline;
+  }
+
+  .fri-flex-justify-start {
+    @apply justify-start;
+  }
+  .fri-flex-justify-center {
+    @apply justify-center;
+  }
+  .fri-flex-justify-end {
+    @apply justify-end;
+  }
+  .fri-flex-justify-between {
+    @apply justify-between;
+  }
+  .fri-flex-justify-around {
+    @apply justify-around;
+  }
+  .fri-flex-justify-evenly {
+    @apply justify-evenly;
+  }
+
+  .fri-flex-nowrap {
+    @apply flex-nowrap;
+  }
+  .fri-flex-wrap {
+    @apply flex-wrap;
+  }
+  .fri-flex-wrap-reverse {
+    @apply flex-wrap-reverse;
+  }
+
+  .fri-flex-gap-xs {
+    @apply gap-xsmall;
+  }
+  .fri-flex-gap-sm {
+    @apply gap-small;
+  }
+  .fri-flex-gap-md {
+    @apply gap-medium;
+  }
+  .fri-flex-gap-lg {
+    @apply gap-large;
+  }
+  .fri-flex-gap-xl {
+    @apply gap-xlarge;
+  }
+
+  .fri-flex-gap-x-xs {
+    @apply gap-x-xsmall;
+  }
+  .fri-flex-gap-x-sm {
+    @apply gap-x-small;
+  }
+  .fri-flex-gap-x-md {
+    @apply gap-x-medium;
+  }
+  .fri-flex-gap-x-lg {
+    @apply gap-x-large;
+  }
+  .fri-flex-gap-x-xl {
+    @apply gap-x-xlarge;
+  }
+
+  .fri-flex-gap-y-xs {
+    @apply gap-y-xsmall;
+  }
+  .fri-flex-gap-y-sm {
+    @apply gap-y-small;
+  }
+  .fri-flex-gap-y-md {
+    @apply gap-y-medium;
+  }
+  .fri-flex-gap-y-lg {
+    @apply gap-y-large;
+  }
+  .fri-flex-gap-y-xl {
+    @apply gap-y-xlarge;
+  }
+
+  .fri-flex-grow {
+    @apply grow;
+  }
+  .fri-flex-grow-0 {
+    @apply grow-0;
+  }
+
+  .fri-flex-shrink {
+    @apply shrink;
+  }
+  .fri-flex-shrink-0 {
+    @apply shrink-0;
+  }
+
+  .fri-flex-basis-auto {
+    @apply basis-auto;
+  }
+  .fri-flex-basis-full {
+    @apply basis-full;
+  }
+  .fri-flex-basis-0 {
+    @apply basis-0;
+  }
+
+  .fri-flex-1 {
+    @apply flex-1;
+  }
+  .fri-flex-auto {
+    @apply flex-auto;
+  }
+  .fri-flex-initial {
+    @apply flex-initial;
+  }
+  .fri-flex-none {
+    @apply flex-none;
+  }
+}

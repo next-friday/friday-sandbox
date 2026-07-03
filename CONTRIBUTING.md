@@ -35,14 +35,14 @@ pnpm dev          # Storybook for @friday-sandbox/react on http://localhost:6006
 
 Common scripts, all run from the repository root:
 
-```sh
-pnpm dev          # start Storybook in watch mode
-pnpm build        # build every package
-pnpm lint         # ESLint (zero warnings allowed)
-pnpm typecheck    # TypeScript, no emit
-pnpm test         # run the test suites
-pnpm changeset    # record a release note (see below)
-```
+| Command          | Does                                              |
+| ---------------- | ------------------------------------------------- |
+| `pnpm dev`       | start Storybook in watch mode                     |
+| `pnpm build`     | build every package                               |
+| `pnpm lint`      | ESLint (zero warnings allowed)                    |
+| `pnpm typecheck` | TypeScript, no emit                               |
+| `pnpm test`      | run the test suites                               |
+| `pnpm changeset` | record a release note ([Changesets](#changesets)) |
 
 ## Workflow
 
@@ -62,7 +62,7 @@ Scaffold a base component instead of hand-creating its files:
 pnpm gen component   # prompts for the name, the primitive kind (native or aria), and the Storybook category
 ```
 
-The generator (Turborepo `turbo gen`, defined in `turbo/generators/`) creates `<name>.tsx`, `index.ts`, and `<name>.stories.tsx` under `packages/react/src/components/bases/<name>/`, adds the `<name>.styles.ts` variant map and its `index.ts` barrel under `@friday-sandbox/styles/src/components/<name>/`, adds the `<name>.css` stub in `@friday-sandbox/styles` with its `@import`, creates the `<name>.mdx` docs page and its nav entry, wires the export barrels, and writes a changeset. Choose the `aria` primitive for an interactive component (it scaffolds the size, state, and story skeleton), or `native` for a minimal display element. Then fill in the variants, the `@apply` rules, the stories, and the docs. `pnpm lint:symmetry` verifies that `<name>.styles.ts` and `<name>.css` stay a 1:1 mirror. Don't hand-create or hand-wire these files. To have Claude run this scaffolding step and everything after it from a plain-language goal instead, see [Building a component with Claude](#building-a-component-with-claude).
+The generator (Turborepo `turbo gen`, defined in `turbo/generators/`) creates `<name>.tsx`, `<name>.styles.ts` (the `tv()` variant map), `index.ts`, and `<name>.stories.tsx` under `packages/react/src/components/bases/<name>/`, adds the `<name>.css` stub under `@friday-sandbox/styles/src/components/` (as `<name>.css`) with its `@import`, creates the `<name>.mdx` docs page and its nav entry, wires the export barrels, and writes a changeset. Choose the `aria` primitive for an interactive component (it scaffolds the size, state, and story skeleton), or `native` for a minimal display element. Then fill in the variants, the `@apply` rules, the stories, and the docs. `pnpm lint:symmetry` verifies that `<name>.styles.ts` (in `react`) and `<name>.css` (in `styles`) stay a 1:1 mirror across the package boundary. Don't hand-create or hand-wire these files. To have Claude run this scaffolding step and everything after it from a plain-language goal instead, see [Building a component with Claude](#building-a-component-with-claude).
 
 If the component needs a design token that does not exist yet, add it upstream in `@friday-sandbox/styles` first — by hand-authoring it in the theme CSS — then consume it downstream; `react` never defines its own tokens. The styles-is-upstream split, the `fri-<name>` class contract, and the token flow are in [`ARCHITECTURE.md`](ARCHITECTURE.md).
 
@@ -110,10 +110,12 @@ The gates and the human merge exist for a reason: generated code is shipped, not
 
 Commits and pull request titles follow [Conventional Commits](https://www.conventionalcommits.org): `type(scope): subject`.
 
-- **type:** one of `build`, `chore`, `ci`, `docs`, `feat`, `fix`, `perf`, `refactor`, `revert`, `setup`, `style`, `test`.
-- **scope:** required and lowercase, naming the package or area you touched.
-- **subject:** lowercase, imperative, **50 characters max**.
-- Commit messages carry **no body and no footer**. The description belongs in the pull request.
+| Part            | Rule                                                                                                         |
+| --------------- | ------------------------------------------------------------------------------------------------------------ |
+| `type`          | one of `build`, `chore`, `ci`, `docs`, `feat`, `fix`, `perf`, `refactor`, `revert`, `setup`, `style`, `test` |
+| `scope`         | required and lowercase, naming the package or area you touched                                               |
+| `subject`       | lowercase, imperative, **50 characters max**                                                                 |
+| body and footer | none — the description belongs in the pull request                                                           |
 
 Put issue references such as `Closes #<n>` in the pull request body, never the title. Merges are squashed, and the pull request number is appended to the title automatically.
 
@@ -137,20 +139,20 @@ Pick the affected packages and a semver bump of patch, minor, or major, then wri
 
 A pull request must be green before it can merge. These run automatically through the pre-commit and pre-push hooks, and again in CI:
 
-```sh
-pnpm format:check             # Prettier
-pnpm sort:check               # package.json key order
-pnpm lint                     # ESLint, zero warnings
-pnpm lint:symmetry            # variants <-> css mirror
-pnpm lint:md                  # markdownlint
-pnpm knip                     # unused files, deps, and exports
-pnpm depcruise                # dependency rules
-pnpm typecheck                # TypeScript
-pnpm build                    # build all packages
-pnpm build:storybook          # Storybook build
-pnpm test                     # test suites
-pnpm audit --audit-level high # dependency vulnerabilities
-```
+| Gate                            | Checks                                                    |
+| ------------------------------- | --------------------------------------------------------- |
+| `pnpm format:check`             | Prettier                                                  |
+| `pnpm sort:check`               | `package.json` key order                                  |
+| `pnpm lint`                     | ESLint, zero warnings                                     |
+| `pnpm lint:symmetry`            | component symmetry + token resolution (no dangling `var`) |
+| `pnpm lint:md`                  | markdownlint                                              |
+| `pnpm knip`                     | unused files, deps, and exports                           |
+| `pnpm depcruise`                | dependency rules                                          |
+| `pnpm typecheck`                | TypeScript                                                |
+| `pnpm build`                    | build all packages                                        |
+| `pnpm build:storybook`          | Storybook build                                           |
+| `pnpm test`                     | test suites                                               |
+| `pnpm audit --audit-level high` | dependency vulnerabilities                                |
 
 The full suite is slow. While iterating, let the hooks check what you touched instead of running everything by hand.
 

@@ -1,0 +1,253 @@
+/* Layer 1 — static tokens. Constant `--fri-*` values, no calc()/var(): ground,
+   brand/status roles, ring, overlay, the spacing/type/motion/radius/shadow
+   scales, geometry archetype sizes, and interaction mix ratios. Declared per
+   mode in the light/dark blocks; a custom theme edits only this file.
+   Derivations live in variables.css — see ARCHITECTURE.md → token pipeline. */
+@layer theme {
+  :root,
+  .light,
+  [data-theme="light"] {
+    color-scheme: light;
+
+    /* Ground */
+    --fri-background: oklch(100% 0 0);
+    --fri-foreground: oklch(0% 0 0);
+    --fri-neutral: #8e8e93;
+
+    /* Brand and status roles (background-independent fills) */
+    --fri-primary: oklch(0% 0 0);
+    --fri-primary-foreground: oklch(100% 0 0);
+    --fri-accent: #0a84ff;
+    --fri-accent-foreground: oklch(100% 0 0);
+    --fri-info: #32ade6;
+    --fri-info-foreground: oklch(100% 0 0);
+    --fri-success: #34c759;
+    --fri-success-foreground: oklch(100% 0 0);
+    --fri-warning: #ff9500;
+    --fri-warning-foreground: oklch(100% 0 0);
+    --fri-danger: #ff2d55;
+    --fri-danger-foreground: oklch(100% 0 0);
+
+    /* Focus ring — explicit a11y focus colour */
+    --fri-ring: #007aff;
+
+    /* Overlay scrim */
+    --fri-overlay: oklch(0% 0 0 / 0.5);
+
+    /* Link — independent colour, tied to no role */
+    --fri-link: #007aff;
+
+    /* Spacing scale */
+    --fri-spacing-xxsmall: 0.125rem;
+    --fri-spacing-xsmall: 0.25rem;
+    --fri-spacing-small: 0.5rem;
+    --fri-spacing-medium: 0.75rem;
+    --fri-spacing-large: 1rem;
+    --fri-spacing-xlarge: 1.5rem;
+    --fri-spacing-2xlarge: 2rem;
+    --fri-spacing-3xlarge: 3rem;
+    --fri-spacing-4xlarge: 4rem;
+
+    /* Type — the theme's font is a first-class knob; overrides Tailwind --font-* */
+    --fri-font-family-sans:
+      ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
+      "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    --fri-font-family-mono:
+      ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+      "Courier New", monospace;
+
+    /* Type scale */
+    --fri-display-2xlarge: 3.25rem;
+    --fri-display-2xlarge-line-height: 4rem;
+    --fri-display-2xlarge-font-weight: 700;
+    --fri-display-2xlarge-letter-spacing: -0.03em;
+    --fri-display-xlarge: 2.25rem;
+    --fri-display-xlarge-line-height: 2.75rem;
+    --fri-display-xlarge-font-weight: 700;
+    --fri-display-xlarge-letter-spacing: -0.025em;
+    --fri-display-large: 2rem;
+    --fri-display-large-line-height: 2.5rem;
+    --fri-display-large-font-weight: 700;
+    --fri-display-large-letter-spacing: -0.02em;
+    --fri-display-medium: 1.5rem;
+    --fri-display-medium-line-height: 2rem;
+    --fri-display-medium-font-weight: 700;
+    --fri-display-medium-letter-spacing: -0.015em;
+    --fri-display-small: 1.25rem;
+    --fri-display-small-line-height: 1.75rem;
+    --fri-display-small-font-weight: 700;
+    --fri-display-small-letter-spacing: -0.01em;
+    --fri-body-large: 1.125rem;
+    --fri-body-large-line-height: 1.75rem;
+    --fri-body-large-font-weight: 400;
+    --fri-body-large-letter-spacing: 0;
+    --fri-body-large-strong: 1.125rem;
+    --fri-body-large-strong-line-height: 1.75rem;
+    --fri-body-large-strong-font-weight: 500;
+    --fri-body-large-strong-letter-spacing: 0;
+    --fri-body-medium: 1rem;
+    --fri-body-medium-line-height: 1.5rem;
+    --fri-body-medium-font-weight: 400;
+    --fri-body-medium-letter-spacing: 0;
+    --fri-body-medium-strong: 1rem;
+    --fri-body-medium-strong-line-height: 1.5rem;
+    --fri-body-medium-strong-font-weight: 500;
+    --fri-body-medium-strong-letter-spacing: 0;
+    --fri-body-small: 0.875rem;
+    --fri-body-small-line-height: 1.25rem;
+    --fri-body-small-font-weight: 400;
+    --fri-body-small-letter-spacing: 0;
+    --fri-body-small-strong: 0.875rem;
+    --fri-body-small-strong-line-height: 1.25rem;
+    --fri-body-small-strong-font-weight: 500;
+    --fri-body-small-strong-letter-spacing: 0;
+    --fri-body-xsmall: 0.8125rem;
+    --fri-body-xsmall-line-height: 1.125rem;
+    --fri-body-xsmall-font-weight: 400;
+    --fri-body-xsmall-letter-spacing: 0;
+    --fri-body-xsmall-strong: 0.8125rem;
+    --fri-body-xsmall-strong-line-height: 1.125rem;
+    --fri-body-xsmall-strong-font-weight: 500;
+    --fri-body-xsmall-strong-letter-spacing: 0;
+    --fri-label-xlarge: 1.125rem;
+    --fri-label-xlarge-line-height: 1.5rem;
+    --fri-label-xlarge-font-weight: 600;
+    --fri-label-xlarge-letter-spacing: -0.005em;
+    --fri-label-large: 1rem;
+    --fri-label-large-line-height: 1.5rem;
+    --fri-label-large-font-weight: 600;
+    --fri-label-large-letter-spacing: 0;
+    --fri-label-medium: 0.875rem;
+    --fri-label-medium-line-height: 1.25rem;
+    --fri-label-medium-font-weight: 600;
+    --fri-label-medium-letter-spacing: 0;
+    --fri-label-small: 0.8125rem;
+    --fri-label-small-line-height: 1rem;
+    --fri-label-small-font-weight: 600;
+    --fri-label-small-letter-spacing: 0;
+    --fri-label-xsmall: 0.75rem;
+    --fri-label-xsmall-line-height: 1rem;
+    --fri-label-xsmall-font-weight: 600;
+    --fri-label-xsmall-letter-spacing: 0.005em;
+    --fri-caption: 0.75rem;
+    --fri-caption-line-height: 1rem;
+    --fri-caption-font-weight: 400;
+    --fri-caption-letter-spacing: 0.01em;
+    --fri-caption-strong: 0.75rem;
+    --fri-caption-strong-line-height: 1rem;
+    --fri-caption-strong-font-weight: 500;
+    --fri-caption-strong-letter-spacing: 0.01em;
+    --fri-code: 0.875rem;
+    --fri-code-line-height: 1.25rem;
+    --fri-code-font-weight: 400;
+    --fri-code-letter-spacing: 0;
+
+    /* Motion */
+    --fri-duration-fast: 100ms;
+    --fri-duration-base: 200ms;
+    --fri-duration-slow: 300ms;
+
+    /* Stacking */
+    --fri-z-base: 0;
+    --fri-z-dropdown: 1000;
+    --fri-z-sticky: 1100;
+    --fri-z-modal: 1300;
+    --fri-z-toast: 1400;
+
+    /* Global scalars */
+    --fri-border-width: 1px;
+    --fri-font-size-base: 16px;
+    --fri-disabled-opacity: 0.5;
+    --fri-ring-width: 2px;
+    --fri-ring-offset-width: 1px;
+    --fri-cursor-interactive: pointer;
+    --fri-cursor-disabled: not-allowed;
+    --fri-scroll-width: thin;
+
+    /* Border radius — per archetype, consumer-set (component defaults) */
+    --fri-action-radius: 0.5rem; /* button, badge — 8px */
+    --fri-field-radius: 0.5rem; /* input — 8px */
+    --fri-box-radius: 0.875rem; /* card, surface — 14px */
+
+    /* Border radius scale — generic; the `radius` prop + consumer layouts.
+       none + full use Tailwind native rounded-none / rounded-full. */
+    --fri-radius-xsmall: 0.25rem; /* 4px */
+    --fri-radius-small: 0.5rem; /* 8px */
+    --fri-radius-medium: 0.875rem; /* 14px */
+    --fri-radius-large: 1.25rem; /* 20px */
+    --fri-radius-xlarge: 2rem; /* 32px */
+
+    /* Geometry archetype sizes — role-led default block-axis dimension */
+    --fri-action-size: 2.5rem; /* button, badge */
+    --fri-field-size: 2.5rem; /* input */
+    --fri-box-size: 4rem; /* card, surface */
+    --fri-feedback-size: 1.5rem; /* spinner, badge dot */
+
+    /* Interaction mix ratios — derivation config for the variables.css ladder */
+    --fri-mix-hover: 14%;
+    --fri-mix-pressed: 24%;
+    --fri-mix-soft: 12%;
+    --fri-mix-soft-hover: 20%;
+    --fri-mix-soft-pressed: 28%;
+    --fri-mix-surface: 8%;
+    --fri-mix-surface-hover: 14%;
+    --fri-mix-surface-pressed: 20%;
+    --fri-mix-border: 40%;
+    --fri-mix-outline-border: 50%;
+    --fri-mix-tint-hover: 8%;
+    --fri-mix-tint-pressed: 16%;
+    --fri-mix-muted: 5%;
+    --fri-mix-muted-strong: 10%;
+    --fri-mix-foreground-body: 60%;
+    --fri-mix-foreground-muted: 40%;
+
+    /* Elevation shadow — per surface kind, consumer-set */
+    --fri-shadow-surface:
+      0 2px 4px 0 rgb(0 0 0 / 0.04), 0 1px 2px 0 rgb(0 0 0 / 0.06); /* cards, panels */
+    --fri-shadow-overlay:
+      0 4px 12px 0 rgb(0 0 0 / 0.08), 0 2px 4px 0 rgb(0 0 0 / 0.06); /* popovers, modals, dropdowns */
+  }
+
+  .dark,
+  [data-theme="dark"] {
+    color-scheme: dark;
+
+    /* Ground */
+    --fri-background: oklch(0% 0 0);
+    --fri-foreground: oklch(100% 0 0);
+    --fri-neutral: #8e8e93;
+
+    /* Brand and status roles (background-independent fills) */
+    --fri-primary: oklch(100% 0 0);
+    --fri-primary-foreground: oklch(0% 0 0);
+    --fri-accent: #0a84ff;
+    --fri-accent-foreground: oklch(100% 0 0);
+    --fri-info: #64d2ff;
+    --fri-info-foreground: oklch(100% 0 0);
+    --fri-success: #30d158;
+    --fri-success-foreground: oklch(100% 0 0);
+    --fri-warning: #ff9f0a;
+    --fri-warning-foreground: #000;
+    --fri-danger: #ff375f;
+    --fri-danger-foreground: oklch(100% 0 0);
+
+    /* Focus ring — explicit a11y focus colour */
+    --fri-ring: #0088ff;
+
+    /* Overlay scrim */
+    --fri-overlay: oklch(0% 0 0);
+
+    /* Link — independent colour, tied to no role */
+    --fri-link: #0099ff;
+
+    /* Neutral surfaces and text tiers lift on the dark ground to stay legible */
+    --fri-mix-muted: 14%;
+    --fri-mix-muted-strong: 24%;
+    --fri-mix-foreground-body: 78%;
+    --fri-mix-foreground-muted: 64%;
+
+    /* Elevation shadow — muted on the dark ground */
+    --fri-shadow-surface: none;
+    --fri-shadow-overlay: none;
+  }
+}

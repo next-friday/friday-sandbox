@@ -1,34 +1,43 @@
 @layer components {
   .fri-{{ kebabCase name }} {
-    --{{ kebabCase name }}-h: calc(var(--fri-spacing-xs) * var(--_{{ kebabCase name }}-n));
-    --{{ kebabCase name }}-px: calc(var(--{{ kebabCase name }}-h) / 2 - var(--fri-spacing-xs));
+    --{{ kebabCase name }}-h: calc(
+      var(--fri-spacing-xsmall) * var(--_{{ kebabCase name }}-n)
+    );
+    --{{ kebabCase name }}-px: calc(
+      var(--{{ kebabCase name }}-h) / 2 - var(--fri-spacing-xsmall)
+    );
 
-    @apply relative inline-flex h-(--{{ kebabCase name }}-h) w-fit shrink-0 cursor-pointer items-center justify-center gap-sm rounded-sm border-(length:--fri-border-width) border-solid border-transparent bg-primary px-(--{{ kebabCase name }}-px) whitespace-nowrap text-primary-foreground transition-base outline-none select-none;
+    @apply relative inline-flex h-(--{{ kebabCase name }}-h) w-fit shrink-0 cursor-pointer items-center justify-center gap-small rounded-sm border-(length:--fri-border-width) border-solid border-transparent bg-primary px-(--{{ kebabCase name }}-px) whitespace-nowrap text-primary-foreground transition-base outline-none select-none;
   }
 
   :where(.fri-{{ kebabCase name }}) {
     --_{{ kebabCase name }}-n: 10;
-    @apply text-label-md;
+    @apply text-label-medium;
   }
+
   .fri-{{ kebabCase name }}-xs {
     --_{{ kebabCase name }}-n: 7;
-    @apply text-label-xs;
+    @apply text-label-xsmall;
   }
+
   .fri-{{ kebabCase name }}-sm {
     --_{{ kebabCase name }}-n: 8;
-    @apply text-label-sm;
+    @apply text-label-small;
   }
+
   .fri-{{ kebabCase name }}-md {
     --_{{ kebabCase name }}-n: 10;
-    @apply text-label-md;
+    @apply text-label-medium;
   }
+
   .fri-{{ kebabCase name }}-lg {
     --_{{ kebabCase name }}-n: 11;
-    @apply text-label-lg;
+    @apply text-label-large;
   }
+
   .fri-{{ kebabCase name }}-xl {
     --_{{ kebabCase name }}-n: 12;
-    @apply text-label-xl;
+    @apply text-label-xlarge;
   }
 
   .fri-{{ kebabCase name }}[data-disabled],
