@@ -54,6 +54,24 @@ Every change flows through one issue and one pull request.
 4. **Run the gates**, described in [Gates](#gates). Git hooks run them for you on commit and push.
 5. **Open a pull request.** Reference the issue in the body with `Closes #<n>` so it closes when the PR merges.
 
+## Opening an issue
+
+Every change starts from an issue, and blank issues are disabled — you always pick one of the three templates under [`.github/ISSUE_TEMPLATE/`](.github/ISSUE_TEMPLATE):
+
+| Template                                    | Use it when                                          | Title shape                  |
+| ------------------------------------------- | ---------------------------------------------------- | ---------------------------- |
+| **Bug report** (`bug_report.yml`)           | a shipped component, hook, or config misbehaves      | `fix(<scope>): <symptom>`    |
+| **Feature request** (`feature_request.yml`) | a new component or hook, or an enhancement to one    | `feat(<scope>): <outcome>`   |
+| **Task / Epic** (`task.yml`)                | any other engineering task — a refactor, docs, chore | `<type>(<scope>): <outcome>` |
+
+**Title.** An issue title uses the same Conventional Commits shape as a commit — [`type(scope): subject`](#commit-and-pull-request-titles), lowercase and verb-first — with one difference: the 50-character limit is relaxed, so the title can afford to be descriptive. The `type` and `scope` rules, and the ban on `+`, still hold.
+
+**Body.** Fill every field the template marks required, so a reviewer never has to ask a follow-up. A bug report needs the plain-language summary, the affected package, and a minimal reproduction; a feature request needs the summary, the target package, and the proposed API; the task template adds the background, a one-sentence objective, a checked-off scope list, and a t-shirt estimate.
+
+**Labels and title checks are automatic — you don't apply them.** Opening or editing an issue validates the title against the convention above; a wrong shape or a `+` fails the check and tags the issue `status:needs-issue-title-fix` until you correct it. Once the title passes, the matching `type:*` label is set from it. Area labels (`area:react`, `area:styles`, `area:eslint-config`, `area:typescript-config`, `area:docs`, `area:ci`, `area:tooling`) are applied to a pull request from the paths its diff touches, not to the issue.
+
+Once the issue exists, create its branch from the number as [Workflow](#workflow) step 1 shows — the branch name must lead with `<issue-number>-`.
+
 ## Adding a component
 
 Scaffold a base component instead of hand-creating its files:
@@ -117,6 +135,8 @@ Commits and pull request titles follow [Conventional Commits](https://www.conven
 | `subject`       | lowercase, imperative, **50 characters max**                                                                 |
 | body and footer | none — the description belongs in the pull request                                                           |
 
+Never use `+` as shorthand in any title — write `and` or use a comma (`fix(button): reset and blur on close`, not `fix(button): reset + blur`).
+
 Put issue references such as `Closes #<n>` in the pull request body, never the title. Merges are squashed, and the pull request number is appended to the title automatically.
 
 ```text
@@ -164,6 +184,8 @@ Don't disable a rule, skip a gate, or bypass the hooks with `--no-verify` to for
 - Make sure every gate passes and the branch is up to date with `main`.
 - For visual changes, include a screenshot or screen recording of the before and after.
 - Fill in the pull request template, describing what changed and why.
+- Open a draft pull request for work in progress; mark it ready once the gates pass and the diff reads clean.
+- The title and every commit are validated automatically against the [title convention](#commit-and-pull-request-titles); the branch must trace to an open issue, and the body — never the title — closes it with `Closes #<n>`.
 - A maintainer reviews and merges. Address review feedback by pushing follow-up commits to the same branch.
 
 ## Reporting a vulnerability
