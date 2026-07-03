@@ -29,6 +29,8 @@
   }
 
   :root,
+  .light,
+  .dark,
   [data-theme] {
     --fri-card: var(--fri-surface);
     --fri-popover: var(--fri-surface);
