@@ -1,13 +1,11 @@
 @layer components {
   .fri-scroll-area {
-    /* Thickness from a component-local ramp multiplier × the public spacing scale. */
     --scroll-area-thickness: calc(
       var(--fri-spacing-xsmall) * var(--_scroll-area-n)
     );
     @apply relative overflow-hidden;
   }
 
-  /* :where() bakes the md default at zero specificity; explicit classes override. */
   :where(.fri-scroll-area) {
     --_scroll-area-n: 2.5;
   }

@@ -1,17 +1,10 @@
-/* Tailwind v4 `@theme` map — exposes the `--fri-*` color, spacing, radius,
-   shadow, and type-scale tokens as semantic utilities (bg-primary, gap-small,
-   rounded-small, shadow-surface, text-body-medium). Token scale suffixes are
-   spelled in full (small/medium/large, 2xlarge…) so they never collide with
-   Tailwind's abbreviated defaults, which stay native: `rounded-sm/md/lg`,
-   `shadow-sm/md/lg`, `ease-*`, bare `--spacing`. The one deliberate override is
-   `--font-sans`/`--font-mono` (the theme's font is a first-class knob).
-   Hand-authored; keep in sync with ../default/tokens.css and
-   ../default/variables.css. */
 @theme inline {
   --color-background: var(--fri-background);
   --color-foreground: var(--fri-foreground);
   --color-neutral: var(--fri-neutral);
   --color-ring: var(--fri-ring);
+  --color-selection: var(--fri-selection);
+  --color-selection-foreground: var(--fri-selection-foreground);
   --color-link: var(--fri-link);
   --color-overlay: var(--fri-overlay);
   --color-border: var(--fri-border);

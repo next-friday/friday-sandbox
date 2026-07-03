@@ -2,10 +2,6 @@
   .fri-grid {
     @apply grid;
 
-    /* ponytail: --grid-min is a public per-element override (see README), so
-     * the auto-fit/fill template must resolve against the element's own value.
-     * A :root token would bake the default in and ignore the override, so the
-     * minmax()/repeat() stays here on the component. */
     --grid-min: 16rem;
   }
 
@@ -13,7 +9,6 @@
     @apply inline-grid;
   }
 
-  /* :where() bakes the default at zero specificity; explicit classes override. */
   :where(.fri-grid),
   .fri-grid-cols-1 {
     @apply grid-cols-1;
@@ -52,16 +47,10 @@
     @apply grid-cols-12;
   }
   .fri-grid-cols-auto-fit {
-    grid-template-columns: repeat(
-      auto-fit,
-      minmax(min(var(--grid-min), 100%), 1fr)
-    );
+    @apply grid-cols-auto-fit;
   }
   .fri-grid-cols-auto-fill {
-    grid-template-columns: repeat(
-      auto-fill,
-      minmax(min(var(--grid-min), 100%), 1fr)
-    );
+    @apply grid-cols-auto-fill;
   }
 
   .fri-grid-rows-1 {

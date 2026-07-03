@@ -1,7 +1,5 @@
 @layer components {
   .fri-spinner {
-    /* The conic sweep, the track ring and the radial cutout are pure rendering
-       internals; only the spin size ties back to the public spacing scale. */
     --_spinner-arc: 25%;
     --_spinner-thickness: 25%;
     --_spinner-track: color-mix(in oklab, currentColor 24%, transparent);
@@ -19,7 +17,6 @@
     @apply inline-block size-(--spinner-size) shrink-0 animate-spin rounded-full bg-(image:--_spinner-image) mask-(--_spinner-mask) motion-reduce:animate-none;
   }
 
-  /* :where() bakes the default at zero specificity; explicit classes override. */
   :where(.fri-spinner),
   .fri-spinner-primary {
     @apply text-primary;
@@ -40,8 +37,6 @@
     @apply text-danger;
   }
 
-  /* Size — each class sets only the ramp multiplier; the formula above turns it
-     into the spin size. :where() bakes the md default at zero specificity. */
   :where(.fri-spinner),
   .fri-spinner-md {
     --_spinner-n: 6;

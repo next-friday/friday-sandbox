@@ -1,9 +1,4 @@
 #!/usr/bin/env bash
-# preflight.sh: verify the environment a ship/review skill needs before any
-# outward GitHub action — gh installed + authenticated, inside a git repo with a
-# GitHub remote. Prints "preflight: ok" and exits 0 on success; on any failure
-# prints what is missing plus the fix on stderr and exits 1, so the skill can
-# recover (tell the user) instead of guessing.
 set -euo pipefail
 
 if ! command -v gh >/dev/null 2>&1; then

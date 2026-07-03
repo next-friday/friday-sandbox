@@ -28,6 +28,15 @@ reviews:
     - "!.changeset/**"
     - "!**/*.snap"
   path_instructions:
+    - path: "**/*.{ts,tsx,mjs,cjs,css,sh,yaml,yml}"
+      instructions: >-
+        No comments in source or config; intent lives in names and the commit
+        body. Flag any comment except a machine directive (a shebang, a
+        /// <reference>, a @type JSDoc, a /* @__PURE__ */) or a scaffold under
+        turbo/generators/templates/ or .github/ISSUE_TEMPLATE/. Any lint or type
+        suppression (eslint-disable, @ts-expect-error, @ts-ignore,
+        prettier-ignore) is a comment — flag it; a suppression must be a
+        root-cause fix, never a silenced gate.
     - path: packages/react/src/components/bases/**/*.{ts,tsx}
       instructions: >-
         Base components are scaffolded with "pnpm gen component" (turbo gen), never
@@ -91,7 +100,11 @@ reviews:
         tv() variant map (<name>.styles.ts, in @friday-sandbox/react) 1:1 —
         every fri-<name>-<value> class has a rule and vice versa (the
         lint:symmetry gate enforces it, across the package boundary); flag an
-        orphan either side. Respect the @layer system; no
+        orphan either side. Style through @apply — a .fri-*/base declaration is
+        @apply <utility>; a property Tailwind has no utility for is a named
+        @utility in layers/utilities.css, @apply'd, never a raw declaration in a
+        component/base rule (raw lives only in @utility bodies and the token layer;
+        --* custom-property defs are var machinery). Respect the @layer system; no
         hardcoded colors outside the token layer; no global selectors that bypass
         layers; wire colors through the --fri-<role> ladder and geometry through a
         component-local ramp multiplier (--_<name>-n) with the md default at zero

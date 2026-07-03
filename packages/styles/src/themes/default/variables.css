@@ -1,11 +1,6 @@
-/* Layer 2 — computed + semantic tokens. Everything derived from the static
-   `tokens.css` values via runtime `color-mix()`/`var()`: the surfaces, emphasis
-   tiers, content tones, line tiers, the surface foregrounds, and the per-role
-   interaction ladder. Derivations only, no constants — see ARCHITECTURE.md. */
 @layer theme {
   :root,
   [data-theme] {
-    /* Surfaces — ground-derived */
     --fri-card: var(--fri-background);
     --fri-popover: var(--fri-background);
     --fri-field: var(--fri-background);
@@ -21,9 +16,6 @@
     );
     --fri-inverse: var(--fri-foreground);
 
-    /* Text emphasis tiers — neutral foreground toward background. Semantic text
-       tones (danger, link) use their role colors directly (text-danger,
-       text-link), so only the neutral ramp lives in the foreground namespace. */
     --fri-foreground-body: color-mix(
       in oklab,
       var(--fri-foreground) var(--fri-mix-foreground-body),
@@ -35,9 +27,6 @@
       var(--fri-background)
     );
 
-    /* Content tones — each role as readable text on the ground, for the non-
-       solid variants (subtle, surface, outline, ghost, plain) whose text sits on
-       the ground, not on the fill. Each role reads as itself. */
     --fri-primary-content: var(--fri-primary);
     --fri-accent-content: var(--fri-accent);
     --fri-info-content: var(--fri-info);
@@ -45,7 +34,6 @@
     --fri-warning-content: var(--fri-warning);
     --fri-danger-content: var(--fri-danger);
 
-    /* Border / line tiers */
     --fri-border-strong: color-mix(
       in oklab,
       var(--fri-neutral) 60%,
@@ -68,7 +56,6 @@
       transparent
     );
 
-    /* Interaction ladder — per role × rung (ratios from tokens.css) */
     --fri-primary-hover: color-mix(
       in oklab,
       var(--fri-primary),
@@ -109,9 +96,6 @@
       var(--fri-primary) var(--fri-mix-surface-pressed),
       var(--fri-background)
     );
-    /* neutral role: border from the neutral line, not the near-ground fill, so
-       the line weight stays even with the chromatic roles (a black fill mixed to
-       a border reads too heavy, a light one vanishes) */
     --fri-primary-border: var(--fri-border);
     --fri-primary-outline-border: var(--fri-border-strong);
     --fri-primary-tint-hover: color-mix(
@@ -425,8 +409,6 @@
       transparent
     );
 
-    /* Surface foregrounds + field/scroll refs (the surface and tier
-       values themselves are declared per mode in the light/dark blocks) */
     --fri-card-foreground: var(--fri-foreground);
     --fri-popover-foreground: var(--fri-foreground);
     --fri-field-foreground: var(--fri-foreground);

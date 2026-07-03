@@ -4,8 +4,7 @@
   }
 
   .fri-text-inherit {
-    font: inherit;
-    letter-spacing: inherit;
+    @apply typography-inherit;
   }
 
   .fri-text-display-xxl {
@@ -70,7 +69,6 @@
     @apply font-mono text-code;
   }
 
-  /* Color — text-emphasis tone; default inherits the parent color */
   .fri-text-ink {
     @apply text-foreground;
   }

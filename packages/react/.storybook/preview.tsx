@@ -19,19 +19,16 @@ const preview: Preview = {
         date: /Date$/i,
       },
     },
-    // The `theme` toolbar global drives the canvas background through
-    // --fri-background (base.css on the html), so the competing backgrounds
-    // addon would just paint a grey layer over it — turn it off.
     backgrounds: { disable: true },
-    // Sync the docs chrome (headings, args table, canvas frame) with the `theme`
-    // toolbar global that drives the component tokens, so the whole docs page —
-    // not just the rendered component — follows light/dark.
     docs: {
       container: ({
         children,
         context,
       }: PropsWithChildren<DocsContainerProps>) => {
-        const base = context.globals.theme === "dark" ? "dark" : "light";
+        const base =
+          context.store?.userGlobals?.globals?.theme === "dark"
+            ? "dark"
+            : "light";
         const theme = friTheme(base);
 
         return (

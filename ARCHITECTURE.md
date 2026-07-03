@@ -53,7 +53,7 @@ the `--font-sans`/`--font-mono` exception.
 
 1. **`src/themes/default/tokens.css` — static.** Base, constant `--fri-*` values
    with **no `calc()` or `var()`**: the ground, brand/status roles, ring,
-   overlay, the spacing / type / motion / radius / shadow scales, the radius
+   overlay, link, selection, the spacing / type / motion / radius / shadow scales, the radius
    archetypes (`--fri-action/field/box-radius`, set directly) and geometry
    archetype sizes, and the interaction mix ratios. Declared per mode in the
    light/dark blocks; a custom theme edits only this file.
@@ -73,7 +73,15 @@ the `--font-sans`/`--font-mono` exception.
    exception.
 4. **`src/components/<name>.css` — consume + component-local calc.**
    Components apply the semantic utilities and add only the arithmetic unique to
-   that component, driven by a local ramp multiplier (`--_<name>-n`).
+   that component, driven by a local ramp multiplier (`--_<name>-n`). Every
+   `.fri-*` rule (and every base element rule) styles through `@apply` **only** —
+   a raw CSS property is a bug when a utility exists. A property Tailwind has no
+   utility for (`scrollbar-*`, `grid-template-columns: repeat(auto-fit…)`,
+   `font: inherit`) is defined once as a named `@utility` in `layers/utilities.css`
+   (see `status-disabled`, `scrollbar-thin`) and `@apply`-ed; raw declarations live
+   only in `@utility` bodies and the token layer. Custom-property defs (`--*`, the
+   ramp multiplier) are var machinery and stay. The `lint:symmetry` apply-only
+   dimension enforces this.
 
 **Worked example — radius.** `tokens.css` holds two static sets: the generic
 scale (`--fri-radius-xs … xl`; for a `radius` prop or a consumer's own

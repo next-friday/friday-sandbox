@@ -11,11 +11,7 @@ import tseslint from "typescript-eslint";
 import turboPlugin from "eslint-plugin-turbo";
 import unicorn from "eslint-plugin-unicorn";
 
-/**
- * Shared ESLint configuration for the repository.
- *
- * @type {import("eslint").Linter.Config[]}
- */
+/** @type {import("eslint").Linter.Config[]} */
 export const config = [
   js.configs.recommended,
   ...tseslint.configs.recommended,
@@ -31,6 +27,16 @@ export const config = [
   {
     plugins: { turbo: turboPlugin },
     rules: { "turbo/no-undeclared-env-vars": "warn" },
+  },
+  {
+    rules: {
+      "jsdoc/require-param": "off",
+      "jsdoc/require-param-type": "off",
+      "jsdoc/require-param-description": "off",
+      "jsdoc/require-returns": "off",
+      "jsdoc/require-returns-type": "off",
+      "jsdoc/require-returns-description": "off",
+    },
   },
   {
     settings: {

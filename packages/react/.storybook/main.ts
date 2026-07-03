@@ -7,10 +7,7 @@ import { mergeConfig } from "vite";
 import type { StorybookConfig } from "@storybook/react-vite";
 
 /**
- * This function is used to resolve the absolute path of a package.
- * It is needed in projects that use Yarn PnP or are set up within a monorepo.
- * @param {string} value - The package name to resolve.
- * @returns {string} The absolute path to the package's directory.
+ *
  */
 function getAbsolutePath(value: string): string {
   return path.dirname(

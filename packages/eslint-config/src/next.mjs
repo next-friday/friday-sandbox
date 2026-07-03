@@ -9,11 +9,7 @@ import { globalIgnores } from "eslint/config";
 
 import { config as baseConfig } from "./base.mjs";
 
-/**
- * Shared ESLint configuration for Next.js apps.
- *
- * @type {import("eslint").Linter.Config[]}
- */
+/** @type {import("eslint").Linter.Config[]} */
 export const nextJsConfig = [
   ...baseConfig,
   pluginReact.configs.flat.recommended,

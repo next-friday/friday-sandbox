@@ -47,6 +47,7 @@ Key checks for styles:
 
 - A component's rules live in `src/components/<name>.css` under `@layer components`, keyed to the `fri-<name>` class, and must mirror its `tv()` variant map (`<name>.styles.ts`, in `@friday-sandbox/react`) 1:1 — every `fri-<name>-<value>` class has a rule and vice versa (the `lint:symmetry` gate enforces it across the package boundary); flag an orphan class on either side.
 - Respect the `@layer` system; flag inline `style` objects, hardcoded hex colors, and class strings that bypass tokens. Wire colors through the `--fri-<role>` ladder and geometry through a component-local ramp multiplier (`--_<name>-n`), with the `md` default baked at zero specificity via `:where(.fri-<name>)`.
+- Style through `@apply`: every `.fri-*`/base declaration is `@apply <utility>`; a property Tailwind has no utility for becomes a named `@utility` in `layers/utilities.css` (see `status-disabled`, `scrollbar-thin`), `@apply`-ed — never a raw styling property in a component/base rule. Raw lives only in `@utility` bodies and the token layer; `--*` custom-property defs are var machinery. Flag a raw property in a `.fri-*`/base rule.
 - Canonical Tailwind alias for any var mapped in `@theme inline`, such as `bg-primary` and not `bg-(--fri-primary)`; the `*-(--var)` form is only for component-local vars with no alias.
 - Size tokens scoped to `action`, `field`, or `box`, never a literal component name; corner radius derives from an archetype radius token (`--fri-action`/`field`/`box-radius`), scaled by the component's size ramp (`--_<name>-n`) and applied as `rounded-(--<name>-radius)` — see `button.css`. The `src/themes/` CSS is hand-authored token values; keep the `@theme` map (`tailwind/theme.css`) in sync with the token names.
 - A token rename carries a migration note in the changeset; no global selectors that bypass layers.
@@ -88,5 +89,5 @@ The commit, branch, and PR rules are defined in `CONTRIBUTING.md` — flag any v
 ## Code quality
 
 - DRY across components, not just within one: flag re-implementations.
-- No prose comments in source; intent lives in names and commits. Flag explanatory comments unless they encode a non-obvious invariant.
+- No comments in source or config; intent lives in names and the commit body. Flag any comment except a machine directive (a shebang, a `/// <reference>`, a `@type` JSDoc, a `/* @__PURE__ */`) or a scaffold under `turbo/generators/templates/` or `.github/ISSUE_TEMPLATE/`. Any lint or type suppression (`eslint-disable`, `@ts-expect-error`, `prettier-ignore`) is a comment — flag it; a suppression must be a root-cause fix, never a silenced gate.
 - `--max-warnings 0` is enforced; a warning-level lint is a CI failure.

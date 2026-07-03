@@ -19,7 +19,7 @@ Artifacts to keep in sync with the code:
 - **Prose docs** — `ARCHITECTURE.md`, `CONTRIBUTING.md`, `STYLE.md`, every
   `README.md`, and the docs site under `apps/docs/` (`.mdx`).
 - **Everything else that references the changed thing** — changesets, generator
-  templates, config and code comments, examples, and links.
+  templates, config, examples, and links.
 
 How to apply:
 
@@ -31,6 +31,12 @@ How to apply:
 - Mirrors stay 1:1: a `src` ↔ `exports` surface, a skill ↔ the code it
   describes, a generator ↔ what it scaffolds — change one side, align the other
   in the same change.
+- **Point, don't copy; sync every mirror.** A fact has one canonical home — the
+  [`CLAUDE.md`](../../CLAUDE.md) documentation map names each. Internal docs point
+  to it. The consumer docs (`README.md`, `apps/docs/**`) and the bot configs
+  (`.coderabbit.yaml`, `.gemini/styleguide.md`) can't follow a link, so they carry
+  a **designated mirror**: change the canonical fact, update its mirror in the
+  same commit, or the two drift.
 
 Pairs with no-redundancy: a single canonical source is only "single" if every
 artifact pointing at it is updated together with it.

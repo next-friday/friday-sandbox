@@ -9,3 +9,36 @@
 @utility focus-ring {
   @apply ring-(length:--fri-ring-width) ring-ring ring-offset-(length:--fri-ring-offset-width) ring-offset-background;
 }
+
+@utility scrollbar-thin {
+  scrollbar-width: var(--fri-scroll-width);
+  scrollbar-color: var(--color-scroll-thumb) var(--color-scroll-track);
+}
+
+@utility scrollbar-default {
+  scrollbar-width: auto;
+  scrollbar-color: auto;
+}
+
+@utility scrollbar-none {
+  scrollbar-width: none;
+}
+
+@utility grid-cols-auto-fit {
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(min(var(--grid-min), 100%), 1fr)
+  );
+}
+
+@utility grid-cols-auto-fill {
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(min(var(--grid-min), 100%), 1fr)
+  );
+}
+
+@utility typography-inherit {
+  font: inherit;
+  letter-spacing: inherit;
+}

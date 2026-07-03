@@ -9,8 +9,6 @@ const componentsDirectory = path.resolve(
   "components",
 );
 
-// Only truly boolean ARIA states — token-valued ones (aria-current, aria-invalid,
-// aria-checked, aria-pressed) carry non-"true" values, so a bare selector is valid.
 const ARIA_ATTRIBUTES = ["aria-disabled", "aria-expanded", "aria-selected"];
 
 const fixFile = (filePath: string): void => {
@@ -26,7 +24,6 @@ const fixFile = (filePath: string): void => {
   if (hasChange) fs.writeFileSync(filePath, css);
 };
 
-// Component CSS is co-located under dist/components/<name>/<name>.css, so walk recursively.
 const walk = (directory: string): void => {
   for (const entry of fs.readdirSync(directory, { withFileTypes: true })) {
     const entryPath = path.join(directory, entry.name);
