@@ -22,7 +22,7 @@ Executable procedure for the `docs-follow-code` rule (`.claude/rules/docs-follow
 
    | class             | targets                                                                                                                                                        |
    | ----------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-   | LLM docs          | `CLAUDE.md`, `.coderabbit.yaml`, `.gemini/styleguide.md`, `.claude/skills/**`                                                                                  |
+   | LLM docs          | `CLAUDE.md`, `.coderabbit.yaml`, `.gemini/styleguide.md`, `.claude/rules/**`, `.claude/skills/**`                                                              |
    | Prose docs        | `CONTRIBUTING.md`, every `README.md`, `apps/docs/**/*.mdx`                                                                                                     |
    | Generators        | `turbo/generators/config.ts` + `templates/*.hbs` — a stale template regenerates stale docs forever; fix the template AND its generated output in the same pass |
    | Gates + scripts   | `scripts/*.sh`, every `package.json` script, husky hooks                                                                                                       |
@@ -33,7 +33,7 @@ Executable procedure for the `docs-follow-code` rule (`.claude/rules/docs-follow
 
    **Mirror prose — align every copy, and enumerate the full set.** One concept is usually documented in more than one surface: a package `README.md`'s Theming section, the docs site's `theming/*.mdx`, and `.claude/rules/architecture.md`'s pipeline all describe the token model; a component's `.mdx` and its `.hbs` template share a spine. Grep by the **concept**, not the changed term, and update every copy in the same pass — a fix to one that skips its mirror leaves the two disagreeing (that is the most common "docs didn't capture the work" gap). And a doc that **enumerates** a code set — the color roles, the seed tokens, a component's doc sections, a package's exports — must list the _full current_ set: re-derive the list from the code, never trust or extend the doc's existing one, or it silently under-specifies (a theme example with 4 of the ~18 seeds reads as "that's all there is").
 
-4. **Prove, don't claim.** Run the deterministic gates and show real output: `lint:symmetry`, `knip`, `depcruise`, `lint:md`, `sort:check`, `typecheck`. "Should pass" is not evidence; pasted output is.
+4. **Prove, don't claim.** Let the pre-commit and pre-push hooks run the gates and show their real output as evidence; never invoke the whole-repo gates by hand. "Should pass" is not evidence; pasted output is.
 
 5. **Re-grep the OLD terms.** Zero hits (outside `.changeset/` items flagged in step 3) = done. Edits without the re-grep are not done — absence of the old term is the proof, presence of the new term is not.
 

@@ -13,8 +13,9 @@ commit/PR. Treat an out-of-date doc as a bug introduced by that change.
 
 Artifacts to keep in sync with the code:
 
-- **LLM docs** — `CLAUDE.md`, `.coderabbit.yaml`, `.gemini/styleguide.md`, and
-  every skill under `.claude/skills/`. These steer human and LLM contributors; a
+- **LLM docs** — `CLAUDE.md`, `.coderabbit.yaml`, `.gemini/styleguide.md`, every
+  rule under `.claude/rules/`, and every skill under `.claude/skills/`. These
+  steer human and LLM contributors; a
   stale instruction makes them build the wrong thing.
 - **Prose docs** — `CONTRIBUTING.md`, every `README.md`, and the docs site under
   `apps/docs/` (`.mdx`).
