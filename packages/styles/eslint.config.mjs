@@ -1,16 +1,5 @@
 import { config } from "@friday-sandbox/eslint-config/base";
 
-// Styles consumes the shared base preset. The `scripts/**` build tooling
-// (codegen and the contrast gate) is internal and never shipped, so rules
-// written for the published component API are relaxed there while every
-// correctness, type-safety, import, and naming rule stays on: jsdoc tag
-// completeness (these scripts document intent in prose), the readability-style
-// rules and unicorn's array-construction opinions (codegen builds CSS by
-// pushing lines into a local array), SCREAMING_SNAKE casing and type-declaration
-// order (kept so module constants and types in formulas.ts stay symmetric),
-// process.exit (correct for a CLI gate that must fail the build), and
-// sonarjs/os-command (codegen runs prettier over its own hardcoded paths).
-
 /** @type {import("eslint").Linter.Config[]} */
 export default [
   ...config,

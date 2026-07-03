@@ -15,17 +15,32 @@ This file provides guidance to Claude Code (code.claude.com) when working with c
 Project rules, imported into context:
 
 @.claude/rules/docs-follow-code.md
+@.claude/rules/no-code-comments.md
 @.claude/rules/no-guessing.md
 @.claude/rules/no-redundancy.md
 @.claude/rules/no-unprovable-llm-claims.md
 
-## Architecture
+## Documentation map
 
-Full codemap and invariants: [`ARCHITECTURE.md`](ARCHITECTURE.md). The essentials to hold every session:
+One fact, one home. Every convention and model fact is stated **once**, in its canonical doc, and read from there — a doc that copies another's fact drifts, and the reader (you, a sub-agent, a bot) then grabs whichever copy it opened, so the same task comes out inconsistent. This is `no-redundancy` applied to the docs.
 
-- **`styles` is upstream, `react` is downstream.** `styles` ships **CSS only** — design tokens, the Tailwind `@theme` map, and each component's CSS (`src/components/<name>.css`); `react` owns each component's `tv()` variant map (`<name>.styles.ts`, co-located with `<name>.tsx` in `packages/react/src/components/bases/<name>/`) and never redefines theme. The variant map and the component CSS are linked by the `fri-<name>` class, mirrored 1:1 **across packages** — a deterministic gate checks the pair on every commit.
-- **The theme is a four-layer pipeline** (full detail: `ARCHITECTURE.md`). `default/tokens.css` holds the **static** seeds a custom theme edits — ground, brand/status roles, ring, overlay, link, the spacing/type/motion/radius/shadow scales, radius archetypes, geometry sizes, mix ratios (no `calc()`/`var()`); `default/variables.css` holds everything **derived** from them via runtime `color-mix`/`var()` — surfaces, emphasis tiers, content tones, line tiers, interaction ladder; `tailwind/theme.css` bridges both to Tailwind with `@theme` (kept in sync by hand). The bridge **adds new names only, never overriding a Tailwind default** — token scale suffixes are spelled in full (`gap-small`, `text-body-medium`, `rounded-small`) so they don't collide with Tailwind's `gap-2`/`rounded-sm`; the one deliberate override is `--font-sans`/`--font-mono`. Consume spacing/size through the semantic alias (`gap-small`, `p-medium`, `bg-primary`), never a raw numeric (`gap-2`) or a `gap-(--fri-*)` var form when an alias exists.
-- **Tests are stories.** There are no `*.test` files; Vitest runs every `*.stories.tsx` in real Chromium via Playwright. Write a story, get a test.
+| topic                                                                                       | canonical home                                      |
+| ------------------------------------------------------------------------------------------- | --------------------------------------------------- |
+| architecture — token pipeline, styles↔react split, `@apply`-only, semantic aliases          | [`ARCHITECTURE.md`](ARCHITECTURE.md)                |
+| code conventions — redundancy, guessing, docs-follow-code, code-comments, unprovable claims | [`.claude/rules/*`](.claude/rules) (imported above) |
+| contribution process — issue → branch → PR, generator, gates, changeset                     | [`CONTRIBUTING.md`](CONTRIBUTING.md)                |
+| doc and prose voice                                                                         | [`STYLE.md`](STYLE.md)                              |
+| executable procedures                                                                       | [`.claude/skills/*`](.claude/skills)                |
+
+Read from the home; don't restate it. An **internal reference doc** (this file, `ARCHITECTURE.md`, `CONTRIBUTING.md`) **points** to the home with a link. A **skill** keeps only its procedure — the steps and the exact names to write — and points to the home for the model behind them. Two audiences can't follow a link, so each carries a **designated mirror** that `docs-follow-code` keeps in sync: **consumer docs** (`README.md`, `apps/docs/**`) re-frame the _model_ for consumers, and **bot configs** (`.coderabbit.yaml`, `.gemini/styleguide.md`) restate the _rules_ for CodeRabbit and Gemini. A mirror may shorten and re-word for its audience but never adds a fact or contradicts its home; change a canonical fact → update its mirrors in the same change, or they drift.
+
+## Architecture essentials
+
+Full model: [`ARCHITECTURE.md`](ARCHITECTURE.md) (the canonical home). Hold these every session:
+
+- **`styles` upstream, `react` downstream.** `styles` ships CSS only — tokens, the `@theme` map, each component's css; `react` owns each `tv()` variant map (`<name>.styles.ts`), linked to its css by `fri-<name>`, mirrored 1:1, `@apply`-only. Rules + detail in `ARCHITECTURE.md`.
+- **Theme = four-layer token pipeline.** Seeds → derived → `@theme` bridge → component css; consume through semantic aliases (`gap-small`, `bg-primary`), never a raw numeric. Detail in `ARCHITECTURE.md`.
+- **Tests are stories.** No `*.test` files; Vitest runs every `*.stories.tsx` in real Chromium via Playwright. Write a story, get a test.
 
 ## Commands
 

@@ -3,9 +3,6 @@ import { join } from "node:path";
 
 import type { PlopTypes } from "@turbo/gen";
 
-// Insert a two-line export block into a barrel, ordered by the exported name and
-// skipping the insert when that name is already exported, so the three barrels
-// stay sorted and re-running the generator never duplicates a line.
 const insertExportBlock = (
   content: string,
   name: string,
@@ -25,8 +22,6 @@ const insertExportBlock = (
   return `${blocks.join("\n\n")}\n`;
 };
 
-// Insert an `@import "./<name>.css";` line into a css index, ordered by name and
-// idempotent for the same reason as the barrels above.
 const insertImportLine = (
   content: string,
   name: string,
@@ -96,8 +91,6 @@ export default function generator(plop: PlopTypes.NodePlopAPI): void {
       insertImportLine(content, kebab, `@import "./${kebab}.css";`),
     );
     patch("apps/docs/content/docs/components/meta.json", (content) => {
-      // Slot the page under its `---Category---` group in the docs nav, matching
-      // the Storybook category; create the group when it is the first of its kind.
       const meta = JSON.parse(content) as { pages: string[] };
       if (!meta.pages.includes(kebab)) {
         const sep = `---${category?.trim() || "Components"}---`;
@@ -151,11 +144,6 @@ export default function generator(plop: PlopTypes.NodePlopAPI): void {
       },
     ],
     actions: (data) => {
-      // Un-suffixed templates are the native (display / layout) default; the
-      // `.aria.` variants scaffold the interactive skeleton (size axis, ramp
-      // geometry, focus/disabled states, interaction + base-class stories).
-      // Both stay valid on generation, so the scaffold compiles and passes the
-      // gates before any fill — the deterministic, symmetric starting point.
       const primitive = (data as { primitive?: string } | undefined)?.primitive;
       const suffix = primitive === "aria" ? ".aria" : "";
 

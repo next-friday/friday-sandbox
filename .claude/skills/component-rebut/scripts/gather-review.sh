@@ -1,9 +1,4 @@
 #!/usr/bin/env bash
-# gather-review.sh <pr>: print every review summary and every inline review
-# comment on a pull request, so the model triages the findings that actually
-# exist instead of fabricating or dropping them. Uses gh's built-in --jq, so no
-# system jq is required. A null inline line renders as an empty field (never an
-# error), matching file-level / outdated comments. Exit 2 on a bad argument.
 set -euo pipefail
 
 pr="${1:-}"

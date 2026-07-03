@@ -4,35 +4,26 @@
   ::before,
   ::backdrop,
   ::file-selector-button {
-    border-color: var(--color-border, currentColor);
+    @apply border-border;
   }
 
   html {
-    background-color: var(--color-background);
-    color: var(--color-foreground);
-    font-family: var(--font-sans);
-    scrollbar-width: var(--fri-scroll-width);
-    scrollbar-color: var(--color-scroll-thumb) var(--color-scroll-track);
+    @apply scrollbar-thin bg-background font-sans text-foreground;
   }
 
-  /* Native scrollbar modes — set data-scrollbar on the root or any subtree */
   [data-scrollbar="default"] {
-    scrollbar-width: auto;
-    scrollbar-color: auto;
+    @apply scrollbar-default;
   }
+
   [data-scrollbar="none"] {
-    scrollbar-width: none;
+    @apply scrollbar-none;
   }
+
   [data-scrollbar="thin"] {
-    scrollbar-width: var(--fri-scroll-width);
-    scrollbar-color: var(--color-scroll-thumb) var(--color-scroll-track);
+    @apply scrollbar-thin;
   }
 
   ::selection {
-    background-color: color-mix(
-      in oklab,
-      var(--color-primary) 30%,
-      transparent
-    );
+    @apply bg-selection text-selection-foreground;
   }
 }

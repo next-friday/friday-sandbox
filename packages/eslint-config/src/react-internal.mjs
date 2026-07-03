@@ -10,11 +10,7 @@ import storybook from "eslint-plugin-storybook";
 
 import { config as baseConfig } from "./base.mjs";
 
-/**
- * Shared ESLint configuration for React libraries.
- *
- * @type {import("eslint").Linter.Config[]}
- */
+/** @type {import("eslint").Linter.Config[]} */
 export const config = [
   ...baseConfig,
   ...storybook.configs["flat/recommended"],
