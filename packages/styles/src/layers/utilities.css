@@ -10,20 +10,6 @@
   @apply ring-(length:--fri-ring-width) ring-ring ring-offset-(length:--fri-ring-offset-width) ring-offset-background;
 }
 
-@utility scrollbar-thin {
-  scrollbar-width: var(--fri-scroll-width);
-  scrollbar-color: var(--color-scroll-thumb) var(--color-scroll-track);
-}
-
-@utility scrollbar-default {
-  scrollbar-width: auto;
-  scrollbar-color: auto;
-}
-
-@utility scrollbar-none {
-  scrollbar-width: none;
-}
-
 @utility grid-cols-auto-fit {
   grid-template-columns: repeat(
     auto-fit,

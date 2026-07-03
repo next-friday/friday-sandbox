@@ -21,6 +21,9 @@
   .fri-spinner-primary {
     @apply text-primary;
   }
+  .fri-spinner-secondary {
+    @apply text-secondary;
+  }
   .fri-spinner-accent {
     @apply text-accent;
   }

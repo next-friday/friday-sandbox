@@ -68,7 +68,8 @@ const meta = {
       options: COLORS.map((color) => color.value),
       table: {
         type: {
-          summary: "primary | accent | info | success | warning | danger",
+          summary:
+            "primary | secondary | accent | info | success | warning | danger",
         },
         defaultValue: { summary: "primary" },
       },
@@ -218,6 +219,28 @@ export const Primary: Story = {
           key={variant.value}
           {...storyArgs}
           color="primary"
+          variant={variant.value}
+        >
+          {variant.label}
+        </Button>
+      ))}
+    </Flex>
+  ),
+};
+
+export const Secondary: Story = {
+  parameters: {
+    docs: {
+      description: { story: "The `secondary` color across every variant." },
+    },
+  },
+  render: (storyArgs) => (
+    <Flex wrap="wrap" align="center" gap="md">
+      {VARIANTS.map((variant) => (
+        <Button
+          key={variant.value}
+          {...storyArgs}
+          color="secondary"
           variant={variant.value}
         >
           {variant.label}

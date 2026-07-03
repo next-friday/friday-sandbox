@@ -1,6 +1,6 @@
 body,
 .sb-show-main,
 .docs-story {
-  background: var(--background);
-  color: var(--foreground);
+  background: var(--fri-surface);
+  color: var(--fri-foreground);
 }

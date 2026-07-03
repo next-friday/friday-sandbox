@@ -8,22 +8,6 @@
   }
 
   html {
-    @apply scrollbar-thin bg-background font-sans text-foreground;
-  }
-
-  [data-scrollbar="default"] {
-    @apply scrollbar-default;
-  }
-
-  [data-scrollbar="none"] {
-    @apply scrollbar-none;
-  }
-
-  [data-scrollbar="thin"] {
-    @apply scrollbar-thin;
-  }
-
-  ::selection {
-    @apply bg-selection text-selection-foreground;
+    @apply bg-background font-sans text-foreground;
   }
 }

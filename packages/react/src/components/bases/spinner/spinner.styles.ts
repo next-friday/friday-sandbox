@@ -8,6 +8,7 @@ export const spinnerVariants = tv({
   variants: {
     color: {
       primary: { root: "fri-spinner-primary" },
+      secondary: { root: "fri-spinner-secondary" },
       accent: { root: "fri-spinner-accent" },
       info: { root: "fri-spinner-info" },
       success: { root: "fri-spinner-success" },

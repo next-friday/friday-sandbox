@@ -20,7 +20,7 @@
   --color-fd-secondary-foreground: var(--fri-foreground);
   --color-fd-accent: var(--fri-muted-strong);
   --color-fd-accent-foreground: var(--fri-foreground);
-  --color-fd-ring: var(--fri-ring);
+  --color-fd-ring: var(--fri-focus);
 }
 
 .dark {
@@ -39,7 +39,7 @@
   --color-fd-secondary-foreground: var(--fri-foreground);
   --color-fd-accent: var(--fri-muted-strong);
   --color-fd-accent-foreground: var(--fri-foreground);
-  --color-fd-ring: var(--fri-ring);
+  --color-fd-ring: var(--fri-focus);
 }
 
 #nd-subnav > div {

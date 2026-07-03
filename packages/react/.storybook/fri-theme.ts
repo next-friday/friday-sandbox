@@ -1,8 +1,16 @@
 import { create } from "storybook/theming";
 
 const GROUND = {
-  light: { bg: "#ffffff", fg: "#000000" },
-  dark: { bg: "#000000", fg: "#ffffff" },
+  light: {
+    bg: "rgba(246, 248, 250, 1)",
+    fg: "rgba(14, 18, 22, 1)",
+    surface: "rgba(255, 255, 255, 1)",
+  },
+  dark: {
+    bg: "rgba(14, 18, 22, 1)",
+    fg: "rgba(249, 250, 251, 1)",
+    surface: "rgba(21, 27, 33, 1)",
+  },
 } as const;
 
 export const friTheme = (base: "light" | "dark") =>

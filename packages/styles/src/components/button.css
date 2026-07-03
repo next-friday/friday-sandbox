@@ -26,6 +26,23 @@
     --button-color-tint-hover: var(--fri-primary-tint-hover);
     --button-color-tint-pressed: var(--fri-primary-tint-pressed);
   }
+  .fri-button-secondary {
+    --button-color: var(--fri-secondary);
+    --button-color-foreground: var(--fri-secondary-foreground);
+    --button-color-content: var(--fri-secondary-content);
+    --button-color-hover: var(--fri-secondary-hover);
+    --button-color-pressed: var(--fri-secondary-pressed);
+    --button-color-soft: var(--fri-secondary-soft);
+    --button-color-soft-hover: var(--fri-secondary-soft-hover);
+    --button-color-soft-pressed: var(--fri-secondary-soft-pressed);
+    --button-color-surface: var(--fri-secondary-surface);
+    --button-color-surface-hover: var(--fri-secondary-surface-hover);
+    --button-color-surface-pressed: var(--fri-secondary-surface-pressed);
+    --button-color-border: var(--fri-secondary-border);
+    --button-color-outline-border: var(--fri-secondary-outline-border);
+    --button-color-tint-hover: var(--fri-secondary-tint-hover);
+    --button-color-tint-pressed: var(--fri-secondary-tint-pressed);
+  }
   .fri-button-accent {
     --button-color: var(--fri-accent);
     --button-color-foreground: var(--fri-accent-foreground);

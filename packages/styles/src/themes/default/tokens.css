@@ -4,31 +4,36 @@
   [data-theme="light"] {
     color-scheme: light;
 
-    --fri-background: oklch(100% 0 0);
-    --fri-foreground: oklch(0% 0 0);
-    --fri-neutral: #8e8e93;
+    --fri-background: rgba(246, 248, 250, 1);
+    --fri-surface: rgba(255, 255, 255, 1);
+    --fri-neutral: #dfe2e7;
+    --fri-foreground: rgba(14, 18, 22, 1);
 
     --fri-primary: oklch(0% 0 0);
     --fri-primary-foreground: oklch(100% 0 0);
-    --fri-accent: #0a84ff;
-    --fri-accent-foreground: oklch(100% 0 0);
-    --fri-info: #32ade6;
+    --fri-secondary: rgba(135, 91, 229, 1);
+    --fri-secondary-foreground: oklch(100% 0 0);
+    --fri-accent: rgba(23, 213, 255, 1);
+    --fri-accent-foreground: oklch(0% 0 0);
+
+    --fri-info: rgba(49, 130, 206, 1);
     --fri-info-foreground: oklch(100% 0 0);
-    --fri-success: #34c759;
+    --fri-success: rgba(88, 166, 40, 1);
     --fri-success-foreground: oklch(100% 0 0);
-    --fri-warning: #ff9500;
+    --fri-warning: rgba(221, 107, 32, 1);
     --fri-warning-foreground: oklch(100% 0 0);
-    --fri-danger: #ff2d55;
+    --fri-danger: rgba(229, 62, 62, 1);
     --fri-danger-foreground: oklch(100% 0 0);
 
-    --fri-ring: #007aff;
+    --fri-field: rgba(255, 255, 255, 0.64);
 
-    --fri-selection: #007aff;
-    --fri-selection-foreground: oklch(100% 0 0);
-
+    --fri-focus: rgba(23, 213, 255, 1);
     --fri-overlay: oklch(0% 0 0 / 0.5);
 
-    --fri-link: #007aff;
+    --fri-shadow-surface:
+      0 2px 4px 0 rgb(0 0 0 / 0.04), 0 1px 2px 0 rgb(0 0 0 / 0.06);
+    --fri-shadow-overlay:
+      0 4px 12px 0 rgb(0 0 0 / 0.08), 0 2px 4px 0 rgb(0 0 0 / 0.06);
 
     --fri-spacing-xxsmall: 0.125rem;
     --fri-spacing-xsmall: 0.25rem;
@@ -149,9 +154,8 @@
     --fri-ring-offset-width: 1px;
     --fri-cursor-interactive: pointer;
     --fri-cursor-disabled: not-allowed;
-    --fri-scroll-width: thin;
 
-    --fri-action-radius: 0.5rem;
+    --fri-action-radius: 0.75rem;
     --fri-field-radius: 0.5rem;
     --fri-box-radius: 0.875rem;
 
@@ -160,64 +164,37 @@
     --fri-radius-medium: 0.875rem;
     --fri-radius-large: 1.25rem;
     --fri-radius-xlarge: 2rem;
-
-    --fri-mix-hover: 14%;
-    --fri-mix-pressed: 24%;
-    --fri-mix-soft: 12%;
-    --fri-mix-soft-hover: 20%;
-    --fri-mix-soft-pressed: 28%;
-    --fri-mix-surface: 8%;
-    --fri-mix-surface-hover: 14%;
-    --fri-mix-surface-pressed: 20%;
-    --fri-mix-border: 40%;
-    --fri-mix-outline-border: 50%;
-    --fri-mix-tint-hover: 8%;
-    --fri-mix-tint-pressed: 16%;
-    --fri-mix-muted: 5%;
-    --fri-mix-muted-strong: 10%;
-    --fri-mix-foreground-body: 60%;
-    --fri-mix-foreground-muted: 40%;
-
-    --fri-shadow-surface:
-      0 2px 4px 0 rgb(0 0 0 / 0.04), 0 1px 2px 0 rgb(0 0 0 / 0.06);
-    --fri-shadow-overlay:
-      0 4px 12px 0 rgb(0 0 0 / 0.08), 0 2px 4px 0 rgb(0 0 0 / 0.06);
   }
 
   .dark,
   [data-theme="dark"] {
     color-scheme: dark;
 
-    --fri-background: oklch(0% 0 0);
-    --fri-foreground: oklch(100% 0 0);
-    --fri-neutral: #8e8e93;
+    --fri-background: rgba(14, 18, 22, 1);
+    --fri-surface: rgba(21, 27, 33, 1);
+    --fri-neutral: #364249;
+    --fri-foreground: rgba(249, 250, 251, 1);
 
     --fri-primary: oklch(100% 0 0);
     --fri-primary-foreground: oklch(0% 0 0);
-    --fri-accent: #0a84ff;
-    --fri-accent-foreground: oklch(100% 0 0);
-    --fri-info: #64d2ff;
+    --fri-secondary: rgba(135, 91, 229, 1);
+    --fri-secondary-foreground: oklch(100% 0 0);
+    --fri-accent: rgba(23, 213, 255, 1);
+    --fri-accent-foreground: oklch(0% 0 0);
+
+    --fri-info: rgba(49, 130, 206, 1);
     --fri-info-foreground: oklch(100% 0 0);
-    --fri-success: #30d158;
+    --fri-success: rgba(88, 166, 40, 1);
     --fri-success-foreground: oklch(100% 0 0);
-    --fri-warning: #ff9f0a;
-    --fri-warning-foreground: #000;
-    --fri-danger: #ff375f;
+    --fri-warning: rgba(221, 107, 32, 1);
+    --fri-warning-foreground: oklch(100% 0 0);
+    --fri-danger: rgba(229, 62, 62, 1);
     --fri-danger-foreground: oklch(100% 0 0);
 
-    --fri-ring: #0088ff;
+    --fri-field: rgba(190, 227, 248, 0.16);
 
-    --fri-selection: #0088ff;
-    --fri-selection-foreground: oklch(100% 0 0);
-
+    --fri-focus: rgba(23, 213, 255, 1);
     --fri-overlay: oklch(0% 0 0);
-
-    --fri-link: #0099ff;
-
-    --fri-mix-muted: 14%;
-    --fri-mix-muted-strong: 24%;
-    --fri-mix-foreground-body: 78%;
-    --fri-mix-foreground-muted: 64%;
 
     --fri-shadow-surface: none;
     --fri-shadow-overlay: none;

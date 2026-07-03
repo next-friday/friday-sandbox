@@ -81,7 +81,4 @@
   .fri-text-danger {
     @apply text-danger;
   }
-  .fri-text-link {
-    @apply text-link;
-  }
 }

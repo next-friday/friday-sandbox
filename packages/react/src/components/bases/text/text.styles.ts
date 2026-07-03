@@ -34,7 +34,6 @@ export const textVariants = tv({
       body: { root: "fri-text-body" },
       muted: { root: "fri-text-muted" },
       danger: { root: "fri-text-danger" },
-      link: { root: "fri-text-link" },
     },
     align: {
       left: { root: "text-left" },
