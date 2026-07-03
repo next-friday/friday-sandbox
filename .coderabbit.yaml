@@ -34,9 +34,9 @@ reviews:
         body. Flag any comment except a machine directive (a shebang, a
         /// <reference>, a @type JSDoc, a /* @__PURE__ */) or a scaffold under
         turbo/generators/templates/ or .github/ISSUE_TEMPLATE/. Any lint or type
-        suppression (eslint-disable, @ts-expect-error, @ts-ignore,
-        prettier-ignore) is a comment — flag it; a suppression must be a
-        root-cause fix, never a silenced gate.
+        suppression (eslint-disable*, @ts-expect-error, @ts-ignore, @ts-nocheck,
+        prettier-ignore, biome-ignore) is a comment — flag it; a suppression
+        must be a root-cause fix, never a silenced gate.
     - path: packages/react/src/components/bases/**/*.{ts,tsx}
       instructions: >-
         Base components are scaffolded with "pnpm gen component" (turbo gen), never

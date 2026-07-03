@@ -36,6 +36,7 @@ export const config = [
       "jsdoc/require-returns": "off",
       "jsdoc/require-returns-type": "off",
       "jsdoc/require-returns-description": "off",
+      "jsdoc/require-jsdoc": "off",
     },
   },
   {

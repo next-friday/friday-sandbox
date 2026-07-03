@@ -89,5 +89,5 @@ The commit, branch, and PR rules are defined in `CONTRIBUTING.md` — flag any v
 ## Code quality
 
 - DRY across components, not just within one: flag re-implementations.
-- No comments in source or config; intent lives in names and the commit body. Flag any comment except a machine directive (a shebang, a `/// <reference>`, a `@type` JSDoc, a `/* @__PURE__ */`) or a scaffold under `turbo/generators/templates/` or `.github/ISSUE_TEMPLATE/`. Any lint or type suppression (`eslint-disable`, `@ts-expect-error`, `prettier-ignore`) is a comment — flag it; a suppression must be a root-cause fix, never a silenced gate.
+- No comments in source or config; intent lives in names and the commit body. Flag any comment except a machine directive (a shebang, a `/// <reference>`, a `@type` JSDoc, a `/* @__PURE__ */`) or a scaffold under `turbo/generators/templates/` or `.github/ISSUE_TEMPLATE/`. Any lint or type suppression (`eslint-disable*`, `@ts-expect-error`, `@ts-ignore`, `@ts-nocheck`, `prettier-ignore`, `biome-ignore`) is a comment — flag it; a suppression must be a root-cause fix, never a silenced gate.
 - `--max-warnings 0` is enforced; a warning-level lint is a CI failure.

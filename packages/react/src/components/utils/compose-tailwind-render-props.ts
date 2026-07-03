@@ -1,9 +1,6 @@
 import { clsx } from "clsx";
 import { composeRenderProps } from "react-aria-components/composeRenderProps";
 
-/**
- *
- */
 export function composeTailwindRenderProps<RenderProps>(
   className: string | ((renderProps: RenderProps) => string) | undefined,
   tailwindClasses: string,

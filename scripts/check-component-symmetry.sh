@@ -160,7 +160,7 @@ for f in "$STYLES_SRC/layers/base.css" "$STYLES_COMPONENTS"/*.css; do
   [ -f "$f" ] || continue
   while IFS= read -r line; do
     [ -n "$line" ] && fail "apply" "${f##*/}: raw CSS property — use @apply, or wrap a no-utility property as a @utility in layers/utilities.css ($line)"
-  done < <(grep -nE "^[[:space:]]+[a-z][a-zA-Z-]*[[:space:]]*:" "$f" | grep -vE "\{[[:space:]]*$")
+  done < <(grep -nE "^[[:space:]]+-?[a-z][a-zA-Z-]*[[:space:]]*:" "$f" | grep -vE "\{[[:space:]]*$")
 done
 
 [ ${#warns[@]} -gt 0 ] && printf "\nsymmetry warnings:\n%s\n" "$(printf '%s\n' "${warns[@]}")"
