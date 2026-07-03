@@ -82,7 +82,7 @@ pnpm gen component   # prompts for the name, the primitive kind (native or aria)
 
 The generator (Turborepo `turbo gen`, defined in `turbo/generators/`) creates `<name>.tsx`, `<name>.styles.ts` (the `tv()` variant map), `index.ts`, and `<name>.stories.tsx` under `packages/react/src/components/bases/<name>/`, adds the `<name>.css` stub under `@friday-sandbox/styles/src/components/` (as `<name>.css`) with its `@import`, creates the `<name>.mdx` docs page and its nav entry, wires the export barrels, and writes a changeset. Choose the `aria` primitive for an interactive component (it scaffolds the size, state, and story skeleton), or `native` for a minimal display element. Then fill in the variants, the `@apply` rules, the stories, and the docs. `pnpm lint:symmetry` verifies that `<name>.styles.ts` (in `react`) and `<name>.css` (in `styles`) stay a 1:1 mirror across the package boundary. Don't hand-create or hand-wire these files. To have Claude run this scaffolding step and everything after it from a plain-language goal instead, see [Building a component with Claude](#building-a-component-with-claude).
 
-If the component needs a design token that does not exist yet, add it upstream in `@friday-sandbox/styles` first — by hand-authoring it in the theme CSS — then consume it downstream; `react` never defines its own tokens. The styles-is-upstream split, the `fri-<name>` class contract, and the token flow are in [`ARCHITECTURE.md`](ARCHITECTURE.md).
+If the component needs a design token that does not exist yet, add it upstream in `@friday-sandbox/styles` first — by hand-authoring it in the theme CSS — then consume it downstream; `react` never defines its own tokens. The styles-is-upstream split, the `fri-<name>` class contract, and the token flow are documented in [`.claude/rules/architecture.md`](.claude/rules/architecture.md).
 
 ## Building a component with Claude
 
@@ -155,6 +155,8 @@ pnpm changeset
 
 Pick the affected packages and a semver bump of patch, minor, or major, then write a short, user-facing summary. Commit the generated file alongside your change. CI blocks behavior changes that arrive without one. Pure chores such as CI config, formatting, and internal tooling don't need a changeset.
 
+Only the two published packages are versioned: `@friday-sandbox/react` and `@friday-sandbox/styles`. They are **version-locked** through a `fixed` group in [`.changeset/config.json`](.changeset/config.json), so a changeset bumps them together — changesets raises the whole group to the highest bump any changeset requests, and the two can never diverge to different versions. Give them the same bump. `@friday-sandbox/eslint-config` and `@friday-sandbox/typescript-config` are `private` and never published, so they never appear in a changeset.
+
 ## Gates
 
 A pull request must be green before it can merge. These run automatically through the pre-commit and pre-push hooks, and again in CI:
@@ -183,7 +185,7 @@ Don't disable a rule, skip a gate, or bypass the hooks with `--no-verify` to for
 - Keep each pull request small and scoped to a single issue.
 - Make sure every gate passes and the branch is up to date with `main`.
 - For visual changes, include a screenshot or screen recording of the before and after.
-- Fill in the pull request template, describing what changed and why.
+- Fill in [`.github/PULL_REQUEST_TEMPLATE.md`](.github/PULL_REQUEST_TEMPLATE.md): the Summary, the Architecture-compliance checklist, and the Release impact (the semver bump). Keep only the `(when touched)` sections that apply — component, eslint/ts/styles, or tooling/CI — and delete the rest.
 - Open a draft pull request for work in progress; mark it ready once the gates pass and the diff reads clean.
 - The title and every commit are validated automatically against the [title convention](#commit-and-pull-request-titles); the branch must trace to an open issue, and the body — never the title — closes it with `Closes #<n>`.
 - A maintainer reviews and merges. Address review feedback by pushing follow-up commits to the same branch.

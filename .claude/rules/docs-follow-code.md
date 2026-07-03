@@ -16,8 +16,8 @@ Artifacts to keep in sync with the code:
 - **LLM docs** — `CLAUDE.md`, `.coderabbit.yaml`, `.gemini/styleguide.md`, and
   every skill under `.claude/skills/`. These steer human and LLM contributors; a
   stale instruction makes them build the wrong thing.
-- **Prose docs** — `ARCHITECTURE.md`, `CONTRIBUTING.md`, `STYLE.md`, every
-  `README.md`, and the docs site under `apps/docs/` (`.mdx`).
+- **Prose docs** — `CONTRIBUTING.md`, every `README.md`, and the docs site under
+  `apps/docs/` (`.mdx`).
 - **Everything else that references the changed thing** — changesets, generator
   templates, config, examples, and links.
 

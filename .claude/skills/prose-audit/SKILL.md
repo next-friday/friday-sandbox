@@ -1,6 +1,6 @@
 ---
 name: prose-audit
-description: Use to audit docs and mdx prose for one voice — every page, and every peer page beside it, reading as if one person wrote it, with no narrator drift and no off-vocabulary or marketing words (against STYLE.md), and light enough on symbols that a human reads it without decoding. Read-only review that reports file:line findings with a fix. Triggers "audit the docs prose", "does this read on-voice", "is the tone consistent", "is this over-styled". Not for structural or factual sync — that is docs-follow-code.
+description: Use to audit docs and mdx prose for one voice — every page, and every peer page beside it, reading as if one person wrote it, with no narrator drift and no off-vocabulary or marketing words (against `.claude/rules/prose-style.md`), and light enough on symbols that a human reads it without decoding. Read-only review that reports file:line findings with a fix. Triggers "audit the docs prose", "does this read on-voice", "is the tone consistent", "is this over-styled". Not for structural or factual sync — that is docs-follow-code.
 ---
 
 # Prose audit
@@ -21,7 +21,7 @@ Read-only: report `file:line` and the fix; rewrite only when asked, and never to
 2. **Voice symmetry — one author across peers.** Line up the same section across every peer and check it reads the same:
    - **Same shape.** Every `Purpose` opens the same way; every `Applies` cell is a comma list or one sentence, not one clean list beside one semicolon-chain; every `When to use` keeps the same rhythm. Uneven shapes read as different authors.
    - **One narrator.** The imperative, addressed to the reader, throughout — never a mix of "you", "the component provides", and "developers can" within or across docs.
-   - **STYLE.md vocabulary.** [`STYLE.md`](../../../STYLE.md) is the single word source — component not widget, variant not kind. Read it and flag an off-vocabulary synonym or a banned marketing adjective (powerful, robust, seamless, intuitive, modern, and the like).
+   - **`.claude/rules/prose-style.md` vocabulary.** [`.claude/rules/prose-style.md`](../../rules/prose-style.md) is the single word source — component not widget, variant not kind. Read it and flag an off-vocabulary synonym or a banned marketing adjective (powerful, robust, seamless, intuitive, modern, and the like).
    - **No unprovable capability claim.** Prose must not assert what an AI or LLM _will_ do; state the artifact's engineering property instead.
 
    A page that reads differently from its siblings is the finding — fix it toward the shared shape, not away from it.
@@ -55,10 +55,10 @@ Read-only: report `file:line` and the fix; rewrite only when asked, and never to
 - "It's technically correct" — correctness is not the axis; whether it reads as one author, to a human, is.
 - Wrapping ordinary words in backticks to look precise — a chip is for an identifier, not for prose.
 - Rewriting a demo's example copy to "fix the voice" — that is the author's art, not the audit's to touch.
-- Re-listing STYLE.md's banned words or vocabulary in this skill — STYLE.md is the single source; read it live.
+- Re-listing `.claude/rules/prose-style.md`'s banned words or vocabulary in this skill — `.claude/rules/prose-style.md` is the single source; read it live.
 
 ## What this encodes
 
-- STYLE.md is the voice source; this skill is its read-time enforcement for prose, the way `lint:symmetry` enforces structural symmetry — one holds the shape of the code, this holds the shape of the sentences. It pairs with `docs-follow-code`, which syncs the facts; this holds the voice even.
+- `.claude/rules/prose-style.md` is the voice source; this skill is its read-time enforcement for prose, the way `lint:symmetry` enforces structural symmetry — one holds the shape of the code, this holds the shape of the sentences. It pairs with `docs-follow-code`, which syncs the facts; this holds the voice even.
 - One author is the whole point: hold peer docs to the same sentence shapes, the same narrator, the same words. A reader should not be able to tell where one contributor stopped and the next began.
 - Restraint rule of thumb: a symbol earns its place when it names a real thing — one identifier, one value, one range. Two symbols the reader must decode in a row is one too many.

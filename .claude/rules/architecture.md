@@ -1,4 +1,9 @@
-# Architecture
+---
+paths:
+  - "packages/**"
+---
+
+# Rule: architecture — the codemap and invariants
 
 `friday-sandbox` is an accessible React component library paired with a
 framework-agnostic design-token system. The goal it serves: a component's look
@@ -6,11 +11,6 @@ is driven entirely by design tokens, so theming is plain CSS variables with no
 build step; the React API stays accessible (built on `react-aria-components`);
 and the whole system is machine-predictable (a regular token grammar and
 stories that double as tests).
-
-This document is the bird's-eye view — the codemap and the invariants. It names
-entities rather than linking paths (links go stale; search by name). For the
-contribution workflow see `CONTRIBUTING.md`; for prose conventions see
-`STYLE.md`.
 
 ## Upstream and downstream: styles feeds react
 
@@ -141,7 +141,7 @@ test.
 ## Cross-cutting concerns
 
 - **Gates run via git hooks**, never by hand — pre-commit on staged files,
-  pre-push the full suite. The full list lives in `CONTRIBUTING.md`.
+  pre-push the full suite.
 - **`src` ↔ `exports`** — workspace consumers read `src/`, published consumers
   read `dist/`; change one surface, align the other.
 - **TypeScript only** — source and scripts are `.ts`/`.tsx`, run with Node's

@@ -15,5 +15,14 @@ source and never the first step; recall only hints which doc to open.
 - Every factual cell in a comparison must trace back to a source you actually consulted; cite the URL where it matters.
 - For multi-library or high-stakes comparisons, fan out research and adversarially verify each claim, defaulting to "refuted" when no source supports it, rather than asserting from recall.
 
+**Discover the repo, don't recall it.** The repo is the source of truth for its
+own shape. Before acting on where a file lives, whether it is generated or
+authored, published or private, what a token is named, or which CI check is
+required, grep and read the real tree, run `pnpm gen` and read its output, or
+read the gate's own output — never act from "how repos usually work." An
+existing helper, component, or token is found by searching for it before
+creating one; the generator then enforces the canonical shape. This is
+no-guessing applied to the codebase itself.
+
 Guessing is a half-fix: fix it at the root by reading the source, the same way
 code problems are fixed at their definition rather than patched downstream.

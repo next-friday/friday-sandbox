@@ -6,6 +6,11 @@ Every fact, value, rule, behavior, definition, and implementation must have exac
 
 Before introducing anything new, determine whether an equivalent implementation or definition already exists.
 
+Search the tree for an existing implementation before writing a new one — grep
+the codebase, not your memory. Reinventing a helper, token, or component that
+already exists is the most common redundancy; the generator enforces the
+canonical shape once you find it.
+
 If it exists:
 
 - Reuse it.
