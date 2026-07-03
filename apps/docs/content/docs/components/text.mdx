@@ -88,7 +88,7 @@ chrome.
 
 The `color` prop sets the text-emphasis tone. `inherit` (the default) takes the
 parent color; `ink`, `body`, and `muted` step down the neutral emphasis ramp;
-`danger` and `link` map to their semantic roles.
+`danger` maps to its semantic role.
 
 <Tabs items={["Preview", "Code"]}>
   <Tab value="Preview">
@@ -97,7 +97,6 @@ parent color; `ink`, `body`, and `muted` step down the neutral emphasis ramp;
       <Text color="body">Body</Text>
       <Text color="muted">Muted</Text>
       <Text color="danger">Danger</Text>
-      <Text color="link">Link</Text>
     </Flex>
   </Tab>
 
@@ -107,7 +106,6 @@ parent color; `ink`, `body`, and `muted` step down the neutral emphasis ramp;
     <Text color="body">Body</Text>
     <Text color="muted">Muted</Text>
     <Text color="danger">Danger</Text>
-    <Text color="link">Link</Text>
     ```
   </Tab>
 </Tabs>
@@ -120,7 +118,7 @@ HTML element.
 | Prop        | Default     | Type                                                                                                                                                                                                                                                                      |
 | ----------- | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `variant`   | `"inherit"` | `"inherit" \| "display-xxl" \| "display-xl" \| "display-lg" \| "display-md" \| "display-sm" \| "body-lg" \| "body-lg-strong" \| "body-md" \| "body-md-strong" \| "body-sm" \| "body-sm-strong" \| "body-xs" \| "body-xs-strong" \| "label-lg" \| "label-md" \| "label-sm" \| "caption" \| "caption-strong" \| "code"` <br /> Applies a typography scale token. |
-| `color`     | `"inherit"` | `"inherit" \| "ink" \| "body" \| "muted" \| "danger" \| "link"` <br /> Sets the text-emphasis tone, inheriting the parent color by default. |
+| `color`     | `"inherit"` | `"inherit" \| "ink" \| "body" \| "muted" \| "danger"` <br /> Sets the text-emphasis tone, inheriting the parent color by default. |
 | `align`     | —           | `"left" \| "center" \| "right" \| "justify"` <br /> Sets the text alignment. |
 | `truncate`  | `false`     | `boolean` <br /> Cuts a single line of overflowing text with an ellipsis. |
 | `underline` | `false`     | `boolean` <br /> Underlines the text. |
@@ -160,7 +158,6 @@ HTML element.
 | `fri-text-body` | Tone | Body text tone. |
 | `fri-text-muted` | Tone | Muted text tone. |
 | `fri-text-danger` | Tone | Danger text tone. |
-| `fri-text-link` | Tone | Link text tone. |
 
 The `align`, `truncate`, `lineClamp`, and `underline` props map to Tailwind utilities directly, with no custom `fri-` class.
 

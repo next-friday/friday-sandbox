@@ -40,7 +40,6 @@ const COLORS = [
   { value: "body", label: "Body" },
   { value: "muted", label: "Muted" },
   { value: "danger", label: "Danger" },
-  { value: "link", label: "Link" },
 ] as const;
 
 const ALIGNS = [
@@ -276,10 +275,6 @@ export const Color: Story = {
 
       <Text {...storyArgs} color="danger">
         Danger
-      </Text>
-
-      <Text {...storyArgs} color="link">
-        Link
       </Text>
     </Flex>
   ),

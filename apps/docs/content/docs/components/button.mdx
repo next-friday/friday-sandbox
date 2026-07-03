@@ -52,12 +52,13 @@ exposes press behavior through `onPress`.
 
 ## Colors
 
-Six semantic colors are available through the `color` prop.
+Seven semantic colors are available through the `color` prop.
 
 <Tabs items={["Preview", "Code"]}>
   <Tab value="Preview">
     <Flex align="end" gap="md" className="px-4 py-6">
       <Button color="primary">Primary</Button>
+      <Button color="secondary">Secondary</Button>
       <Button color="accent">Accent</Button>
       <Button color="info">Info</Button>
       <Button color="success">Success</Button>
@@ -69,6 +70,7 @@ Six semantic colors are available through the `color` prop.
   <Tab value="Code">
     ```tsx
     <Button color="primary">Primary</Button>
+    <Button color="secondary">Secondary</Button>
     <Button color="accent">Accent</Button>
     <Button color="info">Info</Button>
     <Button color="success">Success</Button>
@@ -160,7 +162,7 @@ actions.
 
 | Prop            | Default     | Type                                                                     |
 | --------------- | ----------- | ----------------------------------------------------------------------- |
-| `color`         | `"primary"` | `"primary" \| "accent" \| "info" \| "success" \| "warning" \| "danger"`<br />Sets the semantic color role. |
+| `color`         | `"primary"` | `"primary" \| "secondary" \| "accent" \| "info" \| "success" \| "warning" \| "danger"`<br />Sets the semantic color role. |
 | `variant`       | `"solid"`   | `"solid" \| "subtle" \| "surface" \| "outline" \| "ghost" \| "plain"`<br />Sets the visual emphasis. |
 | `size`          | `"md"`      | `"xs" \| "sm" \| "md" \| "lg" \| "xl"`<br />Sets the button size. |
 | `isIconOnly`    | `false`     | `boolean`<br />Renders a square icon-only button. Pair it with `aria-label`. |
@@ -178,6 +180,7 @@ actions.
 | ------------------------- | -------- | --------------------------------------------------- |
 | `fri-button`              | Base     | Base styles: primary color, solid variant, md size. |
 | `fri-button-primary`      | Color    | Primary color role.                                 |
+| `fri-button-secondary`    | Color    | Secondary color role.                               |
 | `fri-button-accent`       | Color    | Accent color role.                                  |
 | `fri-button-info`         | Color    | Info color role.                                    |
 | `fri-button-success`      | Color    | Success color role.                                 |

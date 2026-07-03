@@ -6,6 +6,7 @@ export const buttonVariants = tv({
   variants: {
     color: {
       primary: "fri-button-primary",
+      secondary: "fri-button-secondary",
       accent: "fri-button-accent",
       info: "fri-button-info",
       success: "fri-button-success",

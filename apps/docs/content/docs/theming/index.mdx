@@ -28,22 +28,23 @@ seed set below.
 ## Seed tokens
 
 Every fill pairs with its `-foreground` (the text and icon color on that fill).
-The six semantic roles are `primary accent info success warning danger`.
+The seven semantic roles are `primary secondary accent info success warning danger`.
 
 | Token                                       | Role                                                |
 | ------------------------------------------- | --------------------------------------------------- |
 | `--fri-background` / `--fri-foreground`     | Page ground and default text                        |
+| `--fri-surface`                             | Raised surface for cards and panels                 |
+| `--fri-field`                               | Input and control fill                              |
 | `--fri-neutral`                             | Neutral for borders, fills, and muted text          |
 | `--fri-primary` / `--fri-primary-foreground` | Primary action                                     |
+| `--fri-secondary` / `--fri-secondary-foreground` | Secondary action                                |
 | `--fri-accent` / `--fri-accent-foreground`  | Accent                                              |
 | `--fri-info` / `--fri-info-foreground`      | Info                                                |
 | `--fri-success` / `--fri-success-foreground` | Success                                            |
 | `--fri-warning` / `--fri-warning-foreground` | Warning                                            |
 | `--fri-danger` / `--fri-danger-foreground`  | Danger                                              |
-| `--fri-ring`                                | Focus ring                                          |
-| `--fri-selection` / `--fri-selection-foreground` | Text and item selection                        |
+| `--fri-focus`                               | Focus ring                                          |
 | `--fri-overlay`                             | Overlay scrim behind modals                         |
-| `--fri-link`                                | Link                                                |
 
 The spacing, type, radius, motion, and shadow scales are seeds too — override
 them the same way when a theme needs to reshape more than color.

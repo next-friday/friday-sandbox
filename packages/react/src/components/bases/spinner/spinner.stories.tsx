@@ -36,7 +36,8 @@ const meta = {
       options: COLORS.map((color) => color.value),
       table: {
         type: {
-          summary: "primary | accent | info | success | warning | danger",
+          summary:
+            "primary | secondary | accent | info | success | warning | danger",
         },
         defaultValue: { summary: "primary" },
       },
@@ -82,6 +83,7 @@ export const Colors: Story = {
   render: (storyArgs) => (
     <Flex wrap="wrap" align="center" gap="md">
       <Spinner {...storyArgs} color="primary" />
+      <Spinner {...storyArgs} color="secondary" />
       <Spinner {...storyArgs} color="accent" />
       <Spinner {...storyArgs} color="info" />
       <Spinner {...storyArgs} color="success" />
