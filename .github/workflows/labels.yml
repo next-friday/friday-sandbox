@@ -1,0 +1,35 @@
+name: Labels
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/scripts/sync-labels.sh"
+      - ".github/workflows/labels.yml"
+  workflow_dispatch:
+
+concurrency:
+  group: labels
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  sync:
+    name: Sync labels from code
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: step-security/harden-runner@9af89fc71515a100421586dfdb3dc9c984fbf411
+        with:
+          egress-policy: audit
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0
+        with:
+          persist-credentials: false
+      - name: Sync labels
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+        run: bash .github/scripts/sync-labels.sh
