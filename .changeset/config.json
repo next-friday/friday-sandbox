@@ -4,5 +4,6 @@
     "@changesets/changelog-github",
     { "repo": "next-friday/friday-sandbox" }
   ],
-  "access": "public"
+  "access": "public",
+  "fixed": [["@friday-sandbox/react", "@friday-sandbox/styles"]]
 }

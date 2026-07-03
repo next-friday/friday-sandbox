@@ -1,3 +1,8 @@
+---
+paths:
+  - "**/*.{ts,tsx,mjs,cjs,css,sh,yaml,yml}"
+---
+
 # Rule: no code comments — intent lives in names and commits
 
 Source and config carry no comments. The "why" of a change lives in the commit

@@ -55,10 +55,11 @@ storybook-static
 __screenshots__
 
 # LLM
-.claude/hooks/
-.claude/settings.json
 .claude/settings.local.json
 .mcp.json
 
-# Component review loop — local rebuttal memory (see component-review skill)
+# Component review loop
 .review-decisions/
+
+# Design specs
+docs/superpowers/

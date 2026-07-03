@@ -145,7 +145,7 @@ reviews:
         note to a downstream consumer, not as an internal log.
     - path: "**/*.{md,mdx}"
       instructions: >-
-        Prose follows the editorial style guide in STYLE.md. Flag a banned
+        Prose follows the editorial style guide in .claude/rules/prose-style.md. Flag a banned
         marketing adjective, an off-vocabulary synonym, a switch of narrator or
         voice within one document, or maintainer-internal detail in a consumer
         page. Component docs under apps/docs/content/docs/components carry the

@@ -1,0 +1,32 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Edit|MultiEdit|Write|NotebookEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"$CLAUDE_PROJECT_DIR/.claude/hooks/protect-files.sh\""
+          }
+        ]
+      }
+    ]
+  },
+  "permissions": {
+    "ask": [
+      "Bash(gh issue create *)",
+      "Bash(gh issue edit *)",
+      "Bash(gh issue close *)",
+      "Bash(gh issue develop *)",
+      "Bash(gh issue comment *)",
+      "Bash(gh pr create *)",
+      "Bash(gh pr edit *)",
+      "Bash(gh pr merge *)",
+      "Bash(gh pr close *)",
+      "Bash(gh pr comment *)",
+      "Bash(gh pr ready *)",
+      "Bash(git push *)"
+    ]
+  },
+  "includeCoAuthoredBy": false
+}

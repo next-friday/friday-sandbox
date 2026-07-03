@@ -1,10 +1,12 @@
-# Editorial style guide
+---
+paths:
+  - "**/*.{md,mdx}"
+---
 
-The single source of truth for prose in this repository. Every README, doc page,
-changeset, story copy, and generated document follows it. The goal is that the
-whole repo reads as if one person wrote it.
+# Rule: prose style — one voice across every doc
 
-This guide governs writing. For code conventions see [`CONTRIBUTING.md`](CONTRIBUTING.md); for architecture see [`ARCHITECTURE.md`](ARCHITECTURE.md).
+Every README, doc page, changeset, story copy, and generated document follows
+this guide. The goal: the whole repo reads as if one person wrote it.
 
 For generic editorial questions this guide adopts the [Google developer documentation style guide](https://developers.google.com/style) as its base — grammar, punctuation, capitalization, and any word choice not fixed below. What follows is only what is specific to this repository: its audience map, vocabulary, document structure, and the conventions a gate or an AI reviewer enforces. Do not re-derive generic editorial rules here; cite the base.
 

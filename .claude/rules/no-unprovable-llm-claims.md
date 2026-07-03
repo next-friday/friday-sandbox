@@ -1,3 +1,8 @@
+---
+paths:
+  - "**/*.{md,mdx}"
+---
+
 # Rule: no unprovable LLM-capability claims
 
 In governance docs, specs, READMEs, PRs, issues, and any artifact, do not claim
