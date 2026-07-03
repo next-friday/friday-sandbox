@@ -31,8 +31,7 @@ const preview: Preview = {
         children,
         context,
       }: PropsWithChildren<DocsContainerProps>) => {
-        const base =
-          context.store.userGlobals.globals.theme === "dark" ? "dark" : "light";
+        const base = context.globals.theme === "dark" ? "dark" : "light";
         const theme = friTheme(base);
 
         return (

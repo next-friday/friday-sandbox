@@ -54,7 +54,7 @@ the Anthropic guidance they derive from.
    short run of discrete points, such as when-to-use cases. Reserve prose for
    rationale and narrative that neither would flatten.
    Source: [memory](https://code.claude.com/docs/en/memory), "organized sections are easier to follow than dense paragraphs."
-   - Do: `| Prop | Type | Default |` for props; ``| `fri-button-solid` | Variant | Solid variant. |`` for a class list.
+   - Do: `| Prop | Default | Type |` for props; ``| `fri-button-solid` | Variant | Solid variant. |`` for a class list.
    - Don't: a paragraph that lists three props and their defaults in sentences.
 
 5. **Even depth.** Comparable items get comparable length. Document every

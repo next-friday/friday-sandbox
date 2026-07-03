@@ -8,9 +8,9 @@ import { Tab } from "@/components/mdx-tab";
 export const getMDXComponents = (
   components?: MDXComponents,
 ): MDXComponents => ({
+  ...defaultMdxComponents,
   ...TabsComponents,
   ...components,
-  ...defaultMdxComponents,
   SourceLinks,
   Tab,
 });

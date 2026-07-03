@@ -52,8 +52,11 @@ const BaseUiIcon = () => (
 );
 
 const headlessIcon = (href: string): ReactNode => {
-  if (href.includes("radix-ui.com")) return <RadixIcon />;
-  if (href.includes("base-ui.com")) return <BaseUiIcon />;
+  const { hostname } = new URL(href);
+  if (hostname === "radix-ui.com" || hostname.endsWith(".radix-ui.com"))
+    return <RadixIcon />;
+  if (hostname === "base-ui.com" || hostname.endsWith(".base-ui.com"))
+    return <BaseUiIcon />;
   return <ReactAriaIcon />;
 };
 
