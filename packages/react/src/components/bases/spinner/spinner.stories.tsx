@@ -121,5 +121,5 @@ export const CustomStyles: Story = {
       },
     },
   },
-  render: () => <Spinner className="size-16 text-red-500" />,
+  render: () => <Spinner className="size-16 text-pink-500" />,
 };
