@@ -38,6 +38,14 @@ maps its props to that same set of class names. The two halves are mirrored
 1:1 across the package boundary — a deterministic gate fails on an orphan
 class on either side.
 
+The shared spacing utilities are the deliberate exception. Padding and gap live
+in `layers/spacing.css` as global `fri-p-*`/`fri-gap-*` classes — not
+`fri-<name>`-prefixed, one file every component shares — so a variant map
+consumes them by spreading `paddingVariants`/`gapVariants` (and their slot forms)
+from `components/utils/spacing-variants.ts`, not by declaring its own. Being
+global they fall outside the per-component mirror gate; their `styles` ↔ `react`
+parity rests on the shared map that names them.
+
 `react` wraps its own variant map in an accessible component; it declares no
 CSS of its own. Because the CSS half of the contract is a plain, framework-
 agnostic class name, the same look applies to a hand-written element that
@@ -110,7 +118,7 @@ changing a color.
 - **`styles`** — the upstream source and shared core: hand-authored token CSS,
   the Tailwind layers (`@layer theme, base, components, utilities`, imported in
   that order), the `themes/` token seeds, the `tailwind/` `@theme` bridge, the
-  `layers/` base/utilities/variants files, and one CSS file per component. Ships
+  `layers/` base/spacing/utilities/variants files, and one CSS file per component. Ships
   CSS only, no JavaScript.
 - **`react`** — accessible components built on `react-aria-components` (when
   interactive) or native HTML (display and layout), each owning its own `tv()`

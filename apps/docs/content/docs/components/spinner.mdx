@@ -21,7 +21,7 @@ import { Spinner } from "@friday-sandbox/react";
 
 <Tabs items={["Preview", "Code"]}>
   <Tab value="Preview">
-    <Flex align="end" gap="md" className="px-4 py-6">
+    <Flex align="end" gap="md" p="md">
       <Spinner />
     </Flex>
   </Tab>
@@ -54,7 +54,7 @@ The `color` prop matches the semantic colors used across the system.
 
 <Tabs items={["Preview", "Code"]}>
   <Tab value="Preview">
-    <Flex align="end" gap="md" className="px-4 py-6">
+    <Flex align="end" gap="md" p="md">
       <Spinner color="primary" />
       <Spinner color="secondary" />
       <Spinner color="accent" />
@@ -84,7 +84,7 @@ Five sizes step from `xs` to `xl`.
 
 <Tabs items={["Preview", "Code"]}>
   <Tab value="Preview">
-    <Flex align="end" gap="md" className="px-4 py-6">
+    <Flex align="end" gap="md" p="md">
       <Spinner size="xs" />
       <Spinner size="sm" />
       <Spinner size="md" />
@@ -108,11 +108,11 @@ Five sizes step from `xs` to `xl`.
 
 `Spinner` also accepts the standard `<span>` props, plus a `className` string.
 
-| Prop        | Default     | Type                                                                                                       |
-| ----------- | ----------- | ----------------------------------------------------------------------------------------------------------- |
-| `color`     | `"primary"` | `"primary" \| "secondary" \| "accent" \| "info" \| "success" \| "warning" \| "danger"`<br />Sets the semantic color role.    |
-| `size`      | `"md"`      | `"xs" \| "sm" \| "md" \| "lg" \| "xl"`<br />Sets the spinner size.                                          |
-| `className` | —           | `string`<br />Additional CSS classes to apply.                                                              |
+| Prop        | Default     | Type                                                                                                                      |
+| ----------- | ----------- | ------------------------------------------------------------------------------------------------------------------------- |
+| `color`     | `"primary"` | `"primary" \| "secondary" \| "accent" \| "info" \| "success" \| "warning" \| "danger"`<br />Sets the semantic color role. |
+| `size`      | `"md"`      | `"xs" \| "sm" \| "md" \| "lg" \| "xl"`<br />Sets the spinner size.                                                        |
+| `className` | —           | `string`<br />Additional CSS classes to apply.                                                                            |
 
 ## Styling
 
@@ -120,21 +120,21 @@ Five sizes step from `xs` to `xl`.
 
 ### Modifier classes
 
-| Class                 | Type  | Description                              |
-| --------------------- | ----- | ----------------------------------------- |
-| `fri-spinner`         | Base  | Base styles: primary color, md size.      |
-| `fri-spinner-primary` | Color | Primary color role.                       |
-| `fri-spinner-secondary` | Color | Secondary color role.                   |
-| `fri-spinner-accent`  | Color | Accent color role.                        |
-| `fri-spinner-info`    | Color | Info color role.                          |
-| `fri-spinner-success` | Color | Success color role.                       |
-| `fri-spinner-warning` | Color | Warning color role.                       |
-| `fri-spinner-danger`  | Color | Danger color role.                        |
-| `fri-spinner-xs`      | Size  | Extra small size.                         |
-| `fri-spinner-sm`      | Size  | Small size.                                |
-| `fri-spinner-md`      | Size  | Medium size (default).                    |
-| `fri-spinner-lg`      | Size  | Large size.                                |
-| `fri-spinner-xl`      | Size  | Extra large size.                          |
+| Class                   | Type  | Description                          |
+| ----------------------- | ----- | ------------------------------------ |
+| `fri-spinner`           | Base  | Base styles: primary color, md size. |
+| `fri-spinner-primary`   | Color | Primary color role.                  |
+| `fri-spinner-secondary` | Color | Secondary color role.                |
+| `fri-spinner-accent`    | Color | Accent color role.                   |
+| `fri-spinner-info`      | Color | Info color role.                     |
+| `fri-spinner-success`   | Color | Success color role.                  |
+| `fri-spinner-warning`   | Color | Warning color role.                  |
+| `fri-spinner-danger`    | Color | Danger color role.                   |
+| `fri-spinner-xs`        | Size  | Extra small size.                    |
+| `fri-spinner-sm`        | Size  | Small size.                          |
+| `fri-spinner-md`        | Size  | Medium size (default).               |
+| `fri-spinner-lg`        | Size  | Large size.                          |
+| `fri-spinner-xl`        | Size  | Extra large size.                    |
 
 ## Accessibility
 

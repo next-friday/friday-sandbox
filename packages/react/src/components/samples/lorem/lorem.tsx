@@ -8,7 +8,7 @@ interface LoremProps {
 }
 
 export const Lorem = ({ paragraph = 1 }: LoremProps) => (
-  <div className="space-y-4">
+  <div className="space-y-medium">
     {range(paragraph).map((position) => (
       <p className="text-sm leading-relaxed text-foreground" key={position}>
         {LOREM}

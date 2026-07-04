@@ -3,7 +3,7 @@ interface BoxProps {
 }
 
 export const Box = ({ index }: BoxProps) => (
-  <div className="min-w-32 bg-primary px-4 py-2 text-sm text-primary-foreground">
+  <div className="bg-primary px-4xlarge py-medium text-center text-sm font-semibold text-primary-foreground">
     {index}
   </div>
 );

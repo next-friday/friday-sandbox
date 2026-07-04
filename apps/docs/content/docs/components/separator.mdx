@@ -22,7 +22,7 @@ import { Separator } from "@friday-sandbox/react";
 
 <Tabs items={["Preview", "Code"]}>
   <Tab value="Preview">
-    <Flex align="end" gap="md" className="px-4 py-6">
+    <Flex align="end" gap="md" p="md">
       <Flex direction="column" className="w-full">
         <Text>Above</Text>
         <Separator />
@@ -64,7 +64,7 @@ separator takes its height from its container.
 
 <Tabs items={["Preview", "Code"]}>
   <Tab value="Preview">
-    <Flex align="end" gap="md" className="px-4 py-6">
+    <Flex align="end" gap="md" p="md">
       <Flex align="center" gap="md" className="h-6">
         <Text>Edit</Text>
         <Separator orientation="vertical" />
@@ -93,10 +93,10 @@ separator takes its height from its container.
 `Separator` also accepts the props from React Aria `Separator`, plus a
 `className` string.
 
-| Prop          | Default        | Type                                                                        |
-| ------------- | -------------- | ---------------------------------------------------------------------------- |
-| `orientation` | `"horizontal"` | `"horizontal" \| "vertical"`<br />Sets the divider direction.               |
-| `className`   | —              | `string`<br />Additional CSS classes to apply.                              |
+| Prop          | Default        | Type                                                          |
+| ------------- | -------------- | ------------------------------------------------------------- |
+| `orientation` | `"horizontal"` | `"horizontal" \| "vertical"`<br />Sets the divider direction. |
+| `className`   | —              | `string`<br />Additional CSS classes to apply.                |
 
 ## Styling
 
@@ -104,11 +104,11 @@ separator takes its height from its container.
 
 ### Modifier classes
 
-| Class                      | Type        | Description                                             |
-| --------------------------- | ----------- | -------------------------------------------------------- |
-| `fri-separator`            | Base        | Base styles: horizontal default.                        |
-| `fri-separator-horizontal` | Orientation | A full-width hairline.                                   |
-| `fri-separator-vertical`   | Orientation | A full-height hairline sized by the container.           |
+| Class                      | Type        | Description                                    |
+| -------------------------- | ----------- | ---------------------------------------------- |
+| `fri-separator`            | Base        | Base styles: horizontal default.               |
+| `fri-separator-horizontal` | Orientation | A full-width hairline.                         |
+| `fri-separator-vertical`   | Orientation | A full-height hairline sized by the container. |
 
 ## Accessibility
 

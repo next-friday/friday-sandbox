@@ -59,21 +59,83 @@ const meta = {
     },
     gap: {
       description: "Use the `gap` prop to change the space between cells.",
-      control: "radio",
-      options: ["xs", "sm", "md", "lg", "xl"],
-      table: { type: { summary: "xs | sm | md | lg | xl" } },
+      control: "select",
+      options: ["xxs", "xs", "sm", "md", "lg", "xl", "2xl", "3xl", "4xl"],
+      table: {
+        type: { summary: "xxs | xs | sm | md | lg | xl | 2xl | 3xl | 4xl" },
+      },
     },
     gapX: {
       description: "Use the `gapX` prop to set the horizontal gap only.",
-      control: "radio",
-      options: ["xs", "sm", "md", "lg", "xl"],
-      table: { type: { summary: "xs | sm | md | lg | xl" } },
+      control: "select",
+      options: ["xxs", "xs", "sm", "md", "lg", "xl", "2xl", "3xl", "4xl"],
+      table: {
+        type: { summary: "xxs | xs | sm | md | lg | xl | 2xl | 3xl | 4xl" },
+      },
     },
     gapY: {
       description: "Use the `gapY` prop to set the vertical gap only.",
-      control: "radio",
-      options: ["xs", "sm", "md", "lg", "xl"],
-      table: { type: { summary: "xs | sm | md | lg | xl" } },
+      control: "select",
+      options: ["xxs", "xs", "sm", "md", "lg", "xl", "2xl", "3xl", "4xl"],
+      table: {
+        type: { summary: "xxs | xs | sm | md | lg | xl | 2xl | 3xl | 4xl" },
+      },
+    },
+    p: {
+      description: "Use the `p` prop to set padding on all sides.",
+      control: "select",
+      options: ["xxs", "xs", "sm", "md", "lg", "xl", "2xl", "3xl", "4xl"],
+      table: {
+        type: { summary: "xxs | xs | sm | md | lg | xl | 2xl | 3xl | 4xl" },
+      },
+    },
+    px: {
+      description: "Use the `px` prop to set horizontal (inline) padding.",
+      control: "select",
+      options: ["xxs", "xs", "sm", "md", "lg", "xl", "2xl", "3xl", "4xl"],
+      table: {
+        type: { summary: "xxs | xs | sm | md | lg | xl | 2xl | 3xl | 4xl" },
+      },
+    },
+    py: {
+      description: "Use the `py` prop to set vertical (block) padding.",
+      control: "select",
+      options: ["xxs", "xs", "sm", "md", "lg", "xl", "2xl", "3xl", "4xl"],
+      table: {
+        type: { summary: "xxs | xs | sm | md | lg | xl | 2xl | 3xl | 4xl" },
+      },
+    },
+    pt: {
+      description: "Use the `pt` prop to set top padding.",
+      control: "select",
+      options: ["xxs", "xs", "sm", "md", "lg", "xl", "2xl", "3xl", "4xl"],
+      table: {
+        type: { summary: "xxs | xs | sm | md | lg | xl | 2xl | 3xl | 4xl" },
+      },
+    },
+    pr: {
+      description: "Use the `pr` prop to set right padding.",
+      control: "select",
+      options: ["xxs", "xs", "sm", "md", "lg", "xl", "2xl", "3xl", "4xl"],
+      table: {
+        type: { summary: "xxs | xs | sm | md | lg | xl | 2xl | 3xl | 4xl" },
+      },
+    },
+    pb: {
+      description: "Use the `pb` prop to set bottom padding.",
+      control: "select",
+      options: ["xxs", "xs", "sm", "md", "lg", "xl", "2xl", "3xl", "4xl"],
+      table: {
+        type: { summary: "xxs | xs | sm | md | lg | xl | 2xl | 3xl | 4xl" },
+      },
+    },
+    pl: {
+      description: "Use the `pl` prop to set left padding.",
+      control: "select",
+      options: ["xxs", "xs", "sm", "md", "lg", "xl", "2xl", "3xl", "4xl"],
+      table: {
+        type: { summary: "xxs | xs | sm | md | lg | xl | 2xl | 3xl | 4xl" },
+      },
     },
     inline: {
       description: "Use the `inline` prop to render an inline-level grid.",
@@ -120,16 +182,16 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   render: (storyArgs) => (
     <Grid<ElementType> {...storyArgs}>
-      <Boxes count={6} />
+      <Boxes count={3} />
     </Grid>
   ),
 };
 
 export const Columns: Story = {
-  args: { cols: 4 },
+  args: { cols: 3 },
   render: (storyArgs) => (
     <Grid<ElementType> {...storyArgs}>
-      <Boxes count={8} />
+      <Boxes count={6} />
     </Grid>
   ),
 };
@@ -177,12 +239,16 @@ export const WithItems: Story = {
         <Box index={3} />
       </GridItem>
 
-      <GridItem rowSpan={2}>
+      <GridItem rowSpan={1}>
         <Box index={4} />
       </GridItem>
 
-      <GridItem colSpan={3}>
+      <GridItem colSpan={1}>
         <Box index={5} />
+      </GridItem>
+
+      <GridItem colSpan={2}>
+        <Box index={6} />
       </GridItem>
     </Grid>
   ),

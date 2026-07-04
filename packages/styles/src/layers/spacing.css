@@ -1,0 +1,281 @@
+@layer components {
+  .fri-p-xxs {
+    @apply p-xxsmall;
+  }
+  .fri-p-xs {
+    @apply p-xsmall;
+  }
+  .fri-p-sm {
+    @apply p-small;
+  }
+  .fri-p-md {
+    @apply p-medium;
+  }
+  .fri-p-lg {
+    @apply p-large;
+  }
+  .fri-p-xl {
+    @apply p-xlarge;
+  }
+  .fri-p-2xl {
+    @apply p-2xlarge;
+  }
+  .fri-p-3xl {
+    @apply p-3xlarge;
+  }
+  .fri-p-4xl {
+    @apply p-4xlarge;
+  }
+
+  .fri-px-xxs {
+    @apply px-xxsmall;
+  }
+  .fri-px-xs {
+    @apply px-xsmall;
+  }
+  .fri-px-sm {
+    @apply px-small;
+  }
+  .fri-px-md {
+    @apply px-medium;
+  }
+  .fri-px-lg {
+    @apply px-large;
+  }
+  .fri-px-xl {
+    @apply px-xlarge;
+  }
+  .fri-px-2xl {
+    @apply px-2xlarge;
+  }
+  .fri-px-3xl {
+    @apply px-3xlarge;
+  }
+  .fri-px-4xl {
+    @apply px-4xlarge;
+  }
+
+  .fri-py-xxs {
+    @apply py-xxsmall;
+  }
+  .fri-py-xs {
+    @apply py-xsmall;
+  }
+  .fri-py-sm {
+    @apply py-small;
+  }
+  .fri-py-md {
+    @apply py-medium;
+  }
+  .fri-py-lg {
+    @apply py-large;
+  }
+  .fri-py-xl {
+    @apply py-xlarge;
+  }
+  .fri-py-2xl {
+    @apply py-2xlarge;
+  }
+  .fri-py-3xl {
+    @apply py-3xlarge;
+  }
+  .fri-py-4xl {
+    @apply py-4xlarge;
+  }
+
+  .fri-pt-xxs {
+    @apply pt-xxsmall;
+  }
+  .fri-pt-xs {
+    @apply pt-xsmall;
+  }
+  .fri-pt-sm {
+    @apply pt-small;
+  }
+  .fri-pt-md {
+    @apply pt-medium;
+  }
+  .fri-pt-lg {
+    @apply pt-large;
+  }
+  .fri-pt-xl {
+    @apply pt-xlarge;
+  }
+  .fri-pt-2xl {
+    @apply pt-2xlarge;
+  }
+  .fri-pt-3xl {
+    @apply pt-3xlarge;
+  }
+  .fri-pt-4xl {
+    @apply pt-4xlarge;
+  }
+
+  .fri-pr-xxs {
+    @apply pr-xxsmall;
+  }
+  .fri-pr-xs {
+    @apply pr-xsmall;
+  }
+  .fri-pr-sm {
+    @apply pr-small;
+  }
+  .fri-pr-md {
+    @apply pr-medium;
+  }
+  .fri-pr-lg {
+    @apply pr-large;
+  }
+  .fri-pr-xl {
+    @apply pr-xlarge;
+  }
+  .fri-pr-2xl {
+    @apply pr-2xlarge;
+  }
+  .fri-pr-3xl {
+    @apply pr-3xlarge;
+  }
+  .fri-pr-4xl {
+    @apply pr-4xlarge;
+  }
+
+  .fri-pb-xxs {
+    @apply pb-xxsmall;
+  }
+  .fri-pb-xs {
+    @apply pb-xsmall;
+  }
+  .fri-pb-sm {
+    @apply pb-small;
+  }
+  .fri-pb-md {
+    @apply pb-medium;
+  }
+  .fri-pb-lg {
+    @apply pb-large;
+  }
+  .fri-pb-xl {
+    @apply pb-xlarge;
+  }
+  .fri-pb-2xl {
+    @apply pb-2xlarge;
+  }
+  .fri-pb-3xl {
+    @apply pb-3xlarge;
+  }
+  .fri-pb-4xl {
+    @apply pb-4xlarge;
+  }
+
+  .fri-pl-xxs {
+    @apply pl-xxsmall;
+  }
+  .fri-pl-xs {
+    @apply pl-xsmall;
+  }
+  .fri-pl-sm {
+    @apply pl-small;
+  }
+  .fri-pl-md {
+    @apply pl-medium;
+  }
+  .fri-pl-lg {
+    @apply pl-large;
+  }
+  .fri-pl-xl {
+    @apply pl-xlarge;
+  }
+  .fri-pl-2xl {
+    @apply pl-2xlarge;
+  }
+  .fri-pl-3xl {
+    @apply pl-3xlarge;
+  }
+  .fri-pl-4xl {
+    @apply pl-4xlarge;
+  }
+
+  .fri-gap-xxs {
+    @apply gap-xxsmall;
+  }
+  .fri-gap-xs {
+    @apply gap-xsmall;
+  }
+  .fri-gap-sm {
+    @apply gap-small;
+  }
+  .fri-gap-md {
+    @apply gap-medium;
+  }
+  .fri-gap-lg {
+    @apply gap-large;
+  }
+  .fri-gap-xl {
+    @apply gap-xlarge;
+  }
+  .fri-gap-2xl {
+    @apply gap-2xlarge;
+  }
+  .fri-gap-3xl {
+    @apply gap-3xlarge;
+  }
+  .fri-gap-4xl {
+    @apply gap-4xlarge;
+  }
+
+  .fri-gap-x-xxs {
+    @apply gap-x-xxsmall;
+  }
+  .fri-gap-x-xs {
+    @apply gap-x-xsmall;
+  }
+  .fri-gap-x-sm {
+    @apply gap-x-small;
+  }
+  .fri-gap-x-md {
+    @apply gap-x-medium;
+  }
+  .fri-gap-x-lg {
+    @apply gap-x-large;
+  }
+  .fri-gap-x-xl {
+    @apply gap-x-xlarge;
+  }
+  .fri-gap-x-2xl {
+    @apply gap-x-2xlarge;
+  }
+  .fri-gap-x-3xl {
+    @apply gap-x-3xlarge;
+  }
+  .fri-gap-x-4xl {
+    @apply gap-x-4xlarge;
+  }
+
+  .fri-gap-y-xxs {
+    @apply gap-y-xxsmall;
+  }
+  .fri-gap-y-xs {
+    @apply gap-y-xsmall;
+  }
+  .fri-gap-y-sm {
+    @apply gap-y-small;
+  }
+  .fri-gap-y-md {
+    @apply gap-y-medium;
+  }
+  .fri-gap-y-lg {
+    @apply gap-y-large;
+  }
+  .fri-gap-y-xl {
+    @apply gap-y-xlarge;
+  }
+  .fri-gap-y-2xl {
+    @apply gap-y-2xlarge;
+  }
+  .fri-gap-y-3xl {
+    @apply gap-y-3xlarge;
+  }
+  .fri-gap-y-4xl {
+    @apply gap-y-4xlarge;
+  }
+}

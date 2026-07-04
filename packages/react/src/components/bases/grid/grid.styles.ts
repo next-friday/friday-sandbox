@@ -1,6 +1,11 @@
 import { tv } from "tailwind-variants/lite";
 import type { VariantProps } from "tailwind-variants/lite";
 
+import {
+  gapSlotVariants,
+  paddingSlotVariants,
+} from "../../utils/spacing-variants";
+
 export const gridVariants = tv({
   slots: {
     grid: "fri-grid",
@@ -51,27 +56,6 @@ export const gridVariants = tv({
       min: { grid: "fri-grid-auto-cols-min" },
       max: { grid: "fri-grid-auto-cols-max" },
       fr: { grid: "fri-grid-auto-cols-fr" },
-    },
-    gap: {
-      xs: { grid: "fri-grid-gap-xs" },
-      sm: { grid: "fri-grid-gap-sm" },
-      md: { grid: "fri-grid-gap-md" },
-      lg: { grid: "fri-grid-gap-lg" },
-      xl: { grid: "fri-grid-gap-xl" },
-    },
-    gapX: {
-      xs: { grid: "fri-grid-gap-x-xs" },
-      sm: { grid: "fri-grid-gap-x-sm" },
-      md: { grid: "fri-grid-gap-x-md" },
-      lg: { grid: "fri-grid-gap-x-lg" },
-      xl: { grid: "fri-grid-gap-x-xl" },
-    },
-    gapY: {
-      xs: { grid: "fri-grid-gap-y-xs" },
-      sm: { grid: "fri-grid-gap-y-sm" },
-      md: { grid: "fri-grid-gap-y-md" },
-      lg: { grid: "fri-grid-gap-y-lg" },
-      xl: { grid: "fri-grid-gap-y-xl" },
     },
     colSpan: {
       1: { item: "fri-grid-item-col-span-1" },
@@ -144,6 +128,8 @@ export const gridVariants = tv({
       6: { item: "fri-grid-item-row-end-6" },
       7: { item: "fri-grid-item-row-end-7" },
     },
+    ...gapSlotVariants,
+    ...paddingSlotVariants,
   },
   defaultVariants: {
     cols: 1,
@@ -164,8 +150,27 @@ export type GridVariants = Pick<
   | "gap"
   | "gapX"
   | "gapY"
+  | "p"
+  | "px"
+  | "py"
+  | "pt"
+  | "pr"
+  | "pb"
+  | "pl"
 >;
 export type GridItemVariants = Pick<
   GridSlotVariants,
-  "colSpan" | "rowSpan" | "colStart" | "colEnd" | "rowStart" | "rowEnd"
+  | "colSpan"
+  | "rowSpan"
+  | "colStart"
+  | "colEnd"
+  | "rowStart"
+  | "rowEnd"
+  | "p"
+  | "px"
+  | "py"
+  | "pt"
+  | "pr"
+  | "pb"
+  | "pl"
 >;

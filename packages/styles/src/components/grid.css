@@ -111,54 +111,6 @@
     @apply auto-cols-fr;
   }
 
-  .fri-grid-gap-xs {
-    @apply gap-xsmall;
-  }
-  .fri-grid-gap-sm {
-    @apply gap-small;
-  }
-  .fri-grid-gap-md {
-    @apply gap-medium;
-  }
-  .fri-grid-gap-lg {
-    @apply gap-large;
-  }
-  .fri-grid-gap-xl {
-    @apply gap-xlarge;
-  }
-
-  .fri-grid-gap-x-xs {
-    @apply gap-x-xsmall;
-  }
-  .fri-grid-gap-x-sm {
-    @apply gap-x-small;
-  }
-  .fri-grid-gap-x-md {
-    @apply gap-x-medium;
-  }
-  .fri-grid-gap-x-lg {
-    @apply gap-x-large;
-  }
-  .fri-grid-gap-x-xl {
-    @apply gap-x-xlarge;
-  }
-
-  .fri-grid-gap-y-xs {
-    @apply gap-y-xsmall;
-  }
-  .fri-grid-gap-y-sm {
-    @apply gap-y-small;
-  }
-  .fri-grid-gap-y-md {
-    @apply gap-y-medium;
-  }
-  .fri-grid-gap-y-lg {
-    @apply gap-y-large;
-  }
-  .fri-grid-gap-y-xl {
-    @apply gap-y-xlarge;
-  }
-
   .fri-grid-item {
   }
 
