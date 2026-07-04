@@ -1,5 +1,5 @@
 import { Box } from "../box/box";
-import { range } from "../range";
+import { range } from "../utils/range";
 
 interface BoxesProps {
   count: number;

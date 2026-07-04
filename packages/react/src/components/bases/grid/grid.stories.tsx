@@ -1,8 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import type { ElementType } from "react";
 
-import { Box } from "../../samples/box";
-import { Boxes } from "../../samples/boxes";
+import { Box } from "../../../samples/box";
+import { Boxes } from "../../../samples/boxes";
+import { SPACING } from "../../../../.storybook/constants";
 
 import { Grid, GridItem } from ".";
 
@@ -60,7 +61,7 @@ const meta = {
     gap: {
       description: "Use the `gap` prop to change the space between cells.",
       control: "select",
-      options: ["xxs", "xs", "sm", "md", "lg", "xl", "2xl", "3xl", "4xl"],
+      options: SPACING,
       table: {
         type: { summary: "xxs | xs | sm | md | lg | xl | 2xl | 3xl | 4xl" },
       },
@@ -68,7 +69,7 @@ const meta = {
     gapX: {
       description: "Use the `gapX` prop to set the horizontal gap only.",
       control: "select",
-      options: ["xxs", "xs", "sm", "md", "lg", "xl", "2xl", "3xl", "4xl"],
+      options: SPACING,
       table: {
         type: { summary: "xxs | xs | sm | md | lg | xl | 2xl | 3xl | 4xl" },
       },
@@ -76,7 +77,7 @@ const meta = {
     gapY: {
       description: "Use the `gapY` prop to set the vertical gap only.",
       control: "select",
-      options: ["xxs", "xs", "sm", "md", "lg", "xl", "2xl", "3xl", "4xl"],
+      options: SPACING,
       table: {
         type: { summary: "xxs | xs | sm | md | lg | xl | 2xl | 3xl | 4xl" },
       },
@@ -84,7 +85,7 @@ const meta = {
     p: {
       description: "Use the `p` prop to set padding on all sides.",
       control: "select",
-      options: ["xxs", "xs", "sm", "md", "lg", "xl", "2xl", "3xl", "4xl"],
+      options: SPACING,
       table: {
         type: { summary: "xxs | xs | sm | md | lg | xl | 2xl | 3xl | 4xl" },
       },
@@ -92,7 +93,7 @@ const meta = {
     px: {
       description: "Use the `px` prop to set horizontal (inline) padding.",
       control: "select",
-      options: ["xxs", "xs", "sm", "md", "lg", "xl", "2xl", "3xl", "4xl"],
+      options: SPACING,
       table: {
         type: { summary: "xxs | xs | sm | md | lg | xl | 2xl | 3xl | 4xl" },
       },
@@ -100,7 +101,7 @@ const meta = {
     py: {
       description: "Use the `py` prop to set vertical (block) padding.",
       control: "select",
-      options: ["xxs", "xs", "sm", "md", "lg", "xl", "2xl", "3xl", "4xl"],
+      options: SPACING,
       table: {
         type: { summary: "xxs | xs | sm | md | lg | xl | 2xl | 3xl | 4xl" },
       },
@@ -108,7 +109,7 @@ const meta = {
     pt: {
       description: "Use the `pt` prop to set top padding.",
       control: "select",
-      options: ["xxs", "xs", "sm", "md", "lg", "xl", "2xl", "3xl", "4xl"],
+      options: SPACING,
       table: {
         type: { summary: "xxs | xs | sm | md | lg | xl | 2xl | 3xl | 4xl" },
       },
@@ -116,7 +117,7 @@ const meta = {
     pr: {
       description: "Use the `pr` prop to set right padding.",
       control: "select",
-      options: ["xxs", "xs", "sm", "md", "lg", "xl", "2xl", "3xl", "4xl"],
+      options: SPACING,
       table: {
         type: { summary: "xxs | xs | sm | md | lg | xl | 2xl | 3xl | 4xl" },
       },
@@ -124,7 +125,7 @@ const meta = {
     pb: {
       description: "Use the `pb` prop to set bottom padding.",
       control: "select",
-      options: ["xxs", "xs", "sm", "md", "lg", "xl", "2xl", "3xl", "4xl"],
+      options: SPACING,
       table: {
         type: { summary: "xxs | xs | sm | md | lg | xl | 2xl | 3xl | 4xl" },
       },
@@ -132,7 +133,7 @@ const meta = {
     pl: {
       description: "Use the `pl` prop to set left padding.",
       control: "select",
-      options: ["xxs", "xs", "sm", "md", "lg", "xl", "2xl", "3xl", "4xl"],
+      options: SPACING,
       table: {
         type: { summary: "xxs | xs | sm | md | lg | xl | 2xl | 3xl | 4xl" },
       },

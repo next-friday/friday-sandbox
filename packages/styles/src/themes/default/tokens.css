@@ -4,36 +4,37 @@
   [data-theme="light"] {
     color-scheme: light;
 
-    --fri-background: rgba(246, 248, 250, 1);
-    --fri-surface: rgba(255, 255, 255, 1);
-    --fri-neutral: #dfe2e7;
-    --fri-foreground: rgba(14, 18, 22, 1);
+    --fri-background: oklch(97.82% 0.0034 247.86);
+    --fri-surface: oklch(100% 0 0);
+    --fri-neutral: oklch(91.19% 0.0075 260.73);
+    --fri-foreground: oklch(17.98% 0.0104 248.41);
 
     --fri-primary: oklch(0% 0 0);
     --fri-primary-foreground: oklch(100% 0 0);
-    --fri-secondary: rgba(135, 91, 229, 1);
+    --fri-secondary: oklch(58.82% 0.1999 294.08);
     --fri-secondary-foreground: oklch(100% 0 0);
-    --fri-accent: rgba(23, 213, 255, 1);
+    --fri-accent: oklch(80.77% 0.1438 219.3);
     --fri-accent-foreground: oklch(0% 0 0);
 
-    --fri-info: rgba(49, 130, 206, 1);
+    --fri-info: oklch(59.46% 0.1398 250.3);
     --fri-info-foreground: oklch(100% 0 0);
-    --fri-success: rgba(88, 166, 40, 1);
+    --fri-success: oklch(65.05% 0.175 136.33);
     --fri-success-foreground: oklch(100% 0 0);
-    --fri-warning: rgba(221, 107, 32, 1);
+    --fri-warning: oklch(65.33% 0.1638 48.41);
     --fri-warning-foreground: oklch(100% 0 0);
-    --fri-danger: rgba(229, 62, 62, 1);
+    --fri-danger: oklch(61.37% 0.2039 25.56);
     --fri-danger-foreground: oklch(100% 0 0);
 
-    --fri-field: rgba(255, 255, 255, 0.64);
+    --fri-field: oklch(100% 0 0 / 0.64);
 
-    --fri-focus: rgba(23, 213, 255, 1);
+    --fri-focus: oklch(80.77% 0.1438 219.3);
+
     --fri-overlay: oklch(0% 0 0 / 0.5);
 
     --fri-shadow-surface:
-      0 2px 4px 0 rgb(0 0 0 / 0.04), 0 1px 2px 0 rgb(0 0 0 / 0.06);
+      0 2px 4px 0 oklch(0% 0 0 / 0.04), 0 1px 2px 0 oklch(0% 0 0 / 0.06);
     --fri-shadow-overlay:
-      0 4px 12px 0 rgb(0 0 0 / 0.08), 0 2px 4px 0 rgb(0 0 0 / 0.06);
+      0 4px 12px 0 oklch(0% 0 0 / 0.08), 0 2px 4px 0 oklch(0% 0 0 / 0.06);
 
     --fri-spacing-xxsmall: 0.125rem;
     --fri-spacing-xsmall: 0.25rem;
@@ -136,17 +137,14 @@
     --fri-code-line-height: 1.25rem;
     --fri-code-font-weight: 400;
     --fri-code-letter-spacing: 0;
-
     --fri-duration-fast: 100ms;
     --fri-duration-base: 200ms;
     --fri-duration-slow: 300ms;
-
     --fri-z-base: 0;
     --fri-z-dropdown: 1000;
     --fri-z-sticky: 1100;
     --fri-z-modal: 1300;
     --fri-z-toast: 1400;
-
     --fri-border-width: 1px;
     --fri-font-size-base: 16px;
     --fri-disabled-opacity: 0.5;
@@ -154,11 +152,9 @@
     --fri-ring-offset-width: 1px;
     --fri-cursor-interactive: pointer;
     --fri-cursor-disabled: not-allowed;
-
     --fri-action-radius: 0.75rem;
     --fri-field-radius: 0.5rem;
     --fri-box-radius: 0.875rem;
-
     --fri-radius-xsmall: 0.25rem;
     --fri-radius-small: 0.5rem;
     --fri-radius-medium: 0.875rem;
@@ -170,30 +166,30 @@
   [data-theme="dark"] {
     color-scheme: dark;
 
-    --fri-background: rgba(14, 18, 22, 1);
-    --fri-surface: rgba(21, 27, 33, 1);
-    --fri-neutral: #364249;
-    --fri-foreground: rgba(249, 250, 251, 1);
+    --fri-background: oklch(17.98% 0.0104 248.41);
+    --fri-surface: oklch(21.88% 0.0148 248.51);
+    --fri-neutral: oklch(37.11% 0.0198 233.64);
+    --fri-foreground: oklch(98.46% 0.0017 247.84);
 
     --fri-primary: oklch(100% 0 0);
     --fri-primary-foreground: oklch(0% 0 0);
-    --fri-secondary: rgba(135, 91, 229, 1);
+    --fri-secondary: oklch(58.82% 0.1999 294.08);
     --fri-secondary-foreground: oklch(100% 0 0);
-    --fri-accent: rgba(23, 213, 255, 1);
+    --fri-accent: oklch(80.77% 0.1438 219.3);
     --fri-accent-foreground: oklch(0% 0 0);
-
-    --fri-info: rgba(49, 130, 206, 1);
+    --fri-info: oklch(59.46% 0.1398 250.3);
     --fri-info-foreground: oklch(100% 0 0);
-    --fri-success: rgba(88, 166, 40, 1);
+    --fri-success: oklch(65.05% 0.175 136.33);
     --fri-success-foreground: oklch(100% 0 0);
-    --fri-warning: rgba(221, 107, 32, 1);
+    --fri-warning: oklch(65.33% 0.1638 48.41);
     --fri-warning-foreground: oklch(100% 0 0);
-    --fri-danger: rgba(229, 62, 62, 1);
+    --fri-danger: oklch(61.37% 0.2039 25.56);
     --fri-danger-foreground: oklch(100% 0 0);
 
-    --fri-field: rgba(190, 227, 248, 0.16);
+    --fri-field: oklch(89.6% 0.0484 232.92 / 0.16);
 
-    --fri-focus: rgba(23, 213, 255, 1);
+    --fri-focus: oklch(80.77% 0.1438 219.3);
+
     --fri-overlay: oklch(0% 0 0);
 
     --fri-shadow-surface: none;
