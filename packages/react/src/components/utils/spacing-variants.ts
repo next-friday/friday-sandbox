@@ -1,6 +1,6 @@
 export const paddingVariants = {
   p: {
-    xxs: "fri-p-xxs",
+    "2xs": "fri-p-2xs",
     xs: "fri-p-xs",
     sm: "fri-p-sm",
     md: "fri-p-md",
@@ -11,7 +11,7 @@ export const paddingVariants = {
     "4xl": "fri-p-4xl",
   },
   px: {
-    xxs: "fri-px-xxs",
+    "2xs": "fri-px-2xs",
     xs: "fri-px-xs",
     sm: "fri-px-sm",
     md: "fri-px-md",
@@ -22,7 +22,7 @@ export const paddingVariants = {
     "4xl": "fri-px-4xl",
   },
   py: {
-    xxs: "fri-py-xxs",
+    "2xs": "fri-py-2xs",
     xs: "fri-py-xs",
     sm: "fri-py-sm",
     md: "fri-py-md",
@@ -33,7 +33,7 @@ export const paddingVariants = {
     "4xl": "fri-py-4xl",
   },
   pt: {
-    xxs: "fri-pt-xxs",
+    "2xs": "fri-pt-2xs",
     xs: "fri-pt-xs",
     sm: "fri-pt-sm",
     md: "fri-pt-md",
@@ -44,7 +44,7 @@ export const paddingVariants = {
     "4xl": "fri-pt-4xl",
   },
   pr: {
-    xxs: "fri-pr-xxs",
+    "2xs": "fri-pr-2xs",
     xs: "fri-pr-xs",
     sm: "fri-pr-sm",
     md: "fri-pr-md",
@@ -55,7 +55,7 @@ export const paddingVariants = {
     "4xl": "fri-pr-4xl",
   },
   pb: {
-    xxs: "fri-pb-xxs",
+    "2xs": "fri-pb-2xs",
     xs: "fri-pb-xs",
     sm: "fri-pb-sm",
     md: "fri-pb-md",
@@ -66,7 +66,7 @@ export const paddingVariants = {
     "4xl": "fri-pb-4xl",
   },
   pl: {
-    xxs: "fri-pl-xxs",
+    "2xs": "fri-pl-2xs",
     xs: "fri-pl-xs",
     sm: "fri-pl-sm",
     md: "fri-pl-md",
@@ -80,7 +80,7 @@ export const paddingVariants = {
 
 export const paddingSlotVariants = {
   p: {
-    xxs: { grid: paddingVariants.p.xxs, item: paddingVariants.p.xxs },
+    "2xs": { grid: paddingVariants.p["2xs"], item: paddingVariants.p["2xs"] },
     xs: { grid: paddingVariants.p.xs, item: paddingVariants.p.xs },
     sm: { grid: paddingVariants.p.sm, item: paddingVariants.p.sm },
     md: { grid: paddingVariants.p.md, item: paddingVariants.p.md },
@@ -91,7 +91,7 @@ export const paddingSlotVariants = {
     "4xl": { grid: paddingVariants.p["4xl"], item: paddingVariants.p["4xl"] },
   },
   px: {
-    xxs: { grid: paddingVariants.px.xxs, item: paddingVariants.px.xxs },
+    "2xs": { grid: paddingVariants.px["2xs"], item: paddingVariants.px["2xs"] },
     xs: { grid: paddingVariants.px.xs, item: paddingVariants.px.xs },
     sm: { grid: paddingVariants.px.sm, item: paddingVariants.px.sm },
     md: { grid: paddingVariants.px.md, item: paddingVariants.px.md },
@@ -102,7 +102,7 @@ export const paddingSlotVariants = {
     "4xl": { grid: paddingVariants.px["4xl"], item: paddingVariants.px["4xl"] },
   },
   py: {
-    xxs: { grid: paddingVariants.py.xxs, item: paddingVariants.py.xxs },
+    "2xs": { grid: paddingVariants.py["2xs"], item: paddingVariants.py["2xs"] },
     xs: { grid: paddingVariants.py.xs, item: paddingVariants.py.xs },
     sm: { grid: paddingVariants.py.sm, item: paddingVariants.py.sm },
     md: { grid: paddingVariants.py.md, item: paddingVariants.py.md },
@@ -113,7 +113,7 @@ export const paddingSlotVariants = {
     "4xl": { grid: paddingVariants.py["4xl"], item: paddingVariants.py["4xl"] },
   },
   pt: {
-    xxs: { grid: paddingVariants.pt.xxs, item: paddingVariants.pt.xxs },
+    "2xs": { grid: paddingVariants.pt["2xs"], item: paddingVariants.pt["2xs"] },
     xs: { grid: paddingVariants.pt.xs, item: paddingVariants.pt.xs },
     sm: { grid: paddingVariants.pt.sm, item: paddingVariants.pt.sm },
     md: { grid: paddingVariants.pt.md, item: paddingVariants.pt.md },
@@ -124,7 +124,7 @@ export const paddingSlotVariants = {
     "4xl": { grid: paddingVariants.pt["4xl"], item: paddingVariants.pt["4xl"] },
   },
   pr: {
-    xxs: { grid: paddingVariants.pr.xxs, item: paddingVariants.pr.xxs },
+    "2xs": { grid: paddingVariants.pr["2xs"], item: paddingVariants.pr["2xs"] },
     xs: { grid: paddingVariants.pr.xs, item: paddingVariants.pr.xs },
     sm: { grid: paddingVariants.pr.sm, item: paddingVariants.pr.sm },
     md: { grid: paddingVariants.pr.md, item: paddingVariants.pr.md },
@@ -135,7 +135,7 @@ export const paddingSlotVariants = {
     "4xl": { grid: paddingVariants.pr["4xl"], item: paddingVariants.pr["4xl"] },
   },
   pb: {
-    xxs: { grid: paddingVariants.pb.xxs, item: paddingVariants.pb.xxs },
+    "2xs": { grid: paddingVariants.pb["2xs"], item: paddingVariants.pb["2xs"] },
     xs: { grid: paddingVariants.pb.xs, item: paddingVariants.pb.xs },
     sm: { grid: paddingVariants.pb.sm, item: paddingVariants.pb.sm },
     md: { grid: paddingVariants.pb.md, item: paddingVariants.pb.md },
@@ -146,7 +146,7 @@ export const paddingSlotVariants = {
     "4xl": { grid: paddingVariants.pb["4xl"], item: paddingVariants.pb["4xl"] },
   },
   pl: {
-    xxs: { grid: paddingVariants.pl.xxs, item: paddingVariants.pl.xxs },
+    "2xs": { grid: paddingVariants.pl["2xs"], item: paddingVariants.pl["2xs"] },
     xs: { grid: paddingVariants.pl.xs, item: paddingVariants.pl.xs },
     sm: { grid: paddingVariants.pl.sm, item: paddingVariants.pl.sm },
     md: { grid: paddingVariants.pl.md, item: paddingVariants.pl.md },
@@ -160,7 +160,7 @@ export const paddingSlotVariants = {
 
 export const gapVariants = {
   gap: {
-    xxs: "fri-gap-xxs",
+    "2xs": "fri-gap-2xs",
     xs: "fri-gap-xs",
     sm: "fri-gap-sm",
     md: "fri-gap-md",
@@ -171,7 +171,7 @@ export const gapVariants = {
     "4xl": "fri-gap-4xl",
   },
   gapX: {
-    xxs: "fri-gap-x-xxs",
+    "2xs": "fri-gap-x-2xs",
     xs: "fri-gap-x-xs",
     sm: "fri-gap-x-sm",
     md: "fri-gap-x-md",
@@ -182,7 +182,7 @@ export const gapVariants = {
     "4xl": "fri-gap-x-4xl",
   },
   gapY: {
-    xxs: "fri-gap-y-xxs",
+    "2xs": "fri-gap-y-2xs",
     xs: "fri-gap-y-xs",
     sm: "fri-gap-y-sm",
     md: "fri-gap-y-md",
@@ -196,7 +196,7 @@ export const gapVariants = {
 
 export const gapSlotVariants = {
   gap: {
-    xxs: { grid: gapVariants.gap.xxs },
+    "2xs": { grid: gapVariants.gap["2xs"] },
     xs: { grid: gapVariants.gap.xs },
     sm: { grid: gapVariants.gap.sm },
     md: { grid: gapVariants.gap.md },
@@ -207,7 +207,7 @@ export const gapSlotVariants = {
     "4xl": { grid: gapVariants.gap["4xl"] },
   },
   gapX: {
-    xxs: { grid: gapVariants.gapX.xxs },
+    "2xs": { grid: gapVariants.gapX["2xs"] },
     xs: { grid: gapVariants.gapX.xs },
     sm: { grid: gapVariants.gapX.sm },
     md: { grid: gapVariants.gapX.md },
@@ -218,7 +218,7 @@ export const gapSlotVariants = {
     "4xl": { grid: gapVariants.gapX["4xl"] },
   },
   gapY: {
-    xxs: { grid: gapVariants.gapY.xxs },
+    "2xs": { grid: gapVariants.gapY["2xs"] },
     xs: { grid: gapVariants.gapY.xs },
     sm: { grid: gapVariants.gapY.sm },
     md: { grid: gapVariants.gapY.md },

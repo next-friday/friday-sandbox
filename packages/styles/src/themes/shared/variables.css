@@ -1,0 +1,311 @@
+@layer theme {
+  :root,
+  .light,
+  [data-theme="light"] {
+    --fri-mix-hover: 12%;
+    --fri-mix-pressed: 24%;
+    --fri-mix-border: 40%;
+    --fri-mix-outline-border: 50%;
+    --fri-mix-tint-hover: 8%;
+    --fri-mix-tint-pressed: 16%;
+  }
+
+  :root,
+  .light,
+  .dark,
+  [data-theme] {
+    --fri-border: var(--fri-stroke);
+    --fri-separator: color-mix(in oklab, var(--fri-stroke) 60%, transparent);
+    --fri-scroll-thumb: color-mix(in oklab, var(--fri-stroke) 60%, transparent);
+    --fri-scroll-thumb-hover: color-mix(
+      in oklab,
+      var(--fri-stroke) 65%,
+      transparent
+    );
+
+    --fri-scroll-track: transparent;
+
+    --fri-surface-outline-border: var(--fri-stroke);
+
+    --fri-primary-hover: color-mix(
+      in oklab,
+      var(--fri-primary),
+      var(--fri-primary-foreground) var(--fri-mix-hover)
+    );
+    --fri-primary-pressed: color-mix(
+      in oklab,
+      var(--fri-primary),
+      var(--fri-primary-foreground) var(--fri-mix-pressed)
+    );
+    --fri-primary-secondary-hover: color-mix(
+      in oklab,
+      var(--fri-primary-secondary),
+      var(--fri-primary-secondary-foreground) var(--fri-mix-hover)
+    );
+    --fri-primary-secondary-pressed: color-mix(
+      in oklab,
+      var(--fri-primary-secondary),
+      var(--fri-primary-secondary-foreground) var(--fri-mix-pressed)
+    );
+    --fri-primary-border: color-mix(
+      in oklab,
+      var(--fri-primary) var(--fri-mix-border),
+      transparent
+    );
+    --fri-primary-outline-border: color-mix(
+      in oklab,
+      var(--fri-primary) var(--fri-mix-outline-border),
+      transparent
+    );
+    --fri-primary-tint-hover: color-mix(
+      in oklab,
+      var(--fri-primary) var(--fri-mix-tint-hover),
+      transparent
+    );
+    --fri-primary-tint-pressed: color-mix(
+      in oklab,
+      var(--fri-primary) var(--fri-mix-tint-pressed),
+      transparent
+    );
+    --fri-secondary-hover: color-mix(
+      in oklab,
+      var(--fri-secondary),
+      var(--fri-secondary-foreground) var(--fri-mix-hover)
+    );
+    --fri-secondary-pressed: color-mix(
+      in oklab,
+      var(--fri-secondary),
+      var(--fri-secondary-foreground) var(--fri-mix-pressed)
+    );
+    --fri-secondary-secondary-hover: color-mix(
+      in oklab,
+      var(--fri-secondary-secondary),
+      var(--fri-secondary-secondary-foreground) var(--fri-mix-hover)
+    );
+    --fri-secondary-secondary-pressed: color-mix(
+      in oklab,
+      var(--fri-secondary-secondary),
+      var(--fri-secondary-secondary-foreground) var(--fri-mix-pressed)
+    );
+    --fri-secondary-border: color-mix(
+      in oklab,
+      var(--fri-secondary) var(--fri-mix-border),
+      transparent
+    );
+    --fri-secondary-outline-border: color-mix(
+      in oklab,
+      var(--fri-secondary) var(--fri-mix-outline-border),
+      transparent
+    );
+    --fri-secondary-tint-hover: color-mix(
+      in oklab,
+      var(--fri-secondary) var(--fri-mix-tint-hover),
+      transparent
+    );
+    --fri-secondary-tint-pressed: color-mix(
+      in oklab,
+      var(--fri-secondary) var(--fri-mix-tint-pressed),
+      transparent
+    );
+    --fri-accent-hover: color-mix(
+      in oklab,
+      var(--fri-accent),
+      var(--fri-accent-foreground) var(--fri-mix-hover)
+    );
+    --fri-accent-pressed: color-mix(
+      in oklab,
+      var(--fri-accent),
+      var(--fri-accent-foreground) var(--fri-mix-pressed)
+    );
+    --fri-accent-secondary-hover: color-mix(
+      in oklab,
+      var(--fri-accent-secondary),
+      var(--fri-accent-secondary-foreground) var(--fri-mix-hover)
+    );
+    --fri-accent-secondary-pressed: color-mix(
+      in oklab,
+      var(--fri-accent-secondary),
+      var(--fri-accent-secondary-foreground) var(--fri-mix-pressed)
+    );
+    --fri-accent-border: color-mix(
+      in oklab,
+      var(--fri-accent) var(--fri-mix-border),
+      transparent
+    );
+    --fri-accent-outline-border: color-mix(
+      in oklab,
+      var(--fri-accent) var(--fri-mix-outline-border),
+      transparent
+    );
+    --fri-accent-tint-hover: color-mix(
+      in oklab,
+      var(--fri-accent) var(--fri-mix-tint-hover),
+      transparent
+    );
+    --fri-accent-tint-pressed: color-mix(
+      in oklab,
+      var(--fri-accent) var(--fri-mix-tint-pressed),
+      transparent
+    );
+    --fri-info-hover: color-mix(
+      in oklab,
+      var(--fri-info),
+      var(--fri-info-foreground) var(--fri-mix-hover)
+    );
+    --fri-info-pressed: color-mix(
+      in oklab,
+      var(--fri-info),
+      var(--fri-info-foreground) var(--fri-mix-pressed)
+    );
+    --fri-info-secondary-hover: color-mix(
+      in oklab,
+      var(--fri-info-secondary),
+      var(--fri-info-secondary-foreground) var(--fri-mix-hover)
+    );
+    --fri-info-secondary-pressed: color-mix(
+      in oklab,
+      var(--fri-info-secondary),
+      var(--fri-info-secondary-foreground) var(--fri-mix-pressed)
+    );
+    --fri-info-border: color-mix(
+      in oklab,
+      var(--fri-info) var(--fri-mix-border),
+      transparent
+    );
+    --fri-info-outline-border: color-mix(
+      in oklab,
+      var(--fri-info) var(--fri-mix-outline-border),
+      transparent
+    );
+    --fri-info-tint-hover: color-mix(
+      in oklab,
+      var(--fri-info) var(--fri-mix-tint-hover),
+      transparent
+    );
+    --fri-info-tint-pressed: color-mix(
+      in oklab,
+      var(--fri-info) var(--fri-mix-tint-pressed),
+      transparent
+    );
+    --fri-success-hover: color-mix(
+      in oklab,
+      var(--fri-success),
+      var(--fri-success-foreground) var(--fri-mix-hover)
+    );
+    --fri-success-pressed: color-mix(
+      in oklab,
+      var(--fri-success),
+      var(--fri-success-foreground) var(--fri-mix-pressed)
+    );
+    --fri-success-secondary-hover: color-mix(
+      in oklab,
+      var(--fri-success-secondary),
+      var(--fri-success-secondary-foreground) var(--fri-mix-hover)
+    );
+    --fri-success-secondary-pressed: color-mix(
+      in oklab,
+      var(--fri-success-secondary),
+      var(--fri-success-secondary-foreground) var(--fri-mix-pressed)
+    );
+    --fri-success-border: color-mix(
+      in oklab,
+      var(--fri-success) var(--fri-mix-border),
+      transparent
+    );
+    --fri-success-outline-border: color-mix(
+      in oklab,
+      var(--fri-success) var(--fri-mix-outline-border),
+      transparent
+    );
+    --fri-success-tint-hover: color-mix(
+      in oklab,
+      var(--fri-success) var(--fri-mix-tint-hover),
+      transparent
+    );
+    --fri-success-tint-pressed: color-mix(
+      in oklab,
+      var(--fri-success) var(--fri-mix-tint-pressed),
+      transparent
+    );
+    --fri-warning-hover: color-mix(
+      in oklab,
+      var(--fri-warning),
+      var(--fri-warning-foreground) var(--fri-mix-hover)
+    );
+    --fri-warning-pressed: color-mix(
+      in oklab,
+      var(--fri-warning),
+      var(--fri-warning-foreground) var(--fri-mix-pressed)
+    );
+    --fri-warning-secondary-hover: color-mix(
+      in oklab,
+      var(--fri-warning-secondary),
+      var(--fri-warning-secondary-foreground) var(--fri-mix-hover)
+    );
+    --fri-warning-secondary-pressed: color-mix(
+      in oklab,
+      var(--fri-warning-secondary),
+      var(--fri-warning-secondary-foreground) var(--fri-mix-pressed)
+    );
+    --fri-warning-border: color-mix(
+      in oklab,
+      var(--fri-warning) var(--fri-mix-border),
+      transparent
+    );
+    --fri-warning-outline-border: color-mix(
+      in oklab,
+      var(--fri-warning) var(--fri-mix-outline-border),
+      transparent
+    );
+    --fri-warning-tint-hover: color-mix(
+      in oklab,
+      var(--fri-warning) var(--fri-mix-tint-hover),
+      transparent
+    );
+    --fri-warning-tint-pressed: color-mix(
+      in oklab,
+      var(--fri-warning) var(--fri-mix-tint-pressed),
+      transparent
+    );
+    --fri-danger-hover: color-mix(
+      in oklab,
+      var(--fri-danger),
+      var(--fri-danger-foreground) var(--fri-mix-hover)
+    );
+    --fri-danger-pressed: color-mix(
+      in oklab,
+      var(--fri-danger),
+      var(--fri-danger-foreground) var(--fri-mix-pressed)
+    );
+    --fri-danger-secondary-hover: color-mix(
+      in oklab,
+      var(--fri-danger-secondary),
+      var(--fri-danger-secondary-foreground) var(--fri-mix-hover)
+    );
+    --fri-danger-secondary-pressed: color-mix(
+      in oklab,
+      var(--fri-danger-secondary),
+      var(--fri-danger-secondary-foreground) var(--fri-mix-pressed)
+    );
+    --fri-danger-border: color-mix(
+      in oklab,
+      var(--fri-danger) var(--fri-mix-border),
+      transparent
+    );
+    --fri-danger-outline-border: color-mix(
+      in oklab,
+      var(--fri-danger) var(--fri-mix-outline-border),
+      transparent
+    );
+    --fri-danger-tint-hover: color-mix(
+      in oklab,
+      var(--fri-danger) var(--fri-mix-tint-hover),
+      transparent
+    );
+    --fri-danger-tint-pressed: color-mix(
+      in oklab,
+      var(--fri-danger) var(--fri-mix-tint-pressed),
+      transparent
+    );
+  }
+}

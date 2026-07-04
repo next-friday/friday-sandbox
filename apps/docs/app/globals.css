@@ -8,17 +8,17 @@
   --color-fd-background: var(--fri-background);
   --color-fd-foreground: var(--fri-foreground);
   --color-fd-border: var(--fri-border);
-  --color-fd-card: var(--fri-card);
-  --color-fd-card-foreground: var(--fri-card-foreground);
-  --color-fd-popover: var(--fri-popover);
-  --color-fd-popover-foreground: var(--fri-popover-foreground);
-  --color-fd-muted: var(--fri-muted);
-  --color-fd-muted-foreground: var(--fri-foreground-muted);
+  --color-fd-card: var(--fri-surface);
+  --color-fd-card-foreground: var(--fri-foreground);
+  --color-fd-popover: var(--fri-surface);
+  --color-fd-popover-foreground: var(--fri-foreground);
+  --color-fd-muted: var(--fri-surface-secondary);
+  --color-fd-muted-foreground: var(--fri-foreground-tertiary);
   --color-fd-primary: var(--fri-primary);
   --color-fd-primary-foreground: var(--fri-primary-foreground);
-  --color-fd-secondary: var(--fri-muted-strong);
+  --color-fd-secondary: var(--fri-surface-secondary);
   --color-fd-secondary-foreground: var(--fri-foreground);
-  --color-fd-accent: var(--fri-muted-strong);
+  --color-fd-accent: var(--fri-surface-secondary);
   --color-fd-accent-foreground: var(--fri-foreground);
   --color-fd-ring: var(--fri-focus);
 }
@@ -27,17 +27,17 @@
   --color-fd-background: var(--fri-background);
   --color-fd-foreground: var(--fri-foreground);
   --color-fd-border: var(--fri-border);
-  --color-fd-card: var(--fri-card);
-  --color-fd-card-foreground: var(--fri-card-foreground);
-  --color-fd-popover: var(--fri-popover);
-  --color-fd-popover-foreground: var(--fri-popover-foreground);
-  --color-fd-muted: var(--fri-muted);
-  --color-fd-muted-foreground: var(--fri-foreground-muted);
+  --color-fd-card: var(--fri-surface);
+  --color-fd-card-foreground: var(--fri-foreground);
+  --color-fd-popover: var(--fri-surface);
+  --color-fd-popover-foreground: var(--fri-foreground);
+  --color-fd-muted: var(--fri-surface-secondary);
+  --color-fd-muted-foreground: var(--fri-foreground-tertiary);
   --color-fd-primary: var(--fri-primary);
   --color-fd-primary-foreground: var(--fri-primary-foreground);
-  --color-fd-secondary: var(--fri-muted-strong);
+  --color-fd-secondary: var(--fri-surface-secondary);
   --color-fd-secondary-foreground: var(--fri-foreground);
-  --color-fd-accent: var(--fri-muted-strong);
+  --color-fd-accent: var(--fri-surface-secondary);
   --color-fd-accent-foreground: var(--fri-foreground);
   --color-fd-ring: var(--fri-focus);
 }
@@ -72,7 +72,7 @@
     thead {
       tr {
         th {
-          @apply border-none bg-muted-strong;
+          @apply border-none bg-surface-secondary;
           font-size: 12px;
 
           &:first-child {

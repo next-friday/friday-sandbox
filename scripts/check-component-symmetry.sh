@@ -23,7 +23,7 @@ pascal() { echo "$1" | awk -F- '{ for (i=1;i<=NF;i++) printf "%s%s", toupper(sub
 
 strip_comments() { perl -0pe 's{/\*.*?\*/}{}gs; s{(?<!:)//.*}{}g' "$1"; }
 
-classes_from() { strip_comments "$1" | grep -oE "fri-$2(-[a-z0-9]+)*([^a-z0-9-]|$)" | grep -oE "fri-$2(-[a-z0-9]+)*" | sort -u; }
+classes_from() { strip_comments "$1" | sed -E 's/--fri-[a-z0-9-]+//g' | grep -oE "fri-$2(-[a-z0-9]+)*([^a-z0-9-]|$)" | grep -oE "fri-$2(-[a-z0-9]+)*" | sort -u; }
 
 object_keys() {
   strip_comments "$1" | awk -v block="$2" '
