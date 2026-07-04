@@ -130,22 +130,6 @@ copies these canonical one-line descriptions verbatim:
 
 Keep the required heading set for each documented surface.
 
-## Markdown conventions
-
-These are mechanical, so a gate enforces them and review need not:
-
-- Headings are sentence case: capitalize the first word and proper nouns only
-  (`## Quick start`, not `## Quick Start`). One `#` H1 per document.
-- Every fenced code block declares a language. Shell is `sh`, a literal, template,
-  or diagram block is `text`; never an empty fence.
-- A heading is a real `#` heading, never a bold paragraph (`**Label:**`) standing
-  in for one.
-
-`pnpm lint:md` (markdownlint, wired into the hooks and CI) checks the fence
-language, the single H1, heading punctuation, and heading increment. It enforces
-only these mechanical rules and defers all formatting to Prettier, so it never
-overrides an authored Markdown pattern.
-
 ## Enforcement
 
 This guide is upheld in review:
@@ -153,8 +137,6 @@ This guide is upheld in review:
 - **Generator** (`pnpm gen component`, templates in `turbo/generators/`): a new
   component doc is scaffolded with the correct structure and voice before the
   first review.
-- **Markdownlint** (`pnpm lint:md`): enforces the mechanical Markdown conventions
-  above — fence language, single H1, heading punctuation — in the hooks and CI.
 - **AI reviewers** (`.coderabbit.yaml`, `.gemini/styleguide.md`): point at this
   guide's sections for voice, audience, the banned marketing words, and the
   required structure.
@@ -163,3 +145,5 @@ The property this guide gives the repo is regularity: a fixed vocabulary and a
 fixed structure let generators and contributors infer the expected
 shape of any document. It makes no claim about what any model will write on its
 own.
+
+Pairs with markdown-style, which holds the mechanical formatting conventions.

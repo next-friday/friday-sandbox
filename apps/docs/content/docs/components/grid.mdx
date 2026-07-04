@@ -22,7 +22,7 @@ import { Grid, GridItem } from "@friday-sandbox/react";
 
 <Tabs items={["Preview", "Code"]}>
   <Tab value="Preview">
-    <Grid cols={3} gap="md" className="px-4 py-6">
+    <Grid cols={3} gap="md" p="md">
       <Boxes count={6} />
     </Grid>
   </Tab>
@@ -60,7 +60,7 @@ The `cols` prop sets equal-width columns from 1 to 12. Use `"auto-fit"` or
 
 <Tabs items={["Preview", "Code"]}>
   <Tab value="Preview">
-    <Grid cols={4} gap="md" className="px-4 py-6">
+    <Grid cols={4} gap="md" p="md">
       <Boxes count={8} />
     </Grid>
   </Tab>
@@ -77,31 +77,45 @@ The `cols` prop sets equal-width columns from 1 to 12. Use `"auto-fit"` or
 `Grid` also accepts an `as` prop (default `"div"`) to render as a different
 element.
 
-| Prop | Default | Type |
-| --- | --- | --- |
-| `cols` | `1` | `1 \| 2 \| 3 \| 4 \| 5 \| 6 \| 7 \| 8 \| 9 \| 10 \| 11 \| 12 \| "auto-fit" \| "auto-fill"`<br />Sets the number of equal-width columns, or a responsive track. |
-| `rows` | — | `1 \| 2 \| 3 \| 4 \| 5 \| 6`<br />Sets a fixed number of rows. |
-| `flow` | `"row"` | `"row" \| "col" \| "row-dense" \| "col-dense"`<br />Controls how items fill the grid. |
-| `inline` | `false` | `boolean`<br />Renders an inline-level grid container. |
-| `autoRows` | — | `"auto" \| "min" \| "max" \| "fr"`<br />Sizes implicitly-created rows. |
-| `autoCols` | — | `"auto" \| "min" \| "max" \| "fr"`<br />Sizes implicitly-created columns. |
-| `gap` | — | `"xs" \| "sm" \| "md" \| "lg" \| "xl"`<br />Sets the gap between all cells. |
-| `gapX` | — | `"xs" \| "sm" \| "md" \| "lg" \| "xl"`<br />Sets the horizontal gap only. |
-| `gapY` | — | `"xs" \| "sm" \| "md" \| "lg" \| "xl"`<br />Sets the vertical gap only. |
-| `className` | — | `string`<br />Additional CSS classes to apply. |
+| Prop        | Default | Type                                                                                                                                                           |
+| ----------- | ------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `cols`      | `1`     | `1 \| 2 \| 3 \| 4 \| 5 \| 6 \| 7 \| 8 \| 9 \| 10 \| 11 \| 12 \| "auto-fit" \| "auto-fill"`<br />Sets the number of equal-width columns, or a responsive track. |
+| `rows`      | —       | `1 \| 2 \| 3 \| 4 \| 5 \| 6`<br />Sets a fixed number of rows.                                                                                                 |
+| `flow`      | `"row"` | `"row" \| "col" \| "row-dense" \| "col-dense"`<br />Controls how items fill the grid.                                                                          |
+| `inline`    | `false` | `boolean`<br />Renders an inline-level grid container.                                                                                                         |
+| `autoRows`  | —       | `"auto" \| "min" \| "max" \| "fr"`<br />Sizes implicitly-created rows.                                                                                         |
+| `autoCols`  | —       | `"auto" \| "min" \| "max" \| "fr"`<br />Sizes implicitly-created columns.                                                                                      |
+| `gap`       | —       | `"xxs" \| "xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl" \| "3xl" \| "4xl"`<br />Sets the gap between all cells.                                                |
+| `gapX`      | —       | `"xxs" \| "xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl" \| "3xl" \| "4xl"`<br />Sets the horizontal gap only.                                                  |
+| `gapY`      | —       | `"xxs" \| "xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl" \| "3xl" \| "4xl"`<br />Sets the vertical gap only.                                                    |
+| `p`         | —       | `"xxs" \| "xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl" \| "3xl" \| "4xl"`<br />Sets padding on all sides.                                                     |
+| `px`        | —       | `"xxs" \| "xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl" \| "3xl" \| "4xl"`<br />Sets horizontal (inline) padding.                                              |
+| `py`        | —       | `"xxs" \| "xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl" \| "3xl" \| "4xl"`<br />Sets vertical (block) padding.                                                 |
+| `pt`        | —       | `"xxs" \| "xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl" \| "3xl" \| "4xl"`<br />Sets top padding.                                                              |
+| `pr`        | —       | `"xxs" \| "xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl" \| "3xl" \| "4xl"`<br />Sets right padding.                                                            |
+| `pb`        | —       | `"xxs" \| "xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl" \| "3xl" \| "4xl"`<br />Sets bottom padding.                                                           |
+| `pl`        | —       | `"xxs" \| "xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl" \| "3xl" \| "4xl"`<br />Sets left padding.                                                             |
+| `className` | —       | `string`<br />Additional CSS classes to apply.                                                                                                                 |
 
 ### GridItem props
 
 `GridItem` also accepts an `as` prop (default `"div"`) and a `className` string.
 
-| Prop | Default | Type |
-| --- | --- | --- |
-| `colSpan` | — | `1 \| 2 \| 3 \| 4 \| 5 \| 6 \| 7 \| 8 \| 9 \| 10 \| 11 \| 12 \| "full"`<br />Number of columns the item spans. |
-| `rowSpan` | — | `1 \| 2 \| 3 \| 4 \| 5 \| 6`<br />Number of rows the item spans. |
-| `colStart` | — | `1 \| 2 \| 3 \| 4 \| 5 \| 6 \| 7 \| 8 \| 9 \| 10 \| 11 \| 12 \| 13`<br />Column line the item starts at. |
-| `colEnd` | — | `1 \| 2 \| 3 \| 4 \| 5 \| 6 \| 7 \| 8 \| 9 \| 10 \| 11 \| 12 \| 13`<br />Column line the item ends at. |
-| `rowStart` | — | `1 \| 2 \| 3 \| 4 \| 5 \| 6 \| 7`<br />Row line the item starts at. |
-| `rowEnd` | — | `1 \| 2 \| 3 \| 4 \| 5 \| 6 \| 7`<br />Row line the item ends at. |
+| Prop       | Default | Type                                                                                                              |
+| ---------- | ------- | ----------------------------------------------------------------------------------------------------------------- |
+| `colSpan`  | —       | `1 \| 2 \| 3 \| 4 \| 5 \| 6 \| 7 \| 8 \| 9 \| 10 \| 11 \| 12 \| "full"`<br />Number of columns the item spans.    |
+| `rowSpan`  | —       | `1 \| 2 \| 3 \| 4 \| 5 \| 6`<br />Number of rows the item spans.                                                  |
+| `colStart` | —       | `1 \| 2 \| 3 \| 4 \| 5 \| 6 \| 7 \| 8 \| 9 \| 10 \| 11 \| 12 \| 13`<br />Column line the item starts at.          |
+| `colEnd`   | —       | `1 \| 2 \| 3 \| 4 \| 5 \| 6 \| 7 \| 8 \| 9 \| 10 \| 11 \| 12 \| 13`<br />Column line the item ends at.            |
+| `rowStart` | —       | `1 \| 2 \| 3 \| 4 \| 5 \| 6 \| 7`<br />Row line the item starts at.                                               |
+| `rowEnd`   | —       | `1 \| 2 \| 3 \| 4 \| 5 \| 6 \| 7`<br />Row line the item ends at.                                                 |
+| `p`        | —       | `"xxs" \| "xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl" \| "3xl" \| "4xl"`<br />Sets padding on all sides.        |
+| `px`       | —       | `"xxs" \| "xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl" \| "3xl" \| "4xl"`<br />Sets horizontal (inline) padding. |
+| `py`       | —       | `"xxs" \| "xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl" \| "3xl" \| "4xl"`<br />Sets vertical (block) padding.    |
+| `pt`       | —       | `"xxs" \| "xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl" \| "3xl" \| "4xl"`<br />Sets top padding.                 |
+| `pr`       | —       | `"xxs" \| "xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl" \| "3xl" \| "4xl"`<br />Sets right padding.               |
+| `pb`       | —       | `"xxs" \| "xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl" \| "3xl" \| "4xl"`<br />Sets bottom padding.              |
+| `pl`       | —       | `"xxs" \| "xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl" \| "3xl" \| "4xl"`<br />Sets left padding.                |
 
 ## Styling
 
@@ -109,37 +123,44 @@ element.
 
 ### Modifier classes
 
-| Class | Type | Description |
-| --- | --- | --- |
-| `fri-grid` | Base | Base container: single-column default. |
-| `fri-grid-item` | Base | Base grid item: no span or placement. |
-| `fri-grid-cols-1` … `-cols-12` | Columns | 1 to 12 columns. |
-| `fri-grid-cols-auto-fit` | Columns | Responsive columns that fit available space, collapsing empty tracks. |
-| `fri-grid-cols-auto-fill` | Columns | Responsive columns that fill available space, keeping empty tracks. |
-| `fri-grid-rows-1` … `-rows-6` | Rows | 1 to 6 rows. |
-| `fri-grid-flow-row` | Flow | Fills rows first. |
-| `fri-grid-flow-col` | Flow | Fills columns first. |
-| `fri-grid-flow-row-dense` | Flow | Fills rows first, backfilling earlier gaps. |
-| `fri-grid-flow-col-dense` | Flow | Fills columns first, backfilling earlier gaps. |
-| `fri-grid-inline` | Modifier | Renders an inline-level grid container. |
-| `fri-grid-auto-rows-auto` | Auto rows | Sizes implicit rows to content. |
-| `fri-grid-auto-rows-min` | Auto rows | Sizes implicit rows to their min content. |
-| `fri-grid-auto-rows-max` | Auto rows | Sizes implicit rows to their max content. |
-| `fri-grid-auto-rows-fr` | Auto rows | Sizes implicit rows as a fraction of free space. |
-| `fri-grid-auto-cols-auto` | Auto cols | Sizes implicit columns to content. |
-| `fri-grid-auto-cols-min` | Auto cols | Sizes implicit columns to their min content. |
-| `fri-grid-auto-cols-max` | Auto cols | Sizes implicit columns to their max content. |
-| `fri-grid-auto-cols-fr` | Auto cols | Sizes implicit columns as a fraction of free space. |
-| `fri-grid-gap-xs` … `-gap-xl` | Gap | Gap between cells, xs to xl. |
-| `fri-grid-gap-x-xs` … `-gap-x-xl` | Gap | Horizontal gap between cells, xs to xl. |
-| `fri-grid-gap-y-xs` … `-gap-y-xl` | Gap | Vertical gap between cells, xs to xl. |
-| `fri-grid-item-col-span-1` … `-col-span-12` | Col span | Span 1 to 12 columns. |
-| `fri-grid-item-col-span-full` | Col span | Span all columns. |
-| `fri-grid-item-col-start-1` … `-col-start-13` | Col start | Start at column line 1 to 13. |
-| `fri-grid-item-col-end-1` … `-col-end-13` | Col end | End at column line 1 to 13. |
-| `fri-grid-item-row-span-1` … `-row-span-6` | Row span | Span 1 to 6 rows. |
-| `fri-grid-item-row-start-1` … `-row-start-7` | Row start | Start at row line 1 to 7. |
-| `fri-grid-item-row-end-1` … `-row-end-7` | Row end | End at row line 1 to 7. |
+| Class                                         | Type      | Description                                                           |
+| --------------------------------------------- | --------- | --------------------------------------------------------------------- |
+| `fri-grid`                                    | Base      | Base container: single-column default.                                |
+| `fri-grid-item`                               | Base      | Base grid item: no span or placement.                                 |
+| `fri-grid-cols-1` … `-cols-12`                | Columns   | 1 to 12 columns.                                                      |
+| `fri-grid-cols-auto-fit`                      | Columns   | Responsive columns that fit available space, collapsing empty tracks. |
+| `fri-grid-cols-auto-fill`                     | Columns   | Responsive columns that fill available space, keeping empty tracks.   |
+| `fri-grid-rows-1` … `-rows-6`                 | Rows      | 1 to 6 rows.                                                          |
+| `fri-grid-flow-row`                           | Flow      | Fills rows first.                                                     |
+| `fri-grid-flow-col`                           | Flow      | Fills columns first.                                                  |
+| `fri-grid-flow-row-dense`                     | Flow      | Fills rows first, backfilling earlier gaps.                           |
+| `fri-grid-flow-col-dense`                     | Flow      | Fills columns first, backfilling earlier gaps.                        |
+| `fri-grid-inline`                             | Modifier  | Renders an inline-level grid container.                               |
+| `fri-grid-auto-rows-auto`                     | Auto rows | Sizes implicit rows to content.                                       |
+| `fri-grid-auto-rows-min`                      | Auto rows | Sizes implicit rows to their min content.                             |
+| `fri-grid-auto-rows-max`                      | Auto rows | Sizes implicit rows to their max content.                             |
+| `fri-grid-auto-rows-fr`                       | Auto rows | Sizes implicit rows as a fraction of free space.                      |
+| `fri-grid-auto-cols-auto`                     | Auto cols | Sizes implicit columns to content.                                    |
+| `fri-grid-auto-cols-min`                      | Auto cols | Sizes implicit columns to their min content.                          |
+| `fri-grid-auto-cols-max`                      | Auto cols | Sizes implicit columns to their max content.                          |
+| `fri-grid-auto-cols-fr`                       | Auto cols | Sizes implicit columns as a fraction of free space.                   |
+| `fri-grid-item-col-span-1` … `-col-span-12`   | Col span  | Span 1 to 12 columns.                                                 |
+| `fri-grid-item-col-span-full`                 | Col span  | Span all columns.                                                     |
+| `fri-grid-item-col-start-1` … `-col-start-13` | Col start | Start at column line 1 to 13.                                         |
+| `fri-grid-item-col-end-1` … `-col-end-13`     | Col end   | End at column line 1 to 13.                                           |
+| `fri-grid-item-row-span-1` … `-row-span-6`    | Row span  | Span 1 to 6 rows.                                                     |
+| `fri-grid-item-row-start-1` … `-row-start-7`  | Row start | Start at row line 1 to 7.                                             |
+| `fri-grid-item-row-end-1` … `-row-end-7`      | Row end   | End at row line 1 to 7.                                               |
+| `fri-gap-xxs` … `-gap-4xl` | Spacing | Shared gap between cells, xxs to 4xl. |
+| `fri-gap-x-xxs` … `-gap-x-4xl` | Spacing | Shared horizontal gap, xxs to 4xl. |
+| `fri-gap-y-xxs` … `-gap-y-4xl` | Spacing | Shared vertical gap, xxs to 4xl. |
+| `fri-p-xxs` … `-p-4xl` | Spacing | Shared padding on all sides, xxs to 4xl. |
+| `fri-px-xxs` … `-px-4xl` | Spacing | Shared horizontal (inline) padding, xxs to 4xl. |
+| `fri-py-xxs` … `-py-4xl` | Spacing | Shared vertical (block) padding, xxs to 4xl. |
+| `fri-pt-xxs` … `-pt-4xl` | Spacing | Shared top padding, xxs to 4xl. |
+| `fri-pr-xxs` … `-pr-4xl` | Spacing | Shared right padding, xxs to 4xl. |
+| `fri-pb-xxs` … `-pb-4xl` | Spacing | Shared bottom padding, xxs to 4xl. |
+| `fri-pl-xxs` … `-pl-4xl` | Spacing | Shared left padding, xxs to 4xl. |
 
 ## Accessibility
 

@@ -35,9 +35,9 @@
       "default": "./src/index.ts"
     },
     "./samples": {
-      "types": "./src/components/samples/index.ts",
-      "import": "./src/components/samples/index.ts",
-      "default": "./src/components/samples/index.ts"
+      "types": "./src/samples/index.ts",
+      "import": "./src/samples/index.ts",
+      "default": "./src/samples/index.ts"
     },
     "./package.json": "./package.json"
   },

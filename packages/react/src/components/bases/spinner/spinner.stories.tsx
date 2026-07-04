@@ -2,7 +2,7 @@ import { expect } from "storybook/test";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import { Flex } from "../flex";
-import { COLORS, SIZES } from "../../samples/story-constants";
+import { COLORS, SIZES } from "../../../../.storybook/constants";
 
 import { Spinner } from ".";
 
@@ -121,5 +121,5 @@ export const CustomStyles: Story = {
       },
     },
   },
-  render: () => <Spinner className="size-16 text-red-500" />,
+  render: () => <Spinner className="size-16 text-pink-500" />,
 };

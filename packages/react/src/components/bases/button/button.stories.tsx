@@ -12,8 +12,8 @@ import { expect, fn, userEvent, within } from "storybook/test";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import { Flex } from "../flex";
-import { GoogleIcon } from "../../icons";
-import { COLORS, SIZES } from "../../samples/story-constants";
+import { GoogleIcon } from "../../../icons";
+import { COLORS, SIZES } from "../../../../.storybook/constants";
 
 import { Button } from ".";
 

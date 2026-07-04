@@ -27,6 +27,13 @@ export const Grid = <TElement extends ElementType = "div">(
     gapX,
     gapY,
     inline,
+    p,
+    pb,
+    pl,
+    pr,
+    pt,
+    px,
+    py,
     ref,
     rows,
     ...rest
@@ -44,6 +51,13 @@ export const Grid = <TElement extends ElementType = "div">(
     gap,
     gapX,
     gapY,
+    p,
+    px,
+    py,
+    pt,
+    pr,
+    pb,
+    pl,
   });
   const gridClassName = slots.grid({ class: className });
 
@@ -69,6 +83,13 @@ export const GridItem = <TElement extends ElementType = "div">(
     colEnd,
     colSpan,
     colStart,
+    p,
+    pb,
+    pl,
+    pr,
+    pt,
+    px,
+    py,
     ref,
     rowEnd,
     rowSpan,
@@ -85,6 +106,13 @@ export const GridItem = <TElement extends ElementType = "div">(
     colEnd,
     rowStart,
     rowEnd,
+    p,
+    px,
+    py,
+    pt,
+    pr,
+    pb,
+    pl,
   });
   const itemClassName = slots.item({ class: className });
 

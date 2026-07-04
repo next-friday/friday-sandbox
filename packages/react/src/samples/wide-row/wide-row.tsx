@@ -1,5 +1,5 @@
-import { Flex } from "../../bases/flex/flex";
-import { range } from "../range";
+import { Flex } from "../../components/bases/flex/flex";
+import { range } from "../utils/range";
 
 interface WideRowProps {
   count?: number;

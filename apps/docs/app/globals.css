@@ -2,7 +2,7 @@
 @import "fumadocs-ui/css/neutral.css";
 @import "fumadocs-ui/css/preset.css";
 
-@source "../../../packages/react/src/components/samples";
+@source "../../../packages/react/src/samples";
 
 @theme {
   --color-fd-background: var(--fri-background);

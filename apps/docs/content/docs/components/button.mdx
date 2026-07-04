@@ -22,7 +22,7 @@ import { Button } from "@friday-sandbox/react";
 
 <Tabs items={["Preview", "Code"]}>
   <Tab value="Preview">
-    <Flex align="end" gap="md" className="px-4 py-6">
+    <Flex align="end" gap="md" p="md">
       <Button>Button</Button>
     </Flex>
   </Tab>
@@ -56,7 +56,7 @@ Seven semantic colors are available through the `color` prop.
 
 <Tabs items={["Preview", "Code"]}>
   <Tab value="Preview">
-    <Flex align="end" gap="md" className="px-4 py-6">
+    <Flex align="end" gap="md" p="md">
       <Button color="primary">Primary</Button>
       <Button color="secondary">Secondary</Button>
       <Button color="accent">Accent</Button>
@@ -86,7 +86,7 @@ The `variant` prop sets the visual emphasis.
 
 <Tabs items={["Preview", "Code"]}>
   <Tab value="Preview">
-    <Flex align="end" gap="md" className="px-4 py-6">
+    <Flex align="end" gap="md" p="md">
       <Button variant="solid">Solid</Button>
       <Button variant="subtle">Subtle</Button>
       <Button variant="surface">Surface</Button>
@@ -114,7 +114,7 @@ Five sizes step from `xs` to `xl`.
 
 <Tabs items={["Preview", "Code"]}>
   <Tab value="Preview">
-    <Flex align="end" gap="md" className="px-4 py-6">
+    <Flex align="end" gap="md" p="md">
       <Button size="xs">Extra small</Button>
       <Button size="sm">Small</Button>
       <Button size="md">Medium</Button>
@@ -141,7 +141,7 @@ actions.
 
 <Tabs items={["Preview", "Code"]}>
   <Tab value="Preview">
-    <Flex align="end" gap="md" className="px-4 py-6">
+    <Flex align="end" gap="md" p="md">
       <Button isDisabled>Disabled</Button>
       <Button isPending>Saving</Button>
     </Flex>
@@ -160,15 +160,15 @@ actions.
 `Button` also accepts every prop from React Aria `Button`, such as `onPress`,
 `isDisabled`, `isPending`, and `type`, plus a `className` string.
 
-| Prop            | Default     | Type                                                                     |
-| --------------- | ----------- | ----------------------------------------------------------------------- |
+| Prop            | Default     | Type                                                                                                                      |
+| --------------- | ----------- | ------------------------------------------------------------------------------------------------------------------------- |
 | `color`         | `"primary"` | `"primary" \| "secondary" \| "accent" \| "info" \| "success" \| "warning" \| "danger"`<br />Sets the semantic color role. |
-| `variant`       | `"solid"`   | `"solid" \| "subtle" \| "surface" \| "outline" \| "ghost" \| "plain"`<br />Sets the visual emphasis. |
-| `size`          | `"md"`      | `"xs" \| "sm" \| "md" \| "lg" \| "xl"`<br />Sets the button size. |
-| `isIconOnly`    | `false`     | `boolean`<br />Renders a square icon-only button. Pair it with `aria-label`. |
-| `isFullWidth`   | `false`     | `boolean`<br />Stretches the button to the container width. |
-| `isRoundedFull` | `false`     | `boolean`<br />Uses a fully rounded pill shape. |
-| `className`     | —           | `string`<br />Additional CSS classes to apply. |
+| `variant`       | `"solid"`   | `"solid" \| "subtle" \| "surface" \| "outline" \| "ghost" \| "plain"`<br />Sets the visual emphasis.                      |
+| `size`          | `"md"`      | `"xs" \| "sm" \| "md" \| "lg" \| "xl"`<br />Sets the button size.                                                         |
+| `isIconOnly`    | `false`     | `boolean`<br />Renders a square icon-only button. Pair it with `aria-label`.                                              |
+| `isFullWidth`   | `false`     | `boolean`<br />Stretches the button to the container width.                                                               |
+| `isRoundedFull` | `false`     | `boolean`<br />Uses a fully rounded pill shape.                                                                           |
+| `className`     | —           | `string`<br />Additional CSS classes to apply.                                                                            |
 
 ## Styling
 
@@ -176,7 +176,7 @@ actions.
 
 ### Modifier classes
 
-| Class                     | Type     | Description                                          |
+| Class                     | Type     | Description                                         |
 | ------------------------- | -------- | --------------------------------------------------- |
 | `fri-button`              | Base     | Base styles: primary color, solid variant, md size. |
 | `fri-button-primary`      | Color    | Primary color role.                                 |

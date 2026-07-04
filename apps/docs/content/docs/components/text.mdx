@@ -21,7 +21,7 @@ import { Text } from "@friday-sandbox/react";
 
 <Tabs items={["Preview", "Code"]}>
   <Tab value="Preview">
-    <Flex align="end" gap="md" className="px-4 py-6">
+    <Flex align="end" gap="md" p="md">
       <Text variant="body-md">The quick brown fox jumps over the lazy dog</Text>
     </Flex>
   </Tab>
@@ -62,7 +62,7 @@ chrome.
 
 <Tabs items={["Preview", "Code"]}>
   <Tab value="Preview">
-    <Flex direction="column" gap="md" className="px-4 py-6">
+    <Flex direction="column" gap="md" p="md">
       <Text variant="display-lg">Display LG</Text>
       <Text variant="body-lg">Body LG</Text>
       <Text variant="body-md">Body MD</Text>
@@ -92,7 +92,7 @@ parent color; `ink`, `body`, and `muted` step down the neutral emphasis ramp;
 
 <Tabs items={["Preview", "Code"]}>
   <Tab value="Preview">
-    <Flex direction="column" gap="md" className="px-4 py-6">
+    <Flex direction="column" gap="md" p="md">
       <Text color="ink">Ink</Text>
       <Text color="body">Body</Text>
       <Text color="muted">Muted</Text>
@@ -115,15 +115,15 @@ parent color; `ink`, `body`, and `muted` step down the neutral emphasis ramp;
 `Text` also accepts an `as` prop (default `"span"`) to render as a different
 HTML element.
 
-| Prop        | Default     | Type                                                                                                                                                                                                                                                                      |
-| ----------- | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Prop        | Default     | Type                                                                                                                                                                                                                                                                                                                                                           |
+| ----------- | ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `variant`   | `"inherit"` | `"inherit" \| "display-xxl" \| "display-xl" \| "display-lg" \| "display-md" \| "display-sm" \| "body-lg" \| "body-lg-strong" \| "body-md" \| "body-md-strong" \| "body-sm" \| "body-sm-strong" \| "body-xs" \| "body-xs-strong" \| "label-lg" \| "label-md" \| "label-sm" \| "caption" \| "caption-strong" \| "code"` <br /> Applies a typography scale token. |
-| `color`     | `"inherit"` | `"inherit" \| "ink" \| "body" \| "muted" \| "danger"` <br /> Sets the text-emphasis tone, inheriting the parent color by default. |
-| `align`     | —           | `"left" \| "center" \| "right" \| "justify"` <br /> Sets the text alignment. |
-| `truncate`  | `false`     | `boolean` <br /> Cuts a single line of overflowing text with an ellipsis. |
-| `underline` | `false`     | `boolean` <br /> Underlines the text. |
-| `lineClamp` | —           | `1 \| 2 \| 3 \| 4 \| 5 \| 6` <br /> Limits the text to a fixed number of lines with an ellipsis. |
-| `className` | —           | `string` <br /> Additional CSS classes to apply. |
+| `color`     | `"inherit"` | `"inherit" \| "ink" \| "body" \| "muted" \| "danger"` <br /> Sets the text-emphasis tone, inheriting the parent color by default.                                                                                                                                                                                                                              |
+| `align`     | —           | `"left" \| "center" \| "right" \| "justify"` <br /> Sets the text alignment.                                                                                                                                                                                                                                                                                   |
+| `truncate`  | `false`     | `boolean` <br /> Cuts a single line of overflowing text with an ellipsis.                                                                                                                                                                                                                                                                                      |
+| `underline` | `false`     | `boolean` <br /> Underlines the text.                                                                                                                                                                                                                                                                                                                          |
+| `lineClamp` | —           | `1 \| 2 \| 3 \| 4 \| 5 \| 6` <br /> Limits the text to a fixed number of lines with an ellipsis.                                                                                                                                                                                                                                                               |
+| `className` | —           | `string` <br /> Additional CSS classes to apply.                                                                                                                                                                                                                                                                                                               |
 
 ## Styling
 
@@ -131,33 +131,33 @@ HTML element.
 
 ### Modifier classes
 
-| Class | Type | Description |
-| --- | --- | --- |
-| `fri-text` | Base | Base layout; color inherits the parent unless a tone is set. |
-| `fri-text-inherit` | Variant | Inherits font and letter-spacing from the parent; no type scale applied. |
-| `fri-text-display-xxl` | Variant | Display XXL type scale. |
-| `fri-text-display-xl` | Variant | Display XL type scale. |
-| `fri-text-display-lg` | Variant | Display LG type scale. |
-| `fri-text-display-md` | Variant | Display MD type scale. |
-| `fri-text-display-sm` | Variant | Display SM type scale. |
-| `fri-text-body-lg` | Variant | Body LG type scale. |
-| `fri-text-body-lg-strong` | Variant | Body LG, strong weight. |
-| `fri-text-body-md` | Variant | Body MD type scale. |
-| `fri-text-body-md-strong` | Variant | Body MD, strong weight. |
-| `fri-text-body-sm` | Variant | Body SM type scale. |
-| `fri-text-body-sm-strong` | Variant | Body SM, strong weight. |
-| `fri-text-body-xs` | Variant | Body XS type scale. |
-| `fri-text-body-xs-strong` | Variant | Body XS, strong weight. |
-| `fri-text-label-lg` | Variant | Label LG type scale. |
-| `fri-text-label-md` | Variant | Label MD type scale. |
-| `fri-text-label-sm` | Variant | Label SM type scale. |
-| `fri-text-caption` | Variant | Caption type scale. |
-| `fri-text-caption-strong` | Variant | Caption, strong weight. |
-| `fri-text-code` | Variant | Code type scale. |
-| `fri-text-ink` | Tone | Ink text tone. |
-| `fri-text-body` | Tone | Body text tone. |
-| `fri-text-muted` | Tone | Muted text tone. |
-| `fri-text-danger` | Tone | Danger text tone. |
+| Class                     | Type    | Description                                                              |
+| ------------------------- | ------- | ------------------------------------------------------------------------ |
+| `fri-text`                | Base    | Base layout; color inherits the parent unless a tone is set.             |
+| `fri-text-inherit`        | Variant | Inherits font and letter-spacing from the parent; no type scale applied. |
+| `fri-text-display-xxl`    | Variant | Display XXL type scale.                                                  |
+| `fri-text-display-xl`     | Variant | Display XL type scale.                                                   |
+| `fri-text-display-lg`     | Variant | Display LG type scale.                                                   |
+| `fri-text-display-md`     | Variant | Display MD type scale.                                                   |
+| `fri-text-display-sm`     | Variant | Display SM type scale.                                                   |
+| `fri-text-body-lg`        | Variant | Body LG type scale.                                                      |
+| `fri-text-body-lg-strong` | Variant | Body LG, strong weight.                                                  |
+| `fri-text-body-md`        | Variant | Body MD type scale.                                                      |
+| `fri-text-body-md-strong` | Variant | Body MD, strong weight.                                                  |
+| `fri-text-body-sm`        | Variant | Body SM type scale.                                                      |
+| `fri-text-body-sm-strong` | Variant | Body SM, strong weight.                                                  |
+| `fri-text-body-xs`        | Variant | Body XS type scale.                                                      |
+| `fri-text-body-xs-strong` | Variant | Body XS, strong weight.                                                  |
+| `fri-text-label-lg`       | Variant | Label LG type scale.                                                     |
+| `fri-text-label-md`       | Variant | Label MD type scale.                                                     |
+| `fri-text-label-sm`       | Variant | Label SM type scale.                                                     |
+| `fri-text-caption`        | Variant | Caption type scale.                                                      |
+| `fri-text-caption-strong` | Variant | Caption, strong weight.                                                  |
+| `fri-text-code`           | Variant | Code type scale.                                                         |
+| `fri-text-ink`            | Tone    | Ink text tone.                                                           |
+| `fri-text-body`           | Tone    | Body text tone.                                                          |
+| `fri-text-muted`          | Tone    | Muted text tone.                                                         |
+| `fri-text-danger`         | Tone    | Danger text tone.                                                        |
 
 The `align`, `truncate`, `lineClamp`, and `underline` props map to Tailwind utilities directly, with no custom `fri-` class.
 

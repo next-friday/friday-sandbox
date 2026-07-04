@@ -3,8 +3,8 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import { Flex } from "../flex";
 
-import { Lorem } from "../../samples/lorem";
-import { WideRow } from "../../samples/wide-row";
+import { Lorem } from "../../../samples/lorem";
+import { WideRow } from "../../../samples/wide-row";
 
 import { ScrollArea } from ".";
 

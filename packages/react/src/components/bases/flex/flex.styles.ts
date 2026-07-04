@@ -1,6 +1,8 @@
 import { tv } from "tailwind-variants/lite";
 import type { VariantProps } from "tailwind-variants/lite";
 
+import { gapVariants, paddingVariants } from "../../utils/spacing-variants";
+
 export const flexVariants = tv({
   base: "fri-flex",
   variants: {
@@ -33,27 +35,6 @@ export const flexVariants = tv({
     inline: {
       true: "fri-flex-inline",
     },
-    gap: {
-      xs: "fri-flex-gap-xs",
-      sm: "fri-flex-gap-sm",
-      md: "fri-flex-gap-md",
-      lg: "fri-flex-gap-lg",
-      xl: "fri-flex-gap-xl",
-    },
-    gapX: {
-      xs: "fri-flex-gap-x-xs",
-      sm: "fri-flex-gap-x-sm",
-      md: "fri-flex-gap-x-md",
-      lg: "fri-flex-gap-x-lg",
-      xl: "fri-flex-gap-x-xl",
-    },
-    gapY: {
-      xs: "fri-flex-gap-y-xs",
-      sm: "fri-flex-gap-y-sm",
-      md: "fri-flex-gap-y-md",
-      lg: "fri-flex-gap-y-lg",
-      xl: "fri-flex-gap-y-xl",
-    },
     grow: {
       true: "fri-flex-grow",
       false: "fri-flex-grow-0",
@@ -73,6 +54,8 @@ export const flexVariants = tv({
       initial: "fri-flex-initial",
       none: "fri-flex-none",
     },
+    ...gapVariants,
+    ...paddingVariants,
   },
   defaultVariants: {
     direction: "row",

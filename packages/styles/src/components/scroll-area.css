@@ -27,7 +27,7 @@
   }
 
   .fri-scroll-area-scrollbar {
-    @apply flex touch-none bg-scroll-track p-(length:--fri-border-width) select-none;
+    @apply flex touch-none bg-scroll-track p-(--fri-border-width) select-none;
   }
   .fri-scroll-area-scrollbar[data-orientation="vertical"] {
     @apply w-(--scroll-area-thickness);

@@ -22,7 +22,6 @@ Read-only: report `file:line` and the fix; rewrite only when asked, and never to
    - **Same shape.** Every `Purpose` opens the same way; every `Applies` cell is a comma list or one sentence, not one clean list beside one semicolon-chain; every `When to use` keeps the same rhythm. Uneven shapes read as different authors.
    - **One narrator.** The imperative, addressed to the reader, throughout — never a mix of "you", "the component provides", and "developers can" within or across docs.
    - **`.claude/rules/prose-style.md` vocabulary.** [`.claude/rules/prose-style.md`](../../rules/prose-style.md) is the single word source — component not widget, variant not kind. Read it and flag an off-vocabulary synonym or a banned marketing adjective (powerful, robust, seamless, intuitive, modern, and the like).
-   - **No unprovable capability claim.** Prose must not assert what an AI or LLM _will_ do; state the artifact's engineering property instead.
 
    A page that reads differently from its siblings is the finding — fix it toward the shared shape, not away from it.
 
