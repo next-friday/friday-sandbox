@@ -3,8 +3,7 @@ title: Link
 description: Accessible navigational link with typography, decoration, and icon support.
 ---
 
-import { Flex, Link, LinkIcon } from "@friday-sandbox/react";
-import { ArrowRightFromSquare } from "@gravity-ui/icons";
+import { Flex, Link } from "@friday-sandbox/react";
 
 <SourceLinks
   source="https://github.com/next-friday/friday-sandbox/blob/main/packages/react/src/components/bases/link/link.tsx"
@@ -106,13 +105,8 @@ link color.
   <Tab value="Preview">
     <Flex direction="column" gap="md" p="md">
       <Link href="https://example.com" target="_blank" rel="noreferrer">
-        Documentation <Link.Icon />
-      </Link>
-      <Link href="https://example.com" target="_blank" rel="noreferrer">
-        External resource{" "}
-        <LinkIcon>
-          <ArrowRightFromSquare />
-        </LinkIcon>
+        Documentation
+        <Link.Icon />
       </Link>
     </Flex>
   </Tab>
@@ -120,12 +114,13 @@ link color.
   <Tab value="Code">
     ```tsx
     <Link href="https://example.com" target="_blank" rel="noreferrer">
-      Documentation <Link.Icon />
+      Documentation
+      <Link.Icon />
     </Link>
     <Link href="https://example.com" target="_blank" rel="noreferrer">
       External resource
       <LinkIcon>
-        <ArrowRightFromSquare />
+        <Icon />
       </LinkIcon>
     </Link>
     ```
