@@ -4,8 +4,9 @@
     --button-px: calc(var(--button-h) / 2 - var(--fri-spacing-xsmall));
     --button-spinner-size: calc(var(--button-h) / 2);
     --button-radius: calc(var(--fri-action-radius) * var(--_button-n) / 10);
+    --button-gap: calc(var(--fri-spacing-small) * var(--_button-n) / 10);
 
-    @apply relative inline-flex h-(--button-h) w-fit shrink-0 cursor-(--fri-cursor-interactive) items-center justify-center gap-small rounded-(--button-radius) border-(length:--fri-border-width) border-(--button-border-color) bg-(--button-background) px-(--button-px) whitespace-nowrap text-(--button-foreground) transition-base transition-[background-color,box-shadow,outline-color] outline-none select-none;
+    @apply relative inline-flex h-(--button-h) w-fit shrink-0 cursor-(--fri-cursor-interactive) items-center justify-center gap-(--button-gap) rounded-(--button-radius) border-(length:--fri-border-width) border-(--button-border-color) bg-(--button-background) px-(--button-px) whitespace-nowrap text-(--button-foreground) transition-base transition-[background-color,box-shadow,outline-color] outline-none select-none;
   }
 
   :where(.fri-button),

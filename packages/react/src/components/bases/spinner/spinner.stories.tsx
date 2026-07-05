@@ -25,10 +25,6 @@ const meta = {
       },
     },
   },
-  args: {
-    color: "primary",
-    size: "md",
-  },
   argTypes: {
     color: {
       description: "Use the `color` prop to change the color of the spinner.",

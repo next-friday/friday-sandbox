@@ -27,10 +27,6 @@ const meta = {
       },
     },
   },
-  args: {
-    size: "md",
-    variant: "hover",
-  },
   argTypes: {
     size: {
       description: "Use the `size` prop to change the scrollbar thickness.",

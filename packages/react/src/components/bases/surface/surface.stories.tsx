@@ -40,10 +40,6 @@ const meta = {
       },
     },
   },
-  args: {
-    variant: "primary",
-    radius: "md",
-  },
   argTypes: {
     variant: {
       description:

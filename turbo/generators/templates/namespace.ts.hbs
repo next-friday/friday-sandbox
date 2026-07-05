@@ -1,0 +1,11 @@
+import { {{ pascalCase name }} as {{ pascalCase name }}Base{{#each subparts}}, {{ pascalCase ../name }}{{ this }}{{/each}} } from "./{{ kebabCase name }}";
+
+{{!-- A generic (polymorphic <TElement>) root loses its call signature through a
+  bare Object.assign — annotate the result to keep it, e.g.
+  `Object.assign(...) as typeof {{ pascalCase name }}Base & { {{#each subparts}}{{ this }}: typeof {{ pascalCase ../name }}{{ this }}; {{/each}}}`.
+  Leave as-is for a non-generic root (an added cast would be flagged redundant). --}}
+export const {{ pascalCase name }} = Object.assign({{ pascalCase name }}Base, {
+{{#each subparts}}
+  {{ this }}: {{ pascalCase ../name }}{{ this }},
+{{/each}}
+});

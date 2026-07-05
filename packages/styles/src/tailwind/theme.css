@@ -12,6 +12,7 @@
   --color-scroll-track: var(--fri-scroll-track);
   --color-foreground-secondary: var(--fri-foreground-secondary);
   --color-foreground-tertiary: var(--fri-foreground-tertiary);
+  --color-link: var(--fri-link);
   --color-primary: var(--fri-primary);
   --color-primary-foreground: var(--fri-primary-foreground);
   --color-primary-secondary: var(--fri-primary-secondary);

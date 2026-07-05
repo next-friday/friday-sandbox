@@ -7,7 +7,17 @@ export type { FlexProps } from "./flex";
 export { Grid, GridItem } from "./grid";
 export type { GridItemProps, GridProps } from "./grid";
 
-export { ScrollArea } from "./scroll-area";
+export { Link, LinkIcon } from "./link";
+export type { LinkProps, LinkIconProps } from "./link";
+
+export {
+  ScrollArea,
+  ScrollAreaRoot,
+  ScrollAreaViewport,
+  ScrollAreaScrollbar,
+  ScrollAreaThumb,
+  ScrollAreaCorner,
+} from "./scroll-area";
 export type {
   ScrollAreaCornerProps,
   ScrollAreaRootProps,

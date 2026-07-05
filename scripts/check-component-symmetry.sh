@@ -25,8 +25,8 @@ strip_comments() { perl -0pe 's{/\*.*?\*/}{}gs; s{(?<!:)//.*}{}g' "$1"; }
 
 classes_from() { strip_comments "$1" | sed -E 's/--fri-[a-z0-9-]+//g' | grep -oE "fri-$2(-[a-z0-9]+)*([^a-z0-9-]|$)" | grep -oE "fri-$2(-[a-z0-9]+)*" | sort -u; }
 
-object_keys() {
-  strip_comments "$1" | awk -v block="$2" '
+object_walk() {
+  strip_comments "$1" | awk -v block="$2" -v mode="$3" '
     BEGIN { depth = 0; started = 0 }
     {
       line = $0
@@ -39,16 +39,27 @@ object_keys() {
       }
       if (started && depth == 1) {
         s = line; sub(/^[[:space:]]*/, "", s)
-        if (match(s, /^[A-Za-z_$][A-Za-z0-9_$]*[[:space:]]*:/)) {
-          k = substr(s, 1, RLENGTH); sub(/[[:space:]]*:$/, "", k); print k
-        }
-        if (match(s, /^"[^"]+"[[:space:]]*:/)) {
-          k = substr(s, 1, RLENGTH); sub(/[[:space:]]*:$/, "", k); gsub(/"/, "", k); print k
+        if (mode == "keys") {
+          if (match(s, /^[A-Za-z_$][A-Za-z0-9_$]*[[:space:]]*:/)) {
+            k = substr(s, 1, RLENGTH); sub(/[[:space:]]*:$/, "", k); print k
+          }
+          if (match(s, /^"[^"]+"[[:space:]]*:/)) {
+            k = substr(s, 1, RLENGTH); sub(/[[:space:]]*:$/, "", k); gsub(/"/, "", k); print k
+          }
+        } else {
+          if (match(s, /^"?[A-Za-z_$][A-Za-z0-9_$]*"?[[:space:]]*:/)) {
+            k = substr(s, 1, RLENGTH); sub(/[[:space:]]*:$/, "", k); gsub(/"/, "", k)
+            v = substr(s, RLENGTH + 1); sub(/^[[:space:]]*/, "", v); sub(/[[:space:]]*,?[[:space:]]*$/, "", v); gsub(/"/, "", v)
+            if (v != "" && v != "{") print k "=" v
+          }
         }
       }
     }
   ' | sort -u
 }
+
+object_keys() { object_walk "$1" "$2" "keys"; }
+object_pairs() { object_walk "$1" "$2" "pairs"; }
 
 react_index=$(cat "$REACT_INDEX" 2>/dev/null || true)
 bases_index=$(cat "$BASES_INDEX" 2>/dev/null || true)
@@ -94,6 +105,22 @@ for name in $components; do
   for axis in $axes; do
     echo "$controls" | grep -qx "$axis" || fail "$name" "variant axis \"$axis\" has no argTypes control in $name.stories.tsx"
   done
+
+  default_pairs=$(object_pairs "$variants" "defaultVariants")
+  meta_pairs=$(object_pairs "$stories" "args")
+  while IFS= read -r pair; do
+    [ -z "$pair" ] && continue
+    grep -qxF "$pair" <<< "$default_pairs" && fail "$name" "meta.args restates the default \"${pair%%=*}: ${pair#*=}\" — a story shows only content or non-default values, never a default"
+  done <<< "$meta_pairs"
+
+  ns="$dir/$name.namespace.ts"
+  if [ -f "$ns" ]; then
+    idx_content=$(cat "$dir/index.ts")
+    for part in $(grep -oE "${Pascal}[A-Za-z0-9]+" "$ns" | grep -vxE "${Pascal}Base" | sort -u); do
+      grep -qE "\b$part\b" <<< "$idx_content" || fail "$name" "compound part \"$part\" is bundled in $name.namespace.ts but not exported from index.ts (dot vs Pascal export asymmetry)"
+      grep -qE "\b$part\b" "$dir/$name.tsx" || fail "$name" "compound part \"$part\" is bundled in namespace but not defined in $name.tsx"
+    done
+  fi
 
   grep -qE "export const Default\b" "$stories" || fail "$name" "$name.stories.tsx has no Default story"
 
@@ -169,4 +196,4 @@ if [ ${#fails[@]} -gt 0 ]; then
   exit 1
 fi
 note=""; [ ${#warns[@]} -gt 0 ] && note=", ${#warns[@]} warning(s)"
-echo "✓ component symmetry: $checked components verified across presence, variants↔css, barrels, controls, stories, docs, token resolution, theme invariants, no-raw-html, apply-only$note"
+echo "✓ component symmetry: $checked components verified across presence, variants↔css, barrels, controls, stories, docs, token resolution, theme invariants, no-raw-html, apply-only, no-default-args, compound-symmetry$note"

@@ -29,9 +29,6 @@ const meta = {
       },
     },
   },
-  args: {
-    orientation: "horizontal",
-  },
   argTypes: {
     orientation: {
       description:
