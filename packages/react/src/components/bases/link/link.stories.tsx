@@ -1,5 +1,5 @@
 import { ArrowRightFromSquare } from "@gravity-ui/icons";
-import { expect, fn, userEvent, within } from "storybook/test";
+import { expect, userEvent, within } from "storybook/test";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import { Flex } from "../flex";
@@ -108,10 +108,6 @@ const meta = {
         defaultValue: { summary: "false" },
       },
     },
-    onPress: {
-      description: "Handler that is called when the link is pressed.",
-      action: "pressed",
-    },
     className: {
       description: "Additional CSS classes to apply to the link.",
       control: "text",
@@ -125,15 +121,14 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  args: { onPress: fn() },
-  play: async ({ args, canvasElement }) => {
+  args: { href: "https://example.com" },
+  play: async ({ canvasElement }) => {
     const link = within(canvasElement).getByRole("link", { name: "Link" });
+
+    await expect(link).toHaveAttribute("href", "https://example.com");
 
     await userEvent.tab();
     await expect(link).toHaveFocus();
-
-    await userEvent.keyboard("{Enter}");
-    await expect(args.onPress).toHaveBeenCalled();
   },
 };
 
