@@ -32,8 +32,7 @@ round_status() {
   cr_state="absent"
   if printf '%s' "$cr_body" | grep -q "Currently processing"; then
     cr_state="processing"
-  elif printf '%s\n' "$reviews" | awk -F'\t' -v h="$head" '$1 == h && $2 ~ /coderabbit/ { found = 1 } END { exit !found }' \
-    || printf '%s' "$cr_body" | grep -q "Actionable comments posted"; then
+  elif printf '%s\n' "$reviews" | awk -F'\t' -v h="$head" '$1 == h && $2 ~ /coderabbit/ { found = 1 } END { exit !found }'; then
     cr_state="done"
   elif [ -n "$cr_body" ] || printf '%s\n' "$reviews" | awk -F'\t' '$2 ~ /coderabbit/ { found = 1 } END { exit !found }'; then
     cr_state="processing"
