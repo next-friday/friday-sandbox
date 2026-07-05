@@ -3,6 +3,7 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+@import "./themes/shared/index.css";
 @import "./themes/default/index.css";
 @import "./layers/base.css";
 @import "./components/index.css";

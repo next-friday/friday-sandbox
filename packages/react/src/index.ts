@@ -23,5 +23,8 @@ export type { SeparatorProps } from "./components/bases";
 export { Spinner } from "./components/bases";
 export type { SpinnerProps } from "./components/bases";
 
+export { Surface } from "./components/bases";
+export type { SurfaceProps } from "./components/bases";
+
 export { Text } from "./components/bases";
 export type { TextProps } from "./components/bases";

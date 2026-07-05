@@ -1,5 +1,5 @@
 export const SPACING = [
-  "xxs",
+  "2xs",
   "xs",
   "sm",
   "md",

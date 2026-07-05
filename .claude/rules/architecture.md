@@ -54,31 +54,41 @@ reproduces the class names by hand, not only the React component.
 ## The token system is a four-layer pipeline
 
 The theme is **hand-authored CSS variables** organised into four layers, each
-with one job. A value lives in one place by its nature — a **static seed**
-in `tokens.css`, a **derivation** in `variables.css` — and `theme.css` bridges
-both to Tailwind. The pipeline never redefines a Tailwind theme variable, save
+with one job. A value lives in one place by its nature — a **color seed** in a
+theme's `tokens.css`, a theme-agnostic **scale** in `shared/scales.css`, a
+**derivation** in `shared/variables.css` — and `theme.css` bridges them to
+Tailwind. The pipeline never redefines a Tailwind theme variable, save
 the `--font-sans`/`--font-mono` exception.
 
-1. **`src/themes/default/tokens.css` — static.** Base, constant `--fri-*` values
-   with **no `calc()` or `var()`**: the ground, brand/status roles, field, focus,
-   overlay, the spacing / type / motion / radius / shadow scales, the radius
-   archetypes (`--fri-action/field/box-radius`, set directly) and geometry
-   archetype sizes. Declared per mode in the light/dark blocks; a custom theme
-   edits only this file.
-2. **`src/themes/default/variables.css` — computed + semantic.** Everything derived
-   from the static tokens through runtime `color-mix()`/`var()`: the surfaces,
-   emphasis tiers, content tones, line tiers, the slot foregrounds, and the
-   per-role interaction ladder (hover, pressed, soft, surface, border, tint) —
-   the accent role itself is a seed in `tokens.css`, only its ladder is derived
+1. **`src/themes/<name>/tokens.css` — the theme's color seeds.** Base, constant
+   `--fri-*` colors with **no `calc()` or `var()`**: the ground (background,
+   stroke, the foreground text tiers), the surface fills (base and
+   `-secondary`), the brand/status roles (each seeding its base, `-foreground`,
+   `-secondary`, `-secondary-foreground`), and focus. Declared per mode in the
+   light/dark blocks; a new theme is one such file under its own
+   `[data-theme="<name>"]` selector, and everything below applies to it
+   unchanged. `src/themes/shared/scales.css` holds the theme-agnostic
+   constants — the spacing / type / motion / radius scales and the radius
+   archetypes (`--fri-action/field/box-radius`, set directly) — declared once
+   on `:root`.
+2. **`src/themes/shared/variables.css` — computed + semantic.** Everything derived
+   from the color seeds through runtime `color-mix()`/`var()`: the per-role
+   interaction ladder (hover and pressed for the base and `-secondary` pairs,
+   border, outline-border, tint), the surface outline-border (an alias of
+   `--fri-stroke`), and the stroke-derived
+   lines (`--fri-border`, `--fri-separator`, the scroll tokens). Its selectors
+   (`:root`, `.light`, `.dark`, `[data-theme]`) match every theme, so any theme
+   defining the seeds gets the ladder free —
+   a family itself is a seed in `tokens.css`, only its ladder is derived
    here. The interaction mix ratios (`--fri-mix-*`) also live here, declared per
    mode: internal constants the `color-mix()` derivations consume, not consumer
    seeds — the one non-derived value the file holds.
 3. **`src/tailwind/theme.css` — the Tailwind bridge.** One `@theme inline`
    block maps `--fri-*` onto Tailwind theme variables (`--color-*`,
-   `--spacing-*`, `--radius-action/…`, `--shadow-surface/…`, `--text-*`) so they
-   emit semantic utilities (`bg-primary`, `gap-small`, `rounded-action`,
-   `shadow-surface`). It **adds new names only** — Tailwind's own defaults
-   (`--radius-sm`, `--ease-*`, `--shadow-sm/md/lg`, bare `--spacing`) stay native
+   `--spacing-*`, `--radius-action/…`, `--text-*`) so they
+   emit semantic utilities (`bg-primary`, `gap-small`, `rounded-action`). It
+   **adds new names only** — Tailwind's own defaults
+   (`--radius-sm`, `--ease-*`, bare `--spacing`) stay native
    so a consumer can still use them — save the `--font-sans`/`--font-mono`
    exception.
 4. **`src/components/<name>.css` — consume + component-local calc.**
@@ -93,9 +103,9 @@ the `--font-sans`/`--font-mono` exception.
    ramp multiplier) are var machinery and stay. The `lint:symmetry` apply-only
    dimension enforces this.
 
-**Worked example — radius.** `tokens.css` holds two static sets: the generic
-scale (`--fri-radius-xs … xl`; for a `radius` prop or a consumer's own
-`rounded-(--fri-radius-md)`) and the per-component archetypes
+**Worked example — radius.** `shared/scales.css` holds two static sets: the generic
+scale (`--fri-radius-xsmall … xlarge`; for a `radius` prop or a consumer's own
+`rounded-(--fri-radius-medium)`) and the per-component archetypes
 (`--fri-action-radius`, `--fri-box-radius`) a consumer sets directly.
 `theme.css` maps the archetypes to `rounded-action/field/box`; `button.css`
 scales its archetype per size:
@@ -104,7 +114,7 @@ scales its archetype per size:
 --button-radius: calc(var(--fri-action-radius) * var(--_button-n) / 10);
 ```
 
-Radius is fully static, so it never touches `variables.css`.
+Radius is fully static, so it never touches `shared/variables.css`.
 
 Components consume spacing and size through the **semantic Tailwind alias** —
 `gap-small`, `p-medium`, `bg-primary` — never a raw numeric (`gap-2`) or a bare
