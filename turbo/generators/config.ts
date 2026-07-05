@@ -44,17 +44,50 @@ const insertImportLine = (
   return `${[...others, ...imports].join("\n")}\n`;
 };
 
-const parseParts = (parts: string | undefined): string[] =>
-  (parts ?? "")
-    .split(",")
-    .map((part) => part.trim())
-    .filter(Boolean);
+const parseParts = (parts: string | undefined): string[] => [
+  ...new Set(
+    (parts ?? "")
+      .split(",")
+      .map((part) => part.trim())
+      .filter(Boolean),
+  ),
+];
 
 export default function generator(plop: PlopTypes.NodePlopAPI): void {
   plop.setHelper("sortedNamedImports", (...names: unknown[]) => {
     const identifiers = names.slice(0, -1) as string[];
     return [...identifiers].sort((a, b) => a.localeCompare(b)).join(", ");
   });
+
+  plop.setPartial(
+    "compoundSubparts",
+    `{{#if compound}}
+{{#each subparts}}
+
+export interface {{ pascalCase ../name }}{{ this }}Props
+  extends ComponentPropsWithRef<"div"> {
+  className?: string;
+}
+
+export const {{ pascalCase ../name }}{{ this }} = (
+  props: Readonly<{{ pascalCase ../name }}{{ this }}Props>,
+) => {
+  const { children, className, ...rest } = props;
+
+  return (
+    <div
+      data-slot="{{ kebabCase ../name }}-{{ kebabCase this }}"
+      className={className}
+      {...rest}
+    >
+      {children}
+    </div>
+  );
+};
+{{/each}}
+{{/if}}
+`,
+  );
 
   const pascalOf = (value: string): string =>
     plop.renderString("{{ pascalCase value }}", { value });

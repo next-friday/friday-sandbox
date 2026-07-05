@@ -230,7 +230,7 @@ export const WithIcon: Story = {
     docs: {
       description: {
         story:
-          "Add `Link.Icon` after the label for the default external-link glyph.",
+          "Use `Link.Icon` after the label for the default external-link glyph.",
       },
     },
   },
@@ -251,7 +251,7 @@ export const WithCustomIcon: Story = {
   parameters: {
     docs: {
       description: {
-        story: "Pass children to `LinkIcon` to replace the default glyph.",
+        story: "Use `LinkIcon` with children to replace the default glyph.",
       },
     },
   },

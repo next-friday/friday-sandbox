@@ -38,7 +38,12 @@ export const LinkIcon = (props: Readonly<LinkIconProps>) => {
   const resolvedClassName = linkIconVariants({ class: className });
 
   return (
-    <span data-slot="link-icon" className={resolvedClassName} {...rest}>
+    <span
+      data-slot="link-icon"
+      aria-hidden="true"
+      className={resolvedClassName}
+      {...rest}
+    >
       {children ?? (
         <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
           <path
