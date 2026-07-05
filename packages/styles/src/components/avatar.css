@@ -1,0 +1,105 @@
+@layer components {
+  .fri-avatar {
+    --avatar-size: calc(var(--fri-spacing-xsmall) * var(--_avatar-n, 12));
+    --avatar-radius: calc(var(--fri-box-radius) * var(--_avatar-n, 12) / 10);
+    --avatar-overlap: calc(var(--avatar-size) / -4);
+
+    @apply relative inline-flex size-(--avatar-size) shrink-0 items-center justify-center overflow-hidden align-middle select-none;
+  }
+
+  .fri-avatar-xs {
+    --_avatar-n: 6;
+  }
+  .fri-avatar-sm {
+    --_avatar-n: 9;
+  }
+  .fri-avatar-md {
+    --_avatar-n: 12;
+  }
+  .fri-avatar-lg {
+    --_avatar-n: 16;
+  }
+  .fri-avatar-xl {
+    --_avatar-n: 20;
+  }
+  .fri-avatar-2xl {
+    --_avatar-n: 28;
+  }
+
+  .fri-avatar-square {
+    @apply rounded-none;
+  }
+  .fri-avatar-radius {
+    @apply rounded-(--avatar-radius);
+  }
+  .fri-avatar-full {
+    @apply rounded-full;
+  }
+
+  .fri-avatar-disabled {
+    @apply status-disabled;
+  }
+
+  .fri-avatar-image {
+    @apply size-full object-cover;
+  }
+
+  .fri-avatar-fallback {
+    --avatar-fallback-text: calc(var(--avatar-size) / 2.5);
+
+    @apply flex size-full items-center justify-center bg-surface text-(length:--avatar-fallback-text) font-medium text-foreground;
+  }
+
+  .fri-avatar-group {
+    --avatar-ring-width: 2px;
+
+    @apply isolate flex;
+  }
+
+  .fri-avatar-group-xs {
+    --_avatar-n: 6;
+  }
+  .fri-avatar-group-sm {
+    --_avatar-n: 9;
+  }
+  .fri-avatar-group-md {
+    --_avatar-n: 12;
+  }
+  .fri-avatar-group-lg {
+    --_avatar-n: 16;
+  }
+  .fri-avatar-group-xl {
+    --_avatar-n: 20;
+  }
+  .fri-avatar-group-2xl {
+    --_avatar-n: 28;
+  }
+
+  .fri-avatar-group > .fri-avatar {
+    @apply ring-(length:--avatar-ring-width) ring-background;
+  }
+
+  .fri-avatar-group > .fri-avatar + .fri-avatar {
+    @apply ms-(--avatar-overlap);
+  }
+
+  .fri-avatar-group-first-on-top > .fri-avatar:nth-child(1) {
+    @apply z-50;
+  }
+  .fri-avatar-group-first-on-top > .fri-avatar:nth-child(2) {
+    @apply z-40;
+  }
+  .fri-avatar-group-first-on-top > .fri-avatar:nth-child(3) {
+    @apply z-30;
+  }
+  .fri-avatar-group-first-on-top > .fri-avatar:nth-child(4) {
+    @apply z-20;
+  }
+  .fri-avatar-group-first-on-top > .fri-avatar:nth-child(5) {
+    @apply z-10;
+  }
+
+  .fri-avatar-group-ringless > .fri-avatar {
+    @apply ring-0;
+  }
+}
