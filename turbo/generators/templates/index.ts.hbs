@@ -1,2 +1,17 @@
+{{#if compound}}
+export { {{ pascalCase name }} } from "./{{ kebabCase name }}.namespace";
+export {
+{{#each subparts}}
+  {{ pascalCase ../name }}{{ this }},
+{{/each}}
+} from "./{{ kebabCase name }}";
+export type {
+  {{ pascalCase name }}Props,
+{{#each subparts}}
+  {{ pascalCase ../name }}{{ this }}Props,
+{{/each}}
+} from "./{{ kebabCase name }}";
+{{else}}
 export { {{ pascalCase name }} } from "./{{ kebabCase name }}";
 export type { {{ pascalCase name }}Props } from "./{{ kebabCase name }}";
+{{/if}}

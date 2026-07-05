@@ -73,10 +73,10 @@
     @apply text-foreground;
   }
   .fri-text-body {
-    @apply text-foreground-body;
+    @apply text-foreground-secondary;
   }
   .fri-text-muted {
-    @apply text-foreground-muted;
+    @apply text-foreground-tertiary;
   }
   .fri-text-danger {
     @apply text-danger;

@@ -77,7 +77,7 @@ Once the issue exists, create its branch from the number as [Workflow](#workflow
 Scaffold a base component instead of hand-creating its files:
 
 ```sh
-pnpm gen component   # prompts for the name, the primitive kind (native or aria), and the Storybook category
+pnpm gen component   # prompts for the name, the primitive kind (native or aria), the Storybook category, and compound subparts (blank = single)
 ```
 
 The generator (Turborepo `turbo gen`, defined in `turbo/generators/`) creates `<name>.tsx`, `<name>.styles.ts` (the `tv()` variant map), `index.ts`, and `<name>.stories.tsx` under `packages/react/src/components/bases/<name>/`, adds the `<name>.css` stub under `@friday-sandbox/styles/src/components/` (as `<name>.css`) with its `@import`, creates the `<name>.mdx` docs page and its nav entry, wires the export barrels, and writes a changeset. Choose the `aria` primitive for an interactive component (it scaffolds the size, state, and story skeleton), or `native` for a minimal display element. Then fill in the variants, the `@apply` rules, the stories, and the docs. `pnpm lint:symmetry` verifies that `<name>.styles.ts` (in `react`) and `<name>.css` (in `styles`) stay a 1:1 mirror across the package boundary. Don't hand-create or hand-wire these files. To have Claude run this scaffolding step and everything after it from a plain-language goal instead, see [Building a component with Claude](#building-a-component-with-claude).

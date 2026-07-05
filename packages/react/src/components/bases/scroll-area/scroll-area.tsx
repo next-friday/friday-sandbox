@@ -91,8 +91,8 @@ const ScrollAreaCorner = (props: Readonly<ScrollAreaCornerProps>) => {
 
 export {
   ScrollAreaRoot,
-  ScrollAreaCorner,
+  ScrollAreaViewport,
   ScrollAreaScrollbar,
   ScrollAreaThumb,
-  ScrollAreaViewport,
+  ScrollAreaCorner,
 };

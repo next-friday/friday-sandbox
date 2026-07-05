@@ -10,9 +10,12 @@
     "grid",
     "scroll-area",
     "separator",
+    "surface",
     "---Feedback---",
     "spinner",
     "---Typography---",
-    "text"
+    "text",
+    "---Navigation---",
+    "link"
   ]
 }

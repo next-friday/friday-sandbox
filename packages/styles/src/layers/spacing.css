@@ -1,6 +1,6 @@
 @layer components {
-  .fri-p-xxs {
-    @apply p-xxsmall;
+  .fri-p-2xs {
+    @apply p-2xsmall;
   }
   .fri-p-xs {
     @apply p-xsmall;
@@ -27,8 +27,8 @@
     @apply p-4xlarge;
   }
 
-  .fri-px-xxs {
-    @apply px-xxsmall;
+  .fri-px-2xs {
+    @apply px-2xsmall;
   }
   .fri-px-xs {
     @apply px-xsmall;
@@ -55,8 +55,8 @@
     @apply px-4xlarge;
   }
 
-  .fri-py-xxs {
-    @apply py-xxsmall;
+  .fri-py-2xs {
+    @apply py-2xsmall;
   }
   .fri-py-xs {
     @apply py-xsmall;
@@ -83,8 +83,8 @@
     @apply py-4xlarge;
   }
 
-  .fri-pt-xxs {
-    @apply pt-xxsmall;
+  .fri-pt-2xs {
+    @apply pt-2xsmall;
   }
   .fri-pt-xs {
     @apply pt-xsmall;
@@ -111,8 +111,8 @@
     @apply pt-4xlarge;
   }
 
-  .fri-pr-xxs {
-    @apply pr-xxsmall;
+  .fri-pr-2xs {
+    @apply pr-2xsmall;
   }
   .fri-pr-xs {
     @apply pr-xsmall;
@@ -139,8 +139,8 @@
     @apply pr-4xlarge;
   }
 
-  .fri-pb-xxs {
-    @apply pb-xxsmall;
+  .fri-pb-2xs {
+    @apply pb-2xsmall;
   }
   .fri-pb-xs {
     @apply pb-xsmall;
@@ -167,8 +167,8 @@
     @apply pb-4xlarge;
   }
 
-  .fri-pl-xxs {
-    @apply pl-xxsmall;
+  .fri-pl-2xs {
+    @apply pl-2xsmall;
   }
   .fri-pl-xs {
     @apply pl-xsmall;
@@ -195,8 +195,8 @@
     @apply pl-4xlarge;
   }
 
-  .fri-gap-xxs {
-    @apply gap-xxsmall;
+  .fri-gap-2xs {
+    @apply gap-2xsmall;
   }
   .fri-gap-xs {
     @apply gap-xsmall;
@@ -223,8 +223,8 @@
     @apply gap-4xlarge;
   }
 
-  .fri-gap-x-xxs {
-    @apply gap-x-xxsmall;
+  .fri-gap-x-2xs {
+    @apply gap-x-2xsmall;
   }
   .fri-gap-x-xs {
     @apply gap-x-xsmall;
@@ -251,8 +251,8 @@
     @apply gap-x-4xlarge;
   }
 
-  .fri-gap-y-xxs {
-    @apply gap-y-xxsmall;
+  .fri-gap-y-2xs {
+    @apply gap-y-2xsmall;
   }
   .fri-gap-y-xs {
     @apply gap-y-xsmall;

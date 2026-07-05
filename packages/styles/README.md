@@ -17,7 +17,7 @@
 
 - **Theme by CSS variables.** Override flat custom properties to retheme. Works anywhere CSS loads: React, plain HTML, WordPress, or PHP.
 - **Light and dark, built in.** Switch per subtree with `data-theme`; themes nest.
-- **Derived tokens.** Set a handful of seed tokens; every interaction state, surface, and tier derives automatically via `color-mix`.
+- **Derived tokens.** Set a handful of seed tokens; every interaction state, border, and line tier derives automatically via `color-mix`.
 - **Tailwind CSS v4 native.** Semantic tokens register with `@theme inline` and emit canonical utilities (`bg-primary`, `rounded-action`), alongside ready-to-use `fri-*` component classes.
 
 ## Installation
@@ -72,7 +72,7 @@ Author your own theme by overriding base tokens. Set each fill and its `-foregro
 }
 ```
 
-That is the model: set every seed you want to change. Overriding `--fri-primary` alone changes only that role — accent, info, and the rest keep their defaults, so a complete retheme sets the full seed set: the ground (`--fri-background`/`--fri-surface`/`--fri-foreground`, `--fri-neutral`), the seven roles (`primary secondary accent info success warning danger`, each paired with its `-foreground`), plus `--fri-focus`, `--fri-overlay`, and `--fri-field`. A named theme replaces the mode — it carries its own `color-scheme`, so don't combine it with the `.dark` class. The per-role interaction ladder, surfaces, and tiers all derive from the seeds via `color-mix`/`var()` in [`variables.css`](./src/themes/default/variables.css). Edit the seeds — declared per mode in [`tokens.css`](./src/themes/default/tokens.css) — never the derived tokens.
+That is the model: set every seed you want to change. Overriding `--fri-primary` alone changes only that role — accent, info, and the rest keep their defaults, so a complete retheme sets the full seed set: the ground (`--fri-background`/`--fri-foreground`, `--fri-stroke`), the muted text tiers (`--fri-foreground-secondary`/`--fri-foreground-tertiary`), the `surface` fills (`--fri-surface`/`--fri-surface-secondary`), the seven roles (`primary secondary accent info success warning danger`, each seeding its base, `-foreground`, `-secondary`, and `-secondary-foreground`), plus `--fri-focus`. A named theme replaces the mode — it carries its own `color-scheme`, so don't combine it with the `.dark` class. The per-role interaction states, borders, and line tiers derive from the seeds via `color-mix`/`var()` in [`shared/variables.css`](./src/themes/shared/variables.css). Edit the seeds — declared per mode in [`default/tokens.css`](./src/themes/default/tokens.css) — never the derived tokens.
 
 ### Good to know
 
@@ -93,7 +93,7 @@ Components use a `fri-<component>-<modifier>` convention, usable in plain HTML:
 
 ## Reference
 
-- **Hand-authored tokens.** The theme lives in [`src/themes/`](./src/themes/) as plain CSS variables — static consumer-editable seeds (ground, roles, field, focus, overlay, scales, radius archetypes, geometry sizes, elevation shadow) declared per mode in `default/tokens.css`; surfaces, emphasis tiers, content tones, line tiers, and the per-role interaction ladder derive from the seeds via runtime `color-mix`/`var()` in `default/variables.css`. This package ships CSS only — each component's `tv()` variant map lives with the component in `@friday-sandbox/react` (`<name>.styles.ts`), mirrored 1:1 against this package's `<name>.css`.
+- **Hand-authored tokens.** The theme lives in [`src/themes/`](./src/themes/) as plain CSS variables — a theme's color seeds (ground, surface, roles, focus) declared per mode in `<name>/tokens.css`, the theme-agnostic scales (spacing, type, radius archetypes) once in `shared/scales.css`; the per-role interaction states, borders, and line tiers derive from the seeds via runtime `color-mix`/`var()` in `shared/variables.css`. This package ships CSS only — each component's `tv()` variant map lives with the component in `@friday-sandbox/react` (`<name>.styles.ts`), mirrored 1:1 against this package's `<name>.css`.
 
 ## License
 

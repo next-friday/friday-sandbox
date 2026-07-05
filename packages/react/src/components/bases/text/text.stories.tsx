@@ -2,52 +2,18 @@ import { expect } from "storybook/test";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import { Flex } from "../flex";
+import {
+  ALIGNS,
+  LINE_CLAMPS,
+  TEXT_COLORS,
+  TYPOGRAPHY,
+} from "../../../../.storybook/constants";
 
 import { Text } from ".";
 
 const SAMPLE = "The quick brown fox jumps over the lazy dog";
 
 const paragraph = `${SAMPLE}. ${SAMPLE}. ${SAMPLE}. ${SAMPLE}.`;
-
-const LINE_CLAMPS = [1, 2, 3, 4, 5, 6] as const;
-
-const VARIANTS = [
-  { value: "inherit", label: "Inherit" },
-  { value: "display-xxl", label: "Display XXL" },
-  { value: "display-xl", label: "Display XL" },
-  { value: "display-lg", label: "Display LG" },
-  { value: "display-md", label: "Display MD" },
-  { value: "display-sm", label: "Display SM" },
-  { value: "body-lg", label: "Body LG" },
-  { value: "body-lg-strong", label: "Body LG Strong" },
-  { value: "body-md", label: "Body MD" },
-  { value: "body-md-strong", label: "Body MD Strong" },
-  { value: "body-sm", label: "Body SM" },
-  { value: "body-sm-strong", label: "Body SM Strong" },
-  { value: "body-xs", label: "Body XS" },
-  { value: "body-xs-strong", label: "Body XS Strong" },
-  { value: "label-lg", label: "Label LG" },
-  { value: "label-md", label: "Label MD" },
-  { value: "label-sm", label: "Label SM" },
-  { value: "caption", label: "Caption" },
-  { value: "caption-strong", label: "Caption Strong" },
-  { value: "code", label: "Code" },
-] as const;
-
-const COLORS = [
-  { value: "inherit", label: "Inherit" },
-  { value: "ink", label: "Ink" },
-  { value: "body", label: "Body" },
-  { value: "muted", label: "Muted" },
-  { value: "danger", label: "Danger" },
-] as const;
-
-const ALIGNS = [
-  { value: "left", label: "Left" },
-  { value: "center", label: "Center" },
-  { value: "right", label: "Right" },
-  { value: "justify", label: "Justify" },
-] as const;
 
 const meta = {
   title: "Bases/Typography/Text",
@@ -70,10 +36,6 @@ const meta = {
   },
   args: {
     children: SAMPLE,
-    variant: "inherit",
-    color: "inherit",
-    truncate: false,
-    underline: false,
   },
   argTypes: {
     children: {
@@ -84,18 +46,20 @@ const meta = {
     variant: {
       description: "Use the `variant` prop to apply a typography scale token.",
       control: "select",
-      options: VARIANTS.map((variant) => variant.value),
+      options: TYPOGRAPHY.map((variant) => variant.value),
       table: {
-        type: { summary: VARIANTS.map((variant) => variant.value).join(" | ") },
+        type: {
+          summary: TYPOGRAPHY.map((variant) => variant.value).join(" | "),
+        },
         defaultValue: { summary: "inherit" },
       },
     },
     color: {
       description: "Use the `color` prop to set the text-emphasis tone.",
       control: "select",
-      options: COLORS.map((color) => color.value),
+      options: TEXT_COLORS.map((color) => color.value),
       table: {
-        type: { summary: COLORS.map((color) => color.value).join(" | ") },
+        type: { summary: TEXT_COLORS.map((color) => color.value).join(" | ") },
         defaultValue: { summary: "inherit" },
       },
     },
@@ -172,6 +136,10 @@ export const Variant: Story = {
   },
   render: (storyArgs) => (
     <Flex direction="column" gap="md">
+      <Text {...storyArgs} variant="inherit">
+        Inherit
+      </Text>
+
       <Text {...storyArgs} variant="display-xxl">
         Display XXL
       </Text>
