@@ -29,7 +29,6 @@ const meta = {
   },
   args: {
     cols: 3,
-    flow: "row",
     gap: "md",
   },
   argTypes: {

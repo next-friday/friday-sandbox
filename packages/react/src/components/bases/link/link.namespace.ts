@@ -1,3 +1,3 @@
-import { LinkRoot, LinkIcon } from "./link";
+import { Link as LinkBase, LinkIcon } from "./link";
 
-export const Link = Object.assign(LinkRoot, { Icon: LinkIcon });
+export const Link = Object.assign(LinkBase, { Icon: LinkIcon });

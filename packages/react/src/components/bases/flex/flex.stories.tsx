@@ -26,10 +26,6 @@ const meta = {
     },
   },
   args: {
-    direction: "row",
-    align: "stretch",
-    justify: "start",
-    wrap: "nowrap",
     gap: "md",
   },
   argTypes: {

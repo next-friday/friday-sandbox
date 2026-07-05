@@ -1,6 +1,9 @@
 @layer components {
   .fri-link {
-    @apply cursor-pointer text-link no-underline transition-base outline-none;
+    --link-gap: calc(1em / 4);
+    --link-underline-offset: calc(1em / 8);
+
+    @apply inline-flex h-fit w-fit cursor-pointer items-center gap-(--link-gap) text-link no-underline underline-offset-(--link-underline-offset) transition-base outline-none;
   }
 
   .fri-link-inherit {
@@ -82,8 +85,7 @@
     @apply underline;
   }
 
-  .fri-link[data-focus-visible],
-  .fri-link[data-current] {
+  .fri-link[data-focus-visible] {
     @apply focus-ring;
   }
 
@@ -92,9 +94,13 @@
   }
 
   .fri-link-icon {
-    @apply ms-xsmall inline-flex size-[1em] shrink-0 items-center justify-center;
+    @apply pointer-events-none inline-flex size-[1em] shrink-0 items-center justify-center text-current opacity-60;
   }
   .fri-link-icon svg {
     @apply size-full;
+  }
+  .fri-link[data-hovered] .fri-link-icon,
+  .fri-link[data-pressed] .fri-link-icon {
+    @apply opacity-100;
   }
 }

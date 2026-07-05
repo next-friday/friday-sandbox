@@ -44,11 +44,20 @@ const insertImportLine = (
   return `${[...others, ...imports].join("\n")}\n`;
 };
 
+const parseParts = (parts: string | undefined): string[] =>
+  (parts ?? "")
+    .split(",")
+    .map((part) => part.trim())
+    .filter(Boolean);
+
 export default function generator(plop: PlopTypes.NodePlopAPI): void {
   plop.setHelper("sortedNamedImports", (...names: unknown[]) => {
     const identifiers = names.slice(0, -1) as string[];
     return [...identifiers].sort((a, b) => a.localeCompare(b)).join(", ");
   });
+
+  const pascalOf = (value: string): string =>
+    plop.renderString("{{ pascalCase value }}", { value });
 
   const reactBases =
     "{{ turbo.paths.root }}/packages/react/src/components/bases/{{ kebabCase name }}";
@@ -56,14 +65,30 @@ export default function generator(plop: PlopTypes.NodePlopAPI): void {
     "{{ turbo.paths.root }}/packages/styles/src/components";
 
   const wireBarrels: PlopTypes.CustomActionFunction = (answers) => {
-    const { name, category, turbo } = answers as {
+    const { name, category, parts, turbo } = answers as {
       name: string;
       category?: string;
+      parts?: string;
       turbo: { paths: { root: string } };
     };
     const root = turbo.paths.root;
     const Pascal = plop.renderString("{{ pascalCase name }}", { name });
     const kebab = plop.renderString("{{ kebabCase name }}", { name });
+    const subparts = parseParts(parts).map(pascalOf);
+
+    const namedBlock = (from: string): string => {
+      if (subparts.length === 0) {
+        return `export { ${Pascal} } from "${from}";\nexport type { ${Pascal}Props } from "${from}";`;
+      }
+      const names = [Pascal, ...subparts.map((part) => `${Pascal}${part}`)];
+      const types = [
+        `${Pascal}Props`,
+        ...subparts.map((part) => `${Pascal}${part}Props`),
+      ];
+      const list = (entries: string[]): string =>
+        entries.map((entry) => `  ${entry},`).join("\n");
+      return `export {\n${list(names)}\n} from "${from}";\nexport type {\n${list(types)}\n} from "${from}";`;
+    };
 
     const patch = (
       relPath: string,
@@ -74,18 +99,10 @@ export default function generator(plop: PlopTypes.NodePlopAPI): void {
     };
 
     patch("packages/react/src/components/bases/index.ts", (content) =>
-      insertExportBlock(
-        content,
-        Pascal,
-        `export { ${Pascal} } from "./${kebab}";\nexport type { ${Pascal}Props } from "./${kebab}";`,
-      ),
+      insertExportBlock(content, Pascal, namedBlock(`./${kebab}`)),
     );
     patch("packages/react/src/index.ts", (content) =>
-      insertExportBlock(
-        content,
-        Pascal,
-        `export { ${Pascal} } from "./components/bases";\nexport type { ${Pascal}Props } from "./components/bases";`,
-      ),
+      insertExportBlock(content, Pascal, namedBlock("./components/bases")),
     );
     patch("packages/styles/src/components/index.css", (content) =>
       insertImportLine(content, kebab, `@import "./${kebab}.css";`),
@@ -142,49 +159,79 @@ export default function generator(plop: PlopTypes.NodePlopAPI): void {
             ? true
             : "category may use only letters, digits, spaces, / and -",
       },
+      {
+        type: "input",
+        name: "parts",
+        message:
+          "Compound subparts (comma-separated PascalCase, e.g. Item or Icon; blank = single component):",
+        default: "",
+      },
     ],
     actions: (data) => {
-      const primitive = (data as { primitive?: string } | undefined)?.primitive;
-      const suffix = primitive === "aria" ? ".aria" : "";
+      const answers = data as
+        | { primitive?: string; parts?: string }
+        | undefined;
+      const suffix = answers?.primitive === "aria" ? ".aria" : "";
+      const subparts = parseParts(answers?.parts).map(pascalOf);
+      const compound = subparts.length > 0;
+      const templateData = { subparts, compound };
 
-      return [
+      const actions: PlopTypes.ActionType[] = [
         {
           type: "add",
           path: `${reactBases}/{{ kebabCase name }}.tsx`,
           templateFile: `templates/component${suffix}.tsx.hbs`,
+          data: templateData,
         },
         {
           type: "add",
           path: `${reactBases}/{{ kebabCase name }}.styles.ts`,
           templateFile: `templates/variants${suffix}.ts.hbs`,
+          data: templateData,
         },
         {
           type: "add",
           path: `${reactBases}/index.ts`,
           templateFile: "templates/index.ts.hbs",
+          data: templateData,
         },
         {
           type: "add",
           path: `${reactBases}/{{ kebabCase name }}.stories.tsx`,
           templateFile: `templates/stories${suffix}.tsx.hbs`,
+          data: templateData,
         },
         {
           type: "add",
           path: `${stylesComponents}/{{ kebabCase name }}.css`,
           templateFile: `templates/styles${suffix}.css.hbs`,
+          data: templateData,
         },
         {
           type: "add",
           path: "{{ turbo.paths.root }}/apps/docs/content/docs/components/{{ kebabCase name }}.mdx",
           templateFile: `templates/mdx${suffix}.hbs`,
+          data: templateData,
         },
         {
           type: "add",
           path: "{{ turbo.paths.root }}/.changeset/{{ kebabCase name }}-component.md",
           templateFile: "templates/changeset.md.hbs",
+          data: templateData,
         },
-        wireBarrels,
       ];
+
+      if (compound) {
+        actions.push({
+          type: "add",
+          path: `${reactBases}/{{ kebabCase name }}.namespace.ts`,
+          templateFile: "templates/namespace.ts.hbs",
+          data: templateData,
+        });
+      }
+
+      actions.push(wireBarrels);
+      return actions;
     },
   });
 }

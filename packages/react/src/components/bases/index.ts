@@ -10,7 +10,14 @@ export type { GridItemProps, GridProps } from "./grid";
 export { Link, LinkIcon } from "./link";
 export type { LinkProps, LinkIconProps } from "./link";
 
-export { ScrollArea } from "./scroll-area";
+export {
+  ScrollArea,
+  ScrollAreaRoot,
+  ScrollAreaViewport,
+  ScrollAreaScrollbar,
+  ScrollAreaThumb,
+  ScrollAreaCorner,
+} from "./scroll-area";
 export type {
   ScrollAreaCornerProps,
   ScrollAreaRootProps,

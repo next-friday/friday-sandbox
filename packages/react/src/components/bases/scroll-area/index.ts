@@ -1,4 +1,11 @@
 export { ScrollArea } from "./scroll-area.namespace";
+export {
+  ScrollAreaRoot,
+  ScrollAreaViewport,
+  ScrollAreaScrollbar,
+  ScrollAreaThumb,
+  ScrollAreaCorner,
+} from "./scroll-area";
 
 export type {
   ScrollAreaCornerProps,

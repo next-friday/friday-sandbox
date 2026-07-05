@@ -3,36 +3,9 @@ import { expect, userEvent, within } from "storybook/test";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import { Flex } from "../flex";
+import { DECORATIONS, TYPOGRAPHY } from "../../../../.storybook/constants";
 
 import { Link, LinkIcon } from ".";
-
-const VARIANTS = [
-  { value: "inherit", label: "Inherit" },
-  { value: "display-xxl", label: "Display XXL" },
-  { value: "display-xl", label: "Display XL" },
-  { value: "display-lg", label: "Display LG" },
-  { value: "display-md", label: "Display MD" },
-  { value: "display-sm", label: "Display SM" },
-  { value: "body-lg", label: "Body LG" },
-  { value: "body-lg-strong", label: "Body LG Strong" },
-  { value: "body-md", label: "Body MD" },
-  { value: "body-md-strong", label: "Body MD Strong" },
-  { value: "body-sm", label: "Body SM" },
-  { value: "body-sm-strong", label: "Body SM Strong" },
-  { value: "body-xs", label: "Body XS" },
-  { value: "body-xs-strong", label: "Body XS Strong" },
-  { value: "label-lg", label: "Label LG" },
-  { value: "label-md", label: "Label MD" },
-  { value: "label-sm", label: "Label SM" },
-  { value: "caption", label: "Caption" },
-  { value: "caption-strong", label: "Caption Strong" },
-  { value: "code", label: "Code" },
-] as const;
-
-const DECORATIONS = [
-  { value: "underline", label: "Underline" },
-  { value: "plain", label: "Plain" },
-] as const;
 
 const meta = {
   title: "Bases/Navigation/Link",
@@ -55,10 +28,6 @@ const meta = {
   },
   args: {
     children: "Link",
-    variant: "inherit",
-    decoration: "underline",
-    isCurrent: false,
-    isDisabled: false,
   },
   argTypes: {
     children: {
@@ -75,9 +44,11 @@ const meta = {
     variant: {
       description: "Use the `variant` prop to apply a typography scale token.",
       control: "select",
-      options: VARIANTS.map((variant) => variant.value),
+      options: TYPOGRAPHY.map((variant) => variant.value),
       table: {
-        type: { summary: VARIANTS.map((variant) => variant.value).join(" | ") },
+        type: {
+          summary: TYPOGRAPHY.map((variant) => variant.value).join(" | "),
+        },
         defaultValue: { summary: "inherit" },
       },
     },
@@ -89,15 +60,6 @@ const meta = {
       table: {
         type: { summary: "underline | plain" },
         defaultValue: { summary: "underline" },
-      },
-    },
-    isCurrent: {
-      description:
-        'Whether the link is the current page. Sets `aria-current="page"`.',
-      control: "boolean",
-      table: {
-        type: { summary: "boolean" },
-        defaultValue: { summary: "false" },
       },
     },
     isDisabled: {
@@ -142,6 +104,10 @@ export const Variant: Story = {
   },
   render: (storyArgs) => (
     <Flex direction="column" gap="md">
+      <Link {...storyArgs} variant="inherit">
+        Inherit
+      </Link>
+
       <Link {...storyArgs} variant="display-xxl">
         Display XXL
       </Link>
@@ -240,22 +206,6 @@ export const Decoration: Story = {
         Plain at rest, underlines on hover
       </Link>
     </Flex>
-  ),
-};
-
-export const Current: Story = {
-  parameters: {
-    docs: {
-      description: {
-        story:
-          'Use the `isCurrent` prop to mark the active page. It sets `aria-current="page"` and shows the focus ring.',
-      },
-    },
-  },
-  render: (storyArgs) => (
-    <Link {...storyArgs} href="#" isCurrent>
-      Current page
-    </Link>
   ),
 };
 

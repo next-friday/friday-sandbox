@@ -65,6 +65,10 @@ reviews:
         Colors, Sizes, laid out with Flex/Grid — never a raw div, and pull placeholder
         content from the samples subpath (@friday-sandbox/react/samples: Boxes, Lorem))
         and per state, real props not mocked data,
+        show only the props an example demonstrates — never restate a component
+        default (variant=solid, size=md), so meta.args holds content and
+        non-default values only (gated by lint:symmetry) and a default value
+        appears only in the showcase story for that axis;
         addon-a11y passes; play functions assert behavior only where it fits — an
         interactive base gets Default (userEvent.tab -> toHaveFocus), a display or layout base (text, flex,
         grid, separator, spinner) skips the userEvent interaction plays, so never ask one for an

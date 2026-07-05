@@ -20,3 +20,28 @@ export const {{ pascalCase name }} = (props: Readonly<{{ pascalCase name }}Props
     </button>
   );
 };
+{{#if compound}}
+{{#each subparts}}
+
+export interface {{ pascalCase ../name }}{{ this }}Props
+  extends ComponentPropsWithRef<"div"> {
+  className?: string;
+}
+
+export const {{ pascalCase ../name }}{{ this }} = (
+  props: Readonly<{{ pascalCase ../name }}{{ this }}Props>,
+) => {
+  const { children, className, ...rest } = props;
+
+  return (
+    <div
+      data-slot="{{ kebabCase ../name }}-{{ kebabCase this }}"
+      className={className}
+      {...rest}
+    >
+      {children}
+    </div>
+  );
+};
+{{/each}}
+{{/if}}

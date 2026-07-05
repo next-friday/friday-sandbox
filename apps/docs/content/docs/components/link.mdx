@@ -117,12 +117,6 @@ link color.
       Documentation
       <Link.Icon />
     </Link>
-    <Link href="https://example.com" target="_blank" rel="noreferrer">
-      External resource
-      <LinkIcon>
-        <Icon />
-      </LinkIcon>
-    </Link>
     ```
   </Tab>
 </Tabs>
@@ -136,7 +130,6 @@ link color.
 | ------------ | ----------- | --------------------------------------------------------------------------------------- |
 | `variant`    | `inherit`   | `inherit \| display-* \| body-* \| label-* \| caption \| code`<br />Typography scale.   |
 | `decoration` | `underline` | `underline \| plain`<br />Underline behavior.                                           |
-| `isCurrent`  | `false`     | `boolean`<br />Marks the current page and sets `aria-current="page"`.                    |
 | `isDisabled` | `false`     | `boolean`<br />Disables the link.                                                       |
 | `className`  | —           | `string`<br />Additional CSS classes to apply.                                          |
 
@@ -167,15 +160,12 @@ carries them.
 | `[data-hovered]` | The link is hovered with a mouse. |
 | `[data-pressed]` | The link is pressed. |
 | `[data-focus-visible]` | The link is keyboard focused. |
-| `[data-current]` | The link is the current page. |
 | `[data-disabled]` | The link is disabled. |
 
 ## Accessibility
 
 - Renders an `<a>` with `href`, or a `<span role="link">` without, keyboard
   focusable and operable either way.
-- `isCurrent` sets `aria-current="page"`; pass `aria-current` directly for other
-  values.
 - The default `Link.Icon` glyph is decorative and hidden from assistive
   technology. Set `rel`, `target`, and any "opens in a new window" text at the
   call site.
