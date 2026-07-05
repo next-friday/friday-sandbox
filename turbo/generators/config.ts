@@ -202,8 +202,7 @@ export const {{ pascalCase ../name }}{{ this }} = (
     ],
     actions: (data) => {
       const answers = data as
-        | { primitive?: string; parts?: string }
-        | undefined;
+        { primitive?: string; parts?: string } | undefined;
       const suffix = answers?.primitive === "aria" ? ".aria" : "";
       const subparts = parseParts(answers?.parts).map(pascalOf);
       const compound = subparts.length > 0;
