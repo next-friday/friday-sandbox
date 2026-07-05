@@ -56,8 +56,8 @@
     "@commitlint/config-conventional": "^21.1.0",
     "@friday-sandbox/typescript-config": "workspace:*",
     "@turbo/gen": "^2.9.18",
-    "@types/node": "^22.15.3",
-    "dependency-cruiser": "^17.4.3",
+    "@types/node": "^26.0.1",
+    "dependency-cruiser": "^18.0.0",
     "husky": "^9.1.7",
     "knip": "^6.23.0",
     "lint-staged": "^17.0.8",
@@ -66,7 +66,7 @@
     "prettier-plugin-tailwindcss": "^0.8.0",
     "sort-package-json": "^4.0.0",
     "turbo": "^2.10.0",
-    "typescript": "5.9.2"
+    "typescript": "6.0.3"
   },
   "packageManager": "pnpm@10.18.2",
   "engines": {
