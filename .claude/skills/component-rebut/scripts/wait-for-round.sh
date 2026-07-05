@@ -16,25 +16,30 @@ if [ -z "$owner_repo" ]; then
 fi
 
 round_status() {
-  local cr_body gem_count inline cr_state gem_state
+  local head reviews cr_body inline cr_state gem_state
+  head=$(gh api "repos/$owner_repo/pulls/$pr" --jq '.head.sha' 2>/dev/null) || head=""
+  reviews=$(gh api --paginate "repos/$owner_repo/pulls/$pr/reviews" \
+    --jq '.[] | select(.state != "PENDING") | "\(.commit_id)\t\((.user.login // "") | ascii_downcase)\t\(.body[0:80] | gsub("[\n\t]"; " "))"' 2>/dev/null) || reviews=""
   cr_body=$(gh api --paginate "repos/$owner_repo/issues/$pr/comments" \
     --jq '.[] | select((.user.login // "") | ascii_downcase | contains("coderabbit")) | .body' 2>/dev/null) || cr_body=""
-  gem_count=$(gh api --paginate "repos/$owner_repo/pulls/$pr/reviews" \
-    --jq '.[] | select(((.user.login // "") | ascii_downcase | contains("gemini")) and .state != "PENDING") | .id' 2>/dev/null | grep -c . ) || gem_count=0
   inline=$(gh api --paginate "repos/$owner_repo/pulls/$pr/comments" --jq '.[].id' 2>/dev/null | grep -c . ) || inline=0
 
+  gem_state="absent"
+  if printf '%s\n' "$reviews" | awk -F'\t' -v h="$head" '$1 == h && $2 ~ /gemini/ { found = 1 } END { exit !found }'; then
+    gem_state="done"
+  fi
+
   cr_state="absent"
-  if printf '%s' "$cr_body" | grep -q "Actionable comments posted" \
-    && ! printf '%s' "$cr_body" | grep -q "Currently processing"; then
+  if printf '%s' "$cr_body" | grep -q "Currently processing"; then
+    cr_state="processing"
+  elif printf '%s\n' "$reviews" | awk -F'\t' -v h="$head" '$1 == h && $2 ~ /coderabbit/ && $3 ~ /Actionable comments posted/ { found = 1 } END { exit !found }' \
+    || printf '%s' "$cr_body" | grep -q "Actionable comments posted"; then
     cr_state="done"
-  elif [ -n "$cr_body" ]; then
+  elif [ -n "$cr_body" ] || printf '%s\n' "$reviews" | awk -F'\t' '$2 ~ /coderabbit/ { found = 1 } END { exit !found }'; then
     cr_state="processing"
   fi
 
-  gem_state="absent"
-  [ "$gem_count" -gt 0 ] && gem_state="done"
-
-  echo "round: coderabbit=$cr_state gemini=$gem_state inline=$inline"
+  echo "round: coderabbit=$cr_state gemini=$gem_state head=${head:0:7} inline=$inline"
   [ "$cr_state" = "done" ] && [ "$gem_state" = "done" ] && return 0
   { [ "$cr_state" = "done" ] || [ "$gem_state" = "done" ]; } && return 4
   return 3
