@@ -16,12 +16,12 @@
     --fri-foreground-tertiary: oklch(54.71% 0.0197 248.19);
 
     --fri-primary: oklch(0% 0 0);
-    --fri-primary-foreground: oklch(100% 0 0);
+    --fri-primary-foreground: oklch(98.46% 0.0017 247.84);
     --fri-primary-secondary: oklch(91.5% 0.0075 260.73);
     --fri-primary-secondary-foreground: oklch(0% 0 0);
 
     --fri-secondary: oklch(58.82% 0.1999 294.08);
-    --fri-secondary-foreground: oklch(100% 0 0);
+    --fri-secondary-foreground: oklch(98.46% 0.0017 247.84);
     --fri-secondary-secondary: oklch(89.01% 0.0445 298.35);
     --fri-secondary-secondary-foreground: oklch(55.4% 0.2098 296.29);
 
@@ -31,26 +31,28 @@
     --fri-accent-secondary-foreground: oklch(59.85% 0.1172 228.83);
 
     --fri-info: oklch(59.46% 0.1398 250.3);
-    --fri-info-foreground: oklch(100% 0 0);
+    --fri-info-foreground: oklch(98.46% 0.0017 247.84);
     --fri-info-secondary: oklch(89.6% 0.0484 232.92);
     --fri-info-secondary-foreground: oklch(49.54% 0.1298 252.94);
 
     --fri-success: oklch(65.05% 0.175 136.33);
-    --fri-success-foreground: oklch(100% 0 0);
+    --fri-success-foreground: oklch(98.46% 0.0017 247.84);
     --fri-success-secondary: oklch(93.12% 0.0368 132.66);
     --fri-success-secondary-foreground: oklch(58.7% 0.162 137);
 
     --fri-warning: oklch(65.33% 0.1638 48.41);
-    --fri-warning-foreground: oklch(100% 0 0);
+    --fri-warning-foreground: oklch(98.46% 0.0017 247.84);
     --fri-warning-secondary: oklch(94.71% 0.0467 80.81);
     --fri-warning-secondary-foreground: oklch(54.86% 0.142 44.68);
 
     --fri-danger: oklch(61.37% 0.2039 25.56);
-    --fri-danger-foreground: oklch(100% 0 0);
+    --fri-danger-foreground: oklch(98.46% 0.0017 247.84);
     --fri-danger-secondary: oklch(91.2% 0.0437 17.98);
     --fri-danger-secondary-foreground: oklch(56.8% 0.2002 26.41);
 
     --fri-focus: oklch(80.77% 0.1438 219.3);
+
+    --fri-link: oklch(17.98% 0.0104 248.41);
   }
 
   .dark,
@@ -71,38 +73,40 @@
     --fri-primary: oklch(100% 0 0);
     --fri-primary-foreground: oklch(0% 0 0);
     --fri-primary-secondary: oklch(32.52% 0.0157 248.31);
-    --fri-primary-secondary-foreground: oklch(100% 0 0);
+    --fri-primary-secondary-foreground: oklch(98.46% 0.0017 247.84);
 
     --fri-secondary: oklch(58.82% 0.1999 294.08);
-    --fri-secondary-foreground: oklch(100% 0 0);
+    --fri-secondary-foreground: oklch(98.46% 0.0017 247.84);
     --fri-secondary-secondary: oklch(30.14% 0.148 291.73);
-    --fri-secondary-secondary-foreground: oklch(100% 0 0);
+    --fri-secondary-secondary-foreground: oklch(98.46% 0.0017 247.84);
 
     --fri-accent: oklch(80.77% 0.1438 219.3);
     --fri-accent-foreground: oklch(0% 0 0);
     --fri-accent-secondary: oklch(33.54% 0.0643 226.23);
-    --fri-accent-secondary-foreground: oklch(100% 0 0);
+    --fri-accent-secondary-foreground: oklch(98.46% 0.0017 247.84);
 
     --fri-info: oklch(59.46% 0.1398 250.3);
-    --fri-info-foreground: oklch(100% 0 0);
+    --fri-info-foreground: oklch(98.46% 0.0017 247.84);
     --fri-info-secondary: oklch(33.27% 0.0772 257.1);
-    --fri-info-secondary-foreground: oklch(100% 0 0);
+    --fri-info-secondary-foreground: oklch(98.46% 0.0017 247.84);
 
     --fri-success: oklch(65.05% 0.175 136.33);
-    --fri-success-foreground: oklch(100% 0 0);
+    --fri-success-foreground: oklch(98.46% 0.0017 247.84);
     --fri-success-secondary: oklch(29.53% 0.0685 135.75);
-    --fri-success-secondary-foreground: oklch(100% 0 0);
+    --fri-success-secondary-foreground: oklch(98.46% 0.0017 247.84);
 
     --fri-warning: oklch(65.33% 0.1638 48.41);
-    --fri-warning-foreground: oklch(100% 0 0);
+    --fri-warning-foreground: oklch(98.46% 0.0017 247.84);
     --fri-warning-secondary: oklch(36.68% 0.0889 37.78);
-    --fri-warning-secondary-foreground: oklch(100% 0 0);
+    --fri-warning-secondary-foreground: oklch(98.46% 0.0017 247.84);
 
     --fri-danger: oklch(61.37% 0.2039 25.56);
-    --fri-danger-foreground: oklch(100% 0 0);
+    --fri-danger-foreground: oklch(98.46% 0.0017 247.84);
     --fri-danger-secondary: oklch(33.54% 0.1082 22.52);
-    --fri-danger-secondary-foreground: oklch(100% 0 0);
+    --fri-danger-secondary-foreground: oklch(98.46% 0.0017 247.84);
 
     --fri-focus: oklch(80.77% 0.1438 219.3);
+
+    --fri-link: oklch(98.46% 0.0017 247.84);
   }
 }

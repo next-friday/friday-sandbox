@@ -27,6 +27,7 @@ const config: StorybookConfig = {
       optimizeDeps: {
         include: [
           "react-aria-components/Button",
+          "react-aria-components/Link",
           "react-aria-components/Separator",
           "react-aria-components/Text",
           "react-aria-components/composeRenderProps",

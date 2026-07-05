@@ -1,0 +1,186 @@
+---
+title: Link
+description: Accessible navigational link with typography, decoration, and icon support.
+---
+
+import { Flex, Link, LinkIcon } from "@friday-sandbox/react";
+import { ArrowRightFromSquare } from "@gravity-ui/icons";
+
+<SourceLinks
+  source="https://github.com/next-friday/friday-sandbox/blob/main/packages/react/src/components/bases/link/link.tsx"
+  style="https://github.com/next-friday/friday-sandbox/blob/main/packages/styles/src/components/link.css"
+  storybook="https://6a3fa7f0eb37cf8c0aaa146f-arscokrphb.chromatic.com/?path=/docs/bases-navigation-link--docs"
+  headless="https://react-spectrum.adobe.com/react-aria/Link.html"
+/>
+
+## Import
+
+```tsx
+import { Link } from "@friday-sandbox/react";
+```
+
+## Usage
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <Flex align="center" gap="md" p="md">
+      <Link href="https://example.com">Documentation</Link>
+    </Flex>
+  </Tab>
+
+  <Tab value="Code">
+    ```tsx
+    <Link href="https://example.com">Documentation</Link>
+    ```
+  </Tab>
+</Tabs>
+
+## Purpose
+
+Use `Link` to navigate to another page or resource. It renders an `<a>` when you
+pass `href`, and a `<span role="link">` otherwise, with keyboard, hover, press,
+and focus handling from react-aria-components.
+
+## When to use
+
+- Navigating to another page, view, or external resource.
+- Inline navigation within a run of text, matching the surrounding type scale.
+
+## When not to use
+
+- For an action that stays on the page (submit, toggle, open a dialog), use `Button`.
+- For non-interactive text, use `Text`.
+
+## Variant
+
+Use the `variant` prop to match the link to a typography scale token, so it sits
+inline with the copy around it.
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <Flex direction="column" gap="md" p="md">
+      <Link href="#" variant="body-lg">Body large link</Link>
+      <Link href="#" variant="label-md">Label medium link</Link>
+      <Link href="#" variant="caption">Caption link</Link>
+    </Flex>
+  </Tab>
+
+  <Tab value="Code">
+    ```tsx
+    <Link href="#" variant="body-lg">Body large link</Link>
+    <Link href="#" variant="label-md">Label medium link</Link>
+    <Link href="#" variant="caption">Caption link</Link>
+    ```
+  </Tab>
+</Tabs>
+
+## Decoration
+
+Use the `decoration` prop to set the underline behavior. `underline` underlines
+at rest and hides on hover; `plain` has no underline at rest and shows one on
+hover.
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <Flex direction="column" gap="md" p="md">
+      <Link href="#" decoration="underline">Underline at rest</Link>
+      <Link href="#" decoration="plain">Plain at rest</Link>
+    </Flex>
+  </Tab>
+
+  <Tab value="Code">
+    ```tsx
+    <Link href="#" decoration="underline">Underline at rest</Link>
+    <Link href="#" decoration="plain">Plain at rest</Link>
+    ```
+  </Tab>
+</Tabs>
+
+## Icon
+
+Add `Link.Icon` after the label for the default external-link glyph, or pass
+children to `LinkIcon` to replace it. The icon sizes to `1em` and inherits the
+link color.
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <Flex direction="column" gap="md" p="md">
+      <Link href="https://example.com" target="_blank" rel="noreferrer">
+        Documentation <Link.Icon />
+      </Link>
+      <Link href="https://example.com" target="_blank" rel="noreferrer">
+        External resource{" "}
+        <LinkIcon>
+          <ArrowRightFromSquare />
+        </LinkIcon>
+      </Link>
+    </Flex>
+  </Tab>
+
+  <Tab value="Code">
+    ```tsx
+    <Link href="https://example.com" target="_blank" rel="noreferrer">
+      Documentation <Link.Icon />
+    </Link>
+    <Link href="https://example.com" target="_blank" rel="noreferrer">
+      External resource
+      <LinkIcon>
+        <ArrowRightFromSquare />
+      </LinkIcon>
+    </Link>
+    ```
+  </Tab>
+</Tabs>
+
+## Props
+
+`Link` also accepts the props of `react-aria-components/Link` (such as `href`,
+`target`, `rel`, and `onPress`), plus a `className` string.
+
+| Prop         | Default     | Type                                                                                    |
+| ------------ | ----------- | --------------------------------------------------------------------------------------- |
+| `variant`    | `inherit`   | `inherit \| display-* \| body-* \| label-* \| caption \| code`<br />Typography scale.   |
+| `decoration` | `underline` | `underline \| plain`<br />Underline behavior.                                           |
+| `isCurrent`  | `false`     | `boolean`<br />Marks the current page and sets `aria-current="page"`.                    |
+| `isDisabled` | `false`     | `boolean`<br />Disables the link.                                                       |
+| `className`  | —           | `string`<br />Additional CSS classes to apply.                                          |
+
+## Styling
+
+`Link` is styled through CSS classes, so the look applies to any element that
+carries them.
+
+### Modifier classes
+
+| Class | Type | Description |
+| --- | --- | --- |
+| `fri-link` | Base | Base `link` styles: link color, no resting underline, focus reset. |
+| `fri-link-inherit` | Variant | Inherits the parent typography. |
+| `fri-link-display-xxl` … `fri-link-display-sm` | Variant | Display typography scale, largest to smallest. |
+| `fri-link-body-lg` … `fri-link-body-xs-strong` | Variant | Body typography scale, regular and strong weights. |
+| `fri-link-label-lg` … `fri-link-label-sm` | Variant | Label typography scale. |
+| `fri-link-caption`, `fri-link-caption-strong` | Variant | Caption typography scale. |
+| `fri-link-code` | Variant | Monospace code typography scale. |
+| `fri-link-underline` | Decoration | Underlines at rest, hides on hover. |
+| `fri-link-plain` | Decoration | No underline at rest, shows on hover. |
+| `fri-link-icon` | Part | Sizes a trailing glyph to `1em`. |
+
+### State selectors
+
+| Selector | Applies when |
+| --- | --- |
+| `[data-hovered]` | The link is hovered with a mouse. |
+| `[data-pressed]` | The link is pressed. |
+| `[data-focus-visible]` | The link is keyboard focused. |
+| `[data-current]` | The link is the current page. |
+| `[data-disabled]` | The link is disabled. |
+
+## Accessibility
+
+- Renders an `<a>` with `href`, or a `<span role="link">` without, keyboard
+  focusable and operable either way.
+- `isCurrent` sets `aria-current="page"`; pass `aria-current` directly for other
+  values.
+- The default `Link.Icon` glyph is decorative and hidden from assistive
+  technology. Set `rel`, `target`, and any "opens in a new window" text at the
+  call site.
