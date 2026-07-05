@@ -33,7 +33,7 @@
     "@friday-sandbox/typescript-config": "workspace:*",
     "@tailwindcss/postcss": "^4.3.1",
     "@types/mdx": "^2.0.13",
-    "@types/node": "^22.15.3",
+    "@types/node": "^26.0.1",
     "@types/react": "19.2.17",
     "@types/react-dom": "19.2.3",
     "eslint": "^9.39.4",
