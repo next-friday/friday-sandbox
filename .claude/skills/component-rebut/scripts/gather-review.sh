@@ -13,6 +13,9 @@ if [ -z "$owner_repo" ]; then
   exit 1
 fi
 
+script_dir=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
+bash "$script_dir/wait-for-round.sh" "$pr" --once || true
+
 echo "=== REVIEWS ==="
 gh api --paginate "repos/$owner_repo/pulls/$pr/reviews" \
   --jq '.[] | "[\(.user.login)] \(.state)\n\(.body)\n"'
@@ -20,3 +23,7 @@ gh api --paginate "repos/$owner_repo/pulls/$pr/reviews" \
 echo "=== COMMENTS ==="
 gh api --paginate "repos/$owner_repo/pulls/$pr/comments" \
   --jq '.[] | "[\(.user.login)] \(.path):\(.line // "") id=\(.id)\n\(.body)\n"'
+
+echo "=== PR COMMENTS (issue thread) ==="
+gh api --paginate "repos/$owner_repo/issues/$pr/comments" \
+  --jq '.[] | "[\(.user.login)]\n\(.body[0:1500])\n"'
