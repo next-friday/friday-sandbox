@@ -24,17 +24,44 @@ if [ -z "$rows" ]; then
 fi
 
 echo "$rows"
-states=$(printf '%s\n' "$rows" | awk -F'\t' '{ print $2 }')
+
+set +e
+required=$(gh pr checks "$pr" --required 2>&1)
+set -e
+req_rows=$(printf '%s\n' "$required" | awk -F'\t' 'NF >= 2 { print }')
+
+gated_re='^(Publish preview package|UI Review|UI Tests|SonarQube|Sonar)'
+
+scope="all"
+verdict_rows="$rows"
+if [ -n "$req_rows" ]; then
+  scope="required"
+  verdict_rows="$req_rows"
+  req_names=$(printf '%s\n' "$req_rows" | awk -F'\t' '{ print $1 }')
+  info=$(printf '%s\n' "$rows" \
+    | awk -F'\t' 'tolower($2) ~ /^(fail|failing|failure|error|cancel|cancelled|canceled|timed_out)$/ { print $1 }' \
+    | grep -vxF -f <(printf '%s\n' "$req_names") || true)
+  [ -n "$info" ] && echo "non-required failing (informational): $(printf '%s' "$info" | tr '\n' ' ')"
+else
+  gated=$(printf '%s\n' "$rows" | awk -F'\t' -v re="$gated_re" '$1 ~ re { print $1 " (" $2 ")" }')
+  if [ -n "$gated" ]; then
+    scope="core"
+    verdict_rows=$(printf '%s\n' "$rows" | awk -F'\t' -v re="$gated_re" '$1 !~ re { print }')
+    echo "secret- or human-gated (informational, non-blocking): $(printf '%s' "$gated" | tr '\n' ' ')"
+  fi
+fi
+
+states=$(printf '%s\n' "$verdict_rows" | awk -F'\t' '{ print $2 }')
 
 if printf '%s\n' "$states" | grep -qiE '^(fail|failing|failure|error|cancel|cancelled|canceled|timed_out)$'; then
-  echo "ci: failing"
+  echo "ci: failing ($scope)"
   exit 1
 fi
 
 if printf '%s\n' "$states" | grep -qiE '^(pending|in_progress|queued|waiting|requested)$'; then
-  echo "ci: pending"
+  echo "ci: pending ($scope)"
   exit 4
 fi
 
-echo "ci: green"
+echo "ci: green ($scope)"
 exit 0
