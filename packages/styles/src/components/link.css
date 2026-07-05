@@ -1,0 +1,106 @@
+@layer components {
+  .fri-link {
+    --link-gap: calc(1em / 4);
+    --link-underline-offset: calc(1em / 8);
+
+    @apply inline-flex h-fit w-fit cursor-pointer items-center gap-(--link-gap) text-link no-underline underline-offset-(--link-underline-offset) transition-base outline-none;
+  }
+
+  .fri-link-inherit {
+    @apply typography-inherit;
+  }
+
+  .fri-link-display-xxl {
+    @apply text-display-2xlarge;
+  }
+  .fri-link-display-xl {
+    @apply text-display-xlarge;
+  }
+  .fri-link-display-lg {
+    @apply text-display-large;
+  }
+  .fri-link-display-md {
+    @apply text-display-medium;
+  }
+  .fri-link-display-sm {
+    @apply text-display-small;
+  }
+
+  .fri-link-body-lg {
+    @apply text-body-large;
+  }
+  .fri-link-body-lg-strong {
+    @apply text-body-large-strong;
+  }
+  .fri-link-body-md {
+    @apply text-body-medium;
+  }
+  .fri-link-body-md-strong {
+    @apply text-body-medium-strong;
+  }
+  .fri-link-body-sm {
+    @apply text-body-small;
+  }
+  .fri-link-body-sm-strong {
+    @apply text-body-small-strong;
+  }
+  .fri-link-body-xs {
+    @apply text-body-xsmall;
+  }
+  .fri-link-body-xs-strong {
+    @apply text-body-xsmall-strong;
+  }
+
+  .fri-link-label-lg {
+    @apply text-label-large;
+  }
+  .fri-link-label-md {
+    @apply text-label-medium;
+  }
+  .fri-link-label-sm {
+    @apply text-label-small;
+  }
+
+  .fri-link-caption {
+    @apply text-caption;
+  }
+  .fri-link-caption-strong {
+    @apply text-caption-strong;
+  }
+
+  .fri-link-code {
+    @apply font-mono text-code;
+  }
+
+  .fri-link-underline {
+    @apply underline;
+  }
+  .fri-link-underline[data-hovered] {
+    @apply no-underline;
+  }
+  .fri-link-plain {
+    @apply no-underline;
+  }
+  .fri-link-plain[data-hovered] {
+    @apply underline;
+  }
+
+  .fri-link[data-focus-visible] {
+    @apply focus-ring;
+  }
+
+  .fri-link[data-disabled] {
+    @apply status-disabled;
+  }
+
+  .fri-link-icon {
+    @apply pointer-events-none inline-flex size-[1em] shrink-0 items-center justify-center text-current opacity-60;
+  }
+  .fri-link-icon svg {
+    @apply size-full;
+  }
+  .fri-link[data-hovered] .fri-link-icon,
+  .fri-link[data-pressed] .fri-link-icon {
+    @apply opacity-100;
+  }
+}

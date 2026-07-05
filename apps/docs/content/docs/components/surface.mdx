@@ -1,0 +1,207 @@
+---
+title: Surface
+description: A structural container that paints the surface tokens as a variant ladder, plus radius and padding.
+---
+
+import { Flex, Grid, Surface, Text } from "@friday-sandbox/react";
+
+<SourceLinks
+  source="https://github.com/next-friday/friday-sandbox/blob/main/packages/react/src/components/bases/surface/surface.tsx"
+  style="https://github.com/next-friday/friday-sandbox/blob/main/packages/styles/src/components/surface.css"
+  storybook="https://6a3fa7f0eb37cf8c0aaa146f-arscokrphb.chromatic.com/?path=/docs/bases-layout-surface--docs"
+/>
+
+## Import
+
+```tsx
+import { Surface } from "@friday-sandbox/react";
+```
+
+## Usage
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <Flex gap="md" p="md">
+      <Surface p="lg">
+        <Flex direction="column" gap="sm">
+          <Text variant="label-lg">Surface</Text>
+          <Text variant="body-sm">
+            Container component that provides surface-level styling and context
+            for child components
+          </Text>
+        </Flex>
+      </Surface>
+    </Flex>
+  </Tab>
+
+  <Tab value="Code">
+    ```tsx
+    <Surface p="lg">
+      <Flex direction="column" gap="sm">
+        <Text variant="label-lg">Surface</Text>
+        <Text variant="body-sm">
+          Container component that provides surface-level styling and context
+          for child components
+        </Text>
+      </Flex>
+    </Surface>
+    ```
+  </Tab>
+</Tabs>
+
+## Purpose
+
+The `Surface` paints the `--fri-surface` tokens onto a container — a card,
+panel, or section — so background and border come from the theme instead of
+hardcoded utilities. It is layout only: it sets no text color, and renders a
+plain `<div>`, so it carries no interaction or role of its own.
+
+## When to use
+
+- Give a card, panel, or section a themed surface background.
+- Inset the content with padding from the shared spacing scale.
+- Round a container's corners with a step from the shared radius scale.
+
+## When not to use
+
+- No background is needed — lay content out with `Flex` or `Grid`.
+- The container is interactive or pressable — reach for a button-like component.
+
+## Variant
+
+Use `variant` to set the surface fill: `primary` paints the base surface,
+`secondary` the soft tier, and `outline` draws a border with no fill.
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <Grid gap="md" p="md">
+      <Surface variant="primary" p="lg">
+        <Flex direction="column" gap="sm">
+          <Text variant="label-lg">primary</Text>
+          <Text variant="body-sm">
+            Container component that provides surface-level styling and context
+            for child components
+          </Text>
+        </Flex>
+      </Surface>
+      <Surface variant="secondary" p="lg">
+        <Flex direction="column" gap="sm">
+          <Text variant="label-lg">secondary</Text>
+          <Text variant="body-sm">
+            Container component that provides surface-level styling and context
+            for child components
+          </Text>
+        </Flex>
+      </Surface>
+      <Surface variant="outline" p="lg">
+        <Flex direction="column" gap="sm">
+          <Text variant="label-lg">outline</Text>
+          <Text variant="body-sm">
+            Container component that provides surface-level styling and context
+            for child components
+          </Text>
+        </Flex>
+      </Surface>
+    </Grid>
+  </Tab>
+
+  <Tab value="Code">
+    ```tsx
+    <Surface variant="primary">primary</Surface>
+    <Surface variant="secondary">secondary</Surface>
+    <Surface variant="outline">outline</Surface>
+    ```
+  </Tab>
+</Tabs>
+
+## Radius
+
+Use `radius` to round the corners. It defaults to `md`; use `none` for square
+corners.
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <Grid gap="md" p="md">
+      <Surface radius="none" p="lg">
+        <Text variant="label-lg">none</Text>
+      </Surface>
+      <Surface radius="xs" p="lg">
+        <Text variant="label-lg">xs</Text>
+      </Surface>
+      <Surface radius="sm" p="lg">
+        <Text variant="label-lg">sm</Text>
+      </Surface>
+      <Surface radius="md" p="lg">
+        <Text variant="label-lg">md</Text>
+      </Surface>
+      <Surface radius="lg" p="lg">
+        <Text variant="label-lg">lg</Text>
+      </Surface>
+      <Surface radius="xl" p="lg">
+        <Text variant="label-lg">xl</Text>
+      </Surface>
+    </Grid>
+  </Tab>
+
+  <Tab value="Code">
+    ```tsx
+    <Surface radius="none">none</Surface>
+    <Surface radius="xs">xs</Surface>
+    <Surface radius="sm">sm</Surface>
+    <Surface radius="md">md</Surface>
+    <Surface radius="lg">lg</Surface>
+    <Surface radius="xl">xl</Surface>
+    ```
+  </Tab>
+</Tabs>
+
+## Props
+
+`Surface` also accepts the props of the native `div` it renders, plus a
+`className` string.
+
+| Prop        | Default     | Type                                                                                                              |
+| ----------- | ----------- | ----------------------------------------------------------------------------------------------------------------- |
+| `variant`   | `"primary"` | `"primary" \| "secondary" \| "outline"`<br />Sets the surface fill.                                               |
+| `radius`    | `"md"`      | `"none" \| "xs" \| "sm" \| "md" \| "lg" \| "xl"`<br />Rounds the corners with one step.                           |
+| `p`         | —           | `"2xs" \| "xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl" \| "3xl" \| "4xl"`<br />Sets padding on all sides.        |
+| `px`        | —           | `"2xs" \| "xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl" \| "3xl" \| "4xl"`<br />Sets horizontal (inline) padding. |
+| `py`        | —           | `"2xs" \| "xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl" \| "3xl" \| "4xl"`<br />Sets vertical (block) padding.    |
+| `pt`        | —           | `"2xs" \| "xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl" \| "3xl" \| "4xl"`<br />Sets top padding.                 |
+| `pr`        | —           | `"2xs" \| "xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl" \| "3xl" \| "4xl"`<br />Sets right padding.               |
+| `pb`        | —           | `"2xs" \| "xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl" \| "3xl" \| "4xl"`<br />Sets bottom padding.              |
+| `pl`        | —           | `"2xs" \| "xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl" \| "3xl" \| "4xl"`<br />Sets left padding.                |
+| `className` | —           | `string`<br />Additional CSS classes to apply.                                                                    |
+
+## Styling
+
+`Surface` is styled through CSS classes, so the look applies to any element that carries them.
+
+### Modifier classes
+
+| Class                     | Type    | Description                                     |
+| ------------------------- | ------- | ----------------------------------------------- |
+| `fri-surface`             | Base    | Base styles: primary fill by default.           |
+| `fri-surface-primary`     | Variant | Base surface fill.                              |
+| `fri-surface-secondary`   | Variant | Soft surface tier.                              |
+| `fri-surface-outline`     | Variant | Border with no fill.                            |
+| `fri-surface-radius-none` | Radius  | Square corners.                                 |
+| `fri-surface-radius-xs`   | Radius  | Extra-small corner radius.                      |
+| `fri-surface-radius-sm`   | Radius  | Small corner radius.                            |
+| `fri-surface-radius-md`   | Radius  | Medium corner radius.                           |
+| `fri-surface-radius-lg`   | Radius  | Large corner radius.                            |
+| `fri-surface-radius-xl`   | Radius  | Extra-large corner radius.                      |
+| `fri-p-2xs` … `-p-4xl`    | Spacing | Shared padding on all sides, 2xs to 4xl.        |
+| `fri-px-2xs` … `-px-4xl`  | Spacing | Shared horizontal (inline) padding, 2xs to 4xl. |
+| `fri-py-2xs` … `-py-4xl`  | Spacing | Shared vertical (block) padding, 2xs to 4xl.    |
+| `fri-pt-2xs` … `-pt-4xl`  | Spacing | Shared top padding, 2xs to 4xl.                 |
+| `fri-pr-2xs` … `-pr-4xl`  | Spacing | Shared right padding, 2xs to 4xl.               |
+| `fri-pb-2xs` … `-pb-4xl`  | Spacing | Shared bottom padding, 2xs to 4xl.              |
+| `fri-pl-2xs` … `-pl-4xl`  | Spacing | Shared left padding, 2xs to 4xl.                |
+
+## Accessibility
+
+- `Surface` renders a plain container with no interaction or ARIA role; it does
+  not trap focus or announce itself.
+- `Surface` sets no text color — content inherits the page foreground; verify
+  the content against the contrast floor on the fill you choose.

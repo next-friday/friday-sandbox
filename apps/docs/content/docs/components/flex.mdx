@@ -102,16 +102,16 @@ element.
 | `justify`   | `"start"`   | `"start" \| "center" \| "end" \| "between" \| "around" \| "evenly"`<br />Distributes the children along the main axis. |
 | `wrap`      | `"nowrap"`  | `"nowrap" \| "wrap" \| "wrap-reverse"`<br />Controls whether children wrap onto multiple lines.                        |
 | `inline`    | `false`     | `boolean`<br />Renders an inline-level flex container.                                                                 |
-| `gap`       | —           | `"xxs" \| "xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl" \| "3xl" \| "4xl"`<br />Sets the gap between all children.     |
-| `gapX`      | —           | `"xxs" \| "xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl" \| "3xl" \| "4xl"`<br />Sets the horizontal gap only.          |
-| `gapY`      | —           | `"xxs" \| "xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl" \| "3xl" \| "4xl"`<br />Sets the vertical gap only.            |
-| `p`         | —           | `"xxs" \| "xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl" \| "3xl" \| "4xl"`<br />Sets padding on all sides.             |
-| `px`        | —           | `"xxs" \| "xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl" \| "3xl" \| "4xl"`<br />Sets horizontal (inline) padding.      |
-| `py`        | —           | `"xxs" \| "xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl" \| "3xl" \| "4xl"`<br />Sets vertical (block) padding.         |
-| `pt`        | —           | `"xxs" \| "xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl" \| "3xl" \| "4xl"`<br />Sets top padding.                      |
-| `pr`        | —           | `"xxs" \| "xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl" \| "3xl" \| "4xl"`<br />Sets right padding.                    |
-| `pb`        | —           | `"xxs" \| "xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl" \| "3xl" \| "4xl"`<br />Sets bottom padding.                   |
-| `pl`        | —           | `"xxs" \| "xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl" \| "3xl" \| "4xl"`<br />Sets left padding.                     |
+| `gap`       | —           | `"2xs" \| "xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl" \| "3xl" \| "4xl"`<br />Sets the gap between all children.     |
+| `gapX`      | —           | `"2xs" \| "xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl" \| "3xl" \| "4xl"`<br />Sets the horizontal gap only.          |
+| `gapY`      | —           | `"2xs" \| "xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl" \| "3xl" \| "4xl"`<br />Sets the vertical gap only.            |
+| `p`         | —           | `"2xs" \| "xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl" \| "3xl" \| "4xl"`<br />Sets padding on all sides.             |
+| `px`        | —           | `"2xs" \| "xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl" \| "3xl" \| "4xl"`<br />Sets horizontal (inline) padding.      |
+| `py`        | —           | `"2xs" \| "xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl" \| "3xl" \| "4xl"`<br />Sets vertical (block) padding.         |
+| `pt`        | —           | `"2xs" \| "xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl" \| "3xl" \| "4xl"`<br />Sets top padding.                      |
+| `pr`        | —           | `"2xs" \| "xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl" \| "3xl" \| "4xl"`<br />Sets right padding.                    |
+| `pb`        | —           | `"2xs" \| "xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl" \| "3xl" \| "4xl"`<br />Sets bottom padding.                   |
+| `pl`        | —           | `"2xs" \| "xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl" \| "3xl" \| "4xl"`<br />Sets left padding.                     |
 | `grow`      | —           | `boolean`<br />Lets the container grow when it is itself a flex item.                                                  |
 | `shrink`    | —           | `boolean`<br />Controls whether the container shrinks when it is itself a flex item.                                   |
 | `basis`     | —           | `"auto" \| "full" \| 0`<br />Sets the container's base size before growing or shrinking.                               |
@@ -157,16 +157,16 @@ element.
 | `fri-flex-auto`            | Item      | Flex shorthand: grow and shrink, based on initial size.               |
 | `fri-flex-initial`         | Item      | Flex shorthand: shrink only, based on initial size.                   |
 | `fri-flex-none`            | Item      | Flex shorthand: don't grow or shrink.                                 |
-| `fri-gap-xxs` … `-gap-4xl` | Spacing | Shared gap between children, xxs to 4xl. |
-| `fri-gap-x-xxs` … `-gap-x-4xl` | Spacing | Shared horizontal gap, xxs to 4xl. |
-| `fri-gap-y-xxs` … `-gap-y-4xl` | Spacing | Shared vertical gap, xxs to 4xl. |
-| `fri-p-xxs` … `-p-4xl` | Spacing | Shared padding on all sides, xxs to 4xl. |
-| `fri-px-xxs` … `-px-4xl` | Spacing | Shared horizontal (inline) padding, xxs to 4xl. |
-| `fri-py-xxs` … `-py-4xl` | Spacing | Shared vertical (block) padding, xxs to 4xl. |
-| `fri-pt-xxs` … `-pt-4xl` | Spacing | Shared top padding, xxs to 4xl. |
-| `fri-pr-xxs` … `-pr-4xl` | Spacing | Shared right padding, xxs to 4xl. |
-| `fri-pb-xxs` … `-pb-4xl` | Spacing | Shared bottom padding, xxs to 4xl. |
-| `fri-pl-xxs` … `-pl-4xl` | Spacing | Shared left padding, xxs to 4xl. |
+| `fri-gap-2xs` … `-gap-4xl` | Spacing | Shared gap between children, 2xs to 4xl. |
+| `fri-gap-x-2xs` … `-gap-x-4xl` | Spacing | Shared horizontal gap, 2xs to 4xl. |
+| `fri-gap-y-2xs` … `-gap-y-4xl` | Spacing | Shared vertical gap, 2xs to 4xl. |
+| `fri-p-2xs` … `-p-4xl` | Spacing | Shared padding on all sides, 2xs to 4xl. |
+| `fri-px-2xs` … `-px-4xl` | Spacing | Shared horizontal (inline) padding, 2xs to 4xl. |
+| `fri-py-2xs` … `-py-4xl` | Spacing | Shared vertical (block) padding, 2xs to 4xl. |
+| `fri-pt-2xs` … `-pt-4xl` | Spacing | Shared top padding, 2xs to 4xl. |
+| `fri-pr-2xs` … `-pr-4xl` | Spacing | Shared right padding, 2xs to 4xl. |
+| `fri-pb-2xs` … `-pb-4xl` | Spacing | Shared bottom padding, 2xs to 4xl. |
+| `fri-pl-2xs` … `-pl-4xl` | Spacing | Shared left padding, 2xs to 4xl. |
 
 ## Accessibility
 

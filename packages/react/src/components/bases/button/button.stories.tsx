@@ -47,14 +47,6 @@ const meta = {
   },
   args: {
     children: "Button",
-    color: "primary",
-    variant: "solid",
-    size: "md",
-    isDisabled: false,
-    isFullWidth: false,
-    isRoundedFull: false,
-    isIconOnly: false,
-    isPending: false,
   },
   argTypes: {
     children: {
@@ -483,7 +475,7 @@ export const WithIcon: Story = {
   render: (storyArgs) => (
     <Flex wrap="wrap" align="center" gap="md">
       <Flex wrap="wrap" align="center" gap="md">
-        <Button {...storyArgs}>
+        <Button {...storyArgs} color="accent">
           <Envelope />
           Email
         </Button>
@@ -493,21 +485,20 @@ export const WithIcon: Story = {
           Delete
         </Button>
 
-        <Button {...storyArgs} color="accent" variant="ghost">
+        <Button {...storyArgs} color="info" variant="ghost">
           Reset
           <ArrowsRotateLeft />
         </Button>
       </Flex>
 
       <Flex flex={1}>
-        <Button {...storyArgs} color="accent" variant="solid" isFullWidth>
-          <ArrowRightFromSquare />
-          Sign out
+        <Button {...storyArgs} color="warning" isFullWidth>
+          Sign out <ArrowRightFromSquare />
         </Button>
       </Flex>
 
       <Flex flex={1}>
-        <Button {...storyArgs} color="accent" variant="outline" isFullWidth>
+        <Button {...storyArgs} color="primary" variant="outline" isFullWidth>
           <GoogleIcon />
           Continue With Google
         </Button>
@@ -526,7 +517,7 @@ export const CustomStyles: Story = {
     },
   },
   render: () => (
-    <Button className="w-50 justify-between bg-linear-to-tr from-pink-500 to-red-500 transition hover:brightness-110 active:scale-95">
+    <Button className="w-50 justify-between bg-linear-to-tr from-pink-500 to-red-500 text-white transition hover:brightness-110 active:scale-95">
       Button
       <HeartFill />
     </Button>

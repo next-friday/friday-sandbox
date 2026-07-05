@@ -7,7 +7,17 @@ export type { FlexProps } from "./flex";
 export { Grid, GridItem } from "./grid";
 export type { GridItemProps, GridProps } from "./grid";
 
-export { ScrollArea } from "./scroll-area";
+export { Link, LinkIcon } from "./link";
+export type { LinkProps, LinkIconProps } from "./link";
+
+export {
+  ScrollArea,
+  ScrollAreaRoot,
+  ScrollAreaViewport,
+  ScrollAreaScrollbar,
+  ScrollAreaThumb,
+  ScrollAreaCorner,
+} from "./scroll-area";
 export type {
   ScrollAreaCornerProps,
   ScrollAreaRootProps,
@@ -22,6 +32,9 @@ export type { SeparatorProps } from "./separator";
 
 export { Spinner } from "./spinner";
 export type { SpinnerProps } from "./spinner";
+
+export { Surface } from "./surface";
+export type { SurfaceProps } from "./surface";
 
 export { Text } from "./text";
 export type { TextProps } from "./text";

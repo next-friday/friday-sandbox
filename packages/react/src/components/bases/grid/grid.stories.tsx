@@ -29,7 +29,6 @@ const meta = {
   },
   args: {
     cols: 3,
-    flow: "row",
     gap: "md",
   },
   argTypes: {
@@ -63,7 +62,7 @@ const meta = {
       control: "select",
       options: SPACING,
       table: {
-        type: { summary: "xxs | xs | sm | md | lg | xl | 2xl | 3xl | 4xl" },
+        type: { summary: "2xs | xs | sm | md | lg | xl | 2xl | 3xl | 4xl" },
       },
     },
     gapX: {
@@ -71,7 +70,7 @@ const meta = {
       control: "select",
       options: SPACING,
       table: {
-        type: { summary: "xxs | xs | sm | md | lg | xl | 2xl | 3xl | 4xl" },
+        type: { summary: "2xs | xs | sm | md | lg | xl | 2xl | 3xl | 4xl" },
       },
     },
     gapY: {
@@ -79,7 +78,7 @@ const meta = {
       control: "select",
       options: SPACING,
       table: {
-        type: { summary: "xxs | xs | sm | md | lg | xl | 2xl | 3xl | 4xl" },
+        type: { summary: "2xs | xs | sm | md | lg | xl | 2xl | 3xl | 4xl" },
       },
     },
     p: {
@@ -87,7 +86,7 @@ const meta = {
       control: "select",
       options: SPACING,
       table: {
-        type: { summary: "xxs | xs | sm | md | lg | xl | 2xl | 3xl | 4xl" },
+        type: { summary: "2xs | xs | sm | md | lg | xl | 2xl | 3xl | 4xl" },
       },
     },
     px: {
@@ -95,7 +94,7 @@ const meta = {
       control: "select",
       options: SPACING,
       table: {
-        type: { summary: "xxs | xs | sm | md | lg | xl | 2xl | 3xl | 4xl" },
+        type: { summary: "2xs | xs | sm | md | lg | xl | 2xl | 3xl | 4xl" },
       },
     },
     py: {
@@ -103,7 +102,7 @@ const meta = {
       control: "select",
       options: SPACING,
       table: {
-        type: { summary: "xxs | xs | sm | md | lg | xl | 2xl | 3xl | 4xl" },
+        type: { summary: "2xs | xs | sm | md | lg | xl | 2xl | 3xl | 4xl" },
       },
     },
     pt: {
@@ -111,7 +110,7 @@ const meta = {
       control: "select",
       options: SPACING,
       table: {
-        type: { summary: "xxs | xs | sm | md | lg | xl | 2xl | 3xl | 4xl" },
+        type: { summary: "2xs | xs | sm | md | lg | xl | 2xl | 3xl | 4xl" },
       },
     },
     pr: {
@@ -119,7 +118,7 @@ const meta = {
       control: "select",
       options: SPACING,
       table: {
-        type: { summary: "xxs | xs | sm | md | lg | xl | 2xl | 3xl | 4xl" },
+        type: { summary: "2xs | xs | sm | md | lg | xl | 2xl | 3xl | 4xl" },
       },
     },
     pb: {
@@ -127,7 +126,7 @@ const meta = {
       control: "select",
       options: SPACING,
       table: {
-        type: { summary: "xxs | xs | sm | md | lg | xl | 2xl | 3xl | 4xl" },
+        type: { summary: "2xs | xs | sm | md | lg | xl | 2xl | 3xl | 4xl" },
       },
     },
     pl: {
@@ -135,7 +134,7 @@ const meta = {
       control: "select",
       options: SPACING,
       table: {
-        type: { summary: "xxs | xs | sm | md | lg | xl | 2xl | 3xl | 4xl" },
+        type: { summary: "2xs | xs | sm | md | lg | xl | 2xl | 3xl | 4xl" },
       },
     },
     inline: {

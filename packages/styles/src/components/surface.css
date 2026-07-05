@@ -1,0 +1,38 @@
+@layer components {
+  .fri-surface {
+    @apply border-(length:--fri-border-width) border-(--surface-border-color) bg-(--surface-background);
+  }
+
+  :where(.fri-surface),
+  .fri-surface-primary {
+    --surface-background: var(--fri-surface);
+    --surface-border-color: transparent;
+  }
+  .fri-surface-secondary {
+    --surface-background: var(--fri-surface-secondary);
+    --surface-border-color: transparent;
+  }
+  .fri-surface-outline {
+    --surface-background: transparent;
+    --surface-border-color: var(--fri-surface-outline-border);
+  }
+
+  .fri-surface-radius-none {
+    @apply rounded-none;
+  }
+  .fri-surface-radius-xs {
+    @apply rounded-xsmall;
+  }
+  .fri-surface-radius-sm {
+    @apply rounded-small;
+  }
+  .fri-surface-radius-md {
+    @apply rounded-medium;
+  }
+  .fri-surface-radius-lg {
+    @apply rounded-large;
+  }
+  .fri-surface-radius-xl {
+    @apply rounded-xlarge;
+  }
+}
