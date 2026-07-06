@@ -11,7 +11,7 @@ The AI-review triage station: drive each round of review to clean **autonomously
 
 - An open component PR you're working on has, or is about to get, bot or human review comments.
 - Not this station:
-  - Building or shipping the component (generate, fill surfaces, branch, gates, PR) → `component-implement`.
+  - Building or shipping the component (branch, run the generator, fill the residual, gates, PR) → `component-implement`.
   - The component's shape, ladder, or plan not settled → `component-blueprint`.
 
 ## Steps
