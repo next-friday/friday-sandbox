@@ -101,9 +101,9 @@ cutting-edge, world-class, and the like.
 ## Document structure
 
 Each document type follows one fixed skeleton, so a reader learns the layout
-once. A new component doc is scaffolded by `pnpm gen component` (templates in
-[`turbo/generators/`](turbo/generators)); the skeletons for the other types are
-the section sets described below.
+once. A component doc is emitted by the `component-generator` engine from the
+component's `ComponentSpec`; the skeletons for the other types are the section
+sets described below.
 
 - Component doc (`apps/docs/content/docs/components/*.mdx`): the required spine is a
   `<SourceLinks>` header, then `Import`, `Usage`, `Purpose`, `When to use`,
@@ -134,9 +134,9 @@ Keep the required heading set for each documented surface.
 
 This guide is upheld in review:
 
-- **Generator** (`pnpm gen component`, templates in `turbo/generators/`): a new
-  component doc is scaffolded with the correct structure and voice before the
-  first review.
+- **Generator** (the `component-generator` engine, run via its `cli.ts`): a
+  component doc is emitted with the correct structure and voice from the spec,
+  before the first review.
 - **AI reviewers** (`.coderabbit.yaml`, `.gemini/styleguide.md`): point at this
   guide's sections for voice, audience, the banned marketing words, and the
   required structure.

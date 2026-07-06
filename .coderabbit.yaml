@@ -39,9 +39,10 @@ reviews:
         must be a root-cause fix, never a silenced gate.
     - path: packages/react/src/components/bases/**/*.{ts,tsx}
       instructions: >-
-        Base components are scaffolded with "pnpm gen component" (turbo gen), never
-        hand-created, and live in components/bases/<name>/ as <name>.tsx +
-        <name>.styles.ts (its own tv() variant map) + index.ts +
+        Base components are generated from a ComponentSpec by the
+        component-generator engine (packages/component-generator, run via its
+        cli.ts), never hand-created, and live in components/bases/<name>/ as
+        <name>.tsx + <name>.styles.ts (its own tv() variant map) + index.ts +
         <name>.stories.tsx; the variant map is linked to @friday-sandbox/styles'
         CSS by a fri-<name> class, mirrored across the package boundary. Priorities, highest first: accessibility, correctness, API ergonomics,
         then style. Key checks: lowercase filename, named export with colocated Props,

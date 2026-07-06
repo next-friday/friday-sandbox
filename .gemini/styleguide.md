@@ -21,7 +21,7 @@ The `chore(release): version packages` PR is produced by `changesets/action`. It
 
 ## Components: `packages/react/src/components/bases/**`
 
-Architecture and the `fri-<name>` react↔styles contract live in `.claude/rules/architecture.md`. A base component is generated (`pnpm gen component`), never hand-created. Flag in a base component's diff:
+Architecture and the `fri-<name>` react↔styles contract live in `.claude/rules/architecture.md`. A base component is generated from a `ComponentSpec` by the `component-generator` engine (`packages/component-generator`, run via its `cli.ts`), never hand-created. Flag in a base component's diff:
 
 - Lowercase filename such as `button.tsx`, not `Button.tsx`; a named export with the `Props` type colocated; no default export.
 - `"use client"` only when a client API such as `useState`, `useEffect`, refs, or event handlers — or a `react-aria-components` / `radix` client primitive — is touched; flag a needless directive on a pure layout or text component.
