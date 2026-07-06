@@ -1,5 +1,12 @@
 @layer theme {
   :root {
+    --fri-scale-xsmall: 24px;
+    --fri-scale-small: 36px;
+    --fri-scale-medium: 48px;
+    --fri-scale-large: 64px;
+    --fri-scale-xlarge: 80px;
+    --fri-scale-2xlarge: 112px;
+
     --fri-spacing-2xsmall: 0.125rem;
     --fri-spacing-xsmall: 0.25rem;
     --fri-spacing-small: 0.5rem;
