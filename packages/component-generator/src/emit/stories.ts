@@ -34,8 +34,7 @@ export const selectDemoAxes = (root: Part): DemoAxes => {
   };
 };
 
-export const isNativeContainer = (part: Part): boolean =>
-  "native" in part.element;
+const isNativeContainer = (part: Part): boolean => "native" in part.element;
 
 const isImagePart = (part: Part): boolean =>
   ("native" in part.element && part.element.native === "img") ||

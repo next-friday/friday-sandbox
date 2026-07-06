@@ -1,8 +1,8 @@
 import { REGISTERED_KINDS } from "./registry";
 
-export type PrimitiveKind = (typeof REGISTERED_KINDS)[number];
+type PrimitiveKind = (typeof REGISTERED_KINDS)[number];
 
-export interface Primitive {
+interface Primitive {
   kind: PrimitiveKind;
   part?: string;
   interactive: boolean;
@@ -26,12 +26,12 @@ export interface Layout {
   radiusArchetype?: "action" | "field" | "box";
 }
 
-export interface TokenBinding {
+interface TokenBinding {
   slot: "background" | "foreground" | "border" | "ring";
   binds: string;
 }
 
-export type Behavior =
+type Behavior =
   { kind: "overlap" } | { kind: "separator-ring"; default: boolean };
 
 export interface Part {
@@ -46,12 +46,12 @@ export interface Part {
   manualChildren?: boolean;
 }
 
-export interface Asset {
+interface Asset {
   url: string;
   alt?: string;
 }
 
-export interface Prose {
+interface Prose {
   purpose: string;
   whenToUse: string[];
   whenNotToUse: string[];
