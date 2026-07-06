@@ -1,0 +1,19 @@
+{
+  "name": "@friday-sandbox/component-generator",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/emit/index.ts"
+  },
+  "scripts": {
+    "check": "node --experimental-strip-types test/validate.check.ts && node --experimental-strip-types test/emit.check.ts"
+  },
+  "devDependencies": {
+    "@friday-sandbox/typescript-config": "workspace:*",
+    "postcss": "^8.5.3"
+  },
+  "engines": {
+    "node": ">=22.10.0"
+  }
+}
