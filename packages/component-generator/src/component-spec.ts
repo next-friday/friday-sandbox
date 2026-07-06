@@ -57,6 +57,23 @@ interface Prose {
   whenNotToUse: string[];
 }
 
+export type DemoContent =
+  | { asset: number }
+  | { sample: string; props?: Record<string, string | number> }
+  | { text: string };
+
+export interface DemoNode {
+  part?: string;
+  props?: Record<string, string | number | boolean>;
+  content?: DemoContent;
+  children?: DemoNode[];
+}
+
+export interface Demo {
+  rootProps?: Record<string, string>;
+  tree: DemoNode[];
+}
+
 export interface ComponentSpec {
   schemaVersion: 1;
   name: string;
@@ -66,4 +83,5 @@ export interface ComponentSpec {
   parts?: Part[];
   assets?: Asset[];
   prose: Prose;
+  demo?: Demo;
 }
