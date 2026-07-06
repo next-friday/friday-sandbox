@@ -1,6 +1,7 @@
 import { axisEntries, kebabCase, pascalCase } from "./helpers";
+import { renderCompoundDemo, sampleFixtures } from "./demo";
 
-import type { Axis, ComponentSpec, Part } from "../component-spec";
+import type { Axis, ComponentSpec, Demo, Part } from "../component-spec";
 
 export const labelCase = (value: string): string =>
   `${value.charAt(0).toUpperCase()}${value.slice(1)}`;
@@ -66,7 +67,14 @@ export const selectDemoContent = (
 };
 
 const FLEX_IMPORT = 'import { Flex } from "../flex";';
-const BOXES_IMPORT = 'import { Boxes } from "@friday-sandbox/react/samples";';
+const sampleImportLine = (name: string): string =>
+  `import { ${name} } from "@friday-sandbox/react/samples";`;
+
+const indentBlock = (text: string, spaces: number): string =>
+  text
+    .split("\n")
+    .map((line) => `${" ".repeat(spaces)}${line}`)
+    .join("\n");
 
 const axisElement = (
   pascalName: string,
@@ -86,6 +94,49 @@ const axisShowcase = (pascalName: string, demoAxis: DemoAxis): string => {
   return [
     `export const ${pascalCase(demoAxis.key)}: Story = {`,
     `  render: (storyArgs) => (`,
+    `    <Flex wrap="wrap" align="center" gap="md">`,
+    elements,
+    `    </Flex>`,
+    `  ),`,
+    `};`,
+  ].join("\n");
+};
+
+const compoundDefaultStory = (
+  pascalName: string,
+  demo: Demo,
+  assets: NonNullable<ComponentSpec["assets"]>,
+): string =>
+  [
+    `export const Default: Story = {`,
+    `  render: () => (`,
+    indentBlock(renderCompoundDemo(pascalName, demo, "", assets), 4),
+    `  ),`,
+    `};`,
+  ].join("\n");
+
+const compoundAxisShowcase = (
+  pascalName: string,
+  demoAxis: DemoAxis,
+  demo: Demo,
+  assets: NonNullable<ComponentSpec["assets"]>,
+): string => {
+  const elements = axisEntries(demoAxis.axis)
+    .map(([value]) =>
+      indentBlock(
+        renderCompoundDemo(
+          pascalName,
+          demo,
+          `${demoAxis.key}="${value}"`,
+          assets,
+        ),
+        6,
+      ),
+    )
+    .join("\n\n");
+  return [
+    `export const ${pascalCase(demoAxis.key)}: Story = {`,
+    `  render: () => (`,
     `    <Flex wrap="wrap" align="center" gap="md">`,
     elements,
     `    </Flex>`,
@@ -199,27 +250,44 @@ export const emitStories = (spec: ComponentSpec): string => {
   const kebabName = kebabCase(spec.name);
   const demoAxes = selectDemoAxes(spec.root);
   const content = selectDemoContent(spec, demoAxes);
+  const demo = spec.demo;
+  const assets = spec.assets ?? [];
   const needsFlex =
     Boolean(demoAxes.variant) ||
     Boolean(demoAxes.size) ||
     content.kind === "container";
   const needsBoxes = content.kind === "container";
 
-  const externalImports = needsBoxes
-    ? [
-        BOXES_IMPORT,
-        'import type { Meta, StoryObj } from "@storybook/react-vite";',
-      ]
-    : ['import type { Meta, StoryObj } from "@storybook/react-vite";'];
+  const sampleNames = new Set<string>();
+  if (needsBoxes) sampleNames.add("Boxes");
+  if (demo) sampleFixtures(demo).forEach((name) => sampleNames.add(name));
+
+  const externalImports = [
+    ...Array.from(sampleNames).sort().map(sampleImportLine),
+    'import type { Meta, StoryObj } from "@storybook/react-vite";',
+  ];
 
   const importBlocks = [externalImports.join("\n")];
   if (needsFlex) importBlocks.push(FLEX_IMPORT);
   importBlocks.push(`import { ${pascalName} } from ".";`);
 
-  const stories = [defaultStory(pascalName, content)];
+  const stories = [
+    demo
+      ? compoundDefaultStory(pascalName, demo, assets)
+      : defaultStory(pascalName, content),
+  ];
   if (demoAxes.variant)
-    stories.push(axisShowcase(pascalName, demoAxes.variant));
-  if (demoAxes.size) stories.push(axisShowcase(pascalName, demoAxes.size));
+    stories.push(
+      demo
+        ? compoundAxisShowcase(pascalName, demoAxes.variant, demo, assets)
+        : axisShowcase(pascalName, demoAxes.variant),
+    );
+  if (demoAxes.size)
+    stories.push(
+      demo
+        ? compoundAxisShowcase(pascalName, demoAxes.size, demo, assets)
+        : axisShowcase(pascalName, demoAxes.size),
+    );
 
   return [
     importBlocks.join("\n\n"),

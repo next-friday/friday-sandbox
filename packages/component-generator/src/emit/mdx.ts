@@ -1,7 +1,8 @@
 import { axisEntries, friClass, kebabCase, pascalCase } from "./helpers";
+import { renderCompoundDemo, sampleFixtures } from "./demo";
 import { labelCase, selectDemoAxes, selectDemoContent } from "./stories";
 
-import type { Axis, ComponentSpec, Part } from "../component-spec";
+import type { Axis, ComponentSpec, Demo, Part } from "../component-spec";
 import type { DemoAxis, DemoContent } from "./stories";
 
 const PRIMITIVE_LABEL: Record<string, string> = {
@@ -27,12 +28,23 @@ const frontmatter = (spec: ComponentSpec, pascalName: string): string =>
 const namedImports = (pascalName: string): string =>
   [pascalName, "Flex"].sort((a, b) => a.localeCompare(b)).join(", ");
 
-const mainImports = (pascalName: string, content: DemoContent): string => {
+const sampleImportLine = (name: string): string =>
+  `import { ${name} } from "@friday-sandbox/react/samples";`;
+
+const mainImports = (
+  pascalName: string,
+  content: DemoContent,
+  demo: Demo | undefined,
+): string => {
   const lines = [
     `import { ${namedImports(pascalName)} } from "@friday-sandbox/react";`,
   ];
-  if (content.kind === "container")
-    lines.push('import { Boxes } from "@friday-sandbox/react/samples";');
+  const sampleNames = new Set<string>();
+  if (content.kind === "container") sampleNames.add("Boxes");
+  if (demo) sampleFixtures(demo).forEach((name) => sampleNames.add(name));
+  Array.from(sampleNames)
+    .sort()
+    .forEach((name) => lines.push(sampleImportLine(name)));
   return lines.join("\n");
 };
 
@@ -70,24 +82,40 @@ const usageJsx = (
   return `${indent}<${pascalName}>${content.text}</${pascalName}>`;
 };
 
-const usageSection = (pascalName: string, content: DemoContent): string =>
-  [
+const indentLines = (text: string, indent: string): string =>
+  text
+    .split("\n")
+    .map((line) => `${indent}${line}`)
+    .join("\n");
+
+const usageSection = (
+  pascalName: string,
+  content: DemoContent,
+  demo: Demo | undefined,
+  assets: NonNullable<ComponentSpec["assets"]>,
+): string => {
+  const jsx = (indent: string): string =>
+    demo
+      ? indentLines(renderCompoundDemo(pascalName, demo, "", assets), indent)
+      : usageJsx(pascalName, content, indent);
+  return [
     "## Usage",
     "",
     '<Tabs items={["Preview", "Code"]}>',
     '  <Tab value="Preview">',
     '    <Flex align="center" gap="md" p="md">',
-    usageJsx(pascalName, content, "      "),
+    jsx("      "),
     "    </Flex>",
     "  </Tab>",
     "",
     '  <Tab value="Code">',
     "    ```tsx",
-    usageJsx(pascalName, content, "    "),
+    jsx("    "),
     "    ```",
     "  </Tab>",
     "</Tabs>",
   ].join("\n");
+};
 
 const purposeSection = (spec: ComponentSpec): string =>
   ["## Purpose", "", spec.prose.purpose].join("\n");
@@ -98,10 +126,25 @@ const whenToUseSection = (spec: ComponentSpec): string =>
 const whenNotToUseSection = (spec: ComponentSpec): string =>
   ["## When not to use", "", bulletList(spec.prose.whenNotToUse)].join("\n");
 
-const demoSection = (pascalName: string, demoAxis: DemoAxis): string => {
+const demoSection = (
+  pascalName: string,
+  demoAxis: DemoAxis,
+  demo: Demo | undefined,
+  assets: NonNullable<ComponentSpec["assets"]>,
+): string => {
   const entries = axisEntries(demoAxis.axis);
   const line = (indent: string, value: string): string =>
-    `${indent}<${pascalName} ${demoAxis.key}="${value}">${labelCase(value)}</${pascalName}>`;
+    demo
+      ? indentLines(
+          renderCompoundDemo(
+            pascalName,
+            demo,
+            `${demoAxis.key}="${value}"`,
+            assets,
+          ),
+          indent,
+        )
+      : `${indent}<${pascalName} ${demoAxis.key}="${value}">${labelCase(value)}</${pascalName}>`;
   const previewLines = entries
     .map(([value]) => line("      ", value))
     .join("\n");
@@ -231,17 +274,19 @@ export const emitMdx = (spec: ComponentSpec): string => {
   const kebabName = kebabCase(spec.name);
   const demoAxes = selectDemoAxes(spec.root);
   const content = selectDemoContent(spec, demoAxes);
+  const demo = spec.demo;
+  const assets = spec.assets ?? [];
 
   const sections = [
     frontmatter(spec, pascalName),
     "",
-    mainImports(pascalName, content),
+    mainImports(pascalName, content, demo),
     "",
     sourceLinks(kebabName),
     "",
     importSection(pascalName),
     "",
-    usageSection(pascalName, content),
+    usageSection(pascalName, content, demo, assets),
     "",
     purposeSection(spec),
     "",
@@ -251,8 +296,9 @@ export const emitMdx = (spec: ComponentSpec): string => {
   ];
 
   if (demoAxes.variant)
-    sections.push("", demoSection(pascalName, demoAxes.variant));
-  if (demoAxes.size) sections.push("", demoSection(pascalName, demoAxes.size));
+    sections.push("", demoSection(pascalName, demoAxes.variant, demo, assets));
+  if (demoAxes.size)
+    sections.push("", demoSection(pascalName, demoAxes.size, demo, assets));
 
   sections.push(
     "",
