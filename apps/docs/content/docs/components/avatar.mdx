@@ -1,0 +1,249 @@
+---
+title: Avatar
+description: Displays a user's image, falling back to initials or custom content.
+---
+
+import { Avatar, Flex } from "@friday-sandbox/react";
+
+<SourceLinks
+  source="https://github.com/next-friday/friday-sandbox/blob/main/packages/react/src/components/bases/avatar/avatar.tsx"
+  style="https://github.com/next-friday/friday-sandbox/blob/main/packages/styles/src/components/avatar.css"
+  storybook="https://6a3fa7f0eb37cf8c0aaa146f-arscokrphb.chromatic.com/?path=/docs/bases-media-avatar--docs"
+  headless="https://www.radix-ui.com/primitives/docs/components/avatar"
+/>
+
+## Import
+
+```tsx
+import { Avatar } from "@friday-sandbox/react";
+```
+
+## Usage
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <Flex align="center" gap="md" p="md">
+      <Avatar>
+        <Avatar.Image src="https://api.dicebear.com/9.x/glass/svg?seed=Jane" alt="Jane Doe" />
+        <Avatar.Fallback>JD</Avatar.Fallback>
+      </Avatar>
+    </Flex>
+  </Tab>
+
+  <Tab value="Code">
+    ```tsx
+    <Avatar>
+      <Avatar.Image src="/jane.jpg" alt="Jane Doe" />
+      <Avatar.Fallback>JD</Avatar.Fallback>
+    </Avatar>
+    ```
+  </Tab>
+</Tabs>
+
+## Purpose
+
+`Avatar` shows a user's image and falls back to initials or custom content when
+the image is missing or fails to load. Compose `Avatar.Image` and
+`Avatar.Fallback` inside `Avatar`, and overlap several with `Avatar.Group`.
+
+## When to use
+
+- A user's profile picture with an initials fallback for a missing image.
+- A row of overlapping avatars for a shared resource, with a trailing count.
+
+## When not to use
+
+- A decorative image with no fallback need — use a plain `<img>`.
+- A standalone status dot or count — compose it, rather than reaching for a whole
+  avatar.
+
+## Sizes
+
+Use the `size` prop to set the diameter, from `xs` (24px) to `2xl` (112px).
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <Flex align="center" gap="md" p="md">
+      <Avatar size="xs"><Avatar.Fallback>XS</Avatar.Fallback></Avatar>
+      <Avatar size="sm"><Avatar.Fallback>SM</Avatar.Fallback></Avatar>
+      <Avatar size="md"><Avatar.Fallback>MD</Avatar.Fallback></Avatar>
+      <Avatar size="lg"><Avatar.Fallback>LG</Avatar.Fallback></Avatar>
+      <Avatar size="xl"><Avatar.Fallback>XL</Avatar.Fallback></Avatar>
+      <Avatar size="2xl"><Avatar.Fallback>2XL</Avatar.Fallback></Avatar>
+    </Flex>
+  </Tab>
+
+  <Tab value="Code">
+    ```tsx
+    <Avatar size="xl">
+      <Avatar.Fallback>XL</Avatar.Fallback>
+    </Avatar>
+    ```
+  </Tab>
+</Tabs>
+
+## Shapes
+
+Use the `shape` prop: `square`, a size-scaled `radius`, or a `full` circle.
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <Flex align="center" gap="md" p="md">
+      <Avatar shape="square" size="lg"><Avatar.Fallback>SQ</Avatar.Fallback></Avatar>
+      <Avatar shape="radius" size="lg"><Avatar.Fallback>RA</Avatar.Fallback></Avatar>
+      <Avatar shape="full" size="lg"><Avatar.Fallback>FU</Avatar.Fallback></Avatar>
+    </Flex>
+  </Tab>
+
+  <Tab value="Code">
+    ```tsx
+    <Avatar shape="square">
+      <Avatar.Fallback>SQ</Avatar.Fallback>
+    </Avatar>
+    ```
+  </Tab>
+</Tabs>
+
+## Fallback
+
+`Avatar.Fallback` renders when no image is set or the image fails to load. Pass
+initials or custom content as children, and use `delayMs` to avoid a flash on a
+fast connection.
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <Flex align="center" gap="md" p="md">
+      <Avatar size="lg">
+        <Avatar.Image src="https://api.dicebear.com/9.x/glass/svg?seed=Kate" alt="Kate Wilson" />
+        <Avatar.Fallback>KW</Avatar.Fallback>
+      </Avatar>
+      <Avatar size="lg"><Avatar.Fallback>JD</Avatar.Fallback></Avatar>
+    </Flex>
+  </Tab>
+
+  <Tab value="Code">
+    ```tsx
+    <Avatar>
+      <Avatar.Image src="/broken.jpg" alt="Kate Wilson" />
+      <Avatar.Fallback delayMs={600}>KW</Avatar.Fallback>
+    </Avatar>
+    ```
+  </Tab>
+</Tabs>
+
+## Group
+
+Overlap avatars with `Avatar.Group`. `size` cascades to the children, `ring`
+(default on) separates them against the background, and `stacking` sets the paint
+order. Compose a trailing `+N` avatar by hand for overflow.
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <Flex align="center" gap="md" p="md">
+      <Avatar.Group size="lg">
+        <Avatar><Avatar.Image src="https://api.dicebear.com/9.x/glass/svg?seed=A" alt="Amara" /><Avatar.Fallback>A</Avatar.Fallback></Avatar>
+        <Avatar><Avatar.Image src="https://api.dicebear.com/9.x/glass/svg?seed=B" alt="Bo" /><Avatar.Fallback>B</Avatar.Fallback></Avatar>
+        <Avatar><Avatar.Image src="https://api.dicebear.com/9.x/glass/svg?seed=C" alt="Cai" /><Avatar.Fallback>C</Avatar.Fallback></Avatar>
+        <Avatar><Avatar.Fallback>+5</Avatar.Fallback></Avatar>
+      </Avatar.Group>
+    </Flex>
+  </Tab>
+
+  <Tab value="Code">
+    ```tsx
+    <Avatar.Group size="lg">
+      <Avatar>
+        <Avatar.Image src="/amara.jpg" alt="Amara" />
+        <Avatar.Fallback>A</Avatar.Fallback>
+      </Avatar>
+      <Avatar>
+        <Avatar.Fallback>+5</Avatar.Fallback>
+      </Avatar>
+    </Avatar.Group>
+    ```
+  </Tab>
+</Tabs>
+
+## Props
+
+### Avatar
+
+`Avatar` also accepts all props from the underlying Radix UI `Avatar.Root`, such
+as `asChild`.
+
+| Prop         | Default  | Type                                                                                  |
+| ------------ | -------- | ------------------------------------------------------------------------------------- |
+| `size`       | `"md"`   | `"xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl"`<br />Sets the avatar diameter.         |
+| `shape`      | `"full"` | `"square" \| "radius" \| "full"`<br />Sets the corner treatment.                       |
+| `isDisabled` | `false`  | `boolean`<br />Dims an inactive avatar.                                                |
+| `className`  | —        | `string`<br />Additional CSS classes to apply to the avatar.                          |
+
+### Avatar.Image
+
+`Avatar.Image` also accepts all props from the underlying Radix UI `Avatar.Image`,
+such as `onLoadingStatusChange`.
+
+| Prop        | Default | Type                                                         |
+| ----------- | ------- | ------------------------------------------------------------ |
+| `src`       | —       | `string`<br />The image source URL.                          |
+| `alt`       | —       | `string`<br />Alternative text for the image. Required.      |
+| `className` | —       | `string`<br />Additional CSS classes to apply to the image.  |
+
+### Avatar.Fallback
+
+`Avatar.Fallback` also accepts all props from the underlying Radix UI
+`Avatar.Fallback`.
+
+| Prop        | Default | Type                                                             |
+| ----------- | ------- | ---------------------------------------------------------------- |
+| `delayMs`   | —       | `number`<br />Delay before showing the fallback, to avoid a flash. |
+| `className` | —       | `string`<br />Additional CSS classes to apply to the fallback.   |
+
+### Avatar.Group
+
+| Prop        | Default         | Type                                                                        |
+| ----------- | --------------- | --------------------------------------------------------------------------- |
+| `size`      | `"md"`          | `"xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl"`<br />Cascades to the children. |
+| `ring`      | `true`          | `boolean`<br />Draws a separating ring around each child.                    |
+| `stacking`  | `"last-on-top"` | `"first-on-top" \| "last-on-top"`<br />Sets the overlap paint order.         |
+| `className` | —               | `string`<br />Additional CSS classes to apply to the group.                 |
+
+## Styling
+
+`Avatar` is styled through CSS classes, so the look applies to any element that carries them.
+
+### Modifier classes
+
+| Class                       | Type    | Description                               |
+| --------------------------- | ------- | ----------------------------------------- |
+| `fri-avatar`                | Part    | Root container.                           |
+| `fri-avatar-image`          | Part    | Image element.                            |
+| `fri-avatar-fallback`       | Part    | Fallback element with centered content.   |
+| `fri-avatar-xs`             | Size    | Extra small diameter (24px).              |
+| `fri-avatar-sm`             | Size    | Small diameter (36px).                    |
+| `fri-avatar-md`             | Size    | Medium diameter (48px, default).          |
+| `fri-avatar-lg`             | Size    | Large diameter (64px).                    |
+| `fri-avatar-xl`             | Size    | Extra large diameter (80px).              |
+| `fri-avatar-2xl`            | Size    | Double extra large diameter (112px).      |
+| `fri-avatar-square`         | Shape   | Square corners.                           |
+| `fri-avatar-radius`         | Shape   | Size-scaled rounded corners.              |
+| `fri-avatar-full`           | Shape   | Full circle (default).                    |
+| `fri-avatar-disabled`       | State   | Dims an inactive avatar.                  |
+| `fri-avatar-group`          | Part    | Overlapping group container.              |
+| `fri-avatar-group-xs`       | Size    | Group extra small, cascaded to children.  |
+| `fri-avatar-group-sm`       | Size    | Group small, cascaded to children.        |
+| `fri-avatar-group-md`       | Size    | Group medium, cascaded to children.       |
+| `fri-avatar-group-lg`       | Size    | Group large, cascaded to children.        |
+| `fri-avatar-group-xl`       | Size    | Group extra large, cascaded to children.  |
+| `fri-avatar-group-2xl`      | Size    | Group double extra large, cascaded.       |
+| `fri-avatar-group-ringless` | Variant | Removes the separating ring.              |
+| `fri-avatar-group-first-on-top` | Variant | Paints earlier avatars above later ones.  |
+
+## Accessibility
+
+- `Avatar.Image` requires `alt`; give it the user's name so the image is
+  announced.
+- `Avatar.Fallback` renders readable initials or content when the image is
+  missing; the swap is handled by Radix UI `delayMs` to avoid a flash.
+- `isDisabled` is cosmetic — it dims the avatar but adds no ARIA state, since the
+  avatar is not interactive.

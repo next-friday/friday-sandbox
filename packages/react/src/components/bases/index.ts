@@ -1,3 +1,11 @@
+export { Avatar, AvatarImage, AvatarFallback, AvatarGroup } from "./avatar";
+export type {
+  AvatarProps,
+  AvatarImageProps,
+  AvatarFallbackProps,
+  AvatarGroupProps,
+} from "./avatar";
+
 export { Button } from "./button";
 export type { ButtonProps } from "./button";
 

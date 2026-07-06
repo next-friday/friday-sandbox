@@ -1,3 +1,16 @@
+export {
+  Avatar,
+  AvatarImage,
+  AvatarFallback,
+  AvatarGroup,
+} from "./components/bases";
+export type {
+  AvatarProps,
+  AvatarImageProps,
+  AvatarFallbackProps,
+  AvatarGroupProps,
+} from "./components/bases";
+
 export { Button } from "./components/bases";
 export type { ButtonProps } from "./components/bases";
 
