@@ -17,10 +17,6 @@ const config: KnipConfig = {
         .join("\n"),
   },
   workspaces: {
-    "packages/component-generator": {
-      entry: ["src/cli.ts", "src/axes.ts", "test/*.check.ts"],
-      project: ["src/**/*.ts", "test/**/*.ts"],
-    },
     "packages/styles": {
       entry: ["scripts/copy-css.ts", "scripts/fix-css-attributes.ts"],
       project: ["scripts/**/*.ts", "**/*.css", "*.mjs"],

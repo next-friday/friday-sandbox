@@ -146,19 +146,13 @@ changing a color.
 
 ## How a component is built
 
-A component is **designed as a spec, then generated — never hand-rolled.**
-`component-blueprint` authors a transient `ComponentSpec`
-(`packages/component-generator/src/component-spec.ts`) — the primitive,
-variants, tokens, layout, parts, demo, and prose — and ships it in a GitHub
-issue. `component-implement` runs the engine's CLI
-(`node --experimental-strip-types packages/component-generator/src/cli.ts <spec>`)
-against it, which emits the symmetric file set across both packages — the
-React surfaces, the styles CSS, and the docs page — deterministically from the
-spec. The engine emits only the component's own files: it wires neither the
-export barrels nor a changeset, so those, plus the hand-authored
-`<name>.play.ts` interaction test and a prose pass, are the residual
-`component-implement` fills by hand. The export chain runs `src/index` →
-`components/bases/index` → the component's own `index`.
+Components are **generated, not hand-rolled.** One generator command scaffolds
+the symmetric file set across both packages — the React surfaces, the styles
+CSS, the docs page, and a changeset — and wires every export barrel. The build
+is then an issue-driven lifecycle (design, implement, review) carried by the
+`component-*` skills. `component-implement` fills the scaffold into a complete
+docs page — every variant, size, prop, and class. The export chain runs
+`src/index` → `components/bases/index` → the component's own `index`.
 
 ## Tests are stories
 

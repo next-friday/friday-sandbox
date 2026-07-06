@@ -74,21 +74,19 @@ Once the issue exists, create its branch from the number as [Workflow](#workflow
 
 ## Adding a component
 
-A base component is generated from a spec, not hand-created. Author its shape as a `ComponentSpec` — conforming to the type in [`packages/component-generator/src/component-spec.ts`](packages/component-generator/src/component-spec.ts): the primitive it wraps (`native`, `react-aria`, or `radix`), its variant ladder, token bindings, layout, parts, demo tree, and prose — then run the engine on it from the repo root:
+Scaffold a base component instead of hand-creating its files:
 
 ```sh
-node --experimental-strip-types packages/component-generator/src/cli.ts <path-to-spec.ts>
+pnpm gen component   # prompts for the name, the primitive kind (native or aria), the Storybook category, and compound subparts (blank = single)
 ```
 
-It validates the spec — the primitive kind is registered, every axis default and token binding resolves to a real name — and throws a located error with nothing written if it's incoherent, or writes every generated file if it's coherent: `<name>.tsx`, `<name>.styles.ts` (the `tv()` variant map), `index.ts`, and `<name>.stories.tsx` under `packages/react/src/components/bases/<name>/` (plus `<name>.namespace.ts` for a callable-root compound), `packages/styles/src/components/<name>.css`, and `apps/docs/content/docs/components/<name>.mdx`. `pnpm lint:symmetry` verifies that `<name>.styles.ts` (in `react`) and `<name>.css` (in `styles`) stay a 1:1 mirror across the package boundary.
-
-The engine emits only the component's own files — wire the export barrels, the `styles` `index.css` import, and the docs `meta.json` entry by hand, then run `pnpm changeset` once (the engine writes none). The only hand-authored component code is the residual it can't derive: `<name>.play.ts` (the interaction test) and a prose read-through of the emitted `<name>.mdx`. Don't hand-create or hand-edit any other generated file. To have Claude author the spec and run this whole lifecycle from a plain-language goal instead, see [Building a component with Claude](#building-a-component-with-claude).
+The generator (Turborepo `turbo gen`, defined in `turbo/generators/`) creates `<name>.tsx`, `<name>.styles.ts` (the `tv()` variant map), `index.ts`, and `<name>.stories.tsx` under `packages/react/src/components/bases/<name>/`, adds the `<name>.css` stub under `@friday-sandbox/styles/src/components/` (as `<name>.css`) with its `@import`, creates the `<name>.mdx` docs page and its nav entry, wires the export barrels, and writes a changeset. Choose the `aria` primitive for an interactive component (it scaffolds the size, state, and story skeleton), or `native` for a minimal display element. Then fill in the variants, the `@apply` rules, the stories, and the docs. `pnpm lint:symmetry` verifies that `<name>.styles.ts` (in `react`) and `<name>.css` (in `styles`) stay a 1:1 mirror across the package boundary. Don't hand-create or hand-wire these files. To have Claude run this scaffolding step and everything after it from a plain-language goal instead, see [Building a component with Claude](#building-a-component-with-claude).
 
 If the component needs a design token that does not exist yet, add it upstream in `@friday-sandbox/styles` first — by hand-authoring it in the theme CSS — then consume it downstream; `react` never defines its own tokens. The styles-is-upstream split, the `fri-<name>` class contract, and the token flow are documented in [`.claude/rules/architecture.md`](.claude/rules/architecture.md).
 
 ## Building a component with Claude
 
-The spec-and-engine route above is the manual one — you write the `ComponentSpec` yourself and run the CLI. This repo also ships a suite of Claude Code skills under `.claude/skills/component-*` that drive the same lifecycle from a plain-language goal: you describe _what_ you want and Claude authors the spec, runs the engine, and fills the residual. Those skill files are Claude's instructions, not a manual you read — all you need are the trigger phrases below.
+The `pnpm gen component` route above is the manual one. This repo also ships a suite of Claude Code skills under `.claude/skills/component-*` that drive the same lifecycle from a plain-language goal: you describe _what_ you want and Claude runs the stations, starting from the scaffold above. Those skill files are Claude's instructions, not a manual you read — all you need are the trigger phrases below.
 
 **The phrase you'll use most.** In Claude Code — the `claude` CLI in your terminal, or the editor extension — tell Claude, in plain language, to design a component:
 
@@ -116,11 +114,12 @@ YOU      merge   ·   or request changes → back to Claude
 
 **Driving one phase yourself.** Each phase has its own trigger, so you can stop and inspect between them:
 
-| Tell Claude                  | Skill                 | What it does                                                  | Tracker writes  |
-| ---------------------------- | --------------------- | ------------------------------------------------------------- | --------------- |
-| `design a Badge`             | `component-blueprint` | settles the primitive/ladder/tokens, records the issue + plan | yes (the issue) |
-| `implement issue #N`         | `component-implement` | branches, generates + fills the surfaces, gates, opens the PR | yes             |
-| `handle the review comments` | `component-rebut`     | triages the bot review, fixes, pushes once per round          | yes             |
+| Tell Claude                  | Skill                 | What it does                                                    | Tracker writes  |
+| ---------------------------- | --------------------- | --------------------------------------------------------------- | --------------- |
+| `design a Badge`             | `component-blueprint` | settles the primitive/ladder/tokens, records the issue + plan   | yes (the issue) |
+| `implement issue #N`         | `component-implement` | branches, generates + fills the surfaces, gates, opens the PR   | yes             |
+| `handle the review comments` | `component-rebut`     | triages the bot review, fixes, pushes once per round            | yes             |
+| `sync the docs`              | `component-docs`      | syncs use-case stories into the docs page, refreshes the tables | no              |
 
 `component-blueprint`'s design work stays in chat until you authorize the issue write, so it's the safe place to start. `component-implement` and `component-rebut` write to the shared tracker, so Claude confirms each issue, branch, and PR with you first — it never guesses a target.
 

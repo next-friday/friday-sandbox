@@ -48,15 +48,36 @@ Describe what `{{ pascalCase name }}` is for in a line or two.
 
 {/* List the cases where another component or element fits better, and name it. */}
 
-{/* Add one Tabs block per feature you expose, each as its own `##` section between When not to use and Props; mirror the showcase stories in {{ kebabCase name }}.stories.tsx so docs and Storybook stay symmetric. */}
+{/* Fill each feature section you expose as its own `##` block here, mirroring the showcase stories in {{ kebabCase name }}.stories.tsx so docs and Storybook stay symmetric. */}
 
 ## Props
+{{#if compound}}
+
+### {{ pascalCase name }} Props
+
+`{{ pascalCase name }}` accepts the props of the element or primitive it wraps, plus a `className` string.
+
+| Prop        | Default | Type                                           |
+| ----------- | ------- | ---------------------------------------------- |
+| `className` | —       | `string`<br />Additional CSS classes to apply. |
+{{#each subparts}}
+
+### {{ pascalCase ../name }}.{{ this }} Props
+
+`{{ pascalCase ../name }}.{{ this }}` accepts the props of the element or primitive it wraps, plus a `className` string.
+
+| Prop        | Default | Type                                           |
+| ----------- | ------- | ---------------------------------------------- |
+| `className` | —       | `string`<br />Additional CSS classes to apply. |
+{{/each}}
+{{else}}
 
 `{{ pascalCase name }}` also accepts the props of the element or primitive it wraps, plus a `className` string.
 
 | Prop        | Default | Type                                           |
 | ----------- | ------- | ---------------------------------------------- |
 | `className` | —       | `string`<br />Additional CSS classes to apply. |
+{{/if}}
 
 ## Styling
 

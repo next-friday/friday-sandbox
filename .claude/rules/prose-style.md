@@ -101,21 +101,26 @@ cutting-edge, world-class, and the like.
 ## Document structure
 
 Each document type follows one fixed skeleton, so a reader learns the layout
-once. A component doc is emitted by the `component-generator` engine from the
-component's `ComponentSpec`; the skeletons for the other types are the section
-sets described below.
+once. A new component doc is scaffolded by `pnpm gen component` (templates in
+[`turbo/generators/`](turbo/generators)); the skeletons for the other types are
+the section sets described below.
 
 - Component doc (`apps/docs/content/docs/components/*.mdx`): the required spine is a
   `<SourceLinks>` header, then `Import`, `Usage`, `Purpose`, `When to use`,
-  `When not to use`, the component's own feature sections (one demo each),
-  `Props`, `Styling`, then `Accessibility` last.
+  `When not to use`, the component's own feature sections (one demo each), then
+  `Props`, `Styling`, then `Accessibility` last. `Props` is one table for a
+  single component; a compound splits it per part — `### <Name> Props`, then
+  `### <Name>.<Part> Props` per subpart.
 - Package README: `<name>`, the canonical one-line summary (see below), then
   `Quick start`. A published package (`react`, `styles`) adds badges and a
   `Why <name>` section above `Quick start`; an internal package
   (`eslint-config`, `typescript-config`) lists its presets or configs after it.
-- Skill (`.claude/skills/*/SKILL.md`): `When to use`, `Steps`, `Done — the
-contract`, `Verify`, `Red flags — STOP`, `What this encodes`, then an optional
-  trailing appendix (such as `Running unattended`) when the skill needs one.
+- Skill (`.claude/skills/*/SKILL.md`): a normative specification for the LLM,
+  not prose for a human — `Purpose`, `Input`, `Tasks` (ordered imperative steps),
+  `Rules` (Must / Must-not / May), `Acceptance criteria`, then `Output` when the
+  skill has a deliverable to summarize. State only what to do; omit rationale,
+  history, and philosophy — a short clause disambiguating an ambiguous rule, kept
+  next to it, is the only exception.
 - Guide or how-to: a task title, then numbered steps.
 
 Every package table across the repo uses the columns `Package | Description` and
@@ -134,9 +139,9 @@ Keep the required heading set for each documented surface.
 
 This guide is upheld in review:
 
-- **Generator** (the `component-generator` engine, run via its `cli.ts`): a
-  component doc is emitted with the correct structure and voice from the spec,
-  before the first review.
+- **Generator** (`pnpm gen component`, templates in `turbo/generators/`): a new
+  component doc is scaffolded with the correct structure and voice before the
+  first review.
 - **AI reviewers** (`.coderabbit.yaml`, `.gemini/styleguide.md`): point at this
   guide's sections for voice, audience, the banned marketing words, and the
   required structure.

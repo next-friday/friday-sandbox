@@ -74,16 +74,38 @@ Five sizes step from `xs` to `xl`.
   </Tab>
 </Tabs>
 
-{/* Add a Tabs block per remaining feature (colors, variants, states) as its own `##` section between Sizes and Props as you fill the ladder; mirror the showcase stories. */}
+{/* Fill each remaining feature section (colors, variants, states) as its own `##` block here, mirroring the showcase stories. */}
 
 ## Props
+{{#if compound}}
+
+### {{ pascalCase name }} Props
+
+`{{ pascalCase name }}` accepts every prop of the react-aria primitive it wraps, plus a `className` string.
+
+| Prop        | Default | Type                                                                                  |
+| ----------- | ------- | ------------------------------------------------------------------------------------- |
+| `size`      | `"md"`  | `"xs" \| "sm" \| "md" \| "lg" \| "xl"`<br />Sets the size of the {{ kebabCase name }}. |
+| `className` | —       | `string`<br />Additional CSS classes to apply.                                        |
+{{#each subparts}}
+
+### {{ pascalCase ../name }}.{{ this }} Props
+
+`{{ pascalCase ../name }}.{{ this }}` accepts every prop of the react-aria primitive it wraps, plus a `className` string.
+
+| Prop        | Default | Type                                           |
+| ----------- | ------- | ---------------------------------------------- |
+| `className` | —       | `string`<br />Additional CSS classes to apply. |
+{{/each}}
+{{else}}
 
 `{{ pascalCase name }}` also accepts every prop of the react-aria primitive it wraps, plus a `className` string.
 
-| Prop        | Default | Type                                                        |
-| ----------- | ------- | ---------------------------------------------------------- |
+| Prop        | Default | Type                                                                                  |
+| ----------- | ------- | ------------------------------------------------------------------------------------- |
 | `size`      | `"md"`  | `"xs" \| "sm" \| "md" \| "lg" \| "xl"`<br />Sets the size of the {{ kebabCase name }}. |
-| `className` | —       | `string`<br />Additional CSS classes to apply.             |
+| `className` | —       | `string`<br />Additional CSS classes to apply.                                        |
+{{/if}}
 
 ## Styling
 
