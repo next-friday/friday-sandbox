@@ -21,6 +21,10 @@ secret_scan() {
 # Cheap, repo-wide, and the only gates that cover non-package files
 # (.md, .yml, .json) → always run, even on a docs-only push.
 always_gates() {
+  # Every gate below is only as honest as the installed tree: a node_modules
+  # that drifted from the lockfile turns them into false greens. Sync first —
+  # a no-op in seconds when already faithful.
+  pnpm install --frozen-lockfile
   secret_scan
   if command -v actionlint >/dev/null 2>&1; then
     actionlint

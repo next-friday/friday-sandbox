@@ -419,6 +419,13 @@ const checkMdxContent = (name: string, path: string, text: string): void => {
         `scaffold placeholder at ${at} — set the real URL or drop the prop before shipping the doc`,
       );
     }
+    const asset = /src="\/([^"]+)"/.exec(line);
+    if (asset && !existsSync(`apps/docs/public/${asset[1]}`)) {
+      fail(
+        name,
+        `docs asset "/${asset[1]}" at ${at} has no file under apps/docs/public — add the asset or use a data: URI`,
+      );
+    }
     if (/<div\b/.test(line) && !/`[^`]*<div/.test(line)) {
       fail(
         "div",
@@ -765,6 +772,18 @@ for (const path of themeFiles) {
         `token "${declaration.prop}" uses an abbreviated scale suffix — spell it in full (small/medium/…) so it never collides with Tailwind`,
       );
     }
+    if (
+      (/^--fri-(scale|spacing|radius|display|body|label|caption|code)(-|$)/.test(
+        declaration.prop,
+      ) ||
+        /^--fri-(action|field|box)-radius$/.test(declaration.prop)) &&
+      /(^|[\s(])[\d.]+px/.test(declaration.value)
+    ) {
+      fail(
+        "tokens",
+        `token "${declaration.prop}" uses a px value ("${declaration.value}") — this family is rem-only so it scales with zoom and user font size`,
+      );
+    }
   });
 }
 
@@ -788,5 +807,5 @@ if (fails.length > 0) {
 }
 const note = warns.length > 0 ? `, ${warns.length} warning(s)` : "";
 console.log(
-  `✓ component symmetry: ${checked} components verified across presence, variants↔css, barrels, controls, stories, story-doc-showcase, sibling-showcase, no-map-demos, docs, props-tables, token resolution, theme invariants, no-raw-html, apply-only, no-default-args, compound-symmetry${note}`,
+  `✓ component symmetry: ${checked} components verified across presence, variants↔css, barrels, controls, stories, story-doc-showcase, sibling-showcase, no-map-demos, docs, docs-assets, props-tables, token resolution, token-units, theme invariants, no-raw-html, apply-only, no-default-args, compound-symmetry${note}`,
 );
