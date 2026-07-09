@@ -27,7 +27,7 @@ Ship an approved component issue: branch → scaffold → fill → gates → PR 
    - Set the real `STORYBOOK_URL`; drop the `headless` prop when the part has no standalone page.
 8. **Compound.** Callable-root (`link`/`grid`) — pass `parts`, auto-wired. Namespace-of-parts (`scroll-area`) — scaffold single, hand-write `.namespace.ts` + barrel blocks. Props live inline in `<name>.tsx`; a compound with **three or more parts** always moves them to `<name>.types.ts` (`avatar`, `scroll-area`), one or two parts stay inline (`link`, `grid`); a single component with complex prop types may also split (`flex`).
 9. **Changeset.** Keep the generated `<name>-component.md`. A non-generated behavior change → `pnpm changeset` once.
-10. **PR.** Gates via the hooks. Title `type(scope): subject` ≤50, lowercase imperative; `Closes #<n>` in the body; fill the template.
+10. **PR.** Gates via the hooks. Title `type(scope): subject` ≤50, lowercase imperative; `Closes #<n>` in the body; fill the template. CI validates both that the body closes an issue and that the branch's `<n>-` prefix points at that OPEN issue — get the branch name right **before** opening the PR, because renaming a branch under an open PR closes the PR permanently (GitHub does not retarget it).
 11. **CI.** `gh pr checks <pr> --watch` to green; a failing check → fix by root cause, push, re-watch; "no checks configured" is not a failure. Hand the AI-review round to `component-rebut`.
 
 ## Rules
@@ -38,6 +38,7 @@ Ship an approved component issue: branch → scaffold → fill → gates → PR 
 - Mirror 1:1 — no orphan class either side; every value a distinct class.
 - Semantic Tailwind alias only (`gap-small`, `p-medium`); never a raw numeric (`gap-1`), a bare `gap-(--fri-*)`, or a hardcoded color.
 - One changeset. Never `--no-verify`; never disable or loosen a gate — fix the root cause.
+- A dependency bump is proven on a lockfile-faithful install — `pnpm dedupe`, reinstall, then the scoped gates — before it ships; a stale `node_modules` turns every local gate into a false green.
 - Ship exactly the showcase trio the axes call for; do not author use cases, per-state stories, or extra doc sections. Do not hand-write boilerplate the generator emits — fix `turbo/generators/` instead.
 
 ## Acceptance criteria
