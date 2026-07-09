@@ -21,6 +21,7 @@ secret_scan() {
 # Cheap, repo-wide, and the only gates that cover non-package files
 # (.md, .yml, .json) → always run, even on a docs-only push.
 always_gates() {
+  pnpm install --frozen-lockfile
   secret_scan
   if command -v actionlint >/dev/null 2>&1; then
     actionlint
