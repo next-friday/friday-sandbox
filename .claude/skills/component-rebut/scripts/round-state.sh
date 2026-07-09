@@ -80,8 +80,8 @@ SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 
 CR_LINE=$(cr_state)
 GEMINI_LINE=$(gemini_state)
-THREADS_LINE=$(bash "$SCRIPT_DIR/verify-coverage.sh" "$PR" | tail -1)
-CI_LINE=$(bash "$SCRIPT_DIR/ci-status.sh" "$PR" | tail -1)
+THREADS_LINE=$(bash "$SCRIPT_DIR/verify-coverage.sh" "$PR" | tail -1 || true)
+CI_LINE=$(bash "$SCRIPT_DIR/ci-status.sh" "$PR" | tail -1 || true)
 SUMMARY_LINE=$(summary_state)
 
 next_action() {
