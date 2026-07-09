@@ -2,14 +2,18 @@
 set -euo pipefail
 
 PR="${1:?usage: round-state.sh <pr>}"
+if ! [[ "$PR" =~ ^[0-9]+$ ]]; then
+  echo "round-state: usage: round-state.sh <pr-number>" >&2
+  exit 2
+fi
 REPO=$(gh repo view --json nameWithOwner -q .nameWithOwner)
 
 STATE=$(gh pr view "$PR" --json state -q .state)
 HEAD=$(gh pr view "$PR" --json headRefOid -q .headRefOid)
-SINCE=$(gh api "repos/$REPO/pulls/$PR/commits" --paginate --jq '[.[] | select(.parents | length < 2) | .commit.committer.date] | max // empty')
+SINCE=$(gh api "repos/$REPO/pulls/$PR/commits" --paginate --jq '.[]' | jq -rs '[.[] | select(.parents | length < 2) | .commit.committer.date] | max // empty')
 
-REVIEWS=$(gh api "repos/$REPO/pulls/$PR/reviews" --paginate)
-COMMENTS=$(gh api "repos/$REPO/issues/$PR/comments" --paginate)
+REVIEWS=$(gh api "repos/$REPO/pulls/$PR/reviews" --paginate --jq '.[]' | jq -s '.')
+COMMENTS=$(gh api "repos/$REPO/issues/$PR/comments" --paginate --jq '.[]' | jq -s '.')
 
 cr_state() {
   local review_at walkthrough walkthrough_at limit_at reset ack_at
