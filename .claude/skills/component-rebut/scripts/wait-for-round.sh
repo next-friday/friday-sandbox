@@ -30,7 +30,9 @@ round_status() {
   fi
 
   cr_state="absent"
-  if printf '%s' "$cr_body" | grep -q "Currently processing"; then
+  if printf '%s' "$cr_body" | grep -qiE "review limit reached|reached your (pr )?review limit|reviews( are( currently)?)? paused"; then
+    cr_state="rate-limited"
+  elif printf '%s' "$cr_body" | grep -qi "Currently processing"; then
     cr_state="processing"
   elif printf '%s\n' "$reviews" | awk -F'\t' -v h="$head" '$1 == h && $2 ~ /coderabbit/ { found = 1 } END { exit !found }'; then
     cr_state="done"
@@ -40,6 +42,10 @@ round_status() {
 
   echo "round: coderabbit=$cr_state gemini=$gem_state head=${head:0:7} inline=$inline"
   [ "$cr_state" = "done" ] && [ "$gem_state" = "done" ] && return 0
+  if [ "$cr_state" = "rate-limited" ]; then
+    echo "round: coderabbit is rate-limited — it will NOT review in this window. Proceed with the posted findings; re-trigger later with '@coderabbitai review' after confirming the PR is still open."
+    return 5
+  fi
   { [ "$cr_state" = "done" ] || [ "$gem_state" = "done" ]; } && return 4
   return 3
 }
@@ -62,6 +68,9 @@ while :; do
   if [ "$rc" -eq 0 ]; then
     echo "round: complete"
     exit 0
+  fi
+  if [ "$rc" -eq 5 ]; then
+    exit 5
   fi
   if [ "$elapsed" -ge "$timeout" ]; then
     if [ "$rc" -eq 4 ]; then

@@ -48,7 +48,7 @@ Common scripts, all run from the repository root:
 
 Every change flows through one issue and one pull request.
 
-1. **Start from an issue.** Open one or pick an existing one, then create its branch: `gh issue develop <n> --checkout`. The branch name must start with the issue number `<n>-…`, and CI rejects branches that don't.
+1. **Start from an issue.** Open one or pick an existing one, then create its branch: `gh issue develop <n> --checkout`. The branch name must start with the issue number `<n>-…`, CI rejects a branch whose number doesn't point at a real open issue, and the name is final once its pull request opens — renaming a branch under an open PR closes the PR permanently (GitHub does not retarget it).
 2. **Make the change** on that branch. Keep it focused: one concern per pull request.
 3. **Add a changeset** when you change published behavior, as described in [Changesets](#changesets).
 4. **Run the gates**, described in [Gates](#gates). Git hooks run them for you on commit and push.
