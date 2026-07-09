@@ -11,8 +11,8 @@ rule):
   `eslint-disable-line`
 - a rule turned off, downgraded, or overridden in an ESLint config **in
   response to a firing violation**
-- a path added to `globalIgnores` to dodge a rule — ignoring a build artifact
-  is configuration, not suppression
+- a path added to `ignores` or `globalIgnores` to dodge a rule — ignoring a
+  build artifact is configuration, not suppression
 
 Not a suppression — preset design: `packages/eslint-config` deliberately
 selects its rule set (the `jsdoc/*` set off in `base.mjs`, the demo-JSX rules
