@@ -208,41 +208,7 @@ export const {{ pascalCase ../name }}{{ this }} = (
       const compound = subparts.length > 0;
       const templateData = { subparts, compound };
 
-      const guardCleanTargets: PlopTypes.CustomActionFunction = (guardData) => {
-        const { name, turbo } = guardData as {
-          name: string;
-          turbo: { paths: { root: string } };
-        };
-        const kebab = plop.renderString("{{ kebabCase name }}", { name });
-        const dir = join(
-          turbo.paths.root,
-          "packages/react/src/components/bases",
-          kebab,
-        );
-        const targets = [
-          join(dir, `${kebab}.tsx`),
-          join(dir, `${kebab}.styles.ts`),
-          join(dir, "index.ts"),
-          join(dir, `${kebab}.stories.tsx`),
-          join(turbo.paths.root, `packages/styles/src/components/${kebab}.css`),
-          join(
-            turbo.paths.root,
-            `apps/docs/content/docs/components/${kebab}.mdx`,
-          ),
-          join(turbo.paths.root, `.changeset/${kebab}-component.md`),
-          ...(compound ? [join(dir, `${kebab}.namespace.ts`)] : []),
-        ];
-        const existing = targets.filter((target) => existsSync(target));
-        if (existing.length > 0) {
-          throw new Error(
-            `scaffold aborted, nothing written — these targets already exist (remove them first):\n${existing.join("\n")}`,
-          );
-        }
-        return "all scaffold targets clean";
-      };
-
-      const actions: PlopTypes.ActionType[] = [
-        guardCleanTargets,
+      const addActions: PlopTypes.AddActionConfig[] = [
         {
           type: "add",
           path: `${reactBases}/{{ kebabCase name }}.tsx`,
@@ -288,7 +254,7 @@ export const {{ pascalCase ../name }}{{ this }} = (
       ];
 
       if (compound) {
-        actions.push({
+        addActions.push({
           type: "add",
           path: `${reactBases}/{{ kebabCase name }}.namespace.ts`,
           templateFile: "templates/namespace.ts.hbs",
@@ -296,8 +262,19 @@ export const {{ pascalCase ../name }}{{ this }} = (
         });
       }
 
-      actions.push(wireBarrels);
-      return actions;
+      const guardCleanTargets: PlopTypes.CustomActionFunction = (guardData) => {
+        const existing = addActions
+          .map((action) => plop.renderString(action.path, guardData))
+          .filter((target) => existsSync(target));
+        if (existing.length > 0) {
+          throw new Error(
+            `scaffold aborted, nothing written — these targets already exist (remove them first):\n${existing.join("\n")}`,
+          );
+        }
+        return "all scaffold targets clean";
+      };
+
+      return [guardCleanTargets, ...addActions, wireBarrels];
     },
   });
 }

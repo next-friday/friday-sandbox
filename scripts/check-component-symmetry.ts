@@ -21,6 +21,8 @@ const REQUIRED_DOC_SECTIONS = [
   "Purpose",
   "When to use",
   "When not to use",
+  "Props",
+  "Styling",
 ];
 const LAST_DOC_SECTION = "Accessibility";
 const SHOWCASE_BY_AXIS: Record<string, string> = {
@@ -403,8 +405,20 @@ const checkDocSpine = (name: string, sections: string[]): void => {
 
 const checkMdxContent = (name: string, path: string, text: string): void => {
   const lines = text.split("\n");
+  let inFence = false;
   lines.forEach((line, index) => {
     const at = `${path}:${index + 1}`;
+    if (/^\s*(```|~~~)/.test(line)) {
+      inFence = !inFence;
+      return;
+    }
+    if (inFence) return;
+    if (/\b(STORYBOOK_URL|HEADLESS_DOCS_URL)\b/.test(line)) {
+      fail(
+        name,
+        `scaffold placeholder at ${at} — set the real URL or drop the prop before shipping the doc`,
+      );
+    }
     if (/<div\b/.test(line) && !/`[^`]*<div/.test(line)) {
       fail(
         "div",
@@ -536,7 +550,8 @@ for (const name of components) {
   }
 
   const namespacePath = `${dir}/${name}.namespace.ts`;
-  if (existsSync(namespacePath)) {
+  const namespaceExists = existsSync(namespacePath);
+  if (namespaceExists) {
     const namespaceIds = identifiers(parseTs(namespacePath));
     const indexIds = identifiers(parseTs(surfaces.index));
     const componentIds = identifiers(parseTs(surfaces.component));
@@ -560,9 +575,8 @@ for (const name of components) {
     }
   }
 
-  const namespacePathEarly = `${dir}/${name}.namespace.ts`;
-  const nsInfo = existsSync(namespacePathEarly)
-    ? namespaceParts(parseTs(namespacePathEarly), Pascal)
+  const nsInfo = namespaceExists
+    ? namespaceParts(parseTs(namespacePath), Pascal)
     : undefined;
   const containsRoot = (partSuffix: string): boolean => {
     const pattern = new RegExp(

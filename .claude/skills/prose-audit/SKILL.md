@@ -19,7 +19,7 @@ Audit docs and mdx prose for one voice: every page, and every peer page beside i
 2. **Voice symmetry — one author across peers.** Line up the same section across every peer and check it reads the same:
    - **Same shape.** Every `Purpose` opens the same way; every `Applies` cell is a comma list or one sentence, not one clean list beside one semicolon-chain; every `When to use` keeps the same rhythm.
    - **One narrator.** The imperative, addressed to the reader, throughout — never a mix of "you", "the component provides", and "developers can".
-   - **`.claude/rules/prose-style.md` vocabulary.** [`.claude/rules/prose-style.md`](../../rules/prose-style.md) is the single word source — component not widget, variant not kind. Read it and flag an off-vocabulary synonym or a banned marketing adjective (powerful, robust, seamless, intuitive, modern, and the like).
+   - **`.claude/rules/prose-style.md` vocabulary.** [`.claude/rules/prose-style.md`](../../rules/prose-style.md) is the single word source. Read it and flag any off-vocabulary synonym or banned marketing adjective it lists.
 3. **Symbol restraint — a human reads it.** Grep the render-clutter patterns, then eyeball each hit. Prefer a plain sentence or a comma list; keep a code chip only for a real identifier — a class, prop, token, or type — never for an ordinary word.
 
    | pattern                                        | grep                                |
