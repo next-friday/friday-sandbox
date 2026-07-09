@@ -10,6 +10,21 @@ const meta = {
   title: "Bases/{{ category }}/{{ pascalCase name }}",
   component: {{ pascalCase name }},
   tags: ["autodocs"],
+  parameters: {
+    docs: {
+      description: {
+        component: [
+          "{{ pascalCase name }} component.",
+          "",
+          "## Import",
+          "",
+          "```tsx",
+          'import { {{ pascalCase name }} } from "@friday-sandbox/react";',
+          "```",
+        ].join("\n"),
+      },
+    },
+  },
   args: {
     children: "{{ pascalCase name }}",
   },

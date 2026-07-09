@@ -7,6 +7,21 @@ const meta = {
   title: "Bases/{{ category }}/{{ pascalCase name }}",
   component: {{ pascalCase name }},
   tags: ["autodocs"],
+  parameters: {
+    docs: {
+      description: {
+        component: [
+          "{{ pascalCase name }} component.",
+          "",
+          "## Import",
+          "",
+          "```tsx",
+          'import { {{ pascalCase name }} } from "@friday-sandbox/react";',
+          "```",
+        ].join("\n"),
+      },
+    },
+  },
   argTypes: {
     className: {
       description: "Additional CSS classes to apply to the {{ kebabCase name }}.",

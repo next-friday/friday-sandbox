@@ -10,6 +10,21 @@ const meta = {
   title: "Bases/Forms/Input",
   component: Input,
   tags: ["autodocs"],
+  parameters: {
+    docs: {
+      description: {
+        component: [
+          "A single-line text input, built on React Aria Input.",
+          "",
+          "## Import",
+          "",
+          "```tsx",
+          'import { Input } from "@friday-sandbox/react";',
+          "```",
+        ].join("\n"),
+      },
+    },
+  },
   args: {
     "aria-label": "Sample text",
     placeholder: "Type something…",
