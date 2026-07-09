@@ -39,10 +39,9 @@ reviews:
         must be a root-cause fix, never a silenced gate.
     - path: packages/react/src/components/bases/**/*.{ts,tsx}
       instructions: >-
-        Base components are generated from a ComponentSpec by the
-        component-generator engine (packages/component-generator, run via its
-        cli.ts), never hand-created, and live in components/bases/<name>/ as
-        <name>.tsx + <name>.styles.ts (its own tv() variant map) + index.ts +
+        Base components are scaffolded with "pnpm gen component" (turbo gen), never
+        hand-created, and live in components/bases/<name>/ as <name>.tsx +
+        <name>.styles.ts (its own tv() variant map) + index.ts +
         <name>.stories.tsx; the variant map is linked to @friday-sandbox/styles'
         CSS by a fri-<name> class, mirrored across the package boundary. Priorities, highest first: accessibility, correctness, API ergonomics,
         then style. Key checks: lowercase filename, named export with colocated Props,
@@ -62,10 +61,14 @@ reviews:
     - path: packages/react/src/**/*.stories.{ts,tsx}
       instructions: >-
         Stories ARE the tests (Vitest browser mode via @storybook/addon-vitest +
-        Playwright chromium). Key checks: a showcase story per variant axis (Variants,
-        Colors, Sizes, laid out with Flex/Grid — never a raw div, and pull placeholder
-        content from the samples subpath (@friday-sandbox/react/samples: Boxes, Lorem))
-        and per state, real props not mocked data,
+        Playwright chromium). Key checks: showcase stories are the trio only —
+        Default, plus Variants when a variant axis exists (every value, laid out
+        with Flex/Grid; a color or shape axis joins that grid), plus Sizes for a
+        size axis — never a raw div, and pull placeholder content from the
+        samples subpath (@friday-sandbox/react/samples: Boxes, Lorem); every
+        further story is a hand-authored use case mirrored by a same-named ##
+        section in the component's doc page, so flag a per-state or per-value
+        story and a use-case story with no matching section; real props not mocked data,
         show only the props an example demonstrates — never restate a component
         default (variant=solid, size=md), so meta.args holds content and
         non-default values only (gated by lint:symmetry) and a default value

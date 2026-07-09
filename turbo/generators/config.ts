@@ -1,4 +1,4 @@
-import { readFileSync, writeFileSync } from "node:fs";
+import { existsSync, readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 
 import type { PlopTypes } from "@turbo/gen";
@@ -208,7 +208,7 @@ export const {{ pascalCase ../name }}{{ this }} = (
       const compound = subparts.length > 0;
       const templateData = { subparts, compound };
 
-      const actions: PlopTypes.ActionType[] = [
+      const addActions: PlopTypes.AddActionConfig[] = [
         {
           type: "add",
           path: `${reactBases}/{{ kebabCase name }}.tsx`,
@@ -254,7 +254,7 @@ export const {{ pascalCase ../name }}{{ this }} = (
       ];
 
       if (compound) {
-        actions.push({
+        addActions.push({
           type: "add",
           path: `${reactBases}/{{ kebabCase name }}.namespace.ts`,
           templateFile: "templates/namespace.ts.hbs",
@@ -262,8 +262,19 @@ export const {{ pascalCase ../name }}{{ this }} = (
         });
       }
 
-      actions.push(wireBarrels);
-      return actions;
+      const guardCleanTargets: PlopTypes.CustomActionFunction = (guardData) => {
+        const existing = addActions
+          .map((action) => plop.renderString(action.path, guardData))
+          .filter((target) => existsSync(target));
+        if (existing.length > 0) {
+          throw new Error(
+            `scaffold aborted, nothing written — these targets already exist (remove them first):\n${existing.join("\n")}`,
+          );
+        }
+        return "all scaffold targets clean";
+      };
+
+      return [guardCleanTargets, ...addActions, wireBarrels];
     },
   });
 }

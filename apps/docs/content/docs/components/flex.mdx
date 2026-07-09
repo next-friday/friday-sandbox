@@ -95,28 +95,28 @@ target a single axis independently.
 `Flex` also accepts an `as` prop (default `"div"`) to render as a different
 element.
 
-| Prop        | Default     | Type                                                                                                                   |
-| ----------- | ----------- | ---------------------------------------------------------------------------------------------------------------------- |
-| `direction` | `"row"`     | `"row" \| "column" \| "row-reverse" \| "column-reverse"`<br />Controls the flow direction of the children.             |
-| `align`     | `"stretch"` | `"start" \| "center" \| "end" \| "stretch" \| "baseline"`<br />Aligns the children on the cross axis.                  |
-| `justify`   | `"start"`   | `"start" \| "center" \| "end" \| "between" \| "around" \| "evenly"`<br />Distributes the children along the main axis. |
-| `wrap`      | `"nowrap"`  | `"nowrap" \| "wrap" \| "wrap-reverse"`<br />Controls whether children wrap onto multiple lines.                        |
-| `inline`    | `false`     | `boolean`<br />Renders an inline-level flex container.                                                                 |
-| `gap`       | —           | `"2xs" \| "xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl" \| "3xl" \| "4xl"`<br />Sets the gap between all children.     |
-| `gapX`      | —           | `"2xs" \| "xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl" \| "3xl" \| "4xl"`<br />Sets the horizontal gap only.          |
-| `gapY`      | —           | `"2xs" \| "xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl" \| "3xl" \| "4xl"`<br />Sets the vertical gap only.            |
-| `p`         | —           | `"2xs" \| "xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl" \| "3xl" \| "4xl"`<br />Sets padding on all sides.             |
-| `px`        | —           | `"2xs" \| "xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl" \| "3xl" \| "4xl"`<br />Sets horizontal (inline) padding.      |
-| `py`        | —           | `"2xs" \| "xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl" \| "3xl" \| "4xl"`<br />Sets vertical (block) padding.         |
-| `pt`        | —           | `"2xs" \| "xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl" \| "3xl" \| "4xl"`<br />Sets top padding.                      |
-| `pr`        | —           | `"2xs" \| "xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl" \| "3xl" \| "4xl"`<br />Sets right padding.                    |
-| `pb`        | —           | `"2xs" \| "xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl" \| "3xl" \| "4xl"`<br />Sets bottom padding.                   |
-| `pl`        | —           | `"2xs" \| "xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl" \| "3xl" \| "4xl"`<br />Sets left padding.                     |
-| `grow`      | —           | `boolean`<br />Lets the container grow when it is itself a flex item.                                                  |
-| `shrink`    | —           | `boolean`<br />Controls whether the container shrinks when it is itself a flex item.                                   |
-| `basis`     | —           | `"auto" \| "full" \| 0`<br />Sets the container's base size before growing or shrinking.                               |
-| `flex`      | —           | `1 \| "auto" \| "initial" \| "none"`<br />Shorthand for `grow`, `shrink`, and `basis` together.                        |
-| `className` | —           | `string`<br />Additional CSS classes to apply.                                                                         |
+| Prop        | Type                                                                       | Default     | Description                                                           |
+| ----------- | -------------------------------------------------------------------------- | ----------- | --------------------------------------------------------------------- |
+| `direction` | `"row" \| "column" \| "row-reverse" \| "column-reverse"`                   | `"row"`     | Controls the flow direction of the children.                          |
+| `align`     | `"start" \| "center" \| "end" \| "stretch" \| "baseline"`                  | `"stretch"` | Aligns the children on the cross axis.                                |
+| `justify`   | `"start" \| "center" \| "end" \| "between" \| "around" \| "evenly"`        | `"start"`   | Distributes the children along the main axis.                         |
+| `wrap`      | `"nowrap" \| "wrap" \| "wrap-reverse"`                                     | `"nowrap"`  | Controls whether children wrap onto multiple lines.                   |
+| `inline`    | `boolean`                                                                  | `false`     | Renders an inline-level flex container.                               |
+| `gap`       | `"2xs" \| "xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl" \| "3xl" \| "4xl"` | —           | Sets the gap between all children.                                    |
+| `gapX`      | `"2xs" \| "xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl" \| "3xl" \| "4xl"` | —           | Sets the horizontal gap only.                                         |
+| `gapY`      | `"2xs" \| "xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl" \| "3xl" \| "4xl"` | —           | Sets the vertical gap only.                                           |
+| `p`         | `"2xs" \| "xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl" \| "3xl" \| "4xl"` | —           | Sets padding on all sides.                                            |
+| `px`        | `"2xs" \| "xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl" \| "3xl" \| "4xl"` | —           | Sets horizontal (inline) padding.                                     |
+| `py`        | `"2xs" \| "xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl" \| "3xl" \| "4xl"` | —           | Sets vertical (block) padding.                                        |
+| `pt`        | `"2xs" \| "xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl" \| "3xl" \| "4xl"` | —           | Sets top padding.                                                     |
+| `pr`        | `"2xs" \| "xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl" \| "3xl" \| "4xl"` | —           | Sets right padding.                                                   |
+| `pb`        | `"2xs" \| "xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl" \| "3xl" \| "4xl"` | —           | Sets bottom padding.                                                  |
+| `pl`        | `"2xs" \| "xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl" \| "3xl" \| "4xl"` | —           | Sets left padding.                                                    |
+| `grow`      | `boolean`                                                                  | —           | Lets the container grow when it is itself a flex item.                |
+| `shrink`    | `boolean`                                                                  | —           | Controls whether the container shrinks when it is itself a flex item. |
+| `basis`     | `"auto" \| "full" \| 0`                                                    | —           | Sets the container's base size before growing or shrinking.           |
+| `flex`      | `1 \| "auto" \| "initial" \| "none"`                                       | —           | Shorthand for `grow`, `shrink`, and `basis` together.                 |
+| `className` | `string`                                                                   | —           | Additional CSS classes to apply.                                      |
 
 ## Styling
 
@@ -124,49 +124,49 @@ element.
 
 ### Modifier classes
 
-| Class                      | Type      | Description                                                           |
-| -------------------------- | --------- | --------------------------------------------------------------------- |
-| `fri-flex`                 | Base      | Base container: row direction, stretch align, start justify, no-wrap. |
-| `fri-flex-row`             | Direction | Row direction (default).                                              |
-| `fri-flex-column`          | Direction | Column direction.                                                     |
-| `fri-flex-row-reverse`     | Direction | Row-reverse direction.                                                |
-| `fri-flex-column-reverse`  | Direction | Column-reverse direction.                                             |
-| `fri-flex-align-start`     | Align     | Align items to the start of the cross axis.                           |
-| `fri-flex-align-center`    | Align     | Center items on the cross axis.                                       |
-| `fri-flex-align-end`       | Align     | Align items to the end of the cross axis.                             |
-| `fri-flex-align-stretch`   | Align     | Stretch items to fill the cross axis (default).                       |
-| `fri-flex-align-baseline`  | Align     | Align items along their text baseline.                                |
-| `fri-flex-justify-start`   | Justify   | Justify content to the start of the main axis (default).              |
-| `fri-flex-justify-center`  | Justify   | Center content on the main axis.                                      |
-| `fri-flex-justify-end`     | Justify   | Justify content to the end of the main axis.                          |
-| `fri-flex-justify-between` | Justify   | Distribute content with space between items.                          |
-| `fri-flex-justify-around`  | Justify   | Distribute content with space around items.                           |
-| `fri-flex-justify-evenly`  | Justify   | Distribute content with even space between items.                     |
-| `fri-flex-nowrap`          | Wrap      | Prevent children from wrapping (default).                             |
-| `fri-flex-wrap`            | Wrap      | Allow children to wrap onto multiple lines.                           |
-| `fri-flex-wrap-reverse`    | Wrap      | Allow children to wrap onto multiple lines in reverse order.          |
-| `fri-flex-inline`          | Item      | Render an inline-level flex container.                                |
-| `fri-flex-grow`            | Item      | Allow the container to grow when it is itself a flex item.            |
-| `fri-flex-grow-0`          | Item      | Prevent the container from growing when it is itself a flex item.     |
-| `fri-flex-shrink`          | Item      | Allow the container to shrink when it is itself a flex item.          |
-| `fri-flex-shrink-0`        | Item      | Prevent the container from shrinking when it is itself a flex item.   |
-| `fri-flex-basis-auto`      | Item      | Set the container's base size to auto.                                |
-| `fri-flex-basis-full`      | Item      | Set the container's base size to full.                                |
-| `fri-flex-basis-0`         | Item      | Set the container's base size to 0.                                   |
-| `fri-flex-1`               | Item      | Flex shorthand: grow and shrink, ignoring initial size.               |
-| `fri-flex-auto`            | Item      | Flex shorthand: grow and shrink, based on initial size.               |
-| `fri-flex-initial`         | Item      | Flex shorthand: shrink only, based on initial size.                   |
-| `fri-flex-none`            | Item      | Flex shorthand: don't grow or shrink.                                 |
-| `fri-gap-2xs` … `-gap-4xl` | Spacing | Shared gap between children, 2xs to 4xl. |
-| `fri-gap-x-2xs` … `-gap-x-4xl` | Spacing | Shared horizontal gap, 2xs to 4xl. |
-| `fri-gap-y-2xs` … `-gap-y-4xl` | Spacing | Shared vertical gap, 2xs to 4xl. |
-| `fri-p-2xs` … `-p-4xl` | Spacing | Shared padding on all sides, 2xs to 4xl. |
-| `fri-px-2xs` … `-px-4xl` | Spacing | Shared horizontal (inline) padding, 2xs to 4xl. |
-| `fri-py-2xs` … `-py-4xl` | Spacing | Shared vertical (block) padding, 2xs to 4xl. |
-| `fri-pt-2xs` … `-pt-4xl` | Spacing | Shared top padding, 2xs to 4xl. |
-| `fri-pr-2xs` … `-pr-4xl` | Spacing | Shared right padding, 2xs to 4xl. |
-| `fri-pb-2xs` … `-pb-4xl` | Spacing | Shared bottom padding, 2xs to 4xl. |
-| `fri-pl-2xs` … `-pl-4xl` | Spacing | Shared left padding, 2xs to 4xl. |
+| Class                          | Type      | Description                                                           |
+| ------------------------------ | --------- | --------------------------------------------------------------------- |
+| `fri-flex`                     | Base      | Base container: row direction, stretch align, start justify, no-wrap. |
+| `fri-flex-row`                 | Direction | Row direction (default).                                              |
+| `fri-flex-column`              | Direction | Column direction.                                                     |
+| `fri-flex-row-reverse`         | Direction | Row-reverse direction.                                                |
+| `fri-flex-column-reverse`      | Direction | Column-reverse direction.                                             |
+| `fri-flex-align-start`         | Align     | Align items to the start of the cross axis.                           |
+| `fri-flex-align-center`        | Align     | Center items on the cross axis.                                       |
+| `fri-flex-align-end`           | Align     | Align items to the end of the cross axis.                             |
+| `fri-flex-align-stretch`       | Align     | Stretch items to fill the cross axis (default).                       |
+| `fri-flex-align-baseline`      | Align     | Align items along their text baseline.                                |
+| `fri-flex-justify-start`       | Justify   | Justify content to the start of the main axis (default).              |
+| `fri-flex-justify-center`      | Justify   | Center content on the main axis.                                      |
+| `fri-flex-justify-end`         | Justify   | Justify content to the end of the main axis.                          |
+| `fri-flex-justify-between`     | Justify   | Distribute content with space between items.                          |
+| `fri-flex-justify-around`      | Justify   | Distribute content with space around items.                           |
+| `fri-flex-justify-evenly`      | Justify   | Distribute content with even space between items.                     |
+| `fri-flex-nowrap`              | Wrap      | Prevent children from wrapping (default).                             |
+| `fri-flex-wrap`                | Wrap      | Allow children to wrap onto multiple lines.                           |
+| `fri-flex-wrap-reverse`        | Wrap      | Allow children to wrap onto multiple lines in reverse order.          |
+| `fri-flex-inline`              | Item      | Render an inline-level flex container.                                |
+| `fri-flex-grow`                | Item      | Allow the container to grow when it is itself a flex item.            |
+| `fri-flex-grow-0`              | Item      | Prevent the container from growing when it is itself a flex item.     |
+| `fri-flex-shrink`              | Item      | Allow the container to shrink when it is itself a flex item.          |
+| `fri-flex-shrink-0`            | Item      | Prevent the container from shrinking when it is itself a flex item.   |
+| `fri-flex-basis-auto`          | Item      | Set the container's base size to auto.                                |
+| `fri-flex-basis-full`          | Item      | Set the container's base size to full.                                |
+| `fri-flex-basis-0`             | Item      | Set the container's base size to 0.                                   |
+| `fri-flex-1`                   | Item      | Flex shorthand: grow and shrink, ignoring initial size.               |
+| `fri-flex-auto`                | Item      | Flex shorthand: grow and shrink, based on initial size.               |
+| `fri-flex-initial`             | Item      | Flex shorthand: shrink only, based on initial size.                   |
+| `fri-flex-none`                | Item      | Flex shorthand: don't grow or shrink.                                 |
+| `fri-gap-2xs` … `-gap-4xl`     | Spacing   | Shared gap between children, 2xs to 4xl.                              |
+| `fri-gap-x-2xs` … `-gap-x-4xl` | Spacing   | Shared horizontal gap, 2xs to 4xl.                                    |
+| `fri-gap-y-2xs` … `-gap-y-4xl` | Spacing   | Shared vertical gap, 2xs to 4xl.                                      |
+| `fri-p-2xs` … `-p-4xl`         | Spacing   | Shared padding on all sides, 2xs to 4xl.                              |
+| `fri-px-2xs` … `-px-4xl`       | Spacing   | Shared horizontal (inline) padding, 2xs to 4xl.                       |
+| `fri-py-2xs` … `-py-4xl`       | Spacing   | Shared vertical (block) padding, 2xs to 4xl.                          |
+| `fri-pt-2xs` … `-pt-4xl`       | Spacing   | Shared top padding, 2xs to 4xl.                                       |
+| `fri-pr-2xs` … `-pr-4xl`       | Spacing   | Shared right padding, 2xs to 4xl.                                     |
+| `fri-pb-2xs` … `-pb-4xl`       | Spacing   | Shared bottom padding, 2xs to 4xl.                                    |
+| `fri-pl-2xs` … `-pl-4xl`       | Spacing   | Shared left padding, 2xs to 4xl.                                      |
 
 ## Accessibility
 

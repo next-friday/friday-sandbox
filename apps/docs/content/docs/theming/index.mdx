@@ -34,21 +34,21 @@ values — the base fill, its `-foreground`, a soft `-secondary` fill, and the
 `-secondary-foreground` on it. The `surface` family seeds its two fills only;
 content on a surface inherits the page foreground.
 
-| Token                                                        | Role                                  |
-| ------------------------------------------------------------ | ------------------------------------- |
-| `--fri-background` / `--fri-foreground`                      | Page ground and default text          |
-| `--fri-foreground-secondary` / `--fri-foreground-tertiary`   | Muted text tiers                      |
-| `--fri-surface` / `--fri-surface-secondary`                  | Surface fills for cards and panels    |
-| `--fri-stroke`                                               | Line color for borders and separators |
-| `--fri-primary` / `--fri-primary-foreground`                 | Primary action                        |
-| `--fri-secondary` / `--fri-secondary-foreground`             | Secondary action                      |
-| `--fri-accent` / `--fri-accent-foreground`                   | Accent                                |
-| `--fri-info` / `--fri-info-foreground`                       | Info                                  |
-| `--fri-success` / `--fri-success-foreground`                 | Success                               |
-| `--fri-warning` / `--fri-warning-foreground`                 | Warning                               |
-| `--fri-danger` / `--fri-danger-foreground`                   | Danger                                |
-| `--fri-<role>-secondary` / `--fri-<role>-secondary-foreground` | Soft fill per role and its text     |
-| `--fri-focus`                                                | Focus ring                            |
+| Token                                                          | Role                                  |
+| -------------------------------------------------------------- | ------------------------------------- |
+| `--fri-background` / `--fri-foreground`                        | Page ground and default text          |
+| `--fri-foreground-secondary` / `--fri-foreground-tertiary`     | Muted text tiers                      |
+| `--fri-surface` / `--fri-surface-secondary`                    | Surface fills for cards and panels    |
+| `--fri-stroke`                                                 | Line color for borders and separators |
+| `--fri-primary` / `--fri-primary-foreground`                   | Primary action                        |
+| `--fri-secondary` / `--fri-secondary-foreground`               | Secondary action                      |
+| `--fri-accent` / `--fri-accent-foreground`                     | Accent                                |
+| `--fri-info` / `--fri-info-foreground`                         | Info                                  |
+| `--fri-success` / `--fri-success-foreground`                   | Success                               |
+| `--fri-warning` / `--fri-warning-foreground`                   | Warning                               |
+| `--fri-danger` / `--fri-danger-foreground`                     | Danger                                |
+| `--fri-<role>-secondary` / `--fri-<role>-secondary-foreground` | Soft fill per role and its text       |
+| `--fri-focus`                                                  | Focus ring                            |
 
 The spacing, type, radius, and motion scales are seeds too — override
 them the same way when a theme needs to reshape more than color.
@@ -70,7 +70,9 @@ subtree. Set the theme's own `color-scheme` and every seed it changes:
 ```
 
 ```html
-<html data-theme="brand"> ... </html>
+<html data-theme="brand">
+  ...
+</html>
 ```
 
 A named theme replaces the mode: it carries its own `color-scheme` and seeds, so
@@ -82,5 +84,7 @@ Light is the default. Switch to dark with the `data-theme="dark"` attribute or
 the `.dark` class, on `<html>` or any subtree:
 
 ```html
-<html data-theme="dark"> ... </html>
+<html data-theme="dark">
+  ...
+</html>
 ```

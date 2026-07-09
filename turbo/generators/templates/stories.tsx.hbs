@@ -7,6 +7,21 @@ const meta = {
   title: "Bases/{{ category }}/{{ pascalCase name }}",
   component: {{ pascalCase name }},
   tags: ["autodocs"],
+  parameters: {
+    docs: {
+      description: {
+        component: [
+          "{{ pascalCase name }} component.",
+          "",
+          "## Import",
+          "",
+          "```tsx",
+          'import { {{ pascalCase name }} } from "@friday-sandbox/react";',
+          "```",
+        ].join("\n"),
+      },
+    },
+  },
   argTypes: {
     className: {
       description: "Additional CSS classes to apply to the {{ kebabCase name }}.",
@@ -30,3 +45,8 @@ export const Default: Story = {
     await expect(element).toBeInTheDocument();
   },
 };
+{{!-- Showcase trio only (.claude/rules/stories-docs-sync.md): add a Variants or
+   Sizes story only when you add that axis (a color or shape axis joins the
+   Variants grid) — lint:symmetry checks axis → story → doc section. Every
+   further story is a designer use case, authored after ship and mirrored by a
+   same-named ## section (component-docs). --}}

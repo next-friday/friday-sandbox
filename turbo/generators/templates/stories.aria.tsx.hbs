@@ -10,6 +10,21 @@ const meta = {
   title: "Bases/{{ category }}/{{ pascalCase name }}",
   component: {{ pascalCase name }},
   tags: ["autodocs"],
+  parameters: {
+    docs: {
+      description: {
+        component: [
+          "{{ pascalCase name }} component.",
+          "",
+          "## Import",
+          "",
+          "```tsx",
+          'import { {{ pascalCase name }} } from "@friday-sandbox/react";',
+          "```",
+        ].join("\n"),
+      },
+    },
+  },
   args: {
     children: "{{ pascalCase name }}",
   },
@@ -53,6 +68,9 @@ export const Default: Story = {
     await expect(element).toHaveFocus();
   },
 };
+{{!-- This play is the contract: adapt the queries to the real element (a void
+   element has no text child — use getByRole + toHaveAttribute), add or remove
+   no assertion. More behavior belongs to a designer's use-case story. --}}
 
 export const Sizes: Story = {
   parameters: {
@@ -64,11 +82,30 @@ export const Sizes: Story = {
   },
   render: (storyArgs) => (
     <Flex wrap="wrap" align="center" gap="md">
-      {SIZES.map((size) => (
-        <{{ pascalCase name }} key={size.value} {...storyArgs} size={size.value}>
-          {size.label}
-        </{{ pascalCase name }}>
-      ))}
+      <{{ pascalCase name }} {...storyArgs} size="xs">
+        Extra small
+      </{{ pascalCase name }}>
+
+      <{{ pascalCase name }} {...storyArgs} size="sm">
+        Small
+      </{{ pascalCase name }}>
+
+      <{{ pascalCase name }} {...storyArgs} size="md">
+        Medium
+      </{{ pascalCase name }}>
+
+      <{{ pascalCase name }} {...storyArgs} size="lg">
+        Large
+      </{{ pascalCase name }}>
+
+      <{{ pascalCase name }} {...storyArgs} size="xl">
+        Extra large
+      </{{ pascalCase name }}>
     </Flex>
   ),
 };
+{{!-- Showcase trio only (.claude/rules/stories-docs-sync.md): keep Default and
+   Sizes; add a Variants story only when the issue defines a variant axis (a
+   color or shape axis joins that grid) — lint:symmetry checks axis → story →
+   doc section. Every further story is a designer use case, authored after ship
+   and mirrored by a same-named ## section (component-docs). --}}

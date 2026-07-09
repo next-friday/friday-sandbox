@@ -17,7 +17,7 @@ const fixFile = (filePath: string): void => {
   for (const attribute of ARIA_ATTRIBUTES) {
     const bare = new RegExp(String.raw`\[${attribute}\](?!=)`, "g");
     if (bare.test(css)) {
-      css = css.replace(bare, () => `[${attribute}="true"]`);
+      css = css.replace(bare, `[${attribute}="true"]`);
       hasChange = true;
     }
   }
@@ -25,8 +25,7 @@ const fixFile = (filePath: string): void => {
 };
 
 const walk = (directory: string): void => {
-  const entries = fs.readdirSync(directory, { withFileTypes: true });
-  for (const entry of entries) {
+  for (const entry of fs.readdirSync(directory, { withFileTypes: true })) {
     const entryPath = path.join(directory, entry.name);
     if (entry.isDirectory()) walk(entryPath);
     else if (entry.name.endsWith(".css")) fixFile(entryPath);

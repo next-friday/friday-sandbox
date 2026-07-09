@@ -15,6 +15,9 @@ export type { FlexProps } from "./flex";
 export { Grid, GridItem } from "./grid";
 export type { GridItemProps, GridProps } from "./grid";
 
+export { Input } from "./input";
+export type { InputProps } from "./input";
+
 export { Link, LinkIcon } from "./link";
 export type { LinkProps, LinkIconProps } from "./link";
 

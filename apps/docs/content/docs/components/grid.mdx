@@ -74,48 +74,50 @@ The `cols` prop sets equal-width columns from 1 to 12. Use `"auto-fit"` or
 
 ## Props
 
+### Grid Props
+
 `Grid` also accepts an `as` prop (default `"div"`) to render as a different
 element.
 
-| Prop        | Default | Type                                                                                                                                                           |
-| ----------- | ------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `cols`      | `1`     | `1 \| 2 \| 3 \| 4 \| 5 \| 6 \| 7 \| 8 \| 9 \| 10 \| 11 \| 12 \| "auto-fit" \| "auto-fill"`<br />Sets the number of equal-width columns, or a responsive track. |
-| `rows`      | —       | `1 \| 2 \| 3 \| 4 \| 5 \| 6`<br />Sets a fixed number of rows.                                                                                                 |
-| `flow`      | `"row"` | `"row" \| "col" \| "row-dense" \| "col-dense"`<br />Controls how items fill the grid.                                                                          |
-| `inline`    | `false` | `boolean`<br />Renders an inline-level grid container.                                                                                                         |
-| `autoRows`  | —       | `"auto" \| "min" \| "max" \| "fr"`<br />Sizes implicitly-created rows.                                                                                         |
-| `autoCols`  | —       | `"auto" \| "min" \| "max" \| "fr"`<br />Sizes implicitly-created columns.                                                                                      |
-| `gap`       | —       | `"2xs" \| "xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl" \| "3xl" \| "4xl"`<br />Sets the gap between all cells.                                                |
-| `gapX`      | —       | `"2xs" \| "xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl" \| "3xl" \| "4xl"`<br />Sets the horizontal gap only.                                                  |
-| `gapY`      | —       | `"2xs" \| "xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl" \| "3xl" \| "4xl"`<br />Sets the vertical gap only.                                                    |
-| `p`         | —       | `"2xs" \| "xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl" \| "3xl" \| "4xl"`<br />Sets padding on all sides.                                                     |
-| `px`        | —       | `"2xs" \| "xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl" \| "3xl" \| "4xl"`<br />Sets horizontal (inline) padding.                                              |
-| `py`        | —       | `"2xs" \| "xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl" \| "3xl" \| "4xl"`<br />Sets vertical (block) padding.                                                 |
-| `pt`        | —       | `"2xs" \| "xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl" \| "3xl" \| "4xl"`<br />Sets top padding.                                                              |
-| `pr`        | —       | `"2xs" \| "xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl" \| "3xl" \| "4xl"`<br />Sets right padding.                                                            |
-| `pb`        | —       | `"2xs" \| "xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl" \| "3xl" \| "4xl"`<br />Sets bottom padding.                                                           |
-| `pl`        | —       | `"2xs" \| "xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl" \| "3xl" \| "4xl"`<br />Sets left padding.                                                             |
-| `className` | —       | `string`<br />Additional CSS classes to apply.                                                                                                                 |
+| Prop        | Type                                                                                       | Default | Description                                                    |
+| ----------- | ------------------------------------------------------------------------------------------ | ------- | -------------------------------------------------------------- |
+| `cols`      | `1 \| 2 \| 3 \| 4 \| 5 \| 6 \| 7 \| 8 \| 9 \| 10 \| 11 \| 12 \| "auto-fit" \| "auto-fill"` | `1`     | Sets the number of equal-width columns, or a responsive track. |
+| `rows`      | `1 \| 2 \| 3 \| 4 \| 5 \| 6`                                                               | —       | Sets a fixed number of rows.                                   |
+| `flow`      | `"row" \| "col" \| "row-dense" \| "col-dense"`                                             | `"row"` | Controls how items fill the grid.                              |
+| `inline`    | `boolean`                                                                                  | `false` | Renders an inline-level grid container.                        |
+| `autoRows`  | `"auto" \| "min" \| "max" \| "fr"`                                                         | —       | Sizes implicitly-created rows.                                 |
+| `autoCols`  | `"auto" \| "min" \| "max" \| "fr"`                                                         | —       | Sizes implicitly-created columns.                              |
+| `gap`       | `"2xs" \| "xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl" \| "3xl" \| "4xl"`                 | —       | Sets the gap between all cells.                                |
+| `gapX`      | `"2xs" \| "xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl" \| "3xl" \| "4xl"`                 | —       | Sets the horizontal gap only.                                  |
+| `gapY`      | `"2xs" \| "xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl" \| "3xl" \| "4xl"`                 | —       | Sets the vertical gap only.                                    |
+| `p`         | `"2xs" \| "xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl" \| "3xl" \| "4xl"`                 | —       | Sets padding on all sides.                                     |
+| `px`        | `"2xs" \| "xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl" \| "3xl" \| "4xl"`                 | —       | Sets horizontal (inline) padding.                              |
+| `py`        | `"2xs" \| "xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl" \| "3xl" \| "4xl"`                 | —       | Sets vertical (block) padding.                                 |
+| `pt`        | `"2xs" \| "xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl" \| "3xl" \| "4xl"`                 | —       | Sets top padding.                                              |
+| `pr`        | `"2xs" \| "xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl" \| "3xl" \| "4xl"`                 | —       | Sets right padding.                                            |
+| `pb`        | `"2xs" \| "xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl" \| "3xl" \| "4xl"`                 | —       | Sets bottom padding.                                           |
+| `pl`        | `"2xs" \| "xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl" \| "3xl" \| "4xl"`                 | —       | Sets left padding.                                             |
+| `className` | `string`                                                                                   | —       | Additional CSS classes to apply.                               |
 
-### GridItem props
+### Grid.Item Props
 
-`GridItem` also accepts an `as` prop (default `"div"`) and a `className` string.
+`Grid.Item` also accepts an `as` prop (default `"div"`) and a `className` string.
 
-| Prop       | Default | Type                                                                                                              |
-| ---------- | ------- | ----------------------------------------------------------------------------------------------------------------- |
-| `colSpan`  | —       | `1 \| 2 \| 3 \| 4 \| 5 \| 6 \| 7 \| 8 \| 9 \| 10 \| 11 \| 12 \| "full"`<br />Number of columns the item spans.    |
-| `rowSpan`  | —       | `1 \| 2 \| 3 \| 4 \| 5 \| 6`<br />Number of rows the item spans.                                                  |
-| `colStart` | —       | `1 \| 2 \| 3 \| 4 \| 5 \| 6 \| 7 \| 8 \| 9 \| 10 \| 11 \| 12 \| 13`<br />Column line the item starts at.          |
-| `colEnd`   | —       | `1 \| 2 \| 3 \| 4 \| 5 \| 6 \| 7 \| 8 \| 9 \| 10 \| 11 \| 12 \| 13`<br />Column line the item ends at.            |
-| `rowStart` | —       | `1 \| 2 \| 3 \| 4 \| 5 \| 6 \| 7`<br />Row line the item starts at.                                               |
-| `rowEnd`   | —       | `1 \| 2 \| 3 \| 4 \| 5 \| 6 \| 7`<br />Row line the item ends at.                                                 |
-| `p`        | —       | `"2xs" \| "xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl" \| "3xl" \| "4xl"`<br />Sets padding on all sides.        |
-| `px`       | —       | `"2xs" \| "xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl" \| "3xl" \| "4xl"`<br />Sets horizontal (inline) padding. |
-| `py`       | —       | `"2xs" \| "xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl" \| "3xl" \| "4xl"`<br />Sets vertical (block) padding.    |
-| `pt`       | —       | `"2xs" \| "xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl" \| "3xl" \| "4xl"`<br />Sets top padding.                 |
-| `pr`       | —       | `"2xs" \| "xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl" \| "3xl" \| "4xl"`<br />Sets right padding.               |
-| `pb`       | —       | `"2xs" \| "xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl" \| "3xl" \| "4xl"`<br />Sets bottom padding.              |
-| `pl`       | —       | `"2xs" \| "xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl" \| "3xl" \| "4xl"`<br />Sets left padding.                |
+| Prop       | Type                                                                       | Default | Description                       |
+| ---------- | -------------------------------------------------------------------------- | ------- | --------------------------------- |
+| `colSpan`  | `1 \| 2 \| 3 \| 4 \| 5 \| 6 \| 7 \| 8 \| 9 \| 10 \| 11 \| 12 \| "full"`    | —       | Number of columns the item spans. |
+| `rowSpan`  | `1 \| 2 \| 3 \| 4 \| 5 \| 6`                                               | —       | Number of rows the item spans.    |
+| `colStart` | `1 \| 2 \| 3 \| 4 \| 5 \| 6 \| 7 \| 8 \| 9 \| 10 \| 11 \| 12 \| 13`        | —       | Column line the item starts at.   |
+| `colEnd`   | `1 \| 2 \| 3 \| 4 \| 5 \| 6 \| 7 \| 8 \| 9 \| 10 \| 11 \| 12 \| 13`        | —       | Column line the item ends at.     |
+| `rowStart` | `1 \| 2 \| 3 \| 4 \| 5 \| 6 \| 7`                                          | —       | Row line the item starts at.      |
+| `rowEnd`   | `1 \| 2 \| 3 \| 4 \| 5 \| 6 \| 7`                                          | —       | Row line the item ends at.        |
+| `p`        | `"2xs" \| "xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl" \| "3xl" \| "4xl"` | —       | Sets padding on all sides.        |
+| `px`       | `"2xs" \| "xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl" \| "3xl" \| "4xl"` | —       | Sets horizontal (inline) padding. |
+| `py`       | `"2xs" \| "xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl" \| "3xl" \| "4xl"` | —       | Sets vertical (block) padding.    |
+| `pt`       | `"2xs" \| "xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl" \| "3xl" \| "4xl"` | —       | Sets top padding.                 |
+| `pr`       | `"2xs" \| "xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl" \| "3xl" \| "4xl"` | —       | Sets right padding.               |
+| `pb`       | `"2xs" \| "xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl" \| "3xl" \| "4xl"` | —       | Sets bottom padding.              |
+| `pl`       | `"2xs" \| "xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl" \| "3xl" \| "4xl"` | —       | Sets left padding.                |
 
 ## Styling
 
@@ -151,16 +153,16 @@ element.
 | `fri-grid-item-row-span-1` … `-row-span-6`    | Row span  | Span 1 to 6 rows.                                                     |
 | `fri-grid-item-row-start-1` … `-row-start-7`  | Row start | Start at row line 1 to 7.                                             |
 | `fri-grid-item-row-end-1` … `-row-end-7`      | Row end   | End at row line 1 to 7.                                               |
-| `fri-gap-2xs` … `-gap-4xl` | Spacing | Shared gap between cells, 2xs to 4xl. |
-| `fri-gap-x-2xs` … `-gap-x-4xl` | Spacing | Shared horizontal gap, 2xs to 4xl. |
-| `fri-gap-y-2xs` … `-gap-y-4xl` | Spacing | Shared vertical gap, 2xs to 4xl. |
-| `fri-p-2xs` … `-p-4xl` | Spacing | Shared padding on all sides, 2xs to 4xl. |
-| `fri-px-2xs` … `-px-4xl` | Spacing | Shared horizontal (inline) padding, 2xs to 4xl. |
-| `fri-py-2xs` … `-py-4xl` | Spacing | Shared vertical (block) padding, 2xs to 4xl. |
-| `fri-pt-2xs` … `-pt-4xl` | Spacing | Shared top padding, 2xs to 4xl. |
-| `fri-pr-2xs` … `-pr-4xl` | Spacing | Shared right padding, 2xs to 4xl. |
-| `fri-pb-2xs` … `-pb-4xl` | Spacing | Shared bottom padding, 2xs to 4xl. |
-| `fri-pl-2xs` … `-pl-4xl` | Spacing | Shared left padding, 2xs to 4xl. |
+| `fri-gap-2xs` … `-gap-4xl`                    | Spacing   | Shared gap between cells, 2xs to 4xl.                                 |
+| `fri-gap-x-2xs` … `-gap-x-4xl`                | Spacing   | Shared horizontal gap, 2xs to 4xl.                                    |
+| `fri-gap-y-2xs` … `-gap-y-4xl`                | Spacing   | Shared vertical gap, 2xs to 4xl.                                      |
+| `fri-p-2xs` … `-p-4xl`                        | Spacing   | Shared padding on all sides, 2xs to 4xl.                              |
+| `fri-px-2xs` … `-px-4xl`                      | Spacing   | Shared horizontal (inline) padding, 2xs to 4xl.                       |
+| `fri-py-2xs` … `-py-4xl`                      | Spacing   | Shared vertical (block) padding, 2xs to 4xl.                          |
+| `fri-pt-2xs` … `-pt-4xl`                      | Spacing   | Shared top padding, 2xs to 4xl.                                       |
+| `fri-pr-2xs` … `-pr-4xl`                      | Spacing   | Shared right padding, 2xs to 4xl.                                     |
+| `fri-pb-2xs` … `-pb-4xl`                      | Spacing   | Shared bottom padding, 2xs to 4xl.                                    |
+| `fri-pl-2xs` … `-pl-4xl`                      | Spacing   | Shared left padding, 2xs to 4xl.                                      |
 
 ## Accessibility
 

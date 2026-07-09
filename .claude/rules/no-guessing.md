@@ -18,8 +18,8 @@ source and never the first step; recall only hints which doc to open.
 **Discover the repo, don't recall it.** The repo is the source of truth for its
 own shape. Before acting on where a file lives, whether it is generated or
 authored, published or private, what a token is named, or which CI check is
-required, grep and read the real tree, run the component-generator engine and
-read its emitted output, or read the gate's own output — never act from "how repos usually work." An
+required, grep and read the real tree, run `pnpm gen` and read its output, or
+read the gate's own output — never act from "how repos usually work." An
 existing helper, component, or token is found by searching for it before
 creating one; the generator then enforces the canonical shape. This is
 no-guessing applied to the codebase itself.

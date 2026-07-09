@@ -21,7 +21,7 @@ The `chore(release): version packages` PR is produced by `changesets/action`. It
 
 ## Components: `packages/react/src/components/bases/**`
 
-Architecture and the `fri-<name>` react↔styles contract live in `.claude/rules/architecture.md`. A base component is generated from a `ComponentSpec` by the `component-generator` engine (`packages/component-generator`, run via its `cli.ts`), never hand-created. Flag in a base component's diff:
+Architecture and the `fri-<name>` react↔styles contract live in `.claude/rules/architecture.md`. A base component is generated (`pnpm gen component`), never hand-created. Flag in a base component's diff:
 
 - Lowercase filename such as `button.tsx`, not `Button.tsx`; a named export with the `Props` type colocated; no default export.
 - `"use client"` only when a client API such as `useState`, `useEffect`, refs, or event handlers — or a `react-aria-components` / `radix` client primitive — is touched; flag a needless directive on a pure layout or text component.
@@ -35,7 +35,7 @@ Architecture and the `fri-<name>` react↔styles contract live in `.claude/rules
 Key checks for accessibility and stories:
 
 - Keyboard reachable, focus visible, ARIA only where the DOM does not convey intent, motion respects `prefers-reduced-motion`; the story passes `addon-a11y`.
-- Cover every variant value — a showcase story per axis (`Variants`, `Colors`, `Sizes`, laid out with `Flex`/`Grid`) and per state — using real props rather than mocked data. Never a raw `<div>` for layout or placeholders; pull placeholder content from the samples subpath (`@friday-sandbox/react/samples`: `Boxes`, `Lorem`).
+- Showcase stories are the trio only — `Default`, plus `Variants` when a `variant` axis exists (every value, laid out with `Flex`/`Grid`; a color or shape axis joins that grid), plus `Sizes` for a `size` axis — using real props rather than mocked data. Every further story is a hand-authored use case mirrored by a same-named `##` section in the component's doc page; flag a per-state or per-value story and a use-case story with no matching section. Never a raw `<div>` for layout or placeholders; pull placeholder content from the samples subpath (`@friday-sandbox/react/samples`: `Boxes`, `Lorem`).
 - Show only the props an example demonstrates — never restate a component default (`variant="solid"`, `size="md"`). `meta.args` holds content and non-default values only (gated by `lint:symmetry`); a value equal to the default appears only inside the showcase story or doc section for that exact axis.
 - Stories are the test suite (the testing setup is in `CLAUDE.md`). A `play` function asserts behavior only where it fits: an interactive base gets `Default` (interaction — `userEvent.tab()` → `toHaveFocus`); a display or layout base (`text`, `flex`, `grid`, `separator`, `spinner`) skips the `userEvent` interaction plays, so never ask one for an interaction play, though a presence or `getComputedStyle` assertion on `Default` still fits.
 - No separate `*.test.*` files exist or belong here; a behavior is verified by its story. Flag a new test file and ask for a `*.stories.tsx` play function instead.
