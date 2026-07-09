@@ -16,6 +16,7 @@ pnpm exec prettier --check \
   "packages/styles/src/components/$name.css" \
   "apps/docs/content/docs/components/$name.mdx"
 pnpm --filter @friday-sandbox/react exec eslint "src/components/bases/$name" --max-warnings 0
+pnpm exec markdownlint-cli2 "apps/docs/content/docs/components/$name.mdx"
 pnpm lint:symmetry
 
-echo "✓ $name verified: stories, types (react + styles), prettier, eslint, symmetry"
+echo "✓ $name verified: stories, types (react + styles), prettier, eslint, markdownlint, symmetry"
