@@ -16,21 +16,6 @@ const meta = {
   title: "Bases/Media/Avatar",
   component: Avatar,
   tags: ["autodocs"],
-  parameters: {
-    docs: {
-      description: {
-        component: [
-          "Displays a user's image, falling back to initials or custom content. Compose `Avatar.Image` and `Avatar.Fallback` inside `Avatar`, and overlap several with `Avatar.Group`.",
-          "",
-          "## Import",
-          "",
-          "```tsx",
-          'import { Avatar } from "@friday-sandbox/react";',
-          "```",
-        ].join("\n"),
-      },
-    },
-  },
   argTypes: {
     size: {
       description: "Use the `size` prop to set the avatar diameter.",
@@ -74,8 +59,8 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   render: (storyArgs) => (
     <Avatar {...storyArgs}>
-      <Avatar.Image alt="Jane Doe" src={AVATAR_SRC} />
-      <Avatar.Fallback>JD</Avatar.Fallback>
+      <Avatar.Image alt="Avatar" src={AVATAR_SRC} />
+      <Avatar.Fallback>AV</Avatar.Fallback>
     </Avatar>
   ),
   play: async ({ canvasElement }) => {
@@ -123,84 +108,6 @@ export const Sizes: Story = {
   ),
 };
 
-export const Shapes: Story = {
-  parameters: {
-    docs: {
-      description: {
-        story:
-          "Use the `shape` prop: `square`, a size-scaled `radius`, or a `full` circle.",
-      },
-    },
-  },
-  render: () => (
-    <Flex align="center" gap="md">
-      <Avatar shape="square" size="lg">
-        <Avatar.Image alt="Square" src={AVATAR_SRC} />
-        <Avatar.Fallback>SQ</Avatar.Fallback>
-      </Avatar>
-
-      <Avatar shape="radius" size="lg">
-        <Avatar.Image alt="Radius" src={AVATAR_SRC} />
-        <Avatar.Fallback>RA</Avatar.Fallback>
-      </Avatar>
-
-      <Avatar shape="full" size="lg">
-        <Avatar.Image alt="Full" src={AVATAR_SRC} />
-        <Avatar.Fallback>FU</Avatar.Fallback>
-      </Avatar>
-    </Flex>
-  ),
-};
-
-export const States: Story = {
-  parameters: {
-    docs: {
-      description: {
-        story: "Set `isDisabled` to dim an inactive avatar.",
-      },
-    },
-  },
-  render: () => (
-    <Flex align="center" gap="md">
-      <Avatar size="lg">
-        <Avatar.Fallback>ON</Avatar.Fallback>
-      </Avatar>
-
-      <Avatar size="lg" isDisabled>
-        <Avatar.Fallback>JD</Avatar.Fallback>
-      </Avatar>
-    </Flex>
-  ),
-};
-
-export const Fallback: Story = {
-  parameters: {
-    docs: {
-      description: {
-        story:
-          "`Avatar.Fallback` renders when no image is set or the image fails to load. Pass initials or custom content as children, and use `delayMs` to avoid a flash on a fast connection.",
-      },
-    },
-  },
-  render: () => (
-    <Flex align="center" gap="md">
-      <Avatar size="lg">
-        <Avatar.Image alt="Loaded" src={AVATAR_SRC} />
-        <Avatar.Fallback>IM</Avatar.Fallback>
-      </Avatar>
-
-      <Avatar size="lg">
-        <Avatar.Fallback>JD</Avatar.Fallback>
-      </Avatar>
-
-      <Avatar size="lg">
-        <Avatar.Image alt="Broken" src={BROKEN_SRC} />
-        <Avatar.Fallback delayMs={300}>BR</Avatar.Fallback>
-      </Avatar>
-    </Flex>
-  ),
-};
-
 export const Group: Story = {
   parameters: {
     docs: {
@@ -233,7 +140,7 @@ export const Group: Story = {
         </Avatar>
       </Avatar.Group>
 
-      <Avatar.Group size="lg" ring={false}>
+      <Avatar.Group ring={false}>
         <Avatar>
           <Avatar.Fallback>A</Avatar.Fallback>
         </Avatar>
@@ -247,7 +154,7 @@ export const Group: Story = {
         </Avatar>
       </Avatar.Group>
 
-      <Avatar.Group size="lg" stacking="first-on-top">
+      <Avatar.Group stacking="first-on-top">
         <Avatar>
           <Avatar.Fallback>A</Avatar.Fallback>
         </Avatar>
@@ -266,10 +173,10 @@ export const Group: Story = {
     const groups = canvasElement.querySelectorAll<HTMLElement>(
       '[data-slot="avatar-group"]',
     );
-    const defaultGroup = groups[0]!;
+    const cascadeGroup = groups[0]!;
     const firstOnTopGroup = groups[2]!;
 
-    const cascadeChild = defaultGroup.querySelector<HTMLElement>(
+    const cascadeChild = cascadeGroup.querySelector<HTMLElement>(
       '[data-slot="avatar"]',
     )!;
     await expect(
@@ -283,4 +190,82 @@ export const Group: Story = {
     const lastZ = Number(getComputedStyle(stackedChildren.at(-1)!).zIndex);
     await expect(firstZ).toBeGreaterThan(lastZ);
   },
+};
+
+export const Shapes: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Use the `shape` prop: `square`, a size-scaled `radius`, or a `full` circle.",
+      },
+    },
+  },
+  render: () => (
+    <Flex align="center" gap="md">
+      <Avatar shape="square">
+        <Avatar.Image alt="Square" src={AVATAR_SRC} />
+        <Avatar.Fallback>SQ</Avatar.Fallback>
+      </Avatar>
+
+      <Avatar shape="radius">
+        <Avatar.Image alt="Radius" src={AVATAR_SRC} />
+        <Avatar.Fallback>RA</Avatar.Fallback>
+      </Avatar>
+
+      <Avatar shape="full">
+        <Avatar.Image alt="Full" src={AVATAR_SRC} />
+        <Avatar.Fallback>FU</Avatar.Fallback>
+      </Avatar>
+    </Flex>
+  ),
+};
+
+export const States: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: "Set `isDisabled` to dim an inactive avatar.",
+      },
+    },
+  },
+  render: () => (
+    <Flex align="center" gap="md">
+      <Avatar>
+        <Avatar.Fallback>ON</Avatar.Fallback>
+      </Avatar>
+
+      <Avatar isDisabled>
+        <Avatar.Fallback>OFF</Avatar.Fallback>
+      </Avatar>
+    </Flex>
+  ),
+};
+
+export const Fallback: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "`Avatar.Fallback` renders when no image is set or the image fails to load. Pass initials or custom content as children, and use `delayMs` to avoid a flash on a fast connection.",
+      },
+    },
+  },
+  render: () => (
+    <Flex align="center" gap="md">
+      <Avatar>
+        <Avatar.Image alt="Loaded" src={AVATAR_SRC} />
+        <Avatar.Fallback>IM</Avatar.Fallback>
+      </Avatar>
+
+      <Avatar>
+        <Avatar.Fallback>AV</Avatar.Fallback>
+      </Avatar>
+
+      <Avatar>
+        <Avatar.Image alt="Broken" src={BROKEN_SRC} />
+        <Avatar.Fallback delayMs={300}>BR</Avatar.Fallback>
+      </Avatar>
+    </Flex>
+  ),
 };

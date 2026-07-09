@@ -1,20 +1,20 @@
 @layer components {
   .fri-avatar {
     --avatar-size: calc(var(--fri-spacing-xsmall) * var(--_avatar-n, 12));
-    --avatar-radius: calc(var(--fri-box-radius) * var(--_avatar-n, 12) / 10);
+    --avatar-radius: calc(var(--fri-box-radius) * var(--_avatar-n, 12) / 12);
     --avatar-overlap: calc(var(--avatar-size) / -4);
 
     @apply relative inline-flex size-(--avatar-size) shrink-0 items-center justify-center overflow-hidden align-middle select-none;
   }
 
+  .fri-avatar-md {
+    --_avatar-n: 12;
+  }
   .fri-avatar-xs {
     --_avatar-n: 6;
   }
   .fri-avatar-sm {
     --_avatar-n: 9;
-  }
-  .fri-avatar-md {
-    --_avatar-n: 12;
   }
   .fri-avatar-lg {
     --_avatar-n: 16;
@@ -56,14 +56,15 @@
     @apply isolate flex;
   }
 
+  :where(.fri-avatar-group),
+  .fri-avatar-group-md {
+    --_avatar-n: 12;
+  }
   .fri-avatar-group-xs {
     --_avatar-n: 6;
   }
   .fri-avatar-group-sm {
     --_avatar-n: 9;
-  }
-  .fri-avatar-group-md {
-    --_avatar-n: 12;
   }
   .fri-avatar-group-lg {
     --_avatar-n: 16;
