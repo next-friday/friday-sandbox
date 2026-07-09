@@ -27,8 +27,9 @@ Ship an approved component issue: branch → scaffold → fill → gates → PR 
    - Set the real `STORYBOOK_URL`; drop the `headless` prop when the part has no standalone page.
 8. **Compound.** Callable-root (`link`/`grid`) — pass `parts`, auto-wired. Namespace-of-parts (`scroll-area`) — scaffold single, hand-write `.namespace.ts` + barrel blocks. Props live inline in `<name>.tsx`; a compound with **three or more parts** always moves them to `<name>.types.ts` (`avatar`, `scroll-area`), one or two parts stay inline (`link`, `grid`); a single component with complex prop types may also split (`flex`).
 9. **Changeset.** Keep the generated `<name>-component.md`. A non-generated behavior change → `pnpm changeset` once.
-10. **PR.** Gates via the hooks. Title `type(scope): subject` ≤50, lowercase imperative; `Closes #<n>` in the body; fill the template. CI validates both that the body closes an issue and that the branch's `<n>-` prefix points at that OPEN issue — get the branch name right **before** opening the PR, because renaming a branch under an open PR closes the PR permanently (GitHub does not retarget it).
-11. **CI.** `gh pr checks <pr> --watch` to green; a failing check → fix by root cause, push, re-watch; "no checks configured" is not a failure. Hand the AI-review round to `component-rebut`.
+10. **Visual loop — look at what you built before pushing.** Run `pnpm --filter @friday-sandbox/react run visual <name>` — it boots (or reuses) Storybook on :6006 and screenshots every story export to a temp directory, printing the paths. Read every screenshot and judge it against the issue's design: every variant a distinct hue, every size a distinct step, tokens resolved (no browser-default rendering), layout intact, each container mechanic (a cascade, a paint order) visible. A defect → fix at the source layer, re-run, re-read; loop until every image matches the design. Never push a component whose screenshots you have not read this round.
+11. **PR.** Gates via the hooks. Title `type(scope): subject` ≤50, lowercase imperative; `Closes #<n>` in the body; fill the template. CI validates both that the body closes an issue and that the branch's `<n>-` prefix points at that OPEN issue — get the branch name right **before** opening the PR, because renaming a branch under an open PR closes the PR permanently (GitHub does not retarget it).
+12. **CI.** `gh pr checks <pr> --watch` to green; a failing check → fix by root cause, push, re-watch; "no checks configured" is not a failure. Hand the AI-review round to `component-rebut`.
 
 ## Rules
 
@@ -45,6 +46,7 @@ Ship an approved component issue: branch → scaffold → fill → gates → PR 
 
 - `<name>.styles.ts` and `<name>.css` mirror 1:1 — every class on both sides, no orphan, every value distinct.
 - Scoped run passes: `bash "${CLAUDE_SKILL_DIR}/scripts/verify-component.sh" <name>` (stories, types, eslint, symmetry in one shot).
+- The visual loop ran on the final code: every screenshot from `pnpm --filter @friday-sandbox/react run visual <name>` read and matched to the issue's design this round.
 - The audit is clean: two parallel un-merged sub-agents on opus — **Standards** (token ladder, `:where()` default, ramp geometry, doc-skeletons spine, `data-slot`) and **Spec** (right primitive, planned ladder, every demo, scope creep), grading Critical/Important/Minor; every Critical and Important fixed; builder ≠ verifier.
 - Branch matches `^<n>-`; title parses ≤50; one changeset covers the change; gates green via the hooks + CI. Escalate to `component-blueprint` after the third thrashing fix ([`references/DIAGNOSING.md`](references/DIAGNOSING.md)).
 
