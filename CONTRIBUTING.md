@@ -52,7 +52,7 @@ Every change flows through one issue and one pull request.
 2. **Make the change** on that branch. Keep it focused: one concern per pull request.
 3. **Add a changeset** when you change published behavior, as described in [Changesets](#changesets).
 4. **Run the gates**, described in [Gates](#gates). Git hooks run them for you on commit and push.
-5. **Open a pull request.** Reference the issue in the body with `Closes #<n>` so it closes when the PR merges.
+5. **Open a pull request.** Reference the issue in the body with `Closes #<n>` so it closes when the PR merges. Keep one pull request in flight: open the next issue's branch and PR only after the current one merges — a parallel PR goes stale the moment the first merges, forcing a branch update and a full CI re-run. If a merge does leave your open PR behind `main`, update its branch yourself (`gh pr update-branch <pr>`) rather than leaving it to the reviewer.
 
 ## Opening an issue
 
