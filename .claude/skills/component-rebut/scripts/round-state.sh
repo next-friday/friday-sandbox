@@ -78,10 +78,35 @@ summary_state() {
 
 SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 
+CR_LINE=$(cr_state)
+GEMINI_LINE=$(gemini_state)
+THREADS_LINE=$(bash "$SCRIPT_DIR/verify-coverage.sh" "$PR" | tail -1)
+CI_LINE=$(bash "$SCRIPT_DIR/ci-status.sh" "$PR" | tail -1)
+SUMMARY_LINE=$(summary_state)
+
+next_action() {
+  if [ "$STATE" != "OPEN" ]; then
+    echo "none — PR is $STATE; correct records only, never trigger or watch"
+  elif [[ "$THREADS_LINE" != *"answered"* ]] || ! [[ "$(grep -oE '[0-9]+ / [0-9]+' <<< "$THREADS_LINE" | awk '{print ($1 == $3)}')" = "1" ]]; then
+    echo "triage — MISSING threads above: verify, fix in one batch, reply every thread"
+  elif [[ "$CR_LINE" == reviewed-findings* ]]; then
+    echo "triage — CodeRabbit findings above: verify, fix in one batch, reply every thread"
+  elif [[ "$CR_LINE" == rate-limited* && "$GEMINI_LINE" == absent* ]] || [[ "$CR_LINE" == absent* ]] || [[ "$GEMINI_LINE" == absent* && "$CR_LINE" != prior-round* ]]; then
+    echo "wait — a reviewer is still due: wait-for-round.sh $PR"
+  elif [[ "$SUMMARY_LINE" == MISSING* ]]; then
+    echo "summary — post the step-7 round summary on the PR"
+  elif [[ "$CI_LINE" != *green* ]]; then
+    echo "ci — gh pr checks $PR --watch, then re-read"
+  else
+    echo "handoff — every gate green: give the human the merge link"
+  fi
+}
+
 echo "pr        #$PR $STATE"
 echo "head      ${HEAD:0:7} ($SINCE)"
-echo "coderabbit $(cr_state)"
-echo "gemini     $(gemini_state)"
-echo "threads    $(bash "$SCRIPT_DIR/verify-coverage.sh" "$PR" | tail -1)"
-echo "ci         $(bash "$SCRIPT_DIR/ci-status.sh" "$PR" | tail -1)"
-echo "summary    $(summary_state)"
+echo "coderabbit $CR_LINE"
+echo "gemini     $GEMINI_LINE"
+echo "threads    $THREADS_LINE"
+echo "ci         $CI_LINE"
+echo "summary    $SUMMARY_LINE"
+echo "next       $(next_action)"

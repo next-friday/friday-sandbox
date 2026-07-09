@@ -28,10 +28,15 @@ section sets described below. The AI reviewer mirrors (`.coderabbit.yaml`,
   (`eslint-config`, `typescript-config`) lists its presets or configs after it.
 - Skill (`.claude/skills/*/SKILL.md`): a normative specification for the LLM,
   not prose for a human — `Purpose`, `Input`, `Tasks` (ordered imperative steps),
-  `Rules` (Must / Must-not / May), `Acceptance criteria`, then `Output` when the
-  skill has a deliverable to summarize. State only what to do; omit rationale,
-  history, and philosophy — a short clause disambiguating an ambiguous rule, kept
-  next to it, is the only exception.
+  `Rules` (Must / Must-not / May), `Acceptance criteria`, `Checklist`, then
+  `Output` when the skill has a deliverable to summarize. State only what to do;
+  omit rationale, history, and philosophy — a short clause disambiguating an
+  ambiguous rule, kept next to it, is the only exception. The `Checklist` is the
+  execution ledger: one ordered checkbox per unit of work, each naming the
+  command or read that verifies it. At skill start the agent materializes the
+  checklist as tracked tasks, one per item, and ticks an item only on its
+  verifier's real output — position in the flow is read from the ledger, never
+  from memory.
 - Guide or how-to: a task title, then numbered steps.
 
 Every package table across the repo uses the columns `Package | Description` and

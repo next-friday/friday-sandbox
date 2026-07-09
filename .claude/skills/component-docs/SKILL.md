@@ -32,3 +32,13 @@ Sync `<name>.mdx` to `<name>.stories.tsx` for a `@friday-sandbox/react` base com
 - `node --experimental-strip-types "${CLAUDE_SKILL_DIR}/scripts/story-doc-diff.ts" <name>` reports a 1:1 mirror — every use-case story has a same-named `##` section before `## Props` mirroring its demo, and every feature section names an existing story export.
 - Props tables match the real props (per part for a compound); Styling classes match `.css` 1:1, no orphan.
 - [`.claude/rules/prose-voice.md`](../../rules/prose-voice.md) voice; no marketing words; no use case invented.
+
+## Checklist
+
+Materialize as tracked tasks at start, one per item; tick only on the verifier's real output.
+
+- [ ] All four sources read (stories, tsx, styles, css) — verifier: the file reads
+- [ ] Every use-case story mirrored to a same-named `##` section, both directions — verifier: `story-doc-diff.ts <name>` output
+- [ ] Props tables re-derived from the real props, per part — verifier: `pnpm lint:symmetry` props-tables dimension
+- [ ] Styling table matches `.css` 1:1 — verifier: `pnpm lint:symmetry` docs dimension
+- [ ] Showcase and spine sections untouched unless their axis changed — verifier: the diff

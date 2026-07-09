@@ -58,3 +58,14 @@ Executable procedure for the `docs-follow-code` rule (`.claude/rules/docs-follow
 
 - Let the pre-commit and pre-push hooks run the gates; show their real output as evidence. Never invoke the whole-repo gates by hand. "Should pass" is not evidence; pasted output is.
 - Re-grep the OLD terms even when the gates pass. Zero hits (outside `.changeset/` items flagged in step 3) = done. Absence of the old term is the proof; presence of the new term is not.
+
+## Checklist
+
+Materialize as tracked tasks at start, one per item; tick only on the verifier's real output.
+
+- [ ] Rename table derived from the real diff, concept-only changes named — verifier: `git status` / `git diff` output
+- [ ] Every OLD term grepped in all three spellings — verifier: the grep hit lists
+- [ ] Every target-table class swept (one searcher each) — verifier: the per-class `file:line` results
+- [ ] Every hit edited; enumerating docs re-derived as full sets — verifier: the edit list
+- [ ] Mirrors aligned in the same pass (README / `.mdx` / bot configs / templates) — verifier: the concept greps
+- [ ] Zero-hit re-grep of every OLD term — verifier: the empty grep output pasted

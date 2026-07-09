@@ -63,6 +63,21 @@ Steps 1–5 settle the design (no GitHub write); steps 6–7 record it to the is
 - Re-read the recorded body for placeholders (TBD/TODO gone), contradictions, and ambiguity before handing to `component-implement`; fix by editing the body (`gh issue edit <n> --body-file`).
 - Sub-agent reviewer (**opus** — adversarial judgment): pressure-test the premise, ladder, and plan for gaps — a missing state, an ambiguous variant, an unprovable Done — before any build. Builder ≠ verifier.
 
+## Checklist
+
+Materialize as tracked tasks at start, one per item; tick only on the verifier's real output.
+
+- [ ] Spec grilled from the human — name, primitive choice, prop/variant ladder, extra requirements — verifier: the user's answers in chat
+- [ ] Bases menu derived from the live tree — verifier: `ls packages/react/src/components/bases/` output
+- [ ] Primitive grounded in its own docs or installed types — verifier: the fetched `.md` page or the `.d.ts` read
+- [ ] Ladder resolved, every value distinct with its token — verifier: the recorded ladder against `packages/styles/src` greps
+- [ ] Base-look inventory complete (width, position, transition list, cursor) — verifier: the inventory block, no open entry
+- [ ] Surfaces and showcase trio planned against the real templates — verifier: the `turbo/generators/templates/` reads
+- [ ] Design converged with the user, per-artifact write authorized — verifier: the explicit yes in chat
+- [ ] Issue recorded on the repo template, no placeholder — verifier: the issue URL and its body read back
+- [ ] Implementation plan in the body with Done + Verification per task — verifier: the issue body read back
+- [ ] Adversarial review passed — verifier: the opus reviewer's verdict
+
 ## Output
 
 | Issue  | Primitive                     | Variants                 | Sizes     | Tokens               | States         |

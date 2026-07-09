@@ -54,6 +54,19 @@ Drive each round of AI review on a component PR to clean autonomously — decide
 - Exactly one push carried the round's whole batch; no extra push re-triggered the bots mid-round.
 - Any sub-issue you opened is linked to the parent and carries `Closes #<sub>` in the PR body.
 
+## Checklist
+
+Materialize as tracked tasks at round open, one per item; tick only on the verifier's real output. Repeat the whole list each round until `round-state.sh` reads `next handoff`.
+
+- [ ] Round arrived — verifier: `wait-for-round.sh <pr>` exit line
+- [ ] State read, findings and MISSING threads listed — verifier: `round-state.sh <pr>` output
+- [ ] Every finding adjudicated with evidence (fix or rebut) — verifier: the per-finding verdict list
+- [ ] Fixes batched into one push, pre-flighted — verifier: `round-state.sh` shows no MISSING immediately before the push, then the push output
+- [ ] Every thread replied — verifier: `round-state.sh` threads line reads `answered N / N`
+- [ ] Round summary on the PR — verifier: `round-state.sh` summary line reads `posted`
+- [ ] CI green — verifier: `round-state.sh` ci line
+- [ ] Merge link handed to the human — verifier: `round-state.sh` next line reads `handoff`
+
 ## Output
 
 | Round | PR      | Findings              | Fixed                 | Pushed             |

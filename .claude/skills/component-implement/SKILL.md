@@ -50,6 +50,22 @@ Ship an approved component issue: branch → scaffold → fill → gates → PR 
 - The audit is clean: two parallel un-merged sub-agents on opus — **Standards** (token ladder, `:where()` default, ramp geometry, doc-skeletons spine, `data-slot`) and **Spec** (right primitive, planned ladder, every demo, scope creep), grading Critical/Important/Minor; every Critical and Important fixed; builder ≠ verifier.
 - Branch matches `^<n>-`; title parses ≤50; one changeset covers the change; gates green via the hooks + CI. Escalate to `component-blueprint` after the third thrashing fix ([`references/DIAGNOSING.md`](references/DIAGNOSING.md)).
 
+## Checklist
+
+Materialize as tracked tasks at start, one per item; tick only on the verifier's real output.
+
+- [ ] No other PR of this session open — verifier: `gh pr list --author "@me" --state open`
+- [ ] Issue OPEN, unclaimed, designed, named this session — verifier: `gh issue view <n> --json state,assignees`
+- [ ] Branch `<n>-…` off the default branch — verifier: `git branch --show-current`
+- [ ] Scaffold emitted in full — verifier: `pnpm gen component` output lists every surface
+- [ ] Primitive swapped, props widened, `optimizeDeps` wired — verifier: the `<name>.tsx` / `.storybook/main.ts` diff
+- [ ] Ladder filled, css mirrored 1:1, stories trio, docs spine — verifier: `pnpm lint:symmetry`
+- [ ] Changeset present — verifier: `.changeset/*.md` in `git status`
+- [ ] Scoped gates green — verifier: `verify-component.sh <name>` output
+- [ ] Visual loop clean, every screenshot read this round — verifier: `pnpm --filter @friday-sandbox/react run visual <name>` paths + the image reads
+- [ ] Audit clean, every Critical/Important fixed — verifier: both audit agents' verdicts
+- [ ] PR open with `Closes #<n>`, CI green — verifier: `gh pr checks <pr> --watch`
+
 ## Output
 
 | Issue  | Branch       | Component | Variants                     | Gates               | PR                      |
