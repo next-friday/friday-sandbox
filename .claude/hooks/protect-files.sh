@@ -31,6 +31,16 @@ if [[ "$FILE_NAME" == ".prettierrc.json" || "$FILE_NAME" == ".prettierignore" ]]
   exit 2
 fi
 
+if [[ "$FILE_NAME" == "turbo.json" || "$FILE_NAME" == ".lintstagedrc.json" ]]; then
+  echo "Cannot edit protected gate config: $FILE_NAME" >&2
+  exit 2
+fi
+
+if [[ "$FILE_PATH" =~ (^|/)(\.husky|\.claude/hooks)/ ]]; then
+  echo "Cannot edit protected hook: $FILE_PATH" >&2
+  exit 2
+fi
+
 if [[ "$FILE_PATH" =~ (^|/)(\.git|node_modules|dist|coverage)/ ]]; then
   echo "Cannot edit file in generated or protected directory: $FILE_PATH" >&2
   exit 2

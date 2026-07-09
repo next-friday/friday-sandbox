@@ -60,7 +60,8 @@
     "postpack": "clean-package restore",
     "test": "vitest run",
     "test:coverage": "vitest run --coverage",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "visual": "node --experimental-strip-types scripts/visual-loop.ts"
   },
   "dependencies": {
     "@gravity-ui/icons": "^2.19.0",
