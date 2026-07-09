@@ -6,7 +6,7 @@ REPO=$(gh repo view --json nameWithOwner -q .nameWithOwner)
 
 STATE=$(gh pr view "$PR" --json state -q .state)
 HEAD=$(gh pr view "$PR" --json headRefOid -q .headRefOid)
-SINCE=$(gh api "repos/$REPO/pulls/$PR/commits" --paginate --jq '[.[] | select(.parents | length < 2) | .commit.committer.date] | max')
+SINCE=$(gh api "repos/$REPO/pulls/$PR/commits" --paginate --jq '[.[] | select(.parents | length < 2) | .commit.committer.date] | max // empty')
 
 REVIEWS=$(gh api "repos/$REPO/pulls/$PR/reviews" --paginate)
 COMMENTS=$(gh api "repos/$REPO/issues/$PR/comments" --paginate)
@@ -21,7 +21,7 @@ cr_state() {
 
   if [ -n "$review_at" ] && [[ ! "$review_at" < "$SINCE" ]]; then
     local count
-    count=$(jq -r '[.[] | select(.user.login == "coderabbitai[bot]") | select(.body | test("Actionable comments posted"))] | max_by(.submitted_at) | .body' <<< "$REVIEWS" | grep -oE "Actionable comments posted: [0-9]+" | grep -oE "[0-9]+")
+    count=$(jq -r '[.[] | select(.user.login == "coderabbitai[bot]") | select(.body | test("Actionable comments posted"))] | max_by(.submitted_at) | .body' <<< "$REVIEWS" | grep -oE "Actionable comments posted: [0-9]+" | grep -oE "[0-9]+" || true)
     if [ "${count:-0}" -eq 0 ]; then echo "reviewed-clean — review for this content, 0 actionable"; else echo "reviewed-findings — $count actionable to triage"; fi
     return
   fi
@@ -30,7 +30,7 @@ cr_state() {
       echo "reviewed-clean — walkthrough updated $walkthrough_at, 0 actionable"
     else
       local count
-      count=$(grep -oE "Actionable comments posted: [0-9]+" <<< "$walkthrough" | grep -oE "[0-9]+" | head -1)
+      count=$(grep -oE "Actionable comments posted: [0-9]+" <<< "$walkthrough" | grep -oE "[0-9]+" | head -1 || true)
       echo "reviewed-findings — ${count:-?} actionable to triage (walkthrough $walkthrough_at)"
     fi
     return
@@ -51,9 +51,9 @@ gemini_state() {
   local review_at abstain_at
   review_at=$(jq -r '[.[] | select(.user.login == "gemini-code-assist[bot]") | .submitted_at] | max // empty' <<< "$REVIEWS")
   abstain_at=$(jq -r '[.[] | select(.user.login == "gemini-code-assist[bot]") | select(.body | test("unable to generate|not being currently supported|not currently supported")) | .updated_at] | max // empty' <<< "$COMMENTS")
-  if [ -n "$abstain_at" ] && [[ "$abstain_at" > "$SINCE" || "$abstain_at" == "$SINCE" ]]; then
+  if [ -n "$abstain_at" ] && [[ ! "$abstain_at" < "$SINCE" ]]; then
     echo "abstained — unsupported file types; not a blocker"
-  elif [ -n "$review_at" ] && [[ "$review_at" > "$SINCE" ]]; then
+  elif [ -n "$review_at" ] && [[ ! "$review_at" < "$SINCE" ]]; then
     echo "reviewed — review submitted $review_at (read its body for findings)"
   elif [ -n "$review_at" ]; then
     echo "prior-round — reviewed $review_at, declined this head; not a blocker"
