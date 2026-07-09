@@ -27,6 +27,8 @@ round_status() {
   gem_state="absent"
   if printf '%s\n' "$reviews" | awk -F'\t' -v h="$head" '$1 == h && $2 ~ /gemini/ { found = 1 } END { exit !found }'; then
     gem_state="done"
+  elif printf '%s\n' "$reviews" | awk -F'\t' '$2 ~ /gemini/ { found = 1 } END { exit !found }'; then
+    gem_state="prior-round"
   fi
 
   cr_state="absent"
@@ -36,7 +38,9 @@ round_status() {
     cr_state="processing"
   elif printf '%s' "$cr_body" | grep -qiE "review limit reached|reached your (pr )?review limit|reviews( are( currently)?)? paused"; then
     cr_state="rate-limited"
-  elif [ -n "$cr_body" ] || printf '%s\n' "$reviews" | awk -F'\t' '$2 ~ /coderabbit/ { found = 1 } END { exit !found }'; then
+  elif printf '%s\n' "$reviews" | awk -F'\t' '$2 ~ /coderabbit/ { found = 1 } END { exit !found }'; then
+    cr_state="prior-round"
+  elif [ -n "$cr_body" ]; then
     cr_state="processing"
   fi
 
@@ -45,6 +49,14 @@ round_status() {
   if [ "$cr_state" = "rate-limited" ] && [ "$gem_state" = "done" ]; then
     echo "round: coderabbit is rate-limited — it will NOT review in this window. Proceed with the posted findings; re-trigger later with '@coderabbitai review' after confirming the PR is still open."
     return 5
+  fi
+  cr_settled=0
+  gem_settled=0
+  case "$cr_state" in done | prior-round | rate-limited) cr_settled=1 ;; esac
+  case "$gem_state" in done | prior-round) gem_settled=1 ;; esac
+  if [ "$cr_settled" -eq 1 ] && [ "$gem_settled" -eq 1 ]; then
+    echo "round: no reviewer is coming for this head (prior-round/rate-limited) — if verify-coverage reads N/N, the round is settled."
+    return 6
   fi
   { [ "$cr_state" = "done" ] || [ "$gem_state" = "done" ]; } && return 4
   return 3
@@ -71,6 +83,9 @@ while :; do
   fi
   if [ "$rc" -eq 5 ]; then
     exit 5
+  fi
+  if [ "$rc" -eq 6 ] && [ "$elapsed" -ge 180 ]; then
+    exit 6
   fi
   if [ "$elapsed" -ge "$timeout" ]; then
     if [ "$rc" -eq 4 ]; then
