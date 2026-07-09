@@ -24,6 +24,10 @@ asymmetry the reader can't tell apart from a designed use case.
   trio is a use case a human authors to taste, after the component ships. A
   state (`isDisabled`, `data-invalid`) is demonstrated by a use case or
   documented in the doc's State selectors table — never a scaffolded showcase.
+- **Demo copy is neutral.** The component's own name, the value's own label
+  (`Extra small`), or `samples/` content (`Lorem`, `Boxes`) — never a domain
+  sample (an email address, a brand, a person's name); those belong to a
+  designer's use case.
 
 The doc page mirrors the stories by name, 1:1:
 

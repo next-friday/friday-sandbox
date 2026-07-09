@@ -4,7 +4,7 @@
     --input-px: calc(var(--input-h) / 2 - var(--fri-spacing-xsmall));
     --input-radius: calc(var(--fri-field-radius) * var(--_input-n) / 10);
 
-    @apply inline-flex h-(--input-h) shrink-0 items-center rounded-(--input-radius) border-(length:--fri-border-width) border-solid border-border bg-surface px-(--input-px) text-foreground transition-base transition-[border-color,box-shadow,outline-color] outline-none placeholder:text-foreground-tertiary;
+    @apply inline-flex h-(--input-h) shrink-0 items-center rounded-(--input-radius) border-(length:--fri-border-width) border-solid border-border bg-surface px-(--input-px) text-foreground transition-base transition-[border-color,box-shadow] outline-none placeholder:text-foreground-tertiary;
   }
 
   :where(.fri-input) {

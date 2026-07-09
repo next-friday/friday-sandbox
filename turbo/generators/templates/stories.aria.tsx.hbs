@@ -53,6 +53,9 @@ export const Default: Story = {
     await expect(element).toHaveFocus();
   },
 };
+{{!-- This play is the contract: adapt the queries to the real element (a void
+   element has no text child — use getByRole + toHaveAttribute), add or remove
+   no assertion. More behavior belongs to a designer's use-case story. --}}
 
 export const Sizes: Story = {
   parameters: {
