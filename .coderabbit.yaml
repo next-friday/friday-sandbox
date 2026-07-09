@@ -35,8 +35,13 @@ reviews:
         /// <reference>, a @type JSDoc, a /* @__PURE__ */) or a scaffold under
         turbo/generators/templates/ or .github/ISSUE_TEMPLATE/. Any lint or type
         suppression (eslint-disable*, @ts-expect-error, @ts-ignore, @ts-nocheck,
-        prettier-ignore, biome-ignore) is a comment — flag it; a suppression
-        must be a root-cause fix, never a silenced gate.
+        prettier-ignore, biome-ignore) is a comment — flag it; also flag the
+        non-comment silencers: an escape cast (any, as unknown as) dodging a
+        type error, an ESLint rule turned off or downgraded in response to a
+        firing violation, a dodge path in globalIgnores, and any loosening of
+        strict or another check in a tsconfig.json. A suppression must be a
+        root-cause fix, never a silenced gate; a deliberate preset rule
+        selection with its reason in the commit body is design, not suppression.
     - path: packages/react/src/components/bases/**/*.{ts,tsx}
       instructions: >-
         Base components are scaffolded with "pnpm gen component" (turbo gen), never
