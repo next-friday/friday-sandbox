@@ -420,7 +420,7 @@ const checkMdxContent = (name: string, path: string, text: string): void => {
       );
     }
     const asset = /src="\/([^"]+)"/.exec(line);
-    if (asset) {
+    if (asset && !/`[^`]*src="\//.test(line)) {
       const assetPath = decodeURIComponent(asset[1]!.split(/[?#]/)[0]!);
       if (!existsSync(`apps/docs/public/${assetPath}`)) {
         fail(
