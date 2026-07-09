@@ -128,20 +128,20 @@ link color.
 `Link` also accepts the props of `react-aria-components/Link` (such as `href`,
 `target`, `rel`, and `onPress`), plus a `className` string.
 
-| Prop | Type | Default | Description |
-| --- | --- | --- | --- |
-| `variant` | `inherit \| display-* \| body-* \| label-* \| caption \| code` | `inherit` | Typography scale. |
-| `decoration` | `underline \| plain` | `underline` | Underline behavior. |
-| `isDisabled` | `boolean` | `false` | Disables the link. |
-| `className` | `string` | — | Additional CSS classes to apply. |
+| Prop         | Type                                                           | Default     | Description                      |
+| ------------ | -------------------------------------------------------------- | ----------- | -------------------------------- |
+| `variant`    | `inherit \| display-* \| body-* \| label-* \| caption \| code` | `inherit`   | Typography scale.                |
+| `decoration` | `underline \| plain`                                           | `underline` | Underline behavior.              |
+| `isDisabled` | `boolean`                                                      | `false`     | Disables the link.               |
+| `className`  | `string`                                                       | —           | Additional CSS classes to apply. |
 
 ### Link.Icon Props
 
 `Link.Icon` also accepts the props of the `span` element it renders.
 
-| Prop | Type | Default | Description |
-| --- | --- | --- | --- |
-| `className` | `string` | — | Additional CSS classes to apply. |
+| Prop        | Type     | Default | Description                      |
+| ----------- | -------- | ------- | -------------------------------- |
+| `className` | `string` | —       | Additional CSS classes to apply. |
 
 ## Styling
 
@@ -150,27 +150,27 @@ carries them.
 
 ### Modifier classes
 
-| Class | Type | Description |
-| --- | --- | --- |
-| `fri-link` | Base | Base `link` styles: link color, no resting underline, focus reset. |
-| `fri-link-inherit` | Variant | Inherits the parent typography. |
-| `fri-link-display-xxl` … `fri-link-display-sm` | Variant | Display typography scale, largest to smallest. |
-| `fri-link-body-lg` … `fri-link-body-xs-strong` | Variant | Body typography scale, regular and strong weights. |
-| `fri-link-label-lg` … `fri-link-label-sm` | Variant | Label typography scale. |
-| `fri-link-caption`, `fri-link-caption-strong` | Variant | Caption typography scale. |
-| `fri-link-code` | Variant | Monospace code typography scale. |
-| `fri-link-underline` | Decoration | Underlines at rest, hides on hover. |
-| `fri-link-plain` | Decoration | No underline at rest, shows on hover. |
-| `fri-link-icon` | Part | Sizes a trailing glyph to `1em`. |
+| Class                                          | Type       | Description                                                        |
+| ---------------------------------------------- | ---------- | ------------------------------------------------------------------ |
+| `fri-link`                                     | Base       | Base `link` styles: link color, no resting underline, focus reset. |
+| `fri-link-inherit`                             | Variant    | Inherits the parent typography.                                    |
+| `fri-link-display-xxl` … `fri-link-display-sm` | Variant    | Display typography scale, largest to smallest.                     |
+| `fri-link-body-lg` … `fri-link-body-xs-strong` | Variant    | Body typography scale, regular and strong weights.                 |
+| `fri-link-label-lg` … `fri-link-label-sm`      | Variant    | Label typography scale.                                            |
+| `fri-link-caption`, `fri-link-caption-strong`  | Variant    | Caption typography scale.                                          |
+| `fri-link-code`                                | Variant    | Monospace code typography scale.                                   |
+| `fri-link-underline`                           | Decoration | Underlines at rest, hides on hover.                                |
+| `fri-link-plain`                               | Decoration | No underline at rest, shows on hover.                              |
+| `fri-link-icon`                                | Part       | Sizes a trailing glyph to `1em`.                                   |
 
 ### State selectors
 
-| Selector | Applies when |
-| --- | --- |
-| `[data-hovered]` | The link is hovered with a mouse. |
-| `[data-pressed]` | The link is pressed. |
-| `[data-focus-visible]` | The link is keyboard focused. |
-| `[data-disabled]` | The link is disabled. |
+| Selector               | Applies when                      |
+| ---------------------- | --------------------------------- |
+| `[data-hovered]`       | The link is hovered with a mouse. |
+| `[data-pressed]`       | The link is pressed.              |
+| `[data-focus-visible]` | The link is keyboard focused.     |
+| `[data-disabled]`      | The link is disabled.             |
 
 ## Accessibility
 

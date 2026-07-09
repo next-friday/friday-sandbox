@@ -192,42 +192,42 @@ fast connection.
 `Avatar` also accepts all props from the underlying Radix UI `Avatar.Root`,
 such as `asChild`.
 
-| Prop | Type | Default | Description |
-| --- | --- | --- | --- |
-| `size` | `"xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl"` | `"md"` | Sets the avatar diameter. |
-| `shape` | `"square" \| "radius" \| "full"` | `"full"` | Sets the corner treatment. |
-| `isDisabled` | `boolean` | `false` | Dims an inactive avatar. |
-| `className` | `string` | — | Additional CSS classes to apply to the avatar. |
+| Prop         | Type                                            | Default  | Description                                    |
+| ------------ | ----------------------------------------------- | -------- | ---------------------------------------------- |
+| `size`       | `"xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl"` | `"md"`   | Sets the avatar diameter.                      |
+| `shape`      | `"square" \| "radius" \| "full"`                | `"full"` | Sets the corner treatment.                     |
+| `isDisabled` | `boolean`                                       | `false`  | Dims an inactive avatar.                       |
+| `className`  | `string`                                        | —        | Additional CSS classes to apply to the avatar. |
 
 ### Avatar.Image Props
 
 `Avatar.Image` also accepts all props from the underlying Radix UI
 `Avatar.Image`, such as `onLoadingStatusChange`.
 
-| Prop | Type | Default | Description |
-| --- | --- | --- | --- |
-| `src` | `string` | — | The image source URL. |
-| `alt` | `string` | — | Alternative text for the image. Required. |
-| `className` | `string` | — | Additional CSS classes to apply to the image. |
+| Prop        | Type     | Default | Description                                   |
+| ----------- | -------- | ------- | --------------------------------------------- |
+| `src`       | `string` | —       | The image source URL.                         |
+| `alt`       | `string` | —       | Alternative text for the image. Required.     |
+| `className` | `string` | —       | Additional CSS classes to apply to the image. |
 
 ### Avatar.Fallback Props
 
 `Avatar.Fallback` also accepts all props from the underlying Radix UI
 `Avatar.Fallback`.
 
-| Prop | Type | Default | Description |
-| --- | --- | --- | --- |
-| `delayMs` | `number` | — | Delay before showing the fallback, to avoid a flash. |
-| `className` | `string` | — | Additional CSS classes to apply to the fallback. |
+| Prop        | Type     | Default | Description                                          |
+| ----------- | -------- | ------- | ---------------------------------------------------- |
+| `delayMs`   | `number` | —       | Delay before showing the fallback, to avoid a flash. |
+| `className` | `string` | —       | Additional CSS classes to apply to the fallback.     |
 
 ### Avatar.Group Props
 
-| Prop | Type | Default | Description |
-| --- | --- | --- | --- |
-| `size` | `"xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl"` | `"md"` | Cascades to the children. |
-| `ring` | `boolean` | `true` | Draws a separating ring around each child. |
-| `stacking` | `"first-on-top" \| "last-on-top"` | `"last-on-top"` | Sets the overlap paint order. |
-| `className` | `string` | — | Additional CSS classes to apply to the group. |
+| Prop        | Type                                            | Default         | Description                                   |
+| ----------- | ----------------------------------------------- | --------------- | --------------------------------------------- |
+| `size`      | `"xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl"` | `"md"`          | Cascades to the children.                     |
+| `ring`      | `boolean`                                       | `true`          | Draws a separating ring around each child.    |
+| `stacking`  | `"first-on-top" \| "last-on-top"`               | `"last-on-top"` | Sets the overlap paint order.                 |
+| `className` | `string`                                        | —               | Additional CSS classes to apply to the group. |
 
 ## Styling
 
@@ -235,29 +235,29 @@ such as `asChild`.
 
 ### Modifier classes
 
-| Class | Type | Description |
-| --- | --- | --- |
-| `fri-avatar` | Base | Root container. |
-| `fri-avatar-image` | Part | Image element. |
-| `fri-avatar-fallback` | Part | Fallback element with centered content. |
-| `fri-avatar-xs` | Size | Extra small diameter (24px). |
-| `fri-avatar-sm` | Size | Small diameter (36px). |
-| `fri-avatar-md` | Size | Medium diameter (48px, default). |
-| `fri-avatar-lg` | Size | Large diameter (64px). |
-| `fri-avatar-xl` | Size | Extra large diameter (80px). |
-| `fri-avatar-2xl` | Size | Double extra large diameter (112px). |
-| `fri-avatar-square` | Shape | Square corners. |
-| `fri-avatar-radius` | Shape | Size-scaled rounded corners. |
-| `fri-avatar-full` | Shape | Full circle (default). |
-| `fri-avatar-disabled` | State | Dims an inactive avatar. |
-| `fri-avatar-group` | Part | Overlapping group container. |
-| `fri-avatar-group-xs` | Size | Group extra small, cascaded to children. |
-| `fri-avatar-group-sm` | Size | Group small, cascaded to children. |
-| `fri-avatar-group-md` | Size | Group medium, cascaded to children. |
-| `fri-avatar-group-lg` | Size | Group large, cascaded to children. |
-| `fri-avatar-group-xl` | Size | Group extra large, cascaded to children. |
-| `fri-avatar-group-2xl` | Size | Group double extra large, cascaded. |
-| `fri-avatar-group-ringless` | Variant | Removes the separating ring. |
+| Class                           | Type    | Description                              |
+| ------------------------------- | ------- | ---------------------------------------- |
+| `fri-avatar`                    | Base    | Root container.                          |
+| `fri-avatar-image`              | Part    | Image element.                           |
+| `fri-avatar-fallback`           | Part    | Fallback element with centered content.  |
+| `fri-avatar-xs`                 | Size    | Extra small diameter (24px).             |
+| `fri-avatar-sm`                 | Size    | Small diameter (36px).                   |
+| `fri-avatar-md`                 | Size    | Medium diameter (48px, default).         |
+| `fri-avatar-lg`                 | Size    | Large diameter (64px).                   |
+| `fri-avatar-xl`                 | Size    | Extra large diameter (80px).             |
+| `fri-avatar-2xl`                | Size    | Double extra large diameter (112px).     |
+| `fri-avatar-square`             | Shape   | Square corners.                          |
+| `fri-avatar-radius`             | Shape   | Size-scaled rounded corners.             |
+| `fri-avatar-full`               | Shape   | Full circle (default).                   |
+| `fri-avatar-disabled`           | State   | Dims an inactive avatar.                 |
+| `fri-avatar-group`              | Part    | Overlapping group container.             |
+| `fri-avatar-group-xs`           | Size    | Group extra small, cascaded to children. |
+| `fri-avatar-group-sm`           | Size    | Group small, cascaded to children.       |
+| `fri-avatar-group-md`           | Size    | Group medium, cascaded to children.      |
+| `fri-avatar-group-lg`           | Size    | Group large, cascaded to children.       |
+| `fri-avatar-group-xl`           | Size    | Group extra large, cascaded to children. |
+| `fri-avatar-group-2xl`          | Size    | Group double extra large, cascaded.      |
+| `fri-avatar-group-ringless`     | Variant | Removes the separating ring.             |
 | `fri-avatar-group-first-on-top` | Variant | Paints earlier avatars above later ones. |
 
 ## Accessibility
