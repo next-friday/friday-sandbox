@@ -22,8 +22,11 @@ gh api --paginate "repos/$owner_repo/pulls/$pr/reviews" \
 
 echo "=== COMMENTS ==="
 gh api --paginate "repos/$owner_repo/pulls/$pr/comments" \
-  --jq '.[] | "[\(.user.login)] \(.path):\(.line // "") id=\(.id)\n\(.body)\n"'
+  --jq '.[] | "[\(.user.login)] \(.path):\(.line // "") id=\(.id)\n\(.body[0:3000])\n"'
 
 echo "=== PR COMMENTS (issue thread) ==="
 gh api --paginate "repos/$owner_repo/issues/$pr/comments" \
   --jq '.[] | "[\(.user.login)]\n\(.body[0:1500])\n"'
+
+echo "=== COVERAGE (answered vs MISSING per top-level thread) ==="
+bash "$script_dir/verify-coverage.sh" "$pr" || true
