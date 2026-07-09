@@ -37,7 +37,7 @@ Executable procedure for the `docs-follow-code` rule (`.claude/rules/docs-follow
 
 4. **Fan out the search.** Dispatch one searcher sub-agent per target-table class in a **single message** — each gets the OLD-term list and its class's file globs and returns `file:line` hits, no edits. Size each to the task: **haiku** for a plain single-term grep, **sonnet** for a class that needs an eyeball on ambiguous or prose hits; never **opus**. The main thread derives the term table, merges the searchers' hits, applies the edits, and re-greps.
 
-5. **Align every mirror; enumerate the full set.** Grep by the **concept**, not the changed term, and update every copy in the same pass — a package `README.md`'s Theming section, the docs site's `theming/*.mdx`, and `.claude/rules/architecture.md`'s pipeline all describe the token model; a component's `.mdx` and its `.hbs` template share a spine. A doc that **enumerates** a code set — the color roles, the seed tokens, a component's doc sections, a package's exports — lists the _full current_ set: re-derive the list from the code, never trust or extend the doc's existing one.
+5. **Align every mirror; enumerate the full set.** Grep by the **concept**, not the changed term, and update every copy in the same pass — a package `README.md`'s Theming section, the docs site's `theming/*.mdx`, and `.claude/rules/token-pipeline.md` all describe the token model; a component's `.mdx` and its `.hbs` template share a spine. A doc that **enumerates** a code set — the color roles, the seed tokens, a component's doc sections, a package's exports — lists the _full current_ set: re-derive the list from the code, never trust or extend the doc's existing one.
 
 ## Rules
 

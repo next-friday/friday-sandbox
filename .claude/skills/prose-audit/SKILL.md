@@ -1,6 +1,6 @@
 ---
 name: prose-audit
-description: Use to audit docs and mdx prose for one voice — every page, and every peer page beside it, reading as if one person wrote it, with no narrator drift and no off-vocabulary or marketing words (against `.claude/rules/prose-style.md`), and light enough on symbols that a human reads it without decoding. Read-only review that reports file:line findings with a fix. Triggers "audit the docs prose", "does this read on-voice", "is the tone consistent", "is this over-styled". Not for structural or factual sync — that is docs-follow-code.
+description: Use to audit docs and mdx prose for one voice — every page, and every peer page beside it, reading as if one person wrote it, with no narrator drift and no off-vocabulary or marketing words (against `.claude/rules/prose-voice.md` and `.claude/rules/vocabulary.md`), and light enough on symbols that a human reads it without decoding. Read-only review that reports file:line findings with a fix. Triggers "audit the docs prose", "does this read on-voice", "is the tone consistent", "is this over-styled". Not for structural or factual sync — that is docs-follow-code.
 ---
 
 # Prose audit
@@ -19,7 +19,7 @@ Audit docs and mdx prose for one voice: every page, and every peer page beside i
 2. **Voice symmetry — one author across peers.** Line up the same section across every peer and check it reads the same:
    - **Same shape.** Every `Purpose` opens the same way; every `Applies` cell is a comma list or one sentence, not one clean list beside one semicolon-chain; every `When to use` keeps the same rhythm.
    - **One narrator.** The imperative, addressed to the reader, throughout — never a mix of "you", "the component provides", and "developers can".
-   - **`.claude/rules/prose-style.md` vocabulary.** [`.claude/rules/prose-style.md`](../../rules/prose-style.md) is the single word source. Read it and flag any off-vocabulary synonym or banned marketing adjective it lists.
+   - **`.claude/rules/vocabulary.md` vocabulary.** [`.claude/rules/vocabulary.md`](../../rules/vocabulary.md) is the single word source. Read it and flag any off-vocabulary synonym or banned marketing adjective it lists.
 3. **Symbol restraint — a human reads it.** Grep the render-clutter patterns, then eyeball each hit. Prefer a plain sentence or a comma list; keep a code chip only for a real identifier — a class, prop, token, or type — never for an ordinary word.
 
    | pattern                                        | grep                                |
@@ -39,7 +39,7 @@ Audit docs and mdx prose for one voice: every page, and every peer page beside i
 - Correctness is not the axis — a technically-correct page that reads off-voice, to a human, is a finding.
 - Never touch example or demo content.
 - Never wrap an ordinary word in backticks — a code chip is for a real identifier only.
-- Never re-list `.claude/rules/prose-style.md`'s banned words or vocabulary here; read it live.
+- Never re-list `.claude/rules/vocabulary.md`'s banned words or vocabulary here; read it live.
 
 ## Acceptance criteria
 
