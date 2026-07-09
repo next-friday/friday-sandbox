@@ -31,10 +31,6 @@
       "style": "./src/index.css",
       "default": "./src/index.css"
     },
-    "./css": {
-      "style": "./src/index.css",
-      "default": "./src/index.css"
-    },
     "./package.json": "./package.json"
   },
   "files": [

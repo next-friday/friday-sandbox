@@ -1,4 +1,4 @@
-import "@friday-sandbox/styles/css";
+import "@friday-sandbox/styles";
 import "./preview.css";
 
 import { DocsContainer } from "@storybook/addon-docs/blocks";
