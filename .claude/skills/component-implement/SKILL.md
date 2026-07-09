@@ -15,7 +15,7 @@ Ship an approved component issue: branch → scaffold → fill → gates → PR 
 
 ## Tasks
 
-1. **Branch.** Run `bash "${CLAUDE_SKILL_DIR}/scripts/preflight.sh"`. Confirm the issue is OPEN, unclaimed (`gh issue view <n> --json assignees,author`), carries `component-blueprint`'s design + plan, and the user named it this session. `gh issue develop <n> --checkout` (branch starts `<n>-`, off the default branch, one concern). Stage only this change's files.
+1. **Branch.** Run `bash "${CLAUDE_SKILL_DIR}/scripts/preflight.sh"`. Confirm this session has **no other PR still open** — one PR in flight; a queued change waits locally until the current one merges. Confirm the issue is OPEN, unclaimed (`gh issue view <n> --json assignees,author`), carries `component-blueprint`'s design + plan, and the user named it this session. `gh issue develop <n> --checkout` (branch starts `<n>-`, off the default branch, one concern). Stage only this change's files.
 2. **Scaffold.** `pnpm gen component --args <name> <primitive> <category> <parts>` — `primitive` = `aria` (interactive) or `native` (display/layout, incl. non-interactive react-aria parts); `parts` = comma-separated PascalCase subparts or `""`. Emits the 5 surfaces + `index.ts` + `.changeset/<name>-component.md`; wires the 2 react barrels, styles `index.css`, docs `meta.json`; adds `<name>.namespace.ts` + a subpart stub per part for a compound.
 3. **Swap the primitive.** Replace the scaffold placeholder with the real part — a react-aria-components part (`AriaButton`), a radix part (`scroll-area`), or a semantic element (`kbd`/`code`). Widen props to `ComponentPropsWithRef<typeof X>`. Compose className via `composeTailwindRenderProps` for a render-prop primitive. Add `"use client"` for a client primitive. Import the per-component subpath (`react-aria-components/<Part>`, `react-aria-components/composeRenderProps`) and add each to `optimizeDeps.include` in `.storybook/main.ts`; a radix part imports the `radix-ui` barrel (`scroll-area`) and needs no `optimizeDeps` entry.
 4. **Fill the ladder, one value end to end** — class in `<name>.styles.ts` → rule in `<name>.css` → story cell → next value. Vocabulary: color `primary secondary accent info success warning danger`; `variant` `solid subtle surface outline ghost plain`; `size` `xs sm md lg xl`. Every value a distinct `fri-<name>-<value>`; set `defaultVariants`. Keep the flat `tv({ base, variants })` unless the component has real slots.
@@ -49,6 +49,22 @@ Ship an approved component issue: branch → scaffold → fill → gates → PR 
 - The visual loop ran on the final code: every screenshot from `pnpm --filter @friday-sandbox/react run visual <name>` read and matched to the issue's design this round.
 - The audit is clean: two parallel un-merged sub-agents on opus — **Standards** (token ladder, `:where()` default, ramp geometry, doc-skeletons spine, `data-slot`) and **Spec** (right primitive, planned ladder, every demo, scope creep), grading Critical/Important/Minor; every Critical and Important fixed; builder ≠ verifier.
 - Branch matches `^<n>-`; title parses ≤50; one changeset covers the change; gates green via the hooks + CI. Escalate to `component-blueprint` after the third thrashing fix ([`references/DIAGNOSING.md`](references/DIAGNOSING.md)).
+
+## Checklist
+
+Materialize as tracked tasks at start, one per item; tick only on the verifier's real output.
+
+- [ ] No other PR of this session open — verifier: `gh pr list --author "@me" --state open`
+- [ ] Issue OPEN, unclaimed, designed, named this session — verifier: `gh issue view <n> --json state,assignees`
+- [ ] Branch `<n>-…` off the default branch — verifier: `git branch --show-current`
+- [ ] Scaffold emitted in full — verifier: `pnpm gen component` output lists every surface
+- [ ] Primitive swapped, props widened, `optimizeDeps` wired — verifier: the `<name>.tsx` / `.storybook/main.ts` diff
+- [ ] Ladder filled, css mirrored 1:1, stories trio, docs spine — verifier: `pnpm lint:symmetry`
+- [ ] Changeset present — verifier: `.changeset/*.md` in `git status`
+- [ ] Scoped gates green — verifier: `verify-component.sh <name>` output
+- [ ] Visual loop clean, every screenshot read this round — verifier: `pnpm --filter @friday-sandbox/react run visual <name>` paths + the image reads
+- [ ] Audit clean, every Critical/Important fixed — verifier: both audit agents' verdicts
+- [ ] PR open with `Closes #<n>`, CI green — verifier: `gh pr checks <pr> --watch`
 
 ## Output
 
