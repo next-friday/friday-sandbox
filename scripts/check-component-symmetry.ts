@@ -420,11 +420,14 @@ const checkMdxContent = (name: string, path: string, text: string): void => {
       );
     }
     const asset = /src="\/([^"]+)"/.exec(line);
-    if (asset && !existsSync(`apps/docs/public/${asset[1]}`)) {
-      fail(
-        name,
-        `docs asset "/${asset[1]}" at ${at} has no file under apps/docs/public — add the asset or use a data: URI`,
-      );
+    if (asset) {
+      const assetPath = decodeURIComponent(asset[1]!.split(/[?#]/)[0]!);
+      if (!existsSync(`apps/docs/public/${assetPath}`)) {
+        fail(
+          name,
+          `docs asset "/${asset[1]}" at ${at} has no file under apps/docs/public — add the asset or use a data: URI`,
+        );
+      }
     }
     if (/<div\b/.test(line) && !/`[^`]*<div/.test(line)) {
       fail(
@@ -777,7 +780,7 @@ for (const path of themeFiles) {
         declaration.prop,
       ) ||
         /^--fri-(action|field|box)-radius$/.test(declaration.prop)) &&
-      /(^|[\s(])[\d.]+px/.test(declaration.value)
+      /(^|[\s(])-?[\d.]+px/.test(declaration.value)
     ) {
       fail(
         "tokens",

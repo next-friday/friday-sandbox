@@ -30,12 +30,12 @@ round_status() {
   fi
 
   cr_state="absent"
-  if printf '%s' "$cr_body" | grep -qiE "review limit reached|reached your (pr )?review limit|reviews( are( currently)?)? paused"; then
-    cr_state="rate-limited"
+  if printf '%s\n' "$reviews" | awk -F'\t' -v h="$head" '$1 == h && $2 ~ /coderabbit/ { found = 1 } END { exit !found }'; then
+    cr_state="done"
   elif printf '%s' "$cr_body" | grep -qi "Currently processing"; then
     cr_state="processing"
-  elif printf '%s\n' "$reviews" | awk -F'\t' -v h="$head" '$1 == h && $2 ~ /coderabbit/ { found = 1 } END { exit !found }'; then
-    cr_state="done"
+  elif printf '%s' "$cr_body" | grep -qiE "review limit reached|reached your (pr )?review limit|reviews( are( currently)?)? paused"; then
+    cr_state="rate-limited"
   elif [ -n "$cr_body" ] || printf '%s\n' "$reviews" | awk -F'\t' '$2 ~ /coderabbit/ { found = 1 } END { exit !found }'; then
     cr_state="processing"
   fi
