@@ -159,7 +159,7 @@ reviews:
     - path: "**/*.{md,mdx}"
       instructions: >-
         Prose follows the editorial rules in .claude/rules/prose-voice.md,
-        vocabulary.md, and doc-skeletons.md. Flag a banned
+        .claude/rules/vocabulary.md, and .claude/rules/doc-skeletons.md. Flag a banned
         marketing adjective, an off-vocabulary synonym, a switch of narrator or
         voice within one document, or maintainer-internal detail in a consumer
         page. Component docs under apps/docs/content/docs/components carry the
