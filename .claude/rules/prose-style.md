@@ -56,7 +56,7 @@ the Anthropic guidance they derive from.
    short run of discrete points, such as when-to-use cases. Reserve prose for
    rationale and narrative that neither would flatten.
    Source: [memory](https://code.claude.com/docs/en/memory), "organized sections are easier to follow than dense paragraphs."
-   - Do: `| Prop | Default | Type |` for props; ``| `fri-button-solid` | Variant | Solid variant. |`` for a class list.
+   - Do: `| Prop | Type | Default | Description |` for props; ``| `fri-button-solid` | Variant | Solid variant. |`` for a class list.
    - Don't: a paragraph that lists three props and their defaults in sentences.
 
 5. **Even depth.** Comparable items get comparable length. Document every
@@ -111,8 +111,10 @@ the section sets described below.
   section mirroring a story export of the same name — the `Variants`/`Sizes`
   showcases, then one per use-case story; see stories-docs-sync), then
   `Props`, `Styling`, then `Accessibility` last. `Props` is one table for a
-  single component; a compound splits it per part — `### <Name> Props`, then
-  `### <Name>.<Part> Props` per subpart.
+  single component; a compound splits it per part — `### <Name> Props` for a
+  callable root, then `### <Name>.<Part> Props` per subpart. Every Props table
+  uses the columns `Prop | Type | Default | Description`, one row per prop
+  (`lint:symmetry` checks the headings and the column set).
 - Package README: `<name>`, the canonical one-line summary (see below), then
   `Quick start`. A published package (`react`, `styles`) adds badges and a
   `Why <name>` section above `Quick start`; an internal package

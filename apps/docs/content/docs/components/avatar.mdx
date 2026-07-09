@@ -166,47 +166,47 @@ order. Compose a trailing `+N` avatar by hand for overflow.
 
 ## Props
 
-### Avatar
+### Avatar Props
 
 `Avatar` also accepts all props from the underlying Radix UI `Avatar.Root`, such
 as `asChild`.
 
-| Prop         | Default  | Type                                                                                  |
-| ------------ | -------- | ------------------------------------------------------------------------------------- |
-| `size`       | `"md"`   | `"xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl"`<br />Sets the avatar diameter.         |
-| `shape`      | `"full"` | `"square" \| "radius" \| "full"`<br />Sets the corner treatment.                       |
-| `isDisabled` | `false`  | `boolean`<br />Dims an inactive avatar.                                                |
-| `className`  | —        | `string`<br />Additional CSS classes to apply to the avatar.                          |
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `size` | `"xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl"` | `"md"` | Sets the avatar diameter. |
+| `shape` | `"square" \| "radius" \| "full"` | `"full"` | Sets the corner treatment. |
+| `isDisabled` | `boolean` | `false` | Dims an inactive avatar. |
+| `className` | `string` | — | Additional CSS classes to apply to the avatar. |
 
-### Avatar.Image
+### Avatar.Image Props
 
 `Avatar.Image` also accepts all props from the underlying Radix UI `Avatar.Image`,
 such as `onLoadingStatusChange`.
 
-| Prop        | Default | Type                                                         |
-| ----------- | ------- | ------------------------------------------------------------ |
-| `src`       | —       | `string`<br />The image source URL.                          |
-| `alt`       | —       | `string`<br />Alternative text for the image. Required.      |
-| `className` | —       | `string`<br />Additional CSS classes to apply to the image.  |
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `src` | `string` | — | The image source URL. |
+| `alt` | `string` | — | Alternative text for the image. Required. |
+| `className` | `string` | — | Additional CSS classes to apply to the image. |
 
-### Avatar.Fallback
+### Avatar.Fallback Props
 
 `Avatar.Fallback` also accepts all props from the underlying Radix UI
 `Avatar.Fallback`.
 
-| Prop        | Default | Type                                                             |
-| ----------- | ------- | ---------------------------------------------------------------- |
-| `delayMs`   | —       | `number`<br />Delay before showing the fallback, to avoid a flash. |
-| `className` | —       | `string`<br />Additional CSS classes to apply to the fallback.   |
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `delayMs` | `number` | — | Delay before showing the fallback, to avoid a flash. |
+| `className` | `string` | — | Additional CSS classes to apply to the fallback. |
 
-### Avatar.Group
+### Avatar.Group Props
 
-| Prop        | Default         | Type                                                                        |
-| ----------- | --------------- | --------------------------------------------------------------------------- |
-| `size`      | `"md"`          | `"xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl"`<br />Cascades to the children. |
-| `ring`      | `true`          | `boolean`<br />Draws a separating ring around each child.                    |
-| `stacking`  | `"last-on-top"` | `"first-on-top" \| "last-on-top"`<br />Sets the overlap paint order.         |
-| `className` | —               | `string`<br />Additional CSS classes to apply to the group.                 |
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `size` | `"xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl"` | `"md"` | Cascades to the children. |
+| `ring` | `boolean` | `true` | Draws a separating ring around each child. |
+| `stacking` | `"first-on-top" \| "last-on-top"` | `"last-on-top"` | Sets the overlap paint order. |
+| `className` | `string` | — | Additional CSS classes to apply to the group. |
 
 ## Styling
 

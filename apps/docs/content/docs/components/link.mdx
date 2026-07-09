@@ -123,15 +123,25 @@ link color.
 
 ## Props
 
+### Link Props
+
 `Link` also accepts the props of `react-aria-components/Link` (such as `href`,
 `target`, `rel`, and `onPress`), plus a `className` string.
 
-| Prop         | Default     | Type                                                                                    |
-| ------------ | ----------- | --------------------------------------------------------------------------------------- |
-| `variant`    | `inherit`   | `inherit \| display-* \| body-* \| label-* \| caption \| code`<br />Typography scale.   |
-| `decoration` | `underline` | `underline \| plain`<br />Underline behavior.                                           |
-| `isDisabled` | `false`     | `boolean`<br />Disables the link.                                                       |
-| `className`  | —           | `string`<br />Additional CSS classes to apply.                                          |
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `variant` | `inherit \| display-* \| body-* \| label-* \| caption \| code` | `inherit` | Typography scale. |
+| `decoration` | `underline \| plain` | `underline` | Underline behavior. |
+| `isDisabled` | `boolean` | `false` | Disables the link. |
+| `className` | `string` | — | Additional CSS classes to apply. |
+
+### Link.Icon Props
+
+`Link.Icon` also accepts the props of the `span` element it renders.
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `className` | `string` | — | Additional CSS classes to apply. |
 
 ## Styling
 

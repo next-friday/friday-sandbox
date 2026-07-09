@@ -95,28 +95,28 @@ target a single axis independently.
 `Flex` also accepts an `as` prop (default `"div"`) to render as a different
 element.
 
-| Prop        | Default     | Type                                                                                                                   |
-| ----------- | ----------- | ---------------------------------------------------------------------------------------------------------------------- |
-| `direction` | `"row"`     | `"row" \| "column" \| "row-reverse" \| "column-reverse"`<br />Controls the flow direction of the children.             |
-| `align`     | `"stretch"` | `"start" \| "center" \| "end" \| "stretch" \| "baseline"`<br />Aligns the children on the cross axis.                  |
-| `justify`   | `"start"`   | `"start" \| "center" \| "end" \| "between" \| "around" \| "evenly"`<br />Distributes the children along the main axis. |
-| `wrap`      | `"nowrap"`  | `"nowrap" \| "wrap" \| "wrap-reverse"`<br />Controls whether children wrap onto multiple lines.                        |
-| `inline`    | `false`     | `boolean`<br />Renders an inline-level flex container.                                                                 |
-| `gap`       | —           | `"2xs" \| "xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl" \| "3xl" \| "4xl"`<br />Sets the gap between all children.     |
-| `gapX`      | —           | `"2xs" \| "xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl" \| "3xl" \| "4xl"`<br />Sets the horizontal gap only.          |
-| `gapY`      | —           | `"2xs" \| "xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl" \| "3xl" \| "4xl"`<br />Sets the vertical gap only.            |
-| `p`         | —           | `"2xs" \| "xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl" \| "3xl" \| "4xl"`<br />Sets padding on all sides.             |
-| `px`        | —           | `"2xs" \| "xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl" \| "3xl" \| "4xl"`<br />Sets horizontal (inline) padding.      |
-| `py`        | —           | `"2xs" \| "xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl" \| "3xl" \| "4xl"`<br />Sets vertical (block) padding.         |
-| `pt`        | —           | `"2xs" \| "xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl" \| "3xl" \| "4xl"`<br />Sets top padding.                      |
-| `pr`        | —           | `"2xs" \| "xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl" \| "3xl" \| "4xl"`<br />Sets right padding.                    |
-| `pb`        | —           | `"2xs" \| "xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl" \| "3xl" \| "4xl"`<br />Sets bottom padding.                   |
-| `pl`        | —           | `"2xs" \| "xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl" \| "3xl" \| "4xl"`<br />Sets left padding.                     |
-| `grow`      | —           | `boolean`<br />Lets the container grow when it is itself a flex item.                                                  |
-| `shrink`    | —           | `boolean`<br />Controls whether the container shrinks when it is itself a flex item.                                   |
-| `basis`     | —           | `"auto" \| "full" \| 0`<br />Sets the container's base size before growing or shrinking.                               |
-| `flex`      | —           | `1 \| "auto" \| "initial" \| "none"`<br />Shorthand for `grow`, `shrink`, and `basis` together.                        |
-| `className` | —           | `string`<br />Additional CSS classes to apply.                                                                         |
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `direction` | `"row" \| "column" \| "row-reverse" \| "column-reverse"` | `"row"` | Controls the flow direction of the children. |
+| `align` | `"start" \| "center" \| "end" \| "stretch" \| "baseline"` | `"stretch"` | Aligns the children on the cross axis. |
+| `justify` | `"start" \| "center" \| "end" \| "between" \| "around" \| "evenly"` | `"start"` | Distributes the children along the main axis. |
+| `wrap` | `"nowrap" \| "wrap" \| "wrap-reverse"` | `"nowrap"` | Controls whether children wrap onto multiple lines. |
+| `inline` | `boolean` | `false` | Renders an inline-level flex container. |
+| `gap` | `"2xs" \| "xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl" \| "3xl" \| "4xl"` | — | Sets the gap between all children. |
+| `gapX` | `"2xs" \| "xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl" \| "3xl" \| "4xl"` | — | Sets the horizontal gap only. |
+| `gapY` | `"2xs" \| "xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl" \| "3xl" \| "4xl"` | — | Sets the vertical gap only. |
+| `p` | `"2xs" \| "xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl" \| "3xl" \| "4xl"` | — | Sets padding on all sides. |
+| `px` | `"2xs" \| "xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl" \| "3xl" \| "4xl"` | — | Sets horizontal (inline) padding. |
+| `py` | `"2xs" \| "xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl" \| "3xl" \| "4xl"` | — | Sets vertical (block) padding. |
+| `pt` | `"2xs" \| "xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl" \| "3xl" \| "4xl"` | — | Sets top padding. |
+| `pr` | `"2xs" \| "xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl" \| "3xl" \| "4xl"` | — | Sets right padding. |
+| `pb` | `"2xs" \| "xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl" \| "3xl" \| "4xl"` | — | Sets bottom padding. |
+| `pl` | `"2xs" \| "xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl" \| "3xl" \| "4xl"` | — | Sets left padding. |
+| `grow` | `boolean` | — | Lets the container grow when it is itself a flex item. |
+| `shrink` | `boolean` | — | Controls whether the container shrinks when it is itself a flex item. |
+| `basis` | `"auto" \| "full" \| 0` | — | Sets the container's base size before growing or shrinking. |
+| `flex` | `1 \| "auto" \| "initial" \| "none"` | — | Shorthand for `grow`, `shrink`, and `basis` together. |
+| `className` | `string` | — | Additional CSS classes to apply. |
 
 ## Styling
 

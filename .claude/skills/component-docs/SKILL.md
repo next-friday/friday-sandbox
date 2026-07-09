@@ -17,7 +17,7 @@ Sync `<name>.mdx` to `<name>.stories.tsx` for a `@friday-sandbox/react` base com
 
 1. Read `<name>.stories.tsx`, `<name>.tsx`, `<name>.styles.ts`, `packages/styles/src/components/<name>.css`.
 2. Mirror the use-case stories both ways ([`.claude/rules/stories-docs-sync.md`](../../rules/stories-docs-sync.md)): for each story export beyond the `Default` / `Variants` / `Sizes` showcases, add one `##` section **with the same name as the story export**, just before `## Props`, in the `<Tabs items={["Preview", "Code"]}>` Preview + Code shape the other sections use, copying the story's demo; for each feature section whose story export was renamed or deleted, rename or delete the section to match.
-3. Re-derive the Props table from the real props (one `### <Name> Props` / `### <Name>.<Part> Props` per part for a compound) and the Styling modifier-class table from the `fri-<name>-<value>` classes in `.css` — every value a row, no orphan. Match `.claude/rules/prose-style.md`.
+3. Re-derive the Props tables from the real props — the `| Prop | Type | Default | Description |` column set, one table per part for a compound (`### <Name> Props` / `### <Name>.<Part> Props`) — and the Styling modifier-class table from the `fri-<name>-<value>` classes in `.css` — every value a row, no orphan. Match `.claude/rules/prose-style.md`.
 4. Leave the showcase and spine sections unchanged unless the variant/size axis they describe changed.
 
 ## Rules

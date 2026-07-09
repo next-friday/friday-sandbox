@@ -280,6 +280,80 @@ const checkStoryJsx = (sourceFile: ts.SourceFile, name: string): void => {
 const mdxSections = (text: string): string[] =>
   [...text.matchAll(/^##\s+(.+?)\s*$/gm)].map((match) => match[1]!);
 
+const PROPS_TABLE_HEADER = "Prop | Type | Default | Description";
+
+const namespaceParts = (
+  sourceFile: ts.SourceFile,
+  Pascal: string,
+): { callableRoot: boolean; parts: string[] } => {
+  let callableRoot = false;
+  let parts: string[] = [];
+  walk(sourceFile, (node) => {
+    if (
+      ts.isVariableDeclaration(node) &&
+      ts.isIdentifier(node.name) &&
+      node.name.text === Pascal &&
+      node.initializer
+    ) {
+      if (ts.isObjectLiteralExpression(node.initializer)) {
+        parts = objectKeys(node.initializer);
+      } else if (
+        ts.isCallExpression(node.initializer) &&
+        node.initializer.arguments.length === 2 &&
+        ts.isObjectLiteralExpression(node.initializer.arguments[1]!)
+      ) {
+        callableRoot = true;
+        parts = objectKeys(node.initializer.arguments[1] as ts.Expression);
+      }
+    }
+  });
+  return { callableRoot, parts };
+};
+
+const checkPropsTables = (
+  name: string,
+  docText: string,
+  namespace: { callableRoot: boolean; parts: string[] } | undefined,
+  Pascal: string,
+): void => {
+  const propsSection = /^## Props$([\s\S]*?)(?=^## |\n*$(?![\s\S]))/m.exec(
+    docText,
+  );
+  const sectionText = propsSection?.[1] ?? "";
+  for (const line of sectionText.split("\n")) {
+    if (!/^\s*\|\s*Prop\b/.test(line)) continue;
+    const cells = line
+      .split(/(?<!\\)\|/)
+      .map((cell) => cell.trim())
+      .filter(Boolean)
+      .join(" | ");
+    if (cells !== PROPS_TABLE_HEADER) {
+      fail(
+        name,
+        `Props table header "| ${cells} |" — use the canonical "| ${PROPS_TABLE_HEADER} |" column set`,
+      );
+    }
+  }
+  if (!namespace) return;
+  const headings = [...sectionText.matchAll(/^###\s+(.+?)\s*$/gm)].map(
+    (match) => match[1]!,
+  );
+  if (namespace.callableRoot && !headings.includes(`${Pascal} Props`)) {
+    fail(
+      name,
+      `compound doc is missing the "### ${Pascal} Props" table for the callable root`,
+    );
+  }
+  for (const part of namespace.parts) {
+    if (!headings.includes(`${Pascal}.${part} Props`)) {
+      fail(
+        name,
+        `compound part "${Pascal}.${part}" has no "### ${Pascal}.${part} Props" table in the doc`,
+      );
+    }
+  }
+};
+
 const checkDocSpine = (name: string, sections: string[]): void => {
   let previous = -1;
   for (const required of REQUIRED_DOC_SECTIONS) {
@@ -498,6 +572,14 @@ for (const name of components) {
       );
     }
   }
+  checkPropsTables(
+    name,
+    docText,
+    existsSync(namespacePath)
+      ? namespaceParts(parseTs(namespacePath), Pascal)
+      : undefined,
+    Pascal,
+  );
   checkMdxContent(name, docPath, docText);
 }
 
@@ -637,5 +719,5 @@ if (fails.length > 0) {
 }
 const note = warns.length > 0 ? `, ${warns.length} warning(s)` : "";
 console.log(
-  `✓ component symmetry: ${checked} components verified across presence, variants↔css, barrels, controls, stories, story-doc-showcase, no-map-demos, docs, token resolution, theme invariants, no-raw-html, apply-only, no-default-args, compound-symmetry${note}`,
+  `✓ component symmetry: ${checked} components verified across presence, variants↔css, barrels, controls, stories, story-doc-showcase, no-map-demos, docs, props-tables, token resolution, theme invariants, no-raw-html, apply-only, no-default-args, compound-symmetry${note}`,
 );
