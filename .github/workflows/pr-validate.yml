@@ -91,7 +91,7 @@ jobs:
   title-sync:
     name: Sync status:needs-pr-title-fix label
     needs: [validate]
-    if: ${{ always() && github.event.pull_request.draft == false }}
+    if: ${{ (success() || failure()) && github.event.pull_request.draft == false }}
     runs-on: ubuntu-24.04
     timeout-minutes: 5
     permissions:
