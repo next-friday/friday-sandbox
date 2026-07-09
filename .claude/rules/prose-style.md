@@ -107,7 +107,9 @@ the section sets described below.
 
 - Component doc (`apps/docs/content/docs/components/*.mdx`): the required spine is a
   `<SourceLinks>` header, then `Import`, `Usage`, `Purpose`, `When to use`,
-  `When not to use`, the component's own feature sections (one demo each), then
+  `When not to use`, the component's own feature sections (one demo each, every
+  section mirroring a story export of the same name — the `Variants`/`Sizes`
+  showcases, then one per use-case story; see stories-docs-sync), then
   `Props`, `Styling`, then `Accessibility` last. `Props` is one table for a
   single component; a compound splits it per part — `### <Name> Props`, then
   `### <Name>.<Part> Props` per subpart.

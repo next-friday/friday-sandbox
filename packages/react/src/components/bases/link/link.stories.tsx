@@ -94,7 +94,7 @@ export const Default: Story = {
   },
 };
 
-export const Variant: Story = {
+export const Variants: Story = {
   parameters: {
     docs: {
       description: {

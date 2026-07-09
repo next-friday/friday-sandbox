@@ -21,6 +21,8 @@ warn() { warns+=("  ⚠ $1: $2"); }
 
 pascal() { echo "$1" | awk -F- '{ for (i=1;i<=NF;i++) printf "%s%s", toupper(substr($i,1,1)), substr($i,2); print "" }'; }
 
+showcase_for() { case "$1" in variant) echo "Variants" ;; size) echo "Sizes" ;; esac; }
+
 strip_comments() { perl -0pe 's{/\*.*?\*/}{}gs; s{(?<!:)//.*}{}g' "$1"; }
 
 classes_from() { strip_comments "$1" | sed -E 's/--fri-[a-z0-9-]+//g' | grep -oE "fri-$2(-[a-z0-9]+)*([^a-z0-9-]|$)" | grep -oE "fri-$2(-[a-z0-9]+)*" | sort -u; }
@@ -31,13 +33,14 @@ object_walk() {
     {
       line = $0
       if (!started) { if (index(line, block ": {")) { started = 1; sub(/.*\{/, "{", line) } else next }
+      d0 = depth
       n = split(line, ch, "")
       for (i = 1; i <= n; i++) {
         c = ch[i]
         if (c == "{") depth++
         else if (c == "}") { depth--; if (depth == 0) exit }
       }
-      if (started && depth == 1) {
+      if (started && d0 == 1) {
         s = line; sub(/^[[:space:]]*/, "", s)
         if (mode == "keys") {
           if (match(s, /^[A-Za-z_$][A-Za-z0-9_$]*[[:space:]]*:/)) {
@@ -60,6 +63,38 @@ object_walk() {
 
 object_keys() { object_walk "$1" "$2" "keys"; }
 object_pairs() { object_walk "$1" "$2" "pairs"; }
+
+primary_axes() {
+  local primary
+  primary=$(strip_comments "$1" | awk '
+    /slots: \{/ { f = 1; next }
+    f && match($0, /^[[:space:]]*[A-Za-z_$][A-Za-z0-9_$]*:/) {
+      k = substr($0, RSTART, RLENGTH); gsub(/[: \t]/, "", k); print k; exit
+    }')
+  if [ -z "$primary" ]; then object_keys "$1" "variants"; return; fi
+  strip_comments "$1" | awk -v primary="$primary" '
+    BEGIN { depth = 0; started = 0; axis = "" }
+    {
+      line = $0
+      if (!started) { if (index(line, "variants: {")) { started = 1; sub(/.*\{/, "{", line) } else next }
+      d0 = depth
+      n = split(line, ch, "")
+      for (i = 1; i <= n; i++) {
+        c = ch[i]
+        if (c == "{") depth++
+        else if (c == "}") { depth--; if (depth == 0) exit }
+      }
+      if (d0 == 1) {
+        s = line; sub(/^[[:space:]]*/, "", s)
+        if (match(s, /^"?[A-Za-z_$][A-Za-z0-9_$]*"?[[:space:]]*:/)) {
+          axis = substr(s, 1, RLENGTH); sub(/[[:space:]]*:.*$/, "", axis); gsub(/"/, "", axis)
+          hit[axis] = 0
+        }
+      } else if (d0 >= 2 && axis != "" && index(line, primary ":")) hit[axis] = 1
+    }
+    END { for (a in hit) if (hit[a]) print a }
+  ' | sort -u
+}
 
 react_index=$(cat "$REACT_INDEX" 2>/dev/null || true)
 bases_index=$(cat "$BASES_INDEX" 2>/dev/null || true)
@@ -102,7 +137,7 @@ for name in $components; do
 
   axes=$(object_keys "$variants" "variants")
   controls=$(object_keys "$stories" "argTypes")
-  for axis in $axes; do
+  for axis in $(primary_axes "$variants"); do
     echo "$controls" | grep -qx "$axis" || fail "$name" "variant axis \"$axis\" has no argTypes control in $name.stories.tsx"
   done
 
@@ -124,6 +159,12 @@ for name in $components; do
 
   grep -qE "export const Default\b" "$stories" || fail "$name" "$name.stories.tsx has no Default story"
 
+  for axis in $axes; do
+    showcase=$(showcase_for "$axis")
+    [ -z "$showcase" ] && continue
+    grep -qE "export const $showcase\b" "$stories" || fail "$name" "axis \"$axis\" has no $showcase showcase story (the trio: Default/Variants/Sizes)"
+  done
+
   doc="$DOCS/$name.mdx"
   if [ ! -f "$doc" ]; then warn "$name" "no doc page $name.mdx"; continue; fi
   sections=$(grep -oE "^##[[:space:]]+.+" "$doc" | sed -E 's/^##[[:space:]]+//; s/[[:space:]]*$//')
@@ -138,6 +179,11 @@ for name in $components; do
   [ "$last" = "$LAST_DOC_SECTION" ] || fail "$name" "doc's last section must be \"$LAST_DOC_SECTION\", found \"${last:-none}\""
   for axis in $axes; do
     grep -qE "\|[[:space:]]*\`$axis\`" "$doc" || fail "$name" "variant axis \"$axis\" has no row in the doc Props table"
+  done
+  for axis in $axes; do
+    showcase=$(showcase_for "$axis")
+    [ -z "$showcase" ] && continue
+    echo "$sections" | grep -qxF "$showcase" || fail "$name" "axis \"$axis\" has no \"## $showcase\" doc section mirroring the $showcase story"
   done
 done
 
@@ -196,4 +242,4 @@ if [ ${#fails[@]} -gt 0 ]; then
   exit 1
 fi
 note=""; [ ${#warns[@]} -gt 0 ] && note=", ${#warns[@]} warning(s)"
-echo "✓ component symmetry: $checked components verified across presence, variants↔css, barrels, controls, stories, docs, token resolution, theme invariants, no-raw-html, apply-only, no-default-args, compound-symmetry$note"
+echo "✓ component symmetry: $checked components verified across presence, variants↔css, barrels, controls, stories, story-doc-showcase, docs, token resolution, theme invariants, no-raw-html, apply-only, no-default-args, compound-symmetry$note"

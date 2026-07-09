@@ -2,6 +2,7 @@ import { expect } from "storybook/test";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import { Flex } from "../flex";
+import { Text } from "../text";
 
 import { Lorem } from "../../../samples/lorem";
 import { WideRow } from "../../../samples/wide-row";
@@ -177,43 +178,65 @@ export const Sizes: Story = {
   ),
 };
 
-export const Always: Story = {
-  args: { variant: "always" },
-  render: (storyArgs) => (
-    <ScrollArea.Root {...storyArgs} className="h-72">
-      <ScrollArea.Viewport>
-        <Lorem paragraph={9} />
-      </ScrollArea.Viewport>
-
-      <ScrollArea.Scrollbar orientation="vertical">
-        <ScrollArea.Thumb />
-      </ScrollArea.Scrollbar>
-
-      <ScrollArea.Corner />
-    </ScrollArea.Root>
-  ),
-};
-
-export const HiddenScrollbar: Story = {
-  args: { variant: "hidden" },
+export const Variants: Story = {
   parameters: {
     docs: {
       description: {
         story:
-          "The scrollbar is hidden, but the area still scrolls with wheel, touch, and keyboard.",
+          "Use the `variant` prop to change when the scrollbars are visible: `hover` shows them while the pointer is over the area, `always` keeps them visible, and `hidden` removes them while the area still scrolls with wheel, touch, and keyboard.",
       },
     },
   },
   render: (storyArgs) => (
-    <ScrollArea.Root {...storyArgs} className="h-72">
-      <ScrollArea.Viewport>
-        <Lorem paragraph={9} />
-      </ScrollArea.Viewport>
+    <Flex align="start" gap="md">
+      <Flex direction="column" gap="sm">
+        <Text variant="label-md">Hover</Text>
 
-      <ScrollArea.Scrollbar orientation="vertical">
-        <ScrollArea.Thumb />
-      </ScrollArea.Scrollbar>
-    </ScrollArea.Root>
+        <ScrollArea.Root {...storyArgs} className="h-72" variant="hover">
+          <ScrollArea.Viewport>
+            <Lorem paragraph={9} />
+          </ScrollArea.Viewport>
+
+          <ScrollArea.Scrollbar orientation="vertical">
+            <ScrollArea.Thumb />
+          </ScrollArea.Scrollbar>
+
+          <ScrollArea.Corner />
+        </ScrollArea.Root>
+      </Flex>
+
+      <Flex direction="column" gap="sm">
+        <Text variant="label-md">Always</Text>
+
+        <ScrollArea.Root {...storyArgs} className="h-72" variant="always">
+          <ScrollArea.Viewport>
+            <Lorem paragraph={9} />
+          </ScrollArea.Viewport>
+
+          <ScrollArea.Scrollbar orientation="vertical">
+            <ScrollArea.Thumb />
+          </ScrollArea.Scrollbar>
+
+          <ScrollArea.Corner />
+        </ScrollArea.Root>
+      </Flex>
+
+      <Flex direction="column" gap="sm">
+        <Text variant="label-md">Hidden</Text>
+
+        <ScrollArea.Root {...storyArgs} className="h-72" variant="hidden">
+          <ScrollArea.Viewport>
+            <Lorem paragraph={9} />
+          </ScrollArea.Viewport>
+
+          <ScrollArea.Scrollbar orientation="vertical">
+            <ScrollArea.Thumb />
+          </ScrollArea.Scrollbar>
+
+          <ScrollArea.Corner />
+        </ScrollArea.Root>
+      </Flex>
+    </Flex>
   ),
 };
 

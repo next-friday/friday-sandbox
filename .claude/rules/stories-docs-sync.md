@@ -1,0 +1,44 @@
+---
+paths:
+  - "**/*.stories.tsx"
+  - "apps/docs/content/docs/**/*.mdx"
+---
+
+# Rule: stories–docs sync — a fixed showcase trio, use cases mirrored by name
+
+A component's stories split into two tiers with different owners. Mixing them —
+a scaffolded story per state, per value, per boolean — is how a story file
+grows seventeen exports no doc section mirrors: each extra story is a silent
+asymmetry the reader can't tell apart from a designed use case.
+
+- **Showcase stories — at most three, fixed names.** `Default` (every
+  component), `Variants` (only when the component has a `variant` axis), and
+  `Sizes` (only when it has a `size` axis). A showcase lays out every value of
+  its axis with `Flex`/`Grid`; another enum axis (a color, a shape) joins the
+  `Variants` grid when one exists, or waits for a use case otherwise. The
+  scaffold emits this tier ready to ship, and `lint:symmetry` gates it: axis →
+  story → doc section, exact names.
+- **Use-case stories — the designer's, any number.** Every story beyond the
+  trio is a use case a human authors to taste, after the component ships. A
+  state (`isDisabled`, `data-invalid`) is demonstrated by a use case or
+  documented in the doc's State selectors table — never a scaffolded showcase.
+
+The doc page mirrors the stories by name, 1:1:
+
+- `## Variants` and `## Sizes` sections mirror their showcase stories (gated).
+- Every use-case story gets one `##` feature section with the **same name as
+  the story export**, placed before `## Props`, in the Preview + Code `<Tabs>`
+  shape the other sections use; every feature section names an existing story.
+  Adding, renaming, or deleting a use-case story updates its section in the
+  same change — `component-docs` is the sync procedure.
+
+How to apply:
+
+- Scaffolding or implementing? Ship exactly the trio the axes call for; add no
+  per-state, per-value, or speculative story.
+- Adding a use-case story? Add the same-named `##` section in the same change.
+- Renaming a story export? Grep the doc page and rename its section with it.
+
+Pairs with minimal-examples (what a demo may set) and follow-local-pattern
+(the shape neighbors use). The trio half is gated by `lint:symmetry`; the
+use-case half is held by `component-docs` and review.

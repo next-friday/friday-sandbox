@@ -23,7 +23,7 @@ Show only what the example demonstrates:
   commit.
 - **A per-story prop is set only when that prop is the story's subject** — the
   **showcase for its axis** (a `Sizes` story listing every size including `md`, a
-  `Variant` story showing the default variant value). There, writing the value —
+  `Variants` story showing the default variant value). There, writing the value —
   default or not — is the point. **Every other axis stays at its default: omit
   it.** A non-subject prop is noise even at a _non-default_ value: `size="lg"` in
   a `Fallback` or `Shapes` story reads as if `lg` were required, and no library
@@ -47,4 +47,5 @@ How to apply:
 
 The `meta.args` half is gated by `lint:symmetry`; the per-story and per-demo
 judgment — a showcase's default versus an incidental one — is the ungated half a
-human still holds. Pairs with follow-local-pattern and no-redundancy.
+human still holds. Pairs with stories-docs-sync (which stories exist at all),
+follow-local-pattern, and no-redundancy.
