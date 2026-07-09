@@ -42,7 +42,7 @@ round_status() {
 
   echo "round: coderabbit=$cr_state gemini=$gem_state head=${head:0:7} inline=$inline"
   [ "$cr_state" = "done" ] && [ "$gem_state" = "done" ] && return 0
-  if [ "$cr_state" = "rate-limited" ]; then
+  if [ "$cr_state" = "rate-limited" ] && [ "$gem_state" = "done" ]; then
     echo "round: coderabbit is rate-limited — it will NOT review in this window. Proceed with the posted findings; re-trigger later with '@coderabbitai review' after confirming the PR is still open."
     return 5
   fi
