@@ -1,4 +1,4 @@
-# Rule: no guessing, verify from real sources
+# Rule: no guessing — verify from real sources
 
 Never state a guess as fact. Any claim about an external library, API, tool, or
 runtime behavior, and any comparison table, must be backed by a real source
@@ -26,3 +26,6 @@ no-guessing applied to the codebase itself.
 
 Guessing is a half-fix: fix it at the root by reading the source, the same way
 code problems are fixed at their definition rather than patched downstream.
+
+Pairs with libs-first (read the tool's docs before assuming it can't do the
+job) and docs-follow-code (the tree, not memory, is what docs must match).

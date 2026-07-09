@@ -21,7 +21,7 @@ if [[ "$FILE_PATH" =~ (^|/)packages/eslint-config/src/ ]]; then
   exit 2
 fi
 
-if [[ "$FILE_NAME" == "knip.json" ]]; then
+if [[ "$FILE_NAME" == "knip.config.ts" ]]; then
   echo "Cannot edit protected knip file: $FILE_NAME" >&2
   exit 2
 fi

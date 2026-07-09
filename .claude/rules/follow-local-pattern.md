@@ -1,4 +1,4 @@
-# Rule: follow the local pattern — match the neighbors, not just the schema
+# Rule: follow local pattern — match the neighbors, not just the schema
 
 Before adding to an existing file, read two or three neighboring entries and
 match their style: comment terseness, punctuation, ordering, naming, table

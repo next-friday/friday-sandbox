@@ -8,7 +8,7 @@ Get a tight, red-capable command on the exact symptom first — `pnpm --filter @
 
 ## Hypotheses before fixes
 
-Write 3–5 falsifiable hypotheses before testing any. For a `fri-` class that won't style: `:where()` specificity vs the wrong `--fri-<role>` slot vs the ramp multiplier vs a missing `@import` in `bases/index.css` vs a data-attr selector. A single hypothesis anchors on the first plausible idea. Show the ranked list; proceed on your ranking if the user is away.
+Write 3–5 falsifiable hypotheses before testing any. For a `fri-` class that won't style: `:where()` specificity vs the wrong `--fri-<role>` slot vs the ramp multiplier vs a missing `@import` in `packages/styles/src/components/index.css` vs a data-attr selector. A single hypothesis anchors on the first plausible idea. Show the ranked list; proceed on your ranking if the user is away.
 
 ## Fix at the source layer
 

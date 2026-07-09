@@ -4,7 +4,7 @@ paths:
   - "apps/docs/content/docs/**/*.mdx"
 ---
 
-# Rule: stories–docs sync — a fixed showcase trio, use cases mirrored by name
+# Rule: stories docs sync — a fixed showcase trio, use cases mirrored by name
 
 A component's stories split into two tiers with different owners. Mixing them —
 a scaffolded story per state, per value, per boolean — is how a story file
@@ -54,6 +54,8 @@ How to apply:
 - Adding a use-case story? Add the same-named `##` section in the same change.
 - Renaming a story export? Grep the doc page and rename its section with it.
 
+The trio half is gated by `lint:symmetry`; the use-case half is held by
+`component-docs` and review.
+
 Pairs with minimal-examples (what a demo may set) and follow-local-pattern
-(the shape neighbors use). The trio half is gated by `lint:symmetry`; the
-use-case half is held by `component-docs` and review.
+(the shape neighbors use).

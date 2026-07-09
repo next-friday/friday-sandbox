@@ -22,4 +22,4 @@ language, the single H1, heading punctuation, and heading increment. It enforces
 only these mechanical rules and defers all formatting to Prettier, so it never
 overrides an authored Markdown pattern.
 
-Pairs with prose-style, which holds the voice these conventions carry.
+Pairs with prose-voice, which holds the voice these conventions carry.

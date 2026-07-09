@@ -1,4 +1,4 @@
-# Rule: No Redundancy, Single Source of Truth
+# Rule: no redundancy — single source of truth
 
 Redundancy is technical debt.
 
@@ -36,3 +36,13 @@ Prefer:
 When modifying existing work, update the canonical implementation instead of introducing new files, wrappers, aliases, or parallel implementations.
 
 Every new abstraction must provide clear value and cannot reasonably be achieved by extending an existing implementation. If no clear justification exists, reuse the existing implementation.
+
+How to apply:
+
+- Before writing anything new, grep the tree for an existing implementation of
+  the same concept; extend or reference what you find.
+- Found two overlapping implementations? Consolidate into the canonical one in
+  the same change, never leave both.
+
+Pairs with libs-first (reuse the standard tool first) and docs-follow-code (a
+single source stays single only when every pointer moves with it).

@@ -21,7 +21,7 @@ The `chore(release): version packages` PR is produced by `changesets/action`. It
 
 ## Components: `packages/react/src/components/bases/**`
 
-Architecture and the `fri-<name>` react↔styles contract live in `.claude/rules/architecture.md`. A base component is generated (`pnpm gen component`), never hand-created. Flag in a base component's diff:
+The `fri-<name>` react↔styles contract lives in `.claude/rules/class-name-contract.md` and the token flow in `.claude/rules/token-pipeline.md`. A base component is generated (`pnpm gen component`), never hand-created. Flag in a base component's diff:
 
 - Lowercase filename such as `button.tsx`, not `Button.tsx`; a named export with the `Props` type colocated; no default export.
 - `"use client"` only when a client API such as `useState`, `useEffect`, refs, or event handlers — or a `react-aria-components` / `radix` client primitive — is touched; flag a needless directive on a pure layout or text component.
@@ -84,8 +84,8 @@ The commit, branch, and PR rules are defined in `CONTRIBUTING.md` — flag any v
 
 ## Documentation prose
 
-- Prose follows the editorial style guide in `.claude/rules/prose-style.md`. Flag a banned marketing adjective, an off-vocabulary synonym, and a component doc missing a required section.
-- Also flag a switch of narrator or voice within one document, and maintainer-internal detail in a consumer page. Name the `.claude/rules/prose-style.md` section.
+- Prose follows the editorial rules in `.claude/rules/prose-voice.md`, `.claude/rules/vocabulary.md`, and `.claude/rules/doc-skeletons.md`. Flag a banned marketing adjective, an off-vocabulary synonym, and a component doc missing a required section.
+- Also flag a switch of narrator or voice within one document, and maintainer-internal detail in a consumer page. Name the `.claude/rules/prose-voice.md` section.
 
 ## Code quality
 

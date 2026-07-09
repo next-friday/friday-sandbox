@@ -1,4 +1,4 @@
-# Rule: libs-first — reach for a standard tool before hand-writing
+# Rule: libs first — reach for a standard tool before hand-writing
 
 Before hand-writing logic, reach for the domain-standard library, linter, or
 platform feature that already solves it. A hand-rolled solution is a hole
