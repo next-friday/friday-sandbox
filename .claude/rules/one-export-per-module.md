@@ -1,3 +1,8 @@
+---
+paths:
+  - "packages/**"
+---
+
 # Rule: one export per module — split standalone data, keep index a barrel
 
 A module is one cohesive concern. Piling unrelated exports into a single file

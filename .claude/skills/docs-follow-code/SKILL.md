@@ -29,19 +29,20 @@ Executable procedure for the `docs-follow-code` rule (`.claude/rules/docs-follow
    | class             | targets                                                                                                                 |
    | ----------------- | ----------------------------------------------------------------------------------------------------------------------- |
    | LLM docs          | `CLAUDE.md`, `.coderabbit.yaml`, `.gemini/styleguide.md`, `.claude/rules/**`, `.claude/skills/**`                       |
-   | Prose docs        | `CONTRIBUTING.md`, every `README.md`, `apps/docs/**/*.mdx`                                                              |
+   | Prose docs        | `CONTRIBUTING.md`, every `README.md`, `apps/docs/**/*.mdx`, `.github/**/*.md` (PR/issue templates drift too)            |
    | Generators        | `turbo/generators/config.ts` + `templates/*.hbs` — fix the template AND its generated output in the same pass           |
    | Gates + scripts   | `scripts/*.sh`, every `package.json` script, husky hooks                                                                |
    | Configs           | `knip.config.ts`, `.prettierrc.json`, `turbo.json`, `tsconfig*`, `.dependency-cruiser.cjs`, `clean-package.config.json` |
    | Release artifacts | `.changeset/*.md` — FLAG to the user, never edit silently                                                               |
 
-4. **Fan out the search.** Dispatch one searcher sub-agent per target-table class in a **single message** — each gets the OLD-term list and its class's file globs and returns `file:line` hits, no edits. Size each to the task: **haiku** for a plain single-term grep, **sonnet** for a class that needs an eyeball on ambiguous or prose hits; never **opus**. The main thread derives the term table, merges the searchers' hits, applies the edits, and re-greps.
+4. **Fan out the search.** Dispatch one searcher sub-agent per target-table class in a **single message** — each gets the OLD-term list and its class's file globs and returns `file:line` hits, no edits. Size each to the task: **haiku** only for one term in a narrow glob, **sonnet** for any multi-term sweep or a class that needs an eyeball on ambiguous hits; never **opus**. Searcher output is a lead, not the authority — the main thread derives the term table, merges the hits, applies the edits, and its own re-grep is the only proof.
 
 5. **Align every mirror; enumerate the full set.** Grep by the **concept**, not the changed term, and update every copy in the same pass — a package `README.md`'s Theming section, the docs site's `theming/*.mdx`, and `.claude/rules/token-pipeline.md` all describe the token model; a component's `.mdx` and its `.hbs` template share a spine. A doc that **enumerates** a code set — the color roles, the seed tokens, a component's doc sections, a package's exports — lists the _full current_ set: re-derive the list from the code, never trust or extend the doc's existing one.
 
 ## Rules
 
 - Grep the OLD term everywhere; never spot-fix only the files you remember.
+- Link direction stays one-way (`CLAUDE.md`): a sync edit never ADDS a `.claude/**` reference to a human-layer target (`CONTRIBUTING.md`, READMEs, `apps/docs/**`, `.github/**`) — restate the fact inline there instead.
 - A path change still requires the full sweep.
 - Sweep the generator templates in the same pass, not later.
 - Never batch-replace on a bare word; query the delimiter-bound form and eyeball every hit.

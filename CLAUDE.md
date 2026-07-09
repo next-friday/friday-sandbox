@@ -23,9 +23,9 @@ One fact, one home — every convention stated once, read from there (this is `n
 | contribution process — issue → branch → PR, generator, gates, changeset | [`CONTRIBUTING.md`](CONTRIBUTING.md)            |
 | executable procedures                                                   | [`.claude/skills/`](.claude/skills)             |
 
-Read from the home; don't restate it. The two bot configs can't follow a link, so each carries a designated mirror `docs-follow-code` keeps in sync: `.coderabbit.yaml` and `.gemini/styleguide.md` restate the rules for CodeRabbit and Gemini. A mirror never adds a fact or contradicts its home — change a canonical fact, update its mirror in the same change.
+Read from the home; don't restate it. The bot configs (`.coderabbit.yaml`, `.gemini/styleguide.md`) carry designated mirrors — the mirror mechanism and its sync duty live in `.claude/rules/docs-follow-code.md`.
 
-**Link direction is one-way.** `CONTRIBUTING.md`, the READMEs, `apps/docs/**`, and `.github/**` are the human layer: self-contained, never referencing `.claude/**` — a contributor who hand-writes code, uses another editor, or deletes the AI layer loses nothing (the gates enforce the same contracts for everyone). `.claude/**` is the LLM overlay: it references the human layer and the code, never the reverse. The one sanctioned mention is CONTRIBUTING's "Building a component with Claude" section, which documents the AI route itself.
+**Link direction is one-way.** `CONTRIBUTING.md`, the READMEs, `apps/docs/**`, and `.github/**` docs are the human layer: self-contained, never referencing `.claude/**` — a contributor who hand-writes code, uses another editor, or deletes the AI layer loses nothing (the gates enforce the same contracts for everyone). `.claude/**` is the LLM overlay: it references the human layer and the code, never the reverse. Two sanctioned exceptions: CONTRIBUTING's "Building a component with Claude" section (it documents the AI route itself) and path globs in automation configs (`.github/labeler.yml` matches `.claude/**` to label PRs — a matching pattern, not a dependency).
 
 ## Commands
 

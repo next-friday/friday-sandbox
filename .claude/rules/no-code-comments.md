@@ -18,10 +18,9 @@ Never write:
 - an explanatory comment — why the code does X, or a restated what
 - a section-header essay, a TODO narrative, a banner
 - a **suppression** — every silencer is banned by its own rule:
-  [no-eslint-suppressions](no-eslint-suppressions.md),
-  [no-typescript-suppressions](no-typescript-suppressions.md), and
-  [no-prettier-suppressions](no-prettier-suppressions.md). A suppression hides
-  a real failure; fix the root cause, never silence the gate.
+  no-eslint-suppressions, no-typescript-suppressions, and
+  no-prettier-suppressions. A suppression hides a real failure; fix the root
+  cause, never silence the gate.
 
 Not a comment — a machine directive the toolchain reads, keep it:
 
@@ -36,3 +35,7 @@ author, and a handlebars `{{!-- … --}}` strips from the generated output:
 contributor edits per template.
 
 Applies to every author — you, sub-agents, and generated output.
+
+Pairs with no-eslint-suppressions, no-typescript-suppressions, and
+no-prettier-suppressions (the per-tool silencer bans) and follow-local-pattern
+(names carry the intent a comment would have restated).

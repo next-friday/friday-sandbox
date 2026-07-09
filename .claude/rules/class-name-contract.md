@@ -3,7 +3,7 @@ paths:
   - "packages/**"
 ---
 
-# Rule: class-name contract — two packages linked by one class name
+# Rule: class name contract — two packages linked by one class name
 
 The visual contract is split across the two packages and linked **by the class
 name**. `styles` owns the CSS half: each component's file
