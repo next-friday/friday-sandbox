@@ -14,10 +14,12 @@ asymmetry the reader can't tell apart from a designed use case.
 - **Showcase stories — at most three, fixed names.** `Default` (every
   component), `Variants` (only when the component has a `variant` axis), and
   `Sizes` (only when it has a `size` axis). A showcase lays out every value of
-  its axis with `Flex`/`Grid`; another enum axis (a color, a shape) joins the
-  `Variants` grid when one exists, or waits for a use case otherwise. The
-  scaffold emits this tier ready to ship, and `lint:symmetry` gates it: axis →
-  story → doc section, exact names.
+  its axis with `Flex`/`Grid`, written as explicit unrolled JSX — never a
+  `.map()` over the axis (an `argTypes` options array may map; bulk placeholder
+  content belongs inside a `samples/` component). Another enum axis (a color, a
+  shape) joins the `Variants` grid when one exists, or waits for a use case
+  otherwise. The scaffold emits this tier ready to ship, and `lint:symmetry`
+  gates it: axis → story → doc section, exact names, no-map-demos.
 - **Use-case stories — the designer's, any number.** Every story beyond the
   trio is a use case a human authors to taste, after the component ships. A
   state (`isDisabled`, `data-invalid`) is demonstrated by a use case or

@@ -128,13 +128,7 @@ export const Both: Story = {
   render: (storyArgs) => (
     <ScrollArea.Root {...storyArgs} className="h-72">
       <ScrollArea.Viewport>
-        <Flex direction="column" gap="sm">
-          {Array.from({ length: 12 }, (_, position) => position + 1).map(
-            (rowIndex) => (
-              <WideRow count={12} key={rowIndex} />
-            ),
-          )}
-        </Flex>
+        <WideRow count={12} rows={12} />
       </ScrollArea.Viewport>
 
       <ScrollArea.Scrollbar orientation="vertical">
@@ -161,19 +155,53 @@ export const Sizes: Story = {
   },
   render: (storyArgs) => (
     <Flex align="start" gap="md">
-      {(["xs", "sm", "md", "lg"] as const).map((size) => (
-        <ScrollArea.Root key={size} {...storyArgs} className="h-72" size={size}>
-          <ScrollArea.Viewport>
-            <Lorem paragraph={9} />
-          </ScrollArea.Viewport>
+      <ScrollArea.Root {...storyArgs} className="h-72" size="xs">
+        <ScrollArea.Viewport>
+          <Lorem paragraph={9} />
+        </ScrollArea.Viewport>
 
-          <ScrollArea.Scrollbar orientation="vertical">
-            <ScrollArea.Thumb />
-          </ScrollArea.Scrollbar>
+        <ScrollArea.Scrollbar orientation="vertical">
+          <ScrollArea.Thumb />
+        </ScrollArea.Scrollbar>
 
-          <ScrollArea.Corner />
-        </ScrollArea.Root>
-      ))}
+        <ScrollArea.Corner />
+      </ScrollArea.Root>
+
+      <ScrollArea.Root {...storyArgs} className="h-72" size="sm">
+        <ScrollArea.Viewport>
+          <Lorem paragraph={9} />
+        </ScrollArea.Viewport>
+
+        <ScrollArea.Scrollbar orientation="vertical">
+          <ScrollArea.Thumb />
+        </ScrollArea.Scrollbar>
+
+        <ScrollArea.Corner />
+      </ScrollArea.Root>
+
+      <ScrollArea.Root {...storyArgs} className="h-72" size="md">
+        <ScrollArea.Viewport>
+          <Lorem paragraph={9} />
+        </ScrollArea.Viewport>
+
+        <ScrollArea.Scrollbar orientation="vertical">
+          <ScrollArea.Thumb />
+        </ScrollArea.Scrollbar>
+
+        <ScrollArea.Corner />
+      </ScrollArea.Root>
+
+      <ScrollArea.Root {...storyArgs} className="h-72" size="lg">
+        <ScrollArea.Viewport>
+          <Lorem paragraph={9} />
+        </ScrollArea.Viewport>
+
+        <ScrollArea.Scrollbar orientation="vertical">
+          <ScrollArea.Thumb />
+        </ScrollArea.Scrollbar>
+
+        <ScrollArea.Corner />
+      </ScrollArea.Root>
     </Flex>
   ),
 };

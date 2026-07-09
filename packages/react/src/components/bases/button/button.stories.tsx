@@ -206,16 +206,29 @@ export const Primary: Story = {
   },
   render: (storyArgs) => (
     <Flex wrap="wrap" align="center" gap="md">
-      {VARIANTS.map((variant) => (
-        <Button
-          key={variant.value}
-          {...storyArgs}
-          color="primary"
-          variant={variant.value}
-        >
-          {variant.label}
-        </Button>
-      ))}
+      <Button {...storyArgs} color="primary" variant="solid">
+        Solid
+      </Button>
+
+      <Button {...storyArgs} color="primary" variant="subtle">
+        Subtle
+      </Button>
+
+      <Button {...storyArgs} color="primary" variant="surface">
+        Surface
+      </Button>
+
+      <Button {...storyArgs} color="primary" variant="outline">
+        Outline
+      </Button>
+
+      <Button {...storyArgs} color="primary" variant="ghost">
+        Ghost
+      </Button>
+
+      <Button {...storyArgs} color="primary" variant="plain">
+        Plain
+      </Button>
     </Flex>
   ),
 };
@@ -228,16 +241,29 @@ export const Secondary: Story = {
   },
   render: (storyArgs) => (
     <Flex wrap="wrap" align="center" gap="md">
-      {VARIANTS.map((variant) => (
-        <Button
-          key={variant.value}
-          {...storyArgs}
-          color="secondary"
-          variant={variant.value}
-        >
-          {variant.label}
-        </Button>
-      ))}
+      <Button {...storyArgs} color="secondary" variant="solid">
+        Solid
+      </Button>
+
+      <Button {...storyArgs} color="secondary" variant="subtle">
+        Subtle
+      </Button>
+
+      <Button {...storyArgs} color="secondary" variant="surface">
+        Surface
+      </Button>
+
+      <Button {...storyArgs} color="secondary" variant="outline">
+        Outline
+      </Button>
+
+      <Button {...storyArgs} color="secondary" variant="ghost">
+        Ghost
+      </Button>
+
+      <Button {...storyArgs} color="secondary" variant="plain">
+        Plain
+      </Button>
     </Flex>
   ),
 };
@@ -250,16 +276,29 @@ export const Accent: Story = {
   },
   render: (storyArgs) => (
     <Flex wrap="wrap" align="center" gap="md">
-      {VARIANTS.map((variant) => (
-        <Button
-          key={variant.value}
-          {...storyArgs}
-          color="accent"
-          variant={variant.value}
-        >
-          {variant.label}
-        </Button>
-      ))}
+      <Button {...storyArgs} color="accent" variant="solid">
+        Solid
+      </Button>
+
+      <Button {...storyArgs} color="accent" variant="subtle">
+        Subtle
+      </Button>
+
+      <Button {...storyArgs} color="accent" variant="surface">
+        Surface
+      </Button>
+
+      <Button {...storyArgs} color="accent" variant="outline">
+        Outline
+      </Button>
+
+      <Button {...storyArgs} color="accent" variant="ghost">
+        Ghost
+      </Button>
+
+      <Button {...storyArgs} color="accent" variant="plain">
+        Plain
+      </Button>
     </Flex>
   ),
 };
@@ -272,16 +311,29 @@ export const Info: Story = {
   },
   render: (storyArgs) => (
     <Flex wrap="wrap" align="center" gap="md">
-      {VARIANTS.map((variant) => (
-        <Button
-          key={variant.value}
-          {...storyArgs}
-          color="info"
-          variant={variant.value}
-        >
-          {variant.label}
-        </Button>
-      ))}
+      <Button {...storyArgs} color="info" variant="solid">
+        Solid
+      </Button>
+
+      <Button {...storyArgs} color="info" variant="subtle">
+        Subtle
+      </Button>
+
+      <Button {...storyArgs} color="info" variant="surface">
+        Surface
+      </Button>
+
+      <Button {...storyArgs} color="info" variant="outline">
+        Outline
+      </Button>
+
+      <Button {...storyArgs} color="info" variant="ghost">
+        Ghost
+      </Button>
+
+      <Button {...storyArgs} color="info" variant="plain">
+        Plain
+      </Button>
     </Flex>
   ),
 };
@@ -294,16 +346,29 @@ export const Success: Story = {
   },
   render: (storyArgs) => (
     <Flex wrap="wrap" align="center" gap="md">
-      {VARIANTS.map((variant) => (
-        <Button
-          key={variant.value}
-          {...storyArgs}
-          color="success"
-          variant={variant.value}
-        >
-          {variant.label}
-        </Button>
-      ))}
+      <Button {...storyArgs} color="success" variant="solid">
+        Solid
+      </Button>
+
+      <Button {...storyArgs} color="success" variant="subtle">
+        Subtle
+      </Button>
+
+      <Button {...storyArgs} color="success" variant="surface">
+        Surface
+      </Button>
+
+      <Button {...storyArgs} color="success" variant="outline">
+        Outline
+      </Button>
+
+      <Button {...storyArgs} color="success" variant="ghost">
+        Ghost
+      </Button>
+
+      <Button {...storyArgs} color="success" variant="plain">
+        Plain
+      </Button>
     </Flex>
   ),
 };
@@ -316,16 +381,29 @@ export const Warning: Story = {
   },
   render: (storyArgs) => (
     <Flex wrap="wrap" align="center" gap="md">
-      {VARIANTS.map((variant) => (
-        <Button
-          key={variant.value}
-          {...storyArgs}
-          color="warning"
-          variant={variant.value}
-        >
-          {variant.label}
-        </Button>
-      ))}
+      <Button {...storyArgs} color="warning" variant="solid">
+        Solid
+      </Button>
+
+      <Button {...storyArgs} color="warning" variant="subtle">
+        Subtle
+      </Button>
+
+      <Button {...storyArgs} color="warning" variant="surface">
+        Surface
+      </Button>
+
+      <Button {...storyArgs} color="warning" variant="outline">
+        Outline
+      </Button>
+
+      <Button {...storyArgs} color="warning" variant="ghost">
+        Ghost
+      </Button>
+
+      <Button {...storyArgs} color="warning" variant="plain">
+        Plain
+      </Button>
     </Flex>
   ),
 };
@@ -338,16 +416,29 @@ export const Danger: Story = {
   },
   render: (storyArgs) => (
     <Flex wrap="wrap" align="center" gap="md">
-      {VARIANTS.map((variant) => (
-        <Button
-          key={variant.value}
-          {...storyArgs}
-          color="danger"
-          variant={variant.value}
-        >
-          {variant.label}
-        </Button>
-      ))}
+      <Button {...storyArgs} color="danger" variant="solid">
+        Solid
+      </Button>
+
+      <Button {...storyArgs} color="danger" variant="subtle">
+        Subtle
+      </Button>
+
+      <Button {...storyArgs} color="danger" variant="surface">
+        Surface
+      </Button>
+
+      <Button {...storyArgs} color="danger" variant="outline">
+        Outline
+      </Button>
+
+      <Button {...storyArgs} color="danger" variant="ghost">
+        Ghost
+      </Button>
+
+      <Button {...storyArgs} color="danger" variant="plain">
+        Plain
+      </Button>
     </Flex>
   ),
 };
