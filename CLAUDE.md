@@ -25,6 +25,8 @@ One fact, one home — every convention stated once, read from there (this is `n
 
 Read from the home; don't restate it. The two bot configs can't follow a link, so each carries a designated mirror `docs-follow-code` keeps in sync: `.coderabbit.yaml` and `.gemini/styleguide.md` restate the rules for CodeRabbit and Gemini. A mirror never adds a fact or contradicts its home — change a canonical fact, update its mirror in the same change.
 
+**Link direction is one-way.** `CONTRIBUTING.md`, the READMEs, `apps/docs/**`, and `.github/**` are the human layer: self-contained, never referencing `.claude/**` — a contributor who hand-writes code, uses another editor, or deletes the AI layer loses nothing (the gates enforce the same contracts for everyone). `.claude/**` is the LLM overlay: it references the human layer and the code, never the reverse. The one sanctioned mention is CONTRIBUTING's "Building a component with Claude" section, which documents the AI route itself.
+
 ## Commands
 
 The hooks cover the gates (see operating rules); these are the scoped helpers they don't:
