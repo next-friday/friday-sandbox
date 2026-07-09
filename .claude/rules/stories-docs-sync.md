@@ -20,8 +20,16 @@ asymmetry the reader can't tell apart from a designed use case.
   shape) joins the `Variants` grid when one exists, or waits for a use case
   otherwise. The scaffold emits this tier ready to ship, and `lint:symmetry`
   gates it: axis → story → doc section, exact names, no-map-demos.
+- **Independent sibling part — one showcase of its own.** A namespace part
+  with its own `tv()` map whose CSS styles the roots it contains (base
+  `fri-<name>-<part>` plus a descendant rule back onto `.fri-<name>` — a
+  `Group`, not a slot like an `Icon`) gets one showcase story named after the
+  part, carrying a `play` that verifies the part's mechanics (a size cascade,
+  a paint order), plus a same-named `##` section. `lint:symmetry` derives the
+  pair from the namespace, the second `tv()` map, and the descendant rule.
 - **Use-case stories — the designer's, any number.** Every story beyond the
-  trio is a use case a human authors to taste, after the component ships. A
+  trio and the sibling showcases is a use case a human authors to taste,
+  after the component ships. A
   state (`isDisabled`, `data-invalid`) is demonstrated by a use case or
   documented in the doc's State selectors table — never a scaffolded showcase.
 - **Demo copy is neutral.** The component's own name, the value's own label

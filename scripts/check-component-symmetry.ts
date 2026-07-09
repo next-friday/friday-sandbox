@@ -193,6 +193,29 @@ const primaryAxes = (
   return hits;
 };
 
+const allTvBases = (sourceFile: ts.SourceFile): string[] => {
+  const bases: string[] = [];
+  walk(sourceFile, (node) => {
+    if (
+      ts.isCallExpression(node) &&
+      ts.isIdentifier(node.expression) &&
+      node.expression.text === "tv" &&
+      node.arguments.length > 0 &&
+      ts.isObjectLiteralExpression(node.arguments[0]!)
+    ) {
+      const base = objectProp(
+        node.arguments[0] as ts.ObjectLiteralExpression,
+        "base",
+      );
+      if (base) {
+        const text = literalText(base);
+        if (text) bases.push(text);
+      }
+    }
+  });
+  return bases;
+};
+
 const storyMeta = (
   sourceFile: ts.SourceFile,
 ): ts.ObjectLiteralExpression | undefined => {
@@ -537,9 +560,40 @@ for (const name of components) {
     }
   }
 
+  const namespacePathEarly = `${dir}/${name}.namespace.ts`;
+  const nsInfo = existsSync(namespacePathEarly)
+    ? namespaceParts(parseTs(namespacePathEarly), Pascal)
+    : undefined;
+  const containsRoot = (partSuffix: string): boolean => {
+    const pattern = new RegExp(
+      `\\.fri-${name}-${partSuffix}[^,{]*[\\s>+~]\\.fri-${name}(?![a-z0-9-])`,
+    );
+    let hit = false;
+    cssRoot.walkRules((rule) => {
+      if (pattern.test(rule.selector)) hit = true;
+    });
+    return hit;
+  };
+  const siblingShowcases = nsInfo
+    ? allTvBases(variantsFile)
+        .map((base) => {
+          const match = new RegExp(`^fri-${name}-([a-z0-9-]+)$`).exec(base);
+          return match && containsRoot(match[1]!) ? pascal(match[1]!) : "";
+        })
+        .filter((part) => part && nsInfo.parts.includes(part))
+    : [];
+
   const stories = storyExports(storiesFile);
   if (!stories.includes("Default"))
     fail(name, `${name}.stories.tsx has no Default story`);
+  for (const part of siblingShowcases) {
+    if (!stories.includes(part)) {
+      fail(
+        name,
+        `independent sibling part "${Pascal}.${part}" (own tv() map) has no ${part} showcase story`,
+      );
+    }
+  }
   for (const axis of axes) {
     const showcase = SHOWCASE_BY_AXIS[axis];
     if (showcase && !stories.includes(showcase)) {
@@ -572,14 +626,15 @@ for (const name of components) {
       );
     }
   }
-  checkPropsTables(
-    name,
-    docText,
-    existsSync(namespacePath)
-      ? namespaceParts(parseTs(namespacePath), Pascal)
-      : undefined,
-    Pascal,
-  );
+  for (const part of siblingShowcases) {
+    if (!sections.includes(part)) {
+      fail(
+        name,
+        `independent sibling part "${Pascal}.${part}" has no "## ${part}" doc section mirroring its showcase story`,
+      );
+    }
+  }
+  checkPropsTables(name, docText, nsInfo, Pascal);
   checkMdxContent(name, docPath, docText);
 }
 
@@ -719,5 +774,5 @@ if (fails.length > 0) {
 }
 const note = warns.length > 0 ? `, ${warns.length} warning(s)` : "";
 console.log(
-  `✓ component symmetry: ${checked} components verified across presence, variants↔css, barrels, controls, stories, story-doc-showcase, no-map-demos, docs, props-tables, token resolution, theme invariants, no-raw-html, apply-only, no-default-args, compound-symmetry${note}`,
+  `✓ component symmetry: ${checked} components verified across presence, variants↔css, barrels, controls, stories, story-doc-showcase, sibling-showcase, no-map-demos, docs, props-tables, token resolution, theme invariants, no-raw-html, apply-only, no-default-args, compound-symmetry${note}`,
 );
