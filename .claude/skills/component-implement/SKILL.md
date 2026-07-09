@@ -42,8 +42,8 @@ Ship an approved component issue: branch → scaffold → fill → gates → PR 
 
 ## Acceptance criteria
 
-- `<name>.styles.ts` and `<name>.css` mirror 1:1 — every class on both sides, no orphan, every value distinct. Do not run `pnpm lint:symmetry` by hand — the hooks own it.
-- Scoped run passes: `pnpm --filter @friday-sandbox/react exec vitest run <name>`.
+- `<name>.styles.ts` and `<name>.css` mirror 1:1 — every class on both sides, no orphan, every value distinct.
+- Scoped run passes: `bash "${CLAUDE_SKILL_DIR}/scripts/verify-component.sh" <name>` (stories, types, eslint, symmetry in one shot).
 - The audit is clean: two parallel un-merged sub-agents on opus — **Standards** (token ladder, `:where()` default, ramp geometry, prose-style spine, `data-slot`) and **Spec** (right primitive, planned ladder, every demo, scope creep), grading Critical/Important/Minor; every Critical and Important fixed; builder ≠ verifier.
 - Branch matches `^<n>-`; title parses ≤50; one changeset covers the change; gates green via the hooks + CI. Escalate to `component-blueprint` after the third thrashing fix ([`references/DIAGNOSING.md`](references/DIAGNOSING.md)).
 

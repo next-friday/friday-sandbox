@@ -29,6 +29,6 @@ Sync `<name>.mdx` to `<name>.stories.tsx` for a `@friday-sandbox/react` base com
 
 ## Acceptance criteria
 
-- Story exports and feature sections mirror 1:1 — every use-case story has a same-named `##` section before `## Props` mirroring its demo, and every feature section names an existing story export.
+- `node --experimental-strip-types "${CLAUDE_SKILL_DIR}/scripts/story-doc-diff.ts" <name>` reports a 1:1 mirror — every use-case story has a same-named `##` section before `## Props` mirroring its demo, and every feature section names an existing story export.
 - Props tables match the real props (per part for a compound); Styling classes match `.css` 1:1, no orphan.
 - `.claude/rules/prose-style.md` voice; no marketing words; no use case invented.
