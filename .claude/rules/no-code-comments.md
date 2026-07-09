@@ -17,10 +17,11 @@ Never write:
 
 - an explanatory comment — why the code does X, or a restated what
 - a section-header essay, a TODO narrative, a banner
-- a lint or type **suppression** (`eslint-disable*`, `@ts-expect-error`,
-  `@ts-ignore`, `@ts-nocheck`, `prettier-ignore`, `biome-ignore`). A suppression
-  hides a real failure; fix the root cause, never silence the gate or loosen the
-  lint config to pass.
+- a **suppression** — every silencer is banned by its own rule:
+  [no-eslint-suppressions](no-eslint-suppressions.md),
+  [no-typescript-suppressions](no-typescript-suppressions.md), and
+  [no-prettier-suppressions](no-prettier-suppressions.md). A suppression hides
+  a real failure; fix the root cause, never silence the gate.
 
 Not a comment — a machine directive the toolchain reads, keep it:
 
