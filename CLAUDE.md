@@ -38,5 +38,6 @@ The hooks cover the gates (see operating rules); these are the scoped helpers th
 | `pnpm dev:docs`                                            | docs site only (next dev)                              |
 | `pnpm --filter @friday-sandbox/react test`                 | one package's tests                                    |
 | `pnpm --filter @friday-sandbox/react exec vitest run text` | one story file (substring match)                       |
+| `pnpm --filter @friday-sandbox/react run visual avatar`    | screenshot one component's stories for a visual check  |
 
 Full gate list and the issue → PR workflow live in [`CONTRIBUTING.md`](CONTRIBUTING.md).

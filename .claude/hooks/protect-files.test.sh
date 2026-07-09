@@ -29,6 +29,21 @@ blocked=$(run_hook '{"tool_input":{"file_path":"knip.config.ts","new_string":"x"
 suppress=$(run_hook '{"tool_input":{"file_path":"packages/react/src/x.ts","new_string":"// eslint-disable-next-line"}}')
 [ "$suppress" = "2" ] && { echo "✓ suppression write blocked"; pass=$((pass + 1)); } || { echo "✗ suppression write NOT blocked"; fail=$((fail + 1)); }
 
+turbo=$(run_hook '{"tool_input":{"file_path":"turbo.json","new_string":"x"}}')
+[ "$turbo" = "2" ] && { echo "✓ turbo.json edit blocked"; pass=$((pass + 1)); } || { echo "✗ turbo.json edit NOT blocked"; fail=$((fail + 1)); }
+
+lintstaged=$(run_hook '{"tool_input":{"file_path":".lintstagedrc.json","new_string":"x"}}')
+[ "$lintstaged" = "2" ] && { echo "✓ .lintstagedrc.json edit blocked"; pass=$((pass + 1)); } || { echo "✗ .lintstagedrc.json edit NOT blocked"; fail=$((fail + 1)); }
+
+husky=$(run_hook '{"tool_input":{"file_path":".husky/pre-push","new_string":"x"}}')
+[ "$husky" = "2" ] && { echo "✓ .husky hook edit blocked"; pass=$((pass + 1)); } || { echo "✗ .husky hook edit NOT blocked"; fail=$((fail + 1)); }
+
+selfhook=$(run_hook '{"tool_input":{"file_path":".claude/hooks/protect-files.sh","new_string":"x"}}')
+[ "$selfhook" = "2" ] && { echo "✓ .claude/hooks edit blocked"; pass=$((pass + 1)); } || { echo "✗ .claude/hooks edit NOT blocked"; fail=$((fail + 1)); }
+
+skill=$(run_hook '{"tool_input":{"file_path":".claude/skills/component-implement/SKILL.md","new_string":"x"}}')
+[ "$skill" = "0" ] && { echo "✓ skill write allowed"; pass=$((pass + 1)); } || { echo "✗ skill write wrongly blocked"; fail=$((fail + 1)); }
+
 clean=$(run_hook '{"tool_input":{"file_path":"packages/react/src/x.ts","new_string":"export const a = 1;"}}')
 [ "$clean" = "0" ] && { echo "✓ clean write allowed"; pass=$((pass + 1)); } || { echo "✗ clean write wrongly blocked"; fail=$((fail + 1)); }
 
