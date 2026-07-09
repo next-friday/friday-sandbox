@@ -1,0 +1,119 @@
+---
+title: Input
+description: A single-line text input, built on React Aria Input.
+---
+
+import { Flex, Input } from "@friday-sandbox/react";
+
+<SourceLinks
+  source="https://github.com/next-friday/friday-sandbox/blob/main/packages/react/src/components/bases/input/input.tsx"
+  style="https://github.com/next-friday/friday-sandbox/blob/main/packages/styles/src/components/input.css"
+  storybook="https://6a3fa7f0eb37cf8c0aaa146f-arscokrphb.chromatic.com/?path=/docs/bases-forms-input--docs"
+/>
+
+## Import
+
+```tsx
+import { Input } from "@friday-sandbox/react";
+```
+
+## Usage
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <Flex align="center" gap="md" p="md">
+      <Input aria-label="Sample text" placeholder="Type something…" />
+    </Flex>
+  </Tab>
+
+  <Tab value="Code">
+    ```tsx
+    <Input aria-label="Sample text" placeholder="Type something…" />
+    ```
+  </Tab>
+</Tabs>
+
+## Purpose
+
+`Input` collects a single line of free text from the user.
+
+## When to use
+
+- Free-form, single-line values — a name, an email address, a search term.
+- Inside a form row you compose yourself, next to your own label and hint text.
+
+## When not to use
+
+- Multi-line text — use a `textarea` element.
+- Picking from a fixed set of options — use a checkbox, radio, or select control.
+- Triggering an action — use `Button`.
+
+## Sizes
+
+Five sizes step from `xs` to `xl`.
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <Flex wrap="wrap" align="center" gap="md" p="md">
+      <Input aria-label="Sample text" size="xs" placeholder="Extra small" />
+      <Input aria-label="Sample text" size="sm" placeholder="Small" />
+      <Input aria-label="Sample text" size="md" placeholder="Medium" />
+      <Input aria-label="Sample text" size="lg" placeholder="Large" />
+      <Input aria-label="Sample text" size="xl" placeholder="Extra large" />
+    </Flex>
+  </Tab>
+
+  <Tab value="Code">
+    ```tsx
+    <Input aria-label="Sample text" size="xs" placeholder="Extra small" />
+    <Input aria-label="Sample text" size="sm" placeholder="Small" />
+    <Input aria-label="Sample text" size="md" placeholder="Medium" />
+    <Input aria-label="Sample text" size="lg" placeholder="Large" />
+    <Input aria-label="Sample text" size="xl" placeholder="Extra large" />
+    ```
+  </Tab>
+</Tabs>
+
+## Props
+
+`Input` also accepts every prop from React Aria `Input`, such as `placeholder`,
+plus a `className` string.
+
+| Prop        | Default | Type                                                                        |
+| ----------- | ------- | --------------------------------------------------------------------------- |
+| `size`      | `"md"`  | `"xs" \| "sm" \| "md" \| "lg" \| "xl"`<br />Sets the size of the input.      |
+| `className` | —       | `string`<br />Additional CSS classes to apply.                              |
+
+## Styling
+
+`Input` is styled through CSS classes, so the look applies to any element that
+carries them.
+
+### Modifier classes
+
+| Class          | Type | Description                   |
+| -------------- | ---- | ----------------------------- |
+| `fri-input`    | Base | Base styles: md size.         |
+| `fri-input-xs` | Size | Extra small size.             |
+| `fri-input-sm` | Size | Small size.                   |
+| `fri-input-md` | Size | Medium size (default).        |
+| `fri-input-lg` | Size | Large size.                   |
+| `fri-input-xl` | Size | Extra large size.             |
+
+### State selectors
+
+State styling responds to these React Aria data attributes:
+
+| Selector          | Applies when                                 |
+| ----------------- | -------------------------------------------- |
+| `[data-hovered]`  | The input is hovered with a mouse.           |
+| `[data-focused]`  | The input is focused by mouse or keyboard.   |
+| `[data-invalid]`  | The input's value fails validation.          |
+| `[data-disabled]` | The input is disabled.                       |
+
+## Accessibility
+
+Give every input an accessible name — an `aria-label`, or a `<label>` element
+whose `htmlFor` points at the input's `id`. Standard text-editing keyboard
+interaction comes from the native element; disabled and invalid states are
+exposed to assistive technologies through the underlying React Aria input.

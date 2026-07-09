@@ -1,0 +1,61 @@
+@layer components {
+  .fri-input {
+    --input-h: calc(var(--fri-spacing-xsmall) * var(--_input-n));
+    --input-px: calc(var(--input-h) / 2 - var(--fri-spacing-xsmall));
+    --input-radius: calc(var(--fri-field-radius) * var(--_input-n) / 10);
+
+    @apply inline-flex h-(--input-h) shrink-0 items-center rounded-(--input-radius) border-(length:--fri-border-width) border-solid border-border bg-surface px-(--input-px) text-foreground transition-base transition-[border-color,box-shadow,outline-color] outline-none placeholder:text-foreground-tertiary;
+  }
+
+  :where(.fri-input) {
+    --_input-n: 10;
+    @apply text-label-medium;
+  }
+
+  .fri-input-xs {
+    --_input-n: 7;
+    @apply text-label-xsmall;
+  }
+
+  .fri-input-sm {
+    --_input-n: 8;
+    @apply text-label-small;
+  }
+
+  .fri-input-md {
+    --_input-n: 10;
+    @apply text-label-medium;
+  }
+
+  .fri-input-lg {
+    --_input-n: 11;
+    @apply text-label-large;
+  }
+
+  .fri-input-xl {
+    --_input-n: 12;
+    @apply text-label-xlarge;
+  }
+
+  @media (hover: hover) {
+    .fri-input[data-hovered],
+    .fri-input:hover {
+      @apply border-foreground-tertiary;
+    }
+  }
+
+  .fri-input[data-focused],
+  .fri-input:focus {
+    @apply focus-ring;
+  }
+
+  .fri-input[data-invalid],
+  .fri-input[aria-invalid="true"] {
+    @apply border-danger-border;
+  }
+
+  .fri-input[data-disabled],
+  .fri-input:disabled {
+    @apply status-disabled;
+  }
+}

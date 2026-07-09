@@ -20,6 +20,9 @@ export type { FlexProps } from "./components/bases";
 export { Grid, GridItem } from "./components/bases";
 export type { GridItemProps, GridProps } from "./components/bases";
 
+export { Input } from "./components/bases";
+export type { InputProps } from "./components/bases";
+
 export { Link, LinkIcon } from "./components/bases";
 export type { LinkProps, LinkIconProps } from "./components/bases";
 
