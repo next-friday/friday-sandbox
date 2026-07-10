@@ -157,6 +157,46 @@ const friClasses = (sourceFile: ts.SourceFile, name: string): string[] => {
   return [...classes].sort();
 };
 
+const checkFriOnlyValues = (sourceFile: ts.SourceFile, name: string): void => {
+  walk(sourceFile, (node) => {
+    if (
+      ts.isCallExpression(node) &&
+      ts.isIdentifier(node.expression) &&
+      node.expression.text === "tv" &&
+      node.arguments.length > 0 &&
+      ts.isObjectLiteralExpression(node.arguments[0]!)
+    ) {
+      const config = node.arguments[0] as ts.ObjectLiteralExpression;
+      for (const property of config.properties) {
+        if (
+          ts.isPropertyAssignment(property) &&
+          propertyName(property) === "variants"
+        ) {
+          walk(property.initializer, (leaf) => {
+            if (
+              (ts.isStringLiteral(leaf) ||
+                ts.isNoSubstitutionTemplateLiteral(leaf)) &&
+              !(
+                ts.isPropertyAssignment(leaf.parent) &&
+                leaf.parent.name === leaf
+              )
+            ) {
+              for (const token of leaf.text.split(/\s+/)) {
+                if (token && !token.startsWith("fri-")) {
+                  fail(
+                    name,
+                    `variants value "${token}" is not a fri- class — wrap the utility in a fri-${name}-* class (class-name contract)`,
+                  );
+                }
+              }
+            }
+          });
+        }
+      }
+    }
+  });
+};
+
 const cssFriClasses = (root: Root, name: string): string[] => {
   const pattern = new RegExp(
     `\\.(fri-${name}(?:-[a-z0-9]+)*)(?![a-z0-9-])`,
@@ -506,6 +546,7 @@ for (const name of components) {
   const storiesFile = parseTs(surfaces.stories);
   const cssRoot = parseCss(surfaces.css);
 
+  checkFriOnlyValues(variantsFile, name);
   const declared = friClasses(variantsFile, name);
   const cssClasses = cssFriClasses(cssRoot, name);
   for (const cls of declared.filter((entry) => !cssClasses.includes(entry))) {
@@ -810,5 +851,5 @@ if (fails.length > 0) {
 }
 const note = warns.length > 0 ? `, ${warns.length} warning(s)` : "";
 console.log(
-  `✓ component symmetry: ${checked} components verified across presence, variants↔css, barrels, controls, stories, story-doc-showcase, sibling-showcase, no-map-demos, docs, docs-assets, props-tables, token resolution, token-units, theme invariants, no-raw-html, apply-only, no-default-args, compound-symmetry${note}`,
+  `✓ component symmetry: ${checked} components verified across presence, variants↔css, barrels, controls, stories, story-doc-showcase, sibling-showcase, no-map-demos, docs, docs-assets, props-tables, token resolution, token-units, theme invariants, no-raw-html, apply-only, fri-only-values, no-default-args, compound-symmetry${note}`,
 );
