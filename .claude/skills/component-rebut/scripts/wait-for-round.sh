@@ -22,7 +22,7 @@ round_status() {
   reviews=$(gh api --paginate "repos/$owner_repo/pulls/$pr/reviews" \
     --jq '.[] | select(.state != "PENDING") | "\(.submitted_at)\t\((.user.login // "") | ascii_downcase)\t\(.body[0:80] | gsub("[\n\t]"; " "))"' 2>/dev/null) || reviews=""
   cr_body=$(gh api --paginate "repos/$owner_repo/issues/$pr/comments" \
-    --jq '.[] | select((.user.login // "") | ascii_downcase | contains("coderabbit")) | "\(.updated_at // .created_at // "")\t\(.body[0:2000] | gsub("[\n\t]"; " "))"' 2>/dev/null) || cr_body=""
+    --jq '.[] | select((.user.login // "") | ascii_downcase | contains("coderabbit")) | "\(.updated_at // .created_at // "")\t\((.body // "")[0:2000] | gsub("[\n\t]"; " "))"' 2>/dev/null) || cr_body=""
   inline=$(gh api --paginate "repos/$owner_repo/pulls/$pr/comments" --jq '.[].id' 2>/dev/null | grep -c . ) || inline=0
 
   reviewer_state() {
@@ -40,9 +40,9 @@ round_status() {
   if [ "$gem_state" != "done" ]; then
     local gem_recent
     gem_recent=$(gh api --paginate "repos/$owner_repo/issues/$pr/comments" \
-      --jq '.[] | select((.user.login // "") | ascii_downcase | contains("gemini")) | "\(.updated_at // .created_at // "")\t\(.body[0:2000] | gsub("[\n\t]"; " "))"' 2>/dev/null \
+      --jq '.[] | select((.user.login // "") | ascii_downcase | contains("gemini")) | "\(.updated_at // .created_at // "")\t\((.body // "")[0:2000] | gsub("[\n\t]"; " "))"' 2>/dev/null \
       | awk -F'\t' -v s="$since" '$1 >= s { print $2 }') || gem_recent=""
-    if printf '%s' "$gem_recent" | grep -qiE "unable to generate a summary|not (being )?currently supported"; then
+    if printf '%s' "$gem_recent" | grep -qiE "unable to generate|not (being )?currently supported"; then
       gem_state="done"
     fi
   fi
