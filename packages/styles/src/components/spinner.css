@@ -1,20 +1,20 @@
 @layer components {
   .fri-spinner {
-    --_spinner-arc: 25%;
-    --_spinner-thickness: 25%;
-    --_spinner-track: color-mix(in oklab, currentColor 24%, transparent);
-    --_spinner-image: conic-gradient(
-      currentColor var(--_spinner-arc),
-      var(--_spinner-track) 0
+    --spinner-arc: 25%;
+    --spinner-thickness: 25%;
+    --spinner-track: color-mix(in oklab, currentColor 24%, transparent);
+    --spinner-image: conic-gradient(
+      currentColor var(--spinner-arc),
+      var(--spinner-track) 0
     );
-    --_spinner-mask: radial-gradient(
+    --spinner-mask: radial-gradient(
       farthest-side,
-      transparent calc(100% - var(--_spinner-thickness)),
+      transparent calc(100% - var(--spinner-thickness)),
       black 0
     );
-    --spinner-size: calc(var(--fri-spacing-xsmall) * var(--_spinner-n));
+    --spinner-size: calc(var(--fri-spacing-xsmall) * var(--spinner-units));
 
-    @apply inline-block size-(--spinner-size) shrink-0 animate-spin rounded-full bg-(image:--_spinner-image) mask-(--_spinner-mask) motion-reduce:animate-none;
+    @apply inline-block size-(--spinner-size) shrink-0 animate-spin rounded-full bg-(image:--spinner-image) mask-(--spinner-mask) motion-reduce:animate-none;
   }
 
   :where(.fri-spinner),
@@ -42,18 +42,18 @@
 
   :where(.fri-spinner),
   .fri-spinner-md {
-    --_spinner-n: 6;
+    --spinner-units: 6;
   }
   .fri-spinner-xs {
-    --_spinner-n: 4;
+    --spinner-units: 4;
   }
   .fri-spinner-sm {
-    --_spinner-n: 5;
+    --spinner-units: 5;
   }
   .fri-spinner-lg {
-    --_spinner-n: 8;
+    --spinner-units: 8;
   }
   .fri-spinner-xl {
-    --_spinner-n: 10;
+    --spinner-units: 10;
   }
 }

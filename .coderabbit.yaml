@@ -85,7 +85,7 @@ reviews:
         consumer documentation, so flag internal class names (fri-button-*,
         fri-flex-*), library names (class-variance-authority, react-aria,
         react-aria-components), engine math (calc(var(--fri-spacing-xs) *
-        var(--_button-n))), or file paths; copy stays generic, not brittle, so flag
+        var(--button-units))), or file paths; copy stays generic, not brittle, so flag
         concrete pixel sizes or an exhaustive enumeration of a prop's values, and
         prefer the imperative "Use the `X` prop to ..." form; symmetric story shape
         across files (summary -> Import snippet -> stylesheet note -> CSS snippet,
@@ -120,7 +120,7 @@ reviews:
         --* custom-property defs are var machinery). Respect the @layer system; no
         hardcoded colors outside the token layer; no global selectors that bypass
         layers; wire colors through the --fri-<role> ladder and geometry through a
-        component-local ramp multiplier (--_<name>-n) with the md default at zero
+        component-local ramp (--<name>-units) with the md default at zero
         specificity via :where(.fri-<name>); canonical Tailwind alias for a var
         mapped in @theme inline (bg-primary, not bg-(--fri-primary)). Size tokens
         scoped to action, field, or box, never a literal component name; corner

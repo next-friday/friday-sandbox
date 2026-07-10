@@ -1,7 +1,7 @@
 @layer components {
   .fri-{{ kebabCase name }} {
     --{{ kebabCase name }}-h: calc(
-      var(--fri-spacing-xsmall) * var(--_{{ kebabCase name }}-n)
+      var(--fri-spacing-xsmall) * var(--{{ kebabCase name }}-units)
     );
     --{{ kebabCase name }}-px: calc(
       var(--{{ kebabCase name }}-h) / 2 - var(--fri-spacing-xsmall)
@@ -11,32 +11,32 @@
   }
 
   :where(.fri-{{ kebabCase name }}) {
-    --_{{ kebabCase name }}-n: 10;
+    --{{ kebabCase name }}-units: 10;
     @apply text-label-medium;
   }
 
   .fri-{{ kebabCase name }}-xs {
-    --_{{ kebabCase name }}-n: 7;
+    --{{ kebabCase name }}-units: 7;
     @apply text-label-xsmall;
   }
 
   .fri-{{ kebabCase name }}-sm {
-    --_{{ kebabCase name }}-n: 8;
+    --{{ kebabCase name }}-units: 8;
     @apply text-label-small;
   }
 
   .fri-{{ kebabCase name }}-md {
-    --_{{ kebabCase name }}-n: 10;
+    --{{ kebabCase name }}-units: 10;
     @apply text-label-medium;
   }
 
   .fri-{{ kebabCase name }}-lg {
-    --_{{ kebabCase name }}-n: 11;
+    --{{ kebabCase name }}-units: 11;
     @apply text-label-large;
   }
 
   .fri-{{ kebabCase name }}-xl {
-    --_{{ kebabCase name }}-n: 12;
+    --{{ kebabCase name }}-units: 12;
     @apply text-label-xlarge;
   }
 

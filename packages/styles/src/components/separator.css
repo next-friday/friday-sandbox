@@ -1,16 +1,16 @@
 @layer components {
   .fri-separator {
-    --_separator-thickness: var(--fri-border-width);
-    --_separator-length: var(--fri-spacing-2xlarge);
+    --separator-thickness: var(--fri-border-width);
+    --separator-length: var(--fri-spacing-2xlarge);
     @apply m-0 shrink-0 border-none bg-separator;
   }
 
   :where(.fri-separator),
   .fri-separator-horizontal {
-    @apply h-(--_separator-thickness) w-full;
+    @apply h-(--separator-thickness) w-full;
   }
 
   .fri-separator-vertical {
-    @apply h-full min-h-(--_separator-length) w-(--_separator-thickness);
+    @apply h-full min-h-(--separator-length) w-(--separator-thickness);
   }
 }

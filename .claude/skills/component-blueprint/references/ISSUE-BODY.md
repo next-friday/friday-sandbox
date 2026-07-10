@@ -17,8 +17,8 @@ body says.
   structural (domain axis only) — state which and why>. Per axis: every value,
   its `fri-<name>-<value>` class, the default. A size that cascades from a
   container part says so (the child then bakes no default).
-- **Geometry**: ramp `--_<name>-n` per size step; radius archetype
-  (`action`/`field`/`box`) with the `/ <md-n>` divisor.
+- **Geometry**: ramp `--<name>-units` per size step; radius archetype
+  (`action`/`field`/`box`) with the `/ <md-units>` divisor.
 - **Base-look inventory** (per part): width behavior (`w-fit`/`w-full`/unset),
   position (`relative` only for a child overlay), `transition-[…]` = exactly
   the properties the state rules change, cursor.
