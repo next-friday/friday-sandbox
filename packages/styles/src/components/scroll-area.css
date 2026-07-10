@@ -1,25 +1,25 @@
 @layer components {
   .fri-scroll-area {
     --scroll-area-thickness: calc(
-      var(--fri-spacing-xsmall) * var(--_scroll-area-n)
+      var(--fri-spacing-xsmall) * var(--scroll-area-units)
     );
     @apply relative overflow-hidden;
   }
 
   :where(.fri-scroll-area) {
-    --_scroll-area-n: 2.5;
+    --scroll-area-units: 2.5;
   }
   .fri-scroll-area-xs {
-    --_scroll-area-n: 1.5;
+    --scroll-area-units: 1.5;
   }
   .fri-scroll-area-sm {
-    --_scroll-area-n: 2;
+    --scroll-area-units: 2;
   }
   .fri-scroll-area-md {
-    --_scroll-area-n: 2.5;
+    --scroll-area-units: 2.5;
   }
   .fri-scroll-area-lg {
-    --_scroll-area-n: 3;
+    --scroll-area-units: 3;
   }
 
   .fri-scroll-area-viewport {

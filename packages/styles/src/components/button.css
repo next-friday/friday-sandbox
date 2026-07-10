@@ -1,10 +1,10 @@
 @layer components {
   .fri-button {
-    --button-h: calc(var(--fri-spacing-xsmall) * var(--_button-n));
+    --button-h: calc(var(--fri-spacing-xsmall) * var(--button-units));
     --button-px: calc(var(--button-h) / 2 - var(--fri-spacing-xsmall));
     --button-spinner-size: calc(var(--button-h) / 2);
-    --button-radius: calc(var(--fri-action-radius) * var(--_button-n) / 10);
-    --button-gap: calc(var(--fri-spacing-small) * var(--_button-n) / 10);
+    --button-radius: calc(var(--fri-action-radius) * var(--button-units) / 10);
+    --button-gap: calc(var(--fri-spacing-small) * var(--button-units) / 10);
 
     @apply relative inline-flex h-(--button-h) w-fit shrink-0 cursor-(--fri-cursor-interactive) items-center justify-center gap-(--button-gap) rounded-(--button-radius) border-(length:--fri-border-width) border-(--button-border-color) bg-(--button-background) px-(--button-px) whitespace-nowrap text-(--button-foreground) transition-base transition-[background-color,box-shadow,outline-color] outline-none select-none;
   }
@@ -162,27 +162,27 @@
   }
 
   :where(.fri-button) {
-    --_button-n: 10;
+    --button-units: 10;
     @apply text-label-medium;
   }
   .fri-button-xs {
-    --_button-n: 7;
+    --button-units: 7;
     @apply text-label-xsmall;
   }
   .fri-button-sm {
-    --_button-n: 8;
+    --button-units: 8;
     @apply text-label-small;
   }
   .fri-button-md {
-    --_button-n: 10;
+    --button-units: 10;
     @apply text-label-medium;
   }
   .fri-button-lg {
-    --_button-n: 11;
+    --button-units: 11;
     @apply text-label-large;
   }
   .fri-button-xl {
-    --_button-n: 12;
+    --button-units: 12;
     @apply text-label-xlarge;
   }
 

@@ -180,7 +180,7 @@ export const Group: Story = {
       '[data-slot="avatar"]',
     )!;
     await expect(
-      getComputedStyle(cascadeChild).getPropertyValue("--_avatar-n").trim(),
+      getComputedStyle(cascadeChild).getPropertyValue("--avatar-units").trim(),
     ).toBe("16");
 
     const stackedChildren = [

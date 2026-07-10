@@ -45,7 +45,10 @@ the `--font-sans`/`--font-mono` exception.
    exception.
 4. **`src/components/<name>.css` — consume + component-local calc.**
    Components apply the semantic utilities and add only the arithmetic unique to
-   that component, driven by a local ramp multiplier (`--_<name>-n`). Every
+   that component, driven by a local ramp (`--<name>-units` — the component's
+   size in `--fri-spacing-xsmall` units). Component-local custom properties are
+   bare `--<name>-*` names: the `--fri-*` namespace alone marks what a consumer
+   may override, so internals never carry it. Every
    `.fri-*` rule (and every base element rule) styles through `@apply` **only** —
    a raw CSS property is a bug when a utility exists. A property Tailwind has no
    utility for (`grid-template-columns: repeat(auto-fit…)`,
@@ -63,7 +66,7 @@ scale (`--fri-radius-xsmall … xlarge`; for a `radius` prop or a consumer's own
 scales its archetype per size:
 
 ```css
---button-radius: calc(var(--fri-action-radius) * var(--_button-n) / 10);
+--button-radius: calc(var(--fri-action-radius) * var(--button-units) / 10);
 ```
 
 Radius is fully static, so it never touches `shared/variables.css`.
