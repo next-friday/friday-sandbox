@@ -1,13 +1,13 @@
 ---
 name: component-implement
-description: Use to build and ship a base component in @friday-sandbox/react from an approved issue — "implement issue #N", "build and ship the Button", "add a Tooltip", "take the component to a PR", branching from a component issue, or getting the gates or CI green. The execution half after component-blueprint. Keywords class-variance-authority, fri-class, stories-as-tests, react-aria.
+description: Use to build and ship a base component in @friday-sandbox/react from an approved issue — "implement issue #N", "build and ship the Button", "add a Tooltip", "take the component to a PR", branching from a component issue, or getting the gates green. The execution half after component-blueprint. Keywords class-variance-authority, fri-class, stories-as-tests, react-aria.
 ---
 
 # Component implement
 
 ## Purpose
 
-Ship an approved component issue: branch → scaffold → fill → gates → PR → green CI, then hand the review round to `component-rebut`.
+Ship an approved component issue: branch → scaffold → fill → gates → PR, then hand the review round to `component-rebut`.
 
 ## Input
 
@@ -30,8 +30,7 @@ Ship an approved component issue: branch → scaffold → fill → gates → PR 
 9. **Compound.** Callable-root (`link`/`grid`) — pass `parts`, auto-wired. Namespace-of-parts (`scroll-area`) — scaffold single, hand-write `.namespace.ts` + barrel blocks. Props live inline in `<name>.tsx`; a compound with **three or more parts** always moves them to `<name>.types.ts` (`avatar`, `scroll-area`), one or two parts stay inline (`link`, `grid`); a single component with complex prop types may also split (`flex`).
 10. **Changeset.** Keep the generated `<name>-component.md`. A non-generated behavior change → `pnpm changeset` once.
 11. **Verify, then overlap the judges — audits and the visual loop run together.** Run `bash "${CLAUDE_SKILL_DIR}/scripts/verify-component.sh" <name>`; the moment it passes, dispatch the two audit agents from the Acceptance criteria (**opus**, parallel, unmerged) in a single message, then run `pnpm --filter @friday-sandbox/react run visual <name>` while they work — it boots (or reuses) Storybook on :6006 and screenshots every story export to a temp directory, printing the paths. Read every screenshot and judge it against the issue's design: every variant a distinct hue, every size a distinct step, tokens resolved (no browser-default rendering), layout intact, each container mechanic (a cascade, a paint order) visible. A defect from either judge → fix at the source layer (route a contract-level fix back through the builder; apply a one-line mechanical fix directly), re-verify, re-look; every audit Critical/Important and every screenshot mismatch settles before the PR. Never push a component whose screenshots you have not read this round.
-12. **PR.** Gates via the hooks. Title `type(scope): subject` ≤50, lowercase imperative; `Closes #<n>` in the body; fill the template. CI validates both that the body closes an issue and that the branch's `<n>-` prefix points at that OPEN issue — get the branch name right **before** opening the PR, because renaming a branch under an open PR closes the PR permanently (GitHub does not retarget it).
-13. **CI.** `gh pr checks <pr> --watch` to green; a failing check → fix by root cause, push, re-watch; "no checks configured" is not a failure. Hand the AI-review round to `component-rebut`.
+12. **PR.** Gates via the hooks. Title `type(scope): subject` ≤50, lowercase imperative; `Closes #<n>` in the body; fill the template. CI validates both that the body closes an issue and that the branch's `<n>-` prefix points at that OPEN issue — get the branch name right **before** opening the PR, because renaming a branch under an open PR closes the PR permanently (GitHub does not retarget it). Opening the PR is this skill's last PR act — hand the AI-review round to `component-rebut`; CI and merge readiness stay with branch protection and the human.
 
 ## Rules
 
@@ -52,7 +51,7 @@ Ship an approved component issue: branch → scaffold → fill → gates → PR 
 - Scoped run passes: `bash "${CLAUDE_SKILL_DIR}/scripts/verify-component.sh" <name>` (stories, types, eslint, symmetry in one shot).
 - The visual loop ran on the final code: every screenshot from `pnpm --filter @friday-sandbox/react run visual <name>` read and matched to the issue's design this round.
 - The audit is clean: two parallel un-merged sub-agents on opus — **Standards** (token ladder, `:where()` default, ramp geometry, doc-skeletons spine, `data-slot`) and **Spec** (right primitive, planned ladder, every demo, scope creep), grading Critical/Important/Minor; every Critical and Important fixed; builder ≠ verifier.
-- Branch matches `^<n>-`; title parses ≤50; one changeset covers the change; gates green via the hooks + CI. Escalate to `component-blueprint` after the third thrashing fix ([`references/DIAGNOSING.md`](references/DIAGNOSING.md)).
+- Branch matches `^<n>-`; title parses ≤50; one changeset covers the change; gates green via the hooks. Escalate to `component-blueprint` after the third thrashing fix ([`references/DIAGNOSING.md`](references/DIAGNOSING.md)).
 
 ## Checklist
 
@@ -69,10 +68,10 @@ Materialize as tracked tasks at start, one per item; tick only on the verifier's
 - [ ] Scoped gates green — verifier: `verify-component.sh <name>` output
 - [ ] Audits fired at verify-green, visual loop run while they work, every screenshot read — verifier: the dispatch timestamps + `pnpm --filter @friday-sandbox/react run visual <name>` paths + the image reads
 - [ ] Audit clean, every Critical/Important fixed — verifier: both audit agents' verdicts
-- [ ] PR open with `Closes #<n>`, CI green — verifier: `gh pr checks <pr> --watch`
+- [ ] PR open with `Closes #<n>` — verifier: `gh pr view <pr> --json url,body`
 
 ## Output
 
-| Issue  | Branch       | Component | Variants                     | Gates               | PR                      |
-| ------ | ------------ | --------- | ---------------------------- | ------------------- | ----------------------- |
-| `#<n>` | `<n>-<slug>` | `<name>`  | `<roles>×<variants>×<sizes>` | pass via hooks + CI | `#<pr>` (`Closes #<n>`) |
+| Issue  | Branch       | Component | Variants                     | Gates          | PR                      |
+| ------ | ------------ | --------- | ---------------------------- | -------------- | ----------------------- |
+| `#<n>` | `<n>-<slug>` | `<name>`  | `<roles>×<variants>×<sizes>` | pass via hooks | `#<pr>` (`Closes #<n>`) |

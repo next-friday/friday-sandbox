@@ -106,8 +106,8 @@ Between those two points it runs without you prompting each step:
 ```text
 YOU      approve the design  →  blueprint records the issue
   ↓
-CLAUDE   implement: branch → build → gates → PR → green CI
-         rebut: bot review → fix → push  (repeats until checks + every bot round are clean)
+CLAUDE   implement: branch → build → gates → PR
+         rebut: bot review → fix → push  (repeats until every bot round is clean)
   ↓
 YOU      merge   ·   or request changes → back to Claude
 ```
