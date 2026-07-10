@@ -76,5 +76,17 @@ run_case "both prior-round after fix push -> settled 6" 6 \
 run_case "cr processing placeholder now -> waiting 3" 3 \
   FAKE_CR_BODY="2026-07-09T10:20:00Z\tCurrently processing new changes in this PR.\n"
 
+run_case "cr walkthrough edited clean, gemini done -> complete" 0 \
+  FAKE_REVIEWS="$NEW\tgemini-code-assist[bot]\t## Code Review\n" \
+  FAKE_CR_BODY="2026-07-09T10:20:00Z\tNo actionable comments were generated in the recent review.\n"
+
+run_case "cr walkthrough actionable count via edit, gemini done -> complete" 0 \
+  FAKE_REVIEWS="$NEW\tgemini-code-assist[bot]\t## Code Review\n" \
+  FAKE_CR_BODY="2026-07-09T10:20:00Z\tActionable comments posted: 2\n"
+
+run_case "stale walkthrough older than head -> partial 4" 4 \
+  FAKE_REVIEWS="$NEW\tgemini-code-assist[bot]\t## Code Review\n" \
+  FAKE_CR_BODY="2026-07-09T09:00:00Z\tNo actionable comments were generated in the recent review.\n"
+
 echo "wait-for-round: $pass passed, $fail failed"
 [ "$fail" -eq 0 ]
