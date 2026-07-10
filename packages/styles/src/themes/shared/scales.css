@@ -1,11 +1,13 @@
 @layer theme {
   :root {
+    --fri-scale-2xsmall: 1.25rem;
     --fri-scale-xsmall: 1.5rem;
     --fri-scale-small: 2.25rem;
     --fri-scale-medium: 3rem;
     --fri-scale-large: 4rem;
     --fri-scale-xlarge: 5rem;
     --fri-scale-2xlarge: 7rem;
+    --fri-scale-3xlarge: 9rem;
 
     --fri-spacing-2xsmall: 0.125rem;
     --fri-spacing-xsmall: 0.25rem;
@@ -16,6 +18,7 @@
     --fri-spacing-2xlarge: 2rem;
     --fri-spacing-3xlarge: 3rem;
     --fri-spacing-4xlarge: 4rem;
+    --fri-spacing-5xlarge: 6rem;
 
     --fri-font-family-sans:
       ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
@@ -131,10 +134,12 @@
     --fri-field-radius: 0.5rem;
     --fri-box-radius: 0.875rem;
 
+    --fri-radius-2xsmall: 0.125rem;
     --fri-radius-xsmall: 0.25rem;
     --fri-radius-small: 0.5rem;
     --fri-radius-medium: 0.875rem;
     --fri-radius-large: 1.25rem;
     --fri-radius-xlarge: 2rem;
+    --fri-radius-2xlarge: 3rem;
   }
 }
