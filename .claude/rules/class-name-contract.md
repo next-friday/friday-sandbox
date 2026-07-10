@@ -13,7 +13,8 @@ the JS half: each component's `tv()` variant map (`<name>.styles.ts`,
 co-located with `<name>.tsx` in `packages/react/src/components/bases/<name>/`)
 maps its props to that same set of class names. The two halves are mirrored
 1:1 across the package boundary — a deterministic gate fails on an orphan
-class on either side.
+class on either side, and on any variant value that is not a `fri-*` class
+(a raw Tailwind utility in a variant map bypasses the whole contract).
 
 The shared spacing utilities are the deliberate exception. Padding and gap live
 in `layers/spacing.css` as global `fri-p-*`/`fri-gap-*` classes — not

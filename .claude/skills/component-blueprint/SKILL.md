@@ -50,6 +50,7 @@ Steps 1–5 settle the design (no GitHub write); steps 6–7 record it to the is
 - The generator `primitive` kind is interactivity, not library: `aria` for interactive, `native` for display/layout including a non-interactive react-aria part (Label, Text).
 - Reuse the repo vocabulary — `primary…danger`, `solid…plain`, `xs…xl`; never invent a color or size vocabulary when the repo set fits.
 - Drop the color and visual-variant axes for a structural component (label, text, separator); use its domain axis plus boolean states. Every value distinct with its `fri-<name>-<value>` class; add a new axis only with a stated reason.
+- Every recorded value maps to a `fri-<name>-*` class — never a raw Tailwind utility (`lint:symmetry` fri-only-values fails it). A baseline component that emits a raw utility is a defect to fix in the design, never a pattern to copy.
 - Record the flat `tv({ base })` shape and `--fri-*` tokens the generator and build use; never a `slots: { root }` shape or a raw Tailwind numeric (`ms-0.5`, `gap-1`). Never hardcode a color; map every color to the `--fri-<role>` ladder.
 - Design only from the live tree, the human's spec, and the library docs; never seed the shape from git history or a prior/dropped version.
 - The issue body is the single source of truth — never a committed repo file; the draft (`~/.claude/projects/<project>/blueprints/<name>.md`) is the pre-ship `--body-file` buffer, outside the repo, never committed.
