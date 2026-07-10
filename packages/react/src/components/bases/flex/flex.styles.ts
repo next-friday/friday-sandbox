@@ -1,10 +1,10 @@
-import { tv } from "tailwind-variants/lite";
-import type { VariantProps } from "tailwind-variants/lite";
+import { cva } from "class-variance-authority";
 
 import { gapVariants, paddingVariants } from "../../utils/spacing-variants";
 
-export const flexVariants = tv({
-  base: "fri-flex",
+import type { StrictVariantProps } from "../../utils/variant-props";
+
+export const flexVariants = cva("fri-flex", {
   variants: {
     direction: {
       row: "fri-flex-row",
@@ -65,4 +65,4 @@ export const flexVariants = tv({
   },
 });
 
-export type FlexVariants = VariantProps<typeof flexVariants>;
+export type FlexVariants = StrictVariantProps<typeof flexVariants>;

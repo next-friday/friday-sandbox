@@ -1,59 +1,57 @@
-import { tv } from "tailwind-variants/lite";
-import type { VariantProps } from "tailwind-variants/lite";
+import { cva } from "class-variance-authority";
 
-export const textVariants = tv({
-  slots: {
-    root: "fri-text",
-  },
+import type { StrictVariantProps } from "../../utils/variant-props";
+
+export const textVariants = cva("fri-text", {
   variants: {
     variant: {
-      inherit: { root: "fri-text-inherit" },
-      "display-xxl": { root: "fri-text-display-xxl" },
-      "display-xl": { root: "fri-text-display-xl" },
-      "display-lg": { root: "fri-text-display-lg" },
-      "display-md": { root: "fri-text-display-md" },
-      "display-sm": { root: "fri-text-display-sm" },
-      "body-lg": { root: "fri-text-body-lg" },
-      "body-lg-strong": { root: "fri-text-body-lg-strong" },
-      "body-md": { root: "fri-text-body-md" },
-      "body-md-strong": { root: "fri-text-body-md-strong" },
-      "body-sm": { root: "fri-text-body-sm" },
-      "body-sm-strong": { root: "fri-text-body-sm-strong" },
-      "body-xs": { root: "fri-text-body-xs" },
-      "body-xs-strong": { root: "fri-text-body-xs-strong" },
-      "label-lg": { root: "fri-text-label-lg" },
-      "label-md": { root: "fri-text-label-md" },
-      "label-sm": { root: "fri-text-label-sm" },
-      caption: { root: "fri-text-caption" },
-      "caption-strong": { root: "fri-text-caption-strong" },
-      code: { root: "fri-text-code" },
+      inherit: "fri-text-inherit",
+      "display-xxl": "fri-text-display-xxl",
+      "display-xl": "fri-text-display-xl",
+      "display-lg": "fri-text-display-lg",
+      "display-md": "fri-text-display-md",
+      "display-sm": "fri-text-display-sm",
+      "body-lg": "fri-text-body-lg",
+      "body-lg-strong": "fri-text-body-lg-strong",
+      "body-md": "fri-text-body-md",
+      "body-md-strong": "fri-text-body-md-strong",
+      "body-sm": "fri-text-body-sm",
+      "body-sm-strong": "fri-text-body-sm-strong",
+      "body-xs": "fri-text-body-xs",
+      "body-xs-strong": "fri-text-body-xs-strong",
+      "label-lg": "fri-text-label-lg",
+      "label-md": "fri-text-label-md",
+      "label-sm": "fri-text-label-sm",
+      caption: "fri-text-caption",
+      "caption-strong": "fri-text-caption-strong",
+      code: "fri-text-code",
     },
     color: {
-      inherit: { root: "" },
-      ink: { root: "fri-text-ink" },
-      body: { root: "fri-text-body" },
-      muted: { root: "fri-text-muted" },
-      danger: { root: "fri-text-danger" },
+      inherit: "",
+      ink: "fri-text-ink",
+      body: "fri-text-body",
+      muted: "fri-text-muted",
+      danger: "fri-text-danger",
     },
     align: {
-      left: { root: "fri-text-align-left" },
-      center: { root: "fri-text-align-center" },
-      right: { root: "fri-text-align-right" },
-      justify: { root: "fri-text-align-justify" },
+      left: "fri-text-align-left",
+      center: "fri-text-align-center",
+      right: "fri-text-align-right",
+      justify: "fri-text-align-justify",
     },
     truncate: {
-      true: { root: "fri-text-truncate" },
+      true: "fri-text-truncate",
     },
     lineClamp: {
-      1: { root: "fri-text-clamp-1" },
-      2: { root: "fri-text-clamp-2" },
-      3: { root: "fri-text-clamp-3" },
-      4: { root: "fri-text-clamp-4" },
-      5: { root: "fri-text-clamp-5" },
-      6: { root: "fri-text-clamp-6" },
+      1: "fri-text-clamp-1",
+      2: "fri-text-clamp-2",
+      3: "fri-text-clamp-3",
+      4: "fri-text-clamp-4",
+      5: "fri-text-clamp-5",
+      6: "fri-text-clamp-6",
     },
     underline: {
-      true: { root: "fri-text-underline" },
+      true: "fri-text-underline",
     },
   },
   defaultVariants: {
@@ -62,4 +60,4 @@ export const textVariants = tv({
   },
 });
 
-export type TextVariants = VariantProps<typeof textVariants>;
+export type TextVariants = StrictVariantProps<typeof textVariants>;

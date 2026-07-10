@@ -1,10 +1,10 @@
-import { tv } from "tailwind-variants/lite";
-import type { VariantProps } from "tailwind-variants/lite";
+import { cva } from "class-variance-authority";
 
 import { paddingVariants } from "../../utils/spacing-variants";
 
-export const surfaceVariants = tv({
-  base: "fri-surface",
+import type { StrictVariantProps } from "../../utils/variant-props";
+
+export const surfaceVariants = cva("fri-surface", {
   variants: {
     variant: {
       primary: "fri-surface-primary",
@@ -27,4 +27,4 @@ export const surfaceVariants = tv({
   },
 });
 
-export type SurfaceVariants = VariantProps<typeof surfaceVariants>;
+export type SurfaceVariants = StrictVariantProps<typeof surfaceVariants>;

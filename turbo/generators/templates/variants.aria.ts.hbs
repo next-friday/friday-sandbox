@@ -1,8 +1,7 @@
-import { tv } from "tailwind-variants/lite";
-import type { VariantProps } from "tailwind-variants/lite";
+import { cva } from "class-variance-authority";
+import type { StrictVariantProps } from "../../utils/variant-props";
 
-export const {{ camelCase name }}Variants = tv({
-  base: "fri-{{ kebabCase name }}",
+export const {{ camelCase name }}Variants = cva("fri-{{ kebabCase name }}", {
   variants: {
     size: {
       xs: "fri-{{ kebabCase name }}-xs",
@@ -17,4 +16,4 @@ export const {{ camelCase name }}Variants = tv({
   },
 });
 
-export type {{ pascalCase name }}Variants = VariantProps<typeof {{ camelCase name }}Variants>;
+export type {{ pascalCase name }}Variants = StrictVariantProps<typeof {{ camelCase name }}Variants>;

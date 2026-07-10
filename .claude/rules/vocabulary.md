@@ -10,7 +10,7 @@ Use the canonical term. Examples:
 | Canonical        | Not                                                                                                              |
 | ---------------- | ---------------------------------------------------------------------------------------------------------------- |
 | component        | widget, control, element (when it means a component)                                                             |
-| variant          | kind, flavor, style (when it means a `tv()` variant)                                                             |
+| variant          | kind, flavor, style (when it means a `cva()` variant)                                                            |
 | token            | theme variable, custom property (when it means a design token)                                                   |
 | prop             | option, parameter (when it means a component prop)                                                               |
 | size             | sizing, dimension (when it means the `size` prop or token)                                                       |

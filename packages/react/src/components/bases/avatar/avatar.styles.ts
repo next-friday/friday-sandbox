@@ -1,28 +1,24 @@
-import { tv } from "tailwind-variants/lite";
-import type { VariantProps } from "tailwind-variants/lite";
+import { cva } from "class-variance-authority";
 
-export const avatarVariants = tv({
-  slots: {
-    root: "fri-avatar",
-    image: "fri-avatar-image",
-    fallback: "fri-avatar-fallback",
-  },
+import type { StrictVariantProps } from "../../utils/variant-props";
+
+export const avatarVariants = cva("fri-avatar", {
   variants: {
     size: {
-      xs: { root: "fri-avatar-xs" },
-      sm: { root: "fri-avatar-sm" },
-      md: { root: "fri-avatar-md" },
-      lg: { root: "fri-avatar-lg" },
-      xl: { root: "fri-avatar-xl" },
-      "2xl": { root: "fri-avatar-2xl" },
+      xs: "fri-avatar-xs",
+      sm: "fri-avatar-sm",
+      md: "fri-avatar-md",
+      lg: "fri-avatar-lg",
+      xl: "fri-avatar-xl",
+      "2xl": "fri-avatar-2xl",
     },
     shape: {
-      square: { root: "fri-avatar-square" },
-      radius: { root: "fri-avatar-radius" },
-      full: { root: "fri-avatar-full" },
+      square: "fri-avatar-square",
+      radius: "fri-avatar-radius",
+      full: "fri-avatar-full",
     },
     isDisabled: {
-      true: { root: "fri-avatar-disabled" },
+      true: "fri-avatar-disabled",
     },
   },
   defaultVariants: {
@@ -30,8 +26,11 @@ export const avatarVariants = tv({
   },
 });
 
-export const avatarGroupVariants = tv({
-  base: "fri-avatar-group",
+export const avatarImageVariants = cva("fri-avatar-image");
+
+export const avatarFallbackVariants = cva("fri-avatar-fallback");
+
+export const avatarGroupVariants = cva("fri-avatar-group", {
   variants: {
     size: {
       xs: "fri-avatar-group-xs",
@@ -56,5 +55,7 @@ export const avatarGroupVariants = tv({
   },
 });
 
-export type AvatarVariants = VariantProps<typeof avatarVariants>;
-export type AvatarGroupVariants = VariantProps<typeof avatarGroupVariants>;
+export type AvatarVariants = StrictVariantProps<typeof avatarVariants>;
+export type AvatarGroupVariants = StrictVariantProps<
+  typeof avatarGroupVariants
+>;

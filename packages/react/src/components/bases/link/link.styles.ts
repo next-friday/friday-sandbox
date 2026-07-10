@@ -1,8 +1,8 @@
-import { tv } from "tailwind-variants/lite";
-import type { VariantProps } from "tailwind-variants/lite";
+import { cva } from "class-variance-authority";
 
-export const linkVariants = tv({
-  base: "fri-link",
+import type { StrictVariantProps } from "../../utils/variant-props";
+
+export const linkVariants = cva("fri-link", {
   variants: {
     variant: {
       inherit: "fri-link-inherit",
@@ -37,8 +37,6 @@ export const linkVariants = tv({
   },
 });
 
-export const linkIconVariants = tv({
-  base: "fri-link-icon",
-});
+export const linkIconVariants = cva("fri-link-icon");
 
-export type LinkVariants = VariantProps<typeof linkVariants>;
+export type LinkVariants = StrictVariantProps<typeof linkVariants>;

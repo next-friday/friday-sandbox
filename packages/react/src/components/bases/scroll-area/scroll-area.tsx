@@ -2,7 +2,13 @@
 
 import { ScrollArea as RadixScrollArea } from "radix-ui";
 
-import { scrollAreaVariants } from "./scroll-area.styles";
+import {
+  scrollAreaVariants,
+  scrollAreaViewportVariants,
+  scrollAreaScrollbarVariants,
+  scrollAreaThumbVariants,
+  scrollAreaCornerVariants,
+} from "./scroll-area.styles";
 
 import type {
   ScrollAreaCornerProps,
@@ -15,8 +21,7 @@ import type {
 const ScrollAreaRoot = (props: Readonly<ScrollAreaRootProps>) => {
   const { className, size, variant, ...rest } = props;
 
-  const slots = scrollAreaVariants({ size, variant });
-  const rootClassName = slots.root({ class: className });
+  const rootClassName = scrollAreaVariants({ size, variant, class: className });
   const radixType = variant === "hidden" ? "scroll" : variant;
 
   return (
@@ -32,8 +37,7 @@ const ScrollAreaRoot = (props: Readonly<ScrollAreaRootProps>) => {
 const ScrollAreaViewport = (props: Readonly<ScrollAreaViewportProps>) => {
   const { className, ...rest } = props;
 
-  const slots = scrollAreaVariants();
-  const viewportClassName = slots.viewport({ class: className });
+  const viewportClassName = scrollAreaViewportVariants({ class: className });
 
   return (
     <RadixScrollArea.Viewport
@@ -47,8 +51,7 @@ const ScrollAreaViewport = (props: Readonly<ScrollAreaViewportProps>) => {
 const ScrollAreaScrollbar = (props: Readonly<ScrollAreaScrollbarProps>) => {
   const { className, ...rest } = props;
 
-  const slots = scrollAreaVariants();
-  const scrollbarClassName = slots.scrollbar({ class: className });
+  const scrollbarClassName = scrollAreaScrollbarVariants({ class: className });
 
   return (
     <RadixScrollArea.Scrollbar
@@ -62,8 +65,7 @@ const ScrollAreaScrollbar = (props: Readonly<ScrollAreaScrollbarProps>) => {
 const ScrollAreaThumb = (props: Readonly<ScrollAreaThumbProps>) => {
   const { className, ...rest } = props;
 
-  const slots = scrollAreaVariants();
-  const thumbClassName = slots.thumb({ class: className });
+  const thumbClassName = scrollAreaThumbVariants({ class: className });
 
   return (
     <RadixScrollArea.Thumb
@@ -77,8 +79,7 @@ const ScrollAreaThumb = (props: Readonly<ScrollAreaThumbProps>) => {
 const ScrollAreaCorner = (props: Readonly<ScrollAreaCornerProps>) => {
   const { className, ...rest } = props;
 
-  const slots = scrollAreaVariants();
-  const cornerClassName = slots.corner({ class: className });
+  const cornerClassName = scrollAreaCornerVariants({ class: className });
 
   return (
     <RadixScrollArea.Corner

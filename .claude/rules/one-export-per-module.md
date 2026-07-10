@@ -22,7 +22,7 @@ Two halves, one gated and one not:
   `index.ts`. Never collect them into one `constants.ts` grab-bag.
 
 Cohesion, not a blanket count: a component module legitimately co-locates the
-component, its `Props` type, and its `tv()` variant map — those are one concern,
+component, its `Props` type, and its `cva()` variant map — those are one concern,
 so they stay together. The rule bans piling **unrelated** exports, not every
 second export.
 

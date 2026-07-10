@@ -9,7 +9,7 @@ The visual contract is split across the two packages and linked **by the class
 name**. `styles` owns the CSS half: each component's file
 (`src/components/<name>.css`) defines the `fri-<name>` class plus
 `fri-<name>-<value>` modifier classes under `@layer components`. `react` owns
-the JS half: each component's `tv()` variant map (`<name>.styles.ts`,
+the JS half: each component's `cva()` variant map (`<name>.styles.ts`,
 co-located with `<name>.tsx` in `packages/react/src/components/bases/<name>/`)
 maps its props to that same set of class names. The two halves are mirrored
 1:1 across the package boundary — a deterministic gate fails on an orphan

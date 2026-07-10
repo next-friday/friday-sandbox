@@ -2,7 +2,12 @@
 
 import { Avatar as RadixAvatar } from "radix-ui";
 
-import { avatarVariants, avatarGroupVariants } from "./avatar.styles";
+import {
+  avatarVariants,
+  avatarImageVariants,
+  avatarFallbackVariants,
+  avatarGroupVariants,
+} from "./avatar.styles";
 import type {
   AvatarProps,
   AvatarImageProps,
@@ -13,8 +18,12 @@ import type {
 export const Avatar = (props: Readonly<AvatarProps>) => {
   const { children, className, isDisabled, shape, size, ...rest } = props;
 
-  const { root } = avatarVariants({ size, shape, isDisabled });
-  const rootClassName = root({ class: className });
+  const rootClassName = avatarVariants({
+    size,
+    shape,
+    isDisabled,
+    class: className,
+  });
 
   return (
     <RadixAvatar.Root data-slot="avatar" className={rootClassName} {...rest}>
@@ -26,8 +35,7 @@ export const Avatar = (props: Readonly<AvatarProps>) => {
 export const AvatarImage = (props: Readonly<AvatarImageProps>) => {
   const { className, ...rest } = props;
 
-  const { image } = avatarVariants();
-  const imageClassName = image({ class: className });
+  const imageClassName = avatarImageVariants({ class: className });
 
   return (
     <RadixAvatar.Image
@@ -41,8 +49,7 @@ export const AvatarImage = (props: Readonly<AvatarImageProps>) => {
 export const AvatarFallback = (props: Readonly<AvatarFallbackProps>) => {
   const { className, ...rest } = props;
 
-  const { fallback } = avatarVariants();
-  const fallbackClassName = fallback({ class: className });
+  const fallbackClassName = avatarFallbackVariants({ class: className });
 
   return (
     <RadixAvatar.Fallback

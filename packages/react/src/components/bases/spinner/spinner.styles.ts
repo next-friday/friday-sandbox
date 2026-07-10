@@ -1,26 +1,24 @@
-import { tv } from "tailwind-variants/lite";
-import type { VariantProps } from "tailwind-variants/lite";
+import { cva } from "class-variance-authority";
 
-export const spinnerVariants = tv({
-  slots: {
-    root: "fri-spinner",
-  },
+import type { StrictVariantProps } from "../../utils/variant-props";
+
+export const spinnerVariants = cva("fri-spinner", {
   variants: {
     color: {
-      primary: { root: "fri-spinner-primary" },
-      secondary: { root: "fri-spinner-secondary" },
-      accent: { root: "fri-spinner-accent" },
-      info: { root: "fri-spinner-info" },
-      success: { root: "fri-spinner-success" },
-      warning: { root: "fri-spinner-warning" },
-      danger: { root: "fri-spinner-danger" },
+      primary: "fri-spinner-primary",
+      secondary: "fri-spinner-secondary",
+      accent: "fri-spinner-accent",
+      info: "fri-spinner-info",
+      success: "fri-spinner-success",
+      warning: "fri-spinner-warning",
+      danger: "fri-spinner-danger",
     },
     size: {
-      xs: { root: "fri-spinner-xs" },
-      sm: { root: "fri-spinner-sm" },
-      md: { root: "fri-spinner-md" },
-      lg: { root: "fri-spinner-lg" },
-      xl: { root: "fri-spinner-xl" },
+      xs: "fri-spinner-xs",
+      sm: "fri-spinner-sm",
+      md: "fri-spinner-md",
+      lg: "fri-spinner-lg",
+      xl: "fri-spinner-xl",
     },
   },
   defaultVariants: {
@@ -29,4 +27,4 @@ export const spinnerVariants = tv({
   },
 });
 
-export type SpinnerVariants = VariantProps<typeof spinnerVariants>;
+export type SpinnerVariants = StrictVariantProps<typeof spinnerVariants>;

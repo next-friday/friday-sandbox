@@ -21,13 +21,13 @@ asymmetry the reader can't tell apart from a designed use case.
   otherwise. The scaffold emits this tier ready to ship, and `lint:symmetry`
   gates it: axis → story → doc section, exact names, no-map-demos.
 - **Independent sibling part — one showcase of its own.** A namespace part
-  with its own `tv()` map whose CSS styles the roots it contains (base
+  with its own `cva()` map whose CSS styles the roots it contains (base
   `fri-<name>-<part>` plus a descendant rule back onto `.fri-<name>` — a
   `Group`, not a slot like an `Icon`) gets one showcase story named after the
   part, carrying a `play` that asserts every mechanic the design gives the
   part — the size cascade and the paint order each get an assertion, never a
   sample of one — plus a same-named `##` section. `lint:symmetry` derives the
-  pair from the namespace, the second `tv()` map, and the descendant rule.
+  pair from the namespace, the second `cva()` map, and the descendant rule.
 - **Use-case stories — the designer's, any number.** Every story beyond the
   trio and the sibling showcases is a use case a human authors to taste,
   after the component ships. A

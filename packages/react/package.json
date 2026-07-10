@@ -65,10 +65,10 @@
   },
   "dependencies": {
     "@gravity-ui/icons": "^2.19.0",
+    "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "radix-ui": "^1.6.0",
-    "react-aria-components": "^1.19.0",
-    "tailwind-variants": "^3.2.2"
+    "react-aria-components": "^1.19.0"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^5.2.1",

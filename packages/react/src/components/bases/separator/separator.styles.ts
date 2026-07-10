@@ -1,14 +1,12 @@
-import { tv } from "tailwind-variants/lite";
-import type { VariantProps } from "tailwind-variants/lite";
+import { cva } from "class-variance-authority";
 
-export const separatorVariants = tv({
-  slots: {
-    root: "fri-separator",
-  },
+import type { StrictVariantProps } from "../../utils/variant-props";
+
+export const separatorVariants = cva("fri-separator", {
   variants: {
     orientation: {
-      horizontal: { root: "fri-separator-horizontal" },
-      vertical: { root: "fri-separator-vertical" },
+      horizontal: "fri-separator-horizontal",
+      vertical: "fri-separator-vertical",
     },
   },
   defaultVariants: {
@@ -16,4 +14,4 @@ export const separatorVariants = tv({
   },
 });
 
-export type SeparatorVariants = VariantProps<typeof separatorVariants>;
+export type SeparatorVariants = StrictVariantProps<typeof separatorVariants>;

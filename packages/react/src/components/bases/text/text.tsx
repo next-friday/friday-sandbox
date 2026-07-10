@@ -27,15 +27,15 @@ export const Text = (props: Readonly<TextProps>) => {
     ...rest
   } = props;
 
-  const slots = textVariants({
+  const rootClassName = textVariants({
     variant,
     color,
     align,
     lineClamp,
     truncate,
     underline,
+    class: className,
   });
-  const rootClassName = slots.root({ class: className });
 
   return (
     <AriaText

@@ -12,7 +12,7 @@ Write 3–5 falsifiable hypotheses before testing any. For a `fri-` class that w
 
 ## Fix at the source layer
 
-Trace back to the original trigger and fix there, never where the error surfaces. A class with no styling is fixed in the `tv()` mapping, the `@layer components` rule, the `@import`, or the token — not by hard-coding at the symptom.
+Trace back to the original trigger and fix there, never where the error surfaces. A class with no styling is fixed in the `cva()` mapping, the `@layer components` rule, the `@import`, or the token — not by hard-coding at the symptom.
 
 ## Escalation tripwire
 
