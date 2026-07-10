@@ -27,7 +27,7 @@ Drive each round of AI review on a component PR to clean autonomously — decide
    - `---`, then a `<details><summary>ℹ️ Round info</summary>` block holding the head sha, the fix sha, and one line per expected reviewer — including any that never posted, was rate-limited (with its reset time), or declined the head.
    - **Every round posts its summary — zero-finding, rate-limited, and settled rounds included.** The PR is where teammates read the round's state; a chat report reaches no one. The body's last visible line is the bold merge-readiness state: `**State: ready for the human merge gate**` or `**State: waiting on <reviewer> — not ready to merge**`.
 8. **Repeat per round — bounded.** The batched push re-runs the bots → back to step 1 (`wait-for-round.sh` again). Continue until a full round returns no real findings.
-9. **Hand to the human checkpoint.** Confirm the round is clean by machine: `bash "${CLAUDE_SKILL_DIR}/scripts/verify-coverage.sh" <pr>` must report `answered N / N` and `bash "${CLAUDE_SKILL_DIR}/scripts/ci-status.sh" <pr>` must read `ci: green`. Wait for checks to settle with the native watcher (`gh pr checks <pr> --watch`), then read the verdict through `ci-status.sh` — the script exists only to scope out the secret-/human-gated set, never as a hand-rolled poll loop. A failing aggregate whose upstream jobs all succeeded (a runner-cancelled or timed-out job, not a code failure) is re-run with `gh run rerun <run-id> --failed` — never fixed with a new push, which would restart the whole bot round (the verdict covers every reported check minus the known secret-/human-gated set — pkg-pr-new, Chromatic's UI Review/Tests, Sonar are informational and don't block; merge protection stays GitHub's). Hand the human the link to the round-summary comment (step 7) for their final review — the merge gate. The human reads the threads and merges; you never merge. A requested change re-enters here as a new round.
+9. **Hand to the human checkpoint.** Confirm the round is clean by machine: `bash "${CLAUDE_SKILL_DIR}/scripts/verify-coverage.sh" <pr>` must report `answered N / N`, and the step-7 round summary is on the PR. Hand the human the link to that round-summary comment for their final review — the merge gate. CI, checks, and re-runs are outside this skill: branch protection blocks a red merge and the human reads the checks tab. The human reads the threads and merges; you never merge. A requested change re-enters here as a new round.
 
 ## Rules
 
@@ -43,13 +43,13 @@ Drive each round of AI review on a component PR to clean autonomously — decide
 - Never bulk-edit a posted comment without reading its body back first — the single review comment lives at `pulls/comments/<id>` (no PR number in the path); a wrong GET returns empty and the PATCH wipes the thread.
 - Keep `.review-decisions/` gitignored and local; never push it alone.
 - A PR replaced mid-round (a head-branch rename closes its PR permanently — GitHub does not retarget; a recreate) continues on the successor: its body opens with `Supersedes #<old>` naming where the earlier threads live, `.review-decisions/` carries the adjudications across, an already-answered finding that reappears is answered from that record, and only genuinely new threads get fresh triage. Never rename a branch while its PR is open — rename first, then open the PR.
-- Loop until the AI round is machine-confirmed clean (`verify-coverage` N/N + `ci-status` green), then hand to the human's gate; never merge yourself.
+- Loop until the AI round is machine-confirmed clean (`verify-coverage` N/N + the round summary posted), then hand to the human's gate; never merge yourself.
 - **One PR in flight.** While this session has an open PR, never open the next issue, branch, or PR — prepare the next change locally and queue it; only an explicit "open it now, don't wait" from the user overrides. A parallel PR taxes the team twice: a stale base after the first merge forces a branch update and a full CI re-run.
 - **A stale base is yours to update.** When a merge puts this PR behind the default branch, run `gh pr update-branch <pr>` yourself — never leave the button to the human. The update push restarts the bot round; what follows is a new round.
 
 ## Acceptance criteria
 
-- Machine-confirm the round with `"${CLAUDE_SKILL_DIR}/scripts/round-state.sh" <pr>` — it folds in `verify-coverage.sh` and `ci-status.sh`: every reviewer line settled (reviewed-clean / abstained / prior-round with threads answered), `threads` reads `answered N / N`, `ci` reads green, and `summary` reads `posted`. A `summary MISSING` line blocks any handoff or "ready to merge" claim, in chat or anywhere else.
+- Machine-confirm the round with `"${CLAUDE_SKILL_DIR}/scripts/round-state.sh" <pr>` — it folds in `verify-coverage.sh`: every reviewer line settled (reviewed-clean / abstained / prior-round with threads answered), `threads` reads `answered N / N`, and `summary` reads `posted`. A `summary MISSING` line blocks any handoff or "ready to merge" claim, in chat or anywhere else.
 - The round-summary comment is on the PR (step 7) and matches the threads — every fixed item names its sha, every rebuttal its reason.
 - Exactly one push carried the round's whole batch; no extra push re-triggered the bots mid-round.
 - Any sub-issue you opened is linked to the parent and carries `Closes #<sub>` in the PR body.
@@ -64,7 +64,6 @@ Materialize as tracked tasks at round open, one per item; tick only on the verif
 - [ ] Fixes batched into one push, pre-flighted — verifier: `round-state.sh` shows no MISSING immediately before the push, then the push output
 - [ ] Every thread replied — verifier: `round-state.sh` threads line reads `answered N / N`
 - [ ] Round summary on the PR — verifier: `round-state.sh` summary line reads `posted`
-- [ ] CI green — verifier: `round-state.sh` ci line
 - [ ] Merge link handed to the human — verifier: `round-state.sh` next line reads `handoff`
 
 ## Output

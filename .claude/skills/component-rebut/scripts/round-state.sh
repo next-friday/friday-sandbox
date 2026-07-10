@@ -81,7 +81,6 @@ SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 CR_LINE=$(cr_state)
 GEMINI_LINE=$(gemini_state)
 THREADS_LINE=$(bash "$SCRIPT_DIR/verify-coverage.sh" "$PR" | tail -1 || true)
-CI_LINE=$(bash "$SCRIPT_DIR/ci-status.sh" "$PR" | tail -1 || true)
 SUMMARY_LINE=$(summary_state)
 
 next_action() {
@@ -95,10 +94,8 @@ next_action() {
     echo "wait — a reviewer is still due: wait-for-round.sh $PR"
   elif [[ "$SUMMARY_LINE" == MISSING* ]]; then
     echo "summary — post the step-7 round summary on the PR"
-  elif [[ "$CI_LINE" != *green* ]]; then
-    echo "ci — gh pr checks $PR --watch, then re-read"
   else
-    echo "handoff — every gate green: give the human the merge link"
+    echo "handoff — round clean: give the human the merge link"
   fi
 }
 
@@ -107,6 +104,5 @@ echo "head      ${HEAD:0:7} ($SINCE)"
 echo "coderabbit $CR_LINE"
 echo "gemini     $GEMINI_LINE"
 echo "threads    $THREADS_LINE"
-echo "ci         $CI_LINE"
 echo "summary    $SUMMARY_LINE"
 echo "next       $(next_action)"
