@@ -22,7 +22,7 @@ round_status() {
   reviews=$(gh api --paginate "repos/$owner_repo/pulls/$pr/reviews" \
     --jq '.[] | select(.state != "PENDING") | "\(.submitted_at)\t\((.user.login // "") | ascii_downcase)\t\(.body[0:80] | gsub("[\n\t]"; " "))"' 2>/dev/null) || reviews=""
   cr_body=$(gh api --paginate "repos/$owner_repo/issues/$pr/comments" \
-    --jq '.[] | select((.user.login // "") | ascii_downcase | contains("coderabbit")) | "\(.updated_at // .created_at)\t\(.body[0:200] | gsub("[\n\t]"; " "))"' 2>/dev/null) || cr_body=""
+    --jq '.[] | select((.user.login // "") | ascii_downcase | contains("coderabbit")) | "\(.updated_at // .created_at // "")\t\(.body[0:200] | gsub("[\n\t]"; " "))"' 2>/dev/null) || cr_body=""
   inline=$(gh api --paginate "repos/$owner_repo/pulls/$pr/comments" --jq '.[].id' 2>/dev/null | grep -c . ) || inline=0
 
   reviewer_state() {
