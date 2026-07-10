@@ -88,5 +88,13 @@ run_case "stale walkthrough older than head -> partial 4" 4 \
   FAKE_REVIEWS="$NEW\tgemini-code-assist[bot]\t## Code Review\n" \
   FAKE_CR_BODY="2026-07-09T09:00:00Z\tNo actionable comments were generated in the recent review.\n"
 
+run_case "walkthrough marker past 200-char preamble -> complete" 0 \
+  FAKE_REVIEWS="$NEW\tgemini-code-assist[bot]\t## Code Review\n" \
+  FAKE_CR_BODY="2026-07-09T10:20:00Z\txxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx No actionable comments were generated in the recent review.\n"
+
+run_case "gemini abstains on workflow diff, cr reviewed clean -> complete" 0 \
+  FAKE_REVIEWS="$NEW\tcoderabbitai[bot]\tActionable comments posted: 0\n" \
+  FAKE_CR_BODY="2026-07-09T10:21:00Z\tGemini is unable to generate a summary for this pull request.\n"
+
 echo "wait-for-round: $pass passed, $fail failed"
 [ "$fail" -eq 0 ]
