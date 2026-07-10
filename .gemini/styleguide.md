@@ -68,7 +68,7 @@ Key checks for styles:
 
 - Third-party actions pinned to a commit SHA, not a tag.
 - Each job sets a tight `timeout-minutes` and a minimal `permissions` block; top-level `permissions: contents: read`, job-level grants only what the step needs.
-- Every job runs `step-security/harden-runner` first.
+- `step-security/harden-runner` runs first only in workflows that hold elevated credentials (the release app token or npm token).
 
 ## Shell scripts: `.github/scripts/**`
 

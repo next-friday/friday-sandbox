@@ -39,17 +39,6 @@ Closes #2
 
 Two or three bullets describing what changed and why.
 
-## Architecture compliance
-
-- [ ] DRY: no duplicated logic; reused shared helpers and constants across `packages/*`.
-- [ ] Symmetric: files of the same kind, whether component, story, or config, share one skeleton.
-- [ ] Typed and named clearly; no dead code; no source comments unless intent is non-obvious.
-- [ ] No lint rule disabled, gate skipped, or guard bypassed to make gates pass.
-
-## Release impact
-
-- Semver bump: <!-- patch | minor | major | none -->
-
 ## New or changed component (when touched)
 
 - [ ] Mirrored the `button` folder under `packages/react/src/components/<tier>/<name>/` so the file shape stays symmetric.

@@ -11,48 +11,41 @@ concurrency:
 permissions:
   contents: read
 
-env:
-  VALIDATE: ${{ github.event.pull_request.user.login != 'dependabot[bot]' && !startsWith(github.head_ref, 'changeset-release/') }}
-
 jobs:
   validate:
     name: Validate pull request
     runs-on: ubuntu-24.04
     timeout-minutes: 10
-    if: ${{ github.event.pull_request.draft == false }}
+    if: >-
+      ${{ github.event.pull_request.draft == false &&
+      github.event.pull_request.user.login != 'dependabot[bot]' &&
+      !startsWith(github.head_ref, 'changeset-release/') }}
     permissions:
       contents: read
       issues: read
     steps:
-      - uses: step-security/harden-runner@9af89fc71515a100421586dfdb3dc9c984fbf411
-        with:
-          egress-policy: audit
       - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0
-        if: ${{ env.VALIDATE == 'true' }}
         with:
           persist-credentials: false
           fetch-depth: 0
       - uses: ./.github/common-actions/bootstrap
-        if: ${{ env.VALIDATE == 'true' }}
+        with:
+          install-filter: friday-sandbox
       - name: Title follows the Hybrid Convention
-        if: ${{ env.VALIDATE == 'true' }}
         env:
           PR_TITLE: ${{ github.event.pull_request.title }}
         run: echo "$PR_TITLE" | pnpm exec commitlint
       - name: Every commit in the PR follows the Hybrid Convention (blocks --no-verify)
-        if: ${{ env.VALIDATE == 'true' }}
         env:
           BASE_SHA: ${{ github.event.pull_request.base.sha }}
           HEAD_SHA: ${{ github.event.pull_request.head.sha }}
         run: pnpm exec commitlint --from "$BASE_SHA" --to "$HEAD_SHA" --verbose
       - name: Title carries no issue ref and body closes one
-        if: ${{ env.VALIDATE == 'true' }}
         env:
           PR_TITLE: ${{ github.event.pull_request.title }}
           PR_BODY: ${{ github.event.pull_request.body }}
         run: bash .github/scripts/check-pr-title-references.sh
       - name: Branch points at a real open issue
-        if: ${{ env.VALIDATE == 'true' }}
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           HEAD: ${{ github.head_ref }}
@@ -70,7 +63,6 @@ jobs:
           fi
           echo "Branch is linked to open issue #$n"
       - name: Behavior-changing types require a changeset
-        if: ${{ env.VALIDATE == 'true' }}
         env:
           PR_TITLE: ${{ github.event.pull_request.title }}
           BASE_SHA: ${{ github.event.pull_request.base.sha }}

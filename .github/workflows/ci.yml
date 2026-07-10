@@ -4,6 +4,8 @@ on:
   pull_request:
     branches: [main]
     types: [opened, synchronize, reopened, ready_for_review]
+  push:
+    branches: [main]
 
 concurrency:
   group: ci-${{ github.event.pull_request.number || github.ref }}
@@ -14,44 +16,30 @@ permissions:
 
 jobs:
   quality:
-    name: Quality / ${{ matrix.check }}
-    if: ${{ github.event.pull_request.draft == false }}
+    name: Quality / checks
+    if: ${{ github.event_name == 'push' || github.event.pull_request.draft == false }}
     runs-on: ubuntu-24.04
-    timeout-minutes: 10
-    strategy:
-      fail-fast: false
-      matrix:
-        check:
-          [
-            lint,
-            typecheck,
-            knip,
-            format:check,
-            depcruise,
-            build:storybook,
-            sort:check,
-            lint:symmetry,
-            lint:md,
-          ]
+    timeout-minutes: 15
     steps:
-      - uses: step-security/harden-runner@9af89fc71515a100421586dfdb3dc9c984fbf411
-        with:
-          egress-policy: audit
       - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0
         with:
           persist-credentials: false
       - uses: ./.github/common-actions/bootstrap
-      - run: pnpm ${{ matrix.check }}
+      - run: pnpm lint
+      - run: pnpm typecheck
+      - run: pnpm knip
+      - run: pnpm format:check
+      - run: pnpm depcruise
+      - run: pnpm sort:check
+      - run: pnpm lint:symmetry
+      - run: pnpm lint:md
 
   actionlint:
     name: Quality / actionlint
-    if: ${{ github.event.pull_request.draft == false }}
+    if: ${{ github.event_name == 'push' || github.event.pull_request.draft == false }}
     runs-on: ubuntu-24.04
     timeout-minutes: 5
     steps:
-      - uses: step-security/harden-runner@9af89fc71515a100421586dfdb3dc9c984fbf411
-        with:
-          egress-policy: audit
       - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0
         with:
           persist-credentials: false
@@ -63,13 +51,10 @@ jobs:
 
   zizmor:
     name: Quality / zizmor
-    if: ${{ github.event.pull_request.draft == false }}
+    if: ${{ github.event_name == 'push' || github.event.pull_request.draft == false }}
     runs-on: ubuntu-24.04
     timeout-minutes: 5
     steps:
-      - uses: step-security/harden-runner@9af89fc71515a100421586dfdb3dc9c984fbf411
-        with:
-          egress-policy: audit
       - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0
         with:
           persist-credentials: false
@@ -79,53 +64,39 @@ jobs:
           annotations: true
 
   test:
-    name: Verify / test (${{ matrix.node }})
-    if: ${{ github.event.pull_request.draft == false }}
+    name: Verify / test
+    if: ${{ github.event_name == 'push' || github.event.pull_request.draft == false }}
     runs-on: ubuntu-24.04
     timeout-minutes: 15
-    strategy:
-      fail-fast: false
-      matrix:
-        node: ["22"]
     steps:
-      - uses: step-security/harden-runner@9af89fc71515a100421586dfdb3dc9c984fbf411
-        with:
-          egress-policy: audit
       - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0
         with:
           persist-credentials: false
       - uses: ./.github/common-actions/bootstrap
-        with:
-          node-version: ${{ matrix.node }}
       - name: Install Playwright browsers
         run: pnpm --filter @friday-sandbox/react exec playwright install --with-deps chromium
       - run: pnpm test
 
   build:
     name: Verify / build
-    if: ${{ github.event.pull_request.draft == false }}
+    if: ${{ github.event_name == 'push' || github.event.pull_request.draft == false }}
     runs-on: ubuntu-24.04
     timeout-minutes: 10
     steps:
-      - uses: step-security/harden-runner@9af89fc71515a100421586dfdb3dc9c984fbf411
-        with:
-          egress-policy: audit
       - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0
         with:
           persist-credentials: false
       - uses: ./.github/common-actions/bootstrap
       - run: pnpm build
+      - run: pnpm build:storybook
 
   ci-success:
     name: CI Success
     needs: [quality, actionlint, zizmor, test, build]
-    if: ${{ always() && github.event.pull_request.draft == false }}
+    if: ${{ always() && (github.event_name == 'push' || github.event.pull_request.draft == false) }}
     runs-on: ubuntu-24.04
     timeout-minutes: 5
     steps:
-      - uses: step-security/harden-runner@9af89fc71515a100421586dfdb3dc9c984fbf411
-        with:
-          egress-policy: audit
       - name: Fail if any required job did not succeed
         env:
           RESULTS: ${{ join(needs.*.result, ',') }}

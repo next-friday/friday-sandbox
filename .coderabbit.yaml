@@ -146,7 +146,8 @@ reviews:
         Third-party actions must be pinned to a commit SHA, not a tag. Each job
         sets a tight timeout-minutes and a minimal permissions block. Top-level
         permissions stay read-only; job-level grants only the scopes that step
-        needs. Run step-security/harden-runner first.
+        needs. step-security/harden-runner runs first only in workflows that
+        hold elevated credentials, such as the release app token or npm token.
     - path: .github/scripts/**/*.sh
       instructions: >-
         Shell scripts start with set -euo pipefail. Quote every variable
