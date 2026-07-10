@@ -12,7 +12,7 @@ paths:
   `layers/` base/spacing/utilities/variants files, and one CSS file per component. Ships
   CSS only, no JavaScript.
 - **`react`** — accessible components built on `react-aria-components` (when
-  interactive) or native HTML (display and layout), each owning its own `tv()`
+  interactive) or native HTML (display and layout), each owning its own `cva()`
   variant map (`<name>.styles.ts`, co-located with `<name>.tsx`) and styled
   only through `fri-<name>` classes. `components/bases/` holds the real published
   components and `components/utils/` the shared helpers; `samples/` and `icons/`

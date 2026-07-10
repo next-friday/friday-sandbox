@@ -1,8 +1,8 @@
-import { tv } from "tailwind-variants/lite";
-import type { VariantProps } from "tailwind-variants/lite";
+import { cva } from "class-variance-authority";
 
-export const buttonVariants = tv({
-  base: "fri-button",
+import type { StrictVariantProps } from "../../utils/variant-props";
+
+export const buttonVariants = cva("fri-button", {
   variants: {
     color: {
       primary: "fri-button-primary",
@@ -45,4 +45,4 @@ export const buttonVariants = tv({
   },
 });
 
-export type ButtonVariants = VariantProps<typeof buttonVariants>;
+export type ButtonVariants = StrictVariantProps<typeof buttonVariants>;

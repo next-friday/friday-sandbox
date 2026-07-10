@@ -93,7 +93,7 @@ Components use a `fri-<component>-<modifier>` convention, usable in plain HTML:
 
 ## Reference
 
-- **Hand-authored tokens.** The theme lives in [`src/themes/`](./src/themes/) as plain CSS variables — a theme's color seeds (ground, surface, roles, focus) declared per mode in `<name>/tokens.css`, the theme-agnostic scales (spacing, type, radius archetypes) once in `shared/scales.css`; the per-role interaction states, borders, and line tiers derive from the seeds via runtime `color-mix`/`var()` in `shared/variables.css`. This package ships CSS only — each component's `tv()` variant map lives with the component in `@friday-sandbox/react` (`<name>.styles.ts`), mirrored 1:1 against this package's `<name>.css`.
+- **Hand-authored tokens.** The theme lives in [`src/themes/`](./src/themes/) as plain CSS variables — a theme's color seeds (ground, surface, roles, focus) declared per mode in `<name>/tokens.css`, the theme-agnostic scales (spacing, type, radius archetypes) once in `shared/scales.css`; the per-role interaction states, borders, and line tiers derive from the seeds via runtime `color-mix`/`var()` in `shared/variables.css`. This package ships CSS only — each component's `cva()` variant map lives with the component in `@friday-sandbox/react` (`<name>.styles.ts`), mirrored 1:1 against this package's `<name>.css`.
 
 ## License
 

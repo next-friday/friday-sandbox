@@ -46,7 +46,7 @@ reviews:
       instructions: >-
         Base components are scaffolded with "pnpm gen component" (turbo gen), never
         hand-created, and live in components/bases/<name>/ as <name>.tsx +
-        <name>.styles.ts (its own tv() variant map) + index.ts +
+        <name>.styles.ts (its own cva() variant map) + index.ts +
         <name>.stories.tsx; the variant map is linked to @friday-sandbox/styles'
         CSS by a fri-<name> class, mirrored across the package boundary. Priorities, highest first: accessibility, correctness, API ergonomics,
         then style. Key checks: lowercase filename, named export with colocated Props,
@@ -57,7 +57,7 @@ reviews:
         keyboard or focus where a primitive exists; props widen from the primitive
         (ComponentPropsWithRef<typeof X>), render-prop primitives compose className
         through composeTailwindRenderProps, keep data-slot; variants use
-        tailwind-variants tv() mapping every value to a distinct fri-<name>-<value>
+        class-variance-authority cva() mapping every value to a distinct fri-<name>-<value>
         class with the repo vocabulary (primary..danger, solid..plain, xs..xl) and
         defaultVariants, never a hardcoded color (wire the --fri-<role> ladder); a new
         file is reachable through the exports map's one public entry (. -> ./src/index.ts) via
@@ -83,7 +83,7 @@ reviews:
         grid, separator, spinner) skips the userEvent interaction plays, so never ask one for an
         interaction play. Story copy reads as
         consumer documentation, so flag internal class names (fri-button-*,
-        fri-flex-*), library names (tailwind-variants, react-aria,
+        fri-flex-*), library names (class-variance-authority, react-aria,
         react-aria-components), engine math (calc(var(--fri-spacing-xs) *
         var(--_button-n))), or file paths; copy stays generic, not brittle, so flag
         concrete pixel sizes or an exhaustive enumeration of a prop's values, and
@@ -110,7 +110,7 @@ reviews:
       instructions: >-
         A component's rules live in src/components/<name>.css under
         @layer components, keyed to the fri-<name> class, and must mirror its
-        tv() variant map (<name>.styles.ts, in @friday-sandbox/react) 1:1 —
+        cva() variant map (<name>.styles.ts, in @friday-sandbox/react) 1:1 —
         every fri-<name>-<value> class has a rule and vice versa (the
         lint:symmetry gate enforces it, across the package boundary); flag an
         orphan either side. Style through @apply — a .fri-*/base declaration is

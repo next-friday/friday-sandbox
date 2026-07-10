@@ -1,8 +1,8 @@
-import { tv } from "tailwind-variants/lite";
-import type { VariantProps } from "tailwind-variants/lite";
+import { cva } from "class-variance-authority";
 
-export const inputVariants = tv({
-  base: "fri-input",
+import type { StrictVariantProps } from "../../utils/variant-props";
+
+export const inputVariants = cva("fri-input", {
   variants: {
     size: {
       xs: "fri-input-xs",
@@ -17,4 +17,4 @@ export const inputVariants = tv({
   },
 });
 
-export type InputVariants = VariantProps<typeof inputVariants>;
+export type InputVariants = StrictVariantProps<typeof inputVariants>;

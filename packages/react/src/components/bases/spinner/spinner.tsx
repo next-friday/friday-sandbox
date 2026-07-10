@@ -11,8 +11,7 @@ export interface SpinnerProps
 export const Spinner = (props: Readonly<SpinnerProps>) => {
   const { className, color, size, ...rest } = props;
 
-  const slots = spinnerVariants({ color, size });
-  const rootClassName = slots.root({ class: className });
+  const rootClassName = spinnerVariants({ color, size, class: className });
 
   return <span data-slot="spinner" className={rootClassName} {...rest} />;
 };

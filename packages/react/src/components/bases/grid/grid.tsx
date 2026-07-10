@@ -2,7 +2,7 @@ import type { ElementType, ReactElement } from "react";
 
 import type { PolymorphicProps } from "../../utils/polymorphic-props";
 
-import { gridVariants } from "./grid.styles";
+import { gridVariants, gridItemVariants } from "./grid.styles";
 
 import type { GridVariants, GridItemVariants } from "./grid.styles";
 
@@ -41,7 +41,7 @@ export const Grid = <TElement extends ElementType = "div">(
 
   const Component: ElementType = as ?? "div";
 
-  const slots = gridVariants({
+  const gridClassName = gridVariants({
     cols,
     rows,
     flow,
@@ -58,8 +58,8 @@ export const Grid = <TElement extends ElementType = "div">(
     pr,
     pb,
     pl,
+    class: className,
   });
-  const gridClassName = slots.grid({ class: className });
 
   return (
     <Component data-slot="grid" ref={ref} className={gridClassName} {...rest} />
@@ -99,7 +99,7 @@ export const GridItem = <TElement extends ElementType = "div">(
 
   const Component: ElementType = as ?? "div";
 
-  const slots = gridVariants({
+  const itemClassName = gridItemVariants({
     colSpan,
     rowSpan,
     colStart,
@@ -113,8 +113,8 @@ export const GridItem = <TElement extends ElementType = "div">(
     pr,
     pb,
     pl,
+    class: className,
   });
-  const itemClassName = slots.item({ class: className });
 
   return (
     <Component

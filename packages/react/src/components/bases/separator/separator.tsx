@@ -16,8 +16,7 @@ export interface SeparatorProps
 export const Separator = (props: Readonly<SeparatorProps>) => {
   const { orientation = "horizontal", className, ...rest } = props;
 
-  const slots = separatorVariants({ orientation });
-  const rootClassName = slots.root({ class: className });
+  const rootClassName = separatorVariants({ orientation, class: className });
 
   return (
     <AriaSeparator

@@ -1,25 +1,19 @@
-import { tv } from "tailwind-variants/lite";
-import type { VariantProps } from "tailwind-variants/lite";
+import { cva } from "class-variance-authority";
 
-export const scrollAreaVariants = tv({
-  slots: {
-    root: "fri-scroll-area",
-    viewport: "fri-scroll-area-viewport",
-    scrollbar: "fri-scroll-area-scrollbar",
-    thumb: "fri-scroll-area-thumb",
-    corner: "fri-scroll-area-corner",
-  },
+import type { StrictVariantProps } from "../../utils/variant-props";
+
+export const scrollAreaVariants = cva("fri-scroll-area", {
   variants: {
     size: {
-      xs: { root: "fri-scroll-area-xs" },
-      sm: { root: "fri-scroll-area-sm" },
-      md: { root: "fri-scroll-area-md" },
-      lg: { root: "fri-scroll-area-lg" },
+      xs: "fri-scroll-area-xs",
+      sm: "fri-scroll-area-sm",
+      md: "fri-scroll-area-md",
+      lg: "fri-scroll-area-lg",
     },
     variant: {
-      hover: {},
-      always: {},
-      hidden: { root: "fri-scroll-area-hide-scrollbar" },
+      hover: "",
+      always: "",
+      hidden: "fri-scroll-area-hide-scrollbar",
     },
   },
   defaultVariants: {
@@ -28,4 +22,12 @@ export const scrollAreaVariants = tv({
   },
 });
 
-export type ScrollAreaVariants = VariantProps<typeof scrollAreaVariants>;
+export const scrollAreaViewportVariants = cva("fri-scroll-area-viewport");
+
+export const scrollAreaScrollbarVariants = cva("fri-scroll-area-scrollbar");
+
+export const scrollAreaThumbVariants = cva("fri-scroll-area-thumb");
+
+export const scrollAreaCornerVariants = cva("fri-scroll-area-corner");
+
+export type ScrollAreaVariants = StrictVariantProps<typeof scrollAreaVariants>;

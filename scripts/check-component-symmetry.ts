@@ -95,23 +95,28 @@ const literalText = (node: ts.Expression): string => {
   return "";
 };
 
-const firstTvConfig = (
+const cvaCall = (node: ts.Node): ts.CallExpression | undefined =>
+  ts.isCallExpression(node) &&
+  ts.isIdentifier(node.expression) &&
+  node.expression.text === "cva"
+    ? node
+    : undefined;
+
+const cvaConfigOf = (
+  call: ts.CallExpression,
+): ts.ObjectLiteralExpression | undefined =>
+  call.arguments.length > 1 && ts.isObjectLiteralExpression(call.arguments[1]!)
+    ? (call.arguments[1] as ts.ObjectLiteralExpression)
+    : undefined;
+
+const firstCvaConfig = (
   sourceFile: ts.SourceFile,
 ): ts.ObjectLiteralExpression | undefined => {
-  let found: ts.ObjectLiteralExpression | undefined;
+  let first: ts.CallExpression | undefined;
   walk(sourceFile, (node) => {
-    if (
-      !found &&
-      ts.isCallExpression(node) &&
-      ts.isIdentifier(node.expression) &&
-      node.expression.text === "tv" &&
-      node.arguments.length > 0 &&
-      ts.isObjectLiteralExpression(node.arguments[0]!)
-    ) {
-      found = node.arguments[0] as ts.ObjectLiteralExpression;
-    }
+    first ??= cvaCall(node);
   });
-  return found;
+  return first && cvaConfigOf(first);
 };
 
 const objectKeys = (object: ts.Expression | undefined): string[] =>
@@ -159,14 +164,9 @@ const friClasses = (sourceFile: ts.SourceFile, name: string): string[] => {
 
 const checkFriOnlyValues = (sourceFile: ts.SourceFile, name: string): void => {
   walk(sourceFile, (node) => {
-    if (
-      ts.isCallExpression(node) &&
-      ts.isIdentifier(node.expression) &&
-      node.expression.text === "tv" &&
-      node.arguments.length > 0 &&
-      ts.isObjectLiteralExpression(node.arguments[0]!)
-    ) {
-      const config = node.arguments[0] as ts.ObjectLiteralExpression;
+    const call = cvaCall(node);
+    const config = call && cvaConfigOf(call);
+    if (config) {
       for (const property of config.properties) {
         if (
           ts.isPropertyAssignment(property) &&
@@ -209,51 +209,25 @@ const cssFriClasses = (root: Root, name: string): string[] => {
   return [...classes].sort();
 };
 
-const primaryAxes = (
-  tvConfig: ts.ObjectLiteralExpression,
-  axes: string[],
-): string[] => {
-  const slots = objectProp(tvConfig, "slots");
-  const primary = objectKeys(slots)[0];
-  if (!primary) return axes;
-  const variants = objectProp(tvConfig, "variants");
-  if (!variants || !ts.isObjectLiteralExpression(variants)) return [];
-  const hits: string[] = [];
-  for (const axis of variants.properties) {
-    if (!ts.isPropertyAssignment(axis)) continue;
-    const values = axis.initializer;
-    if (!ts.isObjectLiteralExpression(values)) continue;
-    const touchesPrimary = values.properties.some(
-      (value) =>
-        ts.isPropertyAssignment(value) &&
-        (ts.isStringLiteral(value.initializer) ||
-          (ts.isObjectLiteralExpression(value.initializer) &&
-            objectKeys(value.initializer).includes(primary))),
-    );
-    if (touchesPrimary) hits.push(propertyName(axis));
-  }
-  return hits;
-};
-
-const allTvBases = (sourceFile: ts.SourceFile): string[] => {
-  const bases: string[] = [];
+const allAxes = (sourceFile: ts.SourceFile): string[] => {
+  const axes = new Set<string>();
   walk(sourceFile, (node) => {
-    if (
-      ts.isCallExpression(node) &&
-      ts.isIdentifier(node.expression) &&
-      node.expression.text === "tv" &&
-      node.arguments.length > 0 &&
-      ts.isObjectLiteralExpression(node.arguments[0]!)
-    ) {
-      const base = objectProp(
-        node.arguments[0] as ts.ObjectLiteralExpression,
-        "base",
-      );
-      if (base) {
-        const text = literalText(base);
-        if (text) bases.push(text);
+    const call = cvaCall(node);
+    const config = call && cvaConfigOf(call);
+    if (config) {
+      for (const axis of objectKeys(objectProp(config, "variants"))) {
+        axes.add(axis);
       }
     }
+  });
+  return [...axes];
+};
+
+const allCvaBases = (sourceFile: ts.SourceFile): string[] => {
+  const bases: string[] = [];
+  walk(sourceFile, (node) => {
+    const base = cvaCall(node)?.arguments[0];
+    if (base && ts.isStringLiteral(base)) bases.push(base.text);
   });
   return bases;
 };
@@ -571,12 +545,13 @@ for (const name of components) {
     fail(name, `${name}.css not @import'd in components/index.css`);
   }
 
-  const tvConfig = firstTvConfig(variantsFile);
-  const axes = tvConfig ? objectKeys(objectProp(tvConfig, "variants")) : [];
+  const variantConfig = firstCvaConfig(variantsFile);
+  const axes = variantConfig
+    ? objectKeys(objectProp(variantConfig, "variants"))
+    : [];
   const meta = storyMeta(storiesFile);
   const controls = meta ? objectKeys(objectProp(meta, "argTypes")) : [];
-  const controlAxes = tvConfig ? primaryAxes(tvConfig, axes) : [];
-  for (const axis of controlAxes) {
+  for (const axis of axes) {
     if (!controls.includes(axis)) {
       fail(
         name,
@@ -585,8 +560,8 @@ for (const name of components) {
     }
   }
 
-  const defaults = tvConfig
-    ? objectPairs(objectProp(tvConfig, "defaultVariants"))
+  const defaults = variantConfig
+    ? objectPairs(objectProp(variantConfig, "defaultVariants"))
     : new Map<string, string>();
   const metaArgs = meta
     ? objectPairs(objectProp(meta, "args"))
@@ -640,7 +615,7 @@ for (const name of components) {
     return hit;
   };
   const siblingShowcases = nsInfo
-    ? allTvBases(variantsFile)
+    ? allCvaBases(variantsFile)
         .map((base) => {
           const match = new RegExp(`^fri-${name}-([a-z0-9-]+)$`).exec(base);
           return match && containsRoot(match[1]!) ? pascal(match[1]!) : "";
@@ -655,7 +630,7 @@ for (const name of components) {
     if (!stories.includes(part)) {
       fail(
         name,
-        `independent sibling part "${Pascal}.${part}" (own tv() map) has no ${part} showcase story`,
+        `independent sibling part "${Pascal}.${part}" (own cva() map) has no ${part} showcase story`,
       );
     }
   }
@@ -679,10 +654,12 @@ for (const name of components) {
   const docText = read(docPath);
   const sections = mdxSections(docText);
   checkDocSpine(name, sections);
-  for (const axis of axes) {
+  for (const axis of allAxes(variantsFile)) {
     if (!new RegExp(`\\|\\s*\`${axis}\``).test(docText)) {
       fail(name, `variant axis "${axis}" has no row in the doc Props table`);
     }
+  }
+  for (const axis of axes) {
     const showcase = SHOWCASE_BY_AXIS[axis];
     if (showcase && !sections.includes(showcase)) {
       fail(
