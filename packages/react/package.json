@@ -64,10 +64,10 @@
     "visual": "node --experimental-strip-types scripts/visual-loop.ts"
   },
   "dependencies": {
-    "@gravity-ui/icons": "^2.19.0",
+    "@gravity-ui/icons": "^2.20.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
-    "radix-ui": "^1.6.0",
+    "radix-ui": "^1.6.1",
     "react-aria-components": "^1.19.0"
   },
   "devDependencies": {
