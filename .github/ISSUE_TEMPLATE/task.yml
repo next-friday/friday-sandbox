@@ -52,17 +52,3 @@ body:
         - [ ]
     validations:
       required: true
-
-  - type: dropdown
-    id: estimate
-    attributes:
-      label: Estimate
-      description: T-shirt size. Sets expectations, not a deadline.
-      options:
-        - XS (under two hours)
-        - S (half a day)
-        - M (one day)
-        - L (two to three days)
-        - XL (one week or longer)
-    validations:
-      required: true

@@ -19,13 +19,12 @@ jobs:
     timeout-minutes: 5
     if: ${{ github.event.issue.user.type != 'Bot' }}
     steps:
-      - uses: step-security/harden-runner@9af89fc71515a100421586dfdb3dc9c984fbf411
-        with:
-          egress-policy: audit
       - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0
         with:
           persist-credentials: false
       - uses: ./.github/common-actions/bootstrap
+        with:
+          install-filter: friday-sandbox
       - name: Title follows the Hybrid Convention
         env:
           ISSUE_TITLE: ${{ github.event.issue.title }}

@@ -25,7 +25,7 @@ The toolchain is pnpm workspaces with Turborepo for the build graph, Storybook f
 
 ## Development setup
 
-You need **Node `>=22.10.0`** and **pnpm 10**. The pnpm version is pinned in the root `package.json`; enable Corepack so it is used automatically.
+You need **Node `>=24.11.0`** and **pnpm 10**. The pnpm version is pinned in the root `package.json`; enable Corepack so it is used automatically.
 
 ```sh
 corepack enable   # use the repo-pinned pnpm

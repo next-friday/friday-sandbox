@@ -2,10 +2,10 @@ name: Bootstrap
 description: Setup Node.js and install dependencies via pnpm. Run AFTER actions/checkout, since local composite actions cannot replace checkout.
 
 inputs:
-  node-version:
-    description: Node major version to install.
+  install-filter:
+    description: pnpm --filter selector limiting the install; empty installs the whole workspace.
     required: false
-    default: "24"
+    default: ""
 
 runs:
   using: composite
@@ -18,9 +18,16 @@ runs:
     - name: Setup Node.js
       uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
       with:
-        node-version: ${{ inputs.node-version }}
+        node-version-file: .nvmrc
         cache: pnpm
 
     - name: Install dependencies
       shell: bash
-      run: pnpm install --frozen-lockfile
+      env:
+        INSTALL_FILTER: ${{ inputs.install-filter }}
+      run: |
+        if [ -n "$INSTALL_FILTER" ]; then
+          pnpm install --frozen-lockfile --filter "$INSTALL_FILTER"
+        else
+          pnpm install --frozen-lockfile
+        fi
