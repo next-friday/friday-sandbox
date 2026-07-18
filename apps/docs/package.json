@@ -21,10 +21,10 @@
   "dependencies": {
     "@friday-sandbox/react": "workspace:*",
     "@friday-sandbox/styles": "workspace:*",
-    "fumadocs-core": "^16.10.6",
-    "fumadocs-mdx": "^15.0.13",
-    "fumadocs-ui": "^16.10.6",
-    "next": "^16.2.9",
+    "fumadocs-core": "^16.11.3",
+    "fumadocs-mdx": "^15.1.0",
+    "fumadocs-ui": "^16.11.3",
+    "next": "^16.2.10",
     "react": "^19.2.7",
     "react-dom": "^19.2.7"
   },
